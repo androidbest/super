@@ -103,9 +103,9 @@
     NSUserDefaults * userDefaults =[NSUserDefaults standardUserDefaults];
     NSString *histroyDate=(NSString *)[userDefaults objectForKey:@"date"];
     if (!histroyDate) {
-        NSDate * date=[NSDate date];
-        NSString *strDate =[NSString stringWithFormat:@"%@",date];
-        [userDefaults setObject:strDate forKey:@"date"];
+        NSTimeInterval time_=[[NSDate date] timeIntervalSince1970]*1000;
+        NSString *strTime =[NSString  stringWithFormat:@"%f",time_];
+        [userDefaults setObject:strTime forKey:@"date"];
         [userDefaults synchronize];
         histroyDate=@"0";
     }
@@ -116,13 +116,22 @@
 - (void)handleData:(NSNotification *)notification{
     NSDictionary * dic=[notification userInfo];
     RespInfo *info =[AnalysisData addressUpdataInfo:dic];
+    /**/
+    UIImageView *imageView;
+    UIImage *image;
+    image= [UIImage imageNamed:@"37x-Checkmark.png"];
+    imageView = [[UIImageView alloc] initWithImage:image];
+    self.HUD.customView=imageView;
+    self.HUD.mode = MBProgressHUDModeCustomView;
+    /**/
+    
     if ([info.respCode isEqualToString:@"1"]) {
         [self DownLoadAddress:info.respMsg];
     }else if ([info.respCode isEqualToString:@"0"]){
         self.HUD.labelText = @"无需同步";
         [self.HUD hide:YES afterDelay:1];
     }else{
-        self.HUD.labelText = @"网络超时";
+        self.HUD.labelText = @"无需同步";
         [self.HUD hide:YES afterDelay:1];
     }
     

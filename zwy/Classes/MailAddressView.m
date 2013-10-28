@@ -39,6 +39,8 @@
 	// Do any additional setup after loading the view.
 }
 
+- (void)returnDidAddress:(PeopleDedaInfo *)deta{}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

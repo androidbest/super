@@ -318,6 +318,10 @@
 	return YES;
 }
 
+- (void)ErrorMessage{}
+- (void)OverWriteOperation{}
+
+
 #pragma mark get NSDate object for 1980-01-01
 -(NSDate*) Date1980
 {

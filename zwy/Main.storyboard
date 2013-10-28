@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
@@ -1260,42 +1260,44 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ETD-Ae-9pn">
-                                <rect key="frame" x="37" y="71" width="25" height="25"/>
+                                <rect key="frame" x="29" y="71" width="45" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="btn_addPeople.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
+                                <inset key="imageEdgeInsets" minX="8" minY="0.0" maxX="8" maxY="14"/>
+                                <state key="normal" image="btn_addPeople.png"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bgi-zp-JDF">
-                                <rect key="frame" x="118" y="71" width="25" height="25"/>
+                                <rect key="frame" x="106" y="71" width="45" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="8" maxY="14"/>
                                 <state key="normal" title="Button" image="btn_addPeople.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f60-FE-nPD">
-                                <rect key="frame" x="193" y="71" width="25" height="25"/>
+                                <rect key="frame" x="181" y="71" width="45" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="8" maxY="14"/>
                                 <state key="normal" title="Button" image="btn_addPeople.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8h9-Vp-1Zm">
-                                <rect key="frame" x="261" y="71" width="25" height="25"/>
+                                <rect key="frame" x="252" y="71" width="45" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" backgroundImage="btn_clear_people.png">
+                                <inset key="imageEdgeInsets" minX="8" minY="0.0" maxX="8" maxY="14"/>
+                                <state key="normal" title="全部清除" image="btn_clear_people.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="单位联系人" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X6H-LJ-duq">
-                                <rect key="frame" x="20" y="97" width="59" height="21"/>
+                                <rect key="frame" x="24" y="97" width="59" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="本地联系人" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4AA-3C-5zY">
-                                <rect key="frame" x="103" y="97" width="55" height="21"/>
+                                <rect key="frame" x="101" y="97" width="55" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1389,7 +1391,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0/350" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wPI-fw-jsh">
-                                <rect key="frame" x="17" y="431" width="42" height="21"/>
+                                <rect key="frame" x="17" y="431" width="68" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -2878,7 +2880,7 @@
             </objects>
             <point key="canvasLocation" x="3209" y="-1268"/>
         </scene>
-        <!--Group Address View - 系统通讯录-->
+        <!--Group Address View-->
         <scene sceneID="1Ag-Pb-Yhz">
             <objects>
                 <viewController id="2UT-n5-E6g" customClass="GroupAddressView" sceneMemberID="viewController">
@@ -2933,7 +2935,7 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" tag="2" id="C6b-F3-pQV"/>
-                    <navigationItem key="navigationItem" title="系统通讯录" id="HUG-rn-mWA"/>
+                    <navigationItem key="navigationItem" id="HUG-rn-mWA"/>
                     <connections>
                         <outlet property="searchBar" destination="Kv6-Zu-AhN" id="JSq-ud-yTC"/>
                         <outlet property="tableViewGroup" destination="hUB-E8-rz5" id="sCh-o1-Kw9"/>
@@ -3409,7 +3411,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="sAR-cD-OcR"/>
         <segue reference="D7U-d4-g18"/>
-        <segue reference="M4x-Zx-QGZ"/>
-        <segue reference="EdD-tC-bMF"/>
+        <segue reference="VnO-Jy-h2g"/>
+        <segue reference="fnu-ur-Sot"/>
     </inferredMetricsTieBreakers>
 </document>

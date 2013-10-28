@@ -121,7 +121,7 @@
     cell.contentSroll.clipsToBounds = YES;
     cell.contentSroll.scrollEnabled = YES;
     cell.contentSroll.pagingEnabled = NO;
-    CGFloat contentLength=[strContent length]*15;
+//   CGFloat contentLength=[strContent length]*15;
     cell.contentSroll.contentSize=CGSizeMake(200, 0);
 //    cell.content.frame=CGRectMake(0, 0, contentLength,21);
     cell.content.text=strContent;
