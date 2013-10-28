@@ -1,0 +1,89 @@
+//
+//  ConfigFile.m
+//  zwy
+//
+//  Created by wangshuang on 13-5-5.
+//  Copyright (c) 2013年 sxit. All rights reserved.
+//
+
+#import "ConfigFile.h"
+#import "PeopelInfo.h"
+#import "GroupInfo.h"
+
+static ConfigFile *configFile;
+@implementation ConfigFile
+
++(ConfigFile *)newInstance{
+    @synchronized(self){
+    if(configFile==nil)
+       configFile=[self new];
+    }
+    return configFile;
+}
+#pragma mark - 获取接口类型
+-(void)initData{
+    if(_configData==nil){
+    NSString *path = [[NSBundle mainBundle] pathForResource: @"common" ofType:@"plist"];
+    _configData = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
+    }
+}
+
+#pragma mark - 创建缓存文件夹
+- (void)paths{
+    //创建文件管理器
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    //更改到待操作的目录下
+    [fileManager changeCurrentDirectoryPath:[DocumentsDirectory stringByExpandingTildeInPath]];
+    //创建文件fileName文件名称，contents文件的内容，如果开始没有内容可以设置为nil，attributes文件的属性，初始为nil
+    NSString * strOfficeFile =@"doc";
+    NSString * strAccessoryFile=@"accessory";
+    NSString * pathOfficeFile =[NSString stringWithFormat:@"%@/%@",DocumentsDirectory,strOfficeFile];
+    NSString * pathAccessoryFile =[NSString stringWithFormat:@"%@/%@",DocumentsDirectory,strAccessoryFile];
+    if (![fileManager fileExistsAtPath:pathOfficeFile]) {
+        [fileManager createDirectoryAtPath:pathOfficeFile withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+    
+    if (![fileManager fileExistsAtPath:pathAccessoryFile]) {
+        [fileManager createDirectoryAtPath:pathAccessoryFile withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+}
+
+#pragma mark - 获取通讯录所有信息
++ (NSMutableArray *)setAllPeopleInfo:(NSString *)str{
+    NSMutableArray* AllPeople =[[NSMutableArray alloc] init];
+    NSString *strGroup =[NSString stringWithContentsOfFile:str encoding:NSUTF8StringEncoding error:NULL];
+    NSArray *arrGroup=[strGroup componentsSeparatedByString:@"\n"];
+    if (arrGroup.count==0&&!arrGroup) return AllPeople;
+    for (int i=0; i<arrGroup.count-1; i++) {
+        NSArray * arrData =[[arrGroup objectAtIndex:i] componentsSeparatedByString:@","];
+        GroupInfo *info=[GroupInfo new];
+        info.groupID =[arrData objectAtIndex:0];
+        info.Name=[arrData objectAtIndex:1];
+        info.superID =[arrData objectAtIndex:2];
+        info.Count =[arrData objectAtIndex:3];
+        info.letter =@"0";
+        info.tel=@"";
+        [AllPeople addObject:info];
+    }
+    
+    
+    str=[DocumentsDirectory stringByAppendingPathComponent:@"member.txt"];
+    NSString * strData =[NSString stringWithContentsOfFile:str encoding:NSUTF8StringEncoding error:NULL];
+    NSArray * arr = [strData componentsSeparatedByString:@"\n"];
+    if (arr.count==0&&!arr) return AllPeople;
+    for (int i =0; i<arr.count-1; i++) {
+        NSArray * arrData =[[arr objectAtIndex:i] componentsSeparatedByString:@","];
+        PeopelInfo *info=[PeopelInfo new];
+        info.userID =[arrData objectAtIndex:0];
+        info.Name=[arrData objectAtIndex:1];
+        info.job=[arrData objectAtIndex:2];
+        info.area =[arrData objectAtIndex:3];
+        info.tel=[arrData objectAtIndex:4];
+        info.groupID =[arrData objectAtIndex:5];
+        info.superID=[arrData objectAtIndex:5];
+        info.letter =[arrData objectAtIndex:6];
+        [AllPeople addObject:info];
+    }
+    return AllPeople;
+}
+@end
