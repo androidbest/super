@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "ConfigFile.h"
 #import "Constants.h"
+#import "WXApi.h"
 @implementation AppDelegate{
 UIBackgroundTaskIdentifier backgroundTask;//写成成员
 
@@ -28,8 +29,21 @@ UIBackgroundTaskIdentifier backgroundTask;//写成成员
         user.ecname=[appConfig stringForKey:@"ecname"];
         user.username= [appConfig stringForKey:@"username"];
     }
+    
+    
+    [WXApi registerApp:@"wx22ca181d6fb789e2"];
     return YES;
 }
+
+-(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
+    return [WXApi handleOpenURL:url delegate:self];
+}
+
+-(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
+    return [WXApi handleOpenURL:url delegate:self];
+}
+
+
 							
 - (void)applicationWillResignActive:(UIApplication *)application
 {

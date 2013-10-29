@@ -154,6 +154,13 @@
 		5989A11C17F583AE00789DC6 /* HomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5989A11B17F583AE00789DC6 /* HomeView.m */; };
 		5989A11F17F583C900789DC6 /* DaiBanView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5989A11E17F583C900789DC6 /* DaiBanView.m */; };
 		5989A12517F5849E00789DC6 /* MoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5989A12417F5849E00789DC6 /* MoreView.m */; };
+		599D7D09181E01F10099BE01 /* PopBottomWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 599D7D08181E01F10099BE01 /* PopBottomWindow.m */; };
+		599D7D11181E22430099BE01 /* AAActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 599D7D0C181E22430099BE01 /* AAActivity.m */; };
+		599D7D12181E22430099BE01 /* AAActivityAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 599D7D0E181E22430099BE01 /* AAActivityAction.m */; };
+		599D7D13181E22430099BE01 /* AAPanelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 599D7D10181E22430099BE01 /* AAPanelView.m */; };
+		599D7D15181E2CDB0099BE01 /* Safari@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 599D7D14181E2CDB0099BE01 /* Safari@2x~iphone.png */; };
+		599D7D17181E2CE40099BE01 /* Safari-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 599D7D16181E2CE40099BE01 /* Safari-Small@2x.png */; };
+		599D7D1C181E467F0099BE01 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 599D7D19181E467F0099BE01 /* libWeChatSDK.a */; };
 		59F21805180FCCEA00748CC4 /* DocFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = 59F21804180FCCEA00748CC4 /* DocFlow.m */; };
 		59F21808180FD6D100748CC4 /* Docaccessory.m in Sources */ = {isa = PBXBuildFile; fileRef = 59F21807180FD6D100748CC4 /* Docaccessory.m */; };
 		59F3D551180DA3640062ACF3 /* MailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 59F3D550180DA3640062ACF3 /* MailView.m */; };
@@ -484,6 +491,19 @@
 		5989A11E17F583C900789DC6 /* DaiBanView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaiBanView.m; sourceTree = "<group>"; };
 		5989A12317F5849E00789DC6 /* MoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreView.h; sourceTree = "<group>"; };
 		5989A12417F5849E00789DC6 /* MoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreView.m; sourceTree = "<group>"; };
+		599D7D07181E01F10099BE01 /* PopBottomWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopBottomWindow.h; sourceTree = "<group>"; };
+		599D7D08181E01F10099BE01 /* PopBottomWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopBottomWindow.m; sourceTree = "<group>"; };
+		599D7D0B181E22430099BE01 /* AAActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAActivity.h; sourceTree = "<group>"; };
+		599D7D0C181E22430099BE01 /* AAActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAActivity.m; sourceTree = "<group>"; };
+		599D7D0D181E22430099BE01 /* AAActivityAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAActivityAction.h; sourceTree = "<group>"; };
+		599D7D0E181E22430099BE01 /* AAActivityAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAActivityAction.m; sourceTree = "<group>"; };
+		599D7D0F181E22430099BE01 /* AAPanelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAPanelView.h; sourceTree = "<group>"; };
+		599D7D10181E22430099BE01 /* AAPanelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAPanelView.m; sourceTree = "<group>"; };
+		599D7D14181E2CDB0099BE01 /* Safari@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Safari@2x~iphone.png"; sourceTree = "<group>"; };
+		599D7D16181E2CE40099BE01 /* Safari-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Safari-Small@2x.png"; sourceTree = "<group>"; };
+		599D7D19181E467F0099BE01 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		599D7D1A181E467F0099BE01 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
+		599D7D1B181E467F0099BE01 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
 		59F21803180FCCEA00748CC4 /* DocFlow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocFlow.h; sourceTree = "<group>"; };
 		59F21804180FCCEA00748CC4 /* DocFlow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocFlow.m; sourceTree = "<group>"; };
 		59F21806180FD6D100748CC4 /* Docaccessory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Docaccessory.h; sourceTree = "<group>"; };
@@ -643,6 +663,7 @@
 			files = (
 				659AB38918097B1C000FCEC5 /* libz.1.1.3.dylib in Frameworks */,
 				659AB36618097772000FCEC5 /* MessageUI.framework in Frameworks */,
+				599D7D1C181E467F0099BE01 /* libWeChatSDK.a in Frameworks */,
 				659AB36418097673000FCEC5 /* AddressBook.framework in Frameworks */,
 				595CBA0017F1917200228A6E /* CoreLocation.framework in Frameworks */,
 				595CB9FE17F1913E00228A6E /* QuartzCore.framework in Frameworks */,
@@ -992,6 +1013,8 @@
 		595CB9B717F168BC00228A6E /* images */ = {
 			isa = PBXGroup;
 			children = (
+				599D7D16181E2CE40099BE01 /* Safari-Small@2x.png */,
+				599D7D14181E2CDB0099BE01 /* Safari@2x~iphone.png */,
 				65B3AC781819318200F2EC04 /* btn_clear_people.png */,
 				65B3AC741819314900F2EC04 /* btn_Call.png */,
 				65B3AC751819314900F2EC04 /* btn_SMS.png */,
@@ -1087,6 +1110,8 @@
 		595CB9BA17F17D7D00228A6E /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				599D7D18181E46770099BE01 /* weixin */,
+				599D7D0A181E22150099BE01 /* AAActivityAction */,
 				59584B221819995200B65162 /* DownloadCell.h */,
 				59584B231819995200B65162 /* DownloadCell.m */,
 				59584B20181998CD00B65162 /* KxMenu.m */,
@@ -1125,6 +1150,8 @@
 				595A0C7518113253009C26B8 /* CustomPush.m */,
 				6521F6331816A72600CD7B76 /* MailAddressCell.h */,
 				6521F6341816A72600CD7B76 /* MailAddressCell.m */,
+				599D7D07181E01F10099BE01 /* PopBottomWindow.h */,
+				599D7D08181E01F10099BE01 /* PopBottomWindow.m */,
 			);
 			name = utils;
 			sourceTree = "<group>";
@@ -1316,6 +1343,29 @@
 				596D6F1118085DB1002CD0B3 /* MeettingController.m */,
 			);
 			name = meetting;
+			sourceTree = "<group>";
+		};
+		599D7D0A181E22150099BE01 /* AAActivityAction */ = {
+			isa = PBXGroup;
+			children = (
+				599D7D0B181E22430099BE01 /* AAActivity.h */,
+				599D7D0C181E22430099BE01 /* AAActivity.m */,
+				599D7D0D181E22430099BE01 /* AAActivityAction.h */,
+				599D7D0E181E22430099BE01 /* AAActivityAction.m */,
+				599D7D0F181E22430099BE01 /* AAPanelView.h */,
+				599D7D10181E22430099BE01 /* AAPanelView.m */,
+			);
+			name = AAActivityAction;
+			sourceTree = "<group>";
+		};
+		599D7D18181E46770099BE01 /* weixin */ = {
+			isa = PBXGroup;
+			children = (
+				599D7D19181E467F0099BE01 /* libWeChatSDK.a */,
+				599D7D1A181E467F0099BE01 /* WXApi.h */,
+				599D7D1B181E467F0099BE01 /* WXApiObject.h */,
+			);
+			name = weixin;
 			sourceTree = "<group>";
 		};
 		659AB33A180973C7000FCEC5 /* AddressBook */ = {
@@ -1547,6 +1597,7 @@
 				65B3AC771819314900F2EC04 /* btn_SMS.png in Resources */,
 				59585BC117F8300200F73D97 /* home_out.png in Resources */,
 				5960DC8517F95BE30024AD8B /* guide96003.png in Resources */,
+				599D7D17181E2CE40099BE01 /* Safari-Small@2x.png in Resources */,
 				5975C17A18067AA300EF7285 /* more_out@2x.png in Resources */,
 				595CB9F017F17EF100228A6E /* common.plist in Resources */,
 				65B3AC701819274200F2EC04 /* tabItem_SMS_out.png in Resources */,
@@ -1561,6 +1612,7 @@
 				595B79FF18094B53006DD766 /* more_update_pwd_img.png in Resources */,
 				65B3AC691819274200F2EC04 /* tabItem_groupArBook_out@2x.png in Resources */,
 				65B3AC6B1819274200F2EC04 /* tabItem_groupArBook_over@2x.png in Resources */,
+				599D7D15181E2CDB0099BE01 /* Safari@2x~iphone.png in Resources */,
 				65B3AC6D1819274200F2EC04 /* tabItem_MyArBook_out@2x.png in Resources */,
 				65B3AC791819318200F2EC04 /* btn_clear_people.png in Resources */,
 				65B3AC661819274200F2EC04 /* tabItem_call_over.png in Resources */,
@@ -1632,6 +1684,7 @@
 				5951D5E2180BC1820009CCAF /* RespList.m in Sources */,
 				65B3AC7C18195CBE00F2EC04 /* SMSModeView.m in Sources */,
 				59584B2F18199A0400B65162 /* AccessoryController.m in Sources */,
+				599D7D13181E22430099BE01 /* AAPanelView.m in Sources */,
 				5942044F1802E5AA00AA35C3 /* AFHTTPRequestOperationManager.m in Sources */,
 				5942044E1802E5AA00AA35C3 /* AFHTTPRequestOperation.m in Sources */,
 				65B3AC8B18195D9600F2EC04 /* peopleDeleteController.m in Sources */,
@@ -1707,6 +1760,7 @@
 				659AB38718097A2B000FCEC5 /* pinyin.c in Sources */,
 				6521F63218166DBA00CD7B76 /* MailAddressController.m in Sources */,
 				596D6F0E18085D94002CD0B3 /* InformationController.m in Sources */,
+				599D7D11181E22430099BE01 /* AAActivity.m in Sources */,
 				59584B3118199A2800B65162 /* AccountManagerController.m in Sources */,
 				594204531802E5AA00AA35C3 /* AFURLConnectionOperation.m in Sources */,
 				595B5096180CF345003EC2AF /* NoticeDetaInfo.m in Sources */,
@@ -1743,10 +1797,12 @@
 				659AB37D18097878000FCEC5 /* unzip.c in Sources */,
 				59584B3818199A6F00B65162 /* MailDetailController.m in Sources */,
 				65A9C8E0180EC83F0032D170 /* InformationDetail.m in Sources */,
+				599D7D09181E01F10099BE01 /* PopBottomWindow.m in Sources */,
 				596D6EFD18085D10002CD0B3 /* MeettingView.m in Sources */,
 				595CBA0617F1925700228A6E /* ToolUtils.m in Sources */,
 				59F21805180FCCEA00748CC4 /* DocFlow.m in Sources */,
 				659AB35E180975D0000FCEC5 /* AddressDetailsController.m in Sources */,
+				599D7D12181E22430099BE01 /* AAActivityAction.m in Sources */,
 				659AB37018097851000FCEC5 /* ZipArchive.mm in Sources */,
 				5941F68A1813DFE7002735A3 /* AccountCell.m in Sources */,
 				659AB35F180975D0000FCEC5 /* CallTelController.m in Sources */,
@@ -1872,6 +1928,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "zwy/zwy-Prefix.pch";
 				INFOPLIST_FILE = "zwy/zwy-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/sxit/Documents/project/pro/zwy/zwy/Classes,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1885,6 +1945,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "zwy/zwy-Prefix.pch";
 				INFOPLIST_FILE = "zwy/zwy-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/sxit/Documents/project/pro/zwy/zwy/Classes,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

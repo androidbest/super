@@ -8,6 +8,11 @@
 
 #import "MoreController.h"
 #import "ToolUtils.h"
+#import "PopBottomWindow.h"
+#import "AAActivity.h"
+#import  "AAActivityAction.h"
+#import "WXApi.h"
+#import "WXApiObject.h"
 @implementation MoreController{
     NSArray *allsec;
     NSArray *firstsec;
@@ -98,11 +103,39 @@
                 break;
     }
     }else if(indexPath.section==2){
+        NSString *url=@"http://itunes.apple.com/lookup?id=647204141";
+        
         switch (indexPath.row) {
             case 0:{
-//                [self initBackBarButtonItem:self.moreView];
-//                self.moreView.tabBarController.tabBar.hidden=YES;
-//                [self.moreView performSegueWithIdentifier:@"moretohelp" sender:self.moreView];
+//                AAImageSize imageSize = [self iconSizeSetting].selectedSegmentIndex == 0 ? AAImageSizeSmall : AAImageSizeNormal;
+                NSMutableArray *array = [NSMutableArray array];
+                NSArray *title=@[@"短信",@"邮箱",@"微信",@"新浪"];
+                NSArray *image=@[[UIImage imageNamed:@"Safari"],[UIImage imageNamed:@"Safari"],[UIImage imageNamed:@"Safari"],[UIImage imageNamed:@"Safari"]];
+                NSArray *arrUrl=@[[NSString stringWithFormat:@"sms://%@",url],[NSString stringWithFormat:@"mailto://%@",url],url];
+                
+                for (int i=0; i<4; i++) {
+                    AAActivity *activity = [[AAActivity alloc] initWithTitle:title[i]
+                                                                       image:image[i]
+                                                                 actionBlock:^(AAActivity *activity, NSArray *activityItems) {
+                                                                     NSLog(@"doing activity = %@, activityItems = %@", activity, activityItems);
+                                                                     NSString *str=activityItems[i];
+                                                                     if(i==2){
+                                                                         SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
+                                                                         req.text = str;
+                                                                         req.bText = YES;
+                                                                         req.scene = WXSceneSession;
+                                                                         [WXApi sendReq:req];
+                                                                     }else{
+                                                                     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+                                                                     }
+                                                                 }];
+                    [array addObject:activity];
+                }
+                AAActivityAction *aa = [[AAActivityAction alloc] initWithActivityItems:arrUrl
+                                                                 applicationActivities:array
+                                                                             imageSize:AAImageSizeNormal];
+                aa.title = nil;
+                [aa show];
             }
                 break;
             case 1:{
