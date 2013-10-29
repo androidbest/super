@@ -45,6 +45,8 @@
     [self.view addGestureRecognizer:tap];
     
     [_BtnGroupAddress addTarget:self.controller action:@selector(BtnGroupAddress) forControlEvents:UIControlEventTouchUpInside];
+    [_BtnGroupAddress setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 5, 0)];
+    
     [_btnMyAddress addTarget:self.controller action:@selector(btnMyAddress) forControlEvents:UIControlEventTouchUpInside];
     [_btnSMSMode addTarget:self.controller action:@selector(btnSMSMode) forControlEvents:UIControlEventTouchUpInside];
     [_btnSelfAdd addTarget:self.controller action:@selector(btnSelfAdd) forControlEvents:UIControlEventTouchUpInside];
@@ -62,6 +64,8 @@
     _textSendContext.delegate=self.controller;
     _textSendContext.text=@"请编辑内容";
     _textSendContext.textColor=[UIColor grayColor];
+    
+    
     
     [_textsign setDelegate:self.controller];
     NSUserDefaults * defaults =[NSUserDefaults standardUserDefaults];

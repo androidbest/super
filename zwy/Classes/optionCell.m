@@ -16,7 +16,8 @@
     if (self) {
         // Initialization code
         _btnOption =[UIButton buttonWithType:UIButtonTypeCustom];
-        _btnOption.frame =CGRectMake(280, 10, 20, 20);
+        _btnOption.frame =CGRectMake(280, 0, 40, 40);
+        [_btnOption setImageEdgeInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
         [_btnOption setImage:[UIImage imageNamed:@"btn_uncheck"] forState:UIControlStateNormal];
         [_btnOption addTarget:delegate action:@selector(btnOption:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:_btnOption];

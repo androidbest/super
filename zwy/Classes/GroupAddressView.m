@@ -8,6 +8,7 @@
 
 #import "GroupAddressView.h"
 #import "GroupAddressController.h"
+#import "Constants.h"
 @interface GroupAddressView ()
 
 @end
@@ -29,7 +30,7 @@
         GroupAddressController * contro =[GroupAddressController new];
         contro.grougView=self;
         self.controller=contro;
-         self.tabBarItem=[self.tabBarItem initWithTitle:@"集团通讯录" image:[UIImage imageNamed:@"tabItem_groupArBook_out"] selectedImage:[UIImage imageNamed:@"tabItem_groupArBook_over"]];
+         self.tabBarItem=[self.tabBarItem initWithTitle:@"单位通讯录" image:[UIImage imageNamed:@"tabItem_groupArBook_out"] selectedImage:[UIImage imageNamed:@"tabItem_groupArBook_over"]];
     }
     return self;
 }
@@ -37,7 +38,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title=@"集团通讯录";
     _tableViewGroup.dataSource=self.controller;
     _tableViewGroup.delegate=self.controller;
     _searchBar.delegate=self.controller;
@@ -72,6 +72,10 @@
 
 - (void)rightDown{
 
+}
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+     self.navigationItem.title=user.ecname;
 }
 
 - (void)didReceiveMemoryWarning

@@ -63,6 +63,7 @@ NSMutableArray * arrAllNumber;
 /*全部清除*/
 - (void)btnClear{
     [_arrDidAllPeople removeAllObjects];
+    [arrAllNumber  removeAllObjects];
     [_massView.tableViewPeople reloadData];
 }
 
@@ -117,7 +118,7 @@ NSMutableArray * arrAllNumber;
     }
     NSString *content;
     if (isSign) {
-        content =[NSString stringWithFormat:@"%@[%@]",_massView.textSendContext.text,_massView.textsign.text];
+        content =[NSString stringWithFormat:@"%@\n[%@]",_massView.textSendContext.text,_massView.textsign.text];
         NSUserDefaults * defaults =[NSUserDefaults standardUserDefaults];
         [defaults setObject:_massView.textsign.text forKey:@"signContent"];
         [defaults synchronize];
@@ -131,6 +132,7 @@ NSMutableArray * arrAllNumber;
 - (void)returnSMSModeInfo:(NSString *)SMSContent{
     self.massView.textSendContext.textColor=[UIColor blackColor];
     self.massView.textSendContext.text=SMSContent;
+    _massView.labelTextMaxLengh.text=[NSString stringWithFormat:@"%@/350",[ToolUtils numToString:SMSContent.length]];
 }
 
 #pragma mark - 弹出信息发送页面
@@ -221,6 +223,7 @@ NSMutableArray * arrAllNumber;
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [_arrDidAllPeople removeObjectAtIndex:indexPath.row];
+        [arrAllNumber  removeObjectAtIndex:indexPath.row];
         [tableView beginUpdates];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
         [tableView endUpdates];
@@ -280,6 +283,21 @@ NSMutableArray * arrAllNumber;
         }
     }
     return YES;
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    NSString * textStr = [textView.text stringByReplacingCharactersInRange:range withString:text];
+    
+    if (textStr.length>=350)
+    {
+        textView.text = [textStr substringToIndex:350];
+        return NO;
+    }
+    return YES;
+}
+
+- (void)textViewDidChange:(UITextView *)textView{
+    _massView.labelTextMaxLengh.text=[NSString stringWithFormat:@"%@/350",[ToolUtils numToString:textView.text.length]];
 }
 
 @end

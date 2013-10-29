@@ -45,6 +45,7 @@
     NSString * strAllPeopleName;
     NSString * strAllPeoleTel;
     NSString * strAllGroupID;
+    int MAX_Content;
 }
 
 #pragma mark -  初始化
@@ -229,6 +230,7 @@
 - (void)returnSMSModeInfo:(NSString *)SMSContent{
     self.smsView.textSMSContent.textColor=[UIColor blackColor];
     self.smsView.textSMSContent.text=SMSContent;
+    _smsView.zishu.text=[NSString stringWithFormat:@"%@/%d",[ToolUtils numToString:SMSContent.length],MAX_Content];
 }
 
 #pragma mark -UIActionSheetDelegate
@@ -287,6 +289,7 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [_arrDidAllPeople removeObjectAtIndex:indexPath.row];
+        [arrAllNumber removeObjectAtIndex:indexPath.row];
         [tableView beginUpdates];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
         [tableView endUpdates];
@@ -353,15 +356,19 @@
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
   NSString * textStr = [textView.text stringByReplacingCharactersInRange:range withString:text];
-    _smsView.zishu.text=[NSString stringWithFormat:@"%@/350",[ToolUtils numToString:textStr.length]];
-    if (textStr.length>=350)
+    if (SMSType==0) MAX_Content=350;
+    else MAX_Content=70;
+    
+    if (textStr.length>=MAX_Content)
     {
-        textView.text = [textStr substringToIndex:350];
+        textView.text = [textStr substringToIndex:MAX_Content];
         return NO;
     }
     return YES;
 }
 
-
+- (void)textViewDidChange:(UITextView *)textView{
+    _smsView.zishu.text=[NSString stringWithFormat:@"%@/%d",[ToolUtils numToString:textView.text.length],MAX_Content];
+}
 
 @end
