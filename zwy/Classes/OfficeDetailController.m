@@ -281,16 +281,16 @@
     for (int i=0; i<_arrDidAllPeople.count; i++) {
         NSObject * obj=_arrDidAllPeople[i];
         if ([obj isKindOfClass:[GroupDetaInfo class]]) {
-            if ([strAllGroupID isEqualToString:@""])strAllGroupID=[(GroupDetaInfo *)obj groupId];
-            else strAllGroupID =[NSString stringWithFormat:@"%@,%@",strAllGroupID,[(GroupDetaInfo *)obj groupId]];
+            if ([strAllGroupID isEqualToString:@""])strAllGroupID=[NSString stringWithFormat:@"%@,",[(GroupDetaInfo *)obj groupId]];
+            else strAllGroupID =[NSString stringWithFormat:@"%@%@,",strAllGroupID,[(GroupDetaInfo *)obj groupId]];
             
         }else if([obj isKindOfClass:[PeopleDedaInfo class]]){
             
-            if ([strAllPeopleID isEqualToString:@""])strAllPeopleID =[(PeopleDedaInfo *)obj userTel];
-            else strAllPeopleID =[NSString stringWithFormat:@"%@,%@",strAllPeopleID,[(PeopleDedaInfo *)obj userTel]];
+            if ([strAllPeopleID isEqualToString:@""])strAllPeopleID =[NSString stringWithFormat:@"%@,",[(PeopleDedaInfo *)obj userTel]];
+            else strAllPeopleID =[NSString stringWithFormat:@"%@%@,",strAllPeopleID,[(PeopleDedaInfo *)obj userTel]];
             
-            if ([strAllpeopleName isEqualToString:@""])strAllpeopleName =[(PeopleDedaInfo *)obj userName];
-            else strAllpeopleName =[NSString stringWithFormat:@"%@,%@",strAllpeopleName,[(PeopleDedaInfo *)obj userName]];
+            if ([strAllpeopleName isEqualToString:@""])strAllpeopleName =[NSString stringWithFormat:@"%@,",[(PeopleDedaInfo *)obj userName]];
+            else strAllpeopleName =[NSString stringWithFormat:@"%@%@,",strAllpeopleName,[(PeopleDedaInfo *)obj userName]];
             
         }
         
@@ -319,13 +319,13 @@
         }
     }
     
-    if(![strAllPeopleID isEqualToString:@""]){
-        strAllPeopleID=[NSString stringWithFormat:@"%@,",strAllPeopleID];
-    }
-    
-    if(![strAllGroupID isEqualToString:@""]){
-        strAllGroupID=[NSString stringWithFormat:@"%@,",strAllGroupID];
-    }
+//    if(![strAllPeopleID isEqualToString:@""]){
+//        strAllPeopleID=[NSString stringWithFormat:@"%@,",strAllPeopleID];
+//    }
+//    
+//    if(![strAllGroupID isEqualToString:@""]){
+//        strAllGroupID=[NSString stringWithFormat:@"%@,",strAllGroupID];
+//    }
     
     NSString *type=self.officedetailView.info.type;
     self.HUD.labelText = @"正在处理中..";
