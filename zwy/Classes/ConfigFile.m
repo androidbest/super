@@ -9,6 +9,7 @@
 #import "ConfigFile.h"
 #import "PeopelInfo.h"
 #import "GroupInfo.h"
+#import "Constants.h"
 
 static ConfigFile *configFile;
 @implementation ConfigFile
@@ -48,6 +49,20 @@ static ConfigFile *configFile;
     }
 }
 
+- (void)pathECGroups{
+    //创建文件管理器
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    //更改到待操作的目录下
+    [fileManager changeCurrentDirectoryPath:[DocumentsDirectory stringByExpandingTildeInPath]];
+    //创建文件fileName文件名称，contents文件的内容，如果开始没有内容可以设置为nil，attributes文件的属性，初始为nil
+    NSString * Files =user.eccode;
+    NSString *filePath =[NSString stringWithFormat:@"%@/%@",DocumentsDirectory,Files];
+    if (![fileManager fileExistsAtPath:filePath]) {
+         [fileManager createDirectoryAtPath:filePath withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+}
+
+
 #pragma mark - 获取通讯录所有信息
 + (NSMutableArray *)setAllPeopleInfo:(NSString *)str{
     NSMutableArray* AllPeople =[[NSMutableArray alloc] init];
@@ -67,7 +82,7 @@ static ConfigFile *configFile;
     }
     
     
-    str=[DocumentsDirectory stringByAppendingPathComponent:@"member.txt"];
+    str=[NSString stringWithFormat:@"%@/%@/%@",DocumentsDirectory,user.eccode,@"member.txt"];
     NSString * strData =[NSString stringWithContentsOfFile:str encoding:NSUTF8StringEncoding error:NULL];
     NSArray * arr = [strData componentsSeparatedByString:@"\n"];
     if (arr.count==0&&!arr) return AllPeople;
