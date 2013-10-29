@@ -234,7 +234,7 @@ NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"U
 + (void)getGroupmember:(id)delegate groupID:(NSString *)groupid pages:(NSString *)pageId Type:(NSString *)type condition:(NSString *)condition SELType:(NSString *)sel{
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>getUsers</METHOD><SESSIONID>2</SESSIONID><GROUPID>%@</GROUPID><PAGEID>%@</PAGEID><PAGESIZE>20</PAGESIZE><TYPE>%@</TYPE><CONDITION>%@</CONDITION></BODY></MESSAGE>",user.msisdn,user.eccode,groupid,pageId,type,condition];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>getUsers</METHOD><SESSIONID>2</SESSIONID><GROUPID>%@</GROUPID><PAGEID>%@</PAGEID><PAGESIZE>20</PAGESIZE><TYPE>%@</TYPE><CONDITION>%@</CONDITION></BODY></MESSAGE>",user.msisdn,user.eccode,groupid,pageId,@"1",condition];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];

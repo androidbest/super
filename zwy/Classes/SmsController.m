@@ -42,10 +42,28 @@
     NSString *  ECType;
     NSString * SMSType;
     NSString * signStr;
+    NSString * voicesignStr;
     NSString * strAllPeopleName;
     NSString * strAllPeoleTel;
     NSString * strAllGroupID;
     int MAX_Content;
+    
+    NSString *voicestrAllPeopleName;
+    NSString *voiicestrAllPeoleTel;
+    NSString *voicestrAllGroupID;
+    
+    NSMutableArray *voiceAllNumber;
+    NSMutableArray *voiceDidAllPeople;
+    
+    NSString *voiceECCoder;
+    NSString *voiceContent;
+    
+    NSString *smsContent;
+    
+    NSString *smsCount;
+    NSString *voiceCount;
+    
+    
 }
 
 #pragma mark -  初始化
@@ -53,12 +71,28 @@
     self =[super init];
     if (self) {
         signStr=user.ecname;
+        voicesignStr=user.ecname;
          self.arrDidAllPeople=[[NSMutableArray alloc] init];
          arrAllNumber =[[NSMutableArray alloc] init];
+        
+        
+        voiceAllNumber=[NSMutableArray new];
+        voiceDidAllPeople=[NSMutableArray new];
+        voiceECCoder=@"";
+        
+        smsCount=@"0";
+        voiceCount=@"0";
+        
         strAllPeoleTel=@"";
         strAllGroupID=@"";
         ECType=@"0";
         SMSType=@"0";
+        voicestrAllPeopleName=@"";
+        voiicestrAllPeoleTel=@"";
+        voicestrAllGroupID=@"";
+        
+        voiceContent=@"请输入内容";
+        smsContent=@"请输入内容";
         
         //给键盘注册通知
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -88,11 +122,25 @@
     if ([info.respCode isEqualToString:@"0"]) {
         image= [UIImage imageNamed:@"37x-Checkmark.png"];
         self.HUD.labelText = @"发送成功";
-        _smsView.textSMSContent.text=@"";
         
+        if([SMSType isEqualToString:@"0"]){
+            smsContent=@"请输入内容";
+            _smsView.textSMSContent.text=smsContent;
+            _smsView.textSMSContent.textColor=[UIColor lightGrayColor];
+            _smsView.zishu.text=[NSString stringWithFormat:@"%@/%d",@"0",350];
+            [self.arrDidAllPeople removeAllObjects];
+            [self.smsView.tableViewPeople reloadData];
+        }else{
+            voiceContent=@"请输入内容";
+            _smsView.textSMSContent.text=voiceContent;
+            _smsView.textSMSContent.textColor=[UIColor lightGrayColor];
+             _smsView.zishu.text=[NSString stringWithFormat:@"%@/%d",@"0",350];
+            [voiceDidAllPeople removeAllObjects];
+            [self.smsView.tableViewPeople reloadData];
+        }
     }else{
         image= [UIImage imageNamed:@"37x-Checkmark.png"];
-        self.HUD.labelText = info.respMsg;
+        self.HUD.labelText = @"发送失败";
     }
     self.HUD.customView=imageView;
     self.HUD.mode = MBProgressHUDModeCustomView;
@@ -102,24 +150,52 @@
 
 #pragma mark -接受选择通讯录传回来的数据
 - (void)returnDidAddress:(NSArray *)arr{
-    NSObject *obj;
-    if (arr.count!=0) {
-        for (int i =0; i<arr.count; i++) {
-            obj=arr[i];
-            if ([obj isKindOfClass:[PeopelInfo class]]) {
-                if (![arrAllNumber containsObject:[(PeopelInfo *)obj tel]]){
-                    [arrAllNumber addObject:[(PeopelInfo *)obj tel]];
-                    [_arrDidAllPeople addObject:obj];
+    
+    if([SMSType isEqualToString:@"0"]){
+        NSObject *obj;
+        if (arr.count!=0) {
+            for (int i =0; i<arr.count; i++) {
+                obj=arr[i];
+                if ([obj isKindOfClass:[PeopelInfo class]]) {
+                    if (![arrAllNumber containsObject:[(PeopelInfo *)obj tel]]){
+                        [arrAllNumber addObject:[(PeopelInfo *)obj tel]];
+                        [_arrDidAllPeople addObject:obj];
+                    }
+                }else if([obj isKindOfClass:[GroupInfo class]]){
+                    if (![arrAllNumber containsObject:[(GroupInfo *)obj groupID]]){
+                        [arrAllNumber addObject:[(PeopelInfo *)obj groupID]];
+                        [_arrDidAllPeople addObject:obj];
+                    }
                 }
-            }else if([obj isKindOfClass:[GroupInfo class]]){
-                if (![arrAllNumber containsObject:[(GroupInfo *)obj groupID]]){
-                    [arrAllNumber addObject:[(PeopelInfo *)obj groupID]];
-                    [_arrDidAllPeople addObject:obj];
-                }
+                
             }
-            
         }
+
+    
+    }else{
+        NSObject *obj;
+        if (arr.count!=0) {
+            for (int i =0; i<arr.count; i++) {
+                obj=arr[i];
+                if ([obj isKindOfClass:[PeopelInfo class]]) {
+                    if (![voiceAllNumber containsObject:[(PeopelInfo *)obj tel]]){
+                        [voiceAllNumber addObject:[(PeopelInfo *)obj tel]];
+                        [voiceDidAllPeople addObject:obj];
+                    }
+                }else if([obj isKindOfClass:[GroupInfo class]]){
+                    if (![voiceAllNumber containsObject:[(GroupInfo *)obj groupID]]){
+                        [voiceAllNumber addObject:[(PeopelInfo *)obj groupID]];
+                        [voiceDidAllPeople addObject:obj];
+                    }
+                }
+                
+            }
+        }
+
+    
     }
+    
+    
     
     [self.smsView.tableViewPeople reloadData];
 }
@@ -127,32 +203,32 @@
 #pragma mark - 按钮实现方法
 //发送
 -(void)btnSendSMS:(id)sender{
-    strAllPeopleName =@"";
-    strAllPeoleTel =@"";
-    strAllGroupID =@"";
     
     
-    for (int i=0; i<_arrDidAllPeople.count; i++) {
+    
+    if([SMSType isEqualToString:@"0"]){
+        strAllPeopleName =@"";
+        strAllPeoleTel =@"";
+        strAllGroupID =@"";
+        for (int i=0; i<_arrDidAllPeople.count; i++) {
         NSObject * obj =_arrDidAllPeople[i];
         if ([obj isKindOfClass:[PeopelInfo class]]) {
             
             /*所有人员号码*/
-            if ([strAllPeopleName isEqualToString:@""])strAllPeopleName=[(PeopelInfo *)obj Name];
-            else  strAllPeopleName =[NSString stringWithFormat:@"%@,%@",strAllPeopleName,[(PeopelInfo *)obj Name]];
+            if ([strAllPeopleName isEqualToString:@""])strAllPeopleName=[NSString stringWithFormat:@"%@,",[(PeopelInfo *)obj Name]];
+            else  strAllPeopleName =[NSString stringWithFormat:@"%@%@,",strAllPeopleName,[(PeopelInfo *)obj Name]];
             
             /*所有人员电话*/
-            if ([strAllPeoleTel isEqualToString:@""])strAllPeoleTel=[(PeopelInfo *)obj tel];
-            else strAllPeoleTel =[NSString stringWithFormat:@"%@,%@",strAllPeoleTel,[(PeopelInfo *)obj tel]];
+            if ([strAllPeoleTel isEqualToString:@""])strAllPeoleTel=[NSString stringWithFormat:@"%@,",[(PeopelInfo *)obj tel]];
+            else strAllPeoleTel =[NSString stringWithFormat:@"%@%@,",strAllPeoleTel,[(PeopelInfo *)obj tel]];
             
         }else if([obj isKindOfClass:[GroupInfo class]]){
             
             /*所有部门id*/
-            if ([strAllGroupID isEqualToString:@""])strAllGroupID = [(GroupInfo *)obj groupID];
-            else strAllGroupID =[NSString stringWithFormat:@"%@,%@",strAllGroupID,[(GroupInfo *)obj groupID]];
+            if ([strAllGroupID isEqualToString:@""])strAllGroupID = [NSString stringWithFormat:@"%@,",[(GroupInfo *)obj groupID]];
+            else strAllGroupID =[NSString stringWithFormat:@"%@%@,",strAllGroupID,[(GroupInfo *)obj groupID]];
         }
     }
-    NSLog(@"%@\n%@\n%@",strAllGroupID,strAllPeoleTel,strAllPeopleName);
-    
     
     if ([strAllGroupID isEqualToString:@""]&&[strAllPeoleTel isEqualToString:@""]){
         [ToolUtils alertInfo:@"请选择联系人或部门"];
@@ -163,16 +239,12 @@
         return;
     }
     
-    NSString *content=[NSString stringWithFormat:@"%@%@",_smsView.textSMSContent.text,signStr];
+    NSString *content=[NSString stringWithFormat:@"%@%@",smsContent,signStr];
     
     if(content.length>350){
         [ToolUtils alertInfo:@"内容长度不能大于350个字"];
         return;
     }
-    
-//    NSDate *date =[NSDate date];
-//    NSTimeInterval timeInter=[date timeIntervalSince1970];
-//    long long time =timeInter*1000;
     
     /*提交等待*/
     self.HUD =[[MBProgressHUD alloc] initWithView:self.smsView.navigationController.view];
@@ -180,19 +252,68 @@
     [self.smsView.navigationController.view addSubview:self.HUD];
     [self.HUD show:YES];
 
-    if(![strAllPeoleTel isEqualToString:@""]){
-        strAllPeoleTel=[NSString stringWithFormat:@"%@,",strAllPeoleTel];
-    }
     
-    if(![strAllGroupID isEqualToString:@""]){
-        strAllGroupID=[NSString stringWithFormat:@"%@,",strAllGroupID];
-    }
+    NSLog(@"%@\n%@\n%@",strAllGroupID,strAllPeoleTel,strAllPeopleName);
     
-    if ([SMSType isEqualToString:@"0"]) {
-        [packageData SendSMS:self receiverTel:strAllPeoleTel receiverName:strAllPeopleName content:content sendTime:@"0" groupId:strAllGroupID];
+    [packageData SendSMS:self receiverTel:strAllPeoleTel receiverName:strAllPeopleName content:content sendTime:@"0" groupId:strAllGroupID];
+    
+    
     }else{
-        [packageData SendVoice:self receiverTel:strAllPeoleTel receiverName:strAllPeopleName content:content sendTime:@"0" groupId:strAllGroupID];
+        
+        voicestrAllPeopleName=@"";
+        voiicestrAllPeoleTel=@"";
+        voicestrAllGroupID=@"";
+        
+        for (int i=0; i<voiceDidAllPeople.count; i++) {
+            NSObject * obj =voiceDidAllPeople[i];
+            if ([obj isKindOfClass:[PeopelInfo class]]) {
+                
+                /*所有人员号码*/
+                if ([voicestrAllPeopleName isEqualToString:@""])voicestrAllPeopleName=[NSString stringWithFormat:@"%@,",[(PeopelInfo *)obj Name]];
+                else  voicestrAllPeopleName =[NSString stringWithFormat:@"%@%@,",voicestrAllPeopleName,[(PeopelInfo *)obj Name]];
+                
+                /*所有人员电话*/
+                if ([voiicestrAllPeoleTel isEqualToString:@""])voiicestrAllPeoleTel=[NSString stringWithFormat:@"%@,",[(PeopelInfo *)obj tel]];
+                else voiicestrAllPeoleTel =[NSString stringWithFormat:@"%@%@,",voiicestrAllPeoleTel,[(PeopelInfo *)obj tel]];
+                
+            }else if([obj isKindOfClass:[GroupInfo class]]){
+                
+                /*所有部门id*/
+                if ([voicestrAllGroupID isEqualToString:@""])voicestrAllGroupID = [NSString stringWithFormat:@"%@,",[(GroupInfo *)obj groupID]];
+                else voicestrAllGroupID =[NSString stringWithFormat:@"%@%@,",voicestrAllGroupID,[(GroupInfo *)obj groupID]];
+            }
+        }
+        
+        if ([voicestrAllGroupID isEqualToString:@""]&&[voiicestrAllPeoleTel isEqualToString:@""]){
+            [ToolUtils alertInfo:@"请选择联系人或部门"];
+            return;
+        }
+        if (_smsView.textSMSContent.text.length==0||[_smsView.textSMSContent.text isEqualToString:@"请输入内容"]) {
+            [ToolUtils alertInfo:@"请输入内容"];
+            return;
+        }
+        
+        NSString *content=[NSString stringWithFormat:@"%@%@",voiceContent,voicesignStr];
+        
+        if(content.length>70){
+            [ToolUtils alertInfo:@"内容长度不能大于70个字"];
+            return;
+        }
+        
+        /*提交等待*/
+        self.HUD =[[MBProgressHUD alloc] initWithView:self.smsView.navigationController.view];
+        self.HUD.labelText=@"正在发送..";
+        [self.smsView.navigationController.view addSubview:self.HUD];
+        [self.HUD show:YES];
+        
+        NSLog(@"%@\n%@\n%@",voicestrAllGroupID,voiicestrAllPeoleTel,voicestrAllPeopleName);
+        
+        [packageData SendVoice:self receiverTel:voiicestrAllPeoleTel receiverName:voicestrAllPeopleName content:content sendTime:@"0" groupId:voicestrAllGroupID];
+        
     }
+    
+    
+
    
 }
 
@@ -228,31 +349,81 @@
 
 #pragma mark - 短信模版回调
 - (void)returnSMSModeInfo:(NSString *)SMSContent{
-    self.smsView.textSMSContent.textColor=[UIColor blackColor];
-    self.smsView.textSMSContent.text=SMSContent;
-    _smsView.zishu.text=[NSString stringWithFormat:@"%@/%d",[ToolUtils numToString:SMSContent.length],MAX_Content];
+    if([SMSType isEqualToString:@"0"]){
+        self.smsView.textSMSContent.textColor=[UIColor blackColor];
+        smsContent=SMSContent;
+        self.smsView.textSMSContent.text=smsContent;
+        _smsView.zishu.text=[NSString stringWithFormat:@"%@/%d",[ToolUtils numToString:smsContent.length],350];
+    }else{
+        voiceContent=SMSContent;
+        self.smsView.textSMSContent.textColor=[UIColor blackColor];
+        self.smsView.textSMSContent.text=voiceContent;
+        _smsView.zishu.text=[NSString stringWithFormat:@"%@/%d",[ToolUtils numToString:voiceContent.length],70];
+    }
 }
 
 #pragma mark -UIActionSheetDelegate
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     ECType=[ToolUtils numToString:buttonIndex];
-    if (buttonIndex==1) {
-        signStr =[NSString stringWithFormat:@"%@(%@)",user.ecname,user.username];
-    }else if (buttonIndex==0){
-        signStr=user.ecname;
+    if([SMSType isEqualToString:@"0"]){
+        if (buttonIndex==1) {
+            signStr =[NSString stringWithFormat:@"%@(%@)",user.ecname,user.username];
+        }else if (buttonIndex==0){
+            signStr=user.ecname;
+        }
+        
+        [_smsView.btnECCode setTitle:signStr forState:UIControlStateNormal];
+    
+    }else{
+        if (buttonIndex==1) {
+            voicesignStr=[NSString stringWithFormat:@"%@(%@)",user.ecname,user.username];
+        }else if (buttonIndex==0){
+            voicesignStr=user.ecname;
+        }
+    [_smsView.btnECCode setTitle:voicesignStr forState:UIControlStateNormal];
     }
-    [_smsView.btnECCode setTitle:signStr forState:UIControlStateNormal];
 }
 
 
 -(void)segmentAction:(UISegmentedControl *)Seg{
     NSInteger Index = Seg.selectedSegmentIndex;
     SMSType=[ToolUtils numToString:Index];
+    
+    if([SMSType isEqualToString:@"0"]){
+    [_smsView.btnECCode setTitle:signStr forState:UIControlStateNormal];
+    [self.smsView.tableViewPeople reloadData];
+    self.smsView.textSMSContent.text=smsContent;
+        if([smsContent isEqualToString:@"请输入内容"]){
+        self.smsView.textSMSContent.textColor = [UIColor lightGrayColor];
+        _smsView.zishu.text=[NSString stringWithFormat:@"%@/%d",@"0",350];
+        }else{
+        self.smsView.textSMSContent.textColor = [UIColor blackColor];
+        _smsView.zishu.text=[NSString stringWithFormat:@"%@/%d",[ToolUtils numToString:smsContent.length],350];
+        }
+    }else{
+    [_smsView.btnECCode setTitle:voicesignStr forState:UIControlStateNormal];
+    [self.smsView.tableViewPeople reloadData];
+    self.smsView.textSMSContent.text=voiceContent;
+    if([voiceContent isEqualToString:@"请输入内容"]){
+        self.smsView.textSMSContent.textColor = [UIColor lightGrayColor];
+        _smsView.zishu.text=[NSString stringWithFormat:@"%@/%d",@"0",70];
+        
+    }else{
+        self.smsView.textSMSContent.textColor = [UIColor blackColor];
+        _smsView.zishu.text=[NSString stringWithFormat:@"%@/%d",[ToolUtils numToString:voiceContent.length],70];
+        
+    }
+    }
 }
 
 #pragma mark - UITableViewDatasource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if([SMSType isEqualToString:@"0"]){
     return _arrDidAllPeople.count;
+    
+    }else{
+        return voiceDidAllPeople.count;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -265,19 +436,31 @@
         cell.detailTextLabel.font=[UIFont systemFontOfSize:13];
     }
     
-    
-    NSObject * obj =_arrDidAllPeople[indexPath.row];
-    if ([obj isKindOfClass:[PeopelInfo class]]) {
-        cell.textLabel.text=[(PeopelInfo *)obj Name];
-        cell.detailTextLabel.text=[(PeopelInfo *)obj tel];
-        
-    }else if([obj isKindOfClass:[GroupInfo class]]){
-        cell.textLabel.text=[(GroupInfo *)obj Name];
-        NSString *strDeta=[[(GroupInfo *)obj Count] stringByAppendingString:@"  位联系人"];
-        strDeta=[strDeta stringByReplacingOccurrencesOfString:@"\r" withString:@""];
-        cell.detailTextLabel.text=strDeta;
+    if([SMSType isEqualToString:@"0"]){
+        NSObject * obj =_arrDidAllPeople[indexPath.row];
+        if ([obj isKindOfClass:[PeopelInfo class]]) {
+            cell.textLabel.text=[(PeopelInfo *)obj Name];
+            cell.detailTextLabel.text=[(PeopelInfo *)obj tel];
+            
+        }else if([obj isKindOfClass:[GroupInfo class]]){
+            cell.textLabel.text=[(GroupInfo *)obj Name];
+            NSString *strDeta=[[(GroupInfo *)obj Count] stringByAppendingString:@"  位联系人"];
+            strDeta=[strDeta stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+            cell.detailTextLabel.text=strDeta;
+        }
+    }else{
+        NSObject * obj =voiceDidAllPeople[indexPath.row];
+        if ([obj isKindOfClass:[PeopelInfo class]]) {
+            cell.textLabel.text=[(PeopelInfo *)obj Name];
+            cell.detailTextLabel.text=[(PeopelInfo *)obj tel];
+            
+        }else if([obj isKindOfClass:[GroupInfo class]]){
+            cell.textLabel.text=[(GroupInfo *)obj Name];
+            NSString *strDeta=[[(GroupInfo *)obj Count] stringByAppendingString:@"  位联系人"];
+            strDeta=[strDeta stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+            cell.detailTextLabel.text=strDeta;
+        }
     }
-
     return cell;
 }
 
@@ -288,11 +471,21 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [_arrDidAllPeople removeObjectAtIndex:indexPath.row];
-        [arrAllNumber removeObjectAtIndex:indexPath.row];
-        [tableView beginUpdates];
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        [tableView endUpdates];
+        if([SMSType isEqualToString:@"0"]){
+            [_arrDidAllPeople removeObjectAtIndex:indexPath.row];
+            [arrAllNumber removeObjectAtIndex:indexPath.row];
+            [tableView beginUpdates];
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [tableView endUpdates];
+        
+        }else{
+        
+            [voiceDidAllPeople removeObjectAtIndex:indexPath.row];
+            [voiceAllNumber removeObjectAtIndex:indexPath.row];
+            [tableView beginUpdates];
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [tableView endUpdates];
+        }
     }
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
@@ -368,7 +561,14 @@
 }
 
 - (void)textViewDidChange:(UITextView *)textView{
-    _smsView.zishu.text=[NSString stringWithFormat:@"%@/%d",[ToolUtils numToString:textView.text.length],MAX_Content];
+    if([SMSType isEqualToString:@"0"]){
+    smsContent=textView.text;
+    _smsView.zishu.text=[NSString stringWithFormat:@"%@/%d",[ToolUtils numToString:textView.text.length],350];
+    }else{
+    voiceContent=textView.text;
+    _smsView.zishu.text=[NSString stringWithFormat:@"%@/%d",[ToolUtils numToString:textView.text.length],70];
+    }
+    
 }
 
 @end

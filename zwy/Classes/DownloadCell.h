@@ -20,7 +20,7 @@
 @property (strong ,nonatomic)NSURL * urlFile;//URL
 @property (strong ,nonatomic)NSString *filePath;//文件保存路径
 @property (strong ,nonatomic)UILabel * labelText;
-@property (strong ,nonatomic)UILabel * fileText; 
+@property (strong ,nonatomic)UILabel * fileText;
 @property (assign ,nonatomic)id<DownloadCellDelegate>delegate;
 - (id)initWithDelegate:(id)delegate URL:(NSString *)url reuseIdentifier:(NSString *)reuseIdentifier filePath:(NSString *)path;
 

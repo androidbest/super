@@ -21,6 +21,17 @@
     NSString * strAllPeopleName;
     NSString * strAllPeoleTel;
     NSString * strAllGroupID;
+    
+    
+    NSString *voicestrAllPeopleName;
+    NSString *voiicestrAllPeoleTel;
+    NSString *voicestrAllGroupID;
+    
+    NSMutableArray *voiceAllNumber;
+    NSMutableArray *voiceDidAllPeople;
+    
+    
+    
 }
 
 #pragma mark - 初始化
@@ -28,9 +39,17 @@
     self =[super init];
     if (self) {
         MeetType=@"0";
-//        strAllGroupID=@"";
-//        strAllPeoleTel=@"";
-//        strAllPeopleName=@"";
+        strAllGroupID=@"";
+        strAllPeoleTel=@"";
+        strAllPeopleName=@"";
+        
+        voicestrAllPeopleName=@"";
+        voiicestrAllPeoleTel=@"";
+        voicestrAllGroupID=@"";
+        
+        voiceAllNumber=[NSMutableArray new];
+        voiceDidAllPeople=[NSMutableArray new];
+        
         self.arrDidAllPeople =[[NSMutableArray alloc] init];
         arrAllNumber =[[NSMutableArray alloc] init];
         
@@ -64,84 +83,130 @@
 
 #pragma mark -接受选择通讯录传回来的数据
 - (void)returnDidAddress:(NSArray *)arr{
-    NSObject *obj;
-    if (arr.count!=0) {
-        for (int i =0; i<arr.count; i++) {
-            obj=arr[i];
-            if ([obj isKindOfClass:[PeopelInfo class]]) {
-                if (![arrAllNumber containsObject:[(PeopelInfo *)obj tel]]){
-                    [arrAllNumber addObject:[(PeopelInfo *)obj tel]];
-                    [_arrDidAllPeople addObject:obj];
-                }
-            }else if([obj isKindOfClass:[GroupInfo class]]){
-                if (![arrAllNumber containsObject:[(GroupInfo *)obj groupID]]){
-                    [arrAllNumber addObject:[(PeopelInfo *)obj groupID]];
-                    [_arrDidAllPeople addObject:obj];
-                }
-            }
-            
-        }
-    }
     
+    if([MeetType isEqualToString:@"0"]){
+        NSObject *obj;
+        if (arr.count!=0) {
+            for (int i =0; i<arr.count; i++) {
+                obj=arr[i];
+                if ([obj isKindOfClass:[PeopelInfo class]]) {
+                    if (![arrAllNumber containsObject:[(PeopelInfo *)obj tel]]){
+                        [arrAllNumber addObject:[(PeopelInfo *)obj tel]];
+                        [_arrDidAllPeople addObject:obj];
+                    }
+                }else if([obj isKindOfClass:[GroupInfo class]]){
+                    if (![arrAllNumber containsObject:[(GroupInfo *)obj groupID]]){
+                        [arrAllNumber addObject:[(PeopelInfo *)obj groupID]];
+                        [_arrDidAllPeople addObject:obj];
+                    }
+                }
+                
+            }
+        }
+    }else{
+        NSObject *obj;
+        if (arr.count!=0) {
+            for (int i =0; i<arr.count; i++) {
+                obj=arr[i];
+                if ([obj isKindOfClass:[PeopelInfo class]]) {
+                    if (![voiceAllNumber containsObject:[(PeopelInfo *)obj tel]]){
+                        [voiceAllNumber addObject:[(PeopelInfo *)obj tel]];
+                        [voiceDidAllPeople addObject:obj];
+                    }
+                }else if([obj isKindOfClass:[GroupInfo class]]){
+                    if (![voiceAllNumber containsObject:[(GroupInfo *)obj groupID]]){
+                        [voiceAllNumber addObject:[(PeopelInfo *)obj groupID]];
+                        [voiceDidAllPeople addObject:obj];
+                    }
+                }
+                
+            }
+        }
+    
+    
+    }
     [self.meettingView.tableViewPeople reloadData];
 }
 
 #pragma mark - 按钮实现方法
 //发送
 -(void)btnCheck{
-    strAllPeopleName =@"";
-    strAllPeoleTel =@"";
-    strAllGroupID =@"";
     
     
-    for (int i=0; i<_arrDidAllPeople.count; i++) {
-        NSObject * obj =_arrDidAllPeople[i];
-        if ([obj isKindOfClass:[PeopelInfo class]]) {
-            
-            /*所有人员号码*/
-            if ([strAllPeopleName isEqualToString:@""])strAllPeopleName=[(PeopelInfo *)obj Name];
-            else  strAllPeopleName =[NSString stringWithFormat:@"%@,%@",strAllPeopleName,[(PeopelInfo *)obj Name]];
-            
-            /*所有人员电话*/
-            if ([strAllPeoleTel isEqualToString:@""])strAllPeoleTel=[(PeopelInfo *)obj tel];
-            else strAllPeoleTel =[NSString stringWithFormat:@"%@,%@",strAllPeoleTel,[(PeopelInfo *)obj tel]];
-            
-        }else if([obj isKindOfClass:[GroupInfo class]]){
-            
-            /*所有部门id*/
-            if ([strAllGroupID isEqualToString:@""])strAllGroupID = [(GroupInfo *)obj groupID];
-            else strAllGroupID =[NSString stringWithFormat:@"%@,%@",strAllGroupID,[(GroupInfo *)obj groupID]];
+    
+    if([MeetType isEqualToString:@"0"]){
+        strAllPeopleName =@"";
+        strAllPeoleTel =@"";
+        strAllGroupID =@"";
+        
+        for (int i=0; i<_arrDidAllPeople.count; i++) {
+            NSObject * obj =_arrDidAllPeople[i];
+            if ([obj isKindOfClass:[PeopelInfo class]]) {
+                
+                /*所有人员号码*/
+                if ([strAllPeopleName isEqualToString:@""])strAllPeopleName=[NSString stringWithFormat:@"%@,",[(PeopelInfo *)obj Name]];
+                else  strAllPeopleName =[NSString stringWithFormat:@"%@%@,",strAllPeopleName,[(PeopelInfo *)obj Name]];
+                
+                /*所有人员电话*/
+                if ([strAllPeoleTel isEqualToString:@""])strAllPeoleTel=[NSString stringWithFormat:@"%@,",[(PeopelInfo *)obj tel]];
+                else strAllPeoleTel =[NSString stringWithFormat:@"%@%@,",strAllPeoleTel,[(PeopelInfo *)obj tel]];
+                
+            }else if([obj isKindOfClass:[GroupInfo class]]){
+                
+                /*所有部门id*/
+                if ([strAllGroupID isEqualToString:@""])strAllGroupID = [NSString stringWithFormat:@"%@,",[(GroupInfo *)obj groupID]];
+                else strAllGroupID =[NSString stringWithFormat:@"%@%@,",strAllGroupID,[(GroupInfo *)obj groupID]];
+            }
         }
-    }
-    NSLog(@"%@\n%@\n%@",strAllGroupID,strAllPeoleTel,strAllPeopleName);
-    /**/
-    if ([strAllGroupID isEqualToString:@""]&&[strAllPeoleTel isEqualToString:@""]){
-        [ToolUtils alertInfo:@"请选择联系人"];
-        return;
-    }
-    
-    if(![strAllPeoleTel isEqualToString:@""]){
-        strAllPeoleTel=[NSString stringWithFormat:@"%@,",strAllPeoleTel];
-    }
-    
-    if(![strAllGroupID isEqualToString:@""]){
-        strAllGroupID=[NSString stringWithFormat:@"%@,",strAllGroupID];
-    }
-    
-
-    if ([MeetType isEqualToString:@"0"]) {/*发送即时电话*/
+        NSLog(@"%@\n%@\n%@",strAllGroupID,strAllPeoleTel,strAllPeopleName);
+        /**/
+        if ([strAllGroupID isEqualToString:@""]&&[strAllPeoleTel isEqualToString:@""]){
+            [ToolUtils alertInfo:@"请选择联系人"];
+            return;
+        }
+        
         /*提交等待*/
-        self.HUD =[[MBProgressHUD alloc] initWithView:self.meettingView.navigationController.view];
-        self.HUD.labelText=@"正在发送..";
-        [self.meettingView.navigationController.view addSubview:self.HUD];
-        [self.HUD show:YES];
+//        self.HUD =[[MBProgressHUD alloc] initWithView:self.meettingView.navigationController.view];
+//        self.HUD.labelText=@"正在发送..";
+//        [self.meettingView.navigationController.view addSubview:self.HUD];
+//        [self.HUD show:YES];
         
+//        [packageData scheduleConf:self receiverTel:strAllPeoleTel receiverName:strAllPeopleName groupID:strAllGroupID time:@"0"];
         
-                [packageData scheduleConf:self receiverTel:strAllPeoleTel receiverName:strAllPeopleName groupID:strAllGroupID time:@"0"];
-        
-    }
     
-    if ([MeetType isEqualToString:@"1"]) {/*发送预约电话*/
+    }else{
+        voicestrAllPeopleName=@"";
+        voiicestrAllPeoleTel=@"";
+        voicestrAllGroupID=@"";
+        
+        for (int i=0; i<voiceDidAllPeople.count; i++) {
+            NSObject * obj =voiceDidAllPeople[i];
+            if ([obj isKindOfClass:[PeopelInfo class]]) {
+                
+                /*所有人员号码*/
+                if ([voicestrAllPeopleName isEqualToString:@""])voicestrAllPeopleName=[NSString stringWithFormat:@"%@,",[(PeopelInfo *)obj Name]];
+                else  voicestrAllPeopleName =[NSString stringWithFormat:@"%@%@,",voicestrAllPeopleName,[(PeopelInfo *)obj Name]];
+                
+                /*所有人员电话*/
+                if ([voiicestrAllPeoleTel isEqualToString:@""])voiicestrAllPeoleTel=[NSString stringWithFormat:@"%@,",[(PeopelInfo *)obj tel]];
+                else voiicestrAllPeoleTel =[NSString stringWithFormat:@"%@%@,",voiicestrAllPeoleTel,[(PeopelInfo *)obj tel]];
+                
+            }else if([obj isKindOfClass:[GroupInfo class]]){
+                
+                /*所有部门id*/
+                if ([voicestrAllGroupID isEqualToString:@""])voicestrAllGroupID = [NSString stringWithFormat:@"%@,",[(GroupInfo *)obj groupID]];
+                else voicestrAllGroupID =[NSString stringWithFormat:@"%@%@,",voicestrAllGroupID,[(GroupInfo *)obj groupID]];
+            }
+        }
+        NSLog(@"%@\n%@\n%@",voicestrAllGroupID,voiicestrAllPeoleTel,voicestrAllPeopleName);
+        /**/
+        if ([voicestrAllGroupID isEqualToString:@""]&&[voiicestrAllPeoleTel isEqualToString:@""]){
+            [ToolUtils alertInfo:@"请选择联系人"];
+            return;
+        }
+
+        
+    
         //预约时间
         NSString * dateAndTime = [NSString stringWithFormat:@"%@ %@",_meettingView.btnDate.titleLabel.text,_meettingView.btnTime.titleLabel.text];
         NSDateFormatter * dateFormatter = [[NSDateFormatter alloc]init];
@@ -164,16 +229,13 @@
         }
         
         /*提交等待*/
-        self.HUD =[[MBProgressHUD alloc] initWithView:self.meettingView.navigationController.view];
-        self.HUD.labelText=@"正在发送..";
-        [self.meettingView.navigationController.view addSubview:self.HUD];
-        [self.HUD show:YES];
+//        self.HUD =[[MBProgressHUD alloc] initWithView:self.meettingView.navigationController.view];
+//        self.HUD.labelText=@"正在发送..";
+//        [self.meettingView.navigationController.view addSubview:self.HUD];
+//        [self.HUD show:YES];
         
-        
-        
-        [packageData scheduleConf:self receiverTel:strAllPeoleTel receiverName:strAllPeopleName groupID:strAllGroupID time:[NSString stringWithFormat:@"%lld",KTime]];
+//        [packageData scheduleConf:self receiverTel:voiicestrAllPeoleTel receiverName:voicestrAllPeopleName groupID:voicestrAllGroupID time:[NSString stringWithFormat:@"%lld",KTime]];
     }
-    
 
 }
 
@@ -207,7 +269,7 @@
         self.meettingView.btnTime.hidden=YES;
         self.meettingView.btnDate.hidden=YES;
         self.meettingView.atonce_time.hidden=NO;
-        
+        [self.meettingView.tableViewPeople reloadData];
         
         [self.meettingView.nsTimer setFireDate:[NSDate distantPast]];
         self.meettingView.statusLabel.text=@"当前时间:";
@@ -221,6 +283,7 @@
         self.meettingView.btnDate.hidden=NO;
         self.meettingView.atonce_time.hidden=YES;
         self.meettingView.statusLabel.text=@"预约时间";
+        [self.meettingView.tableViewPeople reloadData];
     }
 }
 
@@ -243,7 +306,11 @@
 
 #pragma mark - UITableViewDatasource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if([MeetType isEqualToString:@"0"]){
     return _arrDidAllPeople.count;
+    }else{
+    return voiceDidAllPeople.count;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -252,16 +319,34 @@
     if (!cell) {
         cell =[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:strCell];
     }
-    NSObject * obj =_arrDidAllPeople[indexPath.row];
-    if ([obj isKindOfClass:[PeopelInfo class]]) {
-        cell.textLabel.text=[(PeopelInfo *)obj Name];
-        cell.detailTextLabel.text=[(PeopelInfo *)obj tel];
-    }else if([obj isKindOfClass:[GroupInfo class]]){
-        cell.textLabel.text=[(GroupInfo *)obj Name];
-        NSString *strDeta=[[(GroupInfo *)obj Count] stringByAppendingString:@"  位联系人"];
-        strDeta=[strDeta stringByReplacingOccurrencesOfString:@"\r" withString:@""];
-        cell.detailTextLabel.text=strDeta;
+    
+    if([MeetType isEqualToString:@"0"]){
+        NSObject * obj =_arrDidAllPeople[indexPath.row];
+        if ([obj isKindOfClass:[PeopelInfo class]]) {
+            cell.textLabel.text=[(PeopelInfo *)obj Name];
+            cell.detailTextLabel.text=[(PeopelInfo *)obj tel];
+        }else if([obj isKindOfClass:[GroupInfo class]]){
+            cell.textLabel.text=[(GroupInfo *)obj Name];
+            NSString *strDeta=[[(GroupInfo *)obj Count] stringByAppendingString:@"  位联系人"];
+            strDeta=[strDeta stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+            cell.detailTextLabel.text=strDeta;
+        }
+    }else{
+    
+        NSObject * obj =voiceDidAllPeople[indexPath.row];
+        if ([obj isKindOfClass:[PeopelInfo class]]) {
+            cell.textLabel.text=[(PeopelInfo *)obj Name];
+            cell.detailTextLabel.text=[(PeopelInfo *)obj tel];
+        }else if([obj isKindOfClass:[GroupInfo class]]){
+            cell.textLabel.text=[(GroupInfo *)obj Name];
+            NSString *strDeta=[[(GroupInfo *)obj Count] stringByAppendingString:@"  位联系人"];
+            strDeta=[strDeta stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+            cell.detailTextLabel.text=strDeta;
+        }
+
+    
     }
+    
     
     return cell;
 }
@@ -273,11 +358,21 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [_arrDidAllPeople removeObjectAtIndex:indexPath.row];
-        [arrAllNumber removeObjectAtIndex:indexPath.row];
-        [tableView beginUpdates];
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        [tableView endUpdates];
+        
+        if([MeetType isEqualToString:@"0"]){
+            [_arrDidAllPeople removeObjectAtIndex:indexPath.row];
+            [arrAllNumber removeObjectAtIndex:indexPath.row];
+            [tableView beginUpdates];
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [tableView endUpdates];
+        
+        }else{
+            [voiceDidAllPeople removeObjectAtIndex:indexPath.row];
+            [voiceAllNumber removeObjectAtIndex:indexPath.row];
+            [tableView beginUpdates];
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [tableView endUpdates];
+        }
     }
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
