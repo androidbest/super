@@ -7,7 +7,7 @@
 //
 
 #import "AccessoryController.h"
-#import "DownloadCell.h"
+
 #import "CheckAccessoryView.h"
 #import "officeDetaInfo.h"
 @implementation AccessoryController{
@@ -15,11 +15,13 @@
     NSString * strIngPath;
     NSMutableArray * arrFileManagerDowning;
     NSMutableArray * arrFileManagerDownEnd;
+    BOOL isCell;
 }
 
 - (id)init{
     self =[super init];
     if (self) {
+        isCell=NO;
         //注册通知
         //附件下载
         [[NSNotificationCenter defaultCenter]addObserver:self
@@ -65,11 +67,10 @@
     _arrDowning =[[NSMutableArray alloc] initWithArray:arr];
     
     
-    [arrFileManagerDowning removeAllObjects];
-    arrFileManagerDowning=NULL;
-    arrFileManagerDowning =[[NSMutableArray alloc] initWithArray:arr];
+    [arrFileManagerDowning addObject:dic];
     [arrFileManagerDowning writeToFile:strIngPath atomically:NO];
     
+    isCell=NO;
    [_accView.tableViewDowning beginUpdates];
    [_accView.tableViewDowning insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
    [_accView.tableViewDowning endUpdates];
@@ -96,21 +97,16 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (tableView.tag==0) {/*正在下载列表*/
-        static NSString *strCell =@"Cell";
-        DownloadCell *cell  =(DownloadCell *)[tableView dequeueReusableCellWithIdentifier:strCell];
+         NSString *strCell =[NSString stringWithFormat:@"cell%ld",(long)indexPath.row];
+        DownloadCell *cell  = (DownloadCell *)[tableView dequeueReusableCellWithIdentifier:strCell];
           NSString *str =[DocumentsDirectory stringByAppendingPathComponent: [_arrDowning[indexPath.row] objectForKey:@"text"]];
-        if (!cell) {
+        if (!isCell||!cell) {
             cell=[[DownloadCell alloc] initWithDelegate:self URL:[_arrDowning[indexPath.row] objectForKey:@"url"] reuseIdentifier:strCell filePath:str];
         }
         
-        
+        cell.delegate=self;
         cell.fileText.text=[_arrDowning[indexPath.row] objectForKey:@"text"];
         cell.tag=indexPath.row;
-//        CGRect rect= cell.detailTextLabel.frame;
-//        rect.size.width=40;
-//        cell.detailTextLabel.frame=rect;
-//        cell.detailTextLabel.text=;
-//        cell.tag=indexPath.row;
         return cell;
     }
     
@@ -139,12 +135,28 @@
         if ([[dic objectForKey:@"text"]isEqualToString:cell.fileText.text]) {
             [arrFileManagerDowning removeObject:dic];
             [arrFileManagerDowning writeToFile:strIngPath atomically:NO];
-            
+
             if (![arrFileManagerDownEnd containsObject:dic]){
             [arrFileManagerDownEnd addObject:dic];
             [arrFileManagerDownEnd writeToFile:strEndPath atomically:NO];
             }
             
+        }
+    }
+    
+    for (int i=0; i<_accView.tableViewDowning.visibleCells.count;i++) {
+        DownloadCell * cell1 =_accView.tableViewDowning.visibleCells[i];
+        if([cell1.labelText.text isEqualToString:@"下载完成"]){
+            /*删除对应行*/
+            NSDictionary *dic =_arrDowning[i];
+            if (![_arrEnddown containsObject:dic]) [_arrEnddown addObject:_arrDowning[i]];
+            [_arrDowning removeObjectAtIndex:i];
+            [self.accView.tableViewEndDown reloadData];
+            /******************/
+            
+            [_accView.tableViewDowning beginUpdates];
+            [_accView.tableViewDowning deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:i inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+            [_accView.tableViewDowning endUpdates];
         }
     }
 }
@@ -182,6 +194,10 @@
     return @"删除";
 }
 
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    isCell=YES;
+}
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView.tag==0) {
@@ -192,42 +208,14 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+
+
+
 /*点击正在下载列表调用*/
 - (void)tableViewDowning:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    for (UIView  *view in tableView.visibleCells) {
-        
-        if (view.tag==indexPath.row) {
-            DownloadCell *cell =(DownloadCell *)view;
-            
-            if([cell.labelText.text isEqualToString:@"下载完成"]){
-                
-                /*查看附件*/
-                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
-                CheckAccessoryView *detaView = [storyboard instantiateViewControllerWithIdentifier:@"CheckAccessoryView"];
-                [self.accView.navigationController pushViewController:detaView animated:YES];
-                detaView.url =[_arrDowning[indexPath.row] objectForKey:@"text"];
-                /**********/
-                
-                /*删除对应行，并保存本地*/
-                NSDictionary *dic =_arrDowning[indexPath.row];
-                if (![_arrEnddown containsObject:dic]) [_arrEnddown addObject:_arrDowning[indexPath.row]];
-                [_arrDowning removeObjectAtIndex:indexPath.row];
-                [self.accView.tableViewEndDown reloadData];
-                /******************/
-                
-                [tableView beginUpdates];
-                [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-                [tableView endUpdates];
-                [self performSelector:@selector(reloadDownTableView) withObject:self afterDelay:0.2];
-                
-
-            }
-            
-        }
-        
-    }
 
 }
+
 - (void)reloadDownTableView{
         [self.accView.tableViewDowning reloadData];
 }

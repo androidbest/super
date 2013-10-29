@@ -41,13 +41,25 @@
     [_meetting setBackgroundColor:[UIColor colorWithRed:0.44 green:0.67 blue:0 alpha:1.0]];
     
     [_information addTarget:self.controller action:@selector(information) forControlEvents:UIControlEventTouchUpInside];
-    [_notice addTarget:self.controller action:@selector(notice) forControlEvents:UIControlEventTouchUpInside];
-    [_sms addTarget:self.controller action:@selector(sms) forControlEvents:UIControlEventTouchUpInside];
-    [_address addTarget:self.controller action:@selector(address) forControlEvents:UIControlEventTouchUpInside];
-    [_office addTarget:self.controller action:@selector(office) forControlEvents:UIControlEventTouchUpInside];
-    [_mail addTarget:self.controller action:@selector(mail) forControlEvents:UIControlEventTouchUpInside];
-    [_meetting addTarget:self.controller action:@selector(meetting) forControlEvents:UIControlEventTouchUpInside];
+    [_information setExclusiveTouch:YES];
     
+    [_notice addTarget:self.controller action:@selector(notice) forControlEvents:UIControlEventTouchUpInside];
+    [_notice setExclusiveTouch:YES];
+    
+    [_sms addTarget:self.controller action:@selector(sms) forControlEvents:UIControlEventTouchUpInside];
+    [_sms setExclusiveTouch:YES];
+    
+    [_address addTarget:self.controller action:@selector(address) forControlEvents:UIControlEventTouchUpInside];
+    [_address setExclusiveTouch:YES];
+    
+    [_office addTarget:self.controller action:@selector(office) forControlEvents:UIControlEventTouchUpInside];
+    [_office setExclusiveTouch:YES];
+    
+    [_mail addTarget:self.controller action:@selector(mail) forControlEvents:UIControlEventTouchUpInside];
+    [_mail setExclusiveTouch:YES];
+    
+    [_meetting addTarget:self.controller action:@selector(meetting) forControlEvents:UIControlEventTouchUpInside];
+    [_meetting setExclusiveTouch:YES];
     
     UIView * view =[[UIView alloc] init];
     view.frame =CGRectMake(0, 0, ScreenWidth, 40);
@@ -88,7 +100,6 @@
     [((HomeController *)self.controller) getCount];
     _mailsum.hidden=YES;
     _officesum.hidden=YES;
-    
     
     
 }
