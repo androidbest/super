@@ -120,11 +120,11 @@
                                                                      NSLog(@"doing activity = %@, activityItems = %@", activity, activityItems);
                                                                      NSString *str=activityItems[i];
                                                                      if(i==2){
-                                                                         SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
-                                                                         req.text = str;
-                                                                         req.bText = YES;
-                                                                         req.scene = WXSceneSession;
-                                                                         [WXApi sendReq:req];
+//                                                                         SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
+//                                                                         req.text = str;
+//                                                                         req.bText = YES;
+//                                                                         req.scene = WXSceneSession;
+//                                                                         [WXApi sendReq:req];
                                                                      }else{
                                                                      [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
                                                                      }
