@@ -129,7 +129,7 @@
             self.informationView.listview1.reachedTheEnd=NO;
         }
     }else{
-        [ToolUtils alertInfo:requestError];
+       // [ToolUtils alertInfo:requestError];
     }
     [self.informationView.listview1 reloadDataPull];
 }

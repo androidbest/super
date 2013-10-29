@@ -53,6 +53,9 @@
 	// Do any additional setup after loading the view.
 }
 
+- (void)showAccessoryWithUrl:(NSString *)url{
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

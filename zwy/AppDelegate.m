@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "ConfigFile.h"
 #import "Constants.h"
-#import "WXApi.h"
+//#import "WXApi.h"
 @implementation AppDelegate{
 UIBackgroundTaskIdentifier backgroundTask;//写成成员
 
