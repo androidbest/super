@@ -110,9 +110,13 @@
     self.tabBarController.tabBar.hidden=NO;
     _name.text=user.username;
     _ecname.text=user.ecname;
+//    [((HomeController *)self.controller) sendEc];
+    [((HomeController *)self.controller) getCount];
+    
+    
     if([user.ecSgin isEqualToString:@"0"]){
         [((HomeController *)self.controller) sendEc];
-        [((HomeController *)self.controller) getCount];
+//        [((HomeController *)self.controller) getCount];
         user.ecSgin=nil;
     }
 }

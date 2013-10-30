@@ -13,8 +13,12 @@
 #import "ToolUtils.h"
 #import "LoginView.h"
 #import "GroupAddressController.h"
+#import "ZipArchive.h"
+
 @implementation AccountManagerController{
 NSMutableArray *arr;
+    
+    NSIndexPath *tempIndexPath;
 }
 
 
@@ -87,21 +91,22 @@ NSMutableArray *arr;
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    for(int i=0;i<[tableView visibleCells].count;i++){
-        GetEcCell *cell = [[tableView visibleCells] objectAtIndex:i];
-        [cell.selectEc setBackgroundImage:[UIImage imageNamed:@"btn_uncheck"] forState:UIControlStateNormal];
-    }
-    EcinfoDetas *ecinfo=arr[indexPath.row];
-    user.eccode=ecinfo.ECID;
-    user.ecname=ecinfo.ECName;
-    user.ecSgin=@"0";
-    NSUserDefaults *appConfig=[NSUserDefaults standardUserDefaults];
-    [appConfig setValue:user.eccode forKey:@"eccode"];
-    [appConfig setValue:user.ecname forKey:@"ecname"];
-    [appConfig synchronize];
-    GetEcCell *cell = (GetEcCell *)[tableView cellForRowAtIndexPath:indexPath];
-    [cell.selectEc setBackgroundImage:[UIImage imageNamed:@"btn_check"] forState:UIControlStateNormal];
+//    for(int i=0;i<[tableView visibleCells].count;i++){
+//        GetEcCell *cell = [[tableView visibleCells] objectAtIndex:i];
+//        [cell.selectEc setBackgroundImage:[UIImage imageNamed:@"btn_uncheck"] forState:UIControlStateNormal];
+//    }
+//    EcinfoDetas *ecinfo=arr[indexPath.row];
+//    user.eccode=ecinfo.ECID;
+//    user.ecname=ecinfo.ECName;
+//    user.ecSgin=@"0";
+//    NSUserDefaults *appConfig=[NSUserDefaults standardUserDefaults];
+//    [appConfig setValue:user.eccode forKey:@"eccode"];
+//    [appConfig setValue:user.ecname forKey:@"ecname"];
+//    [appConfig synchronize];
+//    GetEcCell *cell = (GetEcCell *)[tableView cellForRowAtIndexPath:indexPath];
+//    [cell.selectEc setBackgroundImage:[UIImage imageNamed:@"btn_check"] forState:UIControlStateNormal];
 //    [self.account.navigationController popViewControllerAnimated:YES];
+    tempIndexPath=indexPath;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [ToolUtils alertInfo:@"确定需要切换单位" delegate:self otherBtn:@"取消"];
 }
@@ -127,6 +132,20 @@ NSMutableArray *arr;
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if(buttonIndex==0){
+        for(int i=0;i<[self.account.accountList visibleCells].count;i++){
+            GetEcCell *cell = [[self.account.accountList visibleCells] objectAtIndex:i];
+            [cell.selectEc setBackgroundImage:[UIImage imageNamed:@"btn_uncheck"] forState:UIControlStateNormal];
+        }
+        EcinfoDetas *ecinfo=arr[tempIndexPath.row];
+        user.eccode=ecinfo.ECID;
+        user.ecname=ecinfo.ECName;
+        user.ecSgin=@"0";
+        NSUserDefaults *appConfig=[NSUserDefaults standardUserDefaults];
+        [appConfig setValue:user.eccode forKey:@"eccode"];
+        [appConfig setValue:user.ecname forKey:@"ecname"];
+        [appConfig synchronize];
+        GetEcCell *cell = (GetEcCell *)[self.account.accountList cellForRowAtIndexPath:tempIndexPath];
+        [cell.selectEc setBackgroundImage:[UIImage imageNamed:@"btn_check"] forState:UIControlStateNormal];
         [self DownLoadAddress];
     }
 }
@@ -195,6 +214,22 @@ NSMutableArray *arr;
     self.HUD.mode = MBProgressHUDModeCustomView;
 	
     [self.HUD hide:YES afterDelay:1];
+    
+    
+    NSString * str =[NSString stringWithFormat:@"%@/%@/%@",DocumentsDirectory,user.eccode,@"group.txt"];
+    NSString *strGroup =[NSString stringWithContentsOfFile:str encoding:NSUTF8StringEncoding error:NULL];
+    if (!strGroup) {
+        ZipArchive* zipFile = [[ZipArchive alloc] init];
+        NSString *strECpath =[NSString stringWithFormat:@"%@.zip",user.eccode];
+        NSString * strPath =[DocumentsDirectory stringByAppendingPathComponent:strECpath];
+        [zipFile UnzipOpenFile:strPath];
+        
+        //压缩包释放到的位置，需要一个完整路径
+        [zipFile UnzipFileTo:[DocumentsDirectory stringByAppendingPathComponent:user.eccode]overWrite:YES];
+        [zipFile UnzipCloseFile];
+    }
+
+    
     
     [self performSelector:@selector(selecter) withObject:nil afterDelay:1];
 }
