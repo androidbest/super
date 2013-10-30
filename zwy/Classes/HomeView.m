@@ -112,6 +112,7 @@
     _ecname.text=user.ecname;
     if([user.ecSgin isEqualToString:@"0"]){
         [((HomeController *)self.controller) sendEc];
+        [((HomeController *)self.controller) getCount];
         user.ecSgin=nil;
     }
 }
