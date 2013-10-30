@@ -97,7 +97,7 @@
     
     //发送Ec
 //    [((HomeController *)self.controller) sendEc];
-    [((HomeController *)self.controller) getCount];
+//    [((HomeController *)self.controller) getCount];
     _mailsum.hidden=YES;
     _officesum.hidden=YES;
     
