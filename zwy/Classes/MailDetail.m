@@ -36,7 +36,7 @@
         _info=((DaiBanView *)_data).pubilcMailDetaInfo;
     }
     
-    
+    self.navigationItem.backBarButtonItem= [[UIBarButtonItem alloc]initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];  
     
 //    _delegete=_info.mailController;
     

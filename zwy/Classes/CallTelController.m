@@ -51,8 +51,10 @@
 }
 
 - (void)initWithData{
-    NSString * str=[DocumentsDirectory stringByAppendingPathComponent:@"member.txt"];
-    _arrAllPeople  =[CallTelController setAllPeopleInfo:str];
+    if (_arrAllPeople.count==0) {
+        NSString * str =[NSString stringWithFormat:@"%@/%@/%@",DocumentsDirectory,user.eccode,@"member.txt"];
+        _arrAllPeople  =[CallTelController setAllPeopleInfo:str];
+    }
 }
 
 #pragma mark - 弹出拨号键盘
@@ -79,7 +81,7 @@
 #pragma mark - 按钮实现方法
 //输入号码
 -(void)inputNumber:(UIButton *)sender{
-    NSString * strNumber =[NSString stringWithFormat:@"%d",sender.tag];
+    NSString * strNumber =[NSString stringWithFormat:@"%ld",(long)sender.tag];
     if (sender.tag==100)strNumber=@"*";
     if (sender.tag==1000)strNumber=@"#";
     _strTel=[_strTel stringByAppendingString:strNumber];

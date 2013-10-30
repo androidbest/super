@@ -48,7 +48,7 @@
     _tableViewPeople.dataSource=self.controller;
     _tableViewPeople.delegate=self.controller;
 	// Do any additional setup after loading the view.
-    [self.controller initWithData];
+   
     _labelCall.userInteractionEnabled=YES;
     UITapGestureRecognizer * tap =[[UITapGestureRecognizer alloc] initWithTarget:self.controller action:@selector(btnBigImageView:)];
     [_labelCall addGestureRecognizer:tap];
@@ -76,6 +76,7 @@
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
+    [self.controller initWithData];
     [UIView animateWithDuration:0.3 animations:^{
         CGRect rect =_keyboradView.frame;
         rect.origin.y=self.tabBarController.tabBar.frame.origin.y-rect.size.height-64;
