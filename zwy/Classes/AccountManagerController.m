@@ -95,7 +95,6 @@ NSMutableArray *arr;
 //        GetEcCell *cell = [[tableView visibleCells] objectAtIndex:i];
 //        [cell.selectEc setBackgroundImage:[UIImage imageNamed:@"btn_uncheck"] forState:UIControlStateNormal];
 //    }
-//    EcinfoDetas *ecinfo=arr[indexPath.row];
 //    user.eccode=ecinfo.ECID;
 //    user.ecname=ecinfo.ECName;
 //    user.ecSgin=@"0";
@@ -106,6 +105,11 @@ NSMutableArray *arr;
 //    GetEcCell *cell = (GetEcCell *)[tableView cellForRowAtIndexPath:indexPath];
 //    [cell.selectEc setBackgroundImage:[UIImage imageNamed:@"btn_check"] forState:UIControlStateNormal];
 //    [self.account.navigationController popViewControllerAnimated:YES];
+    
+    EcinfoDetas *ecinfo=arr[indexPath.row];
+    if ([ecinfo.ECID isEqualToString:user.eccode])
+        return;
+    
     tempIndexPath=indexPath;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [ToolUtils alertInfo:@"确定需要切换单位" delegate:self otherBtn:@"取消"];

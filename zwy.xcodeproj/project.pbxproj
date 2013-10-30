@@ -200,6 +200,10 @@
 		659F65271813C9FF00306C14 /* OfficeAddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 659F65261813C9FF00306C14 /* OfficeAddressView.m */; };
 		659F652E1813D4E200306C14 /* OfficeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 659F652D1813D4E200306C14 /* OfficeInfo.m */; };
 		659F65311813D77A00306C14 /* officeDetaInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 659F65301813D77A00306C14 /* officeDetaInfo.m */; };
+		65A35B6E1820E50F002C7489 /* ActionSheetWeibo.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A35B6D1820E50F002C7489 /* ActionSheetWeibo.m */; };
+		65A35B721820EC81002C7489 /* share_SMS.png in Resources */ = {isa = PBXBuildFile; fileRef = 65A35B6F1820EC81002C7489 /* share_SMS.png */; };
+		65A35B731820EC81002C7489 /* share_weixin.png in Resources */ = {isa = PBXBuildFile; fileRef = 65A35B701820EC81002C7489 /* share_weixin.png */; };
+		65A35B741820EC81002C7489 /* share_xinlang.png in Resources */ = {isa = PBXBuildFile; fileRef = 65A35B711820EC81002C7489 /* share_xinlang.png */; };
 		65A3B3941814C08900AD4069 /* MassTextingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A3B3931814C08900AD4069 /* MassTextingView.m */; };
 		65A3B3971814C0CC00AD4069 /* MassTextingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A3B3961814C0CC00AD4069 /* MassTextingController.m */; };
 		65A3B39A1814CC3F00AD4069 /* MassMyAddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A3B3991814CC3F00AD4069 /* MassMyAddressView.m */; };
@@ -574,6 +578,11 @@
 		659F652D1813D4E200306C14 /* OfficeInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfficeInfo.m; sourceTree = "<group>"; };
 		659F652F1813D77A00306C14 /* officeDetaInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = officeDetaInfo.h; sourceTree = "<group>"; };
 		659F65301813D77A00306C14 /* officeDetaInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = officeDetaInfo.m; sourceTree = "<group>"; };
+		65A35B6C1820E50F002C7489 /* ActionSheetWeibo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetWeibo.h; sourceTree = "<group>"; };
+		65A35B6D1820E50F002C7489 /* ActionSheetWeibo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionSheetWeibo.m; sourceTree = "<group>"; };
+		65A35B6F1820EC81002C7489 /* share_SMS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share_SMS.png; sourceTree = "<group>"; };
+		65A35B701820EC81002C7489 /* share_weixin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share_weixin.png; sourceTree = "<group>"; };
+		65A35B711820EC81002C7489 /* share_xinlang.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share_xinlang.png; sourceTree = "<group>"; };
 		65A3B3921814C08900AD4069 /* MassTextingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MassTextingView.h; sourceTree = "<group>"; };
 		65A3B3931814C08900AD4069 /* MassTextingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MassTextingView.m; sourceTree = "<group>"; };
 		65A3B3951814C0CC00AD4069 /* MassTextingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MassTextingController.h; sourceTree = "<group>"; };
@@ -1005,6 +1014,9 @@
 		595CB9B717F168BC00228A6E /* images */ = {
 			isa = PBXGroup;
 			children = (
+				65A35B6F1820EC81002C7489 /* share_SMS.png */,
+				65A35B701820EC81002C7489 /* share_weixin.png */,
+				65A35B711820EC81002C7489 /* share_xinlang.png */,
 				599D7D16181E2CE40099BE01 /* Safari-Small@2x.png */,
 				599D7D14181E2CDB0099BE01 /* Safari@2x~iphone.png */,
 				65B3AC781819318200F2EC04 /* btn_clear_people.png */,
@@ -1142,6 +1154,8 @@
 				595A0C7518113253009C26B8 /* CustomPush.m */,
 				6521F6331816A72600CD7B76 /* MailAddressCell.h */,
 				6521F6341816A72600CD7B76 /* MailAddressCell.m */,
+				65A35B6C1820E50F002C7489 /* ActionSheetWeibo.h */,
+				65A35B6D1820E50F002C7489 /* ActionSheetWeibo.m */,
 			);
 			name = utils;
 			sourceTree = "<group>";
@@ -1608,6 +1622,7 @@
 				65B3AC661819274200F2EC04 /* tabItem_call_over.png in Resources */,
 				5975C1691806784900EF7285 /* accessory_out.png in Resources */,
 				5975C17818067AA300EF7285 /* daiban_over@2x.png in Resources */,
+				65A35B721820EC81002C7489 /* share_SMS.png in Resources */,
 				59584B1A18190B2200B65162 /* meetting_date.png in Resources */,
 				65B3AC681819274200F2EC04 /* tabItem_groupArBook_out.png in Resources */,
 				651957FD180CDFC000DA3749 /* 37x-Checkmark.png in Resources */,
@@ -1631,12 +1646,14 @@
 				5975C16C1806784900EF7285 /* accessory_over.png in Resources */,
 				651957FE180CDFC000DA3749 /* 37x-Checkmark@2x.png in Resources */,
 				65B3AC721819274200F2EC04 /* tabItem_SMS_over.png in Resources */,
+				65A35B741820EC81002C7489 /* share_xinlang.png in Resources */,
 				5975C1861806981900EF7285 /* mail_icon.png in Resources */,
 				5975C1851806981900EF7285 /* meetting_icon.png in Resources */,
 				5975C1831806981900EF7285 /* adress_icon.png in Resources */,
 				5975C1841806981900EF7285 /* office_icon.png in Resources */,
 				595B79FD18094B53006DD766 /* more_accounts_image.png in Resources */,
 				5960DC8D17F95BE90024AD8B /* guide113601.png in Resources */,
+				65A35B731820EC81002C7489 /* share_weixin.png in Resources */,
 				65B3AC761819314900F2EC04 /* btn_Call.png in Resources */,
 				65B3AC651819274200F2EC04 /* tabItem_call_out@2x.png in Resources */,
 			);
@@ -1710,6 +1727,7 @@
 				594B80FD18037BC500310CB1 /* memberInfo.m in Sources */,
 				659AB37C18097878000FCEC5 /* mztools.c in Sources */,
 				659F652E1813D4E200306C14 /* OfficeInfo.m in Sources */,
+				65A35B6E1820E50F002C7489 /* ActionSheetWeibo.m in Sources */,
 				596D6EEB18085C39002CD0B3 /* InformationView.m in Sources */,
 				596D6EE218085004002CD0B3 /* NoticeView.m in Sources */,
 				595B507E180CEACF003EC2AF /* TemplateCell.m in Sources */,
