@@ -105,7 +105,7 @@
     
     
     //发送者
-    _sender =[[UILabel alloc] initWithFrame:CGRectMake(20,25,150,15)];
+    _sender =[[UILabel alloc] initWithFrame:CGRectMake(0,25,135,15)];
     _sender.textAlignment=NSTextAlignmentRight;
     _sender.font=[UIFont systemFontOfSize:12];
     _sender.textColor=[UIColor grayColor];

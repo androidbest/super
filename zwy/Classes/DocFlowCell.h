@@ -17,6 +17,4 @@
 @property (strong, nonatomic) IBOutlet UILabel *labelHeaher;
 @property (strong, nonatomic) IBOutlet UILabel *content;
 @property (strong, nonatomic) IBOutlet UILabel *topLabel;
-@property (strong, nonatomic) IBOutlet UIScrollView *contentSroll;
-
 @end

@@ -107,28 +107,30 @@
     
     NSString * strContent=info.content;
     if ([strContent isEqualToString:@"null"]) {strContent=@"";}
+    cell.content.text=strContent;
+    
     
     //添加滑动试图
 //    UIScrollView *_scrollView=[[UIScrollView alloc] initWithFrame:cell.content.frame];
 //    _scrollView.delegate = self;
-    cell.contentSroll.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight |
-    UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-    cell.contentSroll.backgroundColor=[UIColor clearColor];
-    cell.contentSroll.autoresizesSubviews = NO;
-    cell.contentSroll.canCancelContentTouches = NO;
-    cell.contentSroll.showsHorizontalScrollIndicator = NO;
-    cell.contentSroll.indicatorStyle = UIScrollViewIndicatorStyleWhite;
-    cell.contentSroll.clipsToBounds = YES;
-    cell.contentSroll.scrollEnabled = YES;
-    cell.contentSroll.pagingEnabled = NO;
-//   CGFloat contentLength=[strContent length]*15;
-    cell.contentSroll.contentSize=CGSizeMake(200, 0);
-//    cell.content.frame=CGRectMake(0, 0, contentLength,21);
-    cell.content.text=strContent;
-    cell.content.font=[UIFont systemFontOfSize:13];
-    cell.content.textColor=[UIColor grayColor];
-    cell.content.backgroundColor=[UIColor clearColor];
-    cell.content.textAlignment=NSTextAlignmentLeft;
+//    cell.contentSroll.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight |
+//    UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+//    cell.contentSroll.backgroundColor=[UIColor clearColor];
+//    cell.contentSroll.autoresizesSubviews = NO;
+//    cell.contentSroll.canCancelContentTouches = NO;
+//    cell.contentSroll.showsHorizontalScrollIndicator = NO;
+//    cell.contentSroll.indicatorStyle = UIScrollViewIndicatorStyleWhite;
+//    cell.contentSroll.clipsToBounds = YES;
+//    cell.contentSroll.scrollEnabled = YES;
+//    cell.contentSroll.pagingEnabled = NO;
+////   CGFloat contentLength=[strContent length]*15;
+//    cell.contentSroll.contentSize=CGSizeMake(200, 0);
+////    cell.content.frame=CGRectMake(0, 0, contentLength,21);
+//    cell.content.text=strContent;
+//    cell.content.font=[UIFont systemFontOfSize:13];
+//    cell.content.textColor=[UIColor grayColor];
+//    cell.content.backgroundColor=[UIColor clearColor];
+//    cell.content.textAlignment=NSTextAlignmentLeft;
     return cell;
 }
 
