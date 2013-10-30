@@ -43,6 +43,18 @@ UIBackgroundTaskIdentifier backgroundTask;//写成成员
 //    return [WXApi handleOpenURL:url delegate:self];
 //}
 
+//-(void) onResp:(BaseResp*)resp
+//{
+//    if([resp isKindOfClass:[SendMessageToWXResp class]])
+//    {
+//        NSString *strTitle = [NSString stringWithFormat:@"发送媒体消息结果"];
+//        NSString *strMsg = [NSString stringWithFormat:@"errcode:%d", resp.errCode];
+//        
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:strTitle message:strMsg delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//        [alert show];
+//    }
+//}
+
 
 							
 - (void)applicationWillResignActive:(UIApplication *)application

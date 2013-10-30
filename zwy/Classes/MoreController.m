@@ -8,11 +8,10 @@
 
 #import "MoreController.h"
 #import "ToolUtils.h"
-#import "PopBottomWindow.h"
 #import "AAActivity.h"
 #import  "AAActivityAction.h"
-#import "WXApi.h"
-#import "WXApiObject.h"
+//#import "WXApi.h"
+//#import "WXApiObject.h"
 @implementation MoreController{
     NSArray *allsec;
     NSArray *firstsec;
@@ -103,30 +102,26 @@
                 break;
     }
     }else if(indexPath.section==2){
-        NSString *url=@"http://itunes.apple.com/lookup?id=647204141";
-        
         switch (indexPath.row) {
             case 0:{
 //                AAImageSize imageSize = [self iconSizeSetting].selectedSegmentIndex == 0 ? AAImageSizeSmall : AAImageSizeNormal;
                 NSMutableArray *array = [NSMutableArray array];
-                NSArray *title=@[@"短信",@"邮箱",@"微信",@"新浪"];
-                NSArray *image=@[[UIImage imageNamed:@"Safari"],[UIImage imageNamed:@"Safari"],[UIImage imageNamed:@"Safari"],[UIImage imageNamed:@"Safari"]];
-                NSArray *arrUrl=@[[NSString stringWithFormat:@"sms://%@",url],[NSString stringWithFormat:@"mailto://%@",url],url];
+                NSArray *title=@[@"短信",@"微信",@"新浪"];
+                NSArray *image=@[[UIImage imageNamed:@"Safari"],[UIImage imageNamed:@"Safari"],[UIImage imageNamed:@"Safari"]];
+                NSArray *arrUrl=@[@"分享http://itunes.apple.com/lookup?id=647204141",@"分享http://itunes.apple.com/lookup?id=647204141",@"分享http://itunes.apple.com/lookup?id=647204141"];
                 
-                for (int i=0; i<4; i++) {
+                for (int i=0; i<3; i++) {
                     AAActivity *activity = [[AAActivity alloc] initWithTitle:title[i]
                                                                        image:image[i]
                                                                  actionBlock:^(AAActivity *activity, NSArray *activityItems) {
                                                                      NSLog(@"doing activity = %@, activityItems = %@", activity, activityItems);
                                                                      NSString *str=activityItems[i];
                                                                      if(i==2){
-//                                                                         SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
-//                                                                         req.text = str;
-//                                                                         req.bText = YES;
-//                                                                         req.scene = WXSceneSession;
-//                                                                         [WXApi sendReq:req];
-                                                                     }else{
-                                                                     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+                                                                        
+                                                                     }else if(i==0){
+                                                                         [self sendSMS:str recipientList:nil];
+                                                                     }else if(i==1){
+//                                                                         [self sendWeiXinTextContent:str];
                                                                      }
                                                                  }];
                     [array addObject:activity];
@@ -153,6 +148,46 @@
 
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+//发送微信
+//- (void) sendWeiXinTextContent:(NSString *)content
+//{
+//    SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
+//    req.text = content;
+//    req.bText = YES;
+//    req.scene = WXSceneSession;
+//    
+//    [WXApi sendReq:req];
+//}
+
+
+
+//发送短信
+- (void)sendSMS:(NSString *)bodyOfMessage recipientList:(NSArray *)recipients
+{
+    MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
+    if([MFMessageComposeViewController canSendText])
+    {
+        controller.body = bodyOfMessage;
+        controller.recipients = recipients;
+        controller.messageComposeDelegate = self;
+        [self.moreView presentViewController:controller animated:YES completion:nil];
+    }
+}
+
+
+#pragma mark -信息发送回调
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
+{
+    [controller dismissViewControllerAnimated:YES completion:nil];
+    
+    if (result == MessageComposeResultCancelled)
+        NSLog(@"Message cancelled");
+    else if (result == MessageComposeResultSent)
+        NSLog(@"Message sent");
+    else
+        NSLog(@"Message failed");
 }
 
 

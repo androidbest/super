@@ -154,7 +154,7 @@
 		5989A11C17F583AE00789DC6 /* HomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5989A11B17F583AE00789DC6 /* HomeView.m */; };
 		5989A11F17F583C900789DC6 /* DaiBanView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5989A11E17F583C900789DC6 /* DaiBanView.m */; };
 		5989A12517F5849E00789DC6 /* MoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5989A12417F5849E00789DC6 /* MoreView.m */; };
-		599D7D09181E01F10099BE01 /* PopBottomWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 599D7D08181E01F10099BE01 /* PopBottomWindow.m */; };
+		598EC44D1820B7E7007650F9 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 598EC44A1820B7E7007650F9 /* libWeChatSDK.a */; };
 		599D7D11181E22430099BE01 /* AAActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 599D7D0C181E22430099BE01 /* AAActivity.m */; };
 		599D7D12181E22430099BE01 /* AAActivityAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 599D7D0E181E22430099BE01 /* AAActivityAction.m */; };
 		599D7D13181E22430099BE01 /* AAPanelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 599D7D10181E22430099BE01 /* AAPanelView.m */; };
@@ -490,8 +490,9 @@
 		5989A11E17F583C900789DC6 /* DaiBanView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaiBanView.m; sourceTree = "<group>"; };
 		5989A12317F5849E00789DC6 /* MoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreView.h; sourceTree = "<group>"; };
 		5989A12417F5849E00789DC6 /* MoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreView.m; sourceTree = "<group>"; };
-		599D7D07181E01F10099BE01 /* PopBottomWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopBottomWindow.h; sourceTree = "<group>"; };
-		599D7D08181E01F10099BE01 /* PopBottomWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopBottomWindow.m; sourceTree = "<group>"; };
+		598EC44A1820B7E7007650F9 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		598EC44B1820B7E7007650F9 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
+		598EC44C1820B7E7007650F9 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
 		599D7D0B181E22430099BE01 /* AAActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAActivity.h; sourceTree = "<group>"; };
 		599D7D0C181E22430099BE01 /* AAActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAActivity.m; sourceTree = "<group>"; };
 		599D7D0D181E22430099BE01 /* AAActivityAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAActivityAction.h; sourceTree = "<group>"; };
@@ -659,6 +660,7 @@
 			files = (
 				659AB38918097B1C000FCEC5 /* libz.1.1.3.dylib in Frameworks */,
 				659AB36618097772000FCEC5 /* MessageUI.framework in Frameworks */,
+				598EC44D1820B7E7007650F9 /* libWeChatSDK.a in Frameworks */,
 				659AB36418097673000FCEC5 /* AddressBook.framework in Frameworks */,
 				595CBA0017F1917200228A6E /* CoreLocation.framework in Frameworks */,
 				595CB9FE17F1913E00228A6E /* QuartzCore.framework in Frameworks */,
@@ -880,6 +882,9 @@
 		595CB98317F164AF00228A6E /* zwy */ = {
 			isa = PBXGroup;
 			children = (
+				598EC44A1820B7E7007650F9 /* libWeChatSDK.a */,
+				598EC44B1820B7E7007650F9 /* WXApi.h */,
+				598EC44C1820B7E7007650F9 /* WXApiObject.h */,
 				595CB9B317F1666E00228A6E /* resources */,
 				595CB9B217F1664B00228A6E /* Classes */,
 				595CB98C17F164AF00228A6E /* AppDelegate.h */,
@@ -1145,8 +1150,6 @@
 				595A0C7518113253009C26B8 /* CustomPush.m */,
 				6521F6331816A72600CD7B76 /* MailAddressCell.h */,
 				6521F6341816A72600CD7B76 /* MailAddressCell.m */,
-				599D7D07181E01F10099BE01 /* PopBottomWindow.h */,
-				599D7D08181E01F10099BE01 /* PopBottomWindow.m */,
 			);
 			name = utils;
 			sourceTree = "<group>";
@@ -1792,7 +1795,6 @@
 				659AB37D18097878000FCEC5 /* unzip.c in Sources */,
 				59584B3818199A6F00B65162 /* MailDetailController.m in Sources */,
 				65A9C8E0180EC83F0032D170 /* InformationDetail.m in Sources */,
-				599D7D09181E01F10099BE01 /* PopBottomWindow.m in Sources */,
 				596D6EFD18085D10002CD0B3 /* MeettingView.m in Sources */,
 				595CBA0617F1925700228A6E /* ToolUtils.m in Sources */,
 				59F21805180FCCEA00748CC4 /* DocFlow.m in Sources */,
@@ -1920,14 +1922,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: w s (4Q4855JQM3)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "zwy/zwy-Prefix.pch";
 				INFOPLIST_FILE = "zwy/zwy-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/sxit/Documents/project/pro/zwy/zwy/Classes,
+					/Users/sxit/Documents/project/pro/zwy/zwy,
 				);
+				LINK_WITH_STANDARD_LIBRARIES = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -1947,7 +1951,9 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/sxit/Documents/project/pro/zwy/zwy/Classes,
+					/Users/sxit/Documents/project/pro/zwy/zwy,
 				);
+				LINK_WITH_STANDARD_LIBRARIES = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;

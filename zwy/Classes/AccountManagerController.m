@@ -12,6 +12,7 @@
 #import "EcinfoDetas.h"
 #import "ToolUtils.h"
 #import "LoginView.h"
+#import "GroupAddressController.h"
 @implementation AccountManagerController{
 NSMutableArray *arr;
 }
@@ -32,6 +33,12 @@ NSMutableArray *arr;
         [[NSNotificationCenter defaultCenter]addObserver:self
                                                 selector:@selector(handleData:)
                                                     name:xmlNotifInfo
+                                                  object:self];
+        
+        //更新通讯录列表
+        [[NSNotificationCenter defaultCenter]addObserver:self
+                                                selector:@selector(DownLoadAddressReturn:)
+                                                    name:wnLoadAddress
                                                   object:self];
     }
     return self;
@@ -96,7 +103,7 @@ NSMutableArray *arr;
     [cell.selectEc setBackgroundImage:[UIImage imageNamed:@"btn_check"] forState:UIControlStateNormal];
 //    [self.account.navigationController popViewControllerAnimated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    self.account.tabBarController.selectedIndex=0;
+    [ToolUtils alertInfo:@"确定需要切换单位" delegate:self otherBtn:@"取消"];
 }
 -(void)loginout{
     NSUserDefaults *appConfig=[NSUserDefaults standardUserDefaults];
@@ -116,9 +123,76 @@ NSMutableArray *arr;
 
     [UIView commitAnimations];
     [self performSelector:@selector(dissView) withObject:nil afterDelay:0.3];
-   
-    
 }
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(buttonIndex==0){
+        [self DownLoadAddress];
+    }
+}
+
+//开始下载
+- (void)DownLoadAddress{
+    
+    self.HUD = [[MBProgressHUD alloc] initWithView:self.account.view];
+	[self.account.navigationController.view addSubview:self.HUD];
+	self.HUD.labelText = @"正在切换单位数据";
+    [self.HUD show:YES];
+    
+    
+    NSString * strECPath =[NSString stringWithFormat:@"%@/%@/%@",DocumentsDirectory,user.eccode,@"group.txt"];
+    NSString *strGroup =[NSString stringWithContentsOfFile:strECPath encoding:NSUTF8StringEncoding error:NULL];
+    if (strGroup) return;
+    
+    self.HUD.mode = MBProgressHUDModeDeterminateHorizontalBar;
+    self.HUD.labelText = @"同步中...";
+    NSString *strFileName =[NSString stringWithFormat:@"%@.zip",user.eccode];
+    NSString * filePath =[DocumentsDirectory stringByAppendingPathComponent:strFileName];
+    NSString *str=[self urlByConfigFile];
+    NSString * strUrl =[NSString stringWithFormat:@"%@tmp/%@.zip?eccode=%@",str,user.eccode,user.eccode];
+
+    
+    [HTTPRequest LoadDownFile:self URL:strUrl filePath:filePath HUD:self.HUD];
+}
+
+
+//获取URL
+- (NSString *)urlByConfigFile{
+    NSString * strPath =[[NSBundle mainBundle] pathForResource:@"common" ofType:@"plist"];
+    NSDictionary * dic =[NSDictionary dictionaryWithContentsOfFile:strPath];
+    NSString *strUrl =dic[@"httpurl"];
+    return strUrl;
+}
+
+//更新完毕回调
+- (void)DownLoadAddressReturn:(NSNotification *)notification{
+    NSDictionary*dic =[notification userInfo];
+    UIImageView *imageView;
+    UIImage *image ;
+    
+    if([dic[@"respCode"]  isEqualToString:@"0"]){
+        image= [UIImage imageNamed:@"37x-Checkmark.png"];
+        self.HUD.labelText = @"切换完成";
+    }
+    else {
+        image= [UIImage imageNamed:@"37x-Checkmark.png"];
+        self.HUD.labelText = @"切换失败";
+    }
+    imageView = [[UIImageView alloc] initWithImage:image];
+    
+    self.HUD.customView=imageView;
+    self.HUD.mode = MBProgressHUDModeCustomView;
+	
+    [self.HUD hide:YES afterDelay:1];
+    
+//    [self performSelector:@selector(selecter) withObject:nil afterDelay:1];
+}
+
+-(void)selecter{
+self.account.tabBarController.selectedIndex=0;
+}
+
+
 -(void)dissView{
  [self.account dismissViewControllerAnimated:NO completion:nil];
 }
