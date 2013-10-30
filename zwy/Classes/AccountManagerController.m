@@ -142,7 +142,18 @@ NSMutableArray *arr;
     
     NSString * strECPath =[NSString stringWithFormat:@"%@/%@/%@",DocumentsDirectory,user.eccode,@"group.txt"];
     NSString *strGroup =[NSString stringWithContentsOfFile:strECPath encoding:NSUTF8StringEncoding error:NULL];
-    if (strGroup) return;
+    if (strGroup){
+        UIImageView *imageView;
+        UIImage *image ;
+        image= [UIImage imageNamed:@"37x-Checkmark.png"];
+        self.HUD.labelText = @"切换完成";
+        imageView = [[UIImageView alloc] initWithImage:image];
+        self.HUD.customView=imageView;
+        self.HUD.mode = MBProgressHUDModeCustomView;
+        self.HUD.labelText =@"切换完成";
+        [self.HUD hide:YES afterDelay:1];
+        [self performSelector:@selector(selecter) withObject:nil afterDelay:1];
+        return;}
     
     self.HUD.mode = MBProgressHUDModeDeterminateHorizontalBar;
     self.HUD.labelText = @"同步中...";
@@ -185,11 +196,12 @@ NSMutableArray *arr;
 	
     [self.HUD hide:YES afterDelay:1];
     
-//    [self performSelector:@selector(selecter) withObject:nil afterDelay:1];
+    [self performSelector:@selector(selecter) withObject:nil afterDelay:1];
 }
 
 -(void)selecter{
-self.account.tabBarController.selectedIndex=0;
+    self.account.tabBarController.selectedIndex=0;
+    [self.account.navigationController popViewControllerAnimated:YES];
 }
 
 
