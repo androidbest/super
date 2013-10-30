@@ -49,7 +49,7 @@ static ConfigFile *configFile;
     }
 }
 
-- (void)pathECGroups{
++ (void)pathECGroups{
     //创建文件管理器
     NSFileManager *fileManager = [NSFileManager defaultManager];
     //更改到待操作的目录下

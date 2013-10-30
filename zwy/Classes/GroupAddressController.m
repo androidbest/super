@@ -31,7 +31,8 @@
 
 #pragma mark - 初始化
 - (void)initWithData{
-
+    [ConfigFile pathECGroups];
+    
     NSString * str =[NSString stringWithFormat:@"%@/%@/%@",DocumentsDirectory,user.eccode,@"group.txt"];
     NSString *strGroup =[NSString stringWithContentsOfFile:str encoding:NSUTF8StringEncoding error:NULL];
     if (!strGroup) {

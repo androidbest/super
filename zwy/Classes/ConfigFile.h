@@ -30,7 +30,7 @@
 -(void)initData;
 
 //创建单位通讯录文件
-- (void)pathECGroups;
++ (void)pathECGroups;
 
 #pragma mark - 获取通讯录所有信息
 + (NSMutableArray *)setAllPeopleInfo:(NSString *)str;
