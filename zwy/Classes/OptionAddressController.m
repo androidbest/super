@@ -51,7 +51,7 @@
     if (_arrAllPeople.count==0||!_arrAllPeople) {
         self.HUD = [[MBProgressHUD alloc] initWithView:self.OptionView.navigationController.view];
         [self.OptionView.navigationController.view addSubview:self.HUD];
-        self.HUD.labelText = @"还没有同步通讯录,无法查看通讯录信息";
+        self.HUD.labelText = @"请同步通讯录";
         self.HUD.mode = MBProgressHUDModeCustomView;
         // Set determinate bar mode
         self.HUD.delegate = self;

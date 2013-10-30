@@ -49,7 +49,11 @@
     
     /*获取所有人员信息*/
     _arrAllPeople = [ConfigFile setAllPeopleInfo:str];
-    //
+    
+    if(_arrAllPeople.count==0){
+        [ToolUtils alertInfo:@"请同步通讯录"];
+    }
+    
     NSString * strSearchbar;
     strSearchbar =[NSString stringWithFormat:@"SELF.superID == '%@'",@"0"];
     NSPredicate *predicateTemplate = [NSPredicate predicateWithFormat: strSearchbar];
