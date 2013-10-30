@@ -31,7 +31,9 @@
 
 #pragma mark - 初始化
 - (void)initWithData{
-    NSString * str =[DocumentsDirectory stringByAppendingPathComponent:@"group.txt"];
+    [ConfigFile pathECGroups];
+    
+    NSString * str =[NSString stringWithFormat:@"%@/%@/%@",DocumentsDirectory,user.eccode,@"group.txt"];
     NSString *strGroup =[NSString stringWithContentsOfFile:str encoding:NSUTF8StringEncoding error:NULL];
     if (!strGroup) {
         ZipArchive* zipFile = [[ZipArchive alloc] init];
@@ -40,7 +42,7 @@
         [zipFile UnzipOpenFile:strPath];
         
         //压缩包释放到的位置，需要一个完整路径
-        [zipFile UnzipFileTo:DocumentsDirectory overWrite:YES];
+        [zipFile UnzipFileTo:[DocumentsDirectory stringByAppendingPathComponent:user.eccode]overWrite:YES];
         [zipFile UnzipCloseFile];
     }
     
@@ -98,13 +100,13 @@
 	self.HUD.delegate = self;
     [self.HUD show:YES];
     
-    
     /*检查 是否有更新过*/
     NSUserDefaults * userDefaults =[NSUserDefaults standardUserDefaults];
     NSString *histroyDate=(NSString *)[userDefaults objectForKey:@"date"];
     if (!histroyDate) {
-        NSTimeInterval time_=[[NSDate date] timeIntervalSince1970]*1000;
+        NSTimeInterval time_=[[NSDate date] timeIntervalSince1970]/1000;
         NSString *strTime =[NSString  stringWithFormat:@"%f",time_];
+        strTime =[[strTime componentsSeparatedByString:@"."] firstObject];
         [userDefaults setObject:strTime forKey:@"date"];
         [userDefaults synchronize];
         histroyDate=@"0";
@@ -127,7 +129,7 @@
     
     if ([info.respCode isEqualToString:@"1"]) {
         [self DownLoadAddress:info.respMsg];
-    }else if ([info.respCode isEqualToString:@"0"]){
+    }else if ([info.respCode isEqualToString:@"-1"]){
         self.HUD.labelText = @"无需同步";
         [self.HUD hide:YES afterDelay:1];
     }else{
@@ -139,6 +141,7 @@
 
 //开始下载
 - (void)DownLoadAddress:(NSString *)strPath{
+    
     self.HUD.mode = MBProgressHUDModeDeterminateHorizontalBar;
     self.HUD.labelText = @"同步中...";
     NSString *strFileName =[NSString stringWithFormat:@"%@.zip",user.eccode];
