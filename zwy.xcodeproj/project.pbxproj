@@ -151,6 +151,9 @@
 		5975C1871806981900EF7285 /* notice_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5975C1801806981900EF7285 /* notice_icon.png */; };
 		5975C1881806981900EF7285 /* sms_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5975C1811806981900EF7285 /* sms_icon.png */; };
 		5977D17D18224254003DD5A3 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5977D17A18224254003DD5A3 /* libWeChatSDK.a */; };
+		5977D18118225020003DD5A3 /* pic_sms@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5977D17E18225020003DD5A3 /* pic_sms@2x.png */; };
+		5977D18218225020003DD5A3 /* pic_weixin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5977D17F18225020003DD5A3 /* pic_weixin@2x.png */; };
+		5977D18318225020003DD5A3 /* pic_weibo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5977D18018225020003DD5A3 /* pic_weibo@2x.png */; };
 		5989A0E317F533CB00789DC6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5989A0E217F533CB00789DC6 /* Images.xcassets */; };
 		5989A11C17F583AE00789DC6 /* HomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5989A11B17F583AE00789DC6 /* HomeView.m */; };
 		5989A11F17F583C900789DC6 /* DaiBanView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5989A11E17F583C900789DC6 /* DaiBanView.m */; };
@@ -490,6 +493,9 @@
 		5977D17A18224254003DD5A3 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		5977D17B18224254003DD5A3 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
 		5977D17C18224254003DD5A3 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		5977D17E18225020003DD5A3 /* pic_sms@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pic_sms@2x.png"; sourceTree = "<group>"; };
+		5977D17F18225020003DD5A3 /* pic_weixin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pic_weixin@2x.png"; sourceTree = "<group>"; };
+		5977D18018225020003DD5A3 /* pic_weibo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pic_weibo@2x.png"; sourceTree = "<group>"; };
 		5989A0E217F533CB00789DC6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5989A11A17F583AE00789DC6 /* HomeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeView.h; sourceTree = "<group>"; };
 		5989A11B17F583AE00789DC6 /* HomeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeView.m; sourceTree = "<group>"; };
@@ -1022,6 +1028,9 @@
 		595CB9B717F168BC00228A6E /* images */ = {
 			isa = PBXGroup;
 			children = (
+				5977D17E18225020003DD5A3 /* pic_sms@2x.png */,
+				5977D17F18225020003DD5A3 /* pic_weixin@2x.png */,
+				5977D18018225020003DD5A3 /* pic_weibo@2x.png */,
 				65A35B6F1820EC81002C7489 /* share_SMS.png */,
 				65A35B701820EC81002C7489 /* share_weixin.png */,
 				65A35B711820EC81002C7489 /* share_xinlang.png */,
@@ -1584,6 +1593,8 @@
 				595CB98817F164AF00228A6E /* InfoPlist.strings in Resources */,
 				5975C17518067AA300EF7285 /* accessory_over@2x.png in Resources */,
 				65248507180C2CE700440958 /* navigation_updata_over.png in Resources */,
+				5977D18218225020003DD5A3 /* pic_weixin@2x.png in Resources */,
+				5977D18118225020003DD5A3 /* pic_sms@2x.png in Resources */,
 				65B3AC6F1819274200F2EC04 /* tabItem_MyArBook_over@2x.png in Resources */,
 				595B7A0218094B53006DD766 /* more_update_pwd_img@2x.png in Resources */,
 				595B7A0018094B53006DD766 /* more_about_img@2x.png in Resources */,
@@ -1660,6 +1671,7 @@
 				5975C1831806981900EF7285 /* adress_icon.png in Resources */,
 				5975C1841806981900EF7285 /* office_icon.png in Resources */,
 				595B79FD18094B53006DD766 /* more_accounts_image.png in Resources */,
+				5977D18318225020003DD5A3 /* pic_weibo@2x.png in Resources */,
 				5960DC8D17F95BE90024AD8B /* guide113601.png in Resources */,
 				65A35B731820EC81002C7489 /* share_weixin.png in Resources */,
 				65B3AC761819314900F2EC04 /* btn_Call.png in Resources */,

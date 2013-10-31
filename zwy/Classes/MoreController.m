@@ -107,7 +107,7 @@
 //                AAImageSize imageSize = [self iconSizeSetting].selectedSegmentIndex == 0 ? AAImageSizeSmall : AAImageSizeNormal;
                 NSMutableArray *array = [NSMutableArray array];
                 NSArray *title=@[@"短信",@"微信",@"新浪"];
-                NSArray *image=@[[UIImage imageNamed:@"Safari"],[UIImage imageNamed:@"Safari"],[UIImage imageNamed:@"Safari"]];
+                NSArray *image=@[[UIImage imageNamed:@"pic_sms"],[UIImage imageNamed:@"pic_weixin"],[UIImage imageNamed:@"pic_weibo"]];
                 NSArray *arrUrl=@[@"分享http://itunes.apple.com/lookup?id=647204141",@"分享http://itunes.apple.com/lookup?id=647204141",@"分享http://itunes.apple.com/lookup?id=647204141"];
                 
                 for (int i=0; i<3; i++) {
@@ -121,7 +121,12 @@
                                                                      }else if(i==0){
                                                                          [self sendSMS:str recipientList:nil];
                                                                      }else if(i==1){
+                                                                         if([WXApi openWXApp]){
                                                                          [self sendWeiXinTextContent:str];
+                                                                         
+                                                                         }else{
+                                                                             [ToolUtils alertInfo:@"请安装微信"];
+                                                                         }
                                                                      }
                                                                  }];
                     [array addObject:activity];
