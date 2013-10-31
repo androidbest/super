@@ -19,46 +19,79 @@
 -(id)init{
     self=[super init];
     if(self){
-        //注册通知
+        
         [[NSNotificationCenter defaultCenter]addObserver:self
                                                 selector:@selector(handleData:)
                                                     name:xmlNotifInfo
+                                                  object:self];
+        
+        
+        [[NSNotificationCenter defaultCenter]addObserver:self
+                                                selector:@selector(receiveCount:)
+                                                    name:@"getCount"
                                                   object:self];
     }
     return self;
 }
 
+-(void)receiveCount:(NSNotification *)notification{
+         NSDictionary *dic=[notification userInfo];
+            if(dic){
+                 SumEmailOrDocInfo *sum=[AnalysisData getSum:dic];
+                    if(sum.sumEmail==nil||[sum.sumEmail isEqualToString:@"0"]){
+                        self.homeView.mailsum.hidden=YES;
+    
+                    }else{
+                        self.homeView.mailsum.hidden=NO;
+    
+                        self.homeView.mailsum.text=sum.sumEmail;
+    
+                   }
+    
+                    if(sum.sumDoc==nil||[sum.sumDoc isEqualToString:@"0"]){
+                        self.homeView.officesum.hidden=YES;
+                    }else{
+                        self.homeView.officesum.hidden=NO;
+                        self.homeView.officesum.text=sum.sumDoc;
+                    }
+//                [self sendEc];
+            }else{
+//                [ToolUtils alertInfo:requestError];
+            }
+
+}
+
 //处理网络数据
 -(void)handleData:(NSNotification *)notification{
-    NSDictionary *dic=[notification userInfo];
-    if(![sign isEqualToString:@"1"]){
-        if(dic){
-            if([sign isEqualToString:@"2"]){
-             SumEmailOrDocInfo *sum=[AnalysisData getSum:dic];
-                if(sum.sumEmail==nil||[sum.sumEmail isEqualToString:@"0"]){
-                    self.homeView.mailsum.hidden=YES;
-                    
-                }else{
-                    self.homeView.mailsum.hidden=NO;
-                    
-                    self.homeView.mailsum.text=sum.sumEmail;
-                    
-                }
-                
-                if(sum.sumDoc==nil||[sum.sumDoc isEqualToString:@"0"]){
-                    self.homeView.officesum.hidden=YES;
-                }else{
-                    self.homeView.officesum.hidden=NO;
-                    self.homeView.officesum.text=sum.sumDoc;
-                }
-                
-            }
-            
-            [self sendEc];
-        }else{
-            [ToolUtils alertInfo:requestError];
-        }
-    }
+//    NSDictionary *dic=[notification userInfo];
+//    if(![sign isEqualToString:@"1"]){
+//        if(dic){
+//            if([sign isEqualToString:@"2"]){
+//             SumEmailOrDocInfo *sum=[AnalysisData getSum:dic];
+//                if(sum.sumEmail==nil||[sum.sumEmail isEqualToString:@"0"]){
+//                    self.homeView.mailsum.hidden=YES;
+//                    
+//                }else{
+//                    self.homeView.mailsum.hidden=NO;
+//                    
+//                    self.homeView.mailsum.text=sum.sumEmail;
+//                    
+//                }
+//                
+//                if(sum.sumDoc==nil||[sum.sumDoc isEqualToString:@"0"]){
+//                    self.homeView.officesum.hidden=YES;
+//                }else{
+//                    self.homeView.officesum.hidden=NO;
+//                    self.homeView.officesum.text=sum.sumDoc;
+//                }
+//                
+//            }
+//            
+//            [self sendEc];
+//        }else{
+//            [ToolUtils alertInfo:requestError];
+//        }
+//    }
 }
 //资讯
 -(void)information{
@@ -113,14 +146,16 @@
 
 //传输最后选择单位
 -(void)sendEc{
-   sign=@"1";
-    [packageData sendEc:self];
+    [packageData sendEc:self Type:xmlNotifInfo];
 }
 
 //获取总数
 -(void)getCount{
-    sign=@"2";
-    [packageData getSum:self];
+    [packageData getSum:self Type:@"getCount"];
+}
+
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end
