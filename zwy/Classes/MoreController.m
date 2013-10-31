@@ -10,8 +10,8 @@
 #import "ToolUtils.h"
 #import "AAActivity.h"
 #import  "AAActivityAction.h"
-//#import "WXApi.h"
-//#import "WXApiObject.h"
+#import "WXApi.h"
+#import "WXApiObject.h"
 @implementation MoreController{
     NSArray *allsec;
     NSArray *firstsec;
@@ -121,7 +121,7 @@
                                                                      }else if(i==0){
                                                                          [self sendSMS:str recipientList:nil];
                                                                      }else if(i==1){
-//                                                                         [self sendWeiXinTextContent:str];
+                                                                         [self sendWeiXinTextContent:str];
                                                                      }
                                                                  }];
                     [array addObject:activity];
@@ -151,15 +151,15 @@
 }
 
 //发送微信
-//- (void) sendWeiXinTextContent:(NSString *)content
-//{
-//    SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
-//    req.text = content;
-//    req.bText = YES;
-//    req.scene = WXSceneSession;
-//    
-//    [WXApi sendReq:req];
-//}
+- (void) sendWeiXinTextContent:(NSString *)content
+{
+    SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
+    req.text = content;
+    req.bText = YES;
+    req.scene = WXSceneSession;
+    
+    [WXApi sendReq:req];
+}
 
 
 

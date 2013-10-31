@@ -26,7 +26,7 @@
 + (void)Loginvalidation:(id)delegate Password:(NSString *)passWord  Count:(NSString *)count msisdn:(NSString *)msisdn eccode:(NSString *)eccode;
 
 //发送eccode
-+ (void)sendEc:(id)delegate;
++ (void)sendEc:(id)delegate Type:(NSString *)type;
 
 //自动登录
 + (void)autoLoginvalidation:(id)delegate Count:(NSString *)count msisdn:(NSString *)msisdn eccode:(NSString *)eccode;
@@ -113,7 +113,7 @@
 + (void)phoneStatisticsFun:(id)delegate Install:(NSString *)install;
 
 //获取公文与邮箱数量
-+ (void)getSum:(id)delegate;
++ (void)getSum:(id)delegate Type:(NSString *)type;
 
 //本地通讯录信息展示
 + (void)showAddressInfo:(id)delegate GroupID:(NSString *)groupId Pages:(NSString *)PageId Type:(NSString *)type Condition:(NSString *)condition;

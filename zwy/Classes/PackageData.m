@@ -81,14 +81,14 @@
 }
 
 //发送eccode
-+ (void)sendEc:(id)delegate{
++ (void)sendEc:(id)delegate Type:(NSString *)type{
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>NOKEY</SECURITYKEY></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>updateLastEccoed</METHOD><LASTECCODE>%@</LASTECCODE></BODY></MESSAGE>",user.msisdn,user.eccode,user.eccode];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];
-    [HTTPRequest JSONRequestOperation:delegate Request:request];
+    [HTTPRequest JSONRequestOperation:delegate Request:request SELType:type];
     
 }
 
@@ -411,14 +411,14 @@ NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"U
 }
 
 //获取公文与邮箱数量
-+ (void)getSum:(id)delegate{
++ (void)getSum:(id)delegate Type:(NSString *)type{
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>getSum</METHOD></BODY></MESSAGE>",user.msisdn,user.eccode];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];
-    [HTTPRequest JSONRequestOperation:delegate Request:request];
+    [HTTPRequest JSONRequestOperation:delegate Request:request SELType:type];
 }
 
 //本地通讯录信息展示
