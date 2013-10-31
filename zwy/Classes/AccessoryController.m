@@ -97,7 +97,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (tableView.tag==0) {/*正在下载列表*/
-         NSString *strCell =[NSString stringWithFormat:@"cell%ld",(long)indexPath.row];
+        static NSString *strCell =@"DowningCell";
         DownloadCell *cell  = (DownloadCell *)[tableView dequeueReusableCellWithIdentifier:strCell];
           NSString *str =[DocumentsDirectory stringByAppendingPathComponent: [_arrDowning[indexPath.row] objectForKey:@"text"]];
         if (!isCell||!cell) {
@@ -144,6 +144,7 @@
         }
     }
     
+  /*删除已下载文件*/
     for (int i=0; i<_accView.tableViewDowning.visibleCells.count;i++) {
         DownloadCell * cell1 =_accView.tableViewDowning.visibleCells[i];
         if([cell1.labelText.text isEqualToString:@"下载完成"]){

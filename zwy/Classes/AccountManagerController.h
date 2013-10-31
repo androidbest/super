@@ -8,6 +8,7 @@
 
 #import "BaseController.h"
 #import "AccountManager.h"
+
 @interface AccountManagerController : BaseController
 @property (strong ,nonatomic)AccountManager * account;
 -(void)startCell;

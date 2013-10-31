@@ -71,14 +71,16 @@ static ConfigFile *configFile;
     if (arrGroup.count==0&&!arrGroup) return AllPeople;
     for (int i=0; i<arrGroup.count-1; i++) {
         NSArray * arrData =[[arrGroup objectAtIndex:i] componentsSeparatedByString:@","];
-        GroupInfo *info=[GroupInfo new];
-        info.groupID =[arrData objectAtIndex:0];
-        info.Name=[arrData objectAtIndex:1];
-        info.superID =[arrData objectAtIndex:2];
-        info.Count =[arrData objectAtIndex:3];
-        info.letter =@"0";
-        info.tel=@"";
-        [AllPeople addObject:info];
+        if (arrData.count>=4) {
+            GroupInfo *info=[GroupInfo new];
+            info.groupID =[arrData objectAtIndex:0];
+            info.Name=[arrData objectAtIndex:1];
+            info.superID =[arrData objectAtIndex:2];
+            info.Count =[arrData objectAtIndex:3];
+            info.letter =@"0";
+            info.tel=@"";
+            [AllPeople addObject:info];
+        }
     }
     
     
@@ -88,16 +90,18 @@ static ConfigFile *configFile;
     if (arr.count==0&&!arr) return AllPeople;
     for (int i =0; i<arr.count-1; i++) {
         NSArray * arrData =[[arr objectAtIndex:i] componentsSeparatedByString:@","];
-        PeopelInfo *info=[PeopelInfo new];
-        info.userID =[arrData objectAtIndex:0];
-        info.Name=[arrData objectAtIndex:1];
-        info.job=[arrData objectAtIndex:2];
-        info.area =[arrData objectAtIndex:3];
-        info.tel=[arrData objectAtIndex:4];
-        info.groupID =[arrData objectAtIndex:5];
-        info.superID=[arrData objectAtIndex:5];
-        info.letter =[arrData objectAtIndex:6];
-        [AllPeople addObject:info];
+        if (arrData.count>=7) {
+            PeopelInfo *info=[PeopelInfo new];
+            info.userID =[arrData objectAtIndex:0];
+            info.Name=[arrData objectAtIndex:1];
+            info.job=[arrData objectAtIndex:2];
+            info.area =[arrData objectAtIndex:3];
+            info.tel=[arrData objectAtIndex:4];
+            info.groupID =[arrData objectAtIndex:5];
+            info.superID=[arrData objectAtIndex:5];
+            info.letter =[arrData objectAtIndex:6];
+            [AllPeople addObject:info];
+        }
     }
     return AllPeople;
 }
