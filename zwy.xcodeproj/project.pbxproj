@@ -150,7 +150,7 @@
 		5975C1861806981900EF7285 /* mail_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5975C17F1806981900EF7285 /* mail_icon.png */; };
 		5975C1871806981900EF7285 /* notice_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5975C1801806981900EF7285 /* notice_icon.png */; };
 		5975C1881806981900EF7285 /* sms_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5975C1811806981900EF7285 /* sms_icon.png */; };
-		5977D17D18224254003DD5A3 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5977D17A18224254003DD5A3 /* libWeChatSDK.a */; };
+		5977D17D18224254003DD5A3 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5977D17A18224254003DD5A3 /* libWeChatSDK.a */; settings = {ATTRIBUTES = (Required, ); }; };
 		5977D18118225020003DD5A3 /* pic_sms@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5977D17E18225020003DD5A3 /* pic_sms@2x.png */; };
 		5977D18218225020003DD5A3 /* pic_weixin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5977D17F18225020003DD5A3 /* pic_weixin@2x.png */; };
 		5977D18318225020003DD5A3 /* pic_weibo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5977D18018225020003DD5A3 /* pic_weibo@2x.png */; };
@@ -1878,7 +1878,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1917,7 +1917,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1952,7 +1952,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: w s (4Q4855JQM3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "zwy/zwy-Prefix.pch";
 				INFOPLIST_FILE = "zwy/zwy-Info.plist";
@@ -2005,6 +2005,10 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "zwyTests/zwyTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/cqsxit/Desktop/zwy10-29/zwy",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -2024,6 +2028,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "zwy/zwy-Prefix.pch";
 				INFOPLIST_FILE = "zwyTests/zwyTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/cqsxit/Desktop/zwy10-29/zwy",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;

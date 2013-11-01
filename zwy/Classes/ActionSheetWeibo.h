@@ -11,7 +11,7 @@
 @class ActionSheetWeibo;
 @protocol ActionSheetWeiboDetaSource <NSObject>
 
-- (void)actionSheetTimeText:(NSString *)Text;
+- (void)actionSheetIndex:(NSInteger)index;
 
 @end
 

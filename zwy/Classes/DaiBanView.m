@@ -31,7 +31,7 @@
 {
     [super viewDidLoad];
 	[_selecter addTarget:self.controller action:@selector(segmentAction:) forControlEvents:UIControlEventValueChanged];
-    self.listview =[[PullRefreshTableView alloc] initWithFrame:CGRectMake(0, topLayout+NavigationBarHeight, ScreenWidth,ScreenHeight-topLayout-NavigationBarHeight) withDelegate:self.controller];
+    self.listview =[[PullRefreshTableView alloc] initWithFrame:CGRectMake(0, topLayout+NavigationBarHeight, ScreenWidth,ScreenHeight-topLayout-NavigationBarHeight-49) withDelegate:self.controller];
     self.listview.backgroundColor=[UIColor whiteColor];
     //    [self.listview setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     self.listview.tag=0;
@@ -40,7 +40,7 @@
     [self.listview LoadDataBegin];/*刷新数据*/
     
     
-    self.listview1 =[[PullRefreshTableView alloc] initWithFrame:CGRectMake(0, topLayout+NavigationBarHeight, ScreenWidth,ScreenHeight-topLayout-NavigationBarHeight) withDelegate:self.controller];
+    self.listview1 =[[PullRefreshTableView alloc] initWithFrame:CGRectMake(0, topLayout+NavigationBarHeight, ScreenWidth,ScreenHeight-topLayout-NavigationBarHeight-49) withDelegate:self.controller];
     self.listview1.backgroundColor=[UIColor whiteColor];
     //    [self.listview setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     self.listview1.tag=1;
@@ -49,7 +49,7 @@
     self.listview1.hidden=YES;
     
     
-    self.listview2 =[[PullRefreshTableView alloc] initWithFrame:CGRectMake(0, topLayout+NavigationBarHeight, ScreenWidth,ScreenHeight-topLayout-NavigationBarHeight) withDelegate:self.controller];
+    self.listview2 =[[PullRefreshTableView alloc] initWithFrame:CGRectMake(0, topLayout+NavigationBarHeight, ScreenWidth,ScreenHeight-topLayout-NavigationBarHeight-49) withDelegate:self.controller];
     self.listview2.backgroundColor=[UIColor whiteColor];
     //    [self.listview setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     self.listview2.tag=2;
@@ -57,7 +57,7 @@
     [self.view addSubview:self.listview2];
     self.listview2.hidden=YES;
     
-    self.listview3 =[[PullRefreshTableView alloc] initWithFrame:CGRectMake(0, topLayout+NavigationBarHeight, ScreenWidth,ScreenHeight-topLayout-NavigationBarHeight) withDelegate:self.controller];
+    self.listview3 =[[PullRefreshTableView alloc] initWithFrame:CGRectMake(0, topLayout+NavigationBarHeight, ScreenWidth,ScreenHeight-topLayout-NavigationBarHeight-49) withDelegate:self.controller];
     self.listview3.backgroundColor=[UIColor whiteColor];
     //    [self.listview setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     self.listview3.tag=3;

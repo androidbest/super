@@ -79,7 +79,7 @@
     [self.controller initWithData];
     [UIView animateWithDuration:0.3 animations:^{
         CGRect rect =_keyboradView.frame;
-        rect.origin.y=self.tabBarController.tabBar.frame.origin.y-rect.size.height-64;
+        rect.origin.y=self.tabBarController.tabBar.frame.origin.y-rect.size.height;
         _keyboradView.frame=rect;
     }];
 }

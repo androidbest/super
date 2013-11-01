@@ -12,6 +12,7 @@
 #import  "AAActivityAction.h"
 #import "WXApi.h"
 #import "WXApiObject.h"
+#import "ActionSheetWeibo.h"
 @implementation MoreController{
     NSArray *allsec;
     NSArray *firstsec;
@@ -94,48 +95,51 @@
     }else if(indexPath.section==1){
         switch (indexPath.row) {
             case 0:{
-                [ToolUtils alertInfo:@"已是最新版本"];
+            [ToolUtils alertInfo:@"已是最新版本"];
             }
                 break;
             case 1:{
+ 
             }
                 break;
     }
     }else if(indexPath.section==2){
         switch (indexPath.row) {
             case 0:{
-//                AAImageSize imageSize = [self iconSizeSetting].selectedSegmentIndex == 0 ? AAImageSizeSmall : AAImageSizeNormal;
-                NSMutableArray *array = [NSMutableArray array];
-                NSArray *title=@[@"短信",@"微信",@"新浪"];
-                NSArray *image=@[[UIImage imageNamed:@"pic_sms"],[UIImage imageNamed:@"pic_weixin"],[UIImage imageNamed:@"pic_weibo"]];
-                NSArray *arrUrl=@[@"分享http://itunes.apple.com/lookup?id=647204141",@"分享http://itunes.apple.com/lookup?id=647204141",@"分享http://itunes.apple.com/lookup?id=647204141"];
-                
-                for (int i=0; i<3; i++) {
-                    AAActivity *activity = [[AAActivity alloc] initWithTitle:title[i]
-                                                                       image:image[i]
-                                                                 actionBlock:^(AAActivity *activity, NSArray *activityItems) {
-                                                                     NSLog(@"doing activity = %@, activityItems = %@", activity, activityItems);
-                                                                     NSString *str=activityItems[i];
-                                                                     if(i==2){
-                                                                        
-                                                                     }else if(i==0){
-                                                                         [self sendSMS:str recipientList:nil];
-                                                                     }else if(i==1){
-                                                                         if([WXApi openWXApp]){
-                                                                         [self sendWeiXinTextContent:str];
-                                                                         
-                                                                         }else{
-                                                                             [ToolUtils alertInfo:@"请安装微信"];
-                                                                         }
-                                                                     }
-                                                                 }];
-                    [array addObject:activity];
-                }
-                AAActivityAction *aa = [[AAActivityAction alloc] initWithActivityItems:arrUrl
-                                                                 applicationActivities:array
-                                                                             imageSize:AAImageSizeNormal];
-                aa.title = nil;
-                [aa show];
+                ActionSheetWeibo * sheet =[[ActionSheetWeibo alloc] initWithViewdelegate:self WithSheetTitle:@"分享"];
+                [sheet showInView:self.moreView.view];
+////                AAImageSize imageSize = [self iconSizeSetting].selectedSegmentIndex == 0 ? AAImageSizeSmall : AAImageSizeNormal;
+//                NSMutableArray *array = [NSMutableArray array];
+//                NSArray *title=@[@"短信",@"微信",@"新浪"];
+//                NSArray *image=@[[UIImage imageNamed:@"pic_sms"],[UIImage imageNamed:@"pic_weixin"],[UIImage imageNamed:@"pic_weibo"]];
+//                NSArray *arrUrl=@[@"分享http://itunes.apple.com/lookup?id=647204141",@"分享http://itunes.apple.com/lookup?id=647204141",@"分享http://itunes.apple.com/lookup?id=647204141"];
+//                
+//                for (int i=0; i<3; i++) {
+//                    AAActivity *activity = [[AAActivity alloc] initWithTitle:title[i]
+//                                                                       image:image[i]
+//                                                                 actionBlock:^(AAActivity *activity, NSArray *activityItems) {
+//                                                                     NSLog(@"doing activity = %@, activityItems = %@", activity, activityItems);
+//                                                                     NSString *str=activityItems[i];
+//                                                                     if(i==2){
+//                                                                        
+//                                                                     }else if(i==0){
+//                                                                         [self sendSMS:str recipientList:nil];
+//                                                                     }else if(i==1){
+//                                                                         if([WXApi openWXApp]){
+//                                                                         [self sendWeiXinTextContent:str];
+//                                                                         
+//                                                                         }else{
+//                                                                             [ToolUtils alertInfo:@"请安装微信"];
+//                                                                         }
+//                                                                     }
+//                                                                 }];
+//                    [array addObject:activity];
+//                }
+//                AAActivityAction *aa = [[AAActivityAction alloc] initWithActivityItems:arrUrl
+//                                                                 applicationActivities:array
+//                                                                             imageSize:AAImageSizeNormal];
+//                aa.title = nil;
+//                [aa show];
             }
                 break;
             case 1:{
@@ -155,9 +159,34 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+//选择分享方式
+- (void)actionSheetIndex:(NSInteger)index{
+    NSString *str=@"分享http://itunes.apple.com/lookup?id=647204141";
+    
+    switch (index) {
+        case 0:
+            [self sendSMS:str recipientList:nil];
+            break;
+            
+        case 1:
+        {
+            if([WXApi openWXApp]) [self sendWeiXinTextContent:str];
+            else [ToolUtils alertInfo:@"请安装微信"];
+        }
+            break;
+            
+        case 2:
+            
+            break;
+        default:
+            break;
+    }
+}
+
 //发送微信
 - (void) sendWeiXinTextContent:(NSString *)content
 {
+    
     SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
     req.text = content;
     req.bText = YES;
@@ -165,8 +194,6 @@
     
     [WXApi sendReq:req];
 }
-
-
 
 //发送短信
 - (void)sendSMS:(NSString *)bodyOfMessage recipientList:(NSArray *)recipients

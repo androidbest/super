@@ -63,7 +63,7 @@
     if (item.tag==0&&_callView.keyboradView.frame.origin.y>400) {
         [UIView animateWithDuration:0.3 animations:^{
             CGRect rect =_callView.keyboradView.frame;
-            rect.origin.y=_callView.tabBarController.tabBar.frame.origin.y-rect.size.height-64;
+            rect.origin.y=_callView.tabBarController.tabBar.frame.origin.y-rect.size.height;
             _callView.keyboradView.frame=rect;
         }];
     }
