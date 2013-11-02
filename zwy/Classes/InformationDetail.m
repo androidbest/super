@@ -29,6 +29,7 @@
 	InformationInfo *info=self.data.informationInfo;
     _navigationBar.topItem.title=info.title;
     _textView.text=info.content;
+    _textView.font =[UIFont systemFontOfSize:15];
     
 }
 

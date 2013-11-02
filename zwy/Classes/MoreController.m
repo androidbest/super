@@ -232,9 +232,10 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                        reuseIdentifier:strcell];
         cell.accessoryType =UITableViewCellAccessoryDisclosureIndicator;
+        cell.textLabel.font=[UIFont systemFontOfSize:16];
     }
     cell.textLabel.text= [[allsec objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-    cell.textLabel.font=[UIFont systemFontOfSize:12];
+  
     cell.imageView.image=[[allimage objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     return cell;
 }

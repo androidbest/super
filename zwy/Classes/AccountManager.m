@@ -34,7 +34,6 @@
     [((AccountManagerController *)self.controller) startCell];
     
     [_logout addTarget:self.controller action:@selector(loginout) forControlEvents:UIControlEventTouchUpInside];
-    [_logout setBackgroundColor:[UIColor colorWithRed:0.26 green:0.47 blue:0.98 alpha:1.0]];
     _logout.layer.masksToBounds = YES;
     _logout.layer.cornerRadius = 6.0;
     _logout.layer.borderWidth = 0.5;

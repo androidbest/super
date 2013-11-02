@@ -62,6 +62,7 @@
 //    [[self view] addGestureRecognizer:oneFingerOneTaps];
     
     _content.text=_info.content;
+    _content.font =[UIFont systemFontOfSize:16];
     UIView * view =[[UIView alloc] init];
     view.frame =CGRectMake(0, 0, ScreenWidth, 44);
     view.backgroundColor =self.navigationItem.titleView.backgroundColor;

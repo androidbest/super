@@ -202,10 +202,10 @@
                                              context:nil];
         CGRect rect=cell.content.frame;
         rect.size=textRect.size;
-        rect.origin.y=5;
+        rect.origin.y=15;
         cell.content.frame=rect;
         rect =cell.frame;
-        rect.size.height=cell.content.frame.size.height+10;
+        rect.size.height=cell.content.frame.size.height+30;
         cell.frame=rect;
     }
     return cell;

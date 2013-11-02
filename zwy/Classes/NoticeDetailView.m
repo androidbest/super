@@ -38,7 +38,7 @@
     //标题
     _titleLab =[[UILabel alloc] initWithFrame:CGRectMake(0,5,300,15)];
     _titleLab.text=info.title;
-    _titleLab.font=[UIFont boldSystemFontOfSize:13];
+    _titleLab.font=[UIFont boldSystemFontOfSize:15];
     _titleLab.textColor=[UIColor blackColor];
     _titleLab.backgroundColor=[UIColor clearColor];
     _titleLab.textAlignment=NSTextAlignmentCenter;
@@ -54,7 +54,7 @@
     [view addSubview:_time];
     
     _content.text=info.content;
-    
+    _content.font =[UIFont systemFontOfSize:15];
     
     
 	

@@ -17,7 +17,7 @@
         
         //"标题"标签
         _title =[[UILabel alloc] initWithFrame:CGRectMake(25,10,170 ,20)];
-        _title.font=[UIFont boldSystemFontOfSize:18];
+        _title.font=[UIFont boldSystemFontOfSize:16];
         _title.backgroundColor=[UIColor clearColor];
         _title.textColor=[UIColor blackColor];
         [self addSubview:_title];

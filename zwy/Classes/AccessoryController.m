@@ -115,7 +115,7 @@
         UITableViewCell *cell =[tableView dequeueReusableCellWithIdentifier:strCell];
         if (!cell) {
             cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:strCell];
-            cell.textLabel.font=[UIFont systemFontOfSize:13];
+            cell.textLabel.font=[UIFont systemFontOfSize:16];
         }
         cell.textLabel.text =[_arrEnddown[indexPath.row] objectForKey:@"text"];
         return cell;
