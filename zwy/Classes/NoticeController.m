@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 sxit. All rights reserved.
 //
 
+#define PATH_NOTICE @"noticeEnd.plist"
+
 #import "NoticeController.h"
 #import "Constants.h"
 #import "AnalysisData.h"
@@ -17,6 +19,7 @@
 @implementation NoticeController{
     NSString *page;
     NSMutableArray *arr;
+    NSMutableArray *arrNoticeEnd;
     NSInteger allCount;
     BOOL isUpdata;
 }
@@ -31,6 +34,11 @@
                                                 selector:@selector(handleData:)
                                                     name:xmlNotifInfo
                                                   object:self];
+        
+        NSString *uniquePath=[DocumentsDirectory stringByAppendingPathComponent:PATH_NOTICE];
+        BOOL blNews=[[NSFileManager defaultManager] fileExistsAtPath:uniquePath];
+        if (blNews)arrNoticeEnd =[[NSMutableArray alloc] initWithContentsOfFile:uniquePath];
+        else arrNoticeEnd=[NSMutableArray new];
     }
     return self;
 }

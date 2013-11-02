@@ -73,6 +73,7 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     UIViewController *send=segue.destinationViewController;
     [send setValue:self forKey:@"data"];
+    send.tabBarController.tabBar.hidden=YES;
 }
 
 -(void)segmentAction:(UISegmentedControl *)Seg{}

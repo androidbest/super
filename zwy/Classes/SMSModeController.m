@@ -34,7 +34,7 @@
 -(void)initReqData{
     self.HUD.labelText = @"正在请求数据..";
     [self.HUD show:YES];
-    self.HUD.dimBackground = YES;
+//    self.HUD.dimBackground = YES;
 [packageData templateInfor:self];
 }
 
@@ -108,9 +108,10 @@
         UITableViewCell *cell =[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (!cell) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+            cell.textLabel.font =[UIFont boldSystemFontOfSize:16];
         }
         UIView * view =[[UIView alloc] initWithFrame:cell.frame];
-        view.backgroundColor =[UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1];
+        view.backgroundColor =[UIColor colorWithRed:0.96 green:0.96 blue:0.96 alpha:1];
         cell.backgroundView=view;
         SMSDetaInfo * deta =[smsInfo.AllSMSLate objectAtIndex:indexPath.section];
         cell.textLabel.text = deta.templatename;

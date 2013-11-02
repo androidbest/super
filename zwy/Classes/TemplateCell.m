@@ -40,7 +40,7 @@
         
         //"已读未读"标示
         _imageMark =[[UIImageView alloc] initWithFrame:CGRectMake(10, 15, 8, 8)];
-        _imageMark.image=[UIImage imageNamed:@"point_over"];
+        _imageMark.image=[UIImage imageNamed:@"list_yuan"];
         _imageMark.hidden=YES;
         [self addSubview:_imageMark];
     }

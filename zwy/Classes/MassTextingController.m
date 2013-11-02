@@ -194,8 +194,8 @@ NSMutableArray * arrAllNumber;
     UITableViewCell *cell =[tableView dequeueReusableCellWithIdentifier:strCell];
     if (!cell) {
         cell =[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:strCell];
-        cell.textLabel.font=[UIFont systemFontOfSize:13];
-        cell.detailTextLabel.font=[UIFont systemFontOfSize:11];
+        cell.textLabel.font=[UIFont systemFontOfSize:16];
+        cell.detailTextLabel.font=[UIFont systemFontOfSize:12];
         cell.detailTextLabel.textColor=[UIColor grayColor];
     }
     NSObject * obj =_arrDidAllPeople[indexPath.row];
@@ -209,7 +209,7 @@ NSMutableArray * arrAllNumber;
 
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 35.0f;
+    return 44.0f;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{

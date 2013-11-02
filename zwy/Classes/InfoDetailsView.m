@@ -42,7 +42,7 @@
     _labelTel.text=_infoDeta.tel;
     
     
-    if ([_infoDeta.area isEqualToString:@"null"]) {
+    if (![_infoDeta.area isEqualToString:@"null"]) {
         _labelGroup.text=_infoDeta.area;
     }else{
     _labelGroup.text=@"";
@@ -50,7 +50,7 @@
     
  
     
-    if ([_infoDeta.job isEqualToString:@"null"]) {
+    if (![_infoDeta.job isEqualToString:@"null"]) {
         _labelJob.text=_infoDeta.job;
     }else{
         _labelJob.text=@"";

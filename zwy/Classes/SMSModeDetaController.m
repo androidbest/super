@@ -32,7 +32,7 @@
 - (void)initWithData{
     self.HUD.labelText = @"正在请求数据..";
     [self.HUD show:YES];
-    self.HUD.dimBackground = YES;
+//    self.HUD.dimBackground = YES;
     [packageData getTemplate:self TemplateID:_smsView.info.SmsID pageNmu:@"1"];
 }
 
@@ -75,11 +75,11 @@ static NSString * strCell2 =@"cell2";
                                                       context:nil];
     CGRect rect=cell.content.frame;
     rect.size=textRect.size;
-    rect.origin.y=7;
+    rect.origin.y=15;
     rect.origin.x=15;
     cell.content.frame=rect;
     rect =cell.frame;
-    rect.size.height=cell.content.frame.size.height+15;
+    rect.size.height=cell.content.frame.size.height+30;
     cell.frame=rect;
     return cell;
 }
