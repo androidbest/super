@@ -13,6 +13,7 @@
 #import "WXApi.h"
 #import "WXApiObject.h"
 #import "ActionSheetWeibo.h"
+#import "SendMessageToWeiboViewController.h"
 @implementation MoreController{
     NSArray *allsec;
     NSArray *firstsec;
@@ -22,12 +23,16 @@
     NSArray *image1;
     NSArray *image2;
     NSArray *image3;
+    NSString *str;
 }
 
 
 -(id)init{
     self=[super init];
     if(self){
+        str=@"分享http://itunes.apple.com/lookup?id=647204141";
+        
+        
         firstsec=@[@"账号管理"];
 //        firstsec=@[@"账号管理",@"密码修改"];
         second=@[@"检查更新"];
@@ -161,8 +166,6 @@
 
 //选择分享方式
 - (void)actionSheetIndex:(NSInteger)index{
-    NSString *str=@"分享http://itunes.apple.com/lookup?id=647204141";
-    
     switch (index) {
         case 0:
             [self sendSMS:str recipientList:nil];
@@ -175,12 +178,29 @@
         }
             break;
             
-        case 2:
+        case 2:{
+//            SendMessageToWeiboViewController *weibo1=[SendMessageToWeiboViewController new];
+//            [weibo1 shareButtonPressed];
             
-            break;
-        default:
+            WBSendMessageToWeiboRequest *request = [WBSendMessageToWeiboRequest requestWithMessage:[self messageToShare]];
+//            request.userInfo = @{@"ShareMessageFrom": @"SendMessageToWeiboViewController",
+//                                 @"Other_Info_1": [NSNumber numberWithInt:123],
+//                                 @"Other_Info_2": @[@"obj1", @"obj2"],
+//                                 @"Other_Info_3": @{@"key1": @"obj1", @"key2": @"obj2"}};
+            //    request.shouldOpenWeiboAppInstallPageIfNotInstalled = NO;
+            
+            [WeiboSDK sendRequest:request];
+            
+        }
             break;
     }
+}
+
+- (WBMessageObject *)messageToShare
+{
+    WBMessageObject *message = [WBMessageObject message];
+    message.text = str;
+    return message;
 }
 
 //发送微信

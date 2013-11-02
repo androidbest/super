@@ -8,7 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "WXApi.h"
-@interface AppDelegate : UIResponder <UIApplicationDelegate,WXApiDelegate>
+#import "WeiboSDK.h"
+#import "SendMessageToWeiboViewController.h"
+@interface AppDelegate : UIResponder <UIApplicationDelegate,WXApiDelegate,WeiboSDKDelegate>{
+   
+}
 
+@property (strong, nonatomic) NSString *wbtoken;
+
+@property (strong, nonatomic) SendMessageToWeiboViewController *viewController;
 @property (strong, nonatomic) UIWindow *window;
 @end

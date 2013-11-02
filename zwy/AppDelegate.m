@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "ConfigFile.h"
 #import "Constants.h"
-//#import "WXApi.h"
+#import "ToolUtils.h"
 @implementation AppDelegate{
 UIBackgroundTaskIdentifier backgroundTask;//写成成员
 
@@ -30,13 +30,30 @@ UIBackgroundTaskIdentifier backgroundTask;//写成成员
         user.username= [appConfig stringForKey:@"username"];
     }
     
-   // /Users/sxit/Documents/project/pro/zwy/zwy/WXApi.h
+    [WeiboSDK enableDebugMode:YES];
+    [WeiboSDK registerApp:@"3905012986"];
     [WXApi registerApp:@"wx22ca181d6fb789e2"];
     return YES;
 }
 
 -(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
+    
     return [WXApi handleOpenURL:url delegate:self];
+//    return [WeiboSDK handleOpenURL:url delegate:self];
+}
+
+//- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+//{
+//    return [WeiboSDK handleOpenURL:url delegate:self];
+//}
+
+- (void)didReceiveWeiboRequest:(WBBaseRequest *)request
+{
+    if ([request isKindOfClass:WBProvideMessageForWeiboRequest.class])
+    {
+        ProvideMessageForWeiboViewController *controller = [[ProvideMessageForWeiboViewController alloc] init];
+        [self.viewController presentViewController:controller animated:YES completion:nil];
+    }
 }
 
 -(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
@@ -45,12 +62,47 @@ UIBackgroundTaskIdentifier backgroundTask;//写成成员
 
 -(void) onResp:(BaseResp*)resp
 {
-    if([resp isKindOfClass:[SendMessageToWXResp class]])
+    
+//    [ToolUtils alertInfo:@"分享成功"];
+//    if([resp isKindOfClass:[SendMessageToWXResp class]])
+//    {
+//        NSString *strTitle = [NSString stringWithFormat:@"发送媒体消息结果"];
+//        NSString *strMsg = [NSString stringWithFormat:@"errcode:%d", resp.errCode];
+//        
+//        
+//        
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:strTitle message:strMsg delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//        [alert show];
+//    }
+}
+
+- (void)didReceiveWeiboResponse:(WBBaseResponse *)response
+{
+    if ([response isKindOfClass:WBSendMessageToWeiboResponse.class])
     {
-        NSString *strTitle = [NSString stringWithFormat:@"发送媒体消息结果"];
-        NSString *strMsg = [NSString stringWithFormat:@"errcode:%d", resp.errCode];
+        NSString *title = @"发送结果";
+        NSString *message = [NSString stringWithFormat:@"响应状态: %d\n响应UserInfo数据: %@\n原请求UserInfo数据: %@",
+                             response.statusCode, response.userInfo, response.requestUserInfo];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
+                                                        message:message
+                                                       delegate:nil
+                                              cancelButtonTitle:@"确定"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
+    else if ([response isKindOfClass:WBAuthorizeResponse.class])
+    {
+        NSString *title = @"认证结果";
+        NSString *message = [NSString stringWithFormat:@"响应状态: %d\nresponse.userId: %@\nresponse.accessToken: %@\n响应UserInfo数据: %@\n原请求UserInfo数据: %@",
+                             response.statusCode, [(WBAuthorizeResponse *)response userID], [(WBAuthorizeResponse *)response accessToken], response.userInfo, response.requestUserInfo];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
+                                                        message:message
+                                                       delegate:nil
+                                              cancelButtonTitle:@"确定"
+                                              otherButtonTitles:nil];
         
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:strTitle message:strMsg delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        self.wbtoken = [(WBAuthorizeResponse *)response accessToken];
+        
         [alert show];
     }
 }
