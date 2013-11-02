@@ -40,8 +40,22 @@
     self.title=_infoDeta.Name;
     _labelName.text =_infoDeta.Name;
     _labelTel.text=_infoDeta.tel;
-    _labelGroup.text=_infoDeta.area;
-    _labelJob.text=_infoDeta.job;
+    
+    
+    if ([_infoDeta.area isEqualToString:@"null"]) {
+        _labelGroup.text=_infoDeta.area;
+    }else{
+    _labelGroup.text=@"";
+    }
+    
+ 
+    
+    if ([_infoDeta.job isEqualToString:@"null"]) {
+        _labelJob.text=_infoDeta.job;
+    }else{
+        _labelJob.text=@"";
+    }
+    
     
     [_btnSendSMS addTarget:self.controller action:@selector(SendSMS:) forControlEvents:UIControlEventTouchUpInside];
     _btnSendSMS.layer.masksToBounds = YES;

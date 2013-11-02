@@ -267,6 +267,7 @@
         optionCell * cell =[tableView dequeueReusableCellWithIdentifier:strCell];
         if (!cell) {
             cell =[[optionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:strCell withDelegate:self];
+            cell.textLabel.font =[UIFont boldSystemFontOfSize:16];
         }
         GroupDetaInfo * info =_arrAllGroup[indexPath.row];
         

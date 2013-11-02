@@ -155,6 +155,8 @@ static NSString * identifierCell=@"Cell";
     UITableViewCell * cell =[tableView dequeueReusableCellWithIdentifier:identifierCell];
     if (!cell) {
         cell =[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifierCell];
+        cell.detailTextLabel.font =[UIFont systemFontOfSize:14];
+        cell.textLabel.font =[UIFont boldSystemFontOfSize:16];
     }
     
     NSString * strPre=[NSString stringWithFormat:@"SELF.Firetletter IN '%@'",_arrSection[indexPath.section]];

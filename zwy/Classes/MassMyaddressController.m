@@ -218,6 +218,8 @@
     if (!cell) {
         cell =[[optionCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellINdenfer withDelegate:self];
         cell.detailTextLabel.textColor=[UIColor grayColor];
+        cell.detailTextLabel.font =[UIFont systemFontOfSize:14];
+        cell.textLabel.font =[UIFont boldSystemFontOfSize:16];
     }
     NSObject * obj;
     if (isFirstPages&&_massView.searchBar.text.length==0) {
