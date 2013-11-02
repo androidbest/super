@@ -419,9 +419,13 @@
 #pragma mark - UITableViewDatasource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if([SMSType isEqualToString:@"0"]){
+        if (_arrDidAllPeople.count==0)tableView.separatorStyle=NO;
+        else tableView.separatorStyle=YES;
     return _arrDidAllPeople.count;
     
     }else{
+        if (voiceDidAllPeople.count==0)tableView.separatorStyle=NO;
+        else tableView.separatorStyle=YES;
         return voiceDidAllPeople.count;
     }
 }
@@ -431,9 +435,7 @@
     UITableViewCell *cell =[tableView dequeueReusableCellWithIdentifier:strCell];
     if (!cell) {
         cell =[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:strCell];
-        
-        cell.textLabel.font=[UIFont systemFontOfSize:14];
-        cell.detailTextLabel.font=[UIFont systemFontOfSize:13];
+        cell.detailTextLabel.textColor= [UIColor grayColor];
     }
     
     if([SMSType isEqualToString:@"0"]){

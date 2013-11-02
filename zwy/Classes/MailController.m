@@ -22,6 +22,7 @@
     NSInteger arr1Count;
     BOOL isUpdata;
     BOOL isUpdata1;
+    BOOL isInitData;
     NSInteger selecter;
 }
 
@@ -31,6 +32,7 @@
         page0=@"1";
         page1=@"1";
         selecter=0;
+        isInitData=YES;
         arr0=[NSMutableArray new];
         arr1=[NSMutableArray new];
         
@@ -62,10 +64,13 @@
         case 1:{
             //意见审核
             selecter=1;
-            if(arr1.count==0){
+            if(arr1.count==0&&isInitData){
+                
             self.mailView.listview1.separatorStyle = NO;
             [self.mailView.listview1 reloadDataPull];
             [self.mailView.listview1 LoadDataBegin];
+                
+            isInitData=NO;
             }else{
             [self.mailView.listview reloadDataPull];
             }
@@ -93,11 +98,13 @@
         RespList *list=[AnalysisData getPublicMailList:dic];
             arr0Count=list.rowCount;
         
-        if(list.resplist.count>0){
+        if(list.resplist.count>0||arr0.count!=0){
             [arr0 addObjectsFromArray:list.resplist];
             self.mailView.listview.separatorStyle = YES;
+            self.mailView.listview.backgroundColor=[UIColor whiteColor];
         }else{
-            [ToolUtils alertInfo:@"暂无数据"];
+//            [ToolUtils alertInfo:@"暂无数据"];
+            self.mailView.listview.backgroundColor=[UIColor clearColor];
         }
     }else{
         [ToolUtils alertInfo:requestError];
@@ -118,13 +125,15 @@
             RespList *list=[AnalysisData getAuditMailList:dic];
             arr1Count=list.rowCount;
         
-        if(list.resplist.count>0){
+        if(list.resplist.count>0||arr1.count!=0){
            
                 [arr1 addObjectsFromArray:list.resplist];
             
             self.mailView.listview1.separatorStyle = YES;
+            self.mailView.listview1.backgroundColor =[UIColor whiteColor];
         }else{
-            [ToolUtils alertInfo:@"暂无数据"];
+//            [ToolUtils alertInfo:@"暂无数据"];
+            self.mailView.listview1.backgroundColor =[UIColor clearColor];
         }
     }else{
         [ToolUtils alertInfo:requestError];
@@ -178,6 +187,7 @@
         cell = [[TemplateCell alloc] initWithStyle:UITableViewCellStyleSubtitle
                                    reuseIdentifier:strCell];
         cell.accessoryType =UITableViewCellAccessoryDisclosureIndicator;
+        cell.imageMark.hidden=NO;
     }
     
     PublicMailDetaInfo *info;

@@ -70,7 +70,7 @@
     _homeTitle =[[UILabel alloc] initWithFrame:CGRectMake(10,10,100,25)];
     _homeTitle.text=@"政务易";
     _homeTitle.font=[UIFont systemFontOfSize:25];
-    _homeTitle.textColor=[UIColor blueColor];
+    _homeTitle.textColor=[UIColor colorWithRed:0.25 green:0.59 blue:1.0 alpha:1.0];
     _homeTitle.backgroundColor=[UIColor clearColor];
     [view addSubview:_homeTitle];
     
@@ -84,7 +84,7 @@
     [view addSubview:_name];
     
     //单位名称
-    _ecname =[[UILabel alloc] initWithFrame:CGRectMake(110,25,190,15)];
+    _ecname =[[UILabel alloc] initWithFrame:CGRectMake(110,22,190,15)];
     _ecname.text=user.ecname;
     _ecname.font=[UIFont systemFontOfSize:12];
     _ecname.textAlignment=NSTextAlignmentRight;

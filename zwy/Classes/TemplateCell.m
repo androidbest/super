@@ -16,27 +16,33 @@
     if (self) {
         
         //"标题"标签
-        _title =[[UILabel alloc] initWithFrame:CGRectMake(10,5,170 ,20)];
-        _title.font=[UIFont systemFontOfSize:13];
+        _title =[[UILabel alloc] initWithFrame:CGRectMake(25,10,170 ,20)];
+        _title.font=[UIFont boldSystemFontOfSize:18];
         _title.backgroundColor=[UIColor clearColor];
         _title.textColor=[UIColor blackColor];
         [self addSubview:_title];
         
         //"内容"标签
-        _content =[[UILabel alloc] initWithFrame:CGRectMake(15,25,280,30)];
+        _content =[[UILabel alloc] initWithFrame:CGRectMake(25,30,280,30)];
         _content.numberOfLines=0;
-        _content.font=[UIFont systemFontOfSize:13];
+        _content.font=[UIFont systemFontOfSize:15];
         _content.backgroundColor=[UIColor clearColor];
         _content.textColor=[UIColor grayColor];
         [self addSubview:_content];
         
         //"时间"标签
-        _time =[[UILabel alloc] initWithFrame:CGRectMake(140,5,150 ,20)];
-        _time.font=[UIFont systemFontOfSize:12];
+        _time =[[UILabel alloc] initWithFrame:CGRectMake(140,10,150 ,20)];
+        _time.font=[UIFont systemFontOfSize:13];
         _time.backgroundColor=[UIColor clearColor];
         _time.textColor=[UIColor grayColor];
         _time.textAlignment=NSTextAlignmentRight;
         [self addSubview:_time];
+        
+        //"已读未读"标示
+        _imageMark =[[UIImageView alloc] initWithFrame:CGRectMake(10, 15, 8, 8)];
+        _imageMark.image=[UIImage imageNamed:@"point_over"];
+        _imageMark.hidden=YES;
+        [self addSubview:_imageMark];
     }
     return self;
 }

@@ -140,12 +140,14 @@
     
     if(dic){
         RespList *list=[AnalysisData getDocList:dic];
-        if(list.resplist.count>0){
+        if(list.resplist.count>0||arr0.count!=0){
             [arr0 addObjectsFromArray:list.resplist];
             arr0Count=list.rowCount;
             self.daibanView.listview.separatorStyle = YES;
+            _daibanView.listview.backgroundColor =[UIColor whiteColor];
         }else{
-            [ToolUtils alertInfo:@"暂无数据"];
+//            [ToolUtils alertInfo:@"暂无数据"];
+            _daibanView.listview.backgroundColor =[UIColor clearColor];
         }
     }else{
         [ToolUtils alertInfo:requestError];
@@ -164,12 +166,14 @@
     
     if(dic){
         RespList *list=[AnalysisData getDocList:dic];
-        if(list.resplist.count>0){
+        if(list.resplist.count>0||arr1.count!=0){
             [arr1 addObjectsFromArray:list.resplist];
             arr1Count=list.rowCount;
             self.daibanView.listview1.separatorStyle = YES;
+            _daibanView.listview1.backgroundColor =[UIColor whiteColor];
         }else{
-            [ToolUtils alertInfo:@"暂无数据"];
+//            [ToolUtils alertInfo:@"暂无数据"];
+            _daibanView.listview1.backgroundColor =[UIColor clearColor];
         }
     }else{
         [ToolUtils alertInfo:requestError];
@@ -188,12 +192,14 @@
     
     if(dic){
         RespList *list=[AnalysisData getPublicMailList:dic];
-        if(list.resplist.count>0){
+        if(list.resplist.count>0||arr2.count!=0){
             [arr2 addObjectsFromArray:list.resplist];
             arr2Count=list.rowCount;
             self.daibanView.listview2.separatorStyle = YES;
+            _daibanView.listview2.backgroundColor =[UIColor whiteColor];
         }else{
-            [ToolUtils alertInfo:@"暂无数据"];
+//            [ToolUtils alertInfo:@"暂无数据"];
+            _daibanView.listview2.backgroundColor =[UIColor clearColor];
         }
     }else{
         [ToolUtils alertInfo:requestError];
@@ -213,12 +219,14 @@
     
     if(dic){
         RespList *list=[AnalysisData getAuditMailList:dic];
-        if(list.resplist.count>0){
+        if(list.resplist.count>0||arr3.count!=0){
             [arr3 addObjectsFromArray:list.resplist];
             arr3Count=list.rowCount;
             self.daibanView.listview3.separatorStyle = YES;
+            _daibanView.listview3.backgroundColor =[UIColor whiteColor];
         }else{
-            [ToolUtils alertInfo:@"暂无数据"];
+//            [ToolUtils alertInfo:@"暂无数据"];
+            _daibanView.listview3.backgroundColor =[UIColor clearColor];
         }
     }else{
         [ToolUtils alertInfo:requestError];

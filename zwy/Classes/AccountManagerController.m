@@ -25,7 +25,7 @@ NSMutableArray *arr;
 -(void)startCell{
     self.HUD.labelText = @"正在获取单位信息..";
     [self.HUD show:YES];
-    self.HUD.dimBackground = YES;
+//    self.HUD.dimBackground = YES;
     [packageData getECinterface:self msisdn:user.msisdn];
 }
 

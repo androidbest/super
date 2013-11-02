@@ -330,7 +330,7 @@
     NSString *type=self.officedetailView.info.type;
     self.HUD.labelText = @"正在处理中..";
     [self.HUD show:YES];
-    self.HUD.dimBackground = YES;
+//    self.HUD.dimBackground = YES;
     if([type isEqualToString:@"0"]){
         [packageData handleDoc:self ID:docContentInfo.ID Type:@"1" OperType:status tempTel:strAllPeopleID Status:@"1" context:self.officedetailView.textContent.text groupid:strAllGroupID];
     }else if([type isEqualToString:@"2"]){
@@ -384,7 +384,7 @@
     [packageData getDocInfo:self ID:self.officedetailView.info.ID];
     self.HUD.labelText = @"正在获取公文信息..";
     [self.HUD show:YES];
-    self.HUD.dimBackground = YES;
+//    self.HUD.dimBackground = YES;
 }
 
 //公文流程
@@ -400,7 +400,7 @@
     if (!offInfo) {
         self.HUD.labelText = @"正在获取附件信息..";
         [self.HUD show:YES];
-        self.HUD.dimBackground = YES;
+//        self.HUD.dimBackground = YES;
         [packageData queryDocumentAttachment:self ID:officeID SELType:officeListNotifinfo];
         
     }else{

@@ -55,14 +55,13 @@
     [_loginBtn setBackgroundColor:[UIColor colorWithRed:0.26 green:0.47 blue:0.98 alpha:1.0]];
     _loginBtn.layer.masksToBounds = YES;
     _loginBtn.layer.cornerRadius = 6.0;
-//    _loginBtn.layer.borderWidth = 0.5;
     _loginBtn.layer.borderColor = [[UIColor whiteColor] CGColor];
     
     [_verifyBtn addTarget:self.controller action:@selector(getVerify) forControlEvents:UIControlEventTouchUpInside];
     _verifyBtn.layer.masksToBounds = YES;
     _verifyBtn.layer.cornerRadius = 6.0;
-    _verifyBtn.layer.borderWidth = 0.5;
-    _verifyBtn.layer.borderColor = [[UIColor blueColor] CGColor];
+    _verifyBtn.layer.borderWidth = 1;
+    _verifyBtn.layer.borderColor = [[UIColor colorWithRed:0.25 green:0.59 blue:1.0 alpha:1.0] CGColor];
     
     
     if([appConfig boolForKey:@"isLogin"]){

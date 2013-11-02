@@ -144,6 +144,9 @@
     optionCell * cell =[tableView dequeueReusableCellWithIdentifier:CellINdenfer];
     if (!cell) {
         cell =[[optionCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellINdenfer withDelegate:self];
+        cell.textLabel.font =[UIFont systemFontOfSize:18];
+        cell.detailTextLabel.font =[UIFont systemFontOfSize:12];
+        cell.detailTextLabel.textColor =[UIColor grayColor];
     }
     NSObject * obj;
     if (isFirstPages&&_OptionView.searchBar.text.length==0) {
@@ -178,6 +181,10 @@
     cell.tag=indexPath.row;
     cell.btnOption.tag=indexPath.row;
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 44;
 }
 
 #pragma mark - UITableViewDelegate

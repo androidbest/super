@@ -12,4 +12,5 @@
 @property (strong, nonatomic) UILabel *time;
 @property (strong, nonatomic) UILabel *title;
 @property (strong, nonatomic) UILabel *content;
+@property (strong ,nonatomic) UIImageView * imageMark;
 @end

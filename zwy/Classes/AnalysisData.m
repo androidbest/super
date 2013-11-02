@@ -159,9 +159,11 @@ RespInfo *info=[RespInfo new];
     for (int i=0; i<arr.count; i++){
         NSString *StrContent =[[[arr objectAtIndex:i] objectForKey:@"content"] objectForKey:@"text"];
         NSString * title=[[[arr objectAtIndex:i] objectForKey:@"title"] objectForKey:@"text"];
+        NSString * ID =[[[arr objectAtIndex:i] objectForKey:@"id"] objectForKey:@"text"];
         InformationInfo *detail=[InformationInfo new];
         detail.content=StrContent;
         detail.title=title;
+        detail.newsID=ID;
         [resplist.resplist addObject:detail];
     }
     return resplist;

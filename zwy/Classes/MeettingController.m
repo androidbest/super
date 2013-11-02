@@ -168,7 +168,7 @@
         /*提交等待*/
 //        self.HUD =[[MBProgressHUD alloc] initWithView:self.meettingView.navigationController.view];
 //        self.HUD.labelText=@"正在发送..";
-//        [self.meettingView.navigationController.view addSubview:self.HUD];
+//        [self.meettingView.view addSubview:self.HUD];
 //        [self.HUD show:YES];
         
 //        [packageData scheduleConf:self receiverTel:strAllPeoleTel receiverName:strAllPeopleName groupID:strAllGroupID time:@"0"];
@@ -231,7 +231,7 @@
         /*提交等待*/
 //        self.HUD =[[MBProgressHUD alloc] initWithView:self.meettingView.navigationController.view];
 //        self.HUD.labelText=@"正在发送..";
-//        [self.meettingView.navigationController.view addSubview:self.HUD];
+//        [self.meettingView.view addSubview:self.HUD];
 //        [self.HUD show:YES];
         
 //        [packageData scheduleConf:self receiverTel:voiicestrAllPeoleTel receiverName:voicestrAllPeopleName groupID:voicestrAllGroupID time:[NSString stringWithFormat:@"%lld",KTime]];
@@ -306,10 +306,18 @@
 
 #pragma mark - UITableViewDatasource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+
+    
     if([MeetType isEqualToString:@"0"]){
-    return _arrDidAllPeople.count;
+        
+        if (_arrDidAllPeople.count==0)tableView.separatorStyle=NO;
+        else tableView.separatorStyle=YES;
+        return _arrDidAllPeople.count;
     }else{
-    return voiceDidAllPeople.count;
+        
+        if (voiceDidAllPeople.count==0)tableView.separatorStyle=NO;
+        else tableView.separatorStyle=YES;
+        return voiceDidAllPeople.count;
     }
 }
 
@@ -318,6 +326,7 @@
     UITableViewCell *cell =[tableView dequeueReusableCellWithIdentifier:strCell];
     if (!cell) {
         cell =[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:strCell];
+        cell.detailTextLabel.textColor =[UIColor grayColor];
     }
     
     if([MeetType isEqualToString:@"0"]){
@@ -349,6 +358,10 @@
     
     
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 50;
 }
 
 #pragma mark - UITableViewDelegate

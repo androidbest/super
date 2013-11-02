@@ -136,12 +136,14 @@ NSInteger selecter;
     
     if(dic){
         RespList *list=[AnalysisData getDocList:dic];
-        if(list.resplist.count>0){
+        if(list.resplist.count>0||arr0.count!=0){
             [arr0 addObjectsFromArray:list.resplist];
             arr0Count=list.rowCount;
-                        self.officeView.listview.separatorStyle = YES;
+            self.officeView.listview.separatorStyle = YES;
+            _officeView.listview.backgroundColor =[UIColor whiteColor];
         }else{
-            [ToolUtils alertInfo:@"暂无数据"];
+//            [ToolUtils alertInfo:@"暂无数据"];
+            _officeView.listview.backgroundColor =[UIColor clearColor];
         }
     }else{
         [ToolUtils alertInfo:requestError];
@@ -160,12 +162,14 @@ NSInteger selecter;
     
     if(dic){
         RespList *list=[AnalysisData getDocList:dic];
-        if(list.resplist.count>0){
+        if(list.resplist.count>0||arr1.count!=0){
           [arr1 addObjectsFromArray:list.resplist];
             arr1Count=list.rowCount;
           self.officeView.listview1.separatorStyle = YES;
+        _officeView.listview1.backgroundColor =[UIColor whiteColor];
         }else{
-            [ToolUtils alertInfo:@"暂无数据"];
+//            [ToolUtils alertInfo:@"暂无数据"];
+        _officeView.listview1.backgroundColor =[UIColor clearColor];
         }
     }else{
         [ToolUtils alertInfo:requestError];
@@ -184,12 +188,14 @@ NSInteger selecter;
     
     if(dic){
         RespList *list=[AnalysisData getDocList:dic];
-        if(list.resplist.count>0){
+        if(list.resplist.count>0||arr2.count!=0){
             [arr2 addObjectsFromArray:list.resplist];
             arr2Count=list.rowCount;
             self.officeView.listview2.separatorStyle = YES;
+             _officeView.listview2.backgroundColor =[UIColor whiteColor];
         }else{
-            [ToolUtils alertInfo:@"暂无数据"];
+//            [ToolUtils alertInfo:@"暂无数据"];
+            _officeView.listview2.backgroundColor =[UIColor clearColor];
         }
     }else{
         [ToolUtils alertInfo:requestError];
@@ -209,12 +215,14 @@ NSInteger selecter;
     
     if(dic){
         RespList *list=[AnalysisData getDocList:dic];
-        if(list.resplist.count>0){
+        if(list.resplist.count>0||arr3.count!=0){
             [arr3 addObjectsFromArray:list.resplist];
             arr3Count=list.rowCount;
             self.officeView.listview3.separatorStyle = YES;
+             _officeView.listview3.backgroundColor =[UIColor whiteColor];
         }else{
-            [ToolUtils alertInfo:@"暂无数据"];
+//            [ToolUtils alertInfo:@"暂无数据"];
+            _officeView.listview3.backgroundColor =[UIColor clearColor];
         }
     }else{
         [ToolUtils alertInfo:requestError];
@@ -223,9 +231,7 @@ NSInteger selecter;
 }
 
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 60;
-}
+
 
 
 //判断是否需要下拉加载更多内容
@@ -258,31 +264,47 @@ NSInteger selecter;
     return count;
 }
 
-
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 65;
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     NSInteger ret=0;
-    if(tableView.tag==0){
-        ret=arr0.count;
-    }else if(tableView.tag==1){
-        ret=arr1.count;
-    }else if(tableView.tag==2){
-        ret=arr2.count;
-    }else{
-       ret=arr3.count;
+    switch (tableView.tag) {
+        case 0:{
+            ret=arr0.count;
+        }
+        break;
+            
+        case 1:{
+            ret=arr1.count;
+        }
+        break;
+            
+        case 2:{
+            ret=arr2.count;
+        }
+        break;
+            
+        case 3:{
+            ret=arr3.count;
+        }
+        break;
+        default:
+            
+        break;
     }
     return ret;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString * strCell =@"cell";
-    //    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
-    //    TemplateCell *cell = [storyboard instantiateViewControllerWithIdentifier:@"templateCell"];
     TemplateCell * cell =[tableView dequeueReusableCellWithIdentifier:strCell];
     if (!cell) {
         cell = [[TemplateCell alloc] initWithStyle:UITableViewCellStyleSubtitle
                                    reuseIdentifier:strCell];
         cell.accessoryType =UITableViewCellAccessoryDisclosureIndicator;
+        cell.imageMark.hidden=NO;
     }
     
     DocContentInfo *info;

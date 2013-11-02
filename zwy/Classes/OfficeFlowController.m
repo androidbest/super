@@ -88,6 +88,7 @@
     NSString * strcell =@"docflowcell";
     DocFlowCell * cell =(DocFlowCell *)[tableView dequeueReusableCellWithIdentifier:strcell];
     if (!cell) {
+        cell =[[DocFlowCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:strcell];
 //        cell=[[[NSBundle mainBundle] loadNibNamed:strcell owner:self options:nil] objectAtIndex:0];
 //        cell.selectionStyle=UITableViewCellSelectionStyleNone;
     }

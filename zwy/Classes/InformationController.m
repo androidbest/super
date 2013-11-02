@@ -6,6 +6,9 @@
 //  Copyright (c) 2013 sxit. All rights reserved.
 //
 
+#define PATH_NEWS @"informationNews.plist"
+#define PATH_JOKES @"informationJokes.plist"
+
 #import "InformationController.h"
 #import "Constants.h"
 #import "ToolUtils.h"
@@ -15,6 +18,8 @@
     NSString *page;
     NSMutableArray *arr0;
     NSMutableArray *arr1;
+    NSMutableArray *arrYetNews;
+    NSMutableArray *arrYetJokes;
     NSInteger arr0Count;
     NSInteger arr1Count;
     BOOL isUpdata;
@@ -34,6 +39,17 @@
         selecter=0;
         arr0=[NSMutableArray new];
         arr1=[NSMutableArray new];
+        
+        NSString *uniquePath=[DocumentsDirectory stringByAppendingPathComponent:PATH_NEWS];
+        BOOL blNews=[[NSFileManager defaultManager] fileExistsAtPath:uniquePath];
+        if (blNews)arrYetNews =[[NSMutableArray alloc] initWithContentsOfFile:uniquePath];
+        else arrYetNews=[NSMutableArray new];
+        
+        uniquePath =[DocumentsDirectory stringByAppendingPathComponent:PATH_JOKES];
+        BOOL blJokes=[[NSFileManager defaultManager] fileExistsAtPath:uniquePath];
+        if (blJokes) arrYetJokes =[[NSMutableArray alloc] initWithContentsOfFile:uniquePath];
+        else arrYetJokes =[NSMutableArray new];
+        
         start=@"1";
         end=@"20";
         start1=@"1";
@@ -163,15 +179,19 @@
                                        reuseIdentifier:strCell1];
             cell.accessoryType =UITableViewCellAccessoryDisclosureIndicator;
         }
+        
         InformationInfo *info=arr0[indexPath.row];
         cell.title.text=info.title;
         cell.content.text=info.content;
+        
+        if ([arrYetNews containsObject:info.newsID]) cell.title.textColor=[UIColor grayColor];
+        else cell.title.textColor =[UIColor blackColor];
+        
     }else{
         cell =[tableView dequeueReusableCellWithIdentifier:strCell2];
         if (!cell) {
             cell = [[TemplateCell alloc] initWithStyle:UITableViewCellStyleSubtitle
                                        reuseIdentifier:strCell2];
-            cell.accessoryType =UITableViewCellAccessoryDisclosureIndicator;
         }
         InformationInfo *info=arr1[indexPath.row];
         cell.content.text=info.content;
@@ -215,6 +235,12 @@
             [self initBackBarButtonItem:self.informationView];
             InformationInfo *info=arr0[indexPath.row];
         self.informationView.informationInfo=info;
+        
+        
+        TemplateCell * cell =(TemplateCell *)[tableView cellForRowAtIndexPath:indexPath];
+        cell.title.textColor=[UIColor grayColor];
+        [arrYetNews addObject:info.newsID];
+        [arrYetNews writeToFile:[DocumentsDirectory stringByAppendingPathComponent:PATH_NEWS] atomically:NO];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
