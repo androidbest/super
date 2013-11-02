@@ -150,6 +150,8 @@
 		5975C1861806981900EF7285 /* mail_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5975C17F1806981900EF7285 /* mail_icon.png */; };
 		5975C1871806981900EF7285 /* notice_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5975C1801806981900EF7285 /* notice_icon.png */; };
 		5975C1881806981900EF7285 /* sms_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5975C1811806981900EF7285 /* sms_icon.png */; };
+		5977235E1824E6AA003F2701 /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5977235B1824E6AA003F2701 /* WeiboSDK.bundle */; };
+		5977235F1824E6AA003F2701 /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5977235D1824E6AA003F2701 /* libWeiboSDK.a */; };
 		5977D17D18224254003DD5A3 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5977D17A18224254003DD5A3 /* libWeChatSDK.a */; settings = {ATTRIBUTES = (Required, ); }; };
 		5977D18118225020003DD5A3 /* pic_sms@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5977D17E18225020003DD5A3 /* pic_sms@2x.png */; };
 		5977D18218225020003DD5A3 /* pic_weixin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5977D17F18225020003DD5A3 /* pic_weixin@2x.png */; };
@@ -491,6 +493,9 @@
 		5975C17F1806981900EF7285 /* mail_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mail_icon.png; sourceTree = "<group>"; };
 		5975C1801806981900EF7285 /* notice_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notice_icon.png; sourceTree = "<group>"; };
 		5975C1811806981900EF7285 /* sms_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sms_icon.png; sourceTree = "<group>"; };
+		5977235B1824E6AA003F2701 /* WeiboSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WeiboSDK.bundle; sourceTree = "<group>"; };
+		5977235C1824E6AA003F2701 /* WeiboSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboSDK.h; sourceTree = "<group>"; };
+		5977235D1824E6AA003F2701 /* libWeiboSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeiboSDK.a; sourceTree = "<group>"; };
 		5977D17A18224254003DD5A3 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		5977D17B18224254003DD5A3 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
 		5977D17C18224254003DD5A3 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
@@ -683,6 +688,7 @@
 				595CB9FE17F1913E00228A6E /* QuartzCore.framework in Frameworks */,
 				595CB9FC17F18C1500228A6E /* MobileCoreServices.framework in Frameworks */,
 				595CB9FA17F18B9C00228A6E /* Security.framework in Frameworks */,
+				5977235F1824E6AA003F2701 /* libWeiboSDK.a in Frameworks */,
 				595CB9F817F188C400228A6E /* SystemConfiguration.framework in Frameworks */,
 				595CB98017F164AF00228A6E /* CoreGraphics.framework in Frameworks */,
 				595CB98217F164AF00228A6E /* UIKit.framework in Frameworks */,
@@ -899,6 +905,9 @@
 		595CB98317F164AF00228A6E /* zwy */ = {
 			isa = PBXGroup;
 			children = (
+				5977235B1824E6AA003F2701 /* WeiboSDK.bundle */,
+				5977235C1824E6AA003F2701 /* WeiboSDK.h */,
+				5977235D1824E6AA003F2701 /* libWeiboSDK.a */,
 				5977D17A18224254003DD5A3 /* libWeChatSDK.a */,
 				5977D17B18224254003DD5A3 /* WXApi.h */,
 				5977D17C18224254003DD5A3 /* WXApiObject.h */,
@@ -1632,6 +1641,7 @@
 				5975C1871806981900EF7285 /* notice_icon.png in Resources */,
 				59585BC217F8300200F73D97 /* home_over@2x.png in Resources */,
 				59585BBF17F8300200F73D97 /* home_out@2x.png in Resources */,
+				5977235E1824E6AA003F2701 /* WeiboSDK.bundle in Resources */,
 				59584B1E18191ADE00B65162 /* docselected.png in Resources */,
 				65B3AC531819251100F2EC04 /* btn_numbers.png in Resources */,
 				65B3AC711819274200F2EC04 /* tabItem_SMS_out@2x.png in Resources */,
@@ -1913,6 +1923,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-Objc";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1945,6 +1956,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				OTHER_LDFLAGS = "-Objc";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1962,7 +1974,8 @@
 				INFOPLIST_FILE = "zwy/zwy-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/zwy\"",
+					"\\\"$(SRCROOT)/zwy\\\"",
+					/Users/sxit/Documents/project/pro/zwy/zwy,
 				);
 				LINK_WITH_STANDARD_LIBRARIES = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1983,7 +1996,8 @@
 				INFOPLIST_FILE = "zwy/zwy-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/zwy\"",
+					"\\\"$(SRCROOT)/zwy\\\"",
+					/Users/sxit/Documents/project/pro/zwy/zwy,
 				);
 				LINK_WITH_STANDARD_LIBRARIES = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
