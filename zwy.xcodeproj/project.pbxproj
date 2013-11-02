@@ -1972,8 +1972,7 @@
 				INFOPLIST_FILE = "zwy/zwy-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\\\"$(SRCROOT)/zwy\\\"",
-					/Users/sxit/Documents/project/pro/zwy/zwy,
+					"\"$(SRCROOT)/zwy\"",
 				);
 				LINK_WITH_STANDARD_LIBRARIES = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1994,8 +1993,7 @@
 				INFOPLIST_FILE = "zwy/zwy-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\\\"$(SRCROOT)/zwy\\\"",
-					/Users/sxit/Documents/project/pro/zwy/zwy,
+					"\"$(SRCROOT)/zwy\"",
 				);
 				LINK_WITH_STANDARD_LIBRARIES = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
