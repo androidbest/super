@@ -151,6 +151,8 @@
     if (!cell) {
         cell =[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellINdenfer];
         cell.detailTextLabel.textColor=[UIColor grayColor];
+        cell.detailTextLabel.font =[UIFont systemFontOfSize:14];
+        cell.textLabel.font =[UIFont boldSystemFontOfSize:16];
     }
     NSObject * obj;
     if (_arrSeaPeople.count==0&&![_callView.labelCall.text isEqualToString:@"点击拨打电话"]&& _callView.labelCall.text.length==0) {

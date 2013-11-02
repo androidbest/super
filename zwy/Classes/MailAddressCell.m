@@ -20,7 +20,7 @@
         [self addSubview:_imageCheckView];
         
         self.labelText =[[UILabel alloc] initWithFrame:CGRectMake(50, 17, 250,15)];
-        _labelText.font=[UIFont systemFontOfSize:13];
+        _labelText.font=[UIFont boldSystemFontOfSize:16];
         [self addSubview:_labelText];
         
     }

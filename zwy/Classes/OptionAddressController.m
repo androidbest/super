@@ -144,8 +144,8 @@
     optionCell * cell =[tableView dequeueReusableCellWithIdentifier:CellINdenfer];
     if (!cell) {
         cell =[[optionCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellINdenfer withDelegate:self];
-        cell.textLabel.font =[UIFont systemFontOfSize:18];
-        cell.detailTextLabel.font =[UIFont systemFontOfSize:12];
+        cell.textLabel.font =[UIFont boldSystemFontOfSize:16];
+        cell.detailTextLabel.font =[UIFont systemFontOfSize:14];
         cell.detailTextLabel.textColor =[UIColor grayColor];
     }
     NSObject * obj;
