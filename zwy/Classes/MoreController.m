@@ -183,10 +183,10 @@
 //            [weibo1 shareButtonPressed];
             
             WBSendMessageToWeiboRequest *request = [WBSendMessageToWeiboRequest requestWithMessage:[self messageToShare]];
-//            request.userInfo = @{@"ShareMessageFrom": @"SendMessageToWeiboViewController",
-//                                 @"Other_Info_1": [NSNumber numberWithInt:123],
-//                                 @"Other_Info_2": @[@"obj1", @"obj2"],
-//                                 @"Other_Info_3": @{@"key1": @"obj1", @"key2": @"obj2"}};
+            request.userInfo = @{@"ShareMessageFrom": @"SendMessageToWeiboViewController",
+                                 @"Other_Info_1": [NSNumber numberWithInt:123],
+                                 @"Other_Info_2": @[@"obj1", @"obj2"],
+                                 @"Other_Info_3": @{@"key1": @"obj1", @"key2": @"obj2"}};
             //    request.shouldOpenWeiboAppInstallPageIfNotInstalled = NO;
             
             [WeiboSDK sendRequest:request];
@@ -196,6 +196,7 @@
     }
 }
 
+//新浪微博数据
 - (WBMessageObject *)messageToShare
 {
     WBMessageObject *message = [WBMessageObject message];
