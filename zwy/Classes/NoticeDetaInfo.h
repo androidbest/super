@@ -10,7 +10,7 @@
 
 @interface NoticeDetaInfo : NSObject
 @property (strong ,nonatomic)NSString *PublicInfo;//返回码
-@property (strong ,nonatomic)NSString *infoid;//返回消息
+@property (strong ,nonatomic)NSString *infoid;//ID
 @property (strong,nonatomic)NSString *title;//标题
 @property (strong ,nonatomic)NSString *statusid;//开始ID
 @property (strong ,nonatomic)NSString *content;//内容

@@ -548,13 +548,13 @@
         <!--Mail View - 群 众 信 箱-->
         <scene sceneID="DkQ-j0-Fgu">
             <objects>
-                <viewController id="KVr-iM-7Jk" customClass="MailView" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="KVr-iM-7Jk" customClass="MailView" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jaY-PX-BvL"/>
                         <viewControllerLayoutGuide type="bottom" id="XIN-XW-kLT"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="1xf-8I-xeg">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kCI-eV-O85">
@@ -582,6 +582,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="群 众 信 箱" id="NWs-ec-X59"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="selecter" destination="fu7-8D-KPY" id="FcP-lG-9bi"/>
                         <segue destination="TR4-o5-IY4" kind="push" identifier="mailtodetail" id="XY3-9B-d3j"/>
@@ -1067,7 +1068,7 @@
         <!--Meetting View - 会 议 电 话-->
         <scene sceneID="Iy9-aL-jK9">
             <objects>
-                <viewController id="8ys-ze-uvD" customClass="MeettingView" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="8ys-ze-uvD" customClass="MeettingView" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="atS-1f-qTo"/>
                         <viewControllerLayoutGuide type="bottom" id="wsC-Us-aCy"/>
@@ -1274,7 +1275,7 @@
         <!--Information View - 综 合 资 讯-->
         <scene sceneID="8t8-3E-7tP">
             <objects>
-                <viewController id="kuN-yo-CK2" customClass="InformationView" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="kuN-yo-CK2" customClass="InformationView" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="RBy-hp-Nq8"/>
                         <viewControllerLayoutGuide type="bottom" id="bx2-gZ-IMK"/>
@@ -1801,7 +1802,7 @@
         <!--Notice View - 政 府 公 告-->
         <scene sceneID="Per-KH-vdw">
             <objects>
-                <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="3iH-Pf-BIC" customClass="NoticeView" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3iH-Pf-BIC" customClass="NoticeView" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="MJP-1b-QHB"/>
                         <viewControllerLayoutGuide type="bottom" id="29Y-vw-1SL"/>
@@ -1967,7 +1968,7 @@
         <!--View Controller - 关 于-->
         <scene sceneID="rpq-6g-KGR">
             <objects>
-                <viewController id="hR6-FO-aGX" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="hR6-FO-aGX" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="H3r-Ie-Z1Q"/>
                         <viewControllerLayoutGuide type="bottom" id="MUR-Mz-NZs"/>
@@ -3192,7 +3193,7 @@
         <!--Sms View - 信 息 发 布-->
         <scene sceneID="KgI-Bm-VAP">
             <objects>
-                <viewController id="CFe-LX-aoa" customClass="SmsView" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="CFe-LX-aoa" customClass="SmsView" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="f1R-do-3Io"/>
                         <viewControllerLayoutGuide type="bottom" id="gYl-d4-Q2p"/>
@@ -3572,9 +3573,9 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="blo-VH-jXf"/>
         <segue reference="XY3-9B-d3j"/>
-        <segue reference="fnu-ur-Sot"/>
-        <segue reference="VnO-Jy-h2g"/>
+        <segue reference="sAR-cD-OcR"/>
+        <segue reference="dD8-YG-A6q"/>
+        <segue reference="EdD-tC-bMF"/>
     </inferredMetricsTieBreakers>
 </document>

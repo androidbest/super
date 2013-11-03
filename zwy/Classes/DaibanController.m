@@ -31,6 +31,13 @@
     BOOL isUpdata2;
     BOOL isUpdata3;
     NSInteger selecter;
+    
+    NSMutableArray *arrOverManage;
+    NSMutableArray *arrOverHear;
+    NSMutableArray *arrOpinionManage;
+    NSMutableArray *arrOpinionHear;
+    
+    
 }
 
 -(id)init{
@@ -45,6 +52,27 @@
         arr1=[NSMutableArray new];
         arr2=[NSMutableArray new];
         arr3=[NSMutableArray new];
+        
+        
+        NSString *uniquePath=[DocumentsDirectory stringByAppendingPathComponent:PATH_OVERMANAGE];
+        BOOL blPath=[[NSFileManager defaultManager] fileExistsAtPath:uniquePath];
+        if (blPath)arrOverManage =[[NSMutableArray alloc] initWithContentsOfFile:uniquePath];
+        else arrOverManage=[NSMutableArray new];
+
+        uniquePath =[DocumentsDirectory stringByAppendingPathComponent:PATH_OVERHEAR];
+        blPath=[[NSFileManager defaultManager] fileExistsAtPath:uniquePath];
+        if (blPath)arrOverHear =[[NSMutableArray alloc] initWithContentsOfFile:uniquePath];
+        else arrOverHear=[NSMutableArray new];
+        
+        uniquePath =[DocumentsDirectory stringByAppendingPathComponent:PATH_OPINIONMANAGE];
+        blPath=[[NSFileManager defaultManager] fileExistsAtPath:uniquePath];
+        if (blPath)arrOpinionManage =[[NSMutableArray alloc] initWithContentsOfFile:uniquePath];
+        else arrOpinionManage=[NSMutableArray new];
+        
+        uniquePath =[DocumentsDirectory stringByAppendingPathComponent:PATH_OPINIONHEAR];
+        blPath=[[NSFileManager defaultManager] fileExistsAtPath:uniquePath];
+        if (blPath)arrOpinionHear =[[NSMutableArray alloc] initWithContentsOfFile:uniquePath];
+        else arrOpinionHear=[NSMutableArray new];
         
         [[NSNotificationCenter defaultCenter]addObserver:self
                                                 selector:@selector(handleData:)
@@ -304,21 +332,33 @@
         cell.title.text=docinfo.title;
         cell.time.text=docinfo.time;
         cell.content.text=@"非文本模式公文,请点击进入查看内容";
+        if ([arrOverManage containsObject:docinfo.ID])cell.imageMark.hidden=YES;
+        else cell.imageMark.hidden=NO;
+        
     }else if(tableView.tag==1){
         docinfo=arr1[indexPath.row];
         cell.title.text=docinfo.title;
         cell.time.text=docinfo.time;
         cell.content.text=@"非文本模式公文,请点击进入查看内容";
+        if ([arrOverHear containsObject:docinfo.ID])cell.imageMark.hidden=YES;
+        else cell.imageMark.hidden=NO;
+        
     }else if(tableView.tag==2){
         mailInfo=arr2[indexPath.row];
         cell.title.text=mailInfo.content;
         cell.time.text=mailInfo.senddate;
         cell.content.text=mailInfo.content;
+        if ([arrOpinionManage containsObject:mailInfo.infoid])cell.imageMark.hidden=YES;
+        else cell.imageMark.hidden=NO;
+        
     }else if(tableView.tag==3){
         mailInfo=arr3[indexPath.row];
         cell.title.text=mailInfo.content;
         cell.time.text=mailInfo.senddate;
         cell.content.text=mailInfo.content;
+        if ([arrOpinionHear containsObject:mailInfo.infoid])cell.imageMark.hidden=YES;
+        else cell.imageMark.hidden=NO;
+        
     }
     
     
@@ -370,6 +410,11 @@
         info.arr=arr0;
         self.daibanView.docContentInfo=info;
         [self.daibanView performSegueWithIdentifier:@"daibantooffice" sender:self.daibanView];
+        if (![arrOverManage containsObject:info.ID]) {
+            [arrOverManage addObject:info.ID];
+            [arrOverManage writeToFile:[DocumentsDirectory stringByAppendingPathComponent:PATH_OVERMANAGE] atomically:NO];
+        }
+        
     }else if(tableView.tag==1){
         DocContentInfo *info=arr1[indexPath.row];
         info.type=@"2";
@@ -378,6 +423,11 @@
         info.arr=arr1;
         self.daibanView.docContentInfo=info;
         [self.daibanView performSegueWithIdentifier:@"daibantooffice" sender:self.daibanView];
+        if (![arrOverHear containsObject:info.ID]) {
+            [arrOverHear addObject:info.ID];
+            [arrOverHear writeToFile:[DocumentsDirectory stringByAppendingPathComponent:PATH_OVERHEAR] atomically:NO];
+        }
+        
     }else if(tableView.tag==2){
         PublicMailDetaInfo *info=arr2[indexPath.row];
         info.type=@"0";
@@ -386,6 +436,11 @@
         info.arr=arr2;
         self.daibanView.pubilcMailDetaInfo=info;
         [self.daibanView performSegueWithIdentifier:@"daibantomail" sender:self.daibanView];
+        if (![arrOpinionManage containsObject:info.infoid]) {
+            [arrOpinionManage addObject:info.infoid];
+            [arrOpinionManage writeToFile:[DocumentsDirectory stringByAppendingPathComponent:PATH_OPINIONMANAGE] atomically:NO];
+        }
+        
     }else{
         PublicMailDetaInfo *info=arr3[indexPath.row];
         info.row=indexPath.row;
@@ -395,7 +450,16 @@
         info.arr=arr3;
         self.daibanView.pubilcMailDetaInfo=info;
         [self.daibanView performSegueWithIdentifier:@"daibantomail" sender:self.daibanView];
+        if (![arrOpinionHear containsObject:info.infoid]) {
+            [arrOpinionHear addObject:info.infoid];
+            [arrOpinionHear writeToFile:[DocumentsDirectory stringByAppendingPathComponent:PATH_OPINIONHEAR] atomically:NO];
+        }
+        
+        
     }
+    
+    TemplateCell *cell =(TemplateCell *)[tableView cellForRowAtIndexPath:indexPath];
+    cell.imageMark.hidden=YES;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

@@ -10,7 +10,7 @@
 #import "Constants.h"
 #import "ToolUtils.h"
 #import "TemplateCell.h"
-@implementation OfficeController
+@implementation OfficeController{
 NSString *page0;
 NSString *page1;
 NSString *page2;
@@ -23,11 +23,18 @@ NSInteger arr0Count;
 NSInteger arr1Count;
 NSInteger arr2Count;
 NSInteger arr3Count;
+
+    NSMutableArray * arrOverManage;
+    NSMutableArray * arrEndManage;
+    NSMutableArray * arrOverHear;
+    NSMutableArray * arrEndHear;
+    
 BOOL isUpdata;
 BOOL isUpdata1;
 BOOL isUpdata2;
 BOOL isUpdata3;
-NSInteger selecter;
+    NSInteger selecter;
+}
 
 -(id)init{
     self=[super init];
@@ -41,6 +48,28 @@ NSInteger selecter;
         arr1=[NSMutableArray new];
         arr2=[NSMutableArray new];
         arr3=[NSMutableArray new];
+        
+        
+        NSString *uniquePath=[DocumentsDirectory stringByAppendingPathComponent:PATH_OVERMANAGE];
+        BOOL blPath=[[NSFileManager defaultManager] fileExistsAtPath:uniquePath];
+        if (blPath)arrOverManage =[[NSMutableArray alloc] initWithContentsOfFile:uniquePath];
+        else arrOverManage=[NSMutableArray new];
+        
+        uniquePath =[DocumentsDirectory stringByAppendingPathComponent:PATH_ENDMANAGE];
+        blPath=[[NSFileManager defaultManager] fileExistsAtPath:uniquePath];
+        if (blPath)arrEndManage =[[NSMutableArray alloc] initWithContentsOfFile:uniquePath];
+        else arrEndManage=[NSMutableArray new];
+        
+        uniquePath =[DocumentsDirectory stringByAppendingPathComponent:PATH_OVERHEAR];
+        blPath=[[NSFileManager defaultManager] fileExistsAtPath:uniquePath];
+        if (blPath)arrOverHear =[[NSMutableArray alloc] initWithContentsOfFile:uniquePath];
+        else arrOverHear=[NSMutableArray new];
+        
+        uniquePath =[DocumentsDirectory stringByAppendingPathComponent:PATH_ENDHEAR];
+        blPath=[[NSFileManager defaultManager] fileExistsAtPath:uniquePath];
+        if (blPath)arrEndHear =[[NSMutableArray alloc] initWithContentsOfFile:uniquePath];
+        else arrEndHear=[NSMutableArray new];
+        
         
         [[NSNotificationCenter defaultCenter]addObserver:self
                                                 selector:@selector(handleData:)
@@ -304,17 +333,28 @@ NSInteger selecter;
         cell = [[TemplateCell alloc] initWithStyle:UITableViewCellStyleSubtitle
                                    reuseIdentifier:strCell];
         cell.accessoryType =UITableViewCellAccessoryDisclosureIndicator;
-        cell.imageMark.hidden=NO;
+       
     }
     
     DocContentInfo *info;
     if(tableView.tag==0){
         info=arr0[indexPath.row];
+        if ([arrOverManage containsObject:info.ID]) cell.imageMark.hidden=YES;
+        else cell.imageMark.hidden=NO;
+        
     }else if(tableView.tag==1){
         info=arr1[indexPath.row];
+        if ([arrEndManage containsObject:info.ID]) cell.imageMark.hidden=YES;
+        else cell.imageMark.hidden=NO;
+        
     }else if(tableView.tag==2){
         info=arr2[indexPath.row];
+        if ([arrOverHear containsObject:info.ID]) cell.imageMark.hidden=YES;
+        else cell.imageMark.hidden=NO;
+        
     }else if(tableView.tag==3){
+        if ([arrEndHear containsObject:info.ID]) cell.imageMark.hidden=YES;
+        else cell.imageMark.hidden=NO;
         info=arr3[indexPath.row];
     }
     cell.title.text=info.title;
@@ -368,10 +408,21 @@ NSInteger selecter;
         info.row=indexPath.row;
         info.arr=arr0;
         self.officeView.docContentInfo=info;
+        if (![arrOverManage containsObject:info.ID]) {
+            [arrOverManage addObject:info.ID];
+            [arrOverManage writeToFile:[DocumentsDirectory stringByAppendingPathComponent:PATH_OVERMANAGE] atomically:NO];
+        }
+        
     }else if(tableView.tag==1){
         DocContentInfo *info=arr1[indexPath.row];
         info.type=@"1";
         self.officeView.docContentInfo=info;
+        if (![arrEndManage containsObject:info.ID]) {
+            [arrEndManage addObject:info.ID];
+            [arrEndManage writeToFile:[DocumentsDirectory stringByAppendingPathComponent:PATH_ENDMANAGE] atomically:NO];
+        }
+        
+        
     }else if(tableView.tag==2){
         DocContentInfo *info=arr2[indexPath.row];
         info.listview=tableView;
@@ -379,11 +430,25 @@ NSInteger selecter;
         info.arr=arr2;
         info.type=@"2";
         self.officeView.docContentInfo=info;
+        if (![arrOverHear containsObject:info.ID]) {
+            [arrOverHear addObject:info.ID];
+            [arrOverHear writeToFile:[DocumentsDirectory stringByAppendingPathComponent:PATH_OVERHEAR] atomically:NO];
+        }
+        
     }else{
         DocContentInfo *info=arr3[indexPath.row];
         info.type=@"3";
         self.officeView.docContentInfo=info;
+        if (![arrEndHear containsObject:info.ID]) {
+            [arrEndHear addObject:info.ID];
+            [arrEndHear writeToFile:[DocumentsDirectory stringByAppendingPathComponent:PATH_ENDMANAGE] atomically:NO];
+        }
+        
     }
+    
+    TemplateCell *cell =(TemplateCell *)[tableView cellForRowAtIndexPath:indexPath];
+    cell.imageMark.hidden=YES;
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

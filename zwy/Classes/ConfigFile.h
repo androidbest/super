@@ -18,6 +18,24 @@
 //UIKIT_EXTERN CGAffineTransform CGAffineTransformFromString(NSString *string);
 //UIKIT_EXTERN UIEdgeInsets UIEdgeInsetsFromString(NSString *string);
 
+/*已查看过的“待办公文”路径*/
+#define PATH_OVERMANAGE @"overManage.plist"
+
+/*已查看过的“已办公文”路径*/
+#define PATH_ENDMANAGE @"endManage.plist"
+
+/*已查看过的“待审公文”路径*/
+#define PATH_OVERHEAR @"overHear.plist"
+
+/*已查看过的“已审公文”路径*/
+#define PATH_ENDHEAR @"endHear.plist"
+
+/*已查看过的“意见办理”路径*/
+#define PATH_OPINIONMANAGE @"opinionManage.plist"
+
+/*已查看过的“意见审批”路径*/
+#define PATH_OPINIONHEAR @"opinionHear.plist"
+
 #import <Foundation/Foundation.h>
 @interface ConfigFile : NSObject
 

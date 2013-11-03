@@ -76,6 +76,11 @@
     send.tabBarController.tabBar.hidden=YES;
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.tabBarController.tabBar.hidden=NO;
+}
+
 -(void)segmentAction:(UISegmentedControl *)Seg{}
 
 - (void)didReceiveMemoryWarning

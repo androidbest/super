@@ -24,6 +24,9 @@
     BOOL isUpdata1;
     BOOL isInitData;
     NSInteger selecter;
+    
+    NSMutableArray *arrOpinionManage;
+    NSMutableArray *arrOpinionHear;
 }
 
 -(id)init{
@@ -35,6 +38,17 @@
         isInitData=YES;
         arr0=[NSMutableArray new];
         arr1=[NSMutableArray new];
+        
+        
+        NSString * uniquePath =[DocumentsDirectory stringByAppendingPathComponent:PATH_OPINIONMANAGE];
+        BOOL blPath=[[NSFileManager defaultManager] fileExistsAtPath:uniquePath];
+        if (blPath)arrOpinionManage =[[NSMutableArray alloc] initWithContentsOfFile:uniquePath];
+        else arrOpinionManage=[NSMutableArray new];
+        
+        uniquePath =[DocumentsDirectory stringByAppendingPathComponent:PATH_OPINIONHEAR];
+        blPath=[[NSFileManager defaultManager] fileExistsAtPath:uniquePath];
+        if (blPath)arrOpinionHear =[[NSMutableArray alloc] initWithContentsOfFile:uniquePath];
+        else arrOpinionHear=[NSMutableArray new];
         
         [[NSNotificationCenter defaultCenter]addObserver:self
                                                 selector:@selector(handleData:)
@@ -180,22 +194,23 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString * strCell =@"cell";
-    //    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
-    //    TemplateCell *cell = [storyboard instantiateViewControllerWithIdentifier:@"templateCell"];
     TemplateCell * cell =[tableView dequeueReusableCellWithIdentifier:strCell];
     if (!cell) {
         cell = [[TemplateCell alloc] initWithStyle:UITableViewCellStyleSubtitle
                                    reuseIdentifier:strCell];
         cell.accessoryType =UITableViewCellAccessoryDisclosureIndicator;
-        cell.imageMark.hidden=NO;
     }
     
     PublicMailDetaInfo *info;
     if(tableView.tag==0){
     info=arr0[indexPath.row];
+        if ([arrOpinionManage containsObject:info.infoid])cell.imageMark.hidden=YES;
+        else cell.imageMark.hidden=NO;
         
     }else{
     info=arr1[indexPath.row];
+        if ([arrOpinionHear containsObject:info.infoid])cell.imageMark.hidden=YES;
+        else cell.imageMark.hidden=NO;
     }
     cell.title.text=info.content;
     cell.time.text=info.senddate;
@@ -240,6 +255,12 @@
         info.listview=tableView;
         info.arr=arr0;
         self.mailView.info=info;
+        if (![arrOpinionManage containsObject:info.infoid]) {
+            [arrOpinionManage addObject:info.infoid];
+            [arrOpinionManage writeToFile:[DocumentsDirectory stringByAppendingString:PATH_OPINIONMANAGE] atomically:NO];
+        }
+        
+        
     }else{
         PublicMailDetaInfo *info=arr1[indexPath.row];
         info.row=indexPath.row;
@@ -248,7 +269,15 @@
         info.listview=tableView;
         info.arr=arr1;
         self.mailView.info=info;
+        if (![arrOpinionHear containsObject:info.infoid]) {
+            [arrOpinionHear addObject:info.infoid];
+            [arrOpinionHear writeToFile:[DocumentsDirectory stringByAppendingPathComponent:PATH_OPINIONHEAR] atomically:NO];
+        }
+        
     }
+    
+    TemplateCell *cell =(TemplateCell *)[tableView cellForRowAtIndexPath:indexPath];
+    cell.imageMark.hidden=YES;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

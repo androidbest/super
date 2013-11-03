@@ -81,8 +81,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString * strCell =@"cell";
-//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
-//    TemplateCell *cell = [storyboard instantiateViewControllerWithIdentifier:@"templateCell"];
     TemplateCell * cell =[tableView dequeueReusableCellWithIdentifier:strCell];
     if (!cell) {
         cell = [[TemplateCell alloc] initWithStyle:UITableViewCellStyleSubtitle
@@ -94,6 +92,10 @@
     cell.title.text=info.title;
     cell.time.text=info.publicdate;
     cell.content.text=info.content;
+    
+    if ([arrNoticeEnd containsObject:info.infoid]) cell.imageMark.hidden=YES;
+    else cell.imageMark.hidden=NO;
+    
     return cell;
 }
 
@@ -111,6 +113,13 @@
     [self initBackBarButtonItem:self.noticeView];
     self.noticeView.noticeInfo=arr[indexPath.row];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    TemplateCell *cell = (TemplateCell *)[tableView cellForRowAtIndexPath:indexPath];
+    cell.imageMark.hidden=YES;
+    if (![arrNoticeEnd containsObject:[arr[indexPath.row] infoid]]) {
+        [arrNoticeEnd addObject:[arr[indexPath.row] infoid]];
+        [arrNoticeEnd writeToFile:[DocumentsDirectory stringByAppendingPathComponent:PATH_NOTICE] atomically:NO];
+    } 
 }
 
 /*上拉加载*/
