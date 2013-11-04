@@ -100,6 +100,7 @@
 
 
 - (void)viewDidLayoutSubviews{
+    [super viewDidLayoutSubviews];
     if ([((MeettingController *)self.controller).MeetType isEqualToString:@"0"]){
         CGRect rect=_viewPeople.frame;
         rect.origin.y-=60;
@@ -109,13 +110,19 @@
         CGRect tableview=_tableViewPeople.frame;
         tableview.size.height+=60;
         _tableViewPeople.frame=tableview;
+        [self performSelector:@selector(setTaleViewframe) withObject:self afterDelay:0.0];
     }
+}
+
+- (void)setTaleViewframe{
+    CGRect tableview=_tableViewPeople.frame;
+    tableview.size.height+=60;
+    _tableViewPeople.frame=tableview;
 }
 
 
 - (void)viewWillLayoutSubviews{
-   
-
+ 
 }
 
 - (void)didReceiveMemoryWarning
