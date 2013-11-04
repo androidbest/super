@@ -12,11 +12,14 @@
 
 @end
 
-@implementation MeettingView
+@implementation MeettingView{
+    BOOL isStart;
+}
 
 -(id)initWithCoder:(NSCoder *)aDecoder{
     self=[super initWithCoder:aDecoder];
     if(self){
+        isStart=YES;
         MeettingController *meetting=[MeettingController new];
         meetting.meettingView=self;
         self.controller=meetting;
@@ -60,22 +63,26 @@
     _meetting_time.hidden=YES;
     _btnTime.hidden=YES;
     _btnDate.hidden=YES;
+    _statusLabel.hidden=YES;
     
-    NSDateFormatter *formatter1 = [[NSDateFormatter alloc]init];
-    [formatter1 setDateFormat:@"yyyy/MM/dd HH:mm"];
-    NSString * dateText1 = [formatter1 stringFromDate:[NSDate date]];
-    _atonce_time.text=dateText1;
     
-    _nsTimer= [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(scrollTimer) userInfo:nil repeats:YES];
-     
+    
+    
+//    NSDateFormatter *formatter1 = [[NSDateFormatter alloc]init];
+//    [formatter1 setDateFormat:@"yyyy/MM/dd HH:mm"];
+//    NSString * dateText1 = [formatter1 stringFromDate:[NSDate date]];
+//    _atonce_time.text=dateText1;
+//    
+//    _nsTimer= [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(scrollTimer) userInfo:nil repeats:YES];
+    
 }
 
--(void)scrollTimer{
-    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"yyyy/MM/dd HH:mm"];
-    NSString * dateText = [formatter stringFromDate:[NSDate date]];
-    _atonce_time.text=dateText;
-}
+//-(void)scrollTimer{
+//    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+//    [formatter setDateFormat:@"yyyy/MM/dd HH:mm"];
+//    NSString * dateText = [formatter stringFromDate:[NSDate date]];
+//    _atonce_time.text=dateText;
+//}
 
 
 - (void)segmentAction:(id)sender{
@@ -92,14 +99,22 @@
 }
 
 
-
 - (void)viewDidLayoutSubviews{
-
+    if ([((MeettingController *)self.controller).MeetType isEqualToString:@"0"]){
+        CGRect rect=_viewPeople.frame;
+        rect.origin.y-=60;
+        rect.size.height+=60;
+        _viewPeople.frame=rect;
+        
+        CGRect tableview=_tableViewPeople.frame;
+        tableview.size.height+=60;
+        _tableViewPeople.frame=tableview;
+    }
 }
 
 
 - (void)viewWillLayoutSubviews{
-
+   
 
 }
 

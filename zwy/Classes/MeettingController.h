@@ -12,4 +12,5 @@
 @interface MeettingController : BaseController<ActionSheetViewDetaSource>
 @property (strong ,nonatomic)MeettingView * meettingView;
 @property (strong ,nonatomic)NSMutableArray * arrDidAllPeople;
+@property (strong ,nonatomic)NSString * MeetType;
 @end

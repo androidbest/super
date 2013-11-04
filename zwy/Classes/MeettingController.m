@@ -17,7 +17,6 @@
  NSMutableArray * arrAllNumber;
     long long KTime;
     NSInteger timeType;
-    NSString *MeetType;
     NSString * strAllPeopleName;
     NSString * strAllPeoleTel;
     NSString * strAllGroupID;
@@ -38,7 +37,7 @@
 - (id)init{
     self =[super init];
     if (self) {
-        MeetType=@"0";
+        _MeetType=@"0";
         strAllGroupID=@"";
         strAllPeoleTel=@"";
         strAllPeopleName=@"";
@@ -84,7 +83,7 @@
 #pragma mark -接受选择通讯录传回来的数据
 - (void)returnDidAddress:(NSArray *)arr{
     
-    if([MeetType isEqualToString:@"0"]){
+    if([_MeetType isEqualToString:@"0"]){
         NSObject *obj;
         if (arr.count!=0) {
             for (int i =0; i<arr.count; i++) {
@@ -134,7 +133,7 @@
     
     
     
-    if([MeetType isEqualToString:@"0"]){
+    if([_MeetType isEqualToString:@"0"]){
         strAllPeopleName =@"";
         strAllPeoleTel =@"";
         strAllGroupID =@"";
@@ -259,7 +258,7 @@
 /*选择发送方式*/
 -(void)segmentAction:(UISegmentedControl *)Seg{
     NSInteger Index = Seg.selectedSegmentIndex;
-    MeetType=[NSString stringWithFormat:@"%@",[ToolUtils numToString:Index]];
+    _MeetType=[NSString stringWithFormat:@"%@",[ToolUtils numToString:Index]];
     if (Index==0) {
         _meettingView.btnDate.hidden=YES;
         _meettingView.btnTime.hidden=YES;
@@ -269,12 +268,17 @@
         self.meettingView.btnTime.hidden=YES;
         self.meettingView.btnDate.hidden=YES;
         self.meettingView.atonce_time.hidden=NO;
+        self.meettingView.statusLabel.hidden=YES;
+        CGRect rect=self.meettingView.viewPeople.frame;
+        rect.origin.y-=60;
+        rect.size.height+=60;
+        self.meettingView.viewPeople.frame=rect;
         [self.meettingView.tableViewPeople reloadData];
         
-        [self.meettingView.nsTimer setFireDate:[NSDate distantPast]];
+//        [self.meettingView.nsTimer setFireDate:[NSDate distantPast]];
         self.meettingView.statusLabel.text=@"当前时间:";
     }else{
-        [self.meettingView.nsTimer setFireDate:[NSDate distantFuture]];
+//        [self.meettingView.nsTimer setFireDate:[NSDate distantFuture]];
         _meettingView.btnDate.hidden=NO;
         _meettingView.btnTime.hidden=NO;
         self.meettingView.meetting_date.hidden=NO;
@@ -282,7 +286,13 @@
         self.meettingView.btnTime.hidden=NO;
         self.meettingView.btnDate.hidden=NO;
         self.meettingView.atonce_time.hidden=YES;
+        self.meettingView.statusLabel.hidden=NO;
         self.meettingView.statusLabel.text=@"预约时间";
+        
+        CGRect rect=self.meettingView.viewPeople.frame;
+        rect.origin.y+=60;
+        rect.size.height-=60;
+        self.meettingView.viewPeople.frame=rect;
         [self.meettingView.tableViewPeople reloadData];
     }
 }
@@ -308,7 +318,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
 
     
-    if([MeetType isEqualToString:@"0"]){
+    if([_MeetType isEqualToString:@"0"]){
         
         if (_arrDidAllPeople.count==0)tableView.separatorStyle=NO;
         else tableView.separatorStyle=YES;
@@ -329,7 +339,7 @@
         cell.detailTextLabel.textColor =[UIColor grayColor];
     }
     
-    if([MeetType isEqualToString:@"0"]){
+    if([_MeetType isEqualToString:@"0"]){
         NSObject * obj =_arrDidAllPeople[indexPath.row];
         if ([obj isKindOfClass:[PeopelInfo class]]) {
             cell.textLabel.text=[(PeopelInfo *)obj Name];
@@ -372,7 +382,7 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
-        if([MeetType isEqualToString:@"0"]){
+        if([_MeetType isEqualToString:@"0"]){
             [_arrDidAllPeople removeObjectAtIndex:indexPath.row];
             [arrAllNumber removeObjectAtIndex:indexPath.row];
             [tableView beginUpdates];

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
     </dependencies>
     <scenes>
         <!--Login View-->
@@ -4089,39 +4089,17 @@
         <image name="about.png" width="470" height="533"/>
         <image name="adress_icon.png" width="100" height="100"/>
         <image name="btn_Call.png" width="44" height="59"/>
-        <image name="btn_Call.png" width="44" height="59"/>
         <image name="btn_SMS.png" width="47" height="49"/>
-        <image name="btn_SMS.png" width="47" height="49"/>
-        <image name="btn_addPeople.png" width="50" height="50"/>
-        <image name="btn_addPeople.png" width="50" height="50"/>
-        <image name="btn_addPeople.png" width="50" height="50"/>
-        <image name="btn_addPeople.png" width="50" height="50"/>
-        <image name="btn_addPeople.png" width="50" height="50"/>
         <image name="btn_addPeople.png" width="50" height="50"/>
         <image name="btn_clear.png" width="62" height="47"/>
         <image name="btn_clear_people.png" width="51" height="51"/>
         <image name="btn_hidden_keybord.png" width="66" height="34"/>
         <image name="btn_numbers.png" width="212" height="100"/>
-        <image name="btn_numbers.png" width="212" height="100"/>
-        <image name="btn_numbers.png" width="212" height="100"/>
-        <image name="btn_numbers.png" width="212" height="100"/>
-        <image name="btn_numbers.png" width="212" height="100"/>
-        <image name="btn_numbers.png" width="212" height="100"/>
-        <image name="btn_numbers.png" width="212" height="100"/>
-        <image name="btn_numbers.png" width="212" height="100"/>
-        <image name="btn_numbers.png" width="212" height="100"/>
-        <image name="btn_numbers.png" width="212" height="100"/>
-        <image name="btn_numbers.png" width="212" height="100"/>
-        <image name="btn_numbers.png" width="212" height="100"/>
         <image name="btn_uncheck.png" width="40" height="40"/>
         <image name="docselected.png" width="44" height="44"/>
         <image name="docunselect.png" width="44" height="44"/>
         <image name="images_button.png" width="48" height="27"/>
-        <image name="images_button.png" width="48" height="27"/>
         <image name="information_icon.png" width="102" height="101"/>
-        <image name="list_NoData.jpg" width="453" height="342"/>
-        <image name="list_NoData.jpg" width="453" height="342"/>
-        <image name="list_NoData.jpg" width="453" height="342"/>
         <image name="list_NoData.jpg" width="453" height="342"/>
         <image name="mail_icon.png" width="51" height="47"/>
         <image name="meetting_date.png" width="37" height="47"/>
@@ -4129,15 +4107,9 @@
         <image name="meetting_time.png" width="50" height="50"/>
         <image name="navigation_back_out.png" width="24" height="41"/>
         <image name="navigation_back_over.png" width="25" height="41"/>
-        <image name="navigation_back_over.png" width="25" height="41"/>
-        <image name="navigation_back_over.png" width="25" height="41"/>
-        <image name="navigation_back_over.png" width="25" height="41"/>
-        <image name="navigation_back_over.png" width="25" height="41"/>
-        <image name="navigation_back_over.png" width="25" height="41"/>
         <image name="notice_icon.png" width="46" height="55"/>
         <image name="office_icon.png" width="102" height="81"/>
         <image name="sms_icon.png" width="100" height="72"/>
-        <image name="sms_template.png" width="43" height="42"/>
         <image name="sms_template.png" width="43" height="42"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

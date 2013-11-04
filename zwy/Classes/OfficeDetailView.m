@@ -200,6 +200,20 @@
 _scrollerContent.contentSize =CGSizeMake(320, 460);
 }
 
+- (void)viewDidLayoutSubviews{
+    if ([((MeettingController *)self.controller).MeetType isEqualToString:@"0"]){
+        CGRect rect=_viewPeople.frame;
+        rect.origin.y-=60;
+        rect.size.height+=60;
+        _viewPeople.frame=rect;
+        
+        CGRect tableview=_tableViewPeople.frame;
+        tableview.size.height+=60;
+        _tableViewPeople.frame=tableview;
+    }
+}
+
+
 -(void)jumpDocFlow{}
 
 -(void)optionAccessory{}
