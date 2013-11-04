@@ -196,7 +196,6 @@ local void free_linkedlist(ll)
     ll->first_block = ll->last_block = NULL;
 }
 
-
 local int add_data_in_datablock(ll,buf,len)
     linkedlist_data* ll;
     const void* buf;

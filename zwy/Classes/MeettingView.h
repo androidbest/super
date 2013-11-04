@@ -19,5 +19,6 @@
 @property (strong, nonatomic) IBOutlet UIImageView *meetting_date;
 @property (strong, nonatomic) IBOutlet UIImageView *meetting_time;
 @property (strong, nonatomic) IBOutlet UILabel *atonce_time;
+@property (strong, nonatomic) IBOutlet UIView *viewPeople;
 @property (strong, nonatomic)  NSTimer *nsTimer;
 @end
