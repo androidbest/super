@@ -38,9 +38,18 @@
         _info=((DaiBanView *)_data).docContentInfo;
     }
     
+    
+    
+    
+    
+    
+    
+    
+   
+    
     if([_info.type isEqualToString:@"0"]){
     self.title=@"待 办 公 文";
-        _banli.text=@"办理意见:";
+        
         _noagree.hidden=YES;
         _agree.hidden=YES;
         _noargreelable.hidden=YES;
@@ -48,12 +57,27 @@
         _lable1.hidden=YES;
         [_textContent setText:@"请输入内容"];
         [_textContent setTextColor:[UIColor grayColor]];
+        _addPerson.hidden=YES;
+        _lable2.hidden=YES;
         
         
+        _banli=[[UILabel alloc] initWithFrame:CGRectMake(10,180,100,21)];
+        _banli.font=[UIFont systemFontOfSize:16];
+        _banli.textAlignment=NSTextAlignmentLeft;
+        _banli.backgroundColor=[UIColor clearColor];
+        _banli.text=@"办理意见:";
+        
+        _textContent=[[UITextView alloc] initWithFrame:CGRectMake(10,202,300,140)];
+        _textContent.text=@"请输入内容";
+        _textContent.font=[UIFont systemFontOfSize:15];
+        _textContent.textColor=[UIColor lightGrayColor];
+        
+        [_scrollerContent addSubview:_banli];
+        [_scrollerContent addSubview:_textContent];
     }else if([_info.type isEqualToString:@"1"]){
         _banli.hidden=YES;
         _nextstep.hidden=YES;
-        _content.hidden=YES;
+        _textContent.hidden=YES;
         _selectHandle.hidden=YES;
         _banliLine.hidden=YES;
         _noagree.hidden=YES;
@@ -66,16 +90,65 @@
         _lable1.hidden=YES;
         _lable2.hidden=YES;
     self.title=@"已 办 公 文";
+        _imageView.hidden=YES;
     }else if([_info.type isEqualToString:@"2"]){
     self.title=@"待 审 公 文";
+        
+        _agree=[UIButton buttonWithType:UIButtonTypeCustom];
+        _agree.frame =CGRectMake(10, 170, 20, 20);
+        [_agree setBackgroundImage:[UIImage imageNamed:@"docselected"] forState:UIControlStateNormal];
+        _agree.tag=1;
+        [_agree addTarget:self.controller action:@selector(selectAudit:) forControlEvents:UIControlEventTouchUpInside];
+        
+        _noagree=[UIButton buttonWithType:UIButtonTypeCustom];
+        _noagree.frame =CGRectMake(85, 170, 20, 20);
+        [_noagree setBackgroundImage:[UIImage imageNamed:@"docunselect"] forState:UIControlStateNormal];
+        _noagree.tag=2;
+        [_noagree addTarget:self.controller action:@selector(selectAudit:) forControlEvents:UIControlEventTouchUpInside];
+        
+        _agreelabel=[[UILabel alloc] initWithFrame:CGRectMake(37,170,54,21)];
+        _agreelabel.text=@"同意";
+        _agreelabel.font=[UIFont systemFontOfSize:16];
+        _agreelabel.textAlignment=NSTextAlignmentLeft;
+        _agreelabel.backgroundColor=[UIColor clearColor];
+        
+        _noargreelable=[[UILabel alloc] initWithFrame:CGRectMake(113,170,54,21)];
+        _noargreelable.text=@"不同意";
+        _noargreelable.font=[UIFont systemFontOfSize:16];
+        _noargreelable.textAlignment=NSTextAlignmentLeft;
+        _noargreelable.backgroundColor=[UIColor clearColor];
+        
+        _banli=[[UILabel alloc] initWithFrame:CGRectMake(10,209,100,21)];
+        _banli.font=[UIFont systemFontOfSize:16];
+        _banli.textAlignment=NSTextAlignmentLeft;
+        _banli.backgroundColor=[UIColor clearColor];
         _banli.text=@"审核意见:";
-        [_textContent setText:@"请输入内容"];
-        [_textContent setTextColor:[UIColor grayColor]];
+        
+        _lable1=[[UILabel alloc] initWithFrame:CGRectMake(10,205,300,1)];
+        _lable1.alpha=0.5;
+        _lable1.backgroundColor=[UIColor lightGrayColor];
+        
+        _textContent=[[UITextView alloc] initWithFrame:CGRectMake(10,230,300,140)];
+        _textContent.text=@"请输入内容";
+        _textContent.font=[UIFont systemFontOfSize:15];
+        _textContent.textColor=[UIColor lightGrayColor];
+        
+        _addPerson.hidden=YES;
+        _lable1.hidden=YES;
+        
+        [_scrollerContent addSubview:_banli];
+        [_scrollerContent addSubview:_textContent];
+        [_scrollerContent addSubview:_agree];
+        [_scrollerContent addSubview:_noagree];
+        [_scrollerContent addSubview:_agreelabel];
+        [_scrollerContent addSubview:_noargreelable];
+        [_scrollerContent addSubview:_lable1];
     }else{
     self.title=@"已 审 公 文";
+        _imageView.hidden=YES;
         _banli.hidden=YES;
         _nextstep.hidden=YES;
-        _content.hidden=YES;
+        _textContent.hidden=YES;
         _selectHandle.hidden=YES;
         _banliLine.hidden=YES;
         _noagree.hidden=YES;
@@ -102,7 +175,6 @@
     _titleLab.backgroundColor=[UIColor clearColor];
     _titleLab.textAlignment=NSTextAlignmentCenter;
     [view addSubview:_titleLab];
-    
     
     //发送者
     _sender =[[UILabel alloc] initWithFrame:CGRectMake(0,25,135,15)];
@@ -162,9 +234,11 @@
 
     UITapGestureRecognizer * tap =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hiddenKeybord)];
     [_scrollerContent addGestureRecognizer:tap];
+    
+    
 }
 
--(void)selectAudit:(UIButton*)btn{}
+-(void)selectAudit:(UIButton *)btn{}
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     UIViewController *send=segue.destinationViewController;
@@ -190,9 +264,8 @@
   [_textContent resignFirstResponder];
 }
 
-
 - (void)viewDidAppear:(BOOL)animated{
-    [self performSelector:@selector(scrollerViewScrollingSize) withObject:self afterDelay:0.1];
+   
     
 }
 
@@ -201,18 +274,8 @@ _scrollerContent.contentSize =CGSizeMake(320, 460);
 }
 
 - (void)viewDidLayoutSubviews{
-//    if ([((MeettingController *)self.controller).MeetType isEqualToString:@"0"]){
-//        CGRect rect=_viewPeople.frame;
-//        rect.origin.y-=60;
-//        rect.size.height+=60;
-//        _viewPeople.frame=rect;
-//        
-//        CGRect tableview=_tableViewPeople.frame;
-//        tableview.size.height+=60;
-//        _tableViewPeople.frame=tableview;
-//    }
+_scrollerContent.contentSize =CGSizeMake(320, 400);
 }
-
 
 -(void)jumpDocFlow{}
 

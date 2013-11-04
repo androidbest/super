@@ -21,4 +21,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *atonce_time;
 @property (strong, nonatomic) IBOutlet UIView *viewPeople;
 @property (strong, nonatomic)  NSTimer *nsTimer;
+
+- (void)setTaleViewframe;
 @end

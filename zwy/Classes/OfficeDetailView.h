@@ -14,6 +14,7 @@
 @property (strong, nonatomic)  BaseView *data;
 @property (strong, nonatomic) IBOutlet UINavigationBar *navigationBar;
 @property (strong, nonatomic) IBOutlet UIButton *docText;
+@property (strong, nonatomic) IBOutlet UIImageView *imageView;
 @property (strong, nonatomic) IBOutlet UIButton *accessory;
 @property (strong, nonatomic) IBOutlet UIButton *docFlow;
 @property (strong, nonatomic) IBOutlet UIButton *selectHandle;

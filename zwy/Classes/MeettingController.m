@@ -277,6 +277,13 @@
         
 //        [self.meettingView.nsTimer setFireDate:[NSDate distantPast]];
         self.meettingView.statusLabel.text=@"当前时间:";
+        
+        CGRect tableview=self.meettingView.tableViewPeople.frame;
+        tableview.size.height+=60;
+        self.meettingView.tableViewPeople.frame=tableview;
+        
+        
+       
     }else{
 //        [self.meettingView.nsTimer setFireDate:[NSDate distantFuture]];
         _meettingView.btnDate.hidden=NO;
@@ -294,6 +301,10 @@
         rect.size.height-=60;
         self.meettingView.viewPeople.frame=rect;
         [self.meettingView.tableViewPeople reloadData];
+        
+        CGRect tableview=self.meettingView.tableViewPeople.frame;
+        tableview.size.height-=60;
+        self.meettingView.tableViewPeople.frame=tableview;
     }
 }
 

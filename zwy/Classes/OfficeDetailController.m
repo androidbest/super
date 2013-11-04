@@ -205,7 +205,7 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    
+    NSString *type=self.officedetailView.info.type;
     if (buttonIndex==0) {
        status=@"0";
         [self.officedetailView.selectHandle setTitle:@"办理结束" forState:UIControlStateNormal];
@@ -217,18 +217,134 @@
         strAllPeopleID=@"";
         strAllpeopleName=@"";
         [_arrDidAllPeople removeAllObjects];
+        self.officedetailView.addPerson.hidden=YES;
+        self.officedetailView.lable2.hidden=YES;
+        if([type isEqualToString:@"0"]){
+            CGRect banli=self.officedetailView.banli.frame;
+            banli.origin.y=180;
+            self.officedetailView.banli.frame=banli;
+            CGRect text=self.officedetailView.textContent.frame;
+            text.origin.y=202;
+            self.officedetailView.textContent.frame=text;
+        }else if([type isEqualToString:@"2"]){
+            
+            self.officedetailView.lable1.hidden=YES;
+            
+            CGRect banli=self.officedetailView.banli.frame;
+            banli.origin.y=209;
+            self.officedetailView.banli.frame=banli;
+            CGRect text=self.officedetailView.textContent.frame;
+            text.origin.y=230;
+            self.officedetailView.textContent.frame=text;
+            
+            
+            CGRect argBtn=self.officedetailView.agree.frame;
+            argBtn.origin.y=170;
+            self.officedetailView.agree.frame=argBtn;
+            CGRect noagreeBtn=self.officedetailView.noagree.frame;
+            noagreeBtn.origin.y=170;
+            self.officedetailView.noagree.frame=noagreeBtn;
+            CGRect _agreelabel=self.officedetailView.agreelabel.frame;
+            _agreelabel.origin.y=170;
+            self.officedetailView.agreelabel.frame=_agreelabel;
+            CGRect _noargreelable=self.officedetailView.noargreelable.frame;
+            _noargreelable.origin.y=170;
+            self.officedetailView.noargreelable.frame=_noargreelable;
+            CGRect _lable1=self.officedetailView.lable1.frame;
+            _lable1.origin.y=205;
+            self.officedetailView.lable1.frame=_lable1;
+        }
     }
     else if (buttonIndex==1) {
        status=@"1";
         [self.officedetailView.selectHandle setTitle:@"下一步办理人" forState:UIControlStateNormal];
         [self.officedetailView.addPerson setEnabled:YES];
         [self.officedetailView.selecter setEnabled:YES];
+        
+        
+        self.officedetailView.addPerson.hidden=NO;
+        self.officedetailView.lable2.hidden=NO;
+        
+        if([type isEqualToString:@"0"]){
+            CGRect banli=self.officedetailView.banli.frame;
+            banli.origin.y=220;
+            self.officedetailView.banli.frame=banli;
+            CGRect text=self.officedetailView.textContent.frame;
+            text.origin.y=242;
+            self.officedetailView.textContent.frame=text;
+            
+        }else if([type isEqualToString:@"2"]){
+            self.officedetailView.lable1.hidden=NO;
+            CGRect banli=self.officedetailView.banli.frame;
+            banli.origin.y=249;
+            self.officedetailView.banli.frame=banli;
+            CGRect text=self.officedetailView.textContent.frame;
+            text.origin.y=270;
+            self.officedetailView.textContent.frame=text;
+            
+            
+            CGRect argBtn=self.officedetailView.agree.frame;
+            argBtn.origin.y=210;
+            self.officedetailView.agree.frame=argBtn;
+            CGRect noagreeBtn=self.officedetailView.noagree.frame;
+            noagreeBtn.origin.y=210;
+            self.officedetailView.noagree.frame=noagreeBtn;
+            CGRect _agreelabel=self.officedetailView.agreelabel.frame;
+            _agreelabel.origin.y=210;
+            self.officedetailView.agreelabel.frame=_agreelabel;
+            CGRect _noargreelable=self.officedetailView.noargreelable.frame;
+            _noargreelable.origin.y=210;
+            self.officedetailView.noargreelable.frame=_noargreelable;
+            CGRect _lable1=self.officedetailView.lable1.frame;
+            _lable1.origin.y=240;
+            self.officedetailView.lable1.frame=_lable1;
+            
+        }
+        
     }
     else if (buttonIndex==2) {
        status=@"2";
         [self.officedetailView.selectHandle setTitle:@"报领导审批" forState:UIControlStateNormal];
         [self.officedetailView.addPerson setEnabled:YES];
         [self.officedetailView.selecter setEnabled:YES];
+        self.officedetailView.addPerson.hidden=NO;
+        self.officedetailView.lable2.hidden=NO;
+        
+        if([type isEqualToString:@"0"]){
+            CGRect banli=self.officedetailView.banli.frame;
+            banli.origin.y=220;
+            self.officedetailView.banli.frame=banli;
+            CGRect text=self.officedetailView.textContent.frame;
+            text.origin.y=242;
+            self.officedetailView.textContent.frame=text;
+            
+        }else if([type isEqualToString:@"2"]){
+            self.officedetailView.lable1.hidden=NO;
+            CGRect banli=self.officedetailView.banli.frame;
+            banli.origin.y=249;
+            self.officedetailView.banli.frame=banli;
+            CGRect text=self.officedetailView.textContent.frame;
+            text.origin.y=270;
+            self.officedetailView.textContent.frame=text;
+            
+            
+            CGRect argBtn=self.officedetailView.agree.frame;
+            argBtn.origin.y=210;
+            self.officedetailView.agree.frame=argBtn;
+            CGRect noagreeBtn=self.officedetailView.noagree.frame;
+            noagreeBtn.origin.y=210;
+            self.officedetailView.noagree.frame=noagreeBtn;
+            CGRect _agreelabel=self.officedetailView.agreelabel.frame;
+            _agreelabel.origin.y=210;
+            self.officedetailView.agreelabel.frame=_agreelabel;
+            CGRect _noargreelable=self.officedetailView.noargreelable.frame;
+            _noargreelable.origin.y=210;
+            self.officedetailView.noargreelable.frame=_noargreelable;
+            CGRect _lable1=self.officedetailView.lable1.frame;
+            _lable1.origin.y=240;
+            self.officedetailView.lable1.frame=_lable1;
+            
+        }
     }
 }
 
