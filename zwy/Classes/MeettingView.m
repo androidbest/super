@@ -67,7 +67,7 @@
     _atonce_time.text=dateText1;
     
     _nsTimer= [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(scrollTimer) userInfo:nil repeats:YES];
-    
+     
 }
 
 -(void)scrollTimer{
@@ -86,10 +86,26 @@
 
 }
 
+
+- (void)viewDidAppear:(BOOL)animated{
+
+}
+
+
+
+- (void)viewDidLayoutSubviews{
+
+}
+
+
+- (void)viewWillLayoutSubviews{
+
+
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 @end

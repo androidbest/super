@@ -160,6 +160,8 @@
     //内容长度
     _textContent.delegate=self.controller;
 
+    UITapGestureRecognizer * tap =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hiddenKeybord)];
+    [_scrollerContent addGestureRecognizer:tap];
 }
 
 -(void)selectAudit:(UIButton*)btn{}
@@ -184,6 +186,19 @@
     [_textContent resignFirstResponder];
 }
 
+- (void)hiddenKeybord{
+  [_textContent resignFirstResponder];
+}
+
+
+- (void)viewDidAppear:(BOOL)animated{
+    [self performSelector:@selector(scrollerViewScrollingSize) withObject:self afterDelay:0.1];
+    
+}
+
+- (void)scrollerViewScrollingSize{
+_scrollerContent.contentSize =CGSizeMake(320, 460);
+}
 
 -(void)jumpDocFlow{}
 

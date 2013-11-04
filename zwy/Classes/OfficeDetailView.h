@@ -37,4 +37,5 @@
 @property (strong, nonatomic)  UILabel *sender;
 @property (strong, nonatomic) IBOutlet UIButton *okbtn;
 @property (strong, nonatomic)  DocContentInfo *detailInfo;
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollerContent;
 @end
