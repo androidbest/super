@@ -8,8 +8,6 @@
 
 #import "MoreController.h"
 #import "ToolUtils.h"
-#import "AAActivity.h"
-#import  "AAActivityAction.h"
 #import "WXApi.h"
 #import "WXApiObject.h"
 #import "ActionSheetWeibo.h"
