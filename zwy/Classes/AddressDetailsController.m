@@ -77,6 +77,10 @@
     
     //刷新通讯录
     [_detailsView.pushAddressBook updateAddressBook];
+    _detailsView.dicAddressData =NULL;
+    _detailsView.dicAddressData =@{@"name":_detailsView.textName.text,
+                                   @"tel":_detailsView.textTel.text};
+    
 }
 
 #pragma mark - 修改号码
@@ -107,11 +111,25 @@
         if (isSet) {
             /*处理多值属性*/
             ABMutableMultiValueRef multi =ABMultiValueCreateMutable(kABMultiStringPropertyType);
-            bool didadd = ABMultiValueAddValueAndLabel(multi, (__bridge CFTypeRef)(mobile), kABPersonPhoneIPhoneLabel, NULL);
-            ABRecordSetValue(people, kABPersonPhoneProperty, multi, NULL);
-            if (!didadd) {
-                NSLog(@"Error");
+             ABMultiValueRef ALLTEL = ABRecordCopyValue(people, kABPersonPhoneProperty);
+            NSString *Tel;
+            
+            /*保存原有的多个号码，只修改最后一个多值号码*/
+            for(int i = 0 ;i < ABMultiValueGetCount(ALLTEL)-1; i++)
+            {
+                Tel = (__bridge NSString *)ABMultiValueCopyValueAtIndex(ALLTEL, i);
+                Tel = [Tel stringByReplacingOccurrencesOfString:@"(" withString:@""];
+                Tel = [Tel stringByReplacingOccurrencesOfString:@")" withString:@""];
+                Tel = [Tel stringByReplacingOccurrencesOfString:@"-" withString:@""];
+                Tel = [Tel stringByReplacingOccurrencesOfString:@" " withString:@""];
+                ABMultiValueInsertValueAndLabelAtIndex(multi, (__bridge CFTypeRef)(Tel), kABPersonPhoneMobileLabel, i, NULL);
             }
+            if (ABMultiValueGetCount(ALLTEL)!=0) {
+                ABMultiValueInsertValueAndLabelAtIndex(multi, (__bridge CFTypeRef)(mobile), kABPersonPhoneMobileLabel, ABMultiValueGetCount(ALLTEL)-1, NULL);/*修改最后一个号码*/
+                ABRecordSetValue(people, kABPersonPhoneProperty, multi, NULL);
+            }
+          //  bool didadd = ABMultiValueAddValueAndLabel(multi, (__bridge CFTypeRef)(mobile), kABPersonPhoneIPhoneLabel, NULL);
+
         }
     }
     // 保存修改的通讯录对象

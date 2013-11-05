@@ -34,31 +34,63 @@
 //创建一条空的联系人
     ABRecordRef record = ABPersonCreate();
     CFErrorRef error;
-//设置联系人的名字
-    ABRecordSetValue(record, kABPersonFirstNameProperty, (__bridge CFTypeRef)name, &error);
-    // 添加联系人电话号码以及该号码对应的标签名
-    ABMutableMultiValueRef multi = ABMultiValueCreateMutable(kABPersonPhoneProperty);
-    ABMultiValueAddValueAndLabel(multi, (__bridge CFTypeRef)(num), kABPersonPhoneIPhoneLabel, NULL);
-    ABRecordSetValue(record, kABPersonPhoneProperty, multi, &error);
-
+    
+    
     ABAddressBookRef addressBook = nil;
-//如果为iOS6以上系统，需要等待用户确认是否允许访问通讯录。
+    //如果为iOS6以上系统，需要等待用户确认是否允许访问通讯录。
     if ([[UIDevice currentDevice].systemVersion floatValue] >= 6.0)
     {
         addressBook = ABAddressBookCreateWithOptions(NULL, NULL);
         //等待同意后向下执行
         dispatch_semaphore_t sema = dispatch_semaphore_create(0);
         ABAddressBookRequestAccessWithCompletion(addressBook, ^(bool granted, CFErrorRef error)
-        {
-            dispatch_semaphore_signal(sema);
-        });
+                                                 {
+                                                     dispatch_semaphore_signal(sema);
+                                                 });
         dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
-
+        
     }
     else
     {
         addressBook =  ABAddressBookCreateWithOptions(NULL, NULL);
     }
+    
+    NSUInteger NameNum=0;
+    NSArray *array = (__bridge NSArray *)ABAddressBookCopyArrayOfAllPeople(addressBook);
+    for (int i=0; i<array.count; i++) {
+        ABRecordRef aRecord=(__bridge ABRecordRef)([array objectAtIndex:i]);
+        //姓名
+        CFStringRef firstName,LastName;
+        firstName =ABRecordCopyValue(aRecord,kABPersonFirstNameProperty);
+        LastName =ABRecordCopyValue(aRecord, kABPersonLastNameProperty);
+        NSString *strname ;
+        if (firstName&&firstName&&!LastName) {
+            strname=(__bridge NSString *)firstName;
+        } else if(!firstName&&LastName){
+            strname=(__bridge NSString *)LastName;
+        } else if (LastName&&firstName) {
+            strname =[(__bridge NSString *)LastName stringByAppendingString:(__bridge NSString *)firstName];
+        }
+        
+        //判断是否包含此名字
+        NSRange foundObj=[strname rangeOfString:name options:NSCaseInsensitiveSearch];
+        if(foundObj.length>0) {
+            NameNum ++;
+        }
+    }
+    if (NameNum!=0) {
+        name =[NSString stringWithFormat:@"%@(%d)",name,NameNum];
+    }
+    
+    
+    
+//设置联系人的名字
+    ABRecordSetValue(record, kABPersonFirstNameProperty, (__bridge CFTypeRef)name, &error);
+    // 添加联系人电话号码以及该号码对应的标签名
+    ABMutableMultiValueRef multi = ABMultiValueCreateMutable(kABPersonPhoneProperty);
+    ABMultiValueAddValueAndLabel(multi, (__bridge CFTypeRef)(num), kABPersonPhoneMobileLabel, NULL);
+    ABRecordSetValue(record, kABPersonPhoneProperty, multi, &error);
+    
 //将新建联系人记录添加如通讯录中
     BOOL success = ABAddressBookAddRecord(addressBook, record, &error);
     if (!success) {
