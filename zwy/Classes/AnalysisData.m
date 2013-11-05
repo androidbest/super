@@ -52,6 +52,11 @@ RespInfo *info=[RespInfo new];
     for (int i=0; i<arrEC.count; i++) {
         NSString* ecid  =[[[arrEC objectAtIndex:i] objectForKey:@"eccode"] objectForKey:@"text"];
         NSString * ecname=[[[arrEC objectAtIndex:i] objectForKey:@"ecname"] objectForKey:@"text"];
+        
+        if(!ecid){
+            continue;
+        }
+        
         NSString *lastecid=[[[[dic objectForKey:@"MESSAGE"] objectForKey:@"BODY"]objectForKey:@"LASTECCODE"] objectForKey:@"text"];
         EcinfoDetas *detas=[EcinfoDetas new];
         detas.ECID=ecid;

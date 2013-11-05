@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
     </dependencies>
     <scenes>
         <!--Login View-->
@@ -1330,77 +1330,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fW6-cR-QSG">
-                                <rect key="frame" x="0.0" y="169" width="320" height="341"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="接收人:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VDI-ED-PA2">
-                                        <rect key="frame" x="20" y="10" width="56" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="56" id="8et-Ff-KNP"/>
-                                            <constraint firstAttribute="height" constant="21" id="x3o-1s-BG6"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EV5-LO-RxV">
-                                        <rect key="frame" x="283" y="3" width="32" height="31"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="32" id="Nqd-OF-loJ"/>
-                                            <constraint firstAttribute="height" constant="31" id="Shd-Rj-KUU"/>
-                                        </constraints>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="3" maxX="5" maxY="2"/>
-                                        <state key="normal" image="btn_addPeople.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                    </button>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="i1Z-UE-xSm">
-                                        <rect key="frame" x="0.0" y="40" width="311" height="301"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <prototypes>
-                                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="BWS-Ub-LxI" detailTextLabel="K0P-rF-CG7" style="IBUITableViewCellStyleSubtitle" id="bA1-oy-oV5">
-                                                <rect key="frame" x="0.0" y="22" width="311" height="44"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bA1-oy-oV5" id="N6F-SR-HTW">
-                                                    <rect key="frame" x="0.0" y="0.0" width="311" height="43"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <subviews>
-                                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BWS-Ub-LxI">
-                                                            <rect key="frame" x="15" y="4" width="31" height="20"/>
-                                                            <autoresizingMask key="autoresizingMask"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Detail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="K0P-rF-CG7">
-                                                            <rect key="frame" x="15" y="24" width="32" height="15"/>
-                                                            <autoresizingMask key="autoresizingMask"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                </tableViewCellContentView>
-                                            </tableViewCell>
-                                        </prototypes>
-                                    </tableView>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="i1Z-UE-xSm" firstAttribute="top" secondItem="EV5-LO-RxV" secondAttribute="bottom" constant="6" id="9Zm-yc-Cfh"/>
-                                    <constraint firstAttribute="bottom" secondItem="i1Z-UE-xSm" secondAttribute="bottom" id="PdQ-6R-sTz"/>
-                                    <constraint firstItem="i1Z-UE-xSm" firstAttribute="leading" secondItem="fW6-cR-QSG" secondAttribute="leading" id="YQG-Rt-drd"/>
-                                    <constraint firstItem="EV5-LO-RxV" firstAttribute="leading" secondItem="VDI-ED-PA2" secondAttribute="trailing" constant="207" id="e0L-mZ-kAf"/>
-                                    <constraint firstItem="VDI-ED-PA2" firstAttribute="top" secondItem="fW6-cR-QSG" secondAttribute="top" constant="10" id="nMu-8X-f19"/>
-                                    <constraint firstItem="EV5-LO-RxV" firstAttribute="top" secondItem="fW6-cR-QSG" secondAttribute="top" constant="3" id="pMY-o1-2OK"/>
-                                    <constraint firstAttribute="trailing" secondItem="i1Z-UE-xSm" secondAttribute="trailing" constant="9" id="qP3-O8-xyU"/>
-                                    <constraint firstItem="VDI-ED-PA2" firstAttribute="leading" secondItem="fW6-cR-QSG" secondAttribute="leading" constant="20" id="uYU-wD-xTX"/>
-                                    <constraint firstAttribute="trailing" secondItem="EV5-LO-RxV" secondAttribute="trailing" constant="5" id="wmV-kY-UlQ"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -1418,17 +1347,13 @@
                             <constraint firstItem="Ihg-8L-fIu" firstAttribute="leading" secondItem="tSO-t5-gpk" secondAttribute="trailing" constant="3" id="Mqw-97-YCd"/>
                             <constraint firstItem="ZE5-r0-WH9" firstAttribute="leading" secondItem="CG2-T5-aPl" secondAttribute="leading" id="S4u-qB-wMU"/>
                             <constraint firstItem="SVk-1n-jN0" firstAttribute="top" secondItem="Ihg-8L-fIu" secondAttribute="bottom" constant="7" id="T51-Ag-Kml"/>
-                            <constraint firstAttribute="trailing" secondItem="fW6-cR-QSG" secondAttribute="trailing" id="VkG-vK-jKL"/>
                             <constraint firstItem="EBt-wT-4dl" firstAttribute="top" secondItem="ZE5-r0-WH9" secondAttribute="bottom" constant="27" id="cA0-uZ-0nI"/>
                             <constraint firstItem="EBt-wT-4dl" firstAttribute="leading" secondItem="CG2-T5-aPl" secondAttribute="leading" constant="20" id="dRy-Sz-gpk"/>
                             <constraint firstItem="juG-zx-P8o" firstAttribute="centerY" secondItem="g7h-dC-NB3" secondAttribute="centerY" id="e9X-dw-SdI"/>
                             <constraint firstItem="g7h-dC-NB3" firstAttribute="leading" secondItem="juG-zx-P8o" secondAttribute="trailing" constant="7" id="eTv-4Q-Gut"/>
-                            <constraint firstItem="da1-4w-XuT" firstAttribute="top" secondItem="fW6-cR-QSG" secondAttribute="bottom" id="f06-X8-HCW"/>
                             <constraint firstItem="da1-4w-XuT" firstAttribute="leading" secondItem="CG2-T5-aPl" secondAttribute="leading" constant="10" id="fCU-Eb-kiU"/>
-                            <constraint firstItem="fW6-cR-QSG" firstAttribute="top" secondItem="SVk-1n-jN0" secondAttribute="bottom" constant="1" id="fNh-IT-p3s"/>
                             <constraint firstItem="ONt-F0-ZW1" firstAttribute="top" secondItem="SVk-1n-jN0" secondAttribute="bottom" constant="39" id="fav-8M-9n0"/>
                             <constraint firstItem="juG-zx-P8o" firstAttribute="leading" secondItem="EBt-wT-4dl" secondAttribute="trailing" constant="9" id="krF-em-yvs"/>
-                            <constraint firstItem="fW6-cR-QSG" firstAttribute="leading" secondItem="CG2-T5-aPl" secondAttribute="leading" id="l6S-5Y-S3U"/>
                             <constraint firstItem="juG-zx-P8o" firstAttribute="centerY" secondItem="EBt-wT-4dl" secondAttribute="centerY" id="rPf-FC-cmo"/>
                             <constraint firstItem="ONt-F0-ZW1" firstAttribute="leading" secondItem="CG2-T5-aPl" secondAttribute="leading" id="yQs-bb-GTp"/>
                         </constraints>
@@ -1436,7 +1361,6 @@
                     <navigationItem key="navigationItem" title="会 议 电 话" id="bDc-l0-byj"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="btnAddpeople" destination="EV5-LO-RxV" id="ge4-01-Flx"/>
                         <outlet property="btnCheck" destination="da1-4w-XuT" id="NTP-lh-g80"/>
                         <outlet property="btnDate" destination="g7h-dC-NB3" id="0kr-ci-xOF"/>
                         <outlet property="btnTime" destination="Ihg-8L-fIu" id="3Cs-2S-YXx"/>
@@ -1444,8 +1368,6 @@
                         <outlet property="meetting_time" destination="tSO-t5-gpk" id="ZMB-Ff-0E3"/>
                         <outlet property="segControl" destination="7Hr-RJ-Pf7" id="uYK-D7-C8m"/>
                         <outlet property="statusLabel" destination="EBt-wT-4dl" id="cn9-gi-uvj"/>
-                        <outlet property="tableViewPeople" destination="i1Z-UE-xSm" id="8je-4r-cUX"/>
-                        <outlet property="viewPeople" destination="fW6-cR-QSG" id="KVp-47-r2i"/>
                         <segue destination="yoi-1M-sBI" kind="push" identifier="meetingToOption" id="dD8-YG-A6q"/>
                     </connections>
                 </viewController>
@@ -2966,6 +2888,7 @@
                         <outlet property="lable2" destination="FBY-gC-4xX" id="nCI-AR-EWO"/>
                         <outlet property="navigationBar" destination="Kbd-AU-peP" id="vcx-T1-2Hp"/>
                         <outlet property="nextstep" destination="sVA-I8-cWZ" id="fCV-Ng-gKt"/>
+                        <outlet property="okbtn" destination="hp4-ma-gUS" id="oQX-V6-ewh"/>
                         <outlet property="scrollerContent" destination="DV1-vd-xHo" id="iyh-8Z-8D0"/>
                         <outlet property="selectHandle" destination="84Y-wZ-Pdo" id="CeL-Gh-kWg"/>
                         <outlet property="selecter" destination="pe1-rT-w9W" id="lvz-TS-Y6d"/>
@@ -4220,37 +4143,15 @@
         <image name="about.png" width="470" height="533"/>
         <image name="adress_icon.png" width="100" height="100"/>
         <image name="btn_Call.png" width="44" height="59"/>
-        <image name="btn_Call.png" width="44" height="59"/>
         <image name="btn_SMS.png" width="47" height="49"/>
-        <image name="btn_SMS.png" width="47" height="49"/>
-        <image name="btn_addPeople.png" width="50" height="50"/>
-        <image name="btn_addPeople.png" width="50" height="50"/>
-        <image name="btn_addPeople.png" width="50" height="50"/>
-        <image name="btn_addPeople.png" width="50" height="50"/>
-        <image name="btn_addPeople.png" width="50" height="50"/>
         <image name="btn_addPeople.png" width="50" height="50"/>
         <image name="btn_clear.png" width="62" height="47"/>
         <image name="btn_clear_people.png" width="51" height="51"/>
         <image name="btn_hidden_keybord.png" width="66" height="34"/>
         <image name="btn_numbers.png" width="212" height="100"/>
-        <image name="btn_numbers.png" width="212" height="100"/>
-        <image name="btn_numbers.png" width="212" height="100"/>
-        <image name="btn_numbers.png" width="212" height="100"/>
-        <image name="btn_numbers.png" width="212" height="100"/>
-        <image name="btn_numbers.png" width="212" height="100"/>
-        <image name="btn_numbers.png" width="212" height="100"/>
-        <image name="btn_numbers.png" width="212" height="100"/>
-        <image name="btn_numbers.png" width="212" height="100"/>
-        <image name="btn_numbers.png" width="212" height="100"/>
-        <image name="btn_numbers.png" width="212" height="100"/>
-        <image name="btn_numbers.png" width="212" height="100"/>
         <image name="btn_uncheck.png" width="40" height="40"/>
         <image name="images_button.png" width="48" height="27"/>
-        <image name="images_button.png" width="48" height="27"/>
         <image name="information_icon.png" width="102" height="101"/>
-        <image name="list_NoData.jpg" width="453" height="342"/>
-        <image name="list_NoData.jpg" width="453" height="342"/>
-        <image name="list_NoData.jpg" width="453" height="342"/>
         <image name="list_NoData.jpg" width="453" height="342"/>
         <image name="mail_icon.png" width="51" height="47"/>
         <image name="meetting_date.png" width="37" height="47"/>
@@ -4258,15 +4159,9 @@
         <image name="meetting_time.png" width="50" height="50"/>
         <image name="navigation_back_out.png" width="24" height="41"/>
         <image name="navigation_back_over.png" width="25" height="41"/>
-        <image name="navigation_back_over.png" width="25" height="41"/>
-        <image name="navigation_back_over.png" width="25" height="41"/>
-        <image name="navigation_back_over.png" width="25" height="41"/>
-        <image name="navigation_back_over.png" width="25" height="41"/>
-        <image name="navigation_back_over.png" width="25" height="41"/>
         <image name="notice_icon.png" width="46" height="55"/>
         <image name="office_icon.png" width="102" height="81"/>
         <image name="sms_icon.png" width="100" height="72"/>
-        <image name="sms_template.png" width="43" height="42"/>
         <image name="sms_template.png" width="43" height="42"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -4275,9 +4170,9 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="EdD-tC-bMF"/>
-        <segue reference="M4x-Zx-QGZ"/>
         <segue reference="XY3-9B-d3j"/>
+        <segue reference="EdD-tC-bMF"/>
+        <segue reference="dD8-YG-A6q"/>
         <segue reference="blo-VH-jXf"/>
     </inferredMetricsTieBreakers>
 </document>

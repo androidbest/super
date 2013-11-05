@@ -12,14 +12,15 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segControl;
 @property (weak, nonatomic) IBOutlet UIButton *btnDate;
 @property (weak, nonatomic) IBOutlet UIButton *btnTime;
-@property (weak, nonatomic) IBOutlet UITableView *tableViewPeople;
+@property (strong, nonatomic) UITableView *tableViewPeople;
 @property (weak, nonatomic) IBOutlet UIButton *btnCheck;
-@property (weak, nonatomic) IBOutlet UIButton *btnAddpeople;
+@property (weak, nonatomic) UIButton *btnAddpeople;
 @property (strong, nonatomic) IBOutlet UILabel *statusLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *meetting_date;
 @property (strong, nonatomic) IBOutlet UIImageView *meetting_time;
 @property (strong, nonatomic) IBOutlet UILabel *atonce_time;
 @property (strong, nonatomic) IBOutlet UIView *viewPeople;
+@property (strong, nonatomic) UILabel *reciver;
 @property (strong, nonatomic)  NSTimer *nsTimer;
 
 - (void)setTaleViewframe;

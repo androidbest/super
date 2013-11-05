@@ -269,17 +269,22 @@
         self.meettingView.btnDate.hidden=YES;
         self.meettingView.atonce_time.hidden=NO;
         self.meettingView.statusLabel.hidden=YES;
-        CGRect rect=self.meettingView.viewPeople.frame;
-        rect.origin.y-=60;
-        rect.size.height+=60;
-        self.meettingView.viewPeople.frame=rect;
+        
         [self.meettingView.tableViewPeople reloadData];
         
 //        [self.meettingView.nsTimer setFireDate:[NSDate distantPast]];
-        self.meettingView.statusLabel.text=@"当前时间:";
+        CGRect revicer=self.meettingView.reciver.frame;
+        revicer.origin.y-=47;
+        self.meettingView.reciver.frame=revicer;
+        
+        CGRect btnAddpeople=self.meettingView.btnAddpeople.frame;
+        btnAddpeople.origin.y-=47;
+        self.meettingView.btnAddpeople.frame=btnAddpeople;
         
         CGRect tableview=self.meettingView.tableViewPeople.frame;
-        tableview.size.height+=60;
+        tableview.origin.y-=40;
+        tableview.size.height+=30;
+
         self.meettingView.tableViewPeople.frame=tableview;
         
         
@@ -295,15 +300,19 @@
         self.meettingView.atonce_time.hidden=YES;
         self.meettingView.statusLabel.hidden=NO;
         self.meettingView.statusLabel.text=@"预约时间";
-        
-        CGRect rect=self.meettingView.viewPeople.frame;
-        rect.origin.y+=60;
-        rect.size.height-=60;
-        self.meettingView.viewPeople.frame=rect;
         [self.meettingView.tableViewPeople reloadData];
         
+        CGRect revicer=self.meettingView.reciver.frame;
+        revicer.origin.y+=47;
+        self.meettingView.reciver.frame=revicer;
+        
+        CGRect btnAddpeople=self.meettingView.btnAddpeople.frame;
+        btnAddpeople.origin.y+=47;
+        self.meettingView.btnAddpeople.frame=btnAddpeople;
+        
         CGRect tableview=self.meettingView.tableViewPeople.frame;
-        tableview.size.height-=60;
+        tableview.origin.y+=40;
+        tableview.size.height-=30;
         self.meettingView.tableViewPeople.frame=tableview;
     }
 }

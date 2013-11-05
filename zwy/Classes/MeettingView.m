@@ -37,8 +37,6 @@
     _btnCheck.layer.masksToBounds = YES;
     _btnCheck.layer.cornerRadius = 5.0;
     
-    [_btnAddpeople addTarget:self.controller action:@selector(btnAddpeople) forControlEvents:UIControlEventTouchUpInside];
-    
     [_btnDate addTarget:self.controller action:@selector(btnDate) forControlEvents:UIControlEventTouchUpInside];
     NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
     [formatter setDateFormat:@"yyyy/MM/dd"];
@@ -53,11 +51,7 @@
     [_btnTime setTitle:timeText forState:UIControlStateNormal];
     _btnTime.hidden=YES;
     
-    
     [_segControl addTarget:self.controller action:@selector(segmentAction:) forControlEvents:UIControlEventValueChanged];
-    
-    _tableViewPeople.delegate=self.controller;
-    _tableViewPeople.dataSource=self.controller;
     
     _meetting_date.hidden=YES;
     _meetting_time.hidden=YES;
@@ -65,7 +59,33 @@
     _btnDate.hidden=YES;
     _statusLabel.hidden=YES;
     
+    _reciver=[[UILabel alloc] initWithFrame:CGRectMake(20,129,56,21)];
+    _reciver.font=[UIFont systemFontOfSize:16];
+    _reciver.textAlignment=NSTextAlignmentLeft;
+    _reciver.backgroundColor=[UIColor clearColor];
+    _reciver.text=@"接收人:";
     
+    _btnAddpeople=[UIButton buttonWithType:UIButtonTypeCustom];
+    _btnAddpeople.frame =CGRectMake(279, 124, 32, 31);
+    [_btnAddpeople setImage:[UIImage imageNamed:@"btn_addPeople"] forState:UIControlStateNormal];
+    [_btnAddpeople addTarget:self.controller action:@selector(btnAddpeople) forControlEvents:UIControlEventTouchUpInside];
+    [_btnAddpeople setImageEdgeInsets:UIEdgeInsetsMake(3,0,2,5)];
+   
+    
+    if(iPhone5){
+        _tableViewPeople=[[UITableView alloc] initWithFrame:CGRectMake(0, 170, 320, 320) style:UITableViewStylePlain];
+        _tableViewPeople.delegate=self.controller;
+        _tableViewPeople.dataSource=self.controller;
+        
+    }else{
+        _tableViewPeople=[[UITableView alloc] initWithFrame:CGRectMake(0, 170, 320, 250) style:UITableViewStylePlain];
+        _tableViewPeople.delegate=self.controller;
+        _tableViewPeople.dataSource=self.controller;
+    }
+    
+    [self.view addSubview:_tableViewPeople];
+    [self.view addSubview:_reciver];
+    [self.view addSubview:_btnAddpeople];
     
     
 //    NSDateFormatter *formatter1 = [[NSDateFormatter alloc]init];
@@ -100,24 +120,24 @@
 
 
 - (void)viewDidLayoutSubviews{
-    [super viewDidLayoutSubviews];
-    if ([((MeettingController *)self.controller).MeetType isEqualToString:@"0"]){
-        CGRect rect=_viewPeople.frame;
-        rect.origin.y-=60;
-        rect.size.height+=60;
-        _viewPeople.frame=rect;
-        
-        CGRect tableview=_tableViewPeople.frame;
-        tableview.size.height+=60;
-        _tableViewPeople.frame=tableview;
-        [self performSelector:@selector(setTaleViewframe) withObject:self afterDelay:0.0];
-    }
+//    [super viewDidLayoutSubviews];
+//    if ([((MeettingController *)self.controller).MeetType isEqualToString:@"0"]){
+//        CGRect rect=_viewPeople.frame;
+//        rect.origin.y-=60;
+//        rect.size.height+=60;
+//        _viewPeople.frame=rect;
+//        
+//        CGRect tableview=_tableViewPeople.frame;
+//        tableview.size.height+=60;
+//        _tableViewPeople.frame=tableview;
+//        [self performSelector:@selector(setTaleViewframe) withObject:self afterDelay:0.0];
+//    }
 }
 
 - (void)setTaleViewframe{
-    CGRect tableview=_tableViewPeople.frame;
-    tableview.size.height+=60;
-    _tableViewPeople.frame=tableview;
+//    CGRect tableview=_tableViewPeople.frame;
+//    tableview.size.height+=60;
+//    _tableViewPeople.frame=tableview;
 }
 
 

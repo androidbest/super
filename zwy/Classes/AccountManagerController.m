@@ -56,6 +56,10 @@ NSMutableArray *arr;
         RespList *list=[AnalysisData AllECinterface:dic];
         if(list.resplist.count>0){
             [arr addObjectsFromArray:list.resplist];
+            
+            
+            
+            
             [self.account.accountList reloadData];
         }else{
             [ToolUtils alertInfo:@"该号码无单位信息"];

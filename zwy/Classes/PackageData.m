@@ -25,7 +25,7 @@
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     
-    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><SECURITYKEY>NOKEY</SECURITYKEY></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>queryEcInfo</METHOD></BODY></MESSAGE>",msisdn];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><SECURITYKEY>NOKEY</SECURITYKEY><ECCODE>null</ECCODE></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>queryEcInfo</METHOD></BODY></MESSAGE>",msisdn];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];
