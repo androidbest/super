@@ -28,7 +28,7 @@
 -(id)init{
     self=[super init];
     if(self){
-        str=@"分享http://itunes.apple.com/lookup?id=647204141";
+        str=@"分享政务易地址https://appsto.re/cn/T04KM.i";
         
         
         firstsec=@[@"账号管理"];
