@@ -8,7 +8,7 @@
 
 #import "MyAddressView.h"
 #import "MyAddressController.h"
-
+#import "AddPeopleBookView.h"
 @interface MyAddressView ()
 
 @end
@@ -54,11 +54,32 @@
     temporaryBarButtonItem.style = UIBarButtonItemStylePlain;
     self.navigationItem.leftBarButtonItem=temporaryBarButtonItem;
     [self.controller initWithData];
+    
+    UIButton *  btnAddPeople =[UIButton buttonWithType:UIButtonTypeCustom];
+    btnAddPeople.frame=CGRectMake(0, 0, 25, 25);
+    [btnAddPeople setImage:[UIImage imageNamed:@"btn_addPeople"] forState:UIControlStateNormal];
+    [btnAddPeople addTarget:self.controller action:@selector(btnAddPeople) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *temAddPeople = [[UIBarButtonItem alloc] initWithCustomView:btnAddPeople];
+    temAddPeople.style = UIBarButtonItemStylePlain;
+    self.navigationItem.rightBarButtonItem=temAddPeople;
 	// Do any additional setup after loading the view.
+}
+
+- (void)btnAddPeople{
+
 }
 
 - (void)LeftDown{
     [self.tabBarController.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    UIViewController *send=segue.destinationViewController;
+    if ([segue.identifier isEqualToString:@"MyAddressToAddPeople"]) {
+        AddPeopleBookView * peopelView =(AddPeopleBookView *)send;
+        peopelView.addressView =self;
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning

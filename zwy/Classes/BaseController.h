@@ -22,4 +22,5 @@
 
 -(BOOL)judgeNetwork;
 -(void)initBackBarButtonItem:(id)view;
+
 @end

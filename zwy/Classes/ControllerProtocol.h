@@ -16,5 +16,5 @@
 - (void)initWithData;
 //初始化进度条
 -(void)initData:(id)base;
-
+-(void)updateAddressBook;
 @end

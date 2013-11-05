@@ -180,6 +180,9 @@
 		65248507180C2CE700440958 /* navigation_updata_over.png in Resources */ = {isa = PBXBuildFile; fileRef = 65248505180C2CE700440958 /* navigation_updata_over.png */; };
 		659995D31828A0DF00694F57 /* AlterPassword.m in Sources */ = {isa = PBXBuildFile; fileRef = 659995D21828A0DF00694F57 /* AlterPassword.m */; };
 		659995D61828A10500694F57 /* AlterPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 659995D51828A10500694F57 /* AlterPasswordController.m */; };
+		659995D91828E86100694F57 /* AddPeopleBookView.m in Sources */ = {isa = PBXBuildFile; fileRef = 659995D81828E86100694F57 /* AddPeopleBookView.m */; };
+		659995DC1828E88C00694F57 /* AddPeopleBookController.m in Sources */ = {isa = PBXBuildFile; fileRef = 659995DB1828E88C00694F57 /* AddPeopleBookController.m */; };
+		659995DF1828EC8500694F57 /* SJABHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 659995DE1828EC8500694F57 /* SJABHelper.m */; };
 		659AB343180974D6000FCEC5 /* MyAddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 659AB342180974D6000FCEC5 /* MyAddressView.m */; };
 		659AB3491809750F000FCEC5 /* InfoDetailsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 659AB3481809750F000FCEC5 /* InfoDetailsView.m */; };
 		659AB34C18097555000FCEC5 /* GroupAddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 659AB34B18097555000FCEC5 /* GroupAddressView.m */; };
@@ -546,6 +549,12 @@
 		659995D21828A0DF00694F57 /* AlterPassword.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlterPassword.m; sourceTree = "<group>"; };
 		659995D41828A10500694F57 /* AlterPasswordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlterPasswordController.h; sourceTree = "<group>"; };
 		659995D51828A10500694F57 /* AlterPasswordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlterPasswordController.m; sourceTree = "<group>"; };
+		659995D71828E86100694F57 /* AddPeopleBookView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPeopleBookView.h; sourceTree = "<group>"; };
+		659995D81828E86100694F57 /* AddPeopleBookView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPeopleBookView.m; sourceTree = "<group>"; };
+		659995DA1828E88C00694F57 /* AddPeopleBookController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPeopleBookController.h; sourceTree = "<group>"; };
+		659995DB1828E88C00694F57 /* AddPeopleBookController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPeopleBookController.m; sourceTree = "<group>"; };
+		659995DD1828EC8500694F57 /* SJABHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJABHelper.h; sourceTree = "<group>"; };
+		659995DE1828EC8500694F57 /* SJABHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SJABHelper.m; sourceTree = "<group>"; };
 		659AB341180974D6000FCEC5 /* MyAddressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAddressView.h; sourceTree = "<group>"; };
 		659AB342180974D6000FCEC5 /* MyAddressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAddressView.m; sourceTree = "<group>"; };
 		659AB3471809750F000FCEC5 /* InfoDetailsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoDetailsView.h; sourceTree = "<group>"; };
@@ -1197,6 +1206,8 @@
 				6521F6341816A72600CD7B76 /* MailAddressCell.m */,
 				65A35B6C1820E50F002C7489 /* ActionSheetWeibo.h */,
 				65A35B6D1820E50F002C7489 /* ActionSheetWeibo.m */,
+				659995DD1828EC8500694F57 /* SJABHelper.h */,
+				659995DE1828EC8500694F57 /* SJABHelper.m */,
 			);
 			name = utils;
 			sourceTree = "<group>";
@@ -1428,6 +1439,8 @@
 				65A3B3991814CC3F00AD4069 /* MassMyAddressView.m */,
 				65B3C7D018177AB000DF4C8E /* MassAddPeopleView.h */,
 				65B3C7D118177AB000DF4C8E /* MassAddPeopleView.m */,
+				659995D71828E86100694F57 /* AddPeopleBookView.h */,
+				659995D81828E86100694F57 /* AddPeopleBookView.m */,
 			);
 			name = AddressBook;
 			sourceTree = "<group>";
@@ -1451,6 +1464,8 @@
 				65A3B39C1814CC7A00AD4069 /* MassMyaddressController.m */,
 				65B3C7D318177ACC00DF4C8E /* MassAddPeopleController.h */,
 				65B3C7D418177ACC00DF4C8E /* MassAddPeopleController.m */,
+				659995DA1828E88C00694F57 /* AddPeopleBookController.h */,
+				659995DB1828E88C00694F57 /* AddPeopleBookController.m */,
 			);
 			name = AddressBook;
 			sourceTree = "<group>";
@@ -1797,6 +1812,7 @@
 				65B3C7D218177AB000DF4C8E /* MassAddPeopleView.m in Sources */,
 				595A0C7018112A29009C26B8 /* EcOptionController.m in Sources */,
 				6521F62F18166D9200CD7B76 /* MailAddressView.m in Sources */,
+				659995DF1828EC8500694F57 /* SJABHelper.m in Sources */,
 				59584B3518199A5200B65162 /* OfficeDetailController.m in Sources */,
 				5960DC8117F92A6C0024AD8B /* CustomPageControl.m in Sources */,
 				596D6F1218085DB1002CD0B3 /* MeettingController.m in Sources */,
@@ -1839,7 +1855,9 @@
 				595A0C7318112A7F009C26B8 /* EcOptionView.m in Sources */,
 				65A3B3A318151C3E00AD4069 /* PeopleDedaInfo.m in Sources */,
 				5951FD7818079A5D0095F212 /* HomeController.m in Sources */,
+				659995DC1828E88C00694F57 /* AddPeopleBookController.m in Sources */,
 				65A9C8DD180EC7780032D170 /* InformationInfo.m in Sources */,
+				659995D91828E86100694F57 /* AddPeopleBookView.m in Sources */,
 				594B812E18037CF800310CB1 /* SmsSonDetaInto.m in Sources */,
 				5989A11F17F583C900789DC6 /* DaiBanView.m in Sources */,
 				659AB343180974D6000FCEC5 /* MyAddressView.m in Sources */,

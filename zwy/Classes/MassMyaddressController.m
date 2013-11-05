@@ -61,18 +61,19 @@
         LastName =ABRecordCopyValue(aRecord, kABPersonLastNameProperty);
         
         NSString * Name ;
-        if (!LastName) {
+        if (firstName&&firstName&&!LastName) {
             Name=(__bridge NSString *)firstName;
-        }
-        else if(!firstName&&LastName){
-          Name=(__bridge NSString *)LastName;
-        }
-        if (LastName&&firstName) {
+        } else if(!firstName&&LastName){
+            Name=(__bridge NSString *)LastName;
+        } else if (LastName&&firstName) {
             Name =[(__bridge NSString *)LastName stringByAppendingString:(__bridge NSString *)firstName];
         }else if(!Tel){
             Name =@"未命名";
         }else if (Tel){
             Name=Tel;
+        }
+        if (Name.length==0) {
+            Name =@"未命名";
         }
         
         //首字母

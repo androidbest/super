@@ -504,7 +504,7 @@
     [UIView animateWithDuration:animationTime animations:^{
         CGRect keyBoardFrame = [[[notificationKeyboar userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
         CGRect rect=self.smsView.view.frame;
-        rect.origin.y=-keyBoardFrame.size.height+70;
+        rect.origin.y=-keyBoardFrame.size.height+62;
         self.smsView.view.frame=rect;
     }];
 }

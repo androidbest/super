@@ -56,20 +56,20 @@ if ([[UIDevice currentDevice].systemVersion floatValue] >= 6.0)
         LastName =ABRecordCopyValue(aRecord, kABPersonLastNameProperty);
         
         NSString * Name ;
-        if (!LastName) {
+        if (firstName&&firstName&&!LastName) {
             Name=(__bridge NSString *)firstName;
-        }
-        else if(!firstName&&LastName){
+        } else if(!firstName&&LastName){
             Name=(__bridge NSString *)LastName;
-        }
-        if (LastName&&firstName) {
+        } else if (LastName&&firstName) {
             Name =[(__bridge NSString *)LastName stringByAppendingString:(__bridge NSString *)firstName];
         }else if(!Tel){
             Name =@"未命名";
         }else if (Tel){
             Name=Tel;
         }
-        
+        if (Name.length==0) {
+              Name =@"未命名";
+        }
         //首字母
         NSString* Letter;
         if (Name.length>0) {
@@ -122,6 +122,11 @@ if ([[UIDevice currentDevice].systemVersion floatValue] >= 6.0)
         }
     }
     [self.arrSection removeObjectsInArray:arrRemoveObject];
+}
+
+#pragma mark - 按钮实现方法
+- (void)btnAddPeople{/*添加联系人*/
+    [self.addressView performSegueWithIdentifier:@"MyAddressToAddPeople" sender:nil];
 }
 
 #pragma mark - 更改通讯录信息后刷新列表

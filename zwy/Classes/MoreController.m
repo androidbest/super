@@ -102,6 +102,7 @@
             }
                 break;
             case 1:{
+            [self initBackBarButtonItem:self.moreView];
            [self.moreView performSegueWithIdentifier:@"MoreToAlterPw" sender:self.moreView];
             }
                 break;

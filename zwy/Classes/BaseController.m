@@ -10,6 +10,7 @@
 #import "BaseView.h"
 #import "ToolUtils.h"
 @implementation BaseController
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 0;
 }
