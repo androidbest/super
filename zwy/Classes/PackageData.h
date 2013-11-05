@@ -127,5 +127,6 @@
 //系统通讯录更新
 + (void)updateAddressBook:(id)delegate updatetime:(NSString *)time;
 
-
+//修改密码
++ (void)AlterPassword:(id)delegate beforePassword:(NSString *)beforePassword NewPassword:(NSString *)newPassword;
 @end

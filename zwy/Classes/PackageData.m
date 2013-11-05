@@ -465,4 +465,15 @@ NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"U
     [request setHTTPBody:data];
     [HTTPRequest JSONRequestOperation:delegate Request:request];
 }
+
+//修改密码
++ (void)AlterPassword:(id)delegate beforePassword:(NSString *)beforePassword NewPassword:(NSString *)newPassword{
+    NSURL * url =[self urlByConfigFile];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    NSString * str =[NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><SECURITYKEY>NOKEY</SECURITYKEY><ECCODE>%@</ECCODE></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>modifyECMemberPass</METHOD><ECCODE>%@</ECCODE><PHONE>%@</PHONE><OLDPASSWORD>%@</OLDPASSWORD><NEWPASSWORD>%@</NEWPASSWORD></BODY></MESSAGE>",user.msisdn,user.eccode,user.eccode,user.msisdn,beforePassword,newPassword];
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:data];
+    [HTTPRequest JSONRequestOperation:delegate Request:request];
+}
 @end

@@ -240,7 +240,7 @@ NSMutableArray * arrAllNumber;
     [UIView animateWithDuration:animationTime animations:^{
         CGRect keyBoardFrame = [[[notificationKeyboar userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
         CGRect rect=self.massView.view.frame;
-        rect.origin.y=-keyBoardFrame.size.height;
+        rect.origin.y=-keyBoardFrame.size.height+70;
         self.massView.view.frame=rect;
     }];
 }

@@ -35,14 +35,14 @@
         
         firstsec=@[@"账号管理"];
 //        firstsec=@[@"账号管理",@"密码修改"];
-        second=@[@"检查更新"];
+        second=@[@"检查更新",@"修改密码"];
 //        third=@[@"帮助",@"关于"];
         third=@[@"下载分享",@"帮助",@"关于"];
         allsec=@[firstsec,second,third];
         
 //        image1=@[[UIImage imageNamed:@"more_accounts_image"],[UIImage imageNamed:@"more_update_pwd_img"]];
         image1=@[[UIImage imageNamed:@"more_accounts_image"]];
-        image2=@[[UIImage imageNamed:@"check_update_img"]];
+        image2=@[[UIImage imageNamed:@"check_update_img"],[UIImage imageNamed:@"more_update_pwd_img"]];
         image3=@[[UIImage imageNamed:@"more_download_image"],[UIImage imageNamed:@"more_help_img"],[UIImage imageNamed:@"more_about_img"]];
         allimage=@[image1,image2,image3];
     }
@@ -104,7 +104,7 @@
             }
                 break;
             case 1:{
- 
+           [self.moreView performSegueWithIdentifier:@"MoreToAlterPw" sender:self.moreView];
             }
                 break;
     }
@@ -113,38 +113,6 @@
             case 0:{
                 ActionSheetWeibo * sheet =[[ActionSheetWeibo alloc] initWithViewdelegate:self WithSheetTitle:@"分享"];
                 [sheet showInView:self.moreView.view];
-////                AAImageSize imageSize = [self iconSizeSetting].selectedSegmentIndex == 0 ? AAImageSizeSmall : AAImageSizeNormal;
-//                NSMutableArray *array = [NSMutableArray array];
-//                NSArray *title=@[@"短信",@"微信",@"新浪"];
-//                NSArray *image=@[[UIImage imageNamed:@"pic_sms"],[UIImage imageNamed:@"pic_weixin"],[UIImage imageNamed:@"pic_weibo"]];
-//                NSArray *arrUrl=@[@"分享http://itunes.apple.com/lookup?id=647204141",@"分享http://itunes.apple.com/lookup?id=647204141",@"分享http://itunes.apple.com/lookup?id=647204141"];
-//                
-//                for (int i=0; i<3; i++) {
-//                    AAActivity *activity = [[AAActivity alloc] initWithTitle:title[i]
-//                                                                       image:image[i]
-//                                                                 actionBlock:^(AAActivity *activity, NSArray *activityItems) {
-//                                                                     NSLog(@"doing activity = %@, activityItems = %@", activity, activityItems);
-//                                                                     NSString *str=activityItems[i];
-//                                                                     if(i==2){
-//                                                                        
-//                                                                     }else if(i==0){
-//                                                                         [self sendSMS:str recipientList:nil];
-//                                                                     }else if(i==1){
-//                                                                         if([WXApi openWXApp]){
-//                                                                         [self sendWeiXinTextContent:str];
-//                                                                         
-//                                                                         }else{
-//                                                                             [ToolUtils alertInfo:@"请安装微信"];
-//                                                                         }
-//                                                                     }
-//                                                                 }];
-//                    [array addObject:activity];
-//                }
-//                AAActivityAction *aa = [[AAActivityAction alloc] initWithActivityItems:arrUrl
-//                                                                 applicationActivities:array
-//                                                                             imageSize:AAImageSizeNormal];
-//                aa.title = nil;
-//                [aa show];
             }
                 break;
             case 1:{

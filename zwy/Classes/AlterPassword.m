@@ -37,8 +37,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [_btnOK addTarget:self.controller action:@selector(btnOK) forControlEvents:UIControlEventTouchUpInside];
     _btnOK.layer.masksToBounds = YES;
     _btnOK.layer.cornerRadius = 6.0;
+    
+    [_textBeforePw setDelegate:self.controller];
+    _textBeforePw.secureTextEntry=YES;
+    
+    [_textLastPw setDelegate:self.controller];
+    _textLastPw.secureTextEntry=YES;
+    
+    [_textNewPw setDelegate:self.controller];
+    _textNewPw.secureTextEntry=YES;
 	// Do any additional setup after loading the view.
 }
 
