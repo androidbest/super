@@ -36,7 +36,6 @@
     [_logout addTarget:self.controller action:@selector(loginout) forControlEvents:UIControlEventTouchUpInside];
     _logout.layer.masksToBounds = YES;
     _logout.layer.cornerRadius = 6.0;
-    _logout.layer.borderWidth = 0.5;
     _logout.layer.borderColor = [[UIColor whiteColor] CGColor];
     
     [_logout addTarget:self.controller action:@selector(loginout) forControlEvents:UIControlEventTouchUpInside];

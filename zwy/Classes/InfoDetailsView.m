@@ -56,7 +56,6 @@
         _labelJob.text=@"";
     }
     
-    
     [_btnSendSMS addTarget:self.controller action:@selector(SendSMS:) forControlEvents:UIControlEventTouchUpInside];
     _btnSendSMS.layer.masksToBounds = YES;
     _btnSendSMS.layer.cornerRadius = 5.0;

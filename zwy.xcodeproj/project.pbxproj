@@ -181,6 +181,8 @@
 		65248503180C2AF900440958 /* navigation_back_over.png in Resources */ = {isa = PBXBuildFile; fileRef = 65248501180C2AF900440958 /* navigation_back_over.png */; };
 		65248506180C2CE700440958 /* navigation_updata_out.png in Resources */ = {isa = PBXBuildFile; fileRef = 65248504180C2CE700440958 /* navigation_updata_out.png */; };
 		65248507180C2CE700440958 /* navigation_updata_over.png in Resources */ = {isa = PBXBuildFile; fileRef = 65248505180C2CE700440958 /* navigation_updata_over.png */; };
+		659995D31828A0DF00694F57 /* AlterPassword.m in Sources */ = {isa = PBXBuildFile; fileRef = 659995D21828A0DF00694F57 /* AlterPassword.m */; };
+		659995D61828A10500694F57 /* AlterPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 659995D51828A10500694F57 /* AlterPasswordController.m */; };
 		659AB343180974D6000FCEC5 /* MyAddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 659AB342180974D6000FCEC5 /* MyAddressView.m */; };
 		659AB3491809750F000FCEC5 /* InfoDetailsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 659AB3481809750F000FCEC5 /* InfoDetailsView.m */; };
 		659AB34C18097555000FCEC5 /* GroupAddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 659AB34B18097555000FCEC5 /* GroupAddressView.m */; };
@@ -549,6 +551,10 @@
 		65248501180C2AF900440958 /* navigation_back_over.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navigation_back_over.png; sourceTree = "<group>"; };
 		65248504180C2CE700440958 /* navigation_updata_out.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navigation_updata_out.png; sourceTree = "<group>"; };
 		65248505180C2CE700440958 /* navigation_updata_over.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navigation_updata_over.png; sourceTree = "<group>"; };
+		659995D11828A0DF00694F57 /* AlterPassword.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlterPassword.h; sourceTree = "<group>"; };
+		659995D21828A0DF00694F57 /* AlterPassword.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlterPassword.m; sourceTree = "<group>"; };
+		659995D41828A10500694F57 /* AlterPasswordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlterPasswordController.h; sourceTree = "<group>"; };
+		659995D51828A10500694F57 /* AlterPasswordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlterPasswordController.m; sourceTree = "<group>"; };
 		659AB341180974D6000FCEC5 /* MyAddressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAddressView.h; sourceTree = "<group>"; };
 		659AB342180974D6000FCEC5 /* MyAddressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAddressView.m; sourceTree = "<group>"; };
 		659AB3471809750F000FCEC5 /* InfoDetailsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoDetailsView.h; sourceTree = "<group>"; };
@@ -848,6 +854,8 @@
 				5941F6831813D146002735A3 /* AccountManager.m */,
 				5941F6881813DFE7002735A3 /* AccountCell.h */,
 				5941F6891813DFE7002735A3 /* AccountCell.m */,
+				659995D11828A0DF00694F57 /* AlterPassword.h */,
+				659995D21828A0DF00694F57 /* AlterPassword.m */,
 			);
 			name = more;
 			sourceTree = "<group>";
@@ -861,6 +869,8 @@
 				595B509E180D1270003EC2AF /* HelpController.m */,
 				5941F6851813D193002735A3 /* AccountManagerController.h */,
 				59584B3018199A2800B65162 /* AccountManagerController.m */,
+				659995D41828A10500694F57 /* AlterPasswordController.h */,
+				659995D51828A10500694F57 /* AlterPasswordController.m */,
 			);
 			name = more;
 			sourceTree = "<group>";
@@ -1737,6 +1747,7 @@
 				59584B2B181999BB00B65162 /* LoginView.m in Sources */,
 				596D6F0A18085D79002CD0B3 /* SmsController.m in Sources */,
 				65B3AC7F18195CEC00F2EC04 /* SMSModeDetaView.m in Sources */,
+				659995D61828A10500694F57 /* AlterPasswordController.m in Sources */,
 				659AB384180979FA000FCEC5 /* AIMTableViewIndexBar.m in Sources */,
 				5989A12517F5849E00789DC6 /* MoreView.m in Sources */,
 				65D967981812E1ED00C1A05E /* CheckAccessoryView.m in Sources */,
@@ -1848,6 +1859,7 @@
 				5955934D18000CAB0047C328 /* MBProgressHUD.m in Sources */,
 				65AC6611180FE89000C0CA4F /* optionInfo.m in Sources */,
 				595A0C651810CB04009C26B8 /* OfficeFlowController.m in Sources */,
+				659995D31828A0DF00694F57 /* AlterPassword.m in Sources */,
 				594204621802F0C000AA35C3 /* AnalysisData.m in Sources */,
 				595A0C7318112A7F009C26B8 /* EcOptionView.m in Sources */,
 				65A3B3A318151C3E00AD4069 /* PeopleDedaInfo.m in Sources */,
