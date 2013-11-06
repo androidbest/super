@@ -193,6 +193,8 @@
     self.HUD.labelText = @"正在验证..";
     [self.HUD show:YES];
 //    self.HUD.dimBackground = YES;
+    [_logView.msisdn resignFirstResponder];
+    [_logView.verifyField resignFirstResponder];
 }
 
 -(void)dealloc{

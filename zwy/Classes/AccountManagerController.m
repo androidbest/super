@@ -116,7 +116,7 @@ NSMutableArray *arr;
     
     tempIndexPath=indexPath;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [ToolUtils alertInfo:@"确定需要切换单位" delegate:self otherBtn:@"取消"];
+    [ToolUtils alertInfo:@"确定需要切换单位" delegate:self otherBtn:@"确认"];
 }
 -(void)loginout{
     NSUserDefaults *appConfig=[NSUserDefaults standardUserDefaults];
@@ -139,7 +139,7 @@ NSMutableArray *arr;
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if(buttonIndex==0){
+    if(buttonIndex==1){
         for(int i=0;i<[self.account.accountList visibleCells].count;i++){
             GetEcCell *cell = [[self.account.accountList visibleCells] objectAtIndex:i];
             [cell.selectEc setBackgroundImage:[UIImage imageNamed:@"btn_uncheck"] forState:UIControlStateNormal];

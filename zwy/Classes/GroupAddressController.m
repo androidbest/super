@@ -51,7 +51,7 @@
     _arrAllPeople = [ConfigFile setAllPeopleInfo:str];
     
     if(_arrAllPeople.count==0){
-        [ToolUtils alertInfo:@"请同步通讯录"];
+        [ToolUtils alertInfo:@"请同步通讯录" delegate:self otherBtn:@"确认"];
     }
     
     NSString * strSearchbar;
@@ -93,6 +93,11 @@
     return self;
 }
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex==1){
+        [self rightDown];
+    }
+}
 
 #pragma mark - 数据借口回调
 /*检查是否需要更新*/

@@ -132,7 +132,14 @@ if ([[UIDevice currentDevice].systemVersion floatValue] >= 6.0)
 #pragma mark - 更改通讯录信息后刷新列表
 - (void)updateAddressBook{
     _arrAllLink=NULL;
-    _arrAllLink =[[NSMutableArray alloc] initWithArray:[self Allpeople]];
+    _arrSection=NULL;
+    self.arrSection =[NSMutableArray arrayWithObjects:
+                      @"a",@"b",@"c",@"d",@"e",@"f",
+                      @"g",@"h",@"i",@"j",@"k",@"l",
+                      @"m",@"n",@"o",@"p",@"q",@"r",
+                      @"s",@"t",@"u",@"v",@"w",@"x",
+                      @"y",@"z",@"#",nil];
+    [self initWithData];
     [self.addressView.tableViewAddress reloadData];
 }
 

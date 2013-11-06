@@ -42,7 +42,7 @@
     _tableViewGroup.delegate=self.controller;
     _searchBar.delegate=self.controller;
     [self.controller initWithData];
-    
+    self.navigationItem.title=user.ecname;
     
      self.navigationItem.backBarButtonItem= [[UIBarButtonItem alloc]initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
 	

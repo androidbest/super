@@ -9,6 +9,7 @@
 #import "HomeView.h"
 #import "HomeController.h"
 #import "Constants.h"
+#import "AddressTabbar.h"
 @interface HomeView ()
 
 @end
@@ -124,7 +125,11 @@
 
 //首页传值
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-
+    UIViewController * viewController =segue.destinationViewController;
+    if ([segue.identifier isEqualToString:@"homeToAddress"]) {
+        AddressTabbar *tabbar =(AddressTabbar *)viewController;
+        tabbar.selectedIndex=2;
+    }
 }
 
 - (void)didReceiveMemoryWarning
