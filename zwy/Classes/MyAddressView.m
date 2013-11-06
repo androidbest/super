@@ -56,8 +56,8 @@
     [self.controller initWithData];
     
     UIButton *  btnAddPeople =[UIButton buttonWithType:UIButtonTypeCustom];
-    btnAddPeople.frame=CGRectMake(0, 0, 25, 25);
-    [btnAddPeople setImage:[UIImage imageNamed:@"btn_addPeople"] forState:UIControlStateNormal];
+    btnAddPeople.frame=CGRectMake(0, 0, 22, 22);
+    [btnAddPeople setImage:[UIImage imageNamed:@"btn_AddAddressbooks"] forState:UIControlStateNormal];
     [btnAddPeople addTarget:self.controller action:@selector(btnAddPeople) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *temAddPeople = [[UIBarButtonItem alloc] initWithCustomView:btnAddPeople];
     temAddPeople.style = UIBarButtonItemStylePlain;

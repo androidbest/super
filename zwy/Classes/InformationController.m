@@ -178,6 +178,9 @@
             cell = [[TemplateCell alloc] initWithStyle:UITableViewCellStyleSubtitle
                                        reuseIdentifier:strCell1];
             cell.accessoryType =UITableViewCellAccessoryDisclosureIndicator;
+            CGRect rect =cell.title.frame;
+            rect.size.width=250;
+            cell.title.frame=rect;
         }
         
         InformationInfo *info=arr0[indexPath.row];
