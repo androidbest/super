@@ -511,6 +511,10 @@
     [self initBackBarButtonItem:self.officedetailView];
 }
 
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+[self.officedetailView.textContent resignFirstResponder];
+}
+
 /*查看附件*/
 -(void)optionAccessory{
     if (!offInfo) {
@@ -536,7 +540,7 @@
                                          action:NULL]];
         }
         
-        [KxMenu showMenuInView:self.officedetailView.view
+        [KxMenu showMenuInView:self.officedetailView.scrollerContent
                       fromRect:_officedetailView.accessory.frame
                      menuItems:arr
               initWithdelegate:self

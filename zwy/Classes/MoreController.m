@@ -22,6 +22,9 @@
     NSArray *image2;
     NSArray *image3;
     NSString *str;
+    NSArray *tempArray;
+    NSString *trackViewURL;
+    NSString *isnetwork;
 }
 
 
@@ -29,7 +32,7 @@
     self=[super init];
     if(self){
         str=@"分享政务易地址https://appsto.re/cn/T04KM.i";
-        
+        isnetwork=@"0";
         
         firstsec=@[@"账号管理"];
 //        firstsec=@[@"账号管理",@"密码修改"];
@@ -98,7 +101,62 @@
     }else if(indexPath.section==1){
         switch (indexPath.row) {
             case 0:{
-            [ToolUtils alertInfo:@"已是最新版本"];
+                NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
+                CFShow((__bridge CFTypeRef)(infoDic));
+                
+                NSString *appVersion = [infoDic objectForKey:@"CFBundleVersion"];
+                MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithView:self.moreView.view];
+                [self.moreView.view addSubview:HUD];
+                
+                //设置对话框文字
+                HUD.labelText = @"检查更新中..";
+                
+                //显示对话框
+                [HUD showAnimated:YES whileExecutingBlock:^{
+                    //对话框显示时需要执行的操作
+                    if ([ToolUtils isExistenceNetwork]) {
+                        [self onCheckVersion];
+                        isnetwork=@"0";
+                    }else{
+                        isnetwork=@"1";
+                    }
+                } completionBlock:^{
+                    [HUD removeFromSuperview];
+                    
+                    if([isnetwork isEqualToString:@"1"]){
+                        [ToolUtils alertInfo:@"网络不可用，请检查网络"];
+                    }else{
+                        NSString *lastVersion=nil;
+                        NSMutableDictionary *releaseInfo=nil;
+                        
+                        if (tempArray.count>0) {
+                            releaseInfo = tempArray[0];
+                            lastVersion = releaseInfo[@"version"];
+                        }
+                        
+                        if(lastVersion!=nil){
+                            if (![lastVersion isEqualToString:appVersion]) {
+                                trackViewURL = releaseInfo[@"trackViewUrl"];
+                                [ToolUtils alertInfo:@"有新的版本更新,是否前往更新" delegate:self otherBtn:@"更新"];
+                                
+                                
+//                                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"有新的版本更新，是否前往更新？" delegate:self cancelButtonTitle:@"关闭" otherButtonTitles:@"更新", nil];
+//                                [alert show];
+                                
+                            }else{
+//                                UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"已是最新版本" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//                                [alert show];
+                                [ToolUtils alertInfo:@"已是最新版"];
+                                
+                            }
+                            
+                        }else{
+//                            UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"已是最新版本" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//                            [alert show];
+                            [ToolUtils alertInfo:@"已是最新版"];
+                        }
+                    }
+                }];
             }
                 break;
             case 1:{
@@ -130,6 +188,29 @@
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if(buttonIndex==1){
+        UIApplication *application = [UIApplication sharedApplication];
+        [application openURL:[NSURL URLWithString:trackViewURL]];
+    }
+}
+
+//检查最新版本
+-(void)onCheckVersion
+{
+    NSString *URL = @"http://itunes.apple.com/lookup?id=647204141";
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:URL]];
+    [request setHTTPMethod:@"POST"];
+    [request setTimeoutInterval:25];
+    NSHTTPURLResponse *urlResponse = nil;
+    NSError *error = nil;
+    NSData *recervedData = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponse error:&error];
+    NSDictionary *root = [NSJSONSerialization JSONObjectWithData:recervedData options:kNilOptions error:nil];
+    tempArray =root[@"results"];
+}
+
 
 //选择分享方式
 - (void)actionSheetIndex:(NSInteger)index{

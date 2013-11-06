@@ -163,7 +163,7 @@
     [_activity stopAnimating];
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"MMM d, h:mm:ss a"];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSString *s = [NSString stringWithFormat:@"最后更新时间: %@", [formatter stringFromDate:[NSDate date]]];
     NSMutableAttributedString *attriString = [[NSMutableAttributedString alloc] initWithString:s];
     NSDictionary *refreshAttributes = @{NSForegroundColorAttributeName:KAttributedColor,};

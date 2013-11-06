@@ -80,7 +80,7 @@
                 [ToolUtils alertInfo:@"获取验证码失败"];
             }
         }else{
-            if([info.respCode isEqualToString:@"1"]){
+            if([info.respCode isEqualToString:@"0"]){
                     user=[Tuser new];
                     user.msisdn=self.logView.msisdn.text;
                 UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];

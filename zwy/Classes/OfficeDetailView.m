@@ -232,10 +232,9 @@
     //内容长度
     _textContent.delegate=self.controller;
 
-    UITapGestureRecognizer * tap =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hiddenKeybord)];
-    [_scrollerContent addGestureRecognizer:tap];
-    
-    
+//    UITapGestureRecognizer * tap =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hiddenKeybord)];
+//    [_scrollerContent addGestureRecognizer:tap];
+    _scrollerContent.delegate=self.controller;
 }
 
 -(void)selectAudit:(UIButton *)btn{}
