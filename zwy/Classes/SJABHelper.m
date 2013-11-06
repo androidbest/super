@@ -121,6 +121,7 @@
             dispatch_semaphore_signal(sema);
         });
         dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+        
     }
     else
     {

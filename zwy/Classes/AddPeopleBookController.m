@@ -47,6 +47,10 @@
                 [self.HUD hide:YES afterDelay:1.0];
                 [self.addView.addressView.controller updateAddressBook];
                 [_addView.navigationController popViewControllerAnimated:YES];
+            }else{
+                self.HUD.mode = MBProgressHUDModeCustomView;
+                self.HUD.labelText=@"保存失败,请设置应用权限";
+                [self.HUD hide:YES afterDelay:1.0];
             }
         });
     });

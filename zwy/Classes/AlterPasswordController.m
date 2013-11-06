@@ -50,6 +50,22 @@
 }
 
 - (void)btnOK{
+    
+    if (_alterView.textBeforePw.text.length==0) {
+       [ToolUtils alertInfo:@"请输入原密码"];
+       return;
+    }
+    
+    if (_alterView.textNewPw.text.length==0) {
+        [ToolUtils alertInfo:@"请输入新密码"];
+        return;
+    }
+    
+    if (_alterView.textLastPw.text.length==0) {
+        [ToolUtils alertInfo:@"请确认新密码"];
+        return;
+    }
+    
     if (![_alterView.textNewPw.text isEqualToString:_alterView.textLastPw.text]) {
         [ToolUtils alertInfo:@"两次密码输入不一致"];
         return;
@@ -60,6 +76,9 @@
 	self.HUD.labelText = @"正在提交";
     [self.HUD show:YES];
     [packageData AlterPassword:self beforePassword:_alterView.textBeforePw.text NewPassword:_alterView.textNewPw.text];
+    [_alterView.textNewPw resignFirstResponder];
+    [_alterView.textLastPw resignFirstResponder];
+    [_alterView.textBeforePw resignFirstResponder];
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{

@@ -38,7 +38,7 @@
 {
     [super viewDidLoad];
     _webAccessory.scalesPageToFit =YES;
-    _webAccessory.backgroundColor=[UIColor grayColor];
+    _webAccessory.backgroundColor=[UIColor whiteColor];
     _webAccessory.delegate =self.controller;
     self.activityIndicatorView = [[UIActivityIndicatorView alloc]
                                   initWithFrame : CGRectMake(0, 0, 32.0f, 32.0f)] ;
