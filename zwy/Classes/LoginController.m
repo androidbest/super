@@ -24,7 +24,7 @@
     _nsTime= [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(scrollTimer) userInfo:nil repeats:YES];
     //关闭定时器
     [_nsTime setFireDate:[NSDate distantFuture]];
-    Timer=99;
+    Timer=60;
     
     if(self){
         //注册通知
@@ -53,7 +53,7 @@
     {
         [self.logView.verifyBtn setEnabled:YES];
         [self.logView.verifyBtn setTitle:[NSString stringWithFormat:@"重新发送"] forState:UIControlStateNormal];
-        Timer=99;
+        Timer=60;
         //关闭定时器
         [_nsTime setFireDate:[NSDate distantFuture]];
     }

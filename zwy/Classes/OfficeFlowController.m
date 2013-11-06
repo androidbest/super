@@ -144,7 +144,7 @@
 [packageData docFlow:self ID:self.officeFlowView.data.ID];
 self.HUD.labelText = @"正在获取数据..";
 [self.HUD show:YES];
-self.HUD.dimBackground = YES;
+//self.HUD.dimBackground = YES;
 }
 
 -(void)dealloc{
