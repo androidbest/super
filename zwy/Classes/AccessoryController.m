@@ -46,6 +46,8 @@
         if (IngDown) {
 //            self.arrDowning =[[NSMutableArray alloc] initWithArray:IngDown];
 //            arrFileManagerDowning =[[NSMutableArray alloc] initWithArray:IngDown];
+            self.arrDowning=[[NSMutableArray alloc] init];
+            arrFileManagerDowning =[[NSMutableArray alloc] init];
         }else{
             self.arrDowning=[[NSMutableArray alloc] init];
             arrFileManagerDowning =[[NSMutableArray alloc] init];
@@ -67,6 +69,7 @@
 /*通知--接收下载任务*/
 - (void)downAccessory:(NSNotification *)notification{
     officeDetaInfo * info =[notification object];
+    
     NSDictionary * dic =@{@"text":info.filename,@"url":info.url};
     NSMutableArray * arr =[[NSMutableArray alloc] init];
     [arr addObject:dic];
@@ -80,16 +83,19 @@
     
     
     [arrFileManagerDowning addObject:dic];
-    [arrFileManagerDowning writeToFile:strIngPath atomically:NO];
+    [arrFileManagerDowning writeToFile:[NSString stringWithFormat:@"%@/%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode,@"IngDown.plist"]
+                            atomically:NO];
     
     isCell=NO;
    [_accView.tableViewDowning beginUpdates];
    [_accView.tableViewDowning insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
    [_accView.tableViewDowning endUpdates];
     
-    if ([arrFileManagerDownEnd containsObject:dic]) {
+    if ([arrFileManagerDownEnd containsObject:dic]) {/*如果存在，删除重新下载*/
         [arrFileManagerDownEnd removeObject:dic];
-        [arrFileManagerDownEnd writeToFile:strEndPath atomically:NO];
+        [arrFileManagerDownEnd writeToFile:[NSString stringWithFormat:@"%@/%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode,@"EndDown.plist"]
+                                atomically:NO];
+        [_arrEnddown removeObject:dic];
         [_accView.tableViewEndDown reloadData];
     }
 }
@@ -148,6 +154,8 @@
 
 #pragma mark -UITableVIewDelegate
 - (void)downloadCellSaveWithFilePath:(NSString *)FilePath DownloadCell:(DownloadCell *)cell{
+    strIngPath =[NSString stringWithFormat:@"%@/%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode,@"IngDown.plist"];
+    strEndPath =[NSString stringWithFormat:@"%@/%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode,@"EndDown.plist"];
    /*保存本地*/
     for (int i = 0; i<_arrDowning.count; i++) {
         NSDictionary *dic =_arrDowning[i];
@@ -190,11 +198,11 @@
     for (AFURLConnectionOperation * operarion in arrAllThread) {
         [operarion cancel];
     }
-    _arrEnddown =NULL;
-    arrFileManagerDownEnd=NULL;
-    _arrDowning=NULL;
-    arrFileManagerDowning=NULL;
-    arrAllThread=NULL;
+    _arrEnddown =nil;
+    arrFileManagerDownEnd=nil;
+    _arrDowning=nil;
+    arrFileManagerDowning=nil;
+    arrAllThread=nil;
     strEndPath =[NSString stringWithFormat:@"%@/%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode,@"EndDown.plist"];
     NSArray * EndDown =[NSArray arrayWithContentsOfFile:strEndPath];
     if (EndDown) {
@@ -208,8 +216,8 @@
     self.arrDowning=[[NSMutableArray alloc] init];
     arrFileManagerDowning =[[NSMutableArray alloc] init];
     arrAllThread=[[NSMutableArray alloc] init];
-    if (!_accView.tableViewDowning.hidden) [_accView.tableViewDowning reloadData];
-    if (!_accView.tableViewEndDown.hidden) [_accView.tableViewEndDown reloadData];
+    [_accView.tableViewDowning reloadData];
+    [_accView.tableViewEndDown reloadData];
 }
 
 
