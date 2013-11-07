@@ -127,7 +127,7 @@
     NSString * strIngPath =[NSString stringWithFormat:@"%@/%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode,@"IngDown.plist"];
     NSArray * IngDown =[NSArray arrayWithContentsOfFile:strIngPath];
     if (IngDown.count>0) {
-        [ToolUtils alertInfo:@"您有未下载完的任务，确认退出，退出后将取消下载任务" delegate:self otherBtn:@"确认"];
+        [ToolUtils alertInfo:@"您有未下载完的任务，退出后将取消下载任务" delegate:self otherBtn:@"确认"];
         alertViewType =2;
     }else{
         /*清理所有下载线程*/
@@ -166,7 +166,7 @@
             if(buttonIndex==1){
                 NSArray * IngDown =[NSArray arrayWithContentsOfFile:strIngPath];
                 if (IngDown.count>0) {
-                    [ToolUtils alertInfo:@"您有未下载完的任务，确认退出，退出后将取消下载任务" delegate:self otherBtn:@"确认"];
+                    [ToolUtils alertInfo:@"您有未下载完的任务，退出后将取消下载任务" delegate:self otherBtn:@"确认"];
                     alertViewType =1;
                 }else{
                     for(int i=0;i<[self.account.accountList visibleCells].count;i++){
