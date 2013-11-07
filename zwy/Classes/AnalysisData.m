@@ -95,7 +95,7 @@ RespInfo *info=[RespInfo new];
 + (SMSInfo *)templateInfor:(NSDictionary *)dic{
     SMSInfo *SMS =[SMSInfo new];
     SMS.AllSMSLate =[[NSMutableArray alloc] init];
-    NSMutableArray *arrAll =[[NSMutableArray alloc] init];
+    NSMutableArray *arrAll =nil;
     NSMutableArray * arrTitle=[[NSMutableArray alloc] init];
     arrAll=[[[dic objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"TemplateTypeInfo"];
     for (int i=0; i<arrAll.count; i++) {

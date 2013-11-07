@@ -65,14 +65,14 @@
 - (void)handleData:(NSNotification *)notification{
     NSDictionary *dic=[notification userInfo];
     UIImageView *imageView;
-    UIImage *image;
+//    UIImage *image=nil;
     
     RespInfo * info =[AnalysisData ReTurnInfo:dic];
     if ([info.respCode isEqualToString:@"0"]) {
-        image= [UIImage imageNamed:@"37x-Checkmark.png"];
+//        image= [UIImage imageNamed:@"37x-Checkmark.png"];
         self.HUD.labelText = @"发送成功";
     }else{
-        image= [UIImage imageNamed:@"37x-Checkmark.png"];
+//        image= [UIImage imageNamed:@"37x-Checkmark.png"];
         self.HUD.labelText = @"发送失败";
     }
     self.HUD.customView=imageView;
@@ -165,12 +165,12 @@
         }
         
         /*提交等待*/
-//        self.HUD =[[MBProgressHUD alloc] initWithView:self.meettingView.navigationController.view];
-//        self.HUD.labelText=@"正在发送..";
-//        [self.meettingView.view addSubview:self.HUD];
-//        [self.HUD show:YES];
+        self.HUD =[[MBProgressHUD alloc] initWithView:self.meettingView.navigationController.view];
+        self.HUD.labelText=@"正在发送..";
+        [self.meettingView.view addSubview:self.HUD];
+        [self.HUD show:YES];
         
-//        [packageData scheduleConf:self receiverTel:strAllPeoleTel receiverName:strAllPeopleName groupID:strAllGroupID time:@"0"];
+        [packageData scheduleConf:self receiverTel:strAllPeoleTel receiverName:strAllPeopleName groupID:strAllGroupID time:@"0"];
         
     
     }else{
@@ -228,12 +228,12 @@
         }
         
         /*提交等待*/
-//        self.HUD =[[MBProgressHUD alloc] initWithView:self.meettingView.navigationController.view];
-//        self.HUD.labelText=@"正在发送..";
-//        [self.meettingView.view addSubview:self.HUD];
-//        [self.HUD show:YES];
+        self.HUD =[[MBProgressHUD alloc] initWithView:self.meettingView.navigationController.view];
+        self.HUD.labelText=@"正在发送..";
+        [self.meettingView.view addSubview:self.HUD];
+        [self.HUD show:YES];
         
-//        [packageData scheduleConf:self receiverTel:voiicestrAllPeoleTel receiverName:voicestrAllPeopleName groupID:voicestrAllGroupID time:[NSString stringWithFormat:@"%lld",KTime]];
+        [packageData scheduleConf:self receiverTel:voiicestrAllPeoleTel receiverName:voicestrAllPeopleName groupID:voicestrAllGroupID time:[NSString stringWithFormat:@"%lld",KTime]];
     }
 
 }

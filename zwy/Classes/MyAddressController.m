@@ -31,8 +31,8 @@ if ([[UIDevice currentDevice].systemVersion floatValue] >= 6.0)
     }else{
         addressBooks =  ABAddressBookCreateWithOptions(NULL, NULL);
   }
-    
     NSArray *array = (__bridge NSArray *)ABAddressBookCopyArrayOfAllPeople(addressBooks);
+    CFRelease(addressBooks);
     for (int i=0; i<array.count; i++) {
         ABRecordRef aRecord=(__bridge ABRecordRef)([array objectAtIndex:i]);
     

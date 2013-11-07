@@ -116,11 +116,11 @@
 - (void)handleData:(NSNotification *)notification{
     NSDictionary *dic=[notification userInfo];
     UIImageView *imageView;
-    UIImage *image;
+//    UIImage *image=nil;
 //    self.HUD =[[MBProgressHUD alloc] initWithView:self.smsView.view];
     RespInfo * info =[AnalysisData ReTurnInfo:dic];
     if ([info.respCode isEqualToString:@"0"]) {
-        image= [UIImage imageNamed:@"37x-Checkmark.png"];
+//        image= [UIImage imageNamed:@"37x-Checkmark"];
         self.HUD.labelText = @"发送成功";
         
         if([SMSType isEqualToString:@"0"]){
@@ -139,7 +139,7 @@
             [self.smsView.tableViewPeople reloadData];
         }
     }else{
-        image= [UIImage imageNamed:@"37x-Checkmark.png"];
+//        image= [UIImage imageNamed:@"37x-Checkmark"];
         self.HUD.labelText = @"发送失败";
     }
     self.HUD.customView=imageView;
@@ -241,7 +241,7 @@
     
     NSString *content=[NSString stringWithFormat:@"%@%@",smsContent,signStr];
     
-    if(content.length>350){
+    if(smsContent.length>350){
         [ToolUtils alertInfo:@"内容长度不能大于350个字"];
         return;
     }
@@ -295,7 +295,7 @@
         
         NSString *content=[NSString stringWithFormat:@"%@%@",voiceContent,voicesignStr];
         
-        if(content.length>70){
+        if(voiceContent.length>70){
             [ToolUtils alertInfo:@"内容长度不能大于70个字"];
             return;
         }

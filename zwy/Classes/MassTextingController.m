@@ -153,12 +153,12 @@ NSMutableArray * arrAllNumber;
 {
     [controller dismissViewControllerAnimated:YES completion:nil];
     
-    if (result == MessageComposeResultCancelled)
-        NSLog(@"Message cancelled");
-    else if (result == MessageComposeResultSent)
-        NSLog(@"Message sent");
-    else
-        NSLog(@"Message failed");
+//    if (result == MessageComposeResultCancelled)
+//        NSLog(@"Message cancelled");
+//    else if (result == MessageComposeResultSent)
+//        NSLog(@"Message sent");
+//    else
+//        NSLog(@"Message failed");
 }
 
 
