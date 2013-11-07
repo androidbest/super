@@ -15,10 +15,12 @@
 #import "DocFlow.h"
 @implementation OfficeFlowController{
     NSMutableArray *arr;
+    NSMutableArray *signArr;
 }
 -(id)init{
     self=[super init];
     arr=[NSMutableArray new];
+    signArr=[NSMutableArray new];
     if(self){
         [[NSNotificationCenter defaultCenter]addObserver:self
                                                 selector:@selector(handleData:)
@@ -54,6 +56,7 @@
             for(int i=0;i<list.resplist.count;i++){
                 NSArray * nsarr=@[[list.resplist objectAtIndex:i]];
                 [arr addObject:nsarr];
+                [signArr addObject:[NSNumber numberWithBool:NO]];
             }
             [self.officeFlowView.flowList reloadData];
         }else{
@@ -87,30 +90,50 @@
 {
     NSString * strcell =@"docflowcell";
     DocFlowCell * cell =(DocFlowCell *)[tableView dequeueReusableCellWithIdentifier:strcell];
-    if (!cell) {
-        cell =[[DocFlowCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:strcell];
-//        cell=[[[NSBundle mainBundle] loadNibNamed:strcell owner:self options:nil] objectAtIndex:0];
-//        cell.selectionStyle=UITableViewCellSelectionStyleNone;
+    NSNumber *num=(NSNumber *)signArr[indexPath.section];
+    BOOL indentifierCell=[num boolValue];
+    if (!indentifierCell) {
+        cell.content=[[UILabel alloc] initWithFrame:CGRectMake(3,12,86,26)];
+        cell.content.font=[UIFont systemFontOfSize:15];
+        cell.content.textAlignment=NSTextAlignmentLeft;
+        cell.content.textColor=[UIColor lightGrayColor];
+        cell.content.backgroundColor=[UIColor clearColor];
+        cell.content.tag=1;
+        cell.content.numberOfLines=1;
+        cell.scrollview.delegate=self;
+        [cell.scrollview addSubview:cell.content];
+        [signArr replaceObjectAtIndex:indexPath.section withObject:[NSNumber numberWithBool:YES]];
     }
+////    if (!cell) {
+////        cell =[[DocFlowCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:strcell];
+////        cell=[[[NSBundle mainBundle] loadNibNamed:strcell owner:self options:nil] objectAtIndex:0];
+////        cell.selectionStyle=UITableViewCellSelectionStyleNone;
+////    }
+//    
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
-    
     DocFlow *info=[[arr objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     if(indexPath.section==0){
         cell.topLabel.hidden=YES;
     }
-
     cell.num.text=[ToolUtils numToString:indexPath.section+1];
     cell.handler.text=info.membername;
     cell.handletime.text=info.overTime;
     cell.hanldeStep.text=info.doStatus;
     if (![info.describe isEqualToString:@"null"]) {cell.auditStatus.text=info.describe;}
     else{cell.auditStatus.text=@"";}
-    
+
     NSString * strContent=info.content;
     if ([strContent isEqualToString:@"null"]) {strContent=@"";}
     cell.content.text=strContent;
-    
-    
+    CGRect theStringSize = [strContent boundingRectWithSize:CGSizeMake(1000, 1000)
+                                                      options:NSStringDrawingUsesLineFragmentOrigin
+                                                   attributes:@{NSFontAttributeName:cell.content.font}
+                                                      context:nil];
+    cell.content.frame= CGRectMake(cell.content.frame.origin.x,
+                 cell.content.frame.origin.y,
+                 theStringSize.size.width,
+                 theStringSize.size.height);
+    cell.content.text=strContent;
     //添加滑动试图
 //    UIScrollView *_scrollView=[[UIScrollView alloc] initWithFrame:cell.content.frame];
 //    _scrollView.delegate = self;
@@ -119,6 +142,7 @@
 //    cell.contentSroll.backgroundColor=[UIColor clearColor];
 //    cell.contentSroll.autoresizesSubviews = NO;
 //    cell.contentSroll.canCancelContentTouches = NO;
+    
 //    cell.contentSroll.showsHorizontalScrollIndicator = NO;
 //    cell.contentSroll.indicatorStyle = UIScrollViewIndicatorStyleWhite;
 //    cell.contentSroll.clipsToBounds = YES;
@@ -134,7 +158,10 @@
 //    cell.content.textAlignment=NSTextAlignmentLeft;
     return cell;
 }
-
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    UILabel *cell= (UILabel *)[scrollView viewWithTag:1];
+    scrollView.contentSize=CGSizeMake(cell.frame.size.width, 0);
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

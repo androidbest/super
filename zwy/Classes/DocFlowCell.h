@@ -8,13 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DocFlowCell : UITableViewCell
+@interface DocFlowCell : UITableViewCell<UIScrollViewDelegate>
 @property (strong, nonatomic) IBOutlet UILabel *handler;
 @property (strong, nonatomic) IBOutlet UILabel *handletime;
 @property (strong, nonatomic) IBOutlet UILabel *hanldeStep;
 @property (strong, nonatomic) IBOutlet UILabel *auditStatus;
 @property (strong, nonatomic) IBOutlet UILabel *num;
 @property (strong, nonatomic) IBOutlet UILabel *labelHeaher;
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollview;
 @property (strong, nonatomic) IBOutlet UILabel *content;
 @property (strong, nonatomic) IBOutlet UILabel *topLabel;
+@property (strong ,nonatomic)NSString * content1;
 @end
