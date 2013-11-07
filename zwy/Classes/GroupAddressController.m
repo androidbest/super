@@ -33,16 +33,17 @@
 - (void)initWithData{
     [ConfigFile pathECGroups];
     
-    NSString * str =[NSString stringWithFormat:@"%@/%@/%@",DocumentsDirectory,user.eccode,@"group.txt"];
+    NSString * str =[NSString stringWithFormat:@"%@/%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode,@"group.txt"];
     NSString *strGroup =[NSString stringWithContentsOfFile:str encoding:NSUTF8StringEncoding error:NULL];
     if (!strGroup) {
         ZipArchive* zipFile = [[ZipArchive alloc] init];
-        NSString *strECpath =[NSString stringWithFormat:@"%@.zip",user.eccode];
+        NSString *strECpath =[NSString stringWithFormat:@"%@/%@.zip",user.msisdn,user.eccode];
         NSString * strPath =[DocumentsDirectory stringByAppendingPathComponent:strECpath];
         [zipFile UnzipOpenFile:strPath];
         
         //压缩包释放到的位置，需要一个完整路径
-        [zipFile UnzipFileTo:[DocumentsDirectory stringByAppendingPathComponent:user.eccode]overWrite:YES];
+        NSString * strSavePath =[NSString stringWithFormat:@"%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode];
+        [zipFile UnzipFileTo:strSavePath overWrite:YES];
         [zipFile UnzipCloseFile];
     }
     
@@ -111,12 +112,13 @@
     
     /*检查 是否有更新过*/
     NSUserDefaults * userDefaults =[NSUserDefaults standardUserDefaults];
-    NSString *histroyDate=(NSString *)[userDefaults objectForKey:@"date"];
+    NSString * UserDate =[user.msisdn stringByAppendingString:@"date"];
+    NSString *histroyDate=(NSString *)[userDefaults objectForKey:UserDate];
     if (!histroyDate) {
         NSTimeInterval time_=[[NSDate date] timeIntervalSince1970]/1000;
         NSString *strTime =[NSString  stringWithFormat:@"%f",time_];
         strTime =[[strTime componentsSeparatedByString:@"."] firstObject];
-        [userDefaults setObject:strTime forKey:@"date"];
+        [userDefaults setObject:strTime forKey:UserDate];
         [userDefaults synchronize];
         histroyDate=@"0";
     }
@@ -153,7 +155,7 @@
     
     self.HUD.mode = MBProgressHUDModeDeterminateHorizontalBar;
     self.HUD.labelText = @"同步中...";
-    NSString *strFileName =[NSString stringWithFormat:@"%@.zip",user.eccode];
+    NSString *strFileName =[NSString stringWithFormat:@"%@/%@.zip",user.msisdn,user.eccode];
     NSString * filePath =[DocumentsDirectory stringByAppendingPathComponent:strFileName];
     NSString *str=[GroupAddressController urlByConfigFile];
     NSString * strUrl =[NSString stringWithFormat:@"%@tmp/%@.zip?eccode=%@",str,user.eccode,user.eccode];

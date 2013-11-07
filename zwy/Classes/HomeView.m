@@ -125,10 +125,10 @@
 
 //首页传值
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    UIViewController * viewController =segue.destinationViewController;
+//    UIViewController * viewController =segue.destinationViewController;
     if ([segue.identifier isEqualToString:@"homeToAddress"]) {
-        AddressTabbar *tabbar =(AddressTabbar *)viewController;
-        tabbar.selectedIndex=2;
+//        AddressTabbar *tabbar =(AddressTabbar *)viewController;
+//        tabbar.selectedIndex=2;
     }
 }
 

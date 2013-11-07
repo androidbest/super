@@ -46,7 +46,7 @@
     self.arrOption=[[NSMutableArray alloc] init];
     
     
-    NSString * strPath=[NSString stringWithFormat:@"%@/%@/%@",DocumentsDirectory,user.eccode,@"group.txt"];
+    NSString * strPath=[NSString stringWithFormat:@"%@/%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode,@"group.txt"];
     _arrAllPeople =[ConfigFile setAllPeopleInfo:strPath];/*通讯录所有信息*/
     if (_arrAllPeople.count==0||!_arrAllPeople) {
         self.HUD = [[MBProgressHUD alloc] initWithView:self.OptionView.navigationController.view];

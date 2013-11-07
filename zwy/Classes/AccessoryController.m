@@ -21,6 +21,8 @@
 - (id)init{
     self =[super init];
     if (self) {
+        [ConfigFile pathUsersInfo];
+        
         isCell=NO;
         //注册通知
         //附件下载
@@ -29,7 +31,7 @@
                                                     name:@"downAccessory"
                                                   object:nil];
         
-        strIngPath =[DocumentsDirectory stringByAppendingPathComponent:@"IngDown.plist"];
+        strIngPath =[NSString stringWithFormat:@"%@/%@/%@",DocumentsDirectory,user.msisdn,@"IngDown.plist"];
         NSArray * IngDown =[NSArray arrayWithContentsOfFile:strIngPath];
         if (IngDown) {
             self.arrDowning =[[NSMutableArray alloc] initWithArray:IngDown];
@@ -39,7 +41,7 @@
             arrFileManagerDowning =[[NSMutableArray alloc] init];
         }
         
-        strEndPath =[DocumentsDirectory stringByAppendingPathComponent:@"EndDown.plist"];
+        strEndPath =[NSString stringWithFormat:@"%@/%@/%@",DocumentsDirectory,user.msisdn,@"EndDown.plist"];
         NSArray * EndDown =[NSArray arrayWithContentsOfFile:strEndPath];
         if (EndDown) {
              self.arrEnddown =[[NSMutableArray alloc] initWithArray:EndDown];
@@ -74,6 +76,12 @@
    [_accView.tableViewDowning beginUpdates];
    [_accView.tableViewDowning insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
    [_accView.tableViewDowning endUpdates];
+    
+    if ([arrFileManagerDownEnd containsObject:info.filename]) {
+        [arrFileManagerDownEnd removeObject:dic];
+        [arrFileManagerDownEnd writeToFile:strEndPath atomically:NO];
+        [_accView.tableViewEndDown reloadData];
+    }
 }
 
 
@@ -100,6 +108,7 @@
         static NSString *strCell =@"DowningCell";
         DownloadCell *cell  = (DownloadCell *)[tableView dequeueReusableCellWithIdentifier:strCell];
           NSString *str =[DocumentsDirectory stringByAppendingPathComponent: [_arrDowning[indexPath.row] objectForKey:@"text"]];
+          str =[NSString stringWithFormat:@"%@/%@/%@",DocumentsDirectory,user.msisdn, [_arrDowning[indexPath.row] objectForKey:@"text"]];
         if (!isCell||!cell) {
             cell=[[DownloadCell alloc] initWithDelegate:self URL:[_arrDowning[indexPath.row] objectForKey:@"url"] reuseIdentifier:strCell filePath:str];
         }
@@ -177,6 +186,7 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
         NSString *uniquePath =[DocumentsDirectory stringByAppendingPathComponent:[_arrEnddown[indexPath.row] objectForKey:@"text"]];
+        uniquePath =[NSString stringWithFormat:@"%@/%@/%@",DocumentsDirectory,user.msisdn,[_arrEnddown[indexPath.row] objectForKey:@"text"]];
        BOOL blHave=[[NSFileManager defaultManager] fileExistsAtPath:uniquePath];
         if (blHave) [[NSFileManager defaultManager] removeItemAtPath:uniquePath error:nil];
         [_arrEnddown removeObjectAtIndex:indexPath.row];

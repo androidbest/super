@@ -22,15 +22,17 @@
     if (arr.count==0&&!arr) return AllPeople;
     for (int i =0; i<arr.count-1; i++) {
         NSArray * arrData =[[arr objectAtIndex:i] componentsSeparatedByString:@","];
-        PeopelInfo *info=[PeopelInfo new];
-        info.userID =[arrData objectAtIndex:0];
-        info.Name=[arrData objectAtIndex:1];
-        info.job=[arrData objectAtIndex:2];
-        info.area =[arrData objectAtIndex:3];
-        info.tel=[arrData objectAtIndex:4];
-        info.groupID =[arrData objectAtIndex:5];
-        info.letter =[arrData objectAtIndex:6];
-        [AllPeople addObject:info];
+        if (arrData.count>=7) {
+            PeopelInfo *info=[PeopelInfo new];
+            info.userID =[arrData objectAtIndex:0];
+            info.Name=[arrData objectAtIndex:1];
+            info.job=[arrData objectAtIndex:2];
+            info.area =[arrData objectAtIndex:3];
+            info.tel=[arrData objectAtIndex:4];
+            info.groupID =[arrData objectAtIndex:5];
+            info.letter =[arrData objectAtIndex:6];
+            [AllPeople addObject:info];
+        }
     }
     return AllPeople;
 }
@@ -52,7 +54,7 @@
 
 - (void)initWithData{
     if (_arrAllPeople.count==0) {
-        NSString * str =[NSString stringWithFormat:@"%@/%@/%@",DocumentsDirectory,user.eccode,@"member.txt"];
+        NSString * str =[NSString stringWithFormat:@"%@/%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode,@"member.txt"];
         _arrAllPeople  =[CallTelController setAllPeopleInfo:str];
     }
 }

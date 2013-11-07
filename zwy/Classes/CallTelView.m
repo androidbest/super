@@ -30,6 +30,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+   
    // self.tabBarItem=[self.tabBarItem initWithTitle:@"首页" image:[UIImage imageNamed:@"home_out"] selectedImage:[UIImage imageNamed:@"home_over"]];
     [_btNumber0 addTarget:self.controller action:@selector(inputNumber:) forControlEvents:UIControlEventTouchUpInside];
     [_btNumber1 addTarget:self.controller action:@selector(inputNumber:) forControlEvents:UIControlEventTouchUpInside];
@@ -61,8 +62,13 @@
         UIBarButtonItem *temporaryBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
         temporaryBarButtonItem.style = UIBarButtonItemStylePlain;
         self.navigationItem.leftBarButtonItem=temporaryBarButtonItem;
-
+    [self performSelector:@selector(GroupAddressView) withObject:self afterDelay:0.0];
 }
+
+- (void)GroupAddressView{
+    self.tabBarController.selectedIndex=2;
+}
+
 - (void)btnBigImageView:(UITapGestureRecognizer *)tap{
 
 }

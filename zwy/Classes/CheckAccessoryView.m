@@ -46,7 +46,7 @@
     [self.activityIndicatorView setActivityIndicatorViewStyle: UIActivityIndicatorViewStyleGray] ;
     [self.view addSubview : self.activityIndicatorView];
     
-    NSString * strPath =[DocumentsDirectory stringByAppendingPathComponent:_url];
+    NSString * strPath  =[NSString stringWithFormat:@"%@/%@/%@",DocumentsDirectory,user.msisdn,_url];
     NSURL *URL = [NSURL fileURLWithPath:strPath];
     NSURLRequest *request = [NSURLRequest requestWithURL:URL];
     [_webAccessory loadRequest:request];

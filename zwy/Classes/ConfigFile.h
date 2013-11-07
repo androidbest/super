@@ -50,6 +50,8 @@
 //创建单位通讯录文件
 + (void)pathECGroups;
 
+//创建用户文件夹
++ (void)pathUsersInfo;
 #pragma mark - 获取通讯录所有信息
 + (NSMutableArray *)setAllPeopleInfo:(NSString *)str;
 @end
