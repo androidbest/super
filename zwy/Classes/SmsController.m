@@ -321,6 +321,7 @@
 //选择短信模板
 - (void)templates{
     [self initBackBarButtonItem:self.smsView];
+    
     [self.smsView performSegueWithIdentifier:@"SMSToSMSMode" sender:nil];
 }
 

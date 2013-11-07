@@ -36,6 +36,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+        self.navigationItem.backBarButtonItem= [[UIBarButtonItem alloc]initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
+    
     [_btnAll addTarget:self.controller action:@selector(btnAll:) forControlEvents:UIControlEventTouchUpInside];
     [_btnCencel addTarget:self.controller action:@selector(btnCencel:) forControlEvents:UIControlEventTouchUpInside];
     [_btnConfirm addTarget:self.controller action:@selector(btnConfirm:) forControlEvents:UIControlEventTouchUpInside];

@@ -146,6 +146,7 @@
         [self initBackBarButtonItem:self.smsView];
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
         SMSModeDetaView *detaView = [storyboard instantiateViewControllerWithIdentifier:@"SMSModeDetaView"];
+         [self.smsView.navigationController setNavigationBarHidden:YES animated:NO];
         [self.smsView.navigationController pushViewController:detaView animated:YES];
         detaView.info=deta;
         detaView.SMSModeDetaViewDelegate=self;

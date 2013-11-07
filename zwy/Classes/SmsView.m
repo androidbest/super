@@ -41,6 +41,7 @@
     if ([segue.identifier isEqualToString:@"SMSToSMSMode"]) {
         SMSModeView * view =(SMSModeView *)send;
         view.SMSModeViewDelegate=self.controller;
+       
     }
 }
 

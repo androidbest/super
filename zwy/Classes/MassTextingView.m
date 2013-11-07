@@ -41,6 +41,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+        self.navigationItem.backBarButtonItem= [[UIBarButtonItem alloc]initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
+    
     UITapGestureRecognizer * tap =[[UITapGestureRecognizer alloc] initWithTarget:self.controller action:@selector(endTextEditing)];
     [self.view addGestureRecognizer:tap];
     
