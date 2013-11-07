@@ -15,6 +15,7 @@ NSString * const xmlNotifInfo2=@"xmldatahandle2";
 NSString * const xmlNotifInfo3=@"xmldatahandle3";
 NSString * const requestError=@"网络超时";
 NSString * const wnLoadAddress=@"DownLoadAddressList";
+BOOL isZaiXian =YES;
 
 //全局变量
 Tuser *user=nil;

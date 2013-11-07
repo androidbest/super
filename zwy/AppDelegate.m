@@ -33,6 +33,7 @@ UIBackgroundTaskIdentifier backgroundTask;//写成成员
     [WeiboSDK enableDebugMode:YES];
     [WeiboSDK registerApp:@"3905012986"];
     [WXApi registerApp:@"wx22ca181d6fb789e2"];
+    isZaiXian =YES;
     return YES;
 }
 

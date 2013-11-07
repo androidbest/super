@@ -27,5 +27,6 @@ extern NSString * const wnLoadAddress;
 extern Tuser *user;
 extern NSMutableArray *arrEc;
 extern UIView *coverView;
+extern BOOL isZaiXian;
 @interface Constants : NSObject
 @end

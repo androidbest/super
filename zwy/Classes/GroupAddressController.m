@@ -50,8 +50,8 @@
     
     /*获取所有人员信息*/
     _arrAllPeople = [ConfigFile setAllPeopleInfo:str];
-    
-    if(_arrAllPeople.count==0){
+     BOOL blHave=[[NSFileManager defaultManager] fileExistsAtPath:str];
+    if(_arrAllPeople.count==0&&!blHave){
         [ToolUtils alertInfo:@"请同步通讯录" delegate:self otherBtn:@"确认"];
     }
     

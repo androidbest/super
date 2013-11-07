@@ -7,10 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AFURLConnectionOperation.h"
+#import "AFHTTPRequestOperation.h"
+
 @class DownloadCell;
 @protocol DownloadCellDelegate <NSObject>
-
+@optional
 - (void)downloadCellSaveWithFilePath:(NSString *)FilePath DownloadCell:(DownloadCell *)cell;
+
+- (void)downloadingAllThread:(AFURLConnectionOperation *)operation;
 
 @end
 
@@ -25,5 +30,6 @@
 - (id)initWithDelegate:(id)delegate URL:(NSString *)url reuseIdentifier:(NSString *)reuseIdentifier filePath:(NSString *)path;
 
 - (id)initWithURL:(NSString *)url reuseIdentifier:(NSString *)reuseIdentifier filePath:(NSString *)path;
+
 
 @end

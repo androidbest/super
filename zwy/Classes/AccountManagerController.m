@@ -119,6 +119,12 @@ NSMutableArray *arr;
     [ToolUtils alertInfo:@"确定需要切换单位" delegate:self otherBtn:@"确认"];
 }
 -(void)loginout{
+    /*清理所有下载线程*/
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"cancelAllThread"
+                                                        object:nil];
+    
+    
+    
     NSUserDefaults *appConfig=[NSUserDefaults standardUserDefaults];
     [appConfig setBool:NO forKey:@"isLogin"];
     [appConfig synchronize];
@@ -155,6 +161,10 @@ NSMutableArray *arr;
         GetEcCell *cell = (GetEcCell *)[self.account.accountList cellForRowAtIndexPath:tempIndexPath];
         [cell.selectEc setBackgroundImage:[UIImage imageNamed:@"btn_check"] forState:UIControlStateNormal];
         [self DownLoadAddress];
+        isZaiXian=NO;
+        /*清理所有下载线程*/
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"cancelAllThread"
+                                                            object:nil];
     }
 }
 

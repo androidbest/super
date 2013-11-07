@@ -32,7 +32,7 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];    
+    [super viewDidLoad];
 	[_information setBackgroundColor:[UIColor colorWithRed:0.41 green:0.47 blue:0.98 alpha:1.0]];
     [_notice setBackgroundColor:[UIColor colorWithRed:0.63 green:0.31 blue:0.70 alpha:1.0]];
     [_sms setBackgroundColor:[UIColor colorWithRed:0.95 green:0.50 blue:0.12 alpha:1.0]];
@@ -106,6 +106,7 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    isZaiXian =YES;
     [super viewWillAppear:animated];
     
     self.navigationController.navigationBarHidden=NO;

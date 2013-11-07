@@ -48,7 +48,8 @@
     
     NSString * strPath=[NSString stringWithFormat:@"%@/%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode,@"group.txt"];
     _arrAllPeople =[ConfigFile setAllPeopleInfo:strPath];/*通讯录所有信息*/
-    if (_arrAllPeople.count==0||!_arrAllPeople) {
+    BOOL blHave=[[NSFileManager defaultManager] fileExistsAtPath:strPath];
+    if ((_arrAllPeople.count==0||!_arrAllPeople)&&!blHave) {
         self.HUD = [[MBProgressHUD alloc] initWithView:self.OptionView.navigationController.view];
         [self.OptionView.navigationController.view addSubview:self.HUD];
         self.HUD.labelText = @"请同步通讯录";

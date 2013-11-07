@@ -7,8 +7,7 @@
 //
 
 #import "DownloadCell.h"
-#import "AFURLConnectionOperation.h"
-#import "AFHTTPRequestOperation.h"
+
 
 @implementation DownloadCell
 
@@ -93,8 +92,15 @@
         float percentDone = totalBytesRead/(float)totalBytesExpectedToRead;
         _progressFileDown.progress =percentDone;
         self.labelText.text =[NSString stringWithFormat:@"%d%%",(int)(percentDone*100.0f)];
+
     }];
+    
     [operation start];
+    [self.delegate downloadingAllThread:operation];
+}
+
+- (void)stopOperation:(AFURLConnectionOperation *)operation{
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
