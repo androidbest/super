@@ -36,7 +36,7 @@
     CFErrorRef error;
     
     
-    ABAddressBookRef addressBook = nil;
+    ABAddressBookRef addressBook = NULL;
     //如果为iOS6以上系统，需要等待用户确认是否允许访问通讯录。
     if ([[UIDevice currentDevice].systemVersion floatValue] >= 6.0)
     {
@@ -56,20 +56,20 @@
     }
     
     NSUInteger NameNum=0;
-    NSArray *array = (__bridge NSArray *)ABAddressBookCopyArrayOfAllPeople(addressBook);
-    for (int i=0; i<array.count; i++) {
-        ABRecordRef aRecord=(__bridge ABRecordRef)([array objectAtIndex:i]);
+    NSArray *array = (__bridge_transfer NSArray *)ABAddressBookCopyArrayOfAllPeople(addressBook);
+    for (id obj in array) {
+        ABRecordRef aRecord=(__bridge_retained ABRecordRef)obj;
         //姓名
         CFStringRef firstName,LastName;
         firstName =ABRecordCopyValue(aRecord,kABPersonFirstNameProperty);
         LastName =ABRecordCopyValue(aRecord, kABPersonLastNameProperty);
         NSString *strname ;
         if (firstName&&firstName&&!LastName) {
-            strname=(__bridge NSString *)firstName;
+            strname=(__bridge_transfer NSString *)firstName;
         } else if(!firstName&&LastName){
-            strname=(__bridge NSString *)LastName;
+            strname=(__bridge_transfer NSString *)LastName;
         } else if (LastName&&firstName) {
-            strname =[(__bridge NSString *)LastName stringByAppendingString:(__bridge NSString *)firstName];
+            strname =[(__bridge_transfer NSString *)LastName stringByAppendingString:(__bridge_transfer NSString *)firstName];
         }
         
         //判断是否包含此名字
@@ -88,18 +88,37 @@
     ABRecordSetValue(record, kABPersonFirstNameProperty, (__bridge CFTypeRef)name, &error);
     // 添加联系人电话号码以及该号码对应的标签名
     ABMutableMultiValueRef multi = ABMultiValueCreateMutable(kABPersonPhoneProperty);
-    ABMultiValueAddValueAndLabel(multi, (__bridge CFTypeRef)(num), kABPersonPhoneMobileLabel, NULL);
+    ABMultiValueAddValueAndLabel(multi, (__bridge_retained CFTypeRef)(num), kABPersonPhoneMobileLabel, NULL);
     ABRecordSetValue(record, kABPersonPhoneProperty, multi, &error);
+    
+    
+    CFRelease(multi);
     
 //将新建联系人记录添加如通讯录中
     BOOL success = ABAddressBookAddRecord(addressBook, record, &error);
+    
+    CFRelease(record);
     if (!success) {
+        if(addressBook){
+            CFRelease(addressBook);
+        }
+        
+        
+        
         return NO;
     }else{
         // 如果添加记录成功，保存更新到通讯录数据库中
         success = ABAddressBookSave(addressBook, &error);
+        if(addressBook){
+            CFRelease(addressBook);
+        }
+        
+        
         return success ? YES : NO;
     }
+    
+    
+    
 }
 
 + (ABHelperCheckExistResultType)existPhone:(NSString *)phoneNum

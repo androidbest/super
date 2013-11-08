@@ -19,7 +19,7 @@
     
     NSMutableArray * Allpeople=[[NSMutableArray alloc] init];
     //新建一个通讯录类
-    ABAddressBookRef addressBooks = nil;
+    ABAddressBookRef addressBooks = NULL;
 if ([[UIDevice currentDevice].systemVersion floatValue] >= 6.0)
      {
          addressBooks =  ABAddressBookCreateWithOptions(NULL, NULL);
@@ -31,24 +31,26 @@ if ([[UIDevice currentDevice].systemVersion floatValue] >= 6.0)
     }else{
         addressBooks =  ABAddressBookCreateWithOptions(NULL, NULL);
   }
-    NSArray *array = (__bridge NSArray *)ABAddressBookCopyArrayOfAllPeople(addressBooks);
-    CFRelease(addressBooks);
-    for (int i=0; i<array.count; i++) {
-        ABRecordRef aRecord=(__bridge ABRecordRef)([array objectAtIndex:i]);
+    ABRecordRef array = ABAddressBookCopyArrayOfAllPeople(addressBooks);
+    
+    for (id obj in (__bridge_transfer NSArray *)array) {
+        ABRecordRef aRecord=CFRetain((__bridge  ABRecordRef)obj);
     
         //号码
-        ABMultiValueRef multi = ABRecordCopyValue(aRecord, kABPersonPhoneProperty);
+        ABMultiValueRef multi = ABRecordCopyValue(CFRetain(aRecord), kABPersonPhoneProperty);
         CFStringRef CellNumber;
         CellNumber = ABMultiValueCopyLabelAtIndex(multi, 0);
-        NSString *Tel =(__bridge NSString *)CellNumber;
+        NSString *Tel =(__bridge_transfer NSString *)CellNumber;
         for(int i = 0 ;i < ABMultiValueGetCount(multi); i++)
         {
-            Tel = (__bridge NSString *)ABMultiValueCopyValueAtIndex(multi, i);
+            Tel = (__bridge_transfer NSString *)ABMultiValueCopyValueAtIndex(multi, i);
             Tel = [Tel stringByReplacingOccurrencesOfString:@"(" withString:@""];
             Tel = [Tel stringByReplacingOccurrencesOfString:@")" withString:@""];
             Tel = [Tel stringByReplacingOccurrencesOfString:@"-" withString:@""];
             Tel = [Tel stringByReplacingOccurrencesOfString:@" " withString:@""];
         }
+        
+        CFRelease(multi);
         
         //姓名
         CFStringRef firstName,LastName;
@@ -57,11 +59,11 @@ if ([[UIDevice currentDevice].systemVersion floatValue] >= 6.0)
         
         NSString * Name ;
         if (firstName&&firstName&&!LastName) {
-            Name=(__bridge NSString *)firstName;
+            Name=(__bridge_transfer NSString *)firstName;
         } else if(!firstName&&LastName){
-            Name=(__bridge NSString *)LastName;
+            Name=(__bridge_transfer NSString *)LastName;
         } else if (LastName&&firstName) {
-            Name =[(__bridge NSString *)LastName stringByAppendingString:(__bridge NSString *)firstName];
+            Name =[(__bridge_transfer NSString *)LastName stringByAppendingString:(__bridge_transfer NSString *)firstName];
         }else if(!Tel){
             Name =@"未命名";
         }else if (Tel){
@@ -90,7 +92,20 @@ if ([[UIDevice currentDevice].systemVersion floatValue] >= 6.0)
                                        Letter,@"Firetletter", nil];
             [Allpeople addObject:peopleInfo];
         }
+        
+        
+        if(aRecord){
+            CFRelease(aRecord);
+        }
     }
+//    if(array){
+//        CFRelease(array);
+//    }
+    
+    if(addressBooks){
+        CFRelease(addressBooks);
+    }
+    
     return Allpeople;
 }
 

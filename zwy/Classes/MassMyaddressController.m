@@ -37,23 +37,24 @@
         addressBooks =  ABAddressBookCreateWithOptions(NULL, NULL);
     }
     
-    NSArray *array = (__bridge NSArray *)ABAddressBookCopyArrayOfAllPeople(addressBooks);
-    for (int i=0; i<array.count; i++) {
-        ABRecordRef aRecord=(__bridge ABRecordRef)([array objectAtIndex:i]);
+    NSArray *array = (__bridge_transfer NSArray *)ABAddressBookCopyArrayOfAllPeople(addressBooks);
+    for (id obj in array) {
+        ABRecordRef aRecord=(__bridge_retained ABRecordRef)obj;
         
         //号码
-        ABMultiValueRef multi = ABRecordCopyValue(aRecord, kABPersonPhoneProperty);
+        ABMultiValueRef multi = ABRecordCopyValue(CFRetain(aRecord), kABPersonPhoneProperty);
         CFStringRef CellNumber;
         CellNumber = ABMultiValueCopyLabelAtIndex(multi, 0);
-        NSString *Tel =(__bridge NSString *)CellNumber;
+        NSString *Tel =(__bridge_transfer NSString *)CellNumber;
         for(int i = 0 ;i < ABMultiValueGetCount(multi); i++)
         {
-            Tel = (__bridge NSString *)ABMultiValueCopyValueAtIndex(multi, i);
+            Tel = (__bridge_transfer NSString *)ABMultiValueCopyValueAtIndex(multi, i);
             Tel = [Tel stringByReplacingOccurrencesOfString:@"(" withString:@""];
             Tel = [Tel stringByReplacingOccurrencesOfString:@")" withString:@""];
             Tel = [Tel stringByReplacingOccurrencesOfString:@"-" withString:@""];
             Tel = [Tel stringByReplacingOccurrencesOfString:@" " withString:@""];
         }
+        CFRelease(multi);
         
         //姓名
         CFStringRef firstName,LastName;
@@ -62,11 +63,11 @@
         
         NSString * Name ;
         if (firstName&&firstName&&!LastName) {
-            Name=(__bridge NSString *)firstName;
+            Name=(__bridge_transfer NSString *)firstName;
         } else if(!firstName&&LastName){
-            Name=(__bridge NSString *)LastName;
+            Name=(__bridge_transfer NSString *)LastName;
         } else if (LastName&&firstName) {
-            Name =[(__bridge NSString *)LastName stringByAppendingString:(__bridge NSString *)firstName];
+            Name =[(__bridge_transfer NSString *)LastName stringByAppendingString:(__bridge_transfer NSString *)firstName];
         }else if(!Tel){
             Name =@"未命名";
         }else if (Tel){
@@ -96,7 +97,17 @@
             info.letter=Letter;
             [Allpeople addObject:info];
         }
+        
+        if(aRecord){
+            CFRelease(aRecord);
+        }
     }
+    
+    if(addressBooks){
+        CFRelease(addressBooks);
+    }
+    
+    
     return Allpeople;
 }
 

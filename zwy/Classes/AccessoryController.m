@@ -123,7 +123,8 @@
     if (tableView.tag==0) {/*正在下载列表*/
         static NSString *strCell =@"DowningCell";
         DownloadCell *cell  = (DownloadCell *)[tableView dequeueReusableCellWithIdentifier:strCell];
-          NSString *str =[DocumentsDirectory stringByAppendingPathComponent: [_arrDowning[indexPath.row] objectForKey:@"text"]];
+//          NSString *str =[DocumentsDirectory stringByAppendingPathComponent: [_arrDowning[indexPath.row] objectForKey:@"text"]];
+        NSString *str=nil;
           str =[NSString stringWithFormat:@"%@/%@/%@/%@",DocumentsDirectory,user.msisdn, user.eccode,[_arrDowning[indexPath.row] objectForKey:@"text"]];
         if (!isCell||!cell) {
             cell=[[DownloadCell alloc] initWithDelegate:self URL:[_arrDowning[indexPath.row] objectForKey:@"url"] reuseIdentifier:strCell filePath:str];
