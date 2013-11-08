@@ -277,7 +277,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Avl-0j-GbA">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Avl-0j-GbA">
                                 <rect key="frame" x="5" y="69" width="156" height="141"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -288,7 +288,7 @@
                                     <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c8S-4F-nSX">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c8S-4F-nSX">
                                 <rect key="frame" x="164" y="69" width="151" height="87"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -299,7 +299,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c0Y-qY-4wM">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c0Y-qY-4wM">
                                 <rect key="frame" x="5" y="214" width="155" height="147"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -310,7 +310,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FIg-SC-0L4">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FIg-SC-0L4">
                                 <rect key="frame" x="5" y="366" width="155" height="146"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -320,7 +320,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2fj-vQ-IlK">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2fj-vQ-IlK">
                                 <rect key="frame" x="164" y="281" width="151" height="95"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
@@ -331,7 +331,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bqC-sY-nx7">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bqC-sY-nx7">
                                 <rect key="frame" x="164" y="379" width="151" height="133"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
@@ -341,7 +341,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sxp-ve-aPJ">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sxp-ve-aPJ">
                                 <rect key="frame" x="164" y="159" width="151" height="119"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.5" green="0.0" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
@@ -352,7 +352,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="meetting_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="TB0-xe-CFL">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="meetting_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="TB0-xe-CFL">
                                 <rect key="frame" x="216" y="424" width="44" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
@@ -360,7 +360,7 @@
                                     <constraint firstAttribute="width" constant="44" id="QrT-Gd-aEx"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="information_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="vI9-0M-Ltn">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="information_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="vI9-0M-Ltn">
                                 <rect key="frame" x="61" y="118" width="44" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
@@ -368,7 +368,7 @@
                                     <constraint firstAttribute="height" constant="44" id="puG-5Q-bsI"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="notice_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="XGq-OJ-tph">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="notice_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="XGq-OJ-tph">
                                 <rect key="frame" x="180" y="97" width="30" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
@@ -376,7 +376,7 @@
                                     <constraint firstAttribute="height" constant="32" id="xJY-Np-6Kb"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="adress_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="lp0-7R-aqM">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="adress_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="lp0-7R-aqM">
                                 <rect key="frame" x="216" y="195" width="48" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
@@ -384,7 +384,7 @@
                                     <constraint firstAttribute="height" constant="48" id="nxT-eo-exX"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="sms_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="QCM-a5-PgJ">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sms_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="QCM-a5-PgJ">
                                 <rect key="frame" x="59" y="270" width="47" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
@@ -400,7 +400,7 @@
                                     <constraint firstAttribute="height" constant="44" id="lYd-Cw-LqV"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="mail_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="Ryl-Gc-ffe">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mail_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="Ryl-Gc-ffe">
                                 <rect key="frame" x="179" y="313" width="35" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
@@ -408,7 +408,7 @@
                                     <constraint firstAttribute="width" constant="35" id="t71-cH-VHY"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="100" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="flg-67-zLt">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="flg-67-zLt">
                                 <rect key="frame" x="132" y="369" width="24" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.03254181749" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -2412,13 +2412,9 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="fWM-gL-ItX">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="303"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="490"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="303" id="6bU-QF-wt6"/>
-                                    <constraint firstAttribute="width" constant="320" id="gcp-ab-8Dl"/>
-                                </constraints>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="accountCell" rowHeight="50" id="JaX-47-tqA" customClass="GetEcCell">
                                         <rect key="frame" x="0.0" y="86" width="320" height="50"/>
@@ -2454,8 +2450,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.86818529209999995" green="0.14979258400000001" blue="0.077475530279999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="Dtk-VD-X90"/>
-                                    <constraint firstAttribute="width" constant="280" id="WAu-K2-idu"/>
+                                    <constraint firstAttribute="height" constant="50" id="U3q-uK-AT2"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <state key="normal" title="账号注销">
@@ -2466,12 +2461,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="s8v-CE-jhb" firstAttribute="leading" secondItem="OGo-wC-X3i" secondAttribute="leading" constant="20" id="Bx0-Pf-AM9"/>
-                            <constraint firstAttribute="trailing" secondItem="fWM-gL-ItX" secondAttribute="trailing" id="Se8-TV-4sA"/>
-                            <constraint firstAttribute="bottom" secondItem="s8v-CE-jhb" secondAttribute="bottom" constant="20" id="Tq2-iL-cbv"/>
-                            <constraint firstItem="fWM-gL-ItX" firstAttribute="top" secondItem="OGo-wC-X3i" secondAttribute="top" id="cJt-9b-Szh"/>
-                            <constraint firstItem="fWM-gL-ItX" firstAttribute="leading" secondItem="OGo-wC-X3i" secondAttribute="leading" id="fYK-aJ-Zcc"/>
-                            <constraint firstAttribute="trailing" secondItem="s8v-CE-jhb" secondAttribute="trailing" constant="20" id="qiX-WN-o96"/>
+                            <constraint firstAttribute="trailing" secondItem="s8v-CE-jhb" secondAttribute="trailing" constant="20" id="9tN-jw-ntt"/>
+                            <constraint firstItem="s8v-CE-jhb" firstAttribute="leading" secondItem="OGo-wC-X3i" secondAttribute="leading" constant="20" id="Nur-LN-Tmj"/>
+                            <constraint firstItem="fWM-gL-ItX" firstAttribute="top" secondItem="OGo-wC-X3i" secondAttribute="top" id="Ras-jV-mBs"/>
+                            <constraint firstAttribute="trailing" secondItem="fWM-gL-ItX" secondAttribute="trailing" id="eOe-rg-0Aa"/>
+                            <constraint firstItem="fWM-gL-ItX" firstAttribute="leading" secondItem="OGo-wC-X3i" secondAttribute="leading" id="exc-yg-eUk"/>
+                            <constraint firstItem="s8v-CE-jhb" firstAttribute="top" secondItem="fWM-gL-ItX" secondAttribute="bottom" constant="8" id="h9g-0u-UBG"/>
+                            <constraint firstAttribute="bottom" secondItem="s8v-CE-jhb" secondAttribute="bottom" constant="20" id="pXu-A1-EAy"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="账 号 管 理" id="UzL-Tv-S3M"/>
@@ -4214,39 +4210,17 @@
     <resources>
         <image name="about.png" width="470" height="533"/>
         <image name="addAddress_titles.png" width="50" height="50"/>
-        <image name="addAddress_titles.png" width="50" height="50"/>
         <image name="adress_icon.png" width="100" height="100"/>
         <image name="btn_Call.png" width="44" height="59"/>
-        <image name="btn_Call.png" width="44" height="59"/>
         <image name="btn_SMS.png" width="47" height="49"/>
-        <image name="btn_SMS.png" width="47" height="49"/>
-        <image name="btn_addPeople.png" width="50" height="50"/>
-        <image name="btn_addPeople.png" width="50" height="50"/>
-        <image name="btn_addPeople.png" width="50" height="50"/>
-        <image name="btn_addPeople.png" width="50" height="50"/>
         <image name="btn_addPeople.png" width="50" height="50"/>
         <image name="btn_clear.png" width="62" height="47"/>
         <image name="btn_clear_people.png" width="51" height="51"/>
         <image name="btn_hidden_keybord.png" width="66" height="34"/>
         <image name="btn_numbers.png" width="212" height="100"/>
-        <image name="btn_numbers.png" width="212" height="100"/>
-        <image name="btn_numbers.png" width="212" height="100"/>
-        <image name="btn_numbers.png" width="212" height="100"/>
-        <image name="btn_numbers.png" width="212" height="100"/>
-        <image name="btn_numbers.png" width="212" height="100"/>
-        <image name="btn_numbers.png" width="212" height="100"/>
-        <image name="btn_numbers.png" width="212" height="100"/>
-        <image name="btn_numbers.png" width="212" height="100"/>
-        <image name="btn_numbers.png" width="212" height="100"/>
-        <image name="btn_numbers.png" width="212" height="100"/>
-        <image name="btn_numbers.png" width="212" height="100"/>
         <image name="btn_uncheck.png" width="40" height="40"/>
         <image name="images_button.png" width="48" height="27"/>
-        <image name="images_button.png" width="48" height="27"/>
         <image name="information_icon.png" width="102" height="101"/>
-        <image name="list_NoData.jpg" width="453" height="342"/>
-        <image name="list_NoData.jpg" width="453" height="342"/>
-        <image name="list_NoData.jpg" width="453" height="342"/>
         <image name="list_NoData.jpg" width="453" height="342"/>
         <image name="mail_icon.png" width="51" height="47"/>
         <image name="meetting_date.png" width="37" height="47"/>
@@ -4254,15 +4228,9 @@
         <image name="meetting_time.png" width="50" height="50"/>
         <image name="navigation_back_out.png" width="24" height="41"/>
         <image name="navigation_back_over.png" width="25" height="41"/>
-        <image name="navigation_back_over.png" width="25" height="41"/>
-        <image name="navigation_back_over.png" width="25" height="41"/>
-        <image name="navigation_back_over.png" width="25" height="41"/>
-        <image name="navigation_back_over.png" width="25" height="41"/>
-        <image name="navigation_back_over.png" width="25" height="41"/>
         <image name="notice_icon.png" width="46" height="55"/>
         <image name="office_icon.png" width="102" height="81"/>
         <image name="sms_icon.png" width="100" height="72"/>
-        <image name="sms_template.png" width="43" height="42"/>
         <image name="sms_template.png" width="43" height="42"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
