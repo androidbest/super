@@ -90,55 +90,66 @@
     // 初始化并创建通讯录对象，记得释放内存
     ABAddressBookRef addressBook =  ABAddressBookCreateWithOptions(NULL, NULL);
     // 获取通讯录中所有的联系人
-    NSArray *array = (__bridge NSArray *)ABAddressBookCopyArrayOfAllPeople(addressBook);
+    ABRecordRef array =ABAddressBookCopyArrayOfAllPeople(addressBook);
     // 遍历所有的联系人并修改指定的联系人
-    for (id obj in array) {
-        ABRecordRef people = (__bridge ABRecordRef)obj;
-        NSString *fn = (__bridge NSString *)ABRecordCopyValue(people, kABPersonFirstNameProperty);
-        NSString *ln = (__bridge NSString *)ABRecordCopyValue(people, kABPersonLastNameProperty);
+    for (id obj in  (__bridge NSArray *)array) {
+        ABRecordRef people = CFRetain((__bridge ABRecordRef)obj);
+        CFStringRef fn = ABRecordCopyValue(people, kABPersonFirstNameProperty);
+        CFStringRef ln = ABRecordCopyValue(people, kABPersonLastNameProperty);
         
-        NSString * AllName;
-        if (!ln) {
-            AllName=fn;
-        }
-        else if(!fn&&ln){
-            AllName=ln;
-        }
+        CFStringRef AllName = NULL;
         if (ln&&fn) {
-            AllName =[ln stringByAppendingString:fn];
+            AllName =CFRetain((__bridge CFStringRef)([(__bridge NSString *)ln stringByAppendingString:(__bridge NSString *)(fn)]));
+            CFRelease(ln);
+            CFRelease(fn);
+        }else  if (!ln&&fn){
+            AllName=(CFRetain(fn));
+          CFRelease(fn);
         }
-        BOOL isSet =[AllName isEqualToString:Name];
+        else if(!fn&&ln) {
+            AllName=(CFRetain(ln));
+            CFRelease(ln);
+        }else{
+            AllName =CFRetain((__bridge CFStringRef)mobile);
+        }
+       
+        BOOL isSet =[(__bridge NSString *)AllName isEqualToString:Name];
+        CFRelease(AllName);
         if (isSet) {
             /*处理多值属性*/
             ABMutableMultiValueRef multi =ABMultiValueCreateMutable(kABMultiStringPropertyType);
              ABMultiValueRef ALLTEL = ABRecordCopyValue(people, kABPersonPhoneProperty);
-            NSString *Tel;
+            
             
             /*保存原有的多个号码，只修改最后一个多值号码*/
             for(int i = 0 ;i < ABMultiValueGetCount(ALLTEL)-1; i++)
             {
-                Tel = (__bridge NSString *)ABMultiValueCopyValueAtIndex(ALLTEL, i);
-                Tel = [Tel stringByReplacingOccurrencesOfString:@"(" withString:@""];
-                Tel = [Tel stringByReplacingOccurrencesOfString:@")" withString:@""];
-                Tel = [Tel stringByReplacingOccurrencesOfString:@"-" withString:@""];
-                Tel = [Tel stringByReplacingOccurrencesOfString:@" " withString:@""];
+                NSString *Tel=Nil;
+                Tel =CFAutorelease((ABMultiValueCopyValueAtIndex(ALLTEL, i))) ;
+                Tel = ([Tel stringByReplacingOccurrencesOfString:@"(" withString:@""]);
+                Tel = ([Tel stringByReplacingOccurrencesOfString:@")" withString:@""]);
+                Tel = ([Tel stringByReplacingOccurrencesOfString:@"-" withString:@""]);
+                Tel = ([Tel stringByReplacingOccurrencesOfString:@" " withString:@""]);
                 ABMultiValueInsertValueAndLabelAtIndex(multi, (__bridge CFTypeRef)(Tel), kABPersonPhoneMobileLabel, i, NULL);
+               
             }
             if (ABMultiValueGetCount(ALLTEL)!=0) {
                 ABMultiValueInsertValueAndLabelAtIndex(multi, (__bridge CFTypeRef)(mobile), kABPersonPhoneMobileLabel, ABMultiValueGetCount(ALLTEL)-1, NULL);/*修改最后一个号码*/
                 ABRecordSetValue(people, kABPersonPhoneProperty, multi, NULL);
             }
-          //  bool didadd = ABMultiValueAddValueAndLabel(multi, (__bridge CFTypeRef)(mobile), kABPersonPhoneIPhoneLabel, NULL);
-
+            CFRelease(ALLTEL);
+            CFRelease(multi);
         }
+        CFRelease(people);
     }
     // 保存修改的通讯录对象
     ABAddressBookSave(addressBook, NULL);
+    
     // 释放通讯录对象的内存
+    CFRelease(array);
     if (addressBook) {
         CFRelease(addressBook);
     }
-    
 }
 
 #pragma mark - 修改姓名
@@ -148,35 +159,36 @@
     // 初始化并创建通讯录对象，记得释放内存
     ABAddressBookRef addressBook =  ABAddressBookCreateWithOptions(NULL, NULL);
     // 获取通讯录中所有的联系人
-    NSArray *array = (__bridge NSArray *)ABAddressBookCopyArrayOfAllPeople(addressBook);
-    for (id aRecord in array) {
+    ABRecordRef array = ABAddressBookCopyArrayOfAllPeople(addressBook);
+    for (id aRecord in (__bridge NSArray *)array) {
 
     //号码
-    ABMultiValueRef multi = ABRecordCopyValue((__bridge ABRecordRef)(aRecord), kABPersonPhoneProperty);
-    CFStringRef CellNumber;
-    CellNumber = ABMultiValueCopyLabelAtIndex(multi, 0);
-    NSString *Tel =(__bridge NSString *)CellNumber;
+    ABMultiValueRef multi =ABRecordCopyValue(CFRetain((__bridge ABRecordRef)(aRecord)), kABPersonPhoneProperty);
+    CFRelease((__bridge CFTypeRef)(aRecord));
+    NSString *Tel=Nil;
     for(int i = 0 ;i < ABMultiValueGetCount(multi); i++)
     {
-        Tel = (__bridge NSString *)ABMultiValueCopyValueAtIndex(multi, i);
+        Tel = CFAutorelease(ABMultiValueCopyValueAtIndex(multi, i));
         Tel = [Tel stringByReplacingOccurrencesOfString:@"(" withString:@""];
         Tel = [Tel stringByReplacingOccurrencesOfString:@")" withString:@""];
         Tel = [Tel stringByReplacingOccurrencesOfString:@"-" withString:@""];
         Tel = [Tel stringByReplacingOccurrencesOfString:@" " withString:@""];
     }
+        
         if ([Tel isEqualToString:mobile]) {
-            NSString *strFirstName=[Name substringFromIndex:1];
-            NSString *strLastName =[Name substringToIndex:1];
+            CFStringRef strFirstName=CFRetain((__bridge CFStringRef)[Name substringFromIndex:1]);
+            CFStringRef strLastName =CFRetain((__bridge CFStringRef)[Name substringToIndex:1]);
             //处理单值属性
-          bool didadd =  ABRecordSetValue((__bridge ABRecordRef)(aRecord), kABPersonFirstNameProperty, (__bridge CFDataRef)strFirstName, NULL)&&ABRecordSetValue((__bridge ABRecordRef)(aRecord), kABPersonLastNameProperty, (__bridge CFDataRef)strLastName, NULL);//处理单值属性
-            if (!didadd) {
-                NSLog(@"Error");
-            }
+        ABRecordSetValue((__bridge ABRecordRef)(aRecord), kABPersonFirstNameProperty, strFirstName, NULL)&&ABRecordSetValue((__bridge ABRecordRef)(aRecord), kABPersonLastNameProperty,strLastName, NULL);//处理单值属性
+            CFRelease(strFirstName);
+            CFRelease(strLastName);
         }
+        CFRelease(multi);
     }
     // 保存修改的通讯录对象
     ABAddressBookSave(addressBook, NULL);
     // 释放通讯录对象的内存
+    CFRelease(array);
     if (addressBook) {
         CFRelease(addressBook);
     }
