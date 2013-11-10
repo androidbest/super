@@ -2412,7 +2412,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="fWM-gL-ItX">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="490"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="470"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -2461,13 +2461,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="fWM-gL-ItX" secondAttribute="trailing" id="3kM-gq-Wph"/>
+                            <constraint firstItem="s8v-CE-jhb" firstAttribute="top" secondItem="fWM-gL-ItX" secondAttribute="bottom" constant="28" id="6cW-rY-T7l"/>
                             <constraint firstAttribute="trailing" secondItem="s8v-CE-jhb" secondAttribute="trailing" constant="20" id="9tN-jw-ntt"/>
+                            <constraint firstItem="fWM-gL-ItX" firstAttribute="leading" secondItem="OGo-wC-X3i" secondAttribute="leading" id="BiY-n9-bHz"/>
                             <constraint firstItem="s8v-CE-jhb" firstAttribute="leading" secondItem="OGo-wC-X3i" secondAttribute="leading" constant="20" id="Nur-LN-Tmj"/>
-                            <constraint firstItem="fWM-gL-ItX" firstAttribute="top" secondItem="OGo-wC-X3i" secondAttribute="top" id="Ras-jV-mBs"/>
-                            <constraint firstAttribute="trailing" secondItem="fWM-gL-ItX" secondAttribute="trailing" id="eOe-rg-0Aa"/>
-                            <constraint firstItem="fWM-gL-ItX" firstAttribute="leading" secondItem="OGo-wC-X3i" secondAttribute="leading" id="exc-yg-eUk"/>
-                            <constraint firstItem="s8v-CE-jhb" firstAttribute="top" secondItem="fWM-gL-ItX" secondAttribute="bottom" constant="8" id="h9g-0u-UBG"/>
                             <constraint firstAttribute="bottom" secondItem="s8v-CE-jhb" secondAttribute="bottom" constant="20" id="pXu-A1-EAy"/>
+                            <constraint firstItem="fWM-gL-ItX" firstAttribute="top" secondItem="OGo-wC-X3i" secondAttribute="top" id="raU-DN-c57"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="账 号 管 理" id="UzL-Tv-S3M"/>

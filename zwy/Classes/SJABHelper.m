@@ -129,51 +129,58 @@
 // 指定号码是否已经存在
 - (ABHelperCheckExistResultType)existPhone:(NSString*)phoneNum
 {
-    ABAddressBookRef addressBook = nil;
+    ABAddressBookRef addressBook = NULL;
     if ([[UIDevice currentDevice].systemVersion floatValue] >= 6.0)
     {
         addressBook = ABAddressBookCreateWithOptions(NULL, NULL);
         //等待同意后向下执行
         dispatch_semaphore_t sema = dispatch_semaphore_create(0);
         ABAddressBookRequestAccessWithCompletion(addressBook, ^(bool granted, CFErrorRef error)
-        {
-            dispatch_semaphore_signal(sema);
-        });
+                                                 {
+                                                     dispatch_semaphore_signal(sema);
+                                                 });
         dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
         
     }
     else
     {
-         addressBook =  ABAddressBookCreateWithOptions(NULL, NULL);
+        addressBook =  ABAddressBookCreateWithOptions(NULL, NULL);
     }
-    CFArrayRef records;
+    CFArrayRef records = NULL;
     if (addressBook) {
-//获取通讯录中全部联系人
+        //获取通讯录中全部联系人
         records = ABAddressBookCopyArrayOfAllPeople(addressBook);
+        
     }else{
-#ifdef DEBUG
-        NSLog(@"can not connect to address book");
-#endif
         return ABHelperCanNotConncetToAddressBook;
     }
     
-//遍历全部联系人，检查是否存在指定号码
-    for (int i=0; i<CFArrayGetCount(records); i++) {
-        ABRecordRef record = CFArrayGetValueAtIndex(records, i);
-        CFTypeRef items = ABRecordCopyValue(record, kABPersonPhoneProperty);
+    //遍历全部联系人，检查是否存在指定号码
+    for (id obj in  (__bridge NSArray *)records) {
+        ABRecordRef record =CFRetain((__bridge ABRecordRef)obj);
+        CFTypeRef items = ABRecordCopyValue(CFRetain(record), kABPersonPhoneProperty);
         CFArrayRef phoneNums = ABMultiValueCopyArrayOfAllValues(items);
+        CFRelease(items);
         if (phoneNums) {
             for (int j=0; j<CFArrayGetCount(phoneNums); j++) {
-                NSString *phone = (NSString*)CFArrayGetValueAtIndex(phoneNums, j);
-                if ([phone isEqualToString:phoneNum]) {
+                CFStringRef phone =CFArrayGetValueAtIndex(phoneNums, j);
+                if ([(__bridge_transfer NSString *)phone isEqualToString:phoneNum]) {
+                    CFRelease(phoneNums);
+                    CFRelease(record);
+                    CFRelease(records);
+                    CFRelease(addressBook);
                     return ABHelperExistSpecificContact;
                 }
             }
+            CFRelease (phoneNums);
         }
+        CFRelease(record);
     }
     
-    CFRelease(addressBook);
+    CFRelease(records);
+    if (addressBook) {
+        CFRelease(addressBook);
+    }
     return ABHelperNotExistSpecificContact;
 }
-
 @end
