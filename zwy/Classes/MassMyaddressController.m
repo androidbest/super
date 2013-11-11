@@ -42,10 +42,8 @@
         ABRecordRef aRecord=(__bridge_retained ABRecordRef)obj;
         
         //号码
-        ABMultiValueRef multi = ABRecordCopyValue(CFRetain(aRecord), kABPersonPhoneProperty);
-        CFStringRef CellNumber;
-        CellNumber = ABMultiValueCopyLabelAtIndex(multi, 0);
-        NSString *Tel =(__bridge_transfer NSString *)CellNumber;
+        ABMultiValueRef multi = ABRecordCopyValue(aRecord, kABPersonPhoneProperty);
+        NSString *Tel =nil;
         for(int i = 0 ;i < ABMultiValueGetCount(multi); i++)
         {
             Tel = (__bridge_transfer NSString *)ABMultiValueCopyValueAtIndex(multi, i);

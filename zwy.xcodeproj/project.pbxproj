@@ -1594,9 +1594,6 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = sxit;
 				TargetAttributes = {
-					595CB97917F164AF00228A6E = {
-						DevelopmentTeam = HXVDZYZZ4N;
-					};
 					595CB99A17F164AF00228A6E = {
 						TestTargetID = 595CB97917F164AF00228A6E;
 					};
@@ -2008,7 +2005,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: w s (4Q4855JQM3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "zwy/zwy-Prefix.pch";
 				INFOPLIST_FILE = "zwy/zwy-Info.plist";
