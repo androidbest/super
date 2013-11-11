@@ -27,7 +27,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _textTel.keyboardType=UIKeyboardTypePhonePad;
+    _textTel.keyboardType=UIKeyboardTypeNumberPad;
     _textTel.delegate=self.controller;
     [_btnSave addTarget:self.controller action:@selector(btnSave) forControlEvents:UIControlEventTouchUpInside];
     _btnSave.layer.masksToBounds = YES;

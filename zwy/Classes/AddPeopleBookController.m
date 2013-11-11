@@ -38,8 +38,8 @@
     [_addView.textName resignFirstResponder];
     [_addView.textTel resignFirstResponder];
     
-    __block NSString * strTel =_addView.textTel.text;
-    __block NSString * strName =_addView.textName.text;
+    NSString * strTel =_addView.textTel.text;
+    NSString * strName =_addView.textName.text;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         BOOL blSave =[SJABHelper addContactName:strName phoneNum:strTel withLabel:@"办公"];
         dispatch_async(dispatch_get_main_queue(), ^{

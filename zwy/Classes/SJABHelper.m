@@ -89,7 +89,7 @@
     
     
 //设置联系人的名字
-    ABRecordSetValue(record, kABPersonFirstNameProperty, (__bridge_retained CFTypeRef)name, &error);
+    ABRecordSetValue(record, kABPersonFirstNameProperty, (__bridge CFTypeRef)name, &error);
     // 添加联系人电话号码以及该号码对应的标签名
     ABMutableMultiValueRef multi = ABMultiValueCreateMutable(kABPersonPhoneProperty);
     ABMultiValueAddValueAndLabel(multi, (__bridge_retained CFTypeRef)num, kABPersonPhoneMobileLabel, NULL);
