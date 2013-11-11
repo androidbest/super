@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet UIButton *btnReturn;
 @property (weak, nonatomic) IBOutlet UIButton *btnCencel;
+@property (strong, nonatomic) IBOutlet UINavigationBar *navigationBar;
 @property (weak, nonatomic) IBOutlet UIButton *btnConfirm;
 @property (weak, nonatomic) IBOutlet UIButton *btnAll;
 @property (assign ,nonatomic)id optionDelegate;

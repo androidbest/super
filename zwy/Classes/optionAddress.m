@@ -29,6 +29,9 @@
     [super viewDidLoad];
     self.title=@"选择联系人";
     
+    _navigationBar.topItem.title=user.ecname;
+    
+    
     [_btnAll addTarget:self.controller action:@selector(btnAll:) forControlEvents:UIControlEventTouchUpInside];
     [_btnCencel addTarget:self.controller action:@selector(btnCencel:) forControlEvents:UIControlEventTouchUpInside];
     [_btnConfirm addTarget:self.controller action:@selector(btnConfirm:) forControlEvents:UIControlEventTouchUpInside];
