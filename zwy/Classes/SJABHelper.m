@@ -55,9 +55,9 @@
         addressBook =  ABAddressBookCreateWithOptions(NULL, NULL);
     }
     
-    NSUInteger NameNum=0;
-    NSArray *array = (__bridge_transfer NSArray *)ABAddressBookCopyArrayOfAllPeople(addressBook);
-    for (id obj in array) {
+    int NameNum=0;
+    ABRecordRef array = ABAddressBookCopyArrayOfAllPeople(addressBook);
+    for (id obj in (__bridge_transfer NSArray *)array) {
         ABRecordRef aRecord=(__bridge_retained ABRecordRef)obj;
         //姓名
         CFStringRef firstName,LastName;
@@ -77,21 +77,23 @@
         if(foundObj.length>0) {
             NameNum ++;
         }
+        
+        if(aRecord){
+            CFRelease(aRecord);
+        }
+        
     }
     if (NameNum!=0) {
         name =[NSString stringWithFormat:@"%@(%d)",name,NameNum];
     }
     
     
-    
 //设置联系人的名字
-    ABRecordSetValue(record, kABPersonFirstNameProperty, (__bridge CFTypeRef)name, &error);
+    ABRecordSetValue(record, kABPersonFirstNameProperty, (__bridge_retained CFTypeRef)name, &error);
     // 添加联系人电话号码以及该号码对应的标签名
     ABMutableMultiValueRef multi = ABMultiValueCreateMutable(kABPersonPhoneProperty);
-    ABMultiValueAddValueAndLabel(multi, (__bridge_retained CFTypeRef)(num), kABPersonPhoneMobileLabel, NULL);
+    ABMultiValueAddValueAndLabel(multi, (__bridge_retained CFTypeRef)num, kABPersonPhoneMobileLabel, NULL);
     ABRecordSetValue(record, kABPersonPhoneProperty, multi, &error);
-    
-    
     CFRelease(multi);
     
 //将新建联系人记录添加如通讯录中
@@ -102,9 +104,6 @@
         if(addressBook){
             CFRelease(addressBook);
         }
-        
-        
-        
         return NO;
     }else{
         // 如果添加记录成功，保存更新到通讯录数据库中
@@ -112,12 +111,8 @@
         if(addressBook){
             CFRelease(addressBook);
         }
-        
-        
         return success ? YES : NO;
     }
-    
-    
     
 }
 
@@ -158,13 +153,13 @@
 //遍历全部联系人，检查是否存在指定号码
     for (id obj in  (__bridge NSArray *)records) {
         ABRecordRef record =CFRetain((__bridge ABRecordRef)obj);
-        CFTypeRef items = ABRecordCopyValue(CFRetain(record), kABPersonPhoneProperty);
+        CFTypeRef items = ABRecordCopyValue(record, kABPersonPhoneProperty);
         CFArrayRef phoneNums = ABMultiValueCopyArrayOfAllValues(items);
         CFRelease(items);
         if (phoneNums) {
             for (int j=0; j<CFArrayGetCount(phoneNums); j++) {
                 CFStringRef phone =CFArrayGetValueAtIndex(phoneNums, j);
-                if ([(__bridge_transfer NSString *)phone isEqualToString:phoneNum]) {
+                if ([(__bridge NSString *)phone isEqualToString:phoneNum]) {
                     CFRelease(phoneNums);
                     CFRelease(record);
                     CFRelease(records);
