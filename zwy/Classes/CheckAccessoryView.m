@@ -47,9 +47,17 @@
     [self.view addSubview : self.activityIndicatorView];
     
     NSString * strPath  =[NSString stringWithFormat:@"%@/%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode,_url];
-    NSURL *URL = [NSURL fileURLWithPath:strPath];
-    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
-    [_webAccessory loadRequest:request];
+    NSString * FileType =[[_url componentsSeparatedByString:@"."] lastObject];
+    if ([FileType isEqualToString:@"txt"]||[FileType isEqualToString:@"html"]) {
+        NSString *File=[NSString stringWithContentsOfFile:strPath usedEncoding:nil error:NULL];
+        if (!File)File=[NSString stringWithContentsOfFile:strPath encoding:0x80000632 error:NULL];
+        if (!File)File=[NSString stringWithContentsOfFile:strPath encoding:0x80000631 error:NULL];
+        [_webAccessory loadHTMLString:File baseURL:nil];
+    }else {
+        NSURL *URL = [NSURL fileURLWithPath:strPath];
+        NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+        [_webAccessory loadRequest:request];
+    }
 	// Do any additional setup after loading the view.
 }
 

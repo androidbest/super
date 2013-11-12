@@ -125,9 +125,9 @@
     arr1=[NSMutableArray new];
     arr2=[NSMutableArray new];
     arr3=[NSMutableArray new];
-    [packageData getDocList:self infoType:@"1" pages:page0 SELType:xmlNotifInfo];
     self.daibanView.selecter.selectedSegmentIndex=0;
     [self segmentAction:self.daibanView.selecter];
+      [self.daibanView.listview LoadDataBegin];
 }
 
 //页签选择

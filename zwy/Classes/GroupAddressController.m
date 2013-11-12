@@ -52,7 +52,7 @@
     _arrAllPeople = [ConfigFile setAllPeopleInfo:str];
      BOOL blHave=[[NSFileManager defaultManager] fileExistsAtPath:str];
     if(_arrAllPeople.count==0&&!blHave){
-        [ToolUtils alertInfo:@"请同步通讯录" delegate:self otherBtn:@"确认"];
+        [ToolUtils alertInfo:@"请同步单位通讯录" delegate:self otherBtn:@"确认"];
     }
     
     NSString * strSearchbar;

@@ -156,10 +156,13 @@
         CFTypeRef items = ABRecordCopyValue(record, kABPersonPhoneProperty);
         CFArrayRef phoneNums = ABMultiValueCopyArrayOfAllValues(items);
         CFRelease(items);
+        
         if (phoneNums) {
             for (int j=0; j<CFArrayGetCount(phoneNums); j++) {
                 CFStringRef phone =CFArrayGetValueAtIndex(phoneNums, j);
-                if ([(__bridge NSString *)phone isEqualToString:phoneNum]) {
+                NSCharacterSet *set = [NSCharacterSet characterSetWithCharactersInString:@"@／：；（）¥「」＂、[]{}#%-*+=_\\|~＜＞$€^•'@#$%^&*()_+'\""];
+                NSString *trimmedString = [(__bridge NSString *)phone stringByTrimmingCharactersInSet:set];
+                if ([trimmedString isEqualToString:phoneNum]) {
                     CFRelease(phoneNums);
                     CFRelease(record);
                     CFRelease(records);

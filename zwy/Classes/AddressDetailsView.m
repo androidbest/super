@@ -51,6 +51,7 @@
     self.textTel.text=_dicAddressData[@"tel"];
     _textName.enabled=NO;
     _textTel.enabled=NO;
+    _textTel.keyboardType=UIKeyboardTypeNumberPad;
     self.title=self.textName.text;
     
     [_btnSendSMS addTarget:self.controller action:@selector(SendSMS) forControlEvents:UIControlEventTouchUpInside];
