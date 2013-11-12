@@ -647,17 +647,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="158" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Isc-YY-2fa">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="155" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="Isc-YY-2fa">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell alpha="0.89999999999999991" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="docflowcell" rowHeight="158" id="5as-SJ-ANB" customClass="DocFlowCell">
-                                        <rect key="frame" x="0.0" y="86" width="320" height="158"/>
+                                    <tableViewCell alpha="0.89999999999999991" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="docflowcell" rowHeight="155" id="5as-SJ-ANB" customClass="DocFlowCell">
+                                        <rect key="frame" x="0.0" y="119" width="320" height="155"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5as-SJ-ANB" id="2y8-v6-zDH">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="157"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="154"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eHn-5i-tOH">
@@ -747,22 +747,8 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dzW-Be-vBX">
-                                                    <rect key="frame" x="0.0" y="157" width="320" height="1"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b7m-gQ-LKy">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceHorizontal="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tBh-Se-VuB">
-                                                    <rect key="frame" x="110" y="116" width="210" height="41"/>
+                                                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceHorizontal="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9yl-rx-lnY">
+                                                    <rect key="frame" x="108" y="116" width="212" height="34"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 </scrollView>
                                             </subviews>
@@ -774,8 +760,7 @@
                                             <outlet property="handletime" destination="lfl-kB-WlG" id="VhJ-l8-1OH"/>
                                             <outlet property="hanldeStep" destination="qe9-al-qYL" id="zpE-BK-Fwu"/>
                                             <outlet property="num" destination="eHn-5i-tOH" id="l7N-jx-cmT"/>
-                                            <outlet property="scrollview" destination="tBh-Se-VuB" id="LZg-Vu-kw5"/>
-                                            <outlet property="topLabel" destination="b7m-gQ-LKy" id="4jc-uE-i6b"/>
+                                            <outlet property="scrollview" destination="9yl-rx-lnY" id="6PN-dX-hlo"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -783,14 +768,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Isc-YY-2fa" firstAttribute="top" secondItem="Xn6-FT-w2Q" secondAttribute="top" id="1OC-fA-lEb"/>
-                            <constraint firstAttribute="bottom" secondItem="Isc-YY-2fa" secondAttribute="bottom" id="67h-Rv-8ir"/>
-                            <constraint firstItem="Isc-YY-2fa" firstAttribute="leading" secondItem="Xn6-FT-w2Q" secondAttribute="leading" id="buE-Eg-5Z2"/>
-                            <constraint firstAttribute="trailing" secondItem="Isc-YY-2fa" secondAttribute="trailing" id="unJ-CA-iFI"/>
+                            <constraint firstAttribute="trailing" secondItem="Isc-YY-2fa" secondAttribute="trailing" id="4Aj-CX-zGI"/>
+                            <constraint firstItem="qwU-AL-ahW" firstAttribute="top" secondItem="Isc-YY-2fa" secondAttribute="bottom" id="728-JJ-zHm"/>
+                            <constraint firstItem="Isc-YY-2fa" firstAttribute="leading" secondItem="Xn6-FT-w2Q" secondAttribute="leading" id="Zeq-Pi-wyr"/>
+                            <constraint firstItem="Isc-YY-2fa" firstAttribute="top" secondItem="Xn6-FT-w2Q" secondAttribute="top" id="bG1-kd-TGu"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="公 文 流 程" id="NHG-32-rUe"/>
-                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="flowList" destination="Isc-YY-2fa" id="2Eu-cg-axq"/>
                     </connections>

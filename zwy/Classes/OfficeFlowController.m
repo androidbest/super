@@ -77,13 +77,10 @@
         return header;
     }else{
         UIView* header =[UIView new];
-        header.alpha=0.3;
+        header.alpha=0.1;
         [header setBackgroundColor:[UIColor grayColor]];
                 return header;
     }
-    
-    
-    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -124,6 +121,9 @@
 
     NSString * strContent=info.content;
     if ([strContent isEqualToString:@"null"]) {strContent=@"";}
+    
+//    strContent=@"111111111111111111111111";
+    
     cell.content.text=strContent;
     CGRect theStringSize = [strContent boundingRectWithSize:CGSizeMake(1000, 1000)
                                                       options:NSStringDrawingUsesLineFragmentOrigin
@@ -159,8 +159,10 @@
     return cell;
 }
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    UILabel *cell= (UILabel *)[scrollView viewWithTag:1];
-    scrollView.contentSize=CGSizeMake(cell.frame.size.width, 0);
+    if(scrollView.tag!=10){
+        UILabel *cell= (UILabel *)[scrollView viewWithTag:1];
+        scrollView.contentSize=CGSizeMake(cell.frame.size.width, 0);
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

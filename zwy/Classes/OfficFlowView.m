@@ -28,10 +28,9 @@
 {
     [super viewDidLoad];
     [self.controller initData:self];
+    _flowList.tag=10;
     _flowList.delegate=self.controller;
     _flowList.dataSource=self.controller;
-    
-    
     [(OfficeFlowController *)self.controller performSelector:@selector(sendDocFlow) withObject:nil];
 }
 
