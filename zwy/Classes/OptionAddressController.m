@@ -52,7 +52,7 @@
     if ((_arrAllPeople.count==0||!_arrAllPeople)&&!blHave) {
         self.HUD = [[MBProgressHUD alloc] initWithView:self.OptionView.navigationController.view];
         [self.OptionView.navigationController.view addSubview:self.HUD];
-        self.HUD.labelText = @"请同步通讯录";
+        self.HUD.labelText = @"请同步单位通讯录";
         self.HUD.mode = MBProgressHUDModeCustomView;
         // Set determinate bar mode
         self.HUD.delegate = self;
