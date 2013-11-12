@@ -552,9 +552,9 @@
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
   NSString * textStr = [textView.text stringByReplacingCharactersInRange:range withString:text];
-    if (SMSType==0) MAX_Content=350;
+    if ([SMSType isEqualToString:@"0"]) MAX_Content=350;
     else MAX_Content=70;
-    
+    NSLog(@"%d",MAX_Content);
     if (textStr.length>=MAX_Content)
     {
         textView.text = [textStr substringToIndex:MAX_Content];
