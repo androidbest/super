@@ -106,7 +106,6 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-    isZaiXian =YES;
     [super viewWillAppear:animated];
     
     self.navigationController.navigationBarHidden=NO;

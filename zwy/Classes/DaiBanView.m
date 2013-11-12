@@ -79,6 +79,10 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.tabBarController.tabBar.hidden=NO;
+    if (!isZaiXian) {
+        [self.controller initWithData];
+        isZaiXian=YES;
+    }
 }
 
 -(void)segmentAction:(UISegmentedControl *)Seg{}

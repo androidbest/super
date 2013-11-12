@@ -94,6 +94,42 @@
     return self;
 }
 
+
+- (void)initWithData{
+    arr0=nil;
+    arr1=nil;
+    arr2=nil;
+    arr3=nil;
+    
+    page0=@"1";
+    page1=@"1";
+    page2=@"1";
+    page3=@"1";
+    
+    
+    _daibanView.listview.reachedTheEnd=YES;
+    _daibanView.listview.backgroundColor=[UIColor whiteColor];
+    
+    _daibanView.listview1.reachedTheEnd=YES;
+    _daibanView.listview1.backgroundColor=[UIColor whiteColor];
+    
+    _daibanView.listview2.reachedTheEnd=YES;
+    _daibanView.listview2.backgroundColor=[UIColor whiteColor];
+    
+    _daibanView.listview3.reachedTheEnd=YES;
+    _daibanView.listview3.backgroundColor=[UIColor whiteColor];
+    
+
+    
+    arr0=[NSMutableArray new];
+    arr1=[NSMutableArray new];
+    arr2=[NSMutableArray new];
+    arr3=[NSMutableArray new];
+    [packageData getDocList:self infoType:@"1" pages:page0 SELType:xmlNotifInfo];
+    self.daibanView.selecter.selectedSegmentIndex=0;
+    [self segmentAction:self.daibanView.selecter];
+}
+
 //页签选择
 -(void)segmentAction:(UISegmentedControl *)Seg{
     NSInteger Index = Seg.selectedSegmentIndex;
