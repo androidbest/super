@@ -129,6 +129,7 @@
             _smsView.textSMSContent.textColor=[UIColor lightGrayColor];
             _smsView.zishu.text=[NSString stringWithFormat:@"%@/%d",@"0",350];
             [self.arrDidAllPeople removeAllObjects];
+            [arrAllNumber removeAllObjects];
             [self.smsView.tableViewPeople reloadData];
         }else{
             voiceContent=@"请输入内容";
@@ -136,6 +137,7 @@
             _smsView.textSMSContent.textColor=[UIColor lightGrayColor];
              _smsView.zishu.text=[NSString stringWithFormat:@"%@/%d",@"0",350];
             [voiceDidAllPeople removeAllObjects];
+            [voiceAllNumber removeAllObjects];
             [self.smsView.tableViewPeople reloadData];
         }
     }else{
