@@ -210,6 +210,17 @@
 		659F65271813C9FF00306C14 /* OfficeAddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 659F65261813C9FF00306C14 /* OfficeAddressView.m */; };
 		659F652E1813D4E200306C14 /* OfficeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 659F652D1813D4E200306C14 /* OfficeInfo.m */; };
 		659F65311813D77A00306C14 /* officeDetaInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 659F65301813D77A00306C14 /* officeDetaInfo.m */; };
+		65A26C981839C37C006AF226 /* scheduleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A26C971839C37C006AF226 /* scheduleView.m */; };
+		65A26C9C1839C3A8006AF226 /* NewsScheduleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A26C9B1839C3A8006AF226 /* NewsScheduleView.m */; };
+		65A26C9F1839C3F6006AF226 /* HolidayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A26C9E1839C3F6006AF226 /* HolidayView.m */; };
+		65A26CA21839C41B006AF226 /* WorkView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A26CA11839C41B006AF226 /* WorkView.m */; };
+		65A26CA61839C454006AF226 /* ScheduleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A26CA51839C454006AF226 /* ScheduleController.m */; };
+		65A26CA91839C46E006AF226 /* NewsScheduleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A26CA81839C46E006AF226 /* NewsScheduleController.m */; };
+		65A26CAC1839C485006AF226 /* HolidayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A26CAB1839C485006AF226 /* HolidayController.m */; };
+		65A26CAF1839C494006AF226 /* WorkController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A26CAE1839C494006AF226 /* WorkController.m */; };
+		65A26CB21839F99D006AF226 /* DetailTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A26CB11839F99D006AF226 /* DetailTextView.m */; };
+		65A26CB41839F9CA006AF226 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65A26CB31839F9CA006AF226 /* CoreText.framework */; };
+		65A26CB7183A035A006AF226 /* ScheduleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A26CB6183A035A006AF226 /* ScheduleCell.m */; };
 		65A35B6E1820E50F002C7489 /* ActionSheetWeibo.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A35B6D1820E50F002C7489 /* ActionSheetWeibo.m */; };
 		65A35B721820EC81002C7489 /* share_SMS.png in Resources */ = {isa = PBXBuildFile; fileRef = 65A35B6F1820EC81002C7489 /* share_SMS.png */; };
 		65A35B731820EC81002C7489 /* share_weixin.png in Resources */ = {isa = PBXBuildFile; fileRef = 65A35B701820EC81002C7489 /* share_weixin.png */; };
@@ -610,6 +621,27 @@
 		659F652D1813D4E200306C14 /* OfficeInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfficeInfo.m; sourceTree = "<group>"; };
 		659F652F1813D77A00306C14 /* officeDetaInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = officeDetaInfo.h; sourceTree = "<group>"; };
 		659F65301813D77A00306C14 /* officeDetaInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = officeDetaInfo.m; sourceTree = "<group>"; };
+		65A26C961839C37C006AF226 /* scheduleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scheduleView.h; sourceTree = "<group>"; };
+		65A26C971839C37C006AF226 /* scheduleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = scheduleView.m; sourceTree = "<group>"; };
+		65A26C9A1839C3A8006AF226 /* NewsScheduleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsScheduleView.h; sourceTree = "<group>"; };
+		65A26C9B1839C3A8006AF226 /* NewsScheduleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsScheduleView.m; sourceTree = "<group>"; };
+		65A26C9D1839C3F6006AF226 /* HolidayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HolidayView.h; sourceTree = "<group>"; };
+		65A26C9E1839C3F6006AF226 /* HolidayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HolidayView.m; sourceTree = "<group>"; };
+		65A26CA01839C41B006AF226 /* WorkView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkView.h; sourceTree = "<group>"; };
+		65A26CA11839C41B006AF226 /* WorkView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkView.m; sourceTree = "<group>"; };
+		65A26CA41839C454006AF226 /* ScheduleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleController.h; sourceTree = "<group>"; };
+		65A26CA51839C454006AF226 /* ScheduleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleController.m; sourceTree = "<group>"; };
+		65A26CA71839C46E006AF226 /* NewsScheduleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsScheduleController.h; sourceTree = "<group>"; };
+		65A26CA81839C46E006AF226 /* NewsScheduleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsScheduleController.m; sourceTree = "<group>"; };
+		65A26CAA1839C485006AF226 /* HolidayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HolidayController.h; sourceTree = "<group>"; };
+		65A26CAB1839C485006AF226 /* HolidayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HolidayController.m; sourceTree = "<group>"; };
+		65A26CAD1839C494006AF226 /* WorkController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorkController.h; sourceTree = "<group>"; };
+		65A26CAE1839C494006AF226 /* WorkController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkController.m; sourceTree = "<group>"; };
+		65A26CB01839F99D006AF226 /* DetailTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailTextView.h; sourceTree = "<group>"; };
+		65A26CB11839F99D006AF226 /* DetailTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailTextView.m; sourceTree = "<group>"; };
+		65A26CB31839F9CA006AF226 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		65A26CB5183A035A006AF226 /* ScheduleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleCell.h; sourceTree = "<group>"; };
+		65A26CB6183A035A006AF226 /* ScheduleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleCell.m; sourceTree = "<group>"; };
 		65A35B6C1820E50F002C7489 /* ActionSheetWeibo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetWeibo.h; sourceTree = "<group>"; };
 		65A35B6D1820E50F002C7489 /* ActionSheetWeibo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionSheetWeibo.m; sourceTree = "<group>"; };
 		65A35B6F1820EC81002C7489 /* share_SMS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share_SMS.png; sourceTree = "<group>"; };
@@ -700,6 +732,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65A26CB41839F9CA006AF226 /* CoreText.framework in Frameworks */,
 				659AB38918097B1C000FCEC5 /* libz.1.1.3.dylib in Frameworks */,
 				659AB36618097772000FCEC5 /* MessageUI.framework in Frameworks */,
 				5977D17D18224254003DD5A3 /* libWeChatSDK.a in Frameworks */,
@@ -910,6 +943,7 @@
 		595CB97C17F164AF00228A6E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				65A26CB31839F9CA006AF226 /* CoreText.framework */,
 				659AB38818097B1C000FCEC5 /* libz.1.1.3.dylib */,
 				659AB36518097772000FCEC5 /* MessageUI.framework */,
 				659AB36318097673000FCEC5 /* AddressBook.framework */,
@@ -1012,6 +1046,7 @@
 		595CB9B517F167CB00228A6E /* controllayer */ = {
 			isa = PBXGroup;
 			children = (
+				65A26CA31839C42A006AF226 /* ScheduleController */,
 				65D967921812B95A00C1A05E /* AccessoryController */,
 				595A0C6A181129EA009C26B8 /* ec */,
 				595B509C180D0FD1003EC2AF /* more */,
@@ -1038,6 +1073,7 @@
 		595CB9B617F167D800228A6E /* viewlayer */ = {
 			isa = PBXGroup;
 			children = (
+				65A26C991839C387006AF226 /* scheduleView */,
 				65D9678E1812B8D700C1A05E /* AccessoryView */,
 				595A0C69181129E2009C26B8 /* ec */,
 				595B5098180D0F66003EC2AF /* more */,
@@ -1171,6 +1207,8 @@
 		595CB9BA17F17D7D00228A6E /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				65A26CB01839F99D006AF226 /* DetailTextView.h */,
+				65A26CB11839F99D006AF226 /* DetailTextView.m */,
 				5977236A1824F463003F2701 /* weibo */,
 				59584B221819995200B65162 /* DownloadCell.h */,
 				59584B231819995200B65162 /* DownloadCell.m */,
@@ -1516,6 +1554,38 @@
 			name = OfficeInfo;
 			sourceTree = "<group>";
 		};
+		65A26C991839C387006AF226 /* scheduleView */ = {
+			isa = PBXGroup;
+			children = (
+				65A26C961839C37C006AF226 /* scheduleView.h */,
+				65A26C971839C37C006AF226 /* scheduleView.m */,
+				65A26C9A1839C3A8006AF226 /* NewsScheduleView.h */,
+				65A26C9B1839C3A8006AF226 /* NewsScheduleView.m */,
+				65A26C9D1839C3F6006AF226 /* HolidayView.h */,
+				65A26C9E1839C3F6006AF226 /* HolidayView.m */,
+				65A26CA01839C41B006AF226 /* WorkView.h */,
+				65A26CA11839C41B006AF226 /* WorkView.m */,
+				65A26CB5183A035A006AF226 /* ScheduleCell.h */,
+				65A26CB6183A035A006AF226 /* ScheduleCell.m */,
+			);
+			name = scheduleView;
+			sourceTree = "<group>";
+		};
+		65A26CA31839C42A006AF226 /* ScheduleController */ = {
+			isa = PBXGroup;
+			children = (
+				65A26CA41839C454006AF226 /* ScheduleController.h */,
+				65A26CA51839C454006AF226 /* ScheduleController.m */,
+				65A26CA71839C46E006AF226 /* NewsScheduleController.h */,
+				65A26CA81839C46E006AF226 /* NewsScheduleController.m */,
+				65A26CAA1839C485006AF226 /* HolidayController.h */,
+				65A26CAB1839C485006AF226 /* HolidayController.m */,
+				65A26CAD1839C494006AF226 /* WorkController.h */,
+				65A26CAE1839C494006AF226 /* WorkController.m */,
+			);
+			name = ScheduleController;
+			sourceTree = "<group>";
+		};
 		65A9C8DA180EC7510032D170 /* information */ = {
 			isa = PBXGroup;
 			children = (
@@ -1749,6 +1819,7 @@
 				65B3AC7F18195CEC00F2EC04 /* SMSModeDetaView.m in Sources */,
 				659995D61828A10500694F57 /* AlterPasswordController.m in Sources */,
 				659AB384180979FA000FCEC5 /* AIMTableViewIndexBar.m in Sources */,
+				65A26CB7183A035A006AF226 /* ScheduleCell.m in Sources */,
 				5989A12517F5849E00789DC6 /* MoreView.m in Sources */,
 				65D967981812E1ED00C1A05E /* CheckAccessoryView.m in Sources */,
 				594B813418037D0B00310CB1 /* EcinfoDetas.m in Sources */,
@@ -1763,6 +1834,7 @@
 				5942044E1802E5AA00AA35C3 /* AFHTTPRequestOperation.m in Sources */,
 				65B3AC8B18195D9600F2EC04 /* peopleDeleteController.m in Sources */,
 				594B80FF18037BC500310CB1 /* AddressInfo.m in Sources */,
+				65A26CA91839C46E006AF226 /* NewsScheduleController.m in Sources */,
 				594204591802EE9B00AA35C3 /* HTTPRequest.m in Sources */,
 				659AB362180975D0000FCEC5 /* MyAddressController.m in Sources */,
 				659AB3491809750F000FCEC5 /* InfoDetailsView.m in Sources */,
@@ -1787,14 +1859,18 @@
 				659AB37E18097878000FCEC5 /* zip.c in Sources */,
 				596D6EEE18085C63002CD0B3 /* SmsView.m in Sources */,
 				659AB36D18097803000FCEC5 /* PeopelInfo.m in Sources */,
+				65A26CAF1839C494006AF226 /* WorkController.m in Sources */,
 				59F3D551180DA3640062ACF3 /* MailView.m in Sources */,
+				65A26C9F1839C3F6006AF226 /* HolidayView.m in Sources */,
 				595CB9F317F1802D00228A6E /* Constants.m in Sources */,
 				594B810F18037CB800310CB1 /* PublicMailDetaInfo.m in Sources */,
+				65A26C981839C37C006AF226 /* scheduleView.m in Sources */,
 				65A3B39D1814CC7A00AD4069 /* MassMyaddressController.m in Sources */,
 				594B80FD18037BC500310CB1 /* memberInfo.m in Sources */,
 				659AB37C18097878000FCEC5 /* mztools.c in Sources */,
 				659F652E1813D4E200306C14 /* OfficeInfo.m in Sources */,
 				65A35B6E1820E50F002C7489 /* ActionSheetWeibo.m in Sources */,
+				65A26CA61839C454006AF226 /* ScheduleController.m in Sources */,
 				596D6EEB18085C39002CD0B3 /* InformationView.m in Sources */,
 				596D6EE218085004002CD0B3 /* NoticeView.m in Sources */,
 				595B507E180CEACF003EC2AF /* TemplateCell.m in Sources */,
@@ -1815,6 +1891,7 @@
 				594B811E18037CD800310CB1 /* GroupsInfo.m in Sources */,
 				59584B3418199A5200B65162 /* OfficeController.m in Sources */,
 				59584B3918199A6F00B65162 /* MailController.m in Sources */,
+				65A26C9C1839C3A8006AF226 /* NewsScheduleView.m in Sources */,
 				65B3AC8818195D7300F2EC04 /* SMSModeDetaController.m in Sources */,
 				59584B3C18199A9800B65162 /* PackageData.m in Sources */,
 				65B3C7D218177AB000DF4C8E /* MassAddPeopleView.m in Sources */,
@@ -1869,9 +1946,11 @@
 				594B812E18037CF800310CB1 /* SmsSonDetaInto.m in Sources */,
 				5989A11F17F583C900789DC6 /* DaiBanView.m in Sources */,
 				659AB343180974D6000FCEC5 /* MyAddressView.m in Sources */,
+				65A26CB21839F99D006AF226 /* DetailTextView.m in Sources */,
 				659AB35218097593000FCEC5 /* CallTelView.m in Sources */,
 				65A3B39A1814CC3F00AD4069 /* MassMyAddressView.m in Sources */,
 				5943985917F43569000B6E9C /* LoginController.m in Sources */,
+				65A26CAC1839C485006AF226 /* HolidayController.m in Sources */,
 				594204511802E5AA00AA35C3 /* AFNetworkReachabilityManager.m in Sources */,
 				659AB37D18097878000FCEC5 /* unzip.c in Sources */,
 				59584B3818199A6F00B65162 /* MailDetailController.m in Sources */,
@@ -1883,6 +1962,7 @@
 				659AB37018097851000FCEC5 /* ZipArchive.mm in Sources */,
 				5941F68A1813DFE7002735A3 /* AccountCell.m in Sources */,
 				59A8642C18256BFC00C752C8 /* SendMessageToWeiboViewController.m in Sources */,
+				65A26CA21839C41B006AF226 /* WorkView.m in Sources */,
 				659AB35F180975D0000FCEC5 /* CallTelController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

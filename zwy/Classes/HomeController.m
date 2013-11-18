@@ -104,7 +104,7 @@
 -(void)notice{
     [self initBackBarButtonItem:self.homeView];
     self.homeView.tabBarController.tabBar.hidden=YES;
-    [self.homeView performSegueWithIdentifier:@"hometoNotice" sender:self.homeView];
+    [self.homeView performSegueWithIdentifier:@"HomeToScheduleView" sender:self.homeView];
 }
 
 //信息发布
