@@ -18,4 +18,6 @@
 
 @property(strong,nonatomic) UIDatePicker * dataSetView;
 @property (assign ,nonatomic)id<ActionSheetViewDetaSource>DetaSource;
+@property (strong ,nonatomic)NSDate *firstDate;
+
 @end

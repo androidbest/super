@@ -7,18 +7,20 @@
 //
 
 #import "WorkView.h"
-
+#import "WorkController.h"
+#import "DetailTextView.h"
 @interface WorkView ()
 
 @end
 
 @implementation WorkView
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+- (id)initWithCoder:(NSCoder *)aDecoder{
+    self =[super initWithCoder:aDecoder];
     if (self) {
-        // Custom initialization
+        WorkController *contro =[WorkController new];
+        self.controller=contro;
+        contro.workViews=self;
     }
     return self;
 }
@@ -26,7 +28,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    UIButton *  btnEditing =[UIButton buttonWithType:UIButtonTypeCustom];
+    btnEditing.frame=CGRectMake(0, 0, 20, 20);
+    [btnEditing setTitle:@"编辑" forState:UIControlStateNormal];
+    [btnEditing addTarget:self.controller action:@selector(btnEditing) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *temAddPeople = [[UIBarButtonItem alloc] initWithCustomView:btnEditing];
+    temAddPeople.style = UIBarButtonItemStylePlain;
+    self.navigationItem.rightBarButtonItem=temAddPeople;
 	// Do any additional setup after loading the view.
+}
+
+-  (void)btnEditing{
+    
 }
 
 - (void)didReceiveMemoryWarning

@@ -148,6 +148,39 @@ UIBackgroundTaskIdentifier backgroundTask;//写成成员
     
 }
 
+
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification/*本地通知响应方法*/
+{
+    NSString * strTitle =[notification.userInfo objectForKey:@"AlarmKey"];
+    if (application.applicationState == UIApplicationStateActive) {
+        // 如不加上面的判断，点击通知启动应用后会重复提示
+        // 这里暂时用简单的提示框代替。
+        // 也可以做复杂一些，播放想要的铃声。
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"日程提醒"
+                                                         message:strTitle
+                                                        delegate:self
+                                               cancelButtonTitle:@"关闭"
+                                               otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    [AppDelegate deleteLocalNotification:strTitle];
+}
+
+/*
+删除本地通知
+*/
++(void)deleteLocalNotification:(NSString*)alarmKey
+{
+    NSArray*allLocalNotification=[[UIApplication sharedApplication]scheduledLocalNotifications];
+     for(UILocalNotification*localNotification in allLocalNotification){
+        NSString*alarmValue=[localNotification.userInfo objectForKey:@"AlarmKey"];
+        if([alarmKey isEqualToString:alarmValue]){
+            [[UIApplication sharedApplication]cancelLocalNotification:localNotification];
+        }
+        }
+}
+
+
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
@@ -156,6 +189,23 @@ UIBackgroundTaskIdentifier backgroundTask;//写成成员
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    
+    
+   UILocalNotification*notification=[[UILocalNotification alloc]init];
+    if(notification!=nil){
+        notification.fireDate=[NSDate dateWithTimeIntervalSinceNow:10];;//开始时间
+        notification.timeZone=[NSTimeZone defaultTimeZone];// 设置时区
+        notification.soundName=UILocalNotificationDefaultSoundName;//播放音乐类型
+        notification.alertBody=@"测试";//提示的消息
+        notification.alertLaunchImage = @"lunch.png";// 这里可以设置从通知启动的启动界面，类似Default.png的作用。
+        notification.soundName=@"ping.caf";
+        notification.alertAction = @"打开"; //提示框按钮
+        
+        notification.hasAction=NO;//是否显示额外的按钮
+        notification.userInfo=[[NSDictionary alloc]initWithObjectsAndKeys:@"测试",@"AlarmKey",nil];//notification信息
+        [[UIApplication sharedApplication]scheduleLocalNotification:notification];
+        }
+
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

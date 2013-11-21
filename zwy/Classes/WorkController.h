@@ -7,7 +7,7 @@
 //
 
 #import "BaseController.h"
-
+#import "WorkView.h"
 @interface WorkController : BaseController
-
+@property (strong ,nonatomic)WorkView *workViews;
 @end

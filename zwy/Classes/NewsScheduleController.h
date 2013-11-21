@@ -7,7 +7,9 @@
 //
 
 #import "BaseController.h"
-
+#import "NewsScheduleView.h"
 @interface NewsScheduleController : BaseController
+
+@property (strong ,nonatomic)NewsScheduleView * newsView;
 
 @end

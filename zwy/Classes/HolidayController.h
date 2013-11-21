@@ -7,7 +7,9 @@
 //
 
 #import "BaseController.h"
-
+#import "HolidayView.h"
 @interface HolidayController : BaseController
 
+@property (strong ,nonatomic)HolidayView * holiView;
+@property (strong ,nonatomic)NSMutableArray *arrSMSMode;
 @end

@@ -265,10 +265,11 @@
 	self.HUD.labelText = @"正在切换单位数据";
     [self.HUD show:YES];
     
-    
+/*
     NSString * strECPath =[NSString stringWithFormat:@"%@/%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode,@"group.txt"];
     NSString *strGroup =[NSString stringWithContentsOfFile:strECPath encoding:NSUTF8StringEncoding error:NULL];
     if (strGroup){
+ */
         UIImageView *imageView;
         UIImage *image ;
         image= [UIImage imageNamed:@"37x-Checkmark.png"];
@@ -279,8 +280,9 @@
         self.HUD.labelText =@"切换完成";
         [self.HUD hide:YES afterDelay:1];
         [self performSelector:@selector(selecter) withObject:nil afterDelay:1];
+/*
         return;}
-    
+
     self.HUD.mode = MBProgressHUDModeDeterminateHorizontalBar;
     self.HUD.labelText = @"同步中...";
     NSString *strFileName =[NSString stringWithFormat:@"%@/%@.zip",user.msisdn,user.eccode];
@@ -290,6 +292,7 @@
 
     
     [HTTPRequest LoadDownFile:self URL:strUrl filePath:filePath HUD:self.HUD];
+  */
 }
 
 

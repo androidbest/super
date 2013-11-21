@@ -21,4 +21,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *btnSMSMode;
 @property (weak, nonatomic) IBOutlet UITableView *tableViewPeople;
 @property (strong, nonatomic) IBOutlet UILabel *labelTextMaxLengh;
+@property (strong, nonatomic) IBOutlet UIImageView *navigationBarImage;
+@property (strong, nonatomic) IBOutlet UINavigationBar *navigtionBarMass;
+@property (assign ,nonatomic)BOOL isSchedule;
 @end

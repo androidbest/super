@@ -36,6 +36,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+     self.navigationItem.title=@"本地通讯录";
         self.navigationItem.backBarButtonItem= [[UIBarButtonItem alloc]initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
     
     [_btnAll addTarget:self.controller action:@selector(btnAll:) forControlEvents:UIControlEventTouchUpInside];

@@ -7,7 +7,18 @@
 //
 
 #import "BaseView.h"
-
+#import "SevenSwitch.h"
 @interface NewsScheduleView : BaseView
-
+@property (strong, nonatomic) IBOutlet UITextField *textTitle;
+@property (strong, nonatomic) IBOutlet UIButton *btnClass;
+@property (strong, nonatomic) IBOutlet UISwitch *btnFirst;
+@property (strong, nonatomic) IBOutlet UISwitch *switchReqeat;
+@property (strong, nonatomic) IBOutlet UIButton *btnCancel;
+@property (strong, nonatomic) IBOutlet UIButton *btnBack;
+@property (strong, nonatomic) IBOutlet UIButton *btnSave;
+@property (strong, nonatomic) IBOutlet UINavigationBar *navigationBarNews;
+@property (strong, nonatomic) IBOutlet UIButton *btnOptionTime;
+@property (strong, nonatomic) IBOutlet UILabel *labelReqeat;
+@property (strong, nonatomic) SevenSwitch * swithTimeType;
+@property (strong, nonatomic) NSString *strTitle;
 @end

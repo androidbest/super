@@ -28,9 +28,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+        self.navigationItem.backBarButtonItem= [[UIBarButtonItem alloc]initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
+    
+    
         [_segControl addTarget:self.controller action:@selector(segmentAction:) forControlEvents:UIControlEventValueChanged];
     
-    int height =topLayout+80+40;
+    int height =topLayout+80+25;
     _tableViewAll =[[PullRefreshTableView alloc] initWithFrame:CGRectMake(0,height, ScreenWidth, ScreenHeight-height) withDelegate:self.controller];//所有日程
     _tableViewAll.tag=0;
     _tableViewAll.separatorStyle = NO;
@@ -66,17 +69,21 @@
     [self.view addSubview:_tableViewHoliday];
     
     /*CGRectMake(ScreenWidth-120, 90, 100, 25)*/
-     _labelDays = [[DetailTextView alloc]initWithFrame:self.view.frame];
-    [_labelDays setText:@"还有11天"
-               WithFont:[UIFont systemFontOfSize:20]
-               AndColor:[UIColor whiteColor]];
-    [_labelDays setKeyWordTextArray:[NSArray arrayWithObjects:@"1",@"1", nil]
-                           WithFont:[UIFont fontWithName:@"AcademyEngravedLetPlain" size:25]
-                           AndColor:[UIColor greenColor]];
+    _labelDays=[[UILabel alloc] initWithFrame:CGRectMake(ScreenWidth-120, 80, 120, 40)];
+    _labelDays.attributedText =[DetailTextView setDateAttributedString:@"11"];
     [self.view addSubview:_labelDays];
+    
+
+    UIBarButtonItem *rightButton  =[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self.controller action:@selector(btnAddSchedule)];
+    self.navigationItem.rightBarButtonItem=rightButton;
+    
 }
 
 -(void)segmentAction:(UISegmentedControl *)Seg{
+
+}
+
+- (void)btnAddSchedule{
 
 }
 

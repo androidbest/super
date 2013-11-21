@@ -8,11 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DetailTextView : UILabel
-{
-    NSMutableAttributedString *resultAttributedString;
+@interface DetailTextView : UILabel{
+    NSMutableAttributedString *AttributedString;
 }
--(void)setKeyWordTextArray:(NSArray *)keyWordArray WithFont:(UIFont *)font AndColor:(UIColor *)keyWordColor;
--(void)setText:(NSString *)text WithFont:(UIFont *)font AndColor:(UIColor *)color;
+
+/*设置标题字体*/
++ (NSMutableAttributedString *)setDateAttributedString:(NSString *)Title;
+
+/*设置列表Cell的字体*/
++ (NSMutableAttributedString *)setCellTimeAttributedString:(NSString *)time;
 
 @end

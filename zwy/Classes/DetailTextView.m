@@ -15,65 +15,95 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
-        resultAttributedString = [[NSMutableAttributedString alloc]init];
+        AttributedString=[[NSMutableAttributedString alloc] init];
     }
     return self;
 }
--(void)setText:(NSString *)text WithFont:(UIFont *)font AndColor:(UIColor *)color{
-    self.text = text;
-    int len = [text length];
-    NSMutableAttributedString *mutaString = [[NSMutableAttributedString alloc]initWithString:text];
-    [mutaString addAttribute:(NSString *)(kCTForegroundColorAttributeName) value:(id)color.CGColor range:NSMakeRange(0, len)];
-    CTFontRef ctFont2 = CTFontCreateWithName((__bridge CFStringRef)font.fontName, font.pointSize,NULL);
-    [mutaString addAttribute:(NSString *)(kCTFontAttributeName) value:(__bridge id)ctFont2 range:NSMakeRange(0, len)];
-    CFRelease(ctFont2);
-    resultAttributedString = mutaString;
-}
--(void)setKeyWordTextArray:(NSArray *)keyWordArray WithFont:(UIFont *)font AndColor:(UIColor *)keyWordColor{
-    NSMutableArray *rangeArray = [[NSMutableArray alloc]init];
-    for (int i = 0; i < [keyWordArray count]; i++) {
-        NSString *keyString = [keyWordArray objectAtIndex:i];
-        NSRange range = [self.text rangeOfString:keyString];
-        NSValue *value = [NSValue valueWithRange:range];
-        if (range.length > 0) {
-            [rangeArray addObject:value];
-        }
-    }
-    for (NSValue *value in rangeArray) {
-        NSRange keyRange = [value rangeValue];
-        [resultAttributedString addAttribute:(NSString *)(kCTForegroundColorAttributeName) value:(id)keyWordColor.CGColor range:keyRange];
-        CTFontRef ctFont1 = CTFontCreateWithName((__bridge CFStringRef)font.fontName, font.pointSize,NULL);
-        [resultAttributedString addAttribute:(NSString *)(kCTFontAttributeName) value:(__bridge id)ctFont1 range:keyRange];
-        CFRelease(ctFont1);
-        
-    }
++ (NSMutableAttributedString  *)setDateAttributedString:(NSString *)Title{
+    NSString *strTitle =[NSString stringWithFormat:@"还有 %@ 天",Title];
+    NSMutableAttributedString *attriString = [[NSMutableAttributedString alloc] initWithString:strTitle]
+    ;
+    //把"还有"的字体颜色变为白色色
+    NSDictionary *refreshAttributesFirst = @{NSForegroundColorAttributeName:[UIColor whiteColor],};
+    [attriString setAttributes:refreshAttributesFirst range:NSMakeRange(0, 2)];
     
-}
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-    if (self.text !=nil) {
-        CGContextRef context = UIGraphicsGetCurrentContext();
-        CGContextSaveGState(context);
-        CGContextTranslateCTM(context, 0.0, 0.0);//move
-        CGContextScaleCTM(context, 1.0, -1.0);
-        CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString((__bridge  CFAttributedStringRef)resultAttributedString);
-        CGMutablePathRef pathRef = CGPathCreateMutable();
-        CGPathAddRect(pathRef,NULL , CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height));//const CGAffineTransform *m
-        CTFrameRef frame = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, 0), pathRef,NULL );//CFDictionaryRef frameAttributes
-        CGContextTranslateCTM(context, 0, -self.bounds.size.height);
-        CGContextSetTextPosition(context, 0, 0);
-        CTFrameDraw(frame, context);
-        CGContextRestoreGState(context);
-        CGPathRelease(pathRef);
-        CFRelease(framesetter);
-        UIGraphicsPushContext(context);
-        
-    }
+    //把"天"的字体颜色变为白色色
+    NSDictionary *refreshAttributesLast = @{NSForegroundColorAttributeName:[UIColor whiteColor],};
+    [attriString setAttributes:refreshAttributesLast range:NSMakeRange(attriString.length-1, 1)];
     
+    //把"11"变为黄色
+    NSDictionary *refreshAttributesTime = @{NSForegroundColorAttributeName:[UIColor yellowColor],};
+    [attriString setAttributes:refreshAttributesTime range:NSMakeRange(3, attriString.length-5)];
+    
+    
+    //改变"还有"的字体，value必须是一个CTFontRef
+    [attriString addAttribute:(NSString *)kCTFontAttributeName
+                        value:(id)CFBridgingRelease(CTFontCreateWithName((CFStringRef)[UIFont systemFontOfSize:20].fontName,20,NULL))
+                        range:NSMakeRange(0, 2)];
+    
+    //改变"天"的字体，value必须是一个CTFontRef
+    [attriString addAttribute:(NSString *)kCTFontAttributeName
+                        value:(id)CFBridgingRelease(CTFontCreateWithName((CFStringRef)[UIFont systemFontOfSize:20].fontName,20,NULL))
+                        range:NSMakeRange(attriString.length-1, 1)];
+    
+    //改变"11"的字体，value必须是一个CTFontRef
+    [attriString addAttribute:(NSString *)kCTFontAttributeName
+                        value:(id)CFBridgingRelease(CTFontCreateWithName((CFStringRef)[UIFont boldSystemFontOfSize:25].fontName,25,NULL))
+                        range:NSMakeRange(3, attriString.length-5)];
+    return attriString;
+}
+
++ (NSMutableAttributedString *)setCellTimeAttributedString:(NSString *)time{
+    NSString *strTitle =[NSString stringWithFormat:@"还有 %@ 天",time];
+    NSMutableAttributedString *attriString = [[NSMutableAttributedString alloc] initWithString:strTitle]
+    ;
+    //把"还有"的字体颜色变为白色色
+    NSDictionary *refreshAttributesFirst = @{NSForegroundColorAttributeName:[UIColor blackColor],};
+    [attriString setAttributes:refreshAttributesFirst range:NSMakeRange(0, 2)];
+    
+    //把"天"的字体颜色变为白色色
+    NSDictionary *refreshAttributesLast = @{NSForegroundColorAttributeName:[UIColor blackColor],};
+    [attriString setAttributes:refreshAttributesLast range:NSMakeRange(attriString.length-1, 1)];
+    
+    //把"11"变为黄色
+    NSDictionary *refreshAttributesTime = @{NSForegroundColorAttributeName:[UIColor colorWithRed:0.25 green:0.59 blue:1.0 alpha:1.0],};
+    [attriString setAttributes:refreshAttributesTime range:NSMakeRange(3, attriString.length-5)];
+    
+    //改变"还有"的字体，value必须是一个CTFontRef
+    [attriString addAttribute:(NSString *)kCTFontAttributeName
+                        value:(id)CFBridgingRelease(CTFontCreateWithName((CFStringRef)[UIFont systemFontOfSize:16].fontName,16,NULL))
+                        range:NSMakeRange(0, 2)];
+    
+    //改变"天"的字体，value必须是一个CTFontRef
+    [attriString addAttribute:(NSString *)kCTFontAttributeName
+                        value:(id)CFBridgingRelease(CTFontCreateWithName((CFStringRef)[UIFont systemFontOfSize:16].fontName,16,NULL))
+                        range:NSMakeRange(attriString.length-1, 1)];
+    
+    //改变"11"的字体，value必须是一个CTFontRef
+    [attriString addAttribute:(NSString *)kCTFontAttributeName
+                        value:(id)CFBridgingRelease(CTFontCreateWithName((CFStringRef)[UIFont boldSystemFontOfSize:19].fontName,19,NULL))
+                        range:NSMakeRange(3, attriString.length-5)];
+    return attriString;
+}
+
+-(void)drawRect:(CGRect)rect{
+    [super drawRect:rect];
+    
+    NSAttributedString *attriString = AttributedString;
+    
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    CGContextConcatCTM(ctx, CGAffineTransformScale(CGAffineTransformMakeTranslation(0, rect.size.height), 1.f, -1.f));
+    
+    CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString((CFAttributedStringRef)attriString);
+    CGMutablePathRef path = CGPathCreateMutable();
+    CGPathAddRect(path, NULL, rect);
+    
+    CTFrameRef frame = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, 0), path, NULL);
+    CFRelease(path);
+    CFRelease(framesetter);
+    
+    CTFrameDraw(frame, ctx);
+    CFRelease(frame);
 }
 
 

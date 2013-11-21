@@ -9,5 +9,8 @@
 #import "BaseView.h"
 
 @interface WorkView : BaseView
+@property (strong, nonatomic) IBOutlet UILabel *labelLastTime;
+
+@property (strong, nonatomic) IBOutlet UILabel *labelDate;
 
 @end

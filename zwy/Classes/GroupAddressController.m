@@ -19,6 +19,7 @@
     NSArray * arrNumber;
     GroupInfo *groupA;
     BOOL isFirstPages;
+    BOOL isReloadData;
 }
 
 //获取URL
@@ -29,43 +30,13 @@
     return strUrl;
 }
 
-#pragma mark - 初始化
-- (void)initWithData{
-    [ConfigFile pathECGroups];
-    
-    NSString * str =[NSString stringWithFormat:@"%@/%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode,@"group.txt"];
-    NSString *strGroup =[NSString stringWithContentsOfFile:str encoding:NSUTF8StringEncoding error:NULL];
-    if (!strGroup) {
-        ZipArchive* zipFile = [[ZipArchive alloc] init];
-        NSString *strECpath =[NSString stringWithFormat:@"%@/%@.zip",user.msisdn,user.eccode];
-        NSString * strPath =[DocumentsDirectory stringByAppendingPathComponent:strECpath];
-        [zipFile UnzipOpenFile:strPath];
-        
-        //压缩包释放到的位置，需要一个完整路径
-        NSString * strSavePath =[NSString stringWithFormat:@"%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode];
-        [zipFile UnzipFileTo:strSavePath overWrite:YES];
-        [zipFile UnzipCloseFile];
-    }
-    
-    
-    /*获取所有人员信息*/
-    _arrAllPeople = [ConfigFile setAllPeopleInfo:str];
-     BOOL blHave=[[NSFileManager defaultManager] fileExistsAtPath:str];
-    if(_arrAllPeople.count==0&&!blHave){
-        [ToolUtils alertInfo:@"请同步单位通讯录" delegate:self otherBtn:@"确认"];
-    }
-    
-    NSString * strSearchbar;
-    strSearchbar =[NSString stringWithFormat:@"SELF.superID == '%@'",@"0"];
-    NSPredicate *predicateTemplate = [NSPredicate predicateWithFormat: strSearchbar];
-    self.arrFirstGroup=[self.arrAllPeople filteredArrayUsingPredicate: predicateTemplate];
-}
 
 - (id)init{
     self =[super init];
     if (self) {
         groupA=Nil;
         isFirstPages=YES;
+        isReloadData=NO;
         self.arrAllPeople =[[NSMutableArray alloc] init];
         self.arrSeaPeople =[[NSArray alloc] init];
         self.arrFirstGroup =[[NSArray alloc] init];
@@ -89,20 +60,63 @@
                                                 selector:@selector(DownLoadAddressReturn:)
                                                     name:wnLoadAddress
                                                   object:self];
-          }
+    }
     
     return self;
 }
 
+#pragma mark - 初始化
+- (void)initWithData{
+    [ConfigFile pathECGroups];
+    
+    NSString * str =[NSString stringWithFormat:@"%@/%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode,@"group.txt"];
+    NSString *strGroup =[NSString stringWithContentsOfFile:str encoding:NSUTF8StringEncoding error:NULL];
+    if (!strGroup||isReloadData) {
+        ZipArchive* zipFile = [[ZipArchive alloc] init];
+        NSString *strECpath =[NSString stringWithFormat:@"%@/%@.zip",user.msisdn,user.eccode];
+        NSString * strPath =[DocumentsDirectory stringByAppendingPathComponent:strECpath];
+        [zipFile UnzipOpenFile:strPath];
+        
+        //压缩包释放到的位置，需要一个完整路径
+        NSString * strSavePath =[NSString stringWithFormat:@"%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode];
+        BOOL blHave=[[NSFileManager defaultManager] fileExistsAtPath:strSavePath];
+        if (isReloadData&&blHave)[[NSFileManager defaultManager] removeItemAtPath:strSavePath error:nil];
+        [zipFile UnzipFileTo:strSavePath overWrite:YES];
+        [zipFile UnzipCloseFile];
+        isReloadData=NO;
+    }
+    
+    
+    /*获取所有人员信息*/
+    _arrAllPeople = [ConfigFile setAllPeopleInfo:str];
+     BOOL blHave=[[NSFileManager defaultManager] fileExistsAtPath:str];
+    if(_arrAllPeople.count==0&&!blHave){
+        [ToolUtils alertInfo:@"请同步单位通讯录" delegate:self otherBtn:@"确认"];
+    }
+    
+    NSString * strSearchbar;
+    strSearchbar =[NSString stringWithFormat:@"SELF.superID == '%@'",@"0"];
+    NSPredicate *predicateTemplate = [NSPredicate predicateWithFormat: strSearchbar];
+    self.arrFirstGroup=[self.arrAllPeople filteredArrayUsingPredicate: predicateTemplate];
+    
+}
+
+
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex==1){
-        [self rightDown];
+        [self reloadGroupAddress];
     }
 }
 
 #pragma mark - 数据借口回调
 /*检查是否需要更新*/
 - (void)rightDown{
+    isReloadData=YES;
+    [self reloadGroupAddress];
+}
+
+- (void)reloadGroupAddress{
+     [_grougView.searchBar resignFirstResponder];
     self.HUD = [[MBProgressHUD alloc] initWithView:self.grougView.navigationController.view];
 	[self.grougView.navigationController.view addSubview:self.HUD];
 	self.HUD.labelText = @"检查更新";
@@ -112,17 +126,16 @@
     
     /*检查 是否有更新过*/
     NSUserDefaults * userDefaults =[NSUserDefaults standardUserDefaults];
-    NSString * UserDate =[user.msisdn stringByAppendingString:@"date"];
+    NSString * UserDate =[NSString stringWithFormat:@"%@%@date",user.msisdn,user.eccode];
     NSString *histroyDate=(NSString *)[userDefaults objectForKey:UserDate];
-    if (!histroyDate) {
-        NSTimeInterval time_=[[NSDate date] timeIntervalSince1970]/1000;
-        NSString *strTime =[NSString  stringWithFormat:@"%f",time_];
-        strTime =[[strTime componentsSeparatedByString:@"."] firstObject];
-        [userDefaults setObject:strTime forKey:UserDate];
-        [userDefaults synchronize];
-        histroyDate=@"0";
-    }
+    if (!histroyDate) histroyDate=@"0";
+    
     [packageData updateAddressBook:self updatetime:histroyDate];
+    NSTimeInterval time_=[[NSDate date] timeIntervalSince1970];
+    NSString *strTime =[NSString  stringWithFormat:@"%f",time_];
+    strTime =[[strTime componentsSeparatedByString:@"."] firstObject];
+    [userDefaults setObject:strTime forKey:UserDate];
+    [userDefaults synchronize];
 }
 
 //检查回调
@@ -137,14 +150,13 @@
     self.HUD.customView=imageView;
     self.HUD.mode = MBProgressHUDModeCustomView;
     /**/
-    
     if ([info.respCode isEqualToString:@"1"]) {
         [self DownLoadAddress:info.respMsg];
     }else if ([info.respCode isEqualToString:@"-1"]){
         self.HUD.labelText = @"无需同步";
         [self.HUD hide:YES afterDelay:1];
     }else{
-        self.HUD.labelText = @"无需同步";
+        self.HUD.labelText = @"网络错误";
         [self.HUD hide:YES afterDelay:1];
     }
     
@@ -171,6 +183,21 @@
     if([dic[@"respCode"]  isEqualToString:@"0"]){
         image= [UIImage imageNamed:@"37x-Checkmark.png"];
         self.HUD.labelText = @"更新完毕";
+        /*刷新数据*/
+        [self initWithData];
+        _grougView.searchBar.text=nil;
+        groupA=nil;
+        isFirstPages=YES;
+        [self.grougView.tableViewGroup reloadData];
+        //存储最后更新时间
+        NSUserDefaults * userDefaults =[NSUserDefaults standardUserDefaults];
+        NSTimeInterval time_=[[NSDate date] timeIntervalSince1970];
+        NSString *strTime =[NSString  stringWithFormat:@"%f",time_];
+        strTime =[[strTime componentsSeparatedByString:@"."] firstObject];
+        NSString * UserDate =[NSString stringWithFormat:@"%@%@date",user.msisdn,user.eccode];
+        [userDefaults setObject:strTime forKey:UserDate];
+        [userDefaults synchronize];
+        /********/
     }
     else {
         image= [UIImage imageNamed:@"37x-Checkmark.png"];
@@ -182,10 +209,6 @@
     self.HUD.mode = MBProgressHUDModeCustomView;
 	
     [self.HUD hide:YES afterDelay:1];
-    
-    /*刷新数据*/
-    [self initWithData];
-    [self.grougView.tableViewGroup reloadData];
 }
 
 #pragma mark - stroyboard传值

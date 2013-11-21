@@ -55,13 +55,8 @@
     self.navigationItem.leftBarButtonItem=temporaryBarButtonItem;
     [self.controller initWithData];
     
-    UIButton *  btnAddPeople =[UIButton buttonWithType:UIButtonTypeCustom];
-    btnAddPeople.frame=CGRectMake(0, 0, 22, 22);
-    [btnAddPeople setImage:[UIImage imageNamed:@"btn_AddAddressbooks"] forState:UIControlStateNormal];
-    [btnAddPeople addTarget:self.controller action:@selector(btnAddPeople) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *temAddPeople = [[UIBarButtonItem alloc] initWithCustomView:btnAddPeople];
-    temAddPeople.style = UIBarButtonItemStylePlain;
-    self.navigationItem.rightBarButtonItem=temAddPeople;
+     UIBarButtonItem *rightButton  =[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self.controller action:@selector(btnAddPeople)];
+    self.navigationItem.rightBarButtonItem=rightButton;
 	// Do any additional setup after loading the view.
 }
 

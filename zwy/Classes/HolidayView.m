@@ -7,18 +7,20 @@
 //
 
 #import "HolidayView.h"
-
+#import "HolidayController.h"
+#import "DetailTextView.h"
 @interface HolidayView ()
 
 @end
 
 @implementation HolidayView
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+- (id)initWithCoder:(NSCoder *)aDecoder{
+    self =[super initWithCoder:aDecoder];
     if (self) {
-        // Custom initialization
+        HolidayController *contro =[HolidayController new];
+        self.controller =contro;
+        contro.holiView=self;
     }
     return self;
 }
@@ -26,9 +28,28 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    self.navigationItem.backBarButtonItem= [[UIBarButtonItem alloc]initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
+    
+    UIBarButtonItem *rightButton  =[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self.controller action:@selector(btnEditing)];
+    self.navigationItem.rightBarButtonItem=rightButton;
+	int height =topLayout+67;
+    _tableViewSMSMode  =[[PullRefreshTableView alloc] initWithFrame:CGRectMake(0, height, ScreenWidth,ScreenHeight-height) withDelegate:self.controller];
+    _tableViewSMSMode.tag=0;
+    _tableViewSMSMode.separatorStyle = NO;
+    [self.view addSubview:_tableViewSMSMode];
+    [_tableViewSMSMode LoadDataBegin];/*刷新数据*/
+    [self.controller initWithData];
 }
 
+- (void)btnEditing{
+    
+   
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden=NO;
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

@@ -32,7 +32,7 @@
 //    return self;
 //}
 
--(CAAnimation *)animationTransitionFade{
++ (CAAnimation *)animationTransitionFade{
     CATransition *transition = [CATransition animation];
     transition.duration = 0.30f;         /* 间隔时间*/
     transition.type = @"moveIn"; /* 各种动画效果*/
@@ -55,7 +55,7 @@
     if (btnBar.tag==3) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
         MassTextingView *detaView = [storyboard instantiateViewControllerWithIdentifier:@"MassTextingView"];
-        CAAnimation *animation =[self animationTransitionFade];
+        CAAnimation *animation =[AddressTabbar animationTransitionFade];
         [detaView.view.layer addAnimation:animation forKey:@"animationTransitionFade"];
         [self addChildViewController:detaView];
         [detaView didMoveToParentViewController:self];

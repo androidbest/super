@@ -17,5 +17,5 @@
 @property (strong ,nonatomic)PullRefreshTableView * tableViewLife;
 @property (strong ,nonatomic)PullRefreshTableView * tableViewBirthday;
 @property (strong ,nonatomic)PullRefreshTableView * tableViewHoliday;
-@property (strong ,nonatomic)DetailTextView *labelDays;
+@property (strong ,nonatomic)UILabel *labelDays;
 @end

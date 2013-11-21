@@ -28,6 +28,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.navigationItem.title=@"添加号码";
     [_btnAffirm addTarget:self.controller action:@selector(btnAffirm) forControlEvents:UIControlEventTouchUpInside];
     _btnAffirm.layer.masksToBounds = YES;
     _btnAffirm.layer.cornerRadius = 5.0;

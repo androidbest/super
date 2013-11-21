@@ -10,4 +10,8 @@
 
 @interface HolidayView : BaseView
 
+@property (strong, nonatomic) IBOutlet UILabel *labelName;
+@property (strong, nonatomic) IBOutlet UILabel *lableDate;
+@property (strong, nonatomic) IBOutlet UILabel *LableDays;
+@property (strong, nonatomic) PullRefreshTableView *tableViewSMSMode;
 @end

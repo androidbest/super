@@ -57,6 +57,7 @@ NSMutableArray * arrAllNumber;
 
 /*选择短信模版*/
 - (void)btnSMSMode{
+    [_massView.textSendContext resignFirstResponder];
     [self.massView performSegueWithIdentifier:@"MassToSMSMode" sender:Nil];
 }
 
@@ -85,6 +86,15 @@ NSMutableArray * arrAllNumber;
 
 /*返回*/
 - (void)btnBack{
+    if (_massView.textSendContext.resignFirstResponder) {
+        [self performSelector:@selector(backPopView) withObject:self afterDelay:0.3];
+        return;
+    }
+    
+    if (_massView.isSchedule) {
+        [self.massView.navigationController popViewControllerAnimated:YES];
+        return;
+    }
     [UIView animateWithDuration:.3 animations:^{
         _massView.view.layer.position  =CGPointMake(ScreenWidth/2+ScreenWidth, ScreenHeight/2);
     } completion:^(BOOL finished) {
@@ -94,6 +104,22 @@ NSMutableArray * arrAllNumber;
         }
     }];
 }
+- (void)backPopView{
+    if (_massView.isSchedule) {
+        [self.massView.navigationController popViewControllerAnimated:YES];
+        return;
+    }
+    [UIView animateWithDuration:.3 animations:^{
+        _massView.view.layer.position  =CGPointMake(ScreenWidth/2+ScreenWidth, ScreenHeight/2);
+    } completion:^(BOOL finished) {
+        if (finished) {
+            [_massView.view removeFromSuperview];
+            [_massView removeFromParentViewController];
+        }
+    }];
+}
+
+
 
 /*发送*/
 - (void)btnSend{
@@ -242,6 +268,16 @@ NSMutableArray * arrAllNumber;
         CGRect rect=self.massView.view.frame;
         rect.origin.y=-keyBoardFrame.size.height+70;
         self.massView.view.frame=rect;
+        
+        /*设置自定义的导航栏位置不变*/
+        rect=self.massView.navigtionBarMass.frame;
+        rect.origin.y=+keyBoardFrame.size.height-50;
+        self.massView.navigtionBarMass.frame=rect;
+        
+        rect=self.massView.navigationBarImage.frame;
+        rect.origin.y=+keyBoardFrame.size.height-70;
+        self.massView.navigationBarImage.frame=rect;
+        
     }];
 }
 
@@ -252,6 +288,15 @@ NSMutableArray * arrAllNumber;
         CGRect rect=self.massView.view.frame;
         rect.origin.y=0;
         self.massView.view.frame=rect;
+        
+        /*设置自定义的导航栏位置不变*/
+        rect=self.massView.navigtionBarMass.frame;
+        rect.origin.y=20;
+        self.massView.navigtionBarMass.frame=rect;
+        
+        rect=self.massView.navigationBarImage.frame;
+        rect.origin.y=0;
+        self.massView.navigationBarImage.frame=rect;
     }];
 }
 

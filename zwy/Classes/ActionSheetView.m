@@ -44,23 +44,30 @@
 - (void)layoutSubviews{
     [super layoutSubviews];
     _dataSetView =[[UIDatePicker alloc] initWithFrame:CGRectMake(0, 20, ScreenWidth, 216)];
+    if (_firstDate)[_dataSetView setDate:_firstDate];
     [_dataSetView addTarget:self action:@selector(dateChanged) forControlEvents:UIControlEventValueChanged];
     if (sheetMode==0) {
         _dataSetView.datePickerMode = UIDatePickerModeDate;
         NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
        [formatter setDateFormat:@"yyyy/MM/dd"];
         timeText = [formatter stringFromDate:[NSDate date]];
+        if (_firstDate)timeText = [formatter stringFromDate:_firstDate];
     }
     else {
         _dataSetView.datePickerMode=UIDatePickerModeTime;
         NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
         [formatter setDateFormat:@"HH:mm"];
         timeText = [formatter stringFromDate:[NSDate date]];
+        if (_firstDate)timeText = [formatter stringFromDate:_firstDate];
     }
    
     _dataSetView.tag=0;
     [self addSubview:_dataSetView];
 
+}
+
+- (void)setFirstDate:(NSDate *)firstDate{
+    _firstDate=firstDate;
 }
 
 #pragma  mark - 选择时间回调

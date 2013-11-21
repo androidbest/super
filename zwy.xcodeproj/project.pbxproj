@@ -178,6 +178,7 @@
 		65248503180C2AF900440958 /* navigation_back_over.png in Resources */ = {isa = PBXBuildFile; fileRef = 65248501180C2AF900440958 /* navigation_back_over.png */; };
 		65248506180C2CE700440958 /* navigation_updata_out.png in Resources */ = {isa = PBXBuildFile; fileRef = 65248504180C2CE700440958 /* navigation_updata_out.png */; };
 		65248507180C2CE700440958 /* navigation_updata_over.png in Resources */ = {isa = PBXBuildFile; fileRef = 65248505180C2CE700440958 /* navigation_updata_over.png */; };
+		6581E96F183C68E500A10D10 /* SevenSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 6581E96E183C68E500A10D10 /* SevenSwitch.m */; };
 		659995D31828A0DF00694F57 /* AlterPassword.m in Sources */ = {isa = PBXBuildFile; fileRef = 659995D21828A0DF00694F57 /* AlterPassword.m */; };
 		659995D61828A10500694F57 /* AlterPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 659995D51828A10500694F57 /* AlterPasswordController.m */; };
 		659995D91828E86100694F57 /* AddPeopleBookView.m in Sources */ = {isa = PBXBuildFile; fileRef = 659995D81828E86100694F57 /* AddPeopleBookView.m */; };
@@ -210,6 +211,7 @@
 		659F65271813C9FF00306C14 /* OfficeAddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 659F65261813C9FF00306C14 /* OfficeAddressView.m */; };
 		659F652E1813D4E200306C14 /* OfficeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 659F652D1813D4E200306C14 /* OfficeInfo.m */; };
 		659F65311813D77A00306C14 /* officeDetaInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 659F65301813D77A00306C14 /* officeDetaInfo.m */; };
+		65A0A24E183BB8E600AD22E6 /* DateSwitchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A0A24D183BB8E600AD22E6 /* DateSwitchView.m */; };
 		65A26C981839C37C006AF226 /* scheduleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A26C971839C37C006AF226 /* scheduleView.m */; };
 		65A26C9C1839C3A8006AF226 /* NewsScheduleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A26C9B1839C3A8006AF226 /* NewsScheduleView.m */; };
 		65A26C9F1839C3F6006AF226 /* HolidayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A26C9E1839C3F6006AF226 /* HolidayView.m */; };
@@ -230,6 +232,13 @@
 		65A3B39A1814CC3F00AD4069 /* MassMyAddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A3B3991814CC3F00AD4069 /* MassMyAddressView.m */; };
 		65A3B39D1814CC7A00AD4069 /* MassMyaddressController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A3B39C1814CC7A00AD4069 /* MassMyaddressController.m */; };
 		65A3B3A318151C3E00AD4069 /* PeopleDedaInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A3B3A218151C3E00AD4069 /* PeopleDedaInfo.m */; };
+		65A573E1183AFD930072A519 /* day.plist in Resources */ = {isa = PBXBuildFile; fileRef = 65A573DD183AFD930072A519 /* day.plist */; };
+		65A573E2183AFD930072A519 /* lunarcalenda.plist in Resources */ = {isa = PBXBuildFile; fileRef = 65A573DE183AFD930072A519 /* lunarcalenda.plist */; };
+		65A573E3183AFD930072A519 /* month.plist in Resources */ = {isa = PBXBuildFile; fileRef = 65A573DF183AFD930072A519 /* month.plist */; };
+		65A573E4183AFD930072A519 /* year.plist in Resources */ = {isa = PBXBuildFile; fileRef = 65A573E0183AFD930072A519 /* year.plist */; };
+		65A573EB183AFDA30072A519 /* Date+string.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A573E6183AFDA30072A519 /* Date+string.m */; };
+		65A573EC183AFDA30072A519 /* solarActionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A573E8183AFDA30072A519 /* solarActionView.m */; };
+		65A573ED183AFDA30072A519 /* solarOrLunar.c in Sources */ = {isa = PBXBuildFile; fileRef = 65A573E9183AFDA30072A519 /* solarOrLunar.c */; };
 		65A9C8D3180E89A90032D170 /* btn_addPeople.png in Resources */ = {isa = PBXBuildFile; fileRef = 65A9C8D2180E89A90032D170 /* btn_addPeople.png */; };
 		65A9C8D6180E9AF70032D170 /* optionAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A9C8D5180E9AF70032D170 /* optionAddress.m */; };
 		65A9C8D9180EA6840032D170 /* OptionAddressController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A9C8D8180EA6840032D170 /* OptionAddressController.m */; };
@@ -558,6 +567,8 @@
 		65248501180C2AF900440958 /* navigation_back_over.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navigation_back_over.png; sourceTree = "<group>"; };
 		65248504180C2CE700440958 /* navigation_updata_out.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navigation_updata_out.png; sourceTree = "<group>"; };
 		65248505180C2CE700440958 /* navigation_updata_over.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navigation_updata_over.png; sourceTree = "<group>"; };
+		6581E96D183C68E500A10D10 /* SevenSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SevenSwitch.h; sourceTree = "<group>"; };
+		6581E96E183C68E500A10D10 /* SevenSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SevenSwitch.m; sourceTree = "<group>"; };
 		659995D11828A0DF00694F57 /* AlterPassword.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlterPassword.h; sourceTree = "<group>"; };
 		659995D21828A0DF00694F57 /* AlterPassword.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlterPassword.m; sourceTree = "<group>"; };
 		659995D41828A10500694F57 /* AlterPasswordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlterPasswordController.h; sourceTree = "<group>"; };
@@ -621,6 +632,8 @@
 		659F652D1813D4E200306C14 /* OfficeInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfficeInfo.m; sourceTree = "<group>"; };
 		659F652F1813D77A00306C14 /* officeDetaInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = officeDetaInfo.h; sourceTree = "<group>"; };
 		659F65301813D77A00306C14 /* officeDetaInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = officeDetaInfo.m; sourceTree = "<group>"; };
+		65A0A24C183BB8E600AD22E6 /* DateSwitchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateSwitchView.h; sourceTree = "<group>"; };
+		65A0A24D183BB8E600AD22E6 /* DateSwitchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateSwitchView.m; sourceTree = "<group>"; };
 		65A26C961839C37C006AF226 /* scheduleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scheduleView.h; sourceTree = "<group>"; };
 		65A26C971839C37C006AF226 /* scheduleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = scheduleView.m; sourceTree = "<group>"; };
 		65A26C9A1839C3A8006AF226 /* NewsScheduleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsScheduleView.h; sourceTree = "<group>"; };
@@ -657,6 +670,16 @@
 		65A3B39C1814CC7A00AD4069 /* MassMyaddressController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MassMyaddressController.m; sourceTree = "<group>"; };
 		65A3B3A118151C3E00AD4069 /* PeopleDedaInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleDedaInfo.h; sourceTree = "<group>"; };
 		65A3B3A218151C3E00AD4069 /* PeopleDedaInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleDedaInfo.m; sourceTree = "<group>"; };
+		65A573DD183AFD930072A519 /* day.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = day.plist; sourceTree = "<group>"; };
+		65A573DE183AFD930072A519 /* lunarcalenda.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = lunarcalenda.plist; sourceTree = "<group>"; };
+		65A573DF183AFD930072A519 /* month.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = month.plist; sourceTree = "<group>"; };
+		65A573E0183AFD930072A519 /* year.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = year.plist; sourceTree = "<group>"; };
+		65A573E5183AFDA30072A519 /* Date+string.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Date+string.h"; sourceTree = "<group>"; };
+		65A573E6183AFDA30072A519 /* Date+string.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Date+string.m"; sourceTree = "<group>"; };
+		65A573E7183AFDA30072A519 /* solarActionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = solarActionView.h; sourceTree = "<group>"; };
+		65A573E8183AFDA30072A519 /* solarActionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = solarActionView.m; sourceTree = "<group>"; };
+		65A573E9183AFDA30072A519 /* solarOrLunar.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = solarOrLunar.c; sourceTree = "<group>"; };
+		65A573EA183AFDA30072A519 /* solarOrLunar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = solarOrLunar.h; sourceTree = "<group>"; };
 		65A9C8D2180E89A90032D170 /* btn_addPeople.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_addPeople.png; sourceTree = "<group>"; };
 		65A9C8D4180E9AF70032D170 /* optionAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = optionAddress.h; sourceTree = "<group>"; };
 		65A9C8D5180E9AF70032D170 /* optionAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = optionAddress.m; sourceTree = "<group>"; };
@@ -1207,6 +1230,9 @@
 		595CB9BA17F17D7D00228A6E /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				6581E96D183C68E500A10D10 /* SevenSwitch.h */,
+				6581E96E183C68E500A10D10 /* SevenSwitch.m */,
+				65A573DB183AFD640072A519 /* solarOrLunar */,
 				65A26CB01839F99D006AF226 /* DetailTextView.h */,
 				65A26CB11839F99D006AF226 /* DetailTextView.m */,
 				5977236A1824F463003F2701 /* weibo */,
@@ -1252,6 +1278,8 @@
 				65A35B6D1820E50F002C7489 /* ActionSheetWeibo.m */,
 				659995DD1828EC8500694F57 /* SJABHelper.h */,
 				659995DE1828EC8500694F57 /* SJABHelper.m */,
+				65A0A24C183BB8E600AD22E6 /* DateSwitchView.h */,
+				65A0A24D183BB8E600AD22E6 /* DateSwitchView.m */,
 			);
 			name = utils;
 			sourceTree = "<group>";
@@ -1586,6 +1614,31 @@
 			name = ScheduleController;
 			sourceTree = "<group>";
 		};
+		65A573DB183AFD640072A519 /* solarOrLunar */ = {
+			isa = PBXGroup;
+			children = (
+				65A573DC183AFD7A0072A519 /* DateInfo */,
+				65A573E5183AFDA30072A519 /* Date+string.h */,
+				65A573E6183AFDA30072A519 /* Date+string.m */,
+				65A573E7183AFDA30072A519 /* solarActionView.h */,
+				65A573E8183AFDA30072A519 /* solarActionView.m */,
+				65A573E9183AFDA30072A519 /* solarOrLunar.c */,
+				65A573EA183AFDA30072A519 /* solarOrLunar.h */,
+			);
+			name = solarOrLunar;
+			sourceTree = "<group>";
+		};
+		65A573DC183AFD7A0072A519 /* DateInfo */ = {
+			isa = PBXGroup;
+			children = (
+				65A573DD183AFD930072A519 /* day.plist */,
+				65A573DE183AFD930072A519 /* lunarcalenda.plist */,
+				65A573DF183AFD930072A519 /* month.plist */,
+				65A573E0183AFD930072A519 /* year.plist */,
+			);
+			name = DateInfo;
+			sourceTree = "<group>";
+		};
 		65A9C8DA180EC7510032D170 /* information */ = {
 			isa = PBXGroup;
 			children = (
@@ -1733,13 +1786,17 @@
 				59585BC117F8300200F73D97 /* home_out.png in Resources */,
 				5960DC8517F95BE30024AD8B /* guide96003.png in Resources */,
 				599D7D17181E2CE40099BE01 /* Safari-Small@2x.png in Resources */,
+				65A573E1183AFD930072A519 /* day.plist in Resources */,
 				5975C17A18067AA300EF7285 /* more_out@2x.png in Resources */,
 				595CB9F017F17EF100228A6E /* common.plist in Resources */,
 				65B3AC701819274200F2EC04 /* tabItem_SMS_out.png in Resources */,
 				65B3AC6E1819274200F2EC04 /* tabItem_MyArBook_over.png in Resources */,
+				65A573E4183AFD930072A519 /* year.plist in Resources */,
 				5975C1871806981900EF7285 /* notice_icon.png in Resources */,
 				59585BC217F8300200F73D97 /* home_over@2x.png in Resources */,
+				65A573E3183AFD930072A519 /* month.plist in Resources */,
 				59585BBF17F8300200F73D97 /* home_out@2x.png in Resources */,
+				65A573E2183AFD930072A519 /* lunarcalenda.plist in Resources */,
 				59584B1E18191ADE00B65162 /* docselected.png in Resources */,
 				65B3AC531819251100F2EC04 /* btn_numbers.png in Resources */,
 				65B3AC711819274200F2EC04 /* tabItem_SMS_out@2x.png in Resources */,
@@ -1813,6 +1870,7 @@
 			files = (
 				65A3B3971814C0CC00AD4069 /* MassTextingController.m in Sources */,
 				6521F6351816A72600CD7B76 /* MailAddressCell.m in Sources */,
+				65A573EB183AFDA30072A519 /* Date+string.m in Sources */,
 				5943985217F42774000B6E9C /* BaseView.m in Sources */,
 				59584B2B181999BB00B65162 /* LoginView.m in Sources */,
 				596D6F0A18085D79002CD0B3 /* SmsController.m in Sources */,
@@ -1845,6 +1903,7 @@
 				595B7A0B1809591A006DD766 /* PullRefreshTableView.m in Sources */,
 				595B509B180D0F8D003EC2AF /* HelpView.m in Sources */,
 				595A0C7618113253009C26B8 /* CustomPush.m in Sources */,
+				65A573ED183AFDA30072A519 /* solarOrLunar.c in Sources */,
 				5941F6841813D146002735A3 /* AccountManager.m in Sources */,
 				5942043A1802B62500AA35C3 /* RespInfo.m in Sources */,
 				594B812C18037CF800310CB1 /* SMSInfo.m in Sources */,
@@ -1864,6 +1923,7 @@
 				65A26C9F1839C3F6006AF226 /* HolidayView.m in Sources */,
 				595CB9F317F1802D00228A6E /* Constants.m in Sources */,
 				594B810F18037CB800310CB1 /* PublicMailDetaInfo.m in Sources */,
+				65A0A24E183BB8E600AD22E6 /* DateSwitchView.m in Sources */,
 				65A26C981839C37C006AF226 /* scheduleView.m in Sources */,
 				65A3B39D1814CC7A00AD4069 /* MassMyaddressController.m in Sources */,
 				594B80FD18037BC500310CB1 /* memberInfo.m in Sources */,
@@ -1901,12 +1961,14 @@
 				59584B3518199A5200B65162 /* OfficeDetailController.m in Sources */,
 				5960DC8117F92A6C0024AD8B /* CustomPageControl.m in Sources */,
 				596D6F1218085DB1002CD0B3 /* MeettingController.m in Sources */,
+				6581E96F183C68E500A10D10 /* SevenSwitch.m in Sources */,
 				594204501802E5AA00AA35C3 /* AFHTTPSessionManager.m in Sources */,
 				595CB98E17F164AF00228A6E /* AppDelegate.m in Sources */,
 				595CBA0517F1925700228A6E /* Reachability.m in Sources */,
 				596D6EF118085C77002CD0B3 /* OfficeView.m in Sources */,
 				59584B271819998100B65162 /* MailDetail.m in Sources */,
 				65D9678D1812752A00C1A05E /* ActionSheetView.m in Sources */,
+				65A573EC183AFDA30072A519 /* solarActionView.m in Sources */,
 				59550E7418126EDE00205544 /* GetEcCell.m in Sources */,
 				659AB361180975D0000FCEC5 /* InfoDetailsController.m in Sources */,
 				594B811F18037CD800310CB1 /* GroupDetaInfo.m in Sources */,
