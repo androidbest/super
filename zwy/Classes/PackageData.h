@@ -129,4 +129,22 @@
 
 //修改密码
 + (void)AlterPassword:(id)delegate beforePassword:(NSString *)beforePassword NewPassword:(NSString *)newPassword;
+
+//获取日程提醒
++ (void)getWarningDatas:(id)delegate pages:(int)pageId Type:(int)type SELType:(NSString *)sel;
+
+//添加日程提醒
++ (void)addWarningData:(id)delegate content:(NSString *)content Type:(int)tpye warningDate:(NSString *)date warningRequstType:(int)requstType SELType:(NSString *)sel;
+
+//修改日程提醒
++ (void)updateWarningData:(id)delegate warningID:(NSString *)ID content:(NSString *)content Type:(int)tpye warningDate:(NSString *)date warningRequstType:(int)requstType SELType:(NSString *)sel;
+
+//删除日程提醒
++ (void)deleteWarningData:(id)delegate warningID:(NSString *)ID SELType:(NSString *)sel;
+
+//获取日程提醒短信模版
++ (void)getGreetings:(id)delegate;
+
+//更新短信人气（＋1）
++ (void)updateGreetingCount:(id)delegate greetingID:(NSString *)ID;
 @end

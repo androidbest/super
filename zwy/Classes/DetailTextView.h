@@ -15,7 +15,9 @@
 /*设置标题字体*/
 + (NSMutableAttributedString *)setDateAttributedString:(NSString *)Title;
 
-/*设置列表Cell的字体*/
+/*设置列表Cell倒计时的字体*/
 + (NSMutableAttributedString *)setCellTimeAttributedString:(NSString *)time;
 
+/*设置列表Cell标题字体*/
++ (NSMutableAttributedString *)setCellTitleAttributedString:(NSString *)title;
 @end

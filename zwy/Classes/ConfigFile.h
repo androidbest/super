@@ -36,6 +36,9 @@
 /*已查看过的“意见审批”路径*/
 #define PATH_OPINIONHEAR @"opinionHear.plist"
 
+/*日程提醒置顶标示*/
+#define Warning_Frist @"warningFrist"
+
 #import <Foundation/Foundation.h>
 @interface ConfigFile : NSObject
 

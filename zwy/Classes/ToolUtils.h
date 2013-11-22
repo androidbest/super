@@ -29,4 +29,7 @@
 +(NSString*)numToString:(NSInteger)num;
 +(NSInteger)stringToNum:(NSString *)str;
 + (void)TableViewPullDownAnimation:(UITableView *)view PathAnimationType:(int)type;
+
+#pragma mark -时间比较
++(int)compareOneDay:(NSString *)startDate withAnotherDay:(NSString *)endDate;
 @end

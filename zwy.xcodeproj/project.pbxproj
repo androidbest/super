@@ -207,6 +207,8 @@
 		659AB384180979FA000FCEC5 /* AIMTableViewIndexBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 659AB383180979FA000FCEC5 /* AIMTableViewIndexBar.m */; };
 		659AB38718097A2B000FCEC5 /* pinyin.c in Sources */ = {isa = PBXBuildFile; fileRef = 659AB38518097A2B000FCEC5 /* pinyin.c */; };
 		659AB38918097B1C000FCEC5 /* libz.1.1.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 659AB38818097B1C000FCEC5 /* libz.1.1.3.dylib */; };
+		659BD0E2183F2D5D00FAC29E /* warningInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 659BD0E1183F2D5D00FAC29E /* warningInfo.m */; };
+		659BD0E5183F327D00FAC29E /* warningDataInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 659BD0E4183F327D00FAC29E /* warningDataInfo.m */; };
 		659F65241813C96400306C14 /* OfficeAddressController.m in Sources */ = {isa = PBXBuildFile; fileRef = 659F65231813C96400306C14 /* OfficeAddressController.m */; };
 		659F65271813C9FF00306C14 /* OfficeAddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 659F65261813C9FF00306C14 /* OfficeAddressView.m */; };
 		659F652E1813D4E200306C14 /* OfficeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 659F652D1813D4E200306C14 /* OfficeInfo.m */; };
@@ -623,6 +625,10 @@
 		659AB38518097A2B000FCEC5 /* pinyin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pinyin.c; sourceTree = "<group>"; };
 		659AB38618097A2B000FCEC5 /* pinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pinyin.h; sourceTree = "<group>"; };
 		659AB38818097B1C000FCEC5 /* libz.1.1.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.1.3.dylib; path = usr/lib/libz.1.1.3.dylib; sourceTree = SDKROOT; };
+		659BD0E0183F2D5D00FAC29E /* warningInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = warningInfo.h; sourceTree = "<group>"; };
+		659BD0E1183F2D5D00FAC29E /* warningInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = warningInfo.m; sourceTree = "<group>"; };
+		659BD0E3183F327D00FAC29E /* warningDataInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = warningDataInfo.h; sourceTree = "<group>"; };
+		659BD0E4183F327D00FAC29E /* warningDataInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = warningDataInfo.m; sourceTree = "<group>"; };
 		659F65221813C96400306C14 /* OfficeAddressController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfficeAddressController.h; sourceTree = "<group>"; };
 		659F65231813C96400306C14 /* OfficeAddressController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfficeAddressController.m; sourceTree = "<group>"; };
 		659F65251813C9FF00306C14 /* OfficeAddressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfficeAddressView.h; sourceTree = "<group>"; };
@@ -788,6 +794,7 @@
 		5943984017F3D92B000B6E9C /* obj */ = {
 			isa = PBXGroup;
 			children = (
+				659BD0DF183F2D3200FAC29E /* warningInfo */,
 				659F652B1813D4B400306C14 /* OfficeInfo */,
 				65A9C8DA180EC7510032D170 /* information */,
 				659AB367180977EE000FCEC5 /* AddressInfo */,
@@ -1571,6 +1578,17 @@
 			name = minizip;
 			sourceTree = "<group>";
 		};
+		659BD0DF183F2D3200FAC29E /* warningInfo */ = {
+			isa = PBXGroup;
+			children = (
+				659BD0E0183F2D5D00FAC29E /* warningInfo.h */,
+				659BD0E1183F2D5D00FAC29E /* warningInfo.m */,
+				659BD0E3183F327D00FAC29E /* warningDataInfo.h */,
+				659BD0E4183F327D00FAC29E /* warningDataInfo.m */,
+			);
+			name = warningInfo;
+			sourceTree = "<group>";
+		};
 		659F652B1813D4B400306C14 /* OfficeInfo */ = {
 			isa = PBXGroup;
 			children = (
@@ -1876,6 +1894,7 @@
 				596D6F0A18085D79002CD0B3 /* SmsController.m in Sources */,
 				65B3AC7F18195CEC00F2EC04 /* SMSModeDetaView.m in Sources */,
 				659995D61828A10500694F57 /* AlterPasswordController.m in Sources */,
+				659BD0E5183F327D00FAC29E /* warningDataInfo.m in Sources */,
 				659AB384180979FA000FCEC5 /* AIMTableViewIndexBar.m in Sources */,
 				65A26CB7183A035A006AF226 /* ScheduleCell.m in Sources */,
 				5989A12517F5849E00789DC6 /* MoreView.m in Sources */,
@@ -2004,6 +2023,7 @@
 				5951FD7818079A5D0095F212 /* HomeController.m in Sources */,
 				659995DC1828E88C00694F57 /* AddPeopleBookController.m in Sources */,
 				65A9C8DD180EC7780032D170 /* InformationInfo.m in Sources */,
+				659BD0E2183F2D5D00FAC29E /* warningInfo.m in Sources */,
 				659995D91828E86100694F57 /* AddPeopleBookView.m in Sources */,
 				594B812E18037CF800310CB1 /* SmsSonDetaInto.m in Sources */,
 				5989A11F17F583C900789DC6 /* DaiBanView.m in Sources */,

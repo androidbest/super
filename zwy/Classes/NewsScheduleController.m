@@ -18,19 +18,29 @@
     NSString *timeLunar;
     int reqeatType;
     int ScheduleType;
-
+    NSCalendarUnit reqeatCalendar;
+    BOOL isFirst;
 }
 - (id)init{
     self =[super init];
     if (self) {
         isSolarTime=YES;
-    
+        [[NSNotificationCenter defaultCenter]addObserver:self
+                                                selector:@selector(handleData:)
+                                                    name:xmlNotifInfo
+                                                  object:self];
     }
     return self;
 }
 
 - (void)initWithData{
     self.newsView.btnFirst.on=NO;
+}
+
+
+#pragma mark -接收数据
+- (void)handleData:(NSNotification *)notification{
+
 }
 
 #pragma mark -按钮点击事件
@@ -72,9 +82,9 @@
     }
 }
 
-/*UISwitch点击事件*/
+#pragma mark -UISwitch点击事件
 - (void)btnFirst:(UISwitch *)sender{
-    
+    isFirst=sender.on;
 }
 
 - (void)switchReqeat:(UISwitch *)sender{

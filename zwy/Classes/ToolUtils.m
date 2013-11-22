@@ -196,4 +196,20 @@
     
 }
 
+#pragma mark -时间比较天数
++(int)compareOneDay:(NSString *)startDate withAnotherDay:(NSString *)endDate
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setFormatterBehavior:NSDateFormatterBehaviorDefault];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDate *startDate_ = [formatter dateFromString:startDate];
+    NSDate *endDate_ = [formatter dateFromString:endDate];
+    unsigned int unitFlags = NSDayCalendarUnit;
+    NSDateComponents *comps = [gregorian components:unitFlags fromDate:startDate_  toDate:endDate_  options:0];
+    int days = [comps day];
+    return days;
+}
+
 @end

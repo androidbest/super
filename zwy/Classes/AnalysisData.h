@@ -22,6 +22,8 @@
 #import "officeDetaInfo.h"
 #import "PeopleDedaInfo.h"
 #import "GroupDetaInfo.h"
+#import "warningInfo.h"
+#import "warningDataInfo.h"
 
 @interface AnalysisData : NSObject
 
@@ -97,4 +99,6 @@
 //公文流程展示
 + (RespList *)showFlowDocList:(NSDictionary *)dic;
 
+//日程提醒列表
++ (warningInfo *)warningList:(NSDictionary *)dic;
 @end

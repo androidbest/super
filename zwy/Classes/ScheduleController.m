@@ -88,7 +88,6 @@
                                                 selector:@selector(notificationNameHolidayData:)
                                                     name:notificationNameHoliday
                                                   object:self];
-        
     }
     return self;
 }
@@ -102,60 +101,165 @@
 #pragma mark -接受数据信息
 //所有日程
 - (void)notificationNameAllData:(NSNotification *)notification{
-    if (isPullDownAll) {
-        isPullDownAll=NO;
+    NSDictionary *dic=[notification userInfo];
+    if (!dic)
+    {
+        [ToolUtils alertInfo:@"网络错误"];
+        [_schedView.tableViewAll reloadDataPull];
+        return;
     }
     
+    warningInfo *info =[AnalysisData warningList:dic];
+    
+    if (isPullDownAll) {
+        isPullDownAll=NO;
+        pagesAll=1;
+        [_arrAll removeAllObjects];
+    }
+    if (info.warningList&&info.warningList.count>0)[_arrAll addObjectsFromArray:info.warningList];
     if (_arrAll.count!=0) {
         _schedView.tableViewAll.separatorStyle=YES;
+    }else{
+        [ToolUtils alertInfo:@"暂无数据"];
+    }
+    
+    if (_arrAll.count>=info.AllCount) {
+        _schedView.tableViewAll.reachedTheEnd=NO;
+    }else {
+    _schedView.tableViewAll.reachedTheEnd=YES;
     }
     [_schedView.tableViewAll reloadDataPull];
 }
 
 //工作日程
 - (void)notificationNameWorkData:(NSNotification *)notification{
-    if (isPullDownWork) {
-        
+    NSDictionary *dic=[notification userInfo];
+    if (!dic)
+    {
+        [ToolUtils alertInfo:@"网络错误"];
+        [_schedView.tableViewWork reloadDataPull];
+        return;
     }
     
+    warningInfo *info =[AnalysisData warningList:dic];
+    
+    if (isPullDownWork) {
+        isPullDownWork=NO;
+        pagesWork=1;
+        [_arrWork removeAllObjects];
+    }
+    if (info.warningList&&info.warningList.count>0)[_arrWork addObjectsFromArray:info.warningList];
     if (_arrWork.count!=0) {
         _schedView.tableViewWork.separatorStyle=YES;
+    }else{
+        [ToolUtils alertInfo:@"暂无数据"];
     }
+    
+    if (_arrWork.count>=info.AllCount) {
+        _schedView.tableViewWork.reachedTheEnd=NO;
+    }else {
+        _schedView.tableViewWork.reachedTheEnd=YES;
+    }
+    
     [_schedView.tableViewWork reloadDataPull];
 }
 
 //生活日程
 - (void)notificationNameLifeData:(NSNotification *)notification{
-    if (isPullDownLife) {
-        
+    NSDictionary *dic=[notification userInfo];
+    if (!dic)
+    {
+        [ToolUtils alertInfo:@"网络错误"];
+        [_schedView.tableViewLife reloadDataPull];
+        return;
     }
     
+    warningInfo *info =[AnalysisData warningList:dic];
+    
+    if (isPullDownLife) {
+        isPullDownLife=NO;
+        pageLife=1;
+        [_arrLife removeAllObjects];
+    }
+    
+    if (info.warningList&&info.warningList.count>0)[_arrLife addObjectsFromArray:info.warningList];
     if (_arrLife.count!=0) {
         _schedView.tableViewLife.separatorStyle=YES;
+    }else{
+        [ToolUtils alertInfo:@"暂无数据"];
+    }
+    
+    if (_arrLife.count>=info.AllCount) {
+        _schedView.tableViewLife.reachedTheEnd=NO;
+    }else {
+        _schedView.tableViewLife.reachedTheEnd=YES;
     }
     [_schedView.tableViewLife reloadDataPull];
 }
 
 //生日日程
 - (void)notificationNameBirthdayData:(NSNotification *)notification{
-    if (isPullDownBirthday) {
-        
+    NSDictionary *dic=[notification userInfo];
+    if (!dic)
+    {
+        [ToolUtils alertInfo:@"网络错误"];
+        [_schedView.tableViewBirthday reloadDataPull];
+        return;
     }
     
+    warningInfo *info =[AnalysisData warningList:dic];
+    
+    if (isPullDownBirthday) {
+        isPullDownBirthday=NO;
+        pageBirthday=1;
+        [_arrBirthday removeAllObjects];
+    }
+    
+    if (info.warningList&&info.warningList.count>0)[_arrBirthday addObjectsFromArray:info.warningList];
     if (_arrBirthday.count!=0) {
         _schedView.tableViewBirthday.separatorStyle=YES;
+    }else{
+        [ToolUtils alertInfo:@"暂无数据"];
+    }
+    
+    if (_arrBirthday.count>=info.AllCount) {
+        _schedView.tableViewBirthday.reachedTheEnd=NO;
+    }else {
+        _schedView.tableViewBirthday.reachedTheEnd=YES;
     }
     [_schedView.tableViewBirthday reloadDataPull];
 }
 
 //节日日程
 - (void)notificationNameHolidayData:(NSNotification *)notification{
-    if (isPullDownHoliday) {
-        
+    NSDictionary *dic=[notification userInfo];
+    if (!dic)
+    {
+        [ToolUtils alertInfo:@"网络错误"];
+        [_schedView.tableViewHoliday reloadDataPull];
+        return;
     }
     
+     warningInfo *info =[AnalysisData warningList:dic];
+    
+    if (isPullDownHoliday) {
+        isPullDownHoliday=NO;
+        pageHoliday=1;
+        [_arrholiday removeAllObjects];
+    }
+    
+     if (info.warningList&&info.warningList.count>0)[_arrholiday addObjectsFromArray:info.warningList];
     if (_arrholiday.count!=0) {
         _schedView.tableViewHoliday.separatorStyle=YES;
+    }else{
+        [ToolUtils alertInfo:@"暂无数据"];
+    }
+
+    
+    if (_arrholiday.count>=info.AllCount) {
+        _schedView.tableViewHoliday.reachedTheEnd=NO;
+    }else {
+        _schedView.tableViewHoliday.reachedTheEnd=YES;
     }
     [_schedView.tableViewHoliday reloadDataPull];
 }
@@ -227,32 +331,37 @@
         /*第一次刷新数据(全部)*/
         if (_arrAll.count==0&&isAllFirstLoad) {
             [_schedView.tableViewAll LoadDataBegin];
+            isAllFirstLoad=NO;
         }
         
     }else if(!_schedView.tableViewWork.hidden){
         /*第一次刷新数据(工作)*/
         if (_arrWork.count==0&&isWorkFirstLoad) {
              [_schedView.tableViewWork LoadDataBegin];
+            isWorkFirstLoad=NO;
         }
         
     }else if (!_schedView.tableViewLife.hidden){
         /*第一次刷新数据(生活)*/
         if (_arrLife.count==0&&isLifeFirstLoad) {
              [_schedView.tableViewLife LoadDataBegin];
+            isLifeFirstLoad=NO;
         }
         
     }else if (!_schedView.tableViewBirthday.hidden){
         /*第一次刷新数据(生日)*/
         if (_arrBirthday.count==0&&isBirthdayFirstLoad) {
              [_schedView.tableViewBirthday LoadDataBegin];
+            isBirthdayFirstLoad=NO;
         }
         
     }else if (!_schedView.tableViewHoliday.hidden){
         /*第一次刷新数据(节日)*/
         if (_arrholiday.count==0&&isHolidayFirstLoad){
              [_schedView.tableViewHoliday LoadDataBegin];
+            isHolidayFirstLoad=NO;
         }
-        
+
     }
 }
 
@@ -266,7 +375,7 @@
     NSInteger ret=0;
     switch (tableView.tag) {
         case 0:{
-            ret=_arrAll.count+10;
+            ret=_arrAll.count;
         }
             break;
             
@@ -305,37 +414,54 @@
     }
     switch (tableView.tag) {
         case 0:{
-            cell.labelTime.text=@"2013-03-06";
-            cell.labelTitle.text=@"激素上网";
-            cell.labelDays.attributedText=[DetailTextView setCellTimeAttributedString:@"123"];
+            /***************************/
+            warningDataInfo * info =_arrAll[indexPath.row];
+            NSString *Title;
+            if ([info.warningType isEqualToString:@"2"]){
+                Title =[info.content stringByAppendingString:@" 的生日"];
+                cell.labelTitle.text=nil;
+                cell.labelTitle.attributedText=[DetailTextView setCellTitleAttributedString:Title];
+            }
+            else {
+                Title=info.content;
+                cell.labelTitle.text=Title;
+            }
+            cell.labelTime.text = info.warningDate;
+            cell.labelDays.attributedText =[DetailTextView setCellTimeAttributedString:info.remainTime];
+            /***************************/
         }
             break;
             
         case 1:{
-            cell.labelTime.text=@"2013-03-06";
-            cell.labelTitle.text=@"激素上网";
-            cell.labelDays.attributedText=[DetailTextView setCellTimeAttributedString:@"123"];
+            warningDataInfo *info =_arrWork[indexPath.row];
+            cell.labelTitle.text=info.content;
+            cell.labelTime.text=info.warningDate;
+            cell.labelDays.attributedText=[DetailTextView setCellTimeAttributedString:info.remainTime];
         }
             break;
             
         case 2:{
-            cell.labelTime.text=@"2013-03-06";
-            cell.labelTitle.text=@"激素上网";
-            cell.labelDays.attributedText=[DetailTextView setCellTimeAttributedString:@"123"];
+            warningDataInfo *info =_arrLife[indexPath.row];
+            cell.labelTitle.text=info.content;
+            cell.labelTime.text=info.warningDate;
+            cell.labelDays.attributedText=[DetailTextView setCellTimeAttributedString:info.remainTime];
         }
             break;
             
         case 3:{
-            cell.labelTime.text=@"2013-03-06";
-            cell.labelTitle.text=@"激素上网";
-            cell.labelDays.attributedText=[DetailTextView setCellTimeAttributedString:@"123"];
+            warningDataInfo *info =_arrBirthday[indexPath.row];
+            NSString * Title =[info.content stringByAppendingString:@" 的生日"];
+            cell.labelTitle.attributedText=[DetailTextView setCellTitleAttributedString:Title];
+            cell.labelTime.text=info.warningDate;
+            cell.labelDays.attributedText=[DetailTextView setCellTimeAttributedString:info.remainTime];
         }
             break;
             
         case 4:{
-            cell.labelTime.text=@"2013-03-06";
-            cell.labelTitle.text=@"激素上网";
-            cell.labelDays.attributedText=[DetailTextView setCellTimeAttributedString:@"123"];
+            warningDataInfo *info =_arrholiday[indexPath.row];
+            cell.labelTitle.text=info.content;
+            cell.labelTime.text=info.warningDate;
+            cell.labelDays.attributedText=[DetailTextView setCellTimeAttributedString:info.remainTime];
         }
             break;
         default:
@@ -347,7 +473,6 @@
 
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [self.schedView performSegueWithIdentifier:@"ScheduleToHolidayView" sender:nil];
     switch (tableView.tag) {
         case 0:{
 
@@ -384,26 +509,36 @@
     switch (tableView.tag) {
         case 0:{
             pagesAll=1;
+            isPullDownAll=YES;
+            [packageData getWarningDatas:self pages:pagesAll Type:10000 SELType:notificationNameAll];
         }
             break;
             
         case 1:{
             pagesWork=1;
+            isPullDownWork=YES;
+            [packageData getWarningDatas:self pages:pagesWork Type:0 SELType:notificationNameWork];
         }
             break;
             
         case 2:{
             pageLife=1;
+            isPullDownLife=YES;
+            [packageData getWarningDatas:self pages:pageLife Type:1 SELType:notificationNameLife];
         }
             break;
             
         case 3:{
              pageBirthday=1;
+            isPullDownBirthday=YES;
+             [packageData getWarningDatas:self pages:pageBirthday Type:2 SELType:notificationNameBirthday];
         }
             break;
             
         case 4:{
            pageHoliday=1;
+            isPullDownHoliday=YES;
+           [packageData getWarningDatas:self pages:pageHoliday Type:3 SELType:notificationNameHoliday];
         }
             break;
         default:
@@ -418,26 +553,31 @@
     switch (tableView.tag) {
         case 0:{
             pagesAll++;
+            [packageData getWarningDatas:self pages:pagesAll Type:10000 SELType:notificationNameAll];
         }
             break;
             
         case 1:{
             pagesWork++;
+            [packageData getWarningDatas:self pages:pagesWork Type:0 SELType:notificationNameWork];
         }
             break;
             
         case 2:{
             pageLife++;
+            [packageData getWarningDatas:self pages:pageLife Type:1 SELType:notificationNameLife];
         }
             break;
             
         case 3:{
             pageBirthday++;
+            [packageData getWarningDatas:self pages:pageBirthday Type:2 SELType:notificationNameBirthday];
         }
             break;
             
         case 4:{
             pageHoliday++;
+            [packageData getWarningDatas:self pages:pageHoliday Type:3 SELType:notificationNameHoliday];
         }
             break;
         default:

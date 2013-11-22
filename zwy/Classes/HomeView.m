@@ -101,8 +101,6 @@
 //    [((HomeController *)self.controller) getCount];
     _mailsum.hidden=YES;
     _officesum.hidden=YES;
-    
-    
 }
 
 -(void)viewWillAppear:(BOOL)animated{

@@ -513,4 +513,45 @@ RespInfo *info=[RespInfo new];
     return flowDoc;
 }
 
+//日程提醒列表
++ (warningInfo *)warningList:(NSDictionary *)dic{
+    warningInfo * warning =[warningInfo new];
+    warning.warningList=[[NSMutableArray alloc] init];
+    NSString *count =[[[[[dic objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"WaringData"] objectForKey:@"allcount"] objectForKey:@"text"];
+    warning.AllCount=[count intValue];
+    
+    NSObject *obj =[[[[dic objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"WaringData"] objectForKey:@"WaringDataInfo"];
+    if (!obj) return warning;
+    NSArray * arr ;
+    if ([obj isKindOfClass:[NSArray class]]) {
+        arr=[NSArray arrayWithArray:(NSArray *)obj];
+    }else{
+        arr =[NSArray arrayWithObjects:(NSDictionary *)obj, nil];
+    }
+    
+    for (int i=0;i<arr.count; i++) {
+        warningDataInfo *data=[warningDataInfo new];
+        data.content =[[[arr objectAtIndex:i] objectForKey:@"content"] objectForKey:@"text"];
+        data.warningID=[[[arr objectAtIndex:i] objectForKey:@"id"] objectForKey:@"text"];
+        data.UserTel =[[[arr objectAtIndex:i] objectForKey:@"msisdn"] objectForKey:@"text"];
+        data.RequestType=[[[arr objectAtIndex:i] objectForKey:@"repeatime"] objectForKey:@"text"];
+        data.warningType =[[[arr objectAtIndex:i] objectForKey:@"type"] objectForKey:@"text"];
+        /****/
+        NSString *strDate =[[[arr objectAtIndex:i] objectForKey:@"warningdate"] objectForKey:@"text"];
+        NSDate *d = [NSDate dateWithTimeIntervalSince1970:[strDate doubleValue]];
+        NSDateFormatter *formatter1 = [[NSDateFormatter alloc] init];
+        [formatter1 setDateFormat:@"yyyy-MM-dd"];
+        data.warningDate =[formatter1 stringFromDate:d];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+        [formatter setDateFormat:@"yyyy-MM-dd"];
+        NSString *TimeNow = [formatter stringFromDate:[NSDate date]];
+        
+        int remainDays = [ToolUtils compareOneDay:TimeNow withAnotherDay:[formatter1 stringFromDate:d]];
+        data.remainTime  =[NSString stringWithFormat:@"%d",remainDays];
+        /****/
+        [warning.warningList addObject:data];
+    }
+    return warning;
+}
+
 @end

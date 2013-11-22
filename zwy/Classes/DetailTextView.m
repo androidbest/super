@@ -86,6 +86,25 @@
     return attriString;
 }
 
+
+/*设置列表Cell标题字体*/
++ (NSMutableAttributedString *)setCellTitleAttributedString:(NSString *)title{
+    NSMutableAttributedString *attriString = [[NSMutableAttributedString alloc] initWithString:title];
+    
+    //把"人明"的字体颜色变为白色色
+    NSDictionary *refreshAttributesFirst = @{NSForegroundColorAttributeName:[UIColor colorWithRed:0.25 green:0.59 blue:1.0 alpha:1.0],};
+    [attriString setAttributes:refreshAttributesFirst range:NSMakeRange(0, attriString.length-3)];
+    
+    //把"的生日"的字体颜色变为黑色色
+    NSDictionary *refreshAttributesLast = @{NSForegroundColorAttributeName:[UIColor blackColor],};
+    [attriString setAttributes:refreshAttributesLast range:NSMakeRange(attriString.length-3, 3)];
+    
+    [attriString addAttribute:(NSString *)kCTFontAttributeName
+                        value:(id)CFBridgingRelease(CTFontCreateWithName((CFStringRef)[UIFont boldSystemFontOfSize:16].fontName,16,NULL))
+                        range:NSMakeRange(0, attriString.length)];
+    return attriString;
+}
+
 -(void)drawRect:(CGRect)rect{
     [super drawRect:rect];
     

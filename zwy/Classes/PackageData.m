@@ -476,4 +476,74 @@ NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"U
     [request setHTTPBody:data];
     [HTTPRequest JSONRequestOperation:delegate Request:request];
 }
+
+//获取日程提醒
++ (void)getWarningDatas:(id)delegate pages:(int)pageId Type:(int)type SELType:(NSString *)sel{
+    NSString * waringType;
+    if (type==10000)waringType =@"";
+    else waringType  =[NSString stringWithFormat:@"%d",type];
+  ////////////////////////////////////////////////////////////
+    NSURL * url =[self urlByConfigFile];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><MSISDN>%@</MSISDN><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>getWarningDatas</METHOD><SESSIONID>2</SESSIONID><PAGEID>%d</PAGEID><PAGESIZE>20</PAGESIZE><TYPE>%@</TYPE></BODY></MESSAGE>",@"13883832863",@"4952000001",pageId,waringType];
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:data];
+    [HTTPRequest JSONRequestOperation:delegate Request:request SELType:sel];
+}
+
+//添加日程提醒
++ (void)addWarningData:(id)delegate content:(NSString *)content Type:(int)tpye warningDate:(NSString *)date warningRequstType:(int)requstType SELType:(NSString *)sel{
+    NSURL * url =[self urlByConfigFile];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><MSISDN>%@</MSISDN><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>addWarningdata</METHOD><SESSIONID>2</SESSIONID><CONTENT>%@</CONTENT><TYPE>%d</TYPE><WARINGDATE>%@</WARINGDATE><REPEATTIME>%d</REPEATTIME></BODY></MESSAGE>",@"13883832863",@"4952000001",content,tpye,date,requstType];
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:data];
+    [HTTPRequest JSONRequestOperation:delegate Request:request SELType:sel];
+}
+
+//修改日程提醒
++ (void)updateWarningData:(id)delegate warningID:(NSString *)ID content:(NSString *)content Type:(int)tpye warningDate:(NSString *)date warningRequstType:(int)requstType SELType:(NSString *)sel{
+    NSURL * url =[self urlByConfigFile];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><MSISDN>%@</MSISDN><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>updateWarningData</METHOD><SESSIONID>2</SESSIONID><UPDATEID>%@</UPDATEID><CONTENT>%@</CONTENT><TYPE>%d</TYPE><WARINGDATE>%@</WARINGDATE><REPEATTIME>%d</REPEATTIME></BODY></MESSAGE>",@"13883832863",@"4952000001",ID,content,tpye,date,requstType];
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:data];
+    [HTTPRequest JSONRequestOperation:delegate Request:request SELType:sel];
+}
+
+//删除日程提醒
++ (void)deleteWarningData:(id)delegate warningID:(NSString *)ID SELType:(NSString *)sel{
+    NSURL * url =[self urlByConfigFile];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><MSISDN>%@</MSISDN><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>addWarningdata</METHOD><SESSIONID>2</SESSIONID><DELETEID>%@</DELETEID></BODY></MESSAGE>",@"13883832863",@"4952000001",ID];
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:data];
+    [HTTPRequest JSONRequestOperation:delegate Request:request SELType:sel];
+}
+
+//获取日程提醒短信模版
++ (void)getGreetings:(id)delegate{
+    NSURL * url =[self urlByConfigFile];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><MSISDN>%@</MSISDN><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>getGreetings</METHOD><SESSIONID>2</SESSIONID></BODY></MESSAGE>",@"13883832863",@"4952000001"];
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:data];
+    [HTTPRequest JSONRequestOperation:delegate Request:request];
+}
+
+//更新短信人气（＋1）
++ (void)updateGreetingCount:(id)delegate greetingID:(NSString *)ID{
+    NSURL * url =[self urlByConfigFile];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><MSISDN>%@</MSISDN><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>addWarningdata</METHOD><SESSIONID>2</SESSIONID><GREETID>%@</GREETID></BODY></MESSAGE>",@"13883832863",@"4952000001",ID];
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:data];
+    [HTTPRequest JSONRequestOperation:delegate Request:request];
+}
 @end

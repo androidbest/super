@@ -8,6 +8,7 @@
 
 #import "scheduleView.h"
 #import "ScheduleController.h"
+#import "NewsScheduleView.h"
 
 @interface scheduleView ()
 
@@ -85,6 +86,15 @@
 
 - (void)btnAddSchedule{
 
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    UIViewController *send=segue.destinationViewController;
+    if ([segue.identifier isEqualToString:@"ScheduleToNewsView"]) {
+        NewsScheduleView * NewsView =(NewsScheduleView *)send;
+        NewsView.btnCancel.hidden=YES;
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning

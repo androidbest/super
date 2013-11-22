@@ -17,12 +17,13 @@
     NSMutableArray *arr;
     NSString *sgin;
     EcinfoDetas *ec;
+    int actionIndex;
 }
 -(id)init{
     self=[super init];
     if(self){
         //注册通知
-        
+        actionIndex=10000;
         arr=[NSMutableArray new];
         [[NSNotificationCenter defaultCenter]addObserver:self
                                                 selector:@selector(handleData:)
@@ -115,10 +116,20 @@
     }else{
         [cell.selectEc setBackgroundImage:[UIImage imageNamed:@"btn_uncheck"] forState:UIControlStateNormal];
     }
+    
+        if (actionIndex!=10000) {
+            if (indexPath.row==actionIndex) {
+                [cell.selectEc setBackgroundImage:[UIImage imageNamed:@"btn_check"] forState:UIControlStateNormal];
+            }else{
+              [cell.selectEc setBackgroundImage:[UIImage imageNamed:@"btn_uncheck"] forState:UIControlStateNormal];
+            }
+        }
+    
     cell.ecname.text=ecinfo.ECName;
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    actionIndex=indexPath.row;
     for(int i=0;i<[tableView visibleCells].count;i++){
         GetEcCell *cell = [[tableView visibleCells] objectAtIndex:i];
         [cell.selectEc setBackgroundImage:[UIImage imageNamed:@"btn_uncheck"] forState:UIControlStateNormal];
