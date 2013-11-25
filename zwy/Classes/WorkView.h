@@ -7,10 +7,15 @@
 //
 
 #import "BaseView.h"
-
+#import "warningDataInfo.h"
+#import "scheduleView.h"
 @interface WorkView : BaseView
 @property (strong, nonatomic) IBOutlet UILabel *labelLastTime;
 
 @property (strong, nonatomic) IBOutlet UILabel *labelDate;
+@property (strong, nonatomic) IBOutlet UILabel *labelTitle;
 
+@property (strong ,nonatomic)warningDataInfo *info;
+@property (assign)id WorkViewDelegate;
+- (void)upDataScheduleList:(int)TableViewType;
 @end

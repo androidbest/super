@@ -29,14 +29,10 @@
 {
     [super viewDidLoad];
     
-    UIButton *  btnEditing =[UIButton buttonWithType:UIButtonTypeCustom];
-    btnEditing.frame=CGRectMake(0, 0, 20, 20);
-    [btnEditing setTitle:@"编辑" forState:UIControlStateNormal];
-    [btnEditing addTarget:self.controller action:@selector(btnEditing) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *temAddPeople = [[UIBarButtonItem alloc] initWithCustomView:btnEditing];
-    temAddPeople.style = UIBarButtonItemStylePlain;
-    self.navigationItem.rightBarButtonItem=temAddPeople;
+    UIBarButtonItem *rightButton  =[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self.controller action:@selector(btnEditing)];
+    self.navigationItem.rightBarButtonItem=rightButton;
 	// Do any additional setup after loading the view.
+    [self.controller initWithData];
 }
 
 -  (void)btnEditing{

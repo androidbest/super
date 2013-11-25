@@ -8,6 +8,8 @@
 
 #import "BaseView.h"
 #import "SevenSwitch.h"
+#import "scheduleView.h"
+#import "warningDataInfo.h"
 @interface NewsScheduleView : BaseView
 @property (strong, nonatomic) IBOutlet UITextField *textTitle;
 @property (strong, nonatomic) IBOutlet UIButton *btnClass;
@@ -21,4 +23,10 @@
 @property (strong, nonatomic) IBOutlet UILabel *labelReqeat;
 @property (strong, nonatomic) SevenSwitch * swithTimeType;
 @property (strong, nonatomic) NSString *strTitle;
+@property (strong, nonatomic) scheduleView *schedView;
+@property (strong, nonatomic) PullRefreshTableView *tableViewShedule;
+@property (strong, nonatomic) warningDataInfo *info;
+@property (assign)id newsScheduleDelegate;
+- (void)updataWarning:(warningDataInfo *)info;
+- (void)upDataScheduleList:(int)TableViewType;
 @end

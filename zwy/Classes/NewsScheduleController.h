@@ -8,6 +8,13 @@
 
 #import "BaseController.h"
 #import "NewsScheduleView.h"
+
+typedef enum
+{
+    type_add,
+    type_editing
+}newsType;
+
 @interface NewsScheduleController : BaseController
 
 @property (strong ,nonatomic)NewsScheduleView * newsView;

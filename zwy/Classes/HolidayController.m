@@ -27,7 +27,29 @@
 }
 
 - (void)initWithData{
- _holiView.LableDays.attributedText =[DetailTextView setDateAttributedString:@"123"];
+    _holiView.LableDays.attributedText =[DetailTextView setDateAttributedString:_holiView.info.remainTime];
+    if ([_holiView.info.warningType isEqualToString:@"2"])   _holiView.labelName.text=[NSString stringWithFormat:@"%@ 的生日",_holiView.info.content];
+    else _holiView.labelName.text=_holiView.info.content;
+   
+    _holiView.lableDate.text=_holiView.info.warningDate;
+}
+
+#pragma mark - newsScheduleDelegate
+- (void)updataWarning:(warningDataInfo *)info{
+    _holiView.info.remainTime=info.remainTime;
+    _holiView.info.content=info.content;
+    _holiView.info.warningDate=info.warningDate;
+    
+    _holiView.LableDays.attributedText =[DetailTextView setDateAttributedString:info.remainTime];
+    
+    if ([_holiView.info.warningType isEqualToString:@"2"]) _holiView.labelName.text=[NSString stringWithFormat:@"%@ 的生日",info.content];
+    else _holiView.labelName.text=info.content;
+   
+    _holiView.labelName.text=info.content;
+    _holiView.lableDate.text=info.warningDate;
+    
+    int scheduleType =[_holiView.info.warningType intValue];
+    [_holiView.HolidayViewDelegate upDataScheduleList:scheduleType];
 }
 
 #pragma mark - 接收数据
@@ -40,12 +62,15 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
     NewsScheduleView *detaView = [storyboard instantiateViewControllerWithIdentifier:@"NewsScheduleView"];
     detaView.strTitle=@"生日祝福";
+    detaView.info=_holiView.info;
     [self.holiView presentViewController:detaView animated:YES completion:nil];
+    detaView.newsScheduleDelegate=self;
+   
 }
 
 #pragma mark - UITableViewDataSoures
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return _arrSMSMode.count+5;
+    return _arrSMSMode.count;
 }
 
 

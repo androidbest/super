@@ -7,11 +7,15 @@
 //
 
 #import "BaseView.h"
-
+#import "warningDataInfo.h"
+#import "scheduleView.h"
 @interface HolidayView : BaseView
 
 @property (strong, nonatomic) IBOutlet UILabel *labelName;
 @property (strong, nonatomic) IBOutlet UILabel *lableDate;
 @property (strong, nonatomic) IBOutlet UILabel *LableDays;
 @property (strong, nonatomic) PullRefreshTableView *tableViewSMSMode;
+@property (strong, nonatomic) warningDataInfo *info;
+@property (assign)id HolidayViewDelegate;
+- (void)upDataScheduleList:(int)TableViewType;
 @end

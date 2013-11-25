@@ -32,4 +32,10 @@
 
 #pragma mark -时间比较
 +(int)compareOneDay:(NSString *)startDate withAnotherDay:(NSString *)endDate;
+
+#pragma mark -时间比较大小
++(int)bigOrsmallOneDay:(NSDate *)oneDay withAnotherDay:(NSDate *)anotherDay;
+
+#pragma mark  -当前时间转换为毫秒
++ (long long)TimeStingWithInterVal:(NSString *)strTime;
 @end

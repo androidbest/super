@@ -9,6 +9,10 @@
 #import "ScheduleController.h"
 #import "ScheduleCell.h"
 #import "DetailTextView.h"
+#import "WorkView.h"
+#import "HolidayView.h"
+#import "NewsScheduleView.h"
+
 @implementation ScheduleController{
 
     tableViewScheduleType tableView_Type;
@@ -38,6 +42,9 @@
     BOOL isPullDownLife;
     BOOL isPullDownBirthday;
     BOOL isPullDownHoliday;
+    
+    /*是否有置顶信息*/
+    BOOL isFirst;
 }
 
 - (id)init{
@@ -92,11 +99,89 @@
     return self;
 }
 
-/*添加日程提醒*/
-- (void)btnAddSchedule{
-    [_schedView performSegueWithIdentifier:@"ScheduleToNewsView" sender:nil];
+- (void)initWithData{
+    NSString *strPath =[NSString stringWithFormat:@"%@/%@/%@/%@.plist",DocumentsDirectory,user.msisdn,user.eccode,Warning_Frist];
+    isFirst=[[NSFileManager defaultManager] fileExistsAtPath:strPath];
+    if (isFirst) {
+        NSDictionary *dic =[[NSDictionary alloc] initWithContentsOfFile:strPath];
+        NSString *strDate=dic[@"date"];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setFormatterBehavior:NSDateFormatterBehaviorDefault];
+        [formatter setDateFormat:@"yyyy-MM-dd"];
+        NSDate *startDate = [formatter dateFromString:strDate];
+        int isStart =[ToolUtils bigOrsmallOneDay:startDate withAnotherDay:[NSDate date]];
+        
+        if (isStart<0||[dic[@"reqeatType"] isEqualToString:@"10000"]) {/*如果置顶日程过期删除*/
+            [[NSFileManager defaultManager] removeItemAtPath:strPath error:nil];
+            isFirst=NO;
+        }
+        
+    }
 }
 
+
+- (void)getFirstSchedule{
+    warningDataInfo * info =_arrAll[0];
+    NSString *Title;
+    if ([info.warningType isEqualToString:@"2"]){
+        Title =[info.content stringByAppendingString:@" 的生日"];
+        _schedView.labelName.text=Title;
+    }
+    else {
+        Title=info.content;
+        _schedView.labelName.text=Title;
+    }
+     _schedView.labelBirthday.text = info.warningDate;
+    _schedView.labelDays.attributedText =[DetailTextView setDateAttributedString:info.remainTime];
+}
+
+/*添加日程提醒*/
+- (void)btnAddSchedule{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+    NewsScheduleView *detaView = [storyboard instantiateViewControllerWithIdentifier:@"NewsScheduleView"];
+    [self.schedView presentViewController:detaView animated:YES completion:nil];
+    detaView.btnCancel.hidden=YES;
+    detaView.schedView=self.schedView;
+    detaView.newsScheduleDelegate=self;
+}
+
+#pragma mark - 更新数据
+- (void)upDataScheduleList:(int)TableViewType{
+    pagesAll=1;
+    isPullDownAll=YES;
+    [packageData getWarningDatas:self pages:pagesAll Type:10000 SELType:notificationNameAll];
+    switch (TableViewType) {
+        case 0:{
+            pagesWork=1;
+            isPullDownWork=YES;
+            [packageData getWarningDatas:self pages:pagesWork Type:0 SELType:notificationNameWork];
+        }
+            break;
+            
+        case 1:{
+            pageLife=1;
+            isPullDownLife=YES;
+            [packageData getWarningDatas:self pages:pageLife Type:1 SELType:notificationNameLife];
+        }
+            break;
+            
+        case 2:{
+            pageBirthday=1;
+            isPullDownBirthday=YES;
+            [packageData getWarningDatas:self pages:pageBirthday Type:2 SELType:notificationNameBirthday];
+        }
+            break;
+            
+        case 3:{
+            pageHoliday=1;
+            isPullDownHoliday=YES;
+            [packageData getWarningDatas:self pages:pageHoliday Type:3 SELType:notificationNameHoliday];
+        }
+            break;
+        default:
+            break;
+    }
+}
 
 #pragma mark -接受数据信息
 //所有日程
@@ -129,6 +214,10 @@
     _schedView.tableViewAll.reachedTheEnd=YES;
     }
     [_schedView.tableViewAll reloadDataPull];
+    
+    if (!isFirst) {/*设置置顶内容*/
+        [self getFirstSchedule];
+    }
 }
 
 //工作日程
@@ -475,33 +564,63 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     switch (tableView.tag) {
         case 0:{
-
+        warningDataInfo * info =_arrAll[indexPath.row];
+            if ([info.warningType isEqualToString:@"0"]||[info.warningType isEqualToString:@"1"]) {
+                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+                WorkView *detaView = [storyboard instantiateViewControllerWithIdentifier:@"WorkView"];
+                [self.schedView.navigationController pushViewController:detaView animated:YES];
+                detaView.info=info;
+                detaView.WorkViewDelegate=self;
+            }else{
+                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+                HolidayView *detaView = [storyboard instantiateViewControllerWithIdentifier:@"HolidayView"];
+                [self.schedView.navigationController pushViewController:detaView animated:YES];
+                detaView.info =info;
+                detaView.HolidayViewDelegate=self;
+            }
         }
             break;
             
         case 1:{
-
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+            WorkView *detaView = [storyboard instantiateViewControllerWithIdentifier:@"WorkView"];
+            [self.schedView.navigationController pushViewController:detaView animated:YES];
+            detaView.info=_arrWork[indexPath.row];
+            detaView.WorkViewDelegate=self;
         }
             break;
             
         case 2:{
-
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+            WorkView *detaView = [storyboard instantiateViewControllerWithIdentifier:@"WorkView"];
+            [self.schedView.navigationController pushViewController:detaView animated:YES];
+            detaView.info=_arrLife[indexPath.row];
+            detaView.WorkViewDelegate=self;
         }
             break;
             
         case 3:{
-
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+            HolidayView *detaView = [storyboard instantiateViewControllerWithIdentifier:@"HolidayView"];
+            [self.schedView.navigationController pushViewController:detaView animated:YES];
+            detaView.info =_arrBirthday[indexPath.row];
+            detaView.HolidayViewDelegate=self;
         }
             break;
             
         case 4:{
-
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+            HolidayView *detaView = [storyboard instantiateViewControllerWithIdentifier:@"HolidayView"];
+            [self.schedView.navigationController pushViewController:detaView animated:YES];
+            detaView.info =_arrholiday[indexPath.row];
+            detaView.HolidayViewDelegate=self;
         }
             break;
         default:
             
             break;
     }
+     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 /*下拉刷新*/
@@ -586,6 +705,7 @@
     }
 
 }
+
 
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{

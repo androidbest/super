@@ -70,13 +70,15 @@
     [self.view addSubview:_tableViewHoliday];
     
     /*CGRectMake(ScreenWidth-120, 90, 100, 25)*/
-    _labelDays=[[UILabel alloc] initWithFrame:CGRectMake(ScreenWidth-120, 80, 120, 40)];
-    _labelDays.attributedText =[DetailTextView setDateAttributedString:@"11"];
+    _labelDays=[[UILabel alloc] initWithFrame:CGRectMake(ScreenWidth-180, 80, 170, 40)];
+    _labelDays.textAlignment=NSTextAlignmentRight;
     [self.view addSubview:_labelDays];
     
 
     UIBarButtonItem *rightButton  =[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self.controller action:@selector(btnAddSchedule)];
     self.navigationItem.rightBarButtonItem=rightButton;
+    
+    [self.controller initWithData];
     
 }
 
@@ -88,13 +90,33 @@
 
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    UIViewController *send=segue.destinationViewController;
-    if ([segue.identifier isEqualToString:@"ScheduleToNewsView"]) {
-        NewsScheduleView * NewsView =(NewsScheduleView *)send;
-        NewsView.btnCancel.hidden=YES;
+- (void)viewWillAppear:(BOOL)animated{
+    NSString *strPath =[NSString stringWithFormat:@"%@/%@/%@/%@.plist",DocumentsDirectory,user.msisdn,user.eccode,Warning_Frist];
+     BOOL isFirst=[[NSFileManager defaultManager] fileExistsAtPath:strPath];
+    if (isFirst) {
+        NSDictionary *dic =[[NSDictionary alloc] initWithContentsOfFile:strPath];
+        NSString *strDate=dic[@"date"];
+        _labelBirthday.text=strDate;
+        
+        NSString *strContent=dic[@"name"];
+        _labelName.text=strContent;
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+        [formatter setDateFormat:@"yyyy-MM-dd"];
+        NSString *TimeNow = [formatter stringFromDate:[NSDate date]];
+        int remainDays = [ToolUtils compareOneDay:TimeNow withAnotherDay:strDate];
+        NSString *strDays=[NSString stringWithFormat:@"%d",remainDays];
+         _labelDays.attributedText =[DetailTextView setDateAttributedString:strDays];
     }
-    
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+//    UIViewController *send=segue.destinationViewController;
+//    if ([segue.identifier isEqualToString:@"ScheduleToNewsView"]) {
+//        NewsScheduleView * NewsView =(NewsScheduleView *)send;
+//        [NewsView.btnCancel setTitle:@"修改" forState:UIControlStateNormal];
+//        NewsView.schedView=self;
+//    }
 }
 
 - (void)didReceiveMemoryWarning

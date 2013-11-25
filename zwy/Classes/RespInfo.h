@@ -14,4 +14,5 @@
 @property (strong ,nonatomic)NSString * resultcode;//返回头id
 @property (strong ,nonatomic)NSString * officeSum;//政务办公总数
 @property (strong ,nonatomic)NSString * mailSum;//群众信箱总数
+@property (strong ,nonatomic)NSString *ID;//日程提醒ID
 @end

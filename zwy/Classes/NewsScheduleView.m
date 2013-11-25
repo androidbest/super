@@ -61,6 +61,10 @@
     [self.controller initWithData];
 }
 
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    [_textTitle resignFirstResponder];
+}
+
 - (void)btnFirst:(UISwitch *)sender{
 
 }
@@ -75,6 +79,10 @@
 }
 
 - (void)swithTimeType:(SevenSwitch *)sender {
+}
+
+- (void)updataWarning:(warningDataInfo *)info{
+
 }
 - (void)didReceiveMemoryWarning
 {
