@@ -49,6 +49,7 @@
 {
 //    UITapGestureRecognizer * tap =[[UITapGestureRecognizer alloc] initWithTarget:self.controller action:@selector(endTextEditing)];
 //    [self.view addGestureRecognizer:tap];
+     self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
     
     [super viewDidLoad];
     [_btnSend addTarget:self.controller action:@selector(btnSendSMS:) forControlEvents:UIControlEventTouchUpInside];
@@ -114,4 +115,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)dissmissFromHomeView{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 @end

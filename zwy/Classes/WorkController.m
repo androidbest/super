@@ -22,7 +22,29 @@
 }
 
 - (void)initWithData{
-    _workViews.navigationItem.title=@"日程提醒";
+    
+    if (dicLocalNotificationInfo&&isLocalNotification) {
+        _workViews.info=[warningDataInfo new];
+        _workViews.info.content=dicLocalNotificationInfo[@"content"];
+        _workViews.info.warningID=dicLocalNotificationInfo[@"ID"];
+        _workViews.info.RequestType=dicLocalNotificationInfo[@"RequestType"];
+        _workViews.info.warningDate=dicLocalNotificationInfo[@"warningDate"];
+        _workViews.info.warningType=dicLocalNotificationInfo[@"warningType"];
+        _workViews.info.UserTel=dicLocalNotificationInfo[@"UserTel"];
+        _workViews.info.remainTime=dicLocalNotificationInfo[@"remainTime"];
+        dicLocalNotificationInfo=nil;
+        isLocalNotification=NO;
+    }
+    
+    
+    
+    if ([_workViews.info.warningType isEqualToString:@"0"]) {
+        _workViews.navigationItem.title=@"工作安排";
+    }else{
+        _workViews.navigationItem.title=@"生活提醒";
+    }
+    
+    
     _workViews.labelDate.text=_workViews.info.warningDate;
     _workViews.labelLastTime.text=_workViews.info.remainTime;
     
@@ -35,11 +57,38 @@
     _workViews.labelTitle.text=strTitle;
 }
 
+/*删除日程后消除view*/
+- (void)deleteWarning:(NewsScheduleView *)newsView{
+    [self performSelector:@selector(deleteWarningView) withObject:self afterDelay:0.1];
+    
+}
+- (void)deleteWarningView{
+    int scheduleType =[_workViews.info.warningType intValue];
+    [_workViews.WorkViewDelegate upDataScheduleList:scheduleType];
+    [self.workViews.navigationController popViewControllerAnimated:YES];
+}
+
+
 #pragma mark - newsScheduleDelegate
 - (void)updataWarning:(warningDataInfo *)info{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];//初始化转换格式
+    [formatter setDateFormat:@"yyyy-MM-dd"];//设置转换格式
+    NSString *TimeNow = [formatter stringFromDate:[NSDate date]];
+    
+    if ([info.RequestType isEqualToString:@"3"]) {
+        info.warningDate =[UpdataDate reqeatWithYearTodate:info.warningDate];
+    }else if([info.RequestType isEqualToString:@"2"]){
+        info.warningDate =[UpdataDate reqeatWithMonthTodate:info.warningDate];
+    }else if([info.RequestType isEqualToString:@"1"]){
+        info.warningDate =[UpdataDate reqeatWithWeekTodate:info.warningDate];
+    }
+    int remainDays = [ToolUtils compareOneDay:TimeNow withAnotherDay:info.warningDate];
+    info.remainTime  =[NSString stringWithFormat:@"%d",remainDays];
+    
     _workViews.info.warningDate=info.warningDate;
     _workViews.info.remainTime=info.remainTime;
     _workViews.info.content=info.content;
+    _workViews.info.RequestType=info.RequestType;
     
     _workViews.navigationItem.title=@"日程提醒";
     _workViews.labelDate.text=info.warningDate;

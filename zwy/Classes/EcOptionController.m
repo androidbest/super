@@ -159,7 +159,6 @@
     sgin=@"1";
     self.HUD.labelText = @"正在获取个人信息..";
     [self.HUD show:YES];
-    self.HUD.dimBackground = YES;
     [packageData autoLoginvalidation:self Count:@"1" msisdn:user.msisdn eccode:user.eccode];
     
 }

@@ -17,5 +17,6 @@
 @property (strong, nonatomic) PullRefreshTableView *tableViewSMSMode;
 @property (strong, nonatomic) warningDataInfo *info;
 @property (assign)id HolidayViewDelegate;
+@property (strong, nonatomic) IBOutlet UIImageView *imageFirst;
 - (void)upDataScheduleList:(int)TableViewType;
 @end

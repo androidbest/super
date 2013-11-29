@@ -35,8 +35,16 @@
     [self.controller initWithData];
 }
 
--  (void)btnEditing{
+- (void)btnEditing{
     
+}
+- (void)upDataScheduleList:(int)TableViewType{
+
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden=NO;
 }
 
 - (void)didReceiveMemoryWarning

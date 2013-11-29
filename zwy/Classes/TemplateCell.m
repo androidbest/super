@@ -43,6 +43,12 @@
         _imageMark.image=[UIImage imageNamed:@"list_yuan"];
         _imageMark.hidden=YES;
         [self addSubview:_imageMark];
+        
+        //"人气数"标签
+        _greetingCount =[[UILabel alloc] initWithFrame:CGRectMake(320-100, self.frame.size.height-40, 90, 30)];
+        _greetingCount.hidden=YES;
+        _greetingCount.textAlignment=NSTextAlignmentRight;
+        [self addSubview:_greetingCount];
     }
     return self;
 }

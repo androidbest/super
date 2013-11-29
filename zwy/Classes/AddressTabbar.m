@@ -71,6 +71,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
+self.tabBarController.tabBar.hidden=YES;
 self.navigationController.navigationBarHidden=YES;
 }
 
@@ -94,5 +95,9 @@ self.navigationController.navigationBarHidden=YES;
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item{
     [[NSNotificationCenter defaultCenter] postNotificationName:@"showAddressCallKeyboard"
                                                         object:item];
+}
+
+- (void)dissmissFromHomeView{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 @end

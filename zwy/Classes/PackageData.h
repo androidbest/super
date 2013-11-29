@@ -143,8 +143,8 @@
 + (void)deleteWarningData:(id)delegate warningID:(NSString *)ID SELType:(NSString *)sel;
 
 //获取日程提醒短信模版
-+ (void)getGreetings:(id)delegate;
++ (void)getGreetings:(id)delegate greetingType:(NSString *)type SELType:(NSString *)sel;
 
 //更新短信人气（＋1）
-+ (void)updateGreetingCount:(id)delegate greetingID:(NSString *)ID;
++ (void)updateGreetingCount:(id)delegate greetingID:(NSString *)ID greetingCount:(NSString *)count SELType:(NSString *)sel;
 @end

@@ -91,11 +91,10 @@
  *	Setup the individual elements of the switch and set default values
  */
 - (void)setup {
-    
     // default values
     self.on = NO;
     self.isRounded = YES;
-    self.inactiveColor = [UIColor clearColor];
+    self.inactiveColor = [UIColor colorWithRed:0.82f green:0.41f blue:0.12f alpha:1.00f];
     self.activeColor = [UIColor colorWithRed:0.89f green:0.89f blue:0.89f alpha:1.00f];
     self.onColor = [UIColor colorWithRed:0.30f green:0.85f blue:0.39f alpha:1.00f];
     self.borderColor = [UIColor colorWithRed:0.89f green:0.89f blue:0.91f alpha:1.00f];
@@ -138,7 +137,7 @@
     labelOffTitle=[[UILabel alloc] initWithFrame:rect];
     labelOffTitle.contentMode=UIViewContentModeCenter;
     labelOffTitle.font=[UIFont boldSystemFontOfSize:12];
-    labelOffTitle.textColor=[UIColor colorWithRed:0.25 green:0.59 blue:1.0 alpha:1.0];
+    labelOffTitle.textColor=[UIColor whiteColor];
     [self addSubview:labelOffTitle];
     
     // knob

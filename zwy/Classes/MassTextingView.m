@@ -72,6 +72,8 @@
     [_textsign setDelegate:self.controller];
     NSUserDefaults * defaults =[NSUserDefaults standardUserDefaults];
     _textsign.text =[defaults objectForKey:@"signContent"];
+    
+    [self.controller initWithData];
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -83,6 +85,10 @@
 
 - (void)btnSign:(UIButton *)sender{
     
+}
+
+- (void)massTextInfoFromWarningViewWithGreetingID:(GreetDetaInfo *)GreetInfo{
+
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{

@@ -17,5 +17,5 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segControl;
 @property (strong, nonatomic) IBOutlet UILabel *zishu;
 @property (strong, nonatomic) IBOutlet UIButton *templates;
-
+- (void)dissmissFromHomeView;
 @end

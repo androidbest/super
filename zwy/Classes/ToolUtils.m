@@ -237,11 +237,42 @@
 }
 
 #pragma mark  -当前时间转换为毫秒
-+ (long long)TimeStingWithInterVal:(NSString *)strTime{
++ (NSTimeInterval)TimeStingWithInterVal:(NSString *)strTime{
     NSDateFormatter * dateFormatter = [[NSDateFormatter alloc]init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     NSDate *date =[dateFormatter dateFromString:strTime];
     NSTimeInterval time_=[date timeIntervalSince1970];
     return time_;
+}
+
+#pragma mark  - 获取星期几
+- (NSUInteger)getWeekdayFromDate:(NSDate*)date
+
+{
+    
+    NSCalendar* calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    
+    NSDateComponents* components = [[NSDateComponents alloc] init];
+    
+    NSInteger unitFlags = NSYearCalendarUnit |
+    
+    NSMonthCalendarUnit |
+    
+    NSDayCalendarUnit |
+    
+    NSWeekdayCalendarUnit |
+    
+    NSHourCalendarUnit |
+    
+    NSMinuteCalendarUnit |
+    
+    NSSecondCalendarUnit;
+    
+    components = [calendar components:unitFlags fromDate:date];
+    
+    NSUInteger weekday = [components weekday];
+    
+    return weekday;
+    
 }
 @end

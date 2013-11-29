@@ -39,17 +39,29 @@
     [self.view addSubview:_tableViewSMSMode];
     [_tableViewSMSMode LoadDataBegin];/*刷新数据*/
     [self.controller initWithData];
+    
+    _imageFirst.userInteractionEnabled=YES;
+    UITapGestureRecognizer *tapGesture=[[UITapGestureRecognizer alloc] initWithTarget:self.controller action:@selector(PushMassTextView)];
+    [_imageFirst addGestureRecognizer:tapGesture];
 }
 
 - (void)btnEditing{
     
-   
+}
+
+- (void)PushMassTextView{
+    
+}
+
+- (void)upDataScheduleList:(int)TableViewType{
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden=NO;
 }
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

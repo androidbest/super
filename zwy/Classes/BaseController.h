@@ -17,6 +17,7 @@
 #import "ToolUtils.h"
 #import "Constants.h"
 #import "ConfigFile.h"
+#import "UpdataDate.h"
 @interface BaseController : NSObject <ControllerProtocol>
 @property(strong,nonatomic)MBProgressHUD * HUD;
 

@@ -7,7 +7,7 @@
 //
 
 #import "BaseView.h"
-
+#import "GreetDetaInfo.h"
 @interface MassTextingView : BaseView
 @property (strong, nonatomic) IBOutlet UIButton *btnBack;
 @property (weak, nonatomic) IBOutlet UIButton *BtnGroupAddress;
@@ -24,4 +24,8 @@
 @property (strong, nonatomic) IBOutlet UIImageView *navigationBarImage;
 @property (strong, nonatomic) IBOutlet UINavigationBar *navigtionBarMass;
 @property (assign ,nonatomic)BOOL isSchedule;
+@property (strong ,nonatomic) GreetDetaInfo *detaInfo;
+@property (strong ,nonatomic) NSString *strFromGeetingName;
+@property (assign) id massTextDelegate;
+- (void)massTextInfoFromWarningViewWithGreetingID:(GreetDetaInfo *)GreetInfo;
 @end

@@ -28,5 +28,7 @@ extern Tuser *user;
 extern NSMutableArray *arrEc;
 extern UIView *coverView;
 extern BOOL isZaiXian;
+extern BOOL isLocalNotification;
+extern NSDictionary * dicLocalNotificationInfo;
 @interface Constants : NSObject
 @end

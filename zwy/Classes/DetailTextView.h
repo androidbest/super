@@ -20,4 +20,7 @@
 
 /*设置列表Cell标题字体*/
 + (NSMutableAttributedString *)setCellTitleAttributedString:(NSString *)title;
+
+/*设置人气标题字体*/
++ (NSMutableAttributedString *)setGreetingTitleAttributedString:(NSString *)title;
 @end

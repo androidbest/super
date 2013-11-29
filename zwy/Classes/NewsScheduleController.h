@@ -18,5 +18,5 @@ typedef enum
 @interface NewsScheduleController : BaseController
 
 @property (strong ,nonatomic)NewsScheduleView * newsView;
-
+@property (strong ,nonatomic)UIActionSheet *sheetWarningType;
 @end

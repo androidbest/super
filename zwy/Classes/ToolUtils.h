@@ -37,5 +37,8 @@
 +(int)bigOrsmallOneDay:(NSDate *)oneDay withAnotherDay:(NSDate *)anotherDay;
 
 #pragma mark  -当前时间转换为毫秒
-+ (long long)TimeStingWithInterVal:(NSString *)strTime;
++ (NSTimeInterval)TimeStingWithInterVal:(NSString *)strTime;
+
+#pragma mark  - 获取星期几
+- (NSUInteger)getWeekdayFromDate:(NSDate*)date;
 @end

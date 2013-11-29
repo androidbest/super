@@ -134,7 +134,11 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"cancelAllThread"
                                                             object:nil];
         
-        
+        /*清除所有本地通知*/
+        NSArray*allLocalNotification=[[UIApplication sharedApplication]scheduledLocalNotifications];
+        for(UILocalNotification*localNotification in allLocalNotification){
+            [[UIApplication sharedApplication]cancelLocalNotification:localNotification];
+        }
         
         NSUserDefaults *appConfig=[NSUserDefaults standardUserDefaults];
         [appConfig setBool:NO forKey:@"isLogin"];
@@ -265,6 +269,11 @@
 	self.HUD.labelText = @"正在切换单位数据";
     [self.HUD show:YES];
     
+    /*清除所有本地通知*/
+    NSArray*allLocalNotification=[[UIApplication sharedApplication]scheduledLocalNotifications];
+    for(UILocalNotification*localNotification in allLocalNotification){
+        [[UIApplication sharedApplication]cancelLocalNotification:localNotification];
+    }
 /*
     NSString * strECPath =[NSString stringWithFormat:@"%@/%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode,@"group.txt"];
     NSString *strGroup =[NSString stringWithContentsOfFile:strECPath encoding:NSUTF8StringEncoding error:NULL];
@@ -352,6 +361,13 @@
 
 
 -(void)dissView{
+    
+    /*清除所有本地通知*/
+    NSArray*allLocalNotification=[[UIApplication sharedApplication]scheduledLocalNotifications];
+    for(UILocalNotification*localNotification in allLocalNotification){
+        [[UIApplication sharedApplication]cancelLocalNotification:localNotification];
+    }
+    
  [self.account dismissViewControllerAnimated:NO completion:nil];
 }
 

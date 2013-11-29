@@ -25,13 +25,15 @@
     NSString *editingWarning;
     NSString *removeWarning;
     
+    
+    
 }
 - (id)init{
     self =[super init];
     if (self) {
         isSolarTime=YES;
         isReqeat=NO;
-        reqeatType=10000;
+        reqeatType=0;
         ScheduleType=0;
         addWarning=@"addWarning";
         editingWarning=@"editingWarning";
@@ -61,7 +63,14 @@
 - (void)initWithData{
     if (_newsView.info) {
         _newsView.textTitle.text=_newsView.info.content;
-        timeSolar =_newsView.info.warningDate;
+        
+        if ([_newsView.info.warningType isEqualToString:@"2"]){
+            timeSolar =_newsView.info.brithdayDate;
+        }else {
+            timeSolar =_newsView.info.warningDate;
+        }
+        
+        
         [_newsView.btnOptionTime setTitle:timeSolar forState:UIControlStateNormal];
         
         /*是否置顶*/
@@ -80,21 +89,26 @@
            int reqeat=[_newsView.info.RequestType intValue];
             switch (reqeat) {
                 case 0:
-                    _newsView.labelReqeat.text=@"每年";
+                    _newsView.labelReqeat.text=@"不重复";
+                    self.newsView.switchReqeat.on=NO;
+                    reqeatType=reqeat;
                     break;
                 case 1:
-                    _newsView.labelReqeat.text=@"每月";
+                    _newsView.labelReqeat.text=@"每周";
+                    reqeatType=reqeat;
                     break;
                 case 2:
-                    _newsView.labelReqeat.text=@"每周";
+                    _newsView.labelReqeat.text=@"每月";
+                    reqeatType=reqeat;
                     break;
                 case 3:
-                    _newsView.labelReqeat.text=@"每日";
+                 _newsView.labelReqeat.text=@"每年";
+                    reqeatType=reqeat;
+                    
                     break;
                 default:
                     break;
             }
-            reqeatType=reqeat;
         }else{
            self.newsView.switchReqeat.on=NO;
         }
@@ -111,6 +125,7 @@
                     break;
                 case 2:
                    [_newsView.btnClass setTitle:@"生日" forState:UIControlStateNormal];
+                    [_newsView.switchReqeat setEnabled:NO];
                     break;
                 case 3:
                    [_newsView.btnClass setTitle:@"节日" forState:UIControlStateNormal];
@@ -131,18 +146,48 @@
     }
 }
 
+/*保存置顶信息*/
 - (void)saveFristWarningWithID:(NSString *)ID{
     NSMutableDictionary *dicFirst=[[NSMutableDictionary alloc] init];
-    [dicFirst setObject:_newsView.textTitle.text forKey:@"name"];
-    if (isSolarTime)[dicFirst setObject:@"0" forKey:@"solarOrLunar"];
-    else [dicFirst setObject:@"1" forKey:@"solarOrLunar"];
-    [dicFirst setObject:timeSolar forKey:@"date"];
-    [dicFirst setObject:ID forKey:@"ID"];
-    if (isReqeat)[dicFirst  setObject:[NSString stringWithFormat:@"%d",reqeatType] forKey:@"reqeatType"];
-    [dicFirst setObject:[NSString stringWithFormat:@"%d",ScheduleType] forKey:@"ScheduleType"];
-    NSString *strPath =[NSString stringWithFormat:@"%@/%@/%@/%@.plist",DocumentsDirectory,user.msisdn,user.eccode,Warning_Frist];
-    [dicFirst writeToFile:strPath atomically:NO];
+    [dicFirst setObject:_newsView.textTitle.text forKey:@"name"];/*提醒标题*/
+    if (isSolarTime)[dicFirst setObject:@"0" forKey:@"solarOrLunar"];//时间类型（公历）
+    else [dicFirst setObject:@"1" forKey:@"solarOrLunar"];//(农历)
+    
+    if (reqeatType==3)  [dicFirst setObject:[UpdataDate reqeatWithYearTodate:timeSolar] forKey:@"date"];//时间
+    else if (reqeatType==2)  [dicFirst setObject:[UpdataDate reqeatWithMonthTodate:timeSolar] forKey:@"date"];//时间
+    else if (reqeatType==1)  [dicFirst setObject:[UpdataDate reqeatWithWeekTodate:timeSolar] forKey:@"date"];//时间
+    else [dicFirst setObject:timeSolar forKey:@"date"];
+    [dicFirst setObject:ID forKey:@"ID"];//日程ID
+    if (isReqeat)[dicFirst  setObject:[NSString stringWithFormat:@"%d",reqeatType] forKey:@"reqeatType"];//重复类型
+    [dicFirst setObject:[NSString stringWithFormat:@"%d",ScheduleType] forKey:@"ScheduleType"];//日程类型
+    NSString *strPath =[NSString stringWithFormat:@"%@/%@/%@/%@.plist",DocumentsDirectory,user.msisdn,user.eccode,Warning_Frist];//设置地址
+    [dicFirst writeToFile:strPath atomically:NO];//写入沙盒
 }
+
+/*修改置顶信息*/
+- (void)deleteFirstWarningWithID:(NSString *)ID LocalNotificationWithDelete:(BOOL)isDeleteLocalNotification{
+    NSString *strPath =[NSString stringWithFormat:@"%@/%@/%@/%@.plist",DocumentsDirectory,user.msisdn,user.eccode,Warning_Frist];//设置地址
+    BOOL isFirsts=[[NSFileManager defaultManager] fileExistsAtPath:strPath];
+    if (isFirsts) {
+        NSDictionary *dic =[NSDictionary dictionaryWithContentsOfFile:strPath];
+        NSString *strWarningID=dic[@"ID"];
+        if ([strWarningID isEqualToString:ID]) {
+            [[NSFileManager defaultManager] removeItemAtPath:strPath error:nil];
+        }
+    }
+    
+    if (isDeleteLocalNotification) {
+         NSArray*allLocalNotification=[[UIApplication sharedApplication]scheduledLocalNotifications];
+         for(UILocalNotification*localNotification in allLocalNotification){
+             NSString*alarmValue=[localNotification.userInfo objectForKey:@"ID"];
+            if([ID isEqualToString:alarmValue]){
+                 [[UIApplication sharedApplication]cancelLocalNotification:localNotification];
+                 }
+             }
+    }
+    
+}
+
 
 #pragma mark -接收数据
 /*修改回调*/
@@ -155,6 +200,7 @@
     if ([info.respCode isEqualToString:@"0"]) {
         /*保持置顶数据*/
         if (isFirst)[self saveFristWarningWithID:_newsView.info.warningID];
+        else [self deleteFirstWarningWithID:_newsView.info.warningID LocalNotificationWithDelete:NO];
         /*********/
 
         image= [UIImage imageNamed:@"37x-Checkmark.png"];
@@ -172,6 +218,7 @@
         dataInfo.remainTime =[NSString stringWithFormat:@"%d",remainDays];
         dataInfo.warningDate=timeSolar;
         dataInfo.content=_newsView.textTitle.text;
+        dataInfo.RequestType=[NSString stringWithFormat:@"%d",reqeatType];
         [_newsView.newsScheduleDelegate updataWarning:dataInfo];
         [self.newsView dismissViewControllerAnimated:YES completion:nil];
     }else{
@@ -189,8 +236,8 @@
     UIImageView *imageView;
     UIImage *image ;
     if ([info.respCode isEqualToString:@"0"]) {
-        /*保持置顶数据*/
-        if (isFirst)[self saveFristWarningWithID:info.ID];
+        /*删除置顶数据*/
+        if (isFirst)[self deleteFirstWarningWithID:_newsView.info.warningID LocalNotificationWithDelete:YES];
         /*********/
         
         image= [UIImage imageNamed:@"37x-Checkmark.png"];
@@ -199,6 +246,7 @@
         self.HUD.customView=imageView;
         self.HUD.mode = MBProgressHUDModeCustomView;
         [self.HUD hide:YES afterDelay:1];
+        [self.newsView.newsScheduleDelegate deleteWarning:self.newsView];
         [self.newsView dismissViewControllerAnimated:YES completion:nil];
         
     }else{
@@ -249,6 +297,18 @@
         [_newsView.textTitle becomeFirstResponder];
         return;
     }
+    
+     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setFormatterBehavior:NSDateFormatterBehaviorDefault];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    NSDate *warningDate =[formatter dateFromString:timeSolar];
+    int isOk =[ToolUtils bigOrsmallOneDay:warningDate withAnotherDay:[NSDate date]];
+    if (isOk<0&&!_newsView.switchReqeat.on) {
+        [ToolUtils alertInfo:@"无效的日程"];
+        return;
+    }
+    
+    
     /*提交等待*/
     self.HUD =[[MBProgressHUD alloc] initWithView:self.newsView.view];
     self.HUD.labelText=@"正在提交..";
@@ -256,7 +316,8 @@
     [self.HUD show:YES];
     
     
-NSString *strTimeInterval=[NSString stringWithFormat:@"%lld",[ToolUtils TimeStingWithInterVal:timeSolar] ];
+NSString *strTimeInterval=[NSString stringWithFormat:@"%f",[ToolUtils TimeStingWithInterVal:timeSolar]*1000];
+    strTimeInterval =[[strTimeInterval componentsSeparatedByString:@"."] firstObject];
     if (newType==type_add) {
         [packageData addWarningData:self
                             content:_newsView.textTitle.text
@@ -279,15 +340,21 @@ NSString *strTimeInterval=[NSString stringWithFormat:@"%lld",[ToolUtils TimeStin
 
 /*删除*/
 - (void)btnCancel{
+    /*提交等待*/
+    self.HUD =[[MBProgressHUD alloc] initWithView:self.newsView.view];
+    self.HUD.labelText=@"正在提交..";
+    [self.newsView.view addSubview:self.HUD];
+    [self.HUD show:YES];
     [packageData deleteWarningData:self
                          warningID:_newsView.info.warningID
                            SELType:removeWarning];
 }
 
 - (void)btnClass{
-    UIActionSheet *sheet =[[UIActionSheet alloc] initWithTitle:@"重复类型" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:@"工作",@"生活",@"生日",@"节日", nil];
-    sheet.tag=1;
-    [sheet showInView:_newsView.view];
+    _sheetWarningType =[[UIActionSheet alloc] initWithTitle:@"重复类型" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"工作",@"生活",@"生日",@"节日",nil];
+    _sheetWarningType.tag=1;
+    [_sheetWarningType showInView:_newsView.view];
+    
 }
 
 - (void)btnOptionTime{
@@ -316,9 +383,10 @@ NSString *strTimeInterval=[NSString stringWithFormat:@"%lld",[ToolUtils TimeStin
 }
 
 - (void)switchReqeat:(UISwitch *)sender{
+
     isReqeat=sender.on;
     if (isReqeat) {
-        UIActionSheet *sheet =[[UIActionSheet alloc] initWithTitle:@"重复类型" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:@"每年",@"每月",@"每周", nil];
+        UIActionSheet *sheet =[[UIActionSheet alloc] initWithTitle:@"重复类型" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"每周",@"每月",@"每年", nil];
         sheet.tag=0;
         [sheet showInView:_newsView.view];
     }
@@ -383,42 +451,53 @@ NSString *strTimeInterval=[NSString stringWithFormat:@"%lld",[ToolUtils TimeStin
 
 #pragma mark - UIActionSheetDelegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
     if (actionSheet.tag==0) {
+        
+          if (buttonIndex==3)
+          {   _newsView.switchReqeat.on=NO;
+              return;}
         switch (buttonIndex) {
             case 0:
-                [_newsView.labelReqeat setText:@"每年"];
+                [_newsView.labelReqeat setText:@"每周"];
                 break;
             case 1:
                 [_newsView.labelReqeat setText:@"每月"];
                 break;
             case 2:
-                [_newsView.labelReqeat setText:@"每周"];
+                [_newsView.labelReqeat setText:@"每年"];
                 break;
             case 3:
 //                [_newsView.labelReqeat setText:@"每日"];
                 break;
-            case 4:
-//                [_newsView.labelReqeat setText:@"每小时"];
-                break;
             default:
                 break;
         }
-        reqeatType=buttonIndex;
+        reqeatType=buttonIndex+1;
     }
     
     if (actionSheet.tag==1) {
+        if (buttonIndex==4)return;
         switch (buttonIndex) {
-            case 0:
+            case 0:{
                 [_newsView.btnClass setTitle:@"工作" forState:UIControlStateNormal];
+                [_newsView.switchReqeat setEnabled:YES];}
                 break;
-            case 1:
+            case 1:{
                 [_newsView.btnClass setTitle:@"生活" forState:UIControlStateNormal];
+                [_newsView.switchReqeat setEnabled:YES];}
                 break;
-            case 2:
+            case 2:{
                 [_newsView.btnClass setTitle:@"生日" forState:UIControlStateNormal];
+                _newsView.switchReqeat.on=YES;
+                [_newsView.switchReqeat setEnabled:NO];
+                [_newsView.labelReqeat setText:@"每年"];
+                reqeatType=3;
+            }
                 break;
-            case 3:
+            case 3:{
                 [_newsView.btnClass setTitle:@"节日" forState:UIControlStateNormal];
+                [_newsView.switchReqeat setEnabled:YES];}
                 break;
             default:
                 break;

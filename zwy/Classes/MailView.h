@@ -11,4 +11,7 @@
 @interface MailView : BaseView
 @property (strong, nonatomic) IBOutlet UISegmentedControl *selecter;
 @property(strong,nonatomic)PublicMailDetaInfo *info;
+
+- (void)dissmissFromHomeView;
+
 @end

@@ -15,6 +15,7 @@
 #import "InformationInfo.h"
 #import "DocContentInfo.h"
 #import "DocFlow.h"
+#import "UpdataDate.h"
 @implementation AnalysisData
 
 
@@ -34,7 +35,7 @@ RespInfo *info=[RespInfo new];
     info.resultcode=[[[[dic objectForKey:@"MESSAGE"] objectForKey:@"HEAD"] objectForKey:@"RESULTCODE"] objectForKey:@"text"];
     info.respCode =[[[[dic objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"respCode"] objectForKey:@"text"];
     info.respMsg =[[[[dic objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"respMessage"] objectForKey:@"text"];
-    
+    info.updatetime=[[[[dic objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"updatetime"] objectForKey:@"text"];
     return info;
 
 }
@@ -537,17 +538,27 @@ RespInfo *info=[RespInfo new];
         data.UserTel =[[[arr objectAtIndex:i] objectForKey:@"msisdn"] objectForKey:@"text"];
         data.RequestType=[[[arr objectAtIndex:i] objectForKey:@"repeatime"] objectForKey:@"text"];
         data.warningType =[[[arr objectAtIndex:i] objectForKey:@"type"] objectForKey:@"text"];
-        /****/
-        NSString *strDate =[[[arr objectAtIndex:i] objectForKey:@"warningdate"] objectForKey:@"text"];
-        NSDate *d = [NSDate dateWithTimeIntervalSince1970:[strDate doubleValue]];
-        NSDateFormatter *formatter1 = [[NSDateFormatter alloc] init];
-        [formatter1 setDateFormat:@"yyyy-MM-dd"];
-        data.warningDate =[formatter1 stringFromDate:d];
-        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-        [formatter setDateFormat:@"yyyy-MM-dd"];
-        NSString *TimeNow = [formatter stringFromDate:[NSDate date]];
+        data.greetingType =[[[arr objectAtIndex:i] objectForKey:@"greetingtype"] objectForKey:@"text"];
         
-        int remainDays = [ToolUtils compareOneDay:TimeNow withAnotherDay:[formatter1 stringFromDate:d]];
+        /****/
+        NSString *strDate =[[[arr objectAtIndex:i] objectForKey:@"warningdate"] objectForKey:@"text"];//毫秒数
+        NSDate *d = [NSDate dateWithTimeIntervalSince1970:[strDate doubleValue]];//毫秒转date
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];//初始化转换格式
+        [formatter setDateFormat:@"yyyy-MM-dd"];//设置转换格式
+        data.warningDate =[formatter stringFromDate:d];//
+        data.brithdayDate=data.warningDate;//生日
+        NSString *TimeNow = [formatter stringFromDate:[NSDate date]];
+        if ([data.RequestType isEqualToString:@"1"]) {
+            data.warningDate =[UpdataDate reqeatWithWeekTodate:data.warningDate];
+        }
+        if ([data.RequestType isEqualToString:@"2"]) {
+            data.warningDate =[UpdataDate reqeatWithMonthTodate:data.warningDate];
+        }
+        if ([data.RequestType isEqualToString:@"3"]) {
+            data.warningDate =[UpdataDate reqeatWithYearTodate:data.warningDate];
+        }
+        
+        int remainDays = [ToolUtils compareOneDay:TimeNow withAnotherDay:data.warningDate];
         data.remainTime  =[NSString stringWithFormat:@"%d",remainDays];
         /****/
         [warning.warningList addObject:data];
@@ -555,4 +566,28 @@ RespInfo *info=[RespInfo new];
     return warning;
 }
 
+//获取日程提醒短信模版
++ (GreetingInfo *)getGreetingList:(NSDictionary *)dic{
+    GreetingInfo *info=[GreetingInfo new];
+    info.arrGreetList =[[NSMutableArray alloc] init];
+    
+    NSObject *obj =[[[[dic objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"Greeting"] objectForKey:@"GreetingInfo"];
+    if (!obj) return info;
+    NSArray * arr ;
+    if ([obj isKindOfClass:[NSArray class]]) {
+        arr=[NSArray arrayWithArray:(NSArray *)obj];
+    }else{
+        arr =[NSArray arrayWithObjects:(NSDictionary *)obj, nil];
+    }
+    for (int i=0;i<arr.count; i++) {
+        info.detaInfo =[GreetDetaInfo new];
+        info.detaInfo.Content =[[[arr objectAtIndex:i] objectForKey:@"content"] objectForKey:@"text"];
+        info.detaInfo.ID =[[[arr objectAtIndex:i] objectForKey:@"id"] objectForKey:@"text"];
+        int strCount =[[[[arr objectAtIndex:i] objectForKey:@"greetingcount"] objectForKey:@"text"] intValue];
+        if (strCount>0)info.detaInfo.greetingcount=[NSString stringWithFormat:@"%d",strCount];
+        else info.detaInfo.greetingcount=@"0";
+        [info.arrGreetList addObject:info.detaInfo];
+    }
+    return info;
+}
 @end

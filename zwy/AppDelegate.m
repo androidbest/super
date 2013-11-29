@@ -151,7 +151,10 @@ UIBackgroundTaskIdentifier backgroundTask;//写成成员
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification/*本地通知响应方法*/
 {
-    NSString * strTitle =[notification.userInfo objectForKey:@"AlarmKey"];
+    NSString * strTitle =[notification.userInfo objectForKey:@"content"];
+    NSString *alarmKey =[notification.userInfo objectForKey:@"ID"];
+    dicLocalNotificationInfo=notification.userInfo;
+    isLocalNotification=YES;
     if (application.applicationState == UIApplicationStateActive) {
         // 如不加上面的判断，点击通知启动应用后会重复提示
         // 这里暂时用简单的提示框代替。
@@ -160,10 +163,27 @@ UIBackgroundTaskIdentifier backgroundTask;//写成成员
                                                          message:strTitle
                                                         delegate:self
                                                cancelButtonTitle:@"关闭"
-                                               otherButtonTitles:nil, nil];
+                                               otherButtonTitles:@"前往", nil];
+       
         [alert show];
+    }else{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"homeToWarningView"
+                                                            object:notification.userInfo
+                                                          userInfo:nil];
     }
-    [AppDelegate deleteLocalNotification:strTitle];
+    
+    [AppDelegate deleteLocalNotification:alarmKey];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex==1) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"homeToWarningView"
+                                                            object:nil
+                                                          userInfo:nil];
+    }else{
+        dicLocalNotificationInfo=nil;
+        isLocalNotification=NO;
+    }
 }
 
 /*
@@ -173,8 +193,8 @@ UIBackgroundTaskIdentifier backgroundTask;//写成成员
 {
     NSArray*allLocalNotification=[[UIApplication sharedApplication]scheduledLocalNotifications];
      for(UILocalNotification*localNotification in allLocalNotification){
-        NSString*alarmValue=[localNotification.userInfo objectForKey:@"AlarmKey"];
-        if([alarmKey isEqualToString:alarmValue]){
+        NSString*alarmValue=[localNotification.userInfo objectForKey:@"ID"];
+        if([alarmKey isEqualToString:alarmValue]&&[localNotification.userInfo[@"RequestType"] isEqualToString:@"0"]){
             [[UIApplication sharedApplication]cancelLocalNotification:localNotification];
         }
         }
@@ -184,28 +204,12 @@ UIBackgroundTaskIdentifier backgroundTask;//写成成员
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    
-    
-   UILocalNotification*notification=[[UILocalNotification alloc]init];
-    if(notification!=nil){
-        notification.fireDate=[NSDate dateWithTimeIntervalSinceNow:10];;//开始时间
-        notification.timeZone=[NSTimeZone defaultTimeZone];// 设置时区
-        notification.soundName=UILocalNotificationDefaultSoundName;//播放音乐类型
-        notification.alertBody=@"测试";//提示的消息
-        notification.alertLaunchImage = @"lunch.png";// 这里可以设置从通知启动的启动界面，类似Default.png的作用。
-        notification.soundName=@"ping.caf";
-        notification.alertAction = @"打开"; //提示框按钮
-        
-        notification.hasAction=NO;//是否显示额外的按钮
-        notification.userInfo=[[NSDictionary alloc]initWithObjectsAndKeys:@"测试",@"AlarmKey",nil];//notification信息
-        [[UIApplication sharedApplication]scheduleLocalNotification:notification];
-        }
-
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

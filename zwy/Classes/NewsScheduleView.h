@@ -29,4 +29,5 @@
 @property (assign)id newsScheduleDelegate;
 - (void)updataWarning:(warningDataInfo *)info;
 - (void)upDataScheduleList:(int)TableViewType;
+- (void)deleteWarning:(NewsScheduleView *)newsView;
 @end

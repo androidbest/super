@@ -24,4 +24,6 @@
 @property (strong, nonatomic)  NSTimer *nsTimer;
 
 - (void)setTaleViewframe;
+
+- (void)dissmissFromHomeView;
 @end

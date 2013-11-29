@@ -105,6 +105,27 @@
     return attriString;
 }
 
+/*设置人气标题字体*/
++ (NSMutableAttributedString *)setGreetingTitleAttributedString:(NSString *)title{
+    NSString * strTitle  =[NSString stringWithFormat:@"人气 (%@)",title];
+    NSMutableAttributedString *attriString = [[NSMutableAttributedString alloc] initWithString:strTitle];
+    
+    
+    //把"人气"的字体颜色变为白色
+    NSDictionary *refreshAttributesFirst = @{NSForegroundColorAttributeName:[UIColor colorWithRed:0.25 green:0.59 blue:1.0 alpha:1.0],};
+    [attriString setAttributes:refreshAttributesFirst range:NSMakeRange(0, 2)];
+    
+    //把"的生日"的字体颜色变为黑色
+    NSDictionary *refreshAttributesLast = @{NSForegroundColorAttributeName:[UIColor colorWithRed:1.00 green:0.00 blue:1.0 alpha:1.0],};
+    [attriString setAttributes:refreshAttributesLast range:NSMakeRange(2, attriString.length-2)];
+    
+    [attriString addAttribute:(NSString *)kCTFontAttributeName
+                        value:(id)CFBridgingRelease(CTFontCreateWithName((CFStringRef)[UIFont systemFontOfSize:14].fontName,14,NULL))
+                        range:NSMakeRange(0, attriString.length)];
+    return attriString;
+}
+
+
 -(void)drawRect:(CGRect)rect{
     [super drawRect:rect];
     

@@ -9,9 +9,24 @@
 #import "HomeView.h"
 #import "HomeController.h"
 #import "Constants.h"
-#import "AddressTabbar.h"
-@interface HomeView ()
+#import "WorkView.h"
+#import "HolidayView.h"
 
+#import "AddressTabbar.h"
+#import "InformationView.h"
+#import "SmsView.h"
+#import "OfficeView.h"
+#import "MeettingView.h"
+#import "MailView.h"
+#import "scheduleView.h"
+@interface HomeView ()
+//@property (strong ,nonatomic)AddressTabbar *addTabbar;
+//@property (strong ,nonatomic)InformationView *infomasView;
+//@property (strong ,nonatomic)SmsView *smssView;
+//@property (strong ,nonatomic)OfficeView *officesView;
+//@property (strong ,nonatomic)MeettingView *meetView;
+//@property (strong ,nonatomic)MailView *mailsView;
+//@property (strong ,nonatomic)scheduleView *schedulesView;
 @end
 
 @implementation HomeView
@@ -25,6 +40,10 @@
         home.HomeView=self;
         self.controller=home;
         
+       [[NSNotificationCenter defaultCenter] addObserver:self
+                                                selector:@selector(jumpScheduleView:)
+                                                    name:@"homeToWarningView"
+                                                  object:nil];
     }
     return self;
 }
@@ -101,6 +120,8 @@
 //    [((HomeController *)self.controller) getCount];
     _mailsum.hidden=YES;
     _officesum.hidden=YES;
+    
+   
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -119,20 +140,56 @@
 //        [((HomeController *)self.controller) getCount];
         user.ecSgin=nil;
     }
+    
+    if (isLocalNotification) [self performSelector:@selector(jumpScheduleView:) withObject:nil afterDelay:0.0f];
 }
 
 //首页传值
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
 //    UIViewController * viewController =segue.destinationViewController;
-    if ([segue.identifier isEqualToString:@"homeToAddress"]) {
-//        AddressTabbar *tabbar =(AddressTabbar *)viewController;
-//        tabbar.selectedIndex=2;
-    }
+//    if ([segue.identifier isEqualToString:@"homeToAddress"]) {
+//        _addTabbar =(AddressTabbar *)viewController;
+//    }else if([segue.identifier isEqualToString:@"hometoinformation"]){
+//        _infomasView=(InformationView *)viewController;
+//    }else if([segue.identifier isEqualToString:@"HomeToScheduleView"]){
+//        _schedulesView=(scheduleView *)viewController;
+//    }else if([segue.identifier isEqualToString:@"hometosms"]){
+//        _smssView =(SmsView *)viewController;
+//    }else if([segue.identifier isEqualToString:@"hometooffice"]){
+//        _officesView =(OfficeView *)viewController;
+//    }else if([segue.identifier isEqualToString:@"hometomail"]){
+//        _mailsView =(MailView *)viewController;
+//    }else if([segue.identifier isEqualToString:@"hometomeetting"]){
+//        _meetView =(MeettingView *)viewController;
+//    }
 }
+
+
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
 }
 
+
+- (void)jumpScheduleView:(NSNotification *)notification{
+    self.tabBarController.selectedIndex=0;
+    [self performSelector:@selector(homeToWarningDataView) withObject:nil afterDelay:0.3f];
+}
+
+-  (void)homeToWarningDataView{
+    self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
+    NSString *Type= dicLocalNotificationInfo[@"warningType"];
+    if ([Type isEqualToString:@"0"]||[Type isEqualToString:@"1"]) {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+        WorkView *detaView = [storyboard instantiateViewControllerWithIdentifier:@"WorkView"];
+        detaView.hidesBottomBarWhenPushed=YES;
+        [self.navigationController pushViewController:detaView animated:YES];
+    }else if([Type isEqualToString:@"2"]||[Type isEqualToString:@"3"]){
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+        HolidayView *detaView = [storyboard instantiateViewControllerWithIdentifier:@"HolidayView"];
+        detaView.hidesBottomBarWhenPushed=YES;
+        [self.navigationController pushViewController:detaView animated:YES];
+    }
+}
 @end

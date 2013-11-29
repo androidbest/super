@@ -84,6 +84,13 @@
 - (void)updataWarning:(warningDataInfo *)info{
 
 }
+
+- (void)deleteWarning:(NewsScheduleView *)newsView{
+
+}
+- (void)upDataScheduleList:(int)TableViewType{
+
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

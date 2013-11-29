@@ -80,6 +80,9 @@
     
     [self.controller initWithData];
     
+    _imageFirst.userInteractionEnabled=YES;
+    UITapGestureRecognizer *tapGesture=[[UITapGestureRecognizer alloc] initWithTarget:self.controller action:@selector(PushMassTextView)];
+    [_imageFirst addGestureRecognizer:tapGesture];
 }
 
 -(void)segmentAction:(UISegmentedControl *)Seg{
@@ -90,15 +93,31 @@
 
 }
 
+- (void)PushMassTextView{
+
+}
+
 - (void)viewWillAppear:(BOOL)animated{
+
     NSString *strPath =[NSString stringWithFormat:@"%@/%@/%@/%@.plist",DocumentsDirectory,user.msisdn,user.eccode,Warning_Frist];
      BOOL isFirst=[[NSFileManager defaultManager] fileExistsAtPath:strPath];
     if (isFirst) {
         NSDictionary *dic =[[NSDictionary alloc] initWithContentsOfFile:strPath];
         NSString *strDate=dic[@"date"];
+        NSString *strReqeat=dic[@"reqeatType"];
+        if ([strReqeat isEqualToString:@"3"]) {
+            strDate =[UpdataDate reqeatWithYearTodate:strDate];
+        }else if([strReqeat isEqualToString:@"2"]) {
+            strDate =[UpdataDate reqeatWithMonthTodate:strDate];
+        }else if([strReqeat isEqualToString:@"1"]) {
+            strDate =[UpdataDate reqeatWithWeekTodate:strDate];
+        }
         _labelBirthday.text=strDate;
         
         NSString *strContent=dic[@"name"];
+        if ([dic[@"ScheduleType"] isEqualToString:@"2"]) {
+        strContent=[NSString stringWithFormat:@"%@ 的生日",dic[@"name"] ];
+        }
         _labelName.text=strContent;
         
         NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
@@ -124,5 +143,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+- (void)dissmissFromHomeView{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 @end

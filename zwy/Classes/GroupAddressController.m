@@ -131,17 +131,18 @@
     if (!histroyDate) histroyDate=@"0";
     
     [packageData updateAddressBook:self updatetime:histroyDate];
-    NSTimeInterval time_=[[NSDate date] timeIntervalSince1970];
-    NSString *strTime =[NSString  stringWithFormat:@"%f",time_];
-    strTime =[[strTime componentsSeparatedByString:@"."] firstObject];
-    [userDefaults setObject:strTime forKey:UserDate];
-    [userDefaults synchronize];
+//    NSTimeInterval time_=[[NSDate date] timeIntervalSince1970];
+//    NSString *strTime =[NSString  stringWithFormat:@"%f",time_];
+//    strTime =[[strTime componentsSeparatedByString:@"."] firstObject];
+//    [userDefaults setObject:strTime forKey:UserDate];
+//    [userDefaults synchronize];
 }
 
 //检查回调
 - (void)handleData:(NSNotification *)notification{
     NSDictionary * dic=[notification userInfo];
     RespInfo *info =[AnalysisData addressUpdataInfo:dic];
+
     /**/
     UIImageView *imageView;
     UIImage *image;
@@ -150,8 +151,15 @@
     self.HUD.customView=imageView;
     self.HUD.mode = MBProgressHUDModeCustomView;
     /**/
+    
     if ([info.respCode isEqualToString:@"1"]) {
         [self DownLoadAddress:info.respMsg];
+        /*保存最后更新时间*/
+        NSUserDefaults * userDefaults =[NSUserDefaults standardUserDefaults];
+        NSString * UserDate =[NSString stringWithFormat:@"%@%@date",user.msisdn,user.eccode];
+        [userDefaults setObject:info.updatetime forKey:UserDate];
+        [userDefaults synchronize];
+        
     }else if ([info.respCode isEqualToString:@"-1"]){
         self.HUD.labelText = @"无需同步";
         [self.HUD hide:YES afterDelay:1];
@@ -190,13 +198,13 @@
         isFirstPages=YES;
         [self.grougView.tableViewGroup reloadData];
         //存储最后更新时间
-        NSUserDefaults * userDefaults =[NSUserDefaults standardUserDefaults];
-        NSTimeInterval time_=[[NSDate date] timeIntervalSince1970];
-        NSString *strTime =[NSString  stringWithFormat:@"%f",time_];
-        strTime =[[strTime componentsSeparatedByString:@"."] firstObject];
-        NSString * UserDate =[NSString stringWithFormat:@"%@%@date",user.msisdn,user.eccode];
-        [userDefaults setObject:strTime forKey:UserDate];
-        [userDefaults synchronize];
+//        NSUserDefaults * userDefaults =[NSUserDefaults standardUserDefaults];
+//        NSTimeInterval time_=[[NSDate date] timeIntervalSince1970];
+//        NSString *strTime =[NSString  stringWithFormat:@"%f",time_];
+//        strTime =[[strTime componentsSeparatedByString:@"."] firstObject];
+//        NSString * UserDate =[NSString stringWithFormat:@"%@%@date",user.msisdn,user.eccode];
+//        [userDefaults setObject:strTime forKey:UserDate];
+//        [userDefaults synchronize];
         /********/
     }
     else {

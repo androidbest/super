@@ -32,6 +32,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
+    
     //初使化数据
     [_btnCheck addTarget:self.controller action:@selector(btnCheck) forControlEvents:UIControlEventTouchUpInside];
     _btnCheck.layer.masksToBounds = YES;
@@ -149,5 +151,9 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)dissmissFromHomeView{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 @end

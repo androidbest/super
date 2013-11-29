@@ -28,6 +28,8 @@
 {
     [super viewDidLoad];
     [_selecter addTarget:self.controller action:@selector(segmentAction:) forControlEvents:UIControlEventValueChanged];
+    self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
+    
     self.listview =[[PullRefreshTableView alloc] initWithFrame:CGRectMake(0, topLayout+NavigationBarHeight, ScreenWidth,ScreenHeight-topLayout-NavigationBarHeight) withDelegate:self.controller];
     self.listview.tag=0;
     self.listview.backgroundColor=[UIColor whiteColor];
@@ -59,4 +61,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)dissmissFromHomeView{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 @end

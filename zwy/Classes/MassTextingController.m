@@ -39,6 +39,31 @@ NSMutableArray * arrAllNumber;
     return self;
 }
 
+- (void)initWithData{
+    if (_massView.detaInfo) {
+        _massView.textSendContext.textColor=[UIColor blackColor];
+        _massView.textSendContext.text=_massView.detaInfo.Content;
+    }
+    
+    if (_massView.strFromGeetingName) {
+            NSString * str =[NSString stringWithFormat:@"%@/%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode,@"group.txt"];
+        NSArray * arrAllPeople = [ConfigFile setAllPeopleInfo:str];
+        if (arrAllPeople) {
+           NSString * strSearchbar =[NSString stringWithFormat:@"SELF.Name CONTAINS '%@'",_massView.strFromGeetingName];
+            NSPredicate *predicate = [NSPredicate predicateWithFormat: strSearchbar];
+            NSArray * arr=[NSMutableArray arrayWithArray:[arrAllPeople filteredArrayUsingPredicate:predicate]];
+            if (arr.count>0) {
+                PeopelInfo *info =[arr firstObject];
+                [arrAllNumber addObject:[info tel]];
+                [_arrDidAllPeople addObject:info];
+                [self.massView.tableViewPeople reloadData];
+            }
+            
+        }
+       
+    }
+}
+
 #pragma mark - 按钮方法
 /*系统通讯录*/
 - (void)BtnGroupAddress{
@@ -185,6 +210,17 @@ NSMutableArray * arrAllNumber;
 //        NSLog(@"Message sent");
 //    else
 //        NSLog(@"Message failed");
+    if (result ==MessageComposeResultSent) {
+        [self.massView.massTextDelegate massTextInfoFromWarningViewWithGreetingID:_massView.detaInfo];
+        self.HUD = [[MBProgressHUD alloc] initWithView:self.massView.view];
+        [self.massView.view addSubview:self.HUD];
+        self.HUD.labelText = @"发送成功";
+        self.HUD.mode = MBProgressHUDModeCustomView;
+        // Set determinate bar mode
+        self.HUD.delegate = self;
+        [self.HUD show:YES];
+        [self.HUD  hide:YES afterDelay:1];
+    }
 }
 
 

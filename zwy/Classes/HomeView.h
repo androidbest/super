@@ -8,6 +8,7 @@
 
 #import "BaseView.h"
 #import "HomeView.h"
+
 @interface HomeView : BaseView
 @property (strong, nonatomic) IBOutlet UIButton *information;
 @property (strong, nonatomic) IBOutlet UIButton *notice;
@@ -23,4 +24,5 @@
 @property (strong, nonatomic)  UILabel *homeTitle;
 @property (strong, nonatomic)  UILabel *name;
 @property (strong, nonatomic)  UILabel *ecname;
+
 @end

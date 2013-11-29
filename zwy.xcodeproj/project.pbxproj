@@ -241,6 +241,7 @@
 		65A573EB183AFDA30072A519 /* Date+string.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A573E6183AFDA30072A519 /* Date+string.m */; };
 		65A573EC183AFDA30072A519 /* solarActionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A573E8183AFDA30072A519 /* solarActionView.m */; };
 		65A573ED183AFDA30072A519 /* solarOrLunar.c in Sources */ = {isa = PBXBuildFile; fileRef = 65A573E9183AFDA30072A519 /* solarOrLunar.c */; };
+		65A5EA6118472BA9004C77E3 /* schedule_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 65A5EA6018472BA9004C77E3 /* schedule_btn.png */; };
 		65A9C8D3180E89A90032D170 /* btn_addPeople.png in Resources */ = {isa = PBXBuildFile; fileRef = 65A9C8D2180E89A90032D170 /* btn_addPeople.png */; };
 		65A9C8D6180E9AF70032D170 /* optionAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A9C8D5180E9AF70032D170 /* optionAddress.m */; };
 		65A9C8D9180EA6840032D170 /* OptionAddressController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A9C8D8180EA6840032D170 /* OptionAddressController.m */; };
@@ -290,6 +291,9 @@
 		65D967911812B91C00C1A05E /* AccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D967901812B91C00C1A05E /* AccessoryView.m */; };
 		65D967981812E1ED00C1A05E /* CheckAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D967971812E1ED00C1A05E /* CheckAccessoryView.m */; };
 		65D9679B1812E98B00C1A05E /* CheckAccessoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D9679A1812E98B00C1A05E /* CheckAccessoryController.m */; };
+		65E59A8E184435B4004444E5 /* UpdataDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E59A8D184435B4004444E5 /* UpdataDate.m */; };
+		65E59A9218449EE3004444E5 /* GreetingInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E59A9118449EE3004444E5 /* GreetingInfo.m */; };
+		65E59A9518449EF6004444E5 /* GreetDetaInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E59A9418449EF6004444E5 /* GreetDetaInfo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -686,6 +690,7 @@
 		65A573E8183AFDA30072A519 /* solarActionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = solarActionView.m; sourceTree = "<group>"; };
 		65A573E9183AFDA30072A519 /* solarOrLunar.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = solarOrLunar.c; sourceTree = "<group>"; };
 		65A573EA183AFDA30072A519 /* solarOrLunar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = solarOrLunar.h; sourceTree = "<group>"; };
+		65A5EA6018472BA9004C77E3 /* schedule_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = schedule_btn.png; sourceTree = "<group>"; };
 		65A9C8D2180E89A90032D170 /* btn_addPeople.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_addPeople.png; sourceTree = "<group>"; };
 		65A9C8D4180E9AF70032D170 /* optionAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = optionAddress.h; sourceTree = "<group>"; };
 		65A9C8D5180E9AF70032D170 /* optionAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = optionAddress.m; sourceTree = "<group>"; };
@@ -754,6 +759,12 @@
 		65D967971812E1ED00C1A05E /* CheckAccessoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckAccessoryView.m; sourceTree = "<group>"; };
 		65D967991812E98B00C1A05E /* CheckAccessoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckAccessoryController.h; sourceTree = "<group>"; };
 		65D9679A1812E98B00C1A05E /* CheckAccessoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckAccessoryController.m; sourceTree = "<group>"; };
+		65E59A8C184435B4004444E5 /* UpdataDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UpdataDate.h; path = ../../UpdataDate.h; sourceTree = "<group>"; };
+		65E59A8D184435B4004444E5 /* UpdataDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UpdataDate.m; path = ../../UpdataDate.m; sourceTree = "<group>"; };
+		65E59A9018449EE3004444E5 /* GreetingInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GreetingInfo.h; sourceTree = "<group>"; };
+		65E59A9118449EE3004444E5 /* GreetingInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GreetingInfo.m; sourceTree = "<group>"; };
+		65E59A9318449EF6004444E5 /* GreetDetaInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GreetDetaInfo.h; sourceTree = "<group>"; };
+		65E59A9418449EF6004444E5 /* GreetDetaInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GreetDetaInfo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -794,6 +805,7 @@
 		5943984017F3D92B000B6E9C /* obj */ = {
 			isa = PBXGroup;
 			children = (
+				65E59A8F18449EC7004444E5 /* greetingInfo */,
 				659BD0DF183F2D3200FAC29E /* warningInfo */,
 				659F652B1813D4B400306C14 /* OfficeInfo */,
 				65A9C8DA180EC7510032D170 /* information */,
@@ -1129,6 +1141,7 @@
 		595CB9B717F168BC00228A6E /* images */ = {
 			isa = PBXGroup;
 			children = (
+				65A5EA6018472BA9004C77E3 /* schedule_btn.png */,
 				65BB300F1829D7C3008370A0 /* btn_AddAddressbooks.png */,
 				65BB30111829D7CF008370A0 /* addAddress_titles.png */,
 				65B1B5851824ECC000D384D8 /* images_button.png */,
@@ -1237,6 +1250,8 @@
 		595CB9BA17F17D7D00228A6E /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				65E59A8C184435B4004444E5 /* UpdataDate.h */,
+				65E59A8D184435B4004444E5 /* UpdataDate.m */,
 				6581E96D183C68E500A10D10 /* SevenSwitch.h */,
 				6581E96E183C68E500A10D10 /* SevenSwitch.m */,
 				65A573DB183AFD640072A519 /* solarOrLunar */,
@@ -1688,6 +1703,17 @@
 			name = AccessoryController;
 			sourceTree = "<group>";
 		};
+		65E59A8F18449EC7004444E5 /* greetingInfo */ = {
+			isa = PBXGroup;
+			children = (
+				65E59A9018449EE3004444E5 /* GreetingInfo.h */,
+				65E59A9118449EE3004444E5 /* GreetingInfo.m */,
+				65E59A9318449EF6004444E5 /* GreetDetaInfo.h */,
+				65E59A9418449EF6004444E5 /* GreetDetaInfo.m */,
+			);
+			name = greetingInfo;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1776,6 +1802,7 @@
 				5975C17518067AA300EF7285 /* accessory_over@2x.png in Resources */,
 				65248507180C2CE700440958 /* navigation_updata_over.png in Resources */,
 				5977D18218225020003DD5A3 /* pic_weixin@2x.png in Resources */,
+				65A5EA6118472BA9004C77E3 /* schedule_btn.png in Resources */,
 				5977D18118225020003DD5A3 /* pic_sms@2x.png in Resources */,
 				65B3AC6F1819274200F2EC04 /* tabItem_MyArBook_over@2x.png in Resources */,
 				595B7A0218094B53006DD766 /* more_update_pwd_img@2x.png in Resources */,
@@ -1908,6 +1935,7 @@
 				65B3AC7C18195CBE00F2EC04 /* SMSModeView.m in Sources */,
 				59584B2F18199A0400B65162 /* AccessoryController.m in Sources */,
 				5942044F1802E5AA00AA35C3 /* AFHTTPRequestOperationManager.m in Sources */,
+				65E59A9518449EF6004444E5 /* GreetDetaInfo.m in Sources */,
 				5942044E1802E5AA00AA35C3 /* AFHTTPRequestOperation.m in Sources */,
 				65B3AC8B18195D9600F2EC04 /* peopleDeleteController.m in Sources */,
 				594B80FF18037BC500310CB1 /* AddressInfo.m in Sources */,
@@ -1950,6 +1978,7 @@
 				659F652E1813D4E200306C14 /* OfficeInfo.m in Sources */,
 				65A35B6E1820E50F002C7489 /* ActionSheetWeibo.m in Sources */,
 				65A26CA61839C454006AF226 /* ScheduleController.m in Sources */,
+				65E59A8E184435B4004444E5 /* UpdataDate.m in Sources */,
 				596D6EEB18085C39002CD0B3 /* InformationView.m in Sources */,
 				596D6EE218085004002CD0B3 /* NoticeView.m in Sources */,
 				595B507E180CEACF003EC2AF /* TemplateCell.m in Sources */,
@@ -1995,6 +2024,7 @@
 				659AB38718097A2B000FCEC5 /* pinyin.c in Sources */,
 				6521F63218166DBA00CD7B76 /* MailAddressController.m in Sources */,
 				596D6F0E18085D94002CD0B3 /* InformationController.m in Sources */,
+				65E59A9218449EE3004444E5 /* GreetingInfo.m in Sources */,
 				59584B3118199A2800B65162 /* AccountManagerController.m in Sources */,
 				594204531802E5AA00AA35C3 /* AFURLConnectionOperation.m in Sources */,
 				595B5096180CF345003EC2AF /* NoticeDetaInfo.m in Sources */,

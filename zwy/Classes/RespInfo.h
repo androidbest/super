@@ -11,6 +11,7 @@
 @interface RespInfo : NSObject
 @property (strong ,nonatomic)NSString * respCode;//返回数据id
 @property (strong ,nonatomic)NSString * respMsg;//返回信息
+@property (strong ,nonatomic)NSString * updatetime;//最后更新时间
 @property (strong ,nonatomic)NSString * resultcode;//返回头id
 @property (strong ,nonatomic)NSString * officeSum;//政务办公总数
 @property (strong ,nonatomic)NSString * mailSum;//群众信箱总数

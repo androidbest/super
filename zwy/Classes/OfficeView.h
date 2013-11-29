@@ -12,4 +12,6 @@
 @interface OfficeView : BaseView
 @property (strong, nonatomic) IBOutlet UISegmentedControl *selecter;
 @property (strong, nonatomic) DocContentInfo *docContentInfo;
+
+- (void)dissmissFromHomeView;
 @end

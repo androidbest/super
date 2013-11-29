@@ -11,4 +11,7 @@
 @interface AddressTabbar : UITabBarController
 @property (strong ,nonatomic)HomeView *homeView;
 + (CAAnimation *)animationTransitionFade;
+
+
+- (void)dissmissFromHomeView;
 @end
