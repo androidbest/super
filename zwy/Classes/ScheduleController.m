@@ -84,7 +84,7 @@
         
         tableView_Type =tableView_ScheduleType_All;
         _isInit=NULL;
-        InitDaysTime=@" 09:59";
+        InitDaysTime=@" 09:00";
         
         _arrAll =[[NSMutableArray alloc] init];
         _arrWork=[[NSMutableArray alloc] init];
@@ -948,7 +948,7 @@
 
 //创建本地通告（全部）
 - (void)addAllLocalNotification{
-    NSArray*allLocalNotification=[[UIApplication sharedApplication]scheduledLocalNotifications];
+    NSArray*allLocalNotification=[[UIApplication sharedApplication] scheduledLocalNotifications];
     for(UILocalNotification*localNotification in allLocalNotification){
             [[UIApplication sharedApplication]cancelLocalNotification:localNotification];
     }
@@ -966,7 +966,6 @@
         NSDate *dateWarning =[dateFormatter dateFromString:strDate];
         NSTimeInterval time_warning =[dateWarning timeIntervalSince1970];
         NSTimeInterval time_now=[[NSDate date] timeIntervalSince1970];
-        NSLog(@"预定:%f   当前:%f",time_warning,time_now);
         /*添加本地通知*/
         if (time_warning>=time_now)[self addLocalNotification:info];
         
@@ -1014,7 +1013,6 @@
 
 /*添加本地通知*/
 - (void)addLocalNotification:(warningDataInfo *)info{
-    NSLog(@"%@",info.warningDate);
     NSDateFormatter * dateFormatter = [[NSDateFormatter alloc]init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
     NSString *strDate =[info.warningDate stringByAppendingString:InitDaysTime];

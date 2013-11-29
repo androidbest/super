@@ -151,8 +151,9 @@ UIBackgroundTaskIdentifier backgroundTask;//写成成员
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification/*本地通知响应方法*/
 {
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+    
     NSString * strTitle =[notification.userInfo objectForKey:@"content"];
-    NSString *alarmKey =[notification.userInfo objectForKey:@"ID"];
     dicLocalNotificationInfo=notification.userInfo;
     isLocalNotification=YES;
     if (application.applicationState == UIApplicationStateActive) {
@@ -172,7 +173,10 @@ UIBackgroundTaskIdentifier backgroundTask;//写成成员
                                                           userInfo:nil];
     }
     
-    [AppDelegate deleteLocalNotification:alarmKey];
+    /*如果通知过期就删除掉*/
+    if ([notification.userInfo[@"RequestType"] isEqualToString:@"0"]) {
+        [application cancelLocalNotification:notification];
+    }
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
@@ -186,19 +190,19 @@ UIBackgroundTaskIdentifier backgroundTask;//写成成员
     }
 }
 
-/*
-删除本地通知
-*/
-+(void)deleteLocalNotification:(NSString*)alarmKey
-{
-    NSArray*allLocalNotification=[[UIApplication sharedApplication]scheduledLocalNotifications];
-     for(UILocalNotification*localNotification in allLocalNotification){
-        NSString*alarmValue=[localNotification.userInfo objectForKey:@"ID"];
-        if([alarmKey isEqualToString:alarmValue]&&[localNotification.userInfo[@"RequestType"] isEqualToString:@"0"]){
-            [[UIApplication sharedApplication]cancelLocalNotification:localNotification];
-        }
-        }
-}
+///*
+//删除本地通知
+//*/
+//+(void)deleteLocalNotification:(NSString*)alarmKey
+//{
+//    NSArray*allLocalNotification=[[UIApplication sharedApplication]scheduledLocalNotifications];
+//     for(UILocalNotification*localNotification in allLocalNotification){
+////        NSString*alarmValue=[localNotification.userInfo objectForKey:@"ID"];
+////        if([alarmKey isEqualToString:alarmValue]&&[localNotification.userInfo[@"RequestType"] isEqualToString:@"0"]){
+//            [[UIApplication sharedApplication]cancelLocalNotification:localNotification];
+////        }
+//        }
+//}
 
 
 - (void)applicationWillEnterForeground:(UIApplication *)application

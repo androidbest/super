@@ -497,11 +497,15 @@ NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"U
     NSString * waringRequstType;
     if (requstType==10000)waringRequstType =@"";
     else waringRequstType  =[NSString stringWithFormat:@"%d",requstType];
+    
+    int greetingType ;
+    if (tpye==2)greetingType=99;
+    else greetingType=-1;
     ////////////////////////////////////////////////////////////
     
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><MSISDN>%@</MSISDN><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>addWarningdata</METHOD><SESSIONID>2</SESSIONID><CONTENT>%@</CONTENT><TYPE>%d</TYPE><WARNINGDATE>%@</WARNINGDATE><REPEATTIME>%@</REPEATTIME><GREETINGTYPE>-1</GREETINGTYPE></BODY></MESSAGE>",user.msisdn,user.eccode,content,tpye,date,waringRequstType];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><MSISDN>%@</MSISDN><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>addWarningdata</METHOD><SESSIONID>2</SESSIONID><CONTENT>%@</CONTENT><TYPE>%d</TYPE><WARNINGDATE>%@</WARNINGDATE><REPEATTIME>%@</REPEATTIME><GREETINGTYPE>%d</GREETINGTYPE></BODY></MESSAGE>",user.msisdn,user.eccode,content,tpye,date,waringRequstType,greetingType];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];
@@ -510,9 +514,14 @@ NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"U
 
 //修改日程提醒
 + (void)updateWarningData:(id)delegate warningID:(NSString *)ID content:(NSString *)content Type:(int)tpye warningDate:(NSString *)date warningRequstType:(int)requstType SELType:(NSString *)sel{
+    int greetingType ;
+    if (tpye==2)greetingType=99;
+    else greetingType=-1;
+     ////////////////////////////////////////////////////////////
+    
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><MSISDN>%@</MSISDN><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>updateWarningData</METHOD><SESSIONID>2</SESSIONID><UPDATEID>%@</UPDATEID><CONTENT>%@</CONTENT><TYPE>%d</TYPE><WARNINGDATE>%@</WARNINGDATE><REPEATTIME>%d</REPEATTIME><GREETINGTYPE>-1</GREETINGTYPE></BODY></MESSAGE>",user.msisdn,user.eccode,ID,content,tpye,date,requstType];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><MSISDN>%@</MSISDN><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>updateWarningData</METHOD><SESSIONID>2</SESSIONID><UPDATEID>%@</UPDATEID><CONTENT>%@</CONTENT><TYPE>%d</TYPE><WARNINGDATE>%@</WARNINGDATE><REPEATTIME>%d</REPEATTIME><GREETINGTYPE>%d</GREETINGTYPE></BODY></MESSAGE>",user.msisdn,user.eccode,ID,content,tpye,date,requstType,greetingType];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];

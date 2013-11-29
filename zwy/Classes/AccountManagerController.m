@@ -93,10 +93,13 @@
     }else{
         [cell.selectEc setBackgroundImage:[UIImage imageNamed:@"btn_uncheck"] forState:UIControlStateNormal];
     }
+    
     cell.ecname.text=ecinfo.ECName;
+    
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
 //    for(int i=0;i<[tableView visibleCells].count;i++){
 //        GetEcCell *cell = [[tableView visibleCells] objectAtIndex:i];
 //        [cell.selectEc setBackgroundImage:[UIImage imageNamed:@"btn_uncheck"] forState:UIControlStateNormal];
