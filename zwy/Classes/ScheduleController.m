@@ -355,7 +355,7 @@
     if (_arrWork.count!=0) {
         _schedView.tableViewWork.separatorStyle=YES;
     }else{
-        [ToolUtils alertInfo:@"暂无数据"];
+//        [ToolUtils alertInfo:@"暂无数据"];
     }
     
 //    if (_arrWork.count>=info.AllCount) {
@@ -398,7 +398,7 @@
     if (_arrLife.count!=0) {
         _schedView.tableViewLife.separatorStyle=YES;
     }else{
-        [ToolUtils alertInfo:@"暂无数据"];
+//        [ToolUtils alertInfo:@"暂无数据"];
     }
     
 //   if (_arrLife.count>=info.AllCount) {
@@ -440,7 +440,7 @@
     if (_arrBirthday.count!=0) {
         _schedView.tableViewBirthday.separatorStyle=YES;
     }else{
-        [ToolUtils alertInfo:@"暂无数据"];
+//        [ToolUtils alertInfo:@"暂无数据"];
     }
     
 //    if (_arrBirthday.count>=info.AllCount) {
@@ -482,7 +482,7 @@
     if (_arrholiday.count!=0) {
         _schedView.tableViewHoliday.separatorStyle=YES;
     }else{
-        [ToolUtils alertInfo:@"暂无数据"];
+//        [ToolUtils alertInfo:@"暂无数据"];
     }
 
     

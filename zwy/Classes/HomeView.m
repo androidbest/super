@@ -6,12 +6,25 @@
 //  Copyright (c) 2013 sxit. All rights reserved.
 //
 
+#define DOCUMENTS(userPath)  [NSString stringWithFormat:@"%@/%@",DocumentsDirectory,userPath];
+
+
+#define Save 1
+#define STRING_TEL(tel) tel
+
+
+#if Save
+
+NSString * stringTel =STRING_TEL(@"133");
+
+#endif
+
+
 #import "HomeView.h"
 #import "HomeController.h"
 #import "Constants.h"
 #import "WorkView.h"
 #import "HolidayView.h"
-
 #import "AddressTabbar.h"
 #import "InformationView.h"
 #import "SmsView.h"
