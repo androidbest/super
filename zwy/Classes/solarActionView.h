@@ -16,7 +16,7 @@ typedef enum {
 }  date_type;
 
 @class ActionSheetView;
-@protocol ActionSheetViewDetaSource <NSObject>
+@protocol ActionSheetViewSorlarDetaSource <NSObject>
 @optional
 - (void)actionSheetSolarDate:(int)year Month:(int)month Day:(int)day;
 
@@ -36,6 +36,6 @@ typedef enum {
 - (void)initWithDate:(NSDate *)date;
 
 
-@property (assign ,nonatomic)id<ActionSheetViewDetaSource>DetaSource;
+@property (assign ,nonatomic)id<ActionSheetViewSorlarDetaSource>DetaSource;
 @property (strong ,nonatomic)UIPickerView * pickerView;
 @end

@@ -542,8 +542,6 @@
         
     }
     
-    
-    
     switch (tableViewType) {
         case tableView_ScheduleType_All:{
             [_arrAll addObjectsFromArray:arrInfo];

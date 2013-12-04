@@ -10,6 +10,8 @@
 #import "ConfigFile.h"
 #import "Constants.h"
 #import "ToolUtils.h"
+
+typedef NSString *  (char_string);
 @implementation AppDelegate{
 UIBackgroundTaskIdentifier backgroundTask;//写成成员
 
@@ -17,6 +19,9 @@ UIBackgroundTaskIdentifier backgroundTask;//写成成员
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+   [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeBadge)];
+    
     //初始化配置文件
     self.window.backgroundColor=[UIColor whiteColor];
     [[ConfigFile newInstance] initData];
@@ -34,6 +39,16 @@ UIBackgroundTaskIdentifier backgroundTask;//写成成员
     [WeiboSDK registerApp:@"3905012986"];
     [WXApi registerApp:@"wx22ca181d6fb789e2"];
     return YES;
+}
+
+
+- (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    NSString *token = [NSString stringWithFormat:@"%@", deviceToken];
+    NSLog(@"%@", token);
+}
+
+- (void)application:(UIApplication *)app didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    NSLog(@"%@", error);
 }
 
 -(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
