@@ -92,7 +92,7 @@ static BOOL booleanIsGregorianLeapYear(int year) {
    
     NSTimeInterval time_warning =[self TimeStingWithInterVal:warningDate];
     NSTimeInterval time_now=[[NSDate date] timeIntervalSince1970];
-    NSString *strDate=[NSString stringWithFormat:@"%d-%d-%d",year,month,days];
+    NSString *strDate=nil;
     
     
     /*先将年份换算为今年的年份*/
