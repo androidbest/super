@@ -303,7 +303,7 @@
     [formatter setDateFormat:@"yyyy-MM-dd"];
     NSDate *warningDate =[formatter dateFromString:timeSolar];
     int isOk =[ToolUtils bigOrsmallOneDay:warningDate withAnotherDay:[NSDate date]];
-    if (isOk<0&&!_newsView.switchReqeat.on) {
+    if (isOk<0&&ScheduleType!=2) {
         [ToolUtils alertInfo:@"无效的日程"];
         return;
     }

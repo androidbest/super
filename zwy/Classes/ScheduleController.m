@@ -505,8 +505,8 @@
 - (void)updateTableViewDateMinToMax:(NSMutableArray *)array tableViewType:(tableViewScheduleType)tableViewType{
     NSMutableArray *arrInfo =[NSMutableArray array];
     int min ;
-    int all_Min[1000];/*定义顺序存放数组*/
-    for (int i=0; i<1000; i++) {
+    int all_Min[500];/*定义顺序存放数组*/
+    for (int i=0; i<500; i++) {
         all_Min[i]=10000;
     }
     

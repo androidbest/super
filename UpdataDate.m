@@ -8,7 +8,18 @@
 
 #import "UpdataDate.h"
 
+
+/*公历获取闰年算法*/
+static BOOL booleanIsGregorianLeapYear(int year) {
+    BOOL isLeap = false;
+    if (year%4==0) isLeap = true;
+    if (year%100==0) isLeap = false;
+    if (year%400==0) isLeap = true;
+    return isLeap;
+}
+
 @implementation UpdataDate
+
 
 #pragma mark  - 获取最近星期数
 + (NSString *)reqeatWithWeekTodate:(NSString *)warningDate{
@@ -66,8 +77,7 @@
     NSDateFormatter * dateFormatter = [[NSDateFormatter alloc]init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     NSArray *array =[warningDate componentsSeparatedByString:@"-"];
-    
-
+    NSString *NowYears=[[[dateFormatter stringFromDate:[NSDate date]] componentsSeparatedByString:@"-"] firstObject];
     
     int year;
     int month;
@@ -83,15 +93,32 @@
     NSTimeInterval time_warning =[self TimeStingWithInterVal:warningDate];
     NSTimeInterval time_now=[[NSDate date] timeIntervalSince1970];
     NSString *strDate=[NSString stringWithFormat:@"%d-%d-%d",year,month,days];
-    while (time_warning<time_now) {
-        if (month==2&&days==29) year+=4;
-        else year+=1;
-         strDate =[NSString stringWithFormat:@"%d-%d-%d",year,month,days];
+    
+    
+    /*先将年份换算为今年的年份*/
+    if (time_warning<time_now) {
+        int now_year=[NowYears integerValue];
+        year=now_year;
+        
+        /*如果是闰年的2月29号必须按4年一重复*/
+        if (month==2&&days==29) {
+            BOOL isLeapMonth =booleanIsGregorianLeapYear(year);
+            while (!isLeapMonth) {
+                year++;
+                isLeapMonth =booleanIsGregorianLeapYear(year);
+            }
+        }
+        strDate =[NSString stringWithFormat:@"%d-%d-%d",year,month,days];
         time_warning=[self TimeStingWithInterVal:strDate];
     }
-
     
-   
+    /*如果换算过来的时间已经过了再往后推1年(闰年推4年)*/
+    if (time_warning<time_now){
+        if (month==2&&days==29) year+=4;
+        else year+=1;
+    }
+     strDate =[NSString stringWithFormat:@"%d-%d-%d",year,month,days];
+    
     return strDate;
 }
 
@@ -128,4 +155,5 @@
     return 0;
     
 }
+
 @end
