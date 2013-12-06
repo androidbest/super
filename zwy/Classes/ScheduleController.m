@@ -368,7 +368,7 @@
     
     if (isWorkInit){/*创建通告*/
         _isInit=&isWorkInit;
-        [self addWarningLocalNotification:_arrWork initWithOrBool:isWorkInit];
+        [self addWarningLocalNotification:_arrWork initWithOrBool:&isWorkInit];
     }
     
      if (self.HUD)[self.HUD hide:YES afterDelay:1];
@@ -410,7 +410,7 @@
     
     if (isLifeInit) {/*创建通告*/
         _isInit=&isLifeInit;
-        [self addWarningLocalNotification:_arrLife initWithOrBool:isLifeInit];
+        [self addWarningLocalNotification:_arrLife initWithOrBool:&isLifeInit];
     }
     
      if (self.HUD)[self.HUD hide:YES afterDelay:1];
@@ -452,7 +452,7 @@
     
     if (isBirthdayInit) {/*创建通告*/
         _isInit=&isBirthdayInit;
-        [self addWarningLocalNotification:_arrBirthday initWithOrBool:isBirthdayInit];
+        [self addWarningLocalNotification:_arrBirthday initWithOrBool:&isBirthdayInit];
     }
     
      if (self.HUD)[self.HUD hide:YES afterDelay:1];
@@ -495,7 +495,7 @@
     
     if (isHolidayInit){/*创建通告*/
         _isInit=&isHolidayInit;
-        [self addWarningLocalNotification:_arrholiday initWithOrBool:isHolidayInit];
+        [self addWarningLocalNotification:_arrholiday initWithOrBool:&isHolidayInit];
     }
     
      if (self.HUD)[self.HUD hide:YES afterDelay:1];
@@ -972,8 +972,9 @@
 }
 
 //创建本地通告（分类）
-- (void)addWarningLocalNotification:(NSMutableArray *)array initWithOrBool:(BOOL)Bool{
+- (void)addWarningLocalNotification:(NSMutableArray *)array initWithOrBool:(BOOL *)Bool{
     *_isInit=NO;
+    *Bool=NO;
     int count;
     if (array.count>5) count=5;
     else count=array.count;
