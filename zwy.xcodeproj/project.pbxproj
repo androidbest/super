@@ -1761,9 +1761,6 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = sxit;
 				TargetAttributes = {
-					595CB97917F164AF00228A6E = {
-						DevelopmentTeam = HXVDZYZZ4N;
-					};
 					595CB99A17F164AF00228A6E = {
 						TestTargetID = 595CB97917F164AF00228A6E;
 					};
