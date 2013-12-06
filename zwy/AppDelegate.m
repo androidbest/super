@@ -11,7 +11,6 @@
 #import "Constants.h"
 #import "ToolUtils.h"
 
-typedef NSString *  (char_string);
 @implementation AppDelegate{
 UIBackgroundTaskIdentifier backgroundTask;//写成成员
 
@@ -19,8 +18,28 @@ UIBackgroundTaskIdentifier backgroundTask;//写成成员
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+ 
     
-   [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeBadge)];
+    
+//    if(application.enabledRemoteNotificationTypes){
+//        NSLog(@"aaadfdsafdsafdasf");
+//    }
+    
+    
+    //判断是否由远程消息通知触发应用程序启动
+//    if ([launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey]!=nil) {
+//        NSLog(@"aaaa");
+////        //获取应用程序消息通知标记数（即小红圈中的数字）
+////        int badge = [UIApplication sharedApplication].applicationIconBadgeNumber;
+////        if (badge>0) {
+////            //如果应用程序消息通知标记数（即小红圈中的数字）大于0，清除标记。
+////            badge--;
+////            //清除标记。清除小红圈中数字，小红圈中数字为0，小红圈才会消除。
+////            [UIApplication sharedApplication].applicationIconBadgeNumber = badge;
+////        }
+//    }
+    
+//   [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeBadge)];
     
     //初始化配置文件
     self.window.backgroundColor=[UIColor whiteColor];
@@ -42,14 +61,30 @@ UIBackgroundTaskIdentifier backgroundTask;//写成成员
 }
 
 
-- (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    NSString *token = [NSString stringWithFormat:@"%@", deviceToken];
-    NSLog(@"%@", token);
-}
+//- (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+////    NSString* oldToken = [dataModel deviceToken];
+//    NSString* newToken = [deviceToken description];
+////    newToken = [newToken stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"&lt;&gt;"]];
+//    newToken = [newToken stringByReplacingOccurrencesOfString:@" " withString:@""];
+//    newToken = [newToken stringByReplacingOccurrencesOfString:@"<" withString:@""];
+//    newToken = [newToken stringByReplacingOccurrencesOfString:@">" withString:@""];
+//    
+//    
+////    NSString *token = [NSString stringWithFormat:@"%@", deviceToken];
+//    NSLog(@"%@", newToken); 
+//}
 
-- (void)application:(UIApplication *)app didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
-    NSLog(@"%@", error);
-}
+//- (void)application:(UIApplication *)app didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+//    NSLog(@"%@", error);
+//}
+
+//处理收到的消息推送
+//- (void)application:(UIApplication *)application
+//didReceiveRemoteNotification:(NSDictionary *)userInfo
+//{
+//    //在此处理接收到的消息。
+//    NSLog(@"Receive remote notification : %@",userInfo);
+//}
 
 -(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
     if([sourceApplication isEqualToString:@"com.tencent.xin"]){
