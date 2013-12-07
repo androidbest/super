@@ -160,6 +160,7 @@
     [dicFirst setObject:ID forKey:@"ID"];//日程ID
     if (isReqeat)[dicFirst  setObject:[NSString stringWithFormat:@"%d",reqeatType] forKey:@"reqeatType"];//重复类型
     [dicFirst setObject:[NSString stringWithFormat:@"%d",ScheduleType] forKey:@"ScheduleType"];//日程类型
+    if (_newsView.info.isUserHandAdd)[dicFirst setObject:_newsView.info.isUserHandAdd forKey:@"dataType"];
     NSString *strPath =[NSString stringWithFormat:@"%@/%@/%@/%@.plist",DocumentsDirectory,user.msisdn,user.eccode,Warning_Frist];//设置地址
     [dicFirst writeToFile:strPath atomically:NO];//写入沙盒
 }
@@ -302,8 +303,13 @@
     [formatter setFormatterBehavior:NSDateFormatterBehaviorDefault];
     [formatter setDateFormat:@"yyyy-MM-dd"];
     NSDate *warningDate =[formatter dateFromString:timeSolar];
+    NSTimeInterval time_=[warningDate timeIntervalSince1970];
+    time_-=24*60*60;
+    warningDate=nil;
+    warningDate=[[NSDate alloc]initWithTimeIntervalSince1970:time_];
+   
     int isOk =[ToolUtils bigOrsmallOneDay:warningDate withAnotherDay:[NSDate date]];
-    if (isOk<0&&ScheduleType!=2) {
+    if (isOk<0&&!_newsView.switchReqeat.on) {
         [ToolUtils alertInfo:@"无效的日程"];
         return;
     }
@@ -321,7 +327,8 @@ NSString *strTimeInterval=[NSString stringWithFormat:@"%f",[ToolUtils TimeStingW
     if (newType==type_add) {
         [packageData addWarningData:self
                             content:_newsView.textTitle.text
-                               Type:ScheduleType warningDate:strTimeInterval
+                               Type:ScheduleType
+                        warningDate:strTimeInterval
                   warningRequstType:reqeatType
                             SELType:addWarning];
     }else{
@@ -385,10 +392,17 @@ NSString *strTimeInterval=[NSString stringWithFormat:@"%f",[ToolUtils TimeStingW
 - (void)switchReqeat:(UISwitch *)sender{
 
     isReqeat=sender.on;
+    
     if (isReqeat) {
-        UIActionSheet *sheet =[[UIActionSheet alloc] initWithTitle:@"重复类型" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"每周",@"每月",@"每年", nil];
+        UIActionSheet *sheet =[[UIActionSheet alloc] initWithTitle:@"重复类型"
+                                                          delegate:self
+                                                 cancelButtonTitle:@"取消"
+                                            destructiveButtonTitle:nil
+                                                 otherButtonTitles:@"每周",@"每月",@"每年", nil];
         sheet.tag=0;
         [sheet showInView:_newsView.view];
+    }else {
+    reqeatType=0;
     }
 }
 

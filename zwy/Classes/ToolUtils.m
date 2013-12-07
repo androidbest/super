@@ -241,7 +241,11 @@
     NSDateFormatter * dateFormatter = [[NSDateFormatter alloc]init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     NSDate *date =[dateFormatter dateFromString:strTime];
-    NSTimeInterval time_=[date timeIntervalSince1970];
+    /*避免时差*/
+    NSTimeZone *zone = [NSTimeZone systemTimeZone];
+    NSInteger interval = [zone secondsFromGMTForDate:date];
+    NSDate *localeDate = [date  dateByAddingTimeInterval: interval];
+    NSTimeInterval time_=[localeDate timeIntervalSince1970];
     return time_;
 }
 

@@ -155,7 +155,7 @@
     }
     warningDataInfo * info =_arrAll[0];
     NSString *Title;
-    if ([info.warningType isEqualToString:@"2"]){
+    if ([info.warningType isEqualToString:@"2"]&&![info.isUserHandAdd isEqualToString:@"0"]){
         Title =[info.content stringByAppendingString:@" 的生日"];
         _schedView.labelName.text=Title;
     }
@@ -177,11 +177,12 @@
     [dicFirst setObject:info.warningID forKey:@"ID"];//日程ID
     [dicFirst  setObject:info.RequestType forKey:@"reqeatType"];//重复类型
     [dicFirst setObject:info.warningType forKey:@"ScheduleType"];//日程类型
-   
+    if(info.isUserHandAdd)[dicFirst setObject:info.isUserHandAdd forKey:@"dataType"];//是否为手动添加
+    
     [dicFirst writeToFile:strPath atomically:NO];//写入沙盒
     
     NSString *Title;
-    if ([info.warningType isEqualToString:@"2"]){
+    if ([info.warningType isEqualToString:@"2"]&&![info.isUserHandAdd isEqualToString:@"0"]){
         Title =[info.content stringByAppendingString:@" 的生日"];
         _schedView.labelName.text=Title;
     }
@@ -234,8 +235,6 @@
     
     NSString *strPath =[NSString stringWithFormat:@"%@/%@/%@/%@.plist",DocumentsDirectory,user.msisdn,user.eccode,Warning_Frist];//设置地址
     BOOL isboolFirst=[[NSFileManager defaultManager] fileExistsAtPath:strPath];
-    
-    
     
     if (!isboolFirst) {
         isFirst=NO;
@@ -722,7 +721,7 @@
             warningDataInfo * info =_arrAll[indexPath.row];
             if ([dicDcomentFirst[@"ID"] isEqualToString:info.warningID])[self updateFirstSchedule:info];/*同步置顶信息*/
             NSString *Title;
-            if ([info.warningType isEqualToString:@"2"]){
+            if ([info.warningType isEqualToString:@"2"]&&![info.isUserHandAdd isEqualToString:@"0"]){
                 Title =[info.content stringByAppendingString:@" 的生日"];
                 cell.labelTitle.text=nil;
                 cell.labelTitle.attributedText=[DetailTextView setCellTitleAttributedString:Title];
@@ -760,8 +759,16 @@
         case 3:{
             warningDataInfo *info =_arrBirthday[indexPath.row];
             if ([dicDcomentFirst[@"ID"] isEqualToString:info.warningID])[self updateFirstSchedule:info];/*同步置顶信息*/
-            NSString * Title =[info.content stringByAppendingString:@" 的生日"];
-            cell.labelTitle.attributedText=[DetailTextView setCellTitleAttributedString:Title];
+            
+            /*如果为手动添加标题后面不自动添加“的生日“字段*/
+            if ([info.isUserHandAdd isEqualToString:@"0"]) {
+                cell.labelTitle.text=info.content;
+            }else{
+                NSString * Title =[info.content stringByAppendingString:@" 的生日"];
+                cell.labelTitle.text=nil;
+                cell.labelTitle.attributedText=[DetailTextView setCellTitleAttributedString:Title];
+                
+            }
             cell.labelTime.text=info.brithdayDate;
             cell.labelDays.attributedText=[DetailTextView setCellTimeAttributedString:info.remainTime];
         }
@@ -787,7 +794,7 @@
     switch (tableView.tag) {
         case 0:{
         warningDataInfo * info =_arrAll[indexPath.row];
-            if ([info.warningType isEqualToString:@"0"]||[info.warningType isEqualToString:@"1"]) {
+            if ([info.warningType isEqualToString:@"0"]||[info.warningType isEqualToString:@"1"]||([info.isUserHandAdd isEqualToString:@"0"]&&[info.warningType isEqualToString:@"4"])) {
                 UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
                 WorkView *detaView = [storyboard instantiateViewControllerWithIdentifier:@"WorkView"];
                 [self.schedView.navigationController pushViewController:detaView animated:YES];
@@ -831,11 +838,21 @@
             break;
             
         case 4:{
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
-            HolidayView *detaView = [storyboard instantiateViewControllerWithIdentifier:@"HolidayView"];
-            [self.schedView.navigationController pushViewController:detaView animated:YES];
-            detaView.info =_arrholiday[indexPath.row];
-            detaView.HolidayViewDelegate=self;
+            warningDataInfo *info =_arrholiday[indexPath.row];
+            if ([info.isUserHandAdd isEqualToString:@"0"]) {
+                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+                WorkView *detaView = [storyboard instantiateViewControllerWithIdentifier:@"WorkView"];
+                [self.schedView.navigationController pushViewController:detaView animated:YES];
+                detaView.info=info;
+                detaView.WorkViewDelegate=self;
+            }else{
+                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+                HolidayView *detaView = [storyboard instantiateViewControllerWithIdentifier:@"HolidayView"];
+                [self.schedView.navigationController pushViewController:detaView animated:YES];
+                detaView.info =info;
+                detaView.HolidayViewDelegate=self;
+            }
+
         }
             break;
         default:

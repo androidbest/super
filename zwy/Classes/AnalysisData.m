@@ -539,7 +539,7 @@ RespInfo *info=[RespInfo new];
         data.RequestType=[[[arr objectAtIndex:i] objectForKey:@"repeatime"] objectForKey:@"text"];
         data.warningType =[[[arr objectAtIndex:i] objectForKey:@"type"] objectForKey:@"text"];
         data.greetingType =[[[arr objectAtIndex:i] objectForKey:@"greetingtype"] objectForKey:@"text"];
-        
+        data.isUserHandAdd=[[[arr objectAtIndex:i] objectForKey:@"datatype"] objectForKey:@"text"];
         /****/
         NSString *strDate =[[[arr objectAtIndex:i] objectForKey:@"warningdate"] objectForKey:@"text"];//毫秒数
         NSDate *d = [NSDate dateWithTimeIntervalSince1970:[strDate doubleValue]];//毫秒转date
@@ -561,7 +561,7 @@ RespInfo *info=[RespInfo new];
         int remainDays = [ToolUtils compareOneDay:TimeNow withAnotherDay:data.warningDate];
         data.remainTime  =[NSString stringWithFormat:@"%d",remainDays];
         /****/
-        [warning.warningList addObject:data];
+       [warning.warningList addObject:data];
     }
     return warning;
 }

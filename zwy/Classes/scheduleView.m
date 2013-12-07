@@ -115,7 +115,7 @@
         _labelBirthday.text=strDate;
         
         NSString *strContent=dic[@"name"];
-        if ([dic[@"ScheduleType"] isEqualToString:@"2"]) {
+        if ([dic[@"ScheduleType"] isEqualToString:@"2"]&&![dic[@"dataType"] isEqualToString:@"0"]) {
         strContent=[NSString stringWithFormat:@"%@ 的生日",dic[@"name"] ];
         }
         _labelName.text=strContent;

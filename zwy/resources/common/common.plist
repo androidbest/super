@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>DebugHTTP</key>
+	<string>http://192.168.0.137:8989/phoenix/</string>
 	<key>httpurl</key>
 	<string>http://218.206.4.38:8081/phoneservice/</string>
 	<key>helpurl</key>

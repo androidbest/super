@@ -15,7 +15,11 @@
 @property (strong, nonatomic) IBOutlet UILabel *labelDate;
 @property (strong, nonatomic) IBOutlet UILabel *labelTitle;
 
+@property (strong, nonatomic)  UIView *dayBackgroudView1;
+@property (strong, nonatomic)  UIView *dayBackgroudView2;
 @property (strong ,nonatomic)warningDataInfo *info;
+@property (strong, nonatomic) IBOutlet UIView *wariningBackView;
+
 @property (assign)id WorkViewDelegate;
 - (void)upDataScheduleList:(int)TableViewType;
 @end

@@ -20,5 +20,6 @@
 @property (strong ,nonatomic)NSString *remainTime;//剩余天数
 @property (strong ,nonatomic)NSString *greetingType;//短信模版类型
 @property (strong ,nonatomic)NSString *brithdayDate;//生日时间
+@property (strong ,nonatomic)NSString *isUserHandAdd;//是否为手动添加
 
 @end

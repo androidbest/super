@@ -47,6 +47,7 @@
     
     _workViews.labelDate.text=_workViews.info.warningDate;
     _workViews.labelLastTime.text=_workViews.info.remainTime;
+    [self setLabelLastTimeBackgroudViewFrame:_workViews.labelLastTime.text.length];
     
     NSString *strTitle;
     if ([_workViews.info.warningType isEqualToString:@"2"]) {
@@ -56,6 +57,20 @@
     }
     _workViews.labelTitle.text=strTitle;
 }
+
+/*设置labelLastTime背景图大小*/
+- (void)setLabelLastTimeBackgroudViewFrame:(float)textLength{
+    CGRect rect =_workViews.dayBackgroudView1.frame;
+    rect.size.width=40+24*textLength;
+    _workViews.dayBackgroudView1.frame=rect;
+    _workViews.dayBackgroudView1.center=CGPointMake(_workViews.view.center.x-14, _workViews.dayBackgroudView1.center.y);
+
+    rect =_workViews.dayBackgroudView2.frame;
+    rect.size.width=40+24*textLength;
+    _workViews.dayBackgroudView2.frame=rect;
+    _workViews.dayBackgroudView2.center=CGPointMake(_workViews.view.center.x-14, _workViews.dayBackgroudView2.center.y);
+}
+
 
 /*删除日程后消除view*/
 - (void)deleteWarning:(NewsScheduleView *)newsView{

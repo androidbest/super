@@ -62,7 +62,7 @@
     }
     
     _holiView.LableDays.attributedText =[DetailTextView setDateAttributedString:_holiView.info.remainTime];
-    if ([_holiView.info.warningType isEqualToString:@"2"]){
+    if ([_holiView.info.warningType isEqualToString:@"2"]&&![_holiView.info.isUserHandAdd isEqualToString:@"0"]){
         _holiView.labelName.text=[NSString stringWithFormat:@"%@ 的生日",_holiView.info.content];
         _holiView.lableDate.text=_holiView.info.brithdayDate;
     }
@@ -109,7 +109,7 @@
     
     _holiView.LableDays.attributedText =[DetailTextView setDateAttributedString:info.remainTime];
     
-    if ([_holiView.info.warningType isEqualToString:@"2"]){
+    if ([_holiView.info.warningType isEqualToString:@"2"]&&![_holiView.info.isUserHandAdd isEqualToString:@"0"]){
      _holiView.labelName.text=[NSString stringWithFormat:@"%@ 的生日",info.content];
      _holiView.lableDate.text=_holiView.info.brithdayDate;
     }
