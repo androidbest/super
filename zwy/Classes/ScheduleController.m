@@ -1067,6 +1067,7 @@
         [dicInfo setObject:info.remainTime forKey:@"remainTime"];
         [dicInfo setObject:info.UserTel forKey:@"UserTel"];
         [dicInfo setObject:info.warningDate forKey:@"warningDate"];
+        if (info.isUserHandAdd)[dicInfo setObject:info.isUserHandAdd forKey:@"dataType"];
         
         notification.userInfo=dicInfo;//notification信息
         [[UIApplication sharedApplication]scheduleLocalNotification:notification];

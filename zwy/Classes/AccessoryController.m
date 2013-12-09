@@ -103,7 +103,7 @@
 
 -(void)segmentAction:(UISegmentedControl *)Seg{
     NSInteger Index = Seg.selectedSegmentIndex;
-    if (Index==0) {
+    if (Index==1) {
         self.accView.tableViewDowning.hidden=NO;
         self.accView.tableViewEndDown.hidden=YES;
     }else{
@@ -126,7 +126,8 @@
 //          NSString *str =[DocumentsDirectory stringByAppendingPathComponent: [_arrDowning[indexPath.row] objectForKey:@"text"]];
         NSString *str=nil;
           str =[NSString stringWithFormat:@"%@/%@/%@/%@",DocumentsDirectory,user.msisdn, user.eccode,[_arrDowning[indexPath.row] objectForKey:@"text"]];
-        if (!isCell||!cell) {
+        BOOL CellIndentifier =!isCell||!cell;
+        if (CellIndentifier) {
             cell=[[DownloadCell alloc] initWithDelegate:self URL:[_arrDowning[indexPath.row] objectForKey:@"url"] reuseIdentifier:strCell filePath:str];
         }
         

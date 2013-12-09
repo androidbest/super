@@ -41,12 +41,12 @@
     _tableViewDowning.delegate=self.controller;
     _tableViewDowning.dataSource=self.controller;
     _tableViewDowning.tag=0;
-    _tableViewDowning.hidden=NO;
+    _tableViewDowning.hidden=YES;
     
     _tableViewEndDown.delegate=self.controller;
     _tableViewEndDown.dataSource=self.controller;
     _tableViewEndDown.tag=1;
-    _tableViewEndDown.hidden=YES;
+    _tableViewEndDown.hidden=NO;
     
     [_segControl addTarget:self.controller action:@selector(segmentAction:) forControlEvents:UIControlEventValueChanged];
 }

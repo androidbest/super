@@ -193,14 +193,20 @@ NSString * stringTel =STRING_TEL(@"133");
 -  (void)homeToWarningDataView{
     self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
     NSString *Type= dicLocalNotificationInfo[@"warningType"];
+    NSString *isUserHandAdd= dicLocalNotificationInfo[@"dataType"];
     if ([Type isEqualToString:@"0"]||[Type isEqualToString:@"1"]) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
         WorkView *detaView = [storyboard instantiateViewControllerWithIdentifier:@"WorkView"];
         detaView.hidesBottomBarWhenPushed=YES;
         [self.navigationController pushViewController:detaView animated:YES];
-    }else if([Type isEqualToString:@"2"]||[Type isEqualToString:@"3"]){
+    }else if([Type isEqualToString:@"2"]||([Type isEqualToString:@"3"]&&![isUserHandAdd isEqualToString:@"0"])){
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
         HolidayView *detaView = [storyboard instantiateViewControllerWithIdentifier:@"HolidayView"];
+        detaView.hidesBottomBarWhenPushed=YES;
+        [self.navigationController pushViewController:detaView animated:YES];
+    }else if ([Type isEqualToString:@"2"]||([Type isEqualToString:@"3"]&&[isUserHandAdd isEqualToString:@"0"])){
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+        WorkView *detaView = [storyboard instantiateViewControllerWithIdentifier:@"WorkView"];
         detaView.hidesBottomBarWhenPushed=YES;
         [self.navigationController pushViewController:detaView animated:YES];
     }
