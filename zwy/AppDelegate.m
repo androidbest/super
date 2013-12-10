@@ -61,30 +61,32 @@ UIBackgroundTaskIdentifier backgroundTask;//写成成员
 }
 
 
-//- (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-////    NSString* oldToken = [dataModel deviceToken];
-//    NSString* newToken = [deviceToken description];
-////    newToken = [newToken stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"&lt;&gt;"]];
-//    newToken = [newToken stringByReplacingOccurrencesOfString:@" " withString:@""];
-//    newToken = [newToken stringByReplacingOccurrencesOfString:@"<" withString:@""];
-//    newToken = [newToken stringByReplacingOccurrencesOfString:@">" withString:@""];
-//    
-//    
-////    NSString *token = [NSString stringWithFormat:@"%@", deviceToken];
-//    NSLog(@"%@", newToken); 
-//}
+- (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+//    NSString* oldToken = [dataModel deviceToken];
+    NSString* newToken = [deviceToken description];
+//    newToken = [newToken stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"&lt;&gt;"]];
+    newToken = [newToken stringByReplacingOccurrencesOfString:@" " withString:@""];
+    newToken = [newToken stringByReplacingOccurrencesOfString:@"<" withString:@""];
+    newToken = [newToken stringByReplacingOccurrencesOfString:@">" withString:@""];
+    
+    
+//    NSString *token = [NSString stringWithFormat:@"%@", deviceToken];
+    NSLog(@"%@", newToken); 
+}
 
-//- (void)application:(UIApplication *)app didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
-//    NSLog(@"%@", error);
-//}
+- (void)application:(UIApplication *)app didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    NSLog(@"%@", error);
+}
 
 //处理收到的消息推送
-//- (void)application:(UIApplication *)application
-//didReceiveRemoteNotification:(NSDictionary *)userInfo
-//{
-//    //在此处理接收到的消息。
-//    NSLog(@"Receive remote notification : %@",userInfo);
-//}
+- (void)application:(UIApplication *)application
+didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    
+//    [application cancelLocalNotification:notification];
+    //在此处理接收到的消息。
+    NSLog(@"Receive remote notification : %@",userInfo);
+}
 
 -(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
     if([sourceApplication isEqualToString:@"com.tencent.xin"]){
