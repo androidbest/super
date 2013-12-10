@@ -9,6 +9,7 @@
 #import "LoginView.h"
 #import "LoginController.h"
 #import "HomeView.h"
+#import "HomeScrollView.h"
 @interface LoginView ()
 
 @end
@@ -80,7 +81,7 @@
 //  [self performSegueWithIdentifier:@"logintogethome" sender:self];
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
-    UITabBarController *homeView = [storyboard instantiateViewControllerWithIdentifier:@"zwyhome"];
+    HomeScrollView *homeView = [storyboard instantiateViewControllerWithIdentifier:@"HomeScrollView"];
     [self presentViewController:homeView animated:NO completion:nil];
     
 }

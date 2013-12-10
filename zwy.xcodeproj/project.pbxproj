@@ -247,6 +247,10 @@
 		65A9C8D9180EA6840032D170 /* OptionAddressController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A9C8D8180EA6840032D170 /* OptionAddressController.m */; };
 		65A9C8DD180EC7780032D170 /* InformationInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A9C8DC180EC7780032D170 /* InformationInfo.m */; };
 		65A9C8E0180EC83F0032D170 /* InformationDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A9C8DF180EC83F0032D170 /* InformationDetail.m */; };
+		65AB26441856BD4D00F5EAF6 /* HomeScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65AB26431856BD4D00F5EAF6 /* HomeScrollView.m */; };
+		65AB26481856BD7C00F5EAF6 /* HomeScrollerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65AB26471856BD7C00F5EAF6 /* HomeScrollerController.m */; };
+		65AB264B1856C27D00F5EAF6 /* HomeInformationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65AB264A1856C27D00F5EAF6 /* HomeInformationView.m */; };
+		65AB264E1856C72F00F5EAF6 /* HomeInfomationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65AB264D1856C72F00F5EAF6 /* HomeInfomationController.m */; };
 		65AC6603180F77A900C0CA4F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65AC6602180F77A900C0CA4F /* Main.storyboard */; };
 		65AC6606180FBDB900C0CA4F /* optionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65AC6605180FBDB900C0CA4F /* optionCell.m */; };
 		65AC660D180FCDBF00C0CA4F /* btn_check.png in Resources */ = {isa = PBXBuildFile; fileRef = 65AC660B180FCDBF00C0CA4F /* btn_check.png */; };
@@ -700,6 +704,14 @@
 		65A9C8DC180EC7780032D170 /* InformationInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformationInfo.m; sourceTree = "<group>"; };
 		65A9C8DE180EC83F0032D170 /* InformationDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InformationDetail.h; sourceTree = "<group>"; };
 		65A9C8DF180EC83F0032D170 /* InformationDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformationDetail.m; sourceTree = "<group>"; };
+		65AB26421856BD4D00F5EAF6 /* HomeScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeScrollView.h; sourceTree = "<group>"; };
+		65AB26431856BD4D00F5EAF6 /* HomeScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeScrollView.m; sourceTree = "<group>"; };
+		65AB26461856BD7C00F5EAF6 /* HomeScrollerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeScrollerController.h; sourceTree = "<group>"; };
+		65AB26471856BD7C00F5EAF6 /* HomeScrollerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeScrollerController.m; sourceTree = "<group>"; };
+		65AB26491856C27D00F5EAF6 /* HomeInformationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeInformationView.h; sourceTree = "<group>"; };
+		65AB264A1856C27D00F5EAF6 /* HomeInformationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeInformationView.m; sourceTree = "<group>"; };
+		65AB264C1856C72F00F5EAF6 /* HomeInfomationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeInfomationController.h; sourceTree = "<group>"; };
+		65AB264D1856C72F00F5EAF6 /* HomeInfomationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeInfomationController.m; sourceTree = "<group>"; };
 		65AC6602180F77A900C0CA4F /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		65AC6604180FBDB900C0CA4F /* optionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = optionCell.h; sourceTree = "<group>"; };
 		65AC6605180FBDB900C0CA4F /* optionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = optionCell.m; sourceTree = "<group>"; };
@@ -1088,6 +1100,7 @@
 		595CB9B517F167CB00228A6E /* controllayer */ = {
 			isa = PBXGroup;
 			children = (
+				65AB26451856BD5A00F5EAF6 /* HomeScrollerController */,
 				65A26CA31839C42A006AF226 /* ScheduleController */,
 				65D967921812B95A00C1A05E /* AccessoryController */,
 				595A0C6A181129EA009C26B8 /* ec */,
@@ -1115,6 +1128,7 @@
 		595CB9B617F167D800228A6E /* viewlayer */ = {
 			isa = PBXGroup;
 			children = (
+				65AB26411856BD2200F5EAF6 /* HomeScrollView */,
 				65A26C991839C387006AF226 /* scheduleView */,
 				65D9678E1812B8D700C1A05E /* AccessoryView */,
 				595A0C69181129E2009C26B8 /* ec */,
@@ -1681,6 +1695,28 @@
 			name = information;
 			sourceTree = "<group>";
 		};
+		65AB26411856BD2200F5EAF6 /* HomeScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				65AB26421856BD4D00F5EAF6 /* HomeScrollView.h */,
+				65AB26431856BD4D00F5EAF6 /* HomeScrollView.m */,
+				65AB26491856C27D00F5EAF6 /* HomeInformationView.h */,
+				65AB264A1856C27D00F5EAF6 /* HomeInformationView.m */,
+			);
+			name = HomeScrollView;
+			sourceTree = "<group>";
+		};
+		65AB26451856BD5A00F5EAF6 /* HomeScrollerController */ = {
+			isa = PBXGroup;
+			children = (
+				65AB26461856BD7C00F5EAF6 /* HomeScrollerController.h */,
+				65AB26471856BD7C00F5EAF6 /* HomeScrollerController.m */,
+				65AB264C1856C72F00F5EAF6 /* HomeInfomationController.h */,
+				65AB264D1856C72F00F5EAF6 /* HomeInfomationController.m */,
+			);
+			name = HomeScrollerController;
+			sourceTree = "<group>";
+		};
 		65D9678E1812B8D700C1A05E /* AccessoryView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1942,11 +1978,13 @@
 				65A26CA91839C46E006AF226 /* NewsScheduleController.m in Sources */,
 				594204591802EE9B00AA35C3 /* HTTPRequest.m in Sources */,
 				659AB362180975D0000FCEC5 /* MyAddressController.m in Sources */,
+				65AB264E1856C72F00F5EAF6 /* HomeInfomationController.m in Sources */,
 				659AB3491809750F000FCEC5 /* InfoDetailsView.m in Sources */,
 				59584B21181998CD00B65162 /* KxMenu.m in Sources */,
 				59584B291819999A00B65162 /* OfficeDetailView.m in Sources */,
 				5989A11C17F583AE00789DC6 /* HomeView.m in Sources */,
 				5957EFA61817B9CF00C565E1 /* DocContentView.m in Sources */,
+				65AB264B1856C27D00F5EAF6 /* HomeInformationView.m in Sources */,
 				595B7A0B1809591A006DD766 /* PullRefreshTableView.m in Sources */,
 				595B509B180D0F8D003EC2AF /* HelpView.m in Sources */,
 				595A0C7618113253009C26B8 /* CustomPush.m in Sources */,
@@ -1995,6 +2033,7 @@
 				65A9C8D9180EA6840032D170 /* OptionAddressController.m in Sources */,
 				59F21808180FD6D100748CC4 /* Docaccessory.m in Sources */,
 				595B509F180D1270003EC2AF /* HelpController.m in Sources */,
+				65AB26441856BD4D00F5EAF6 /* HomeScrollView.m in Sources */,
 				596D6EE818085037002CD0B3 /* NoticeController.m in Sources */,
 				594B811E18037CD800310CB1 /* GroupsInfo.m in Sources */,
 				59584B3418199A5200B65162 /* OfficeController.m in Sources */,
@@ -2007,6 +2046,7 @@
 				6521F62F18166D9200CD7B76 /* MailAddressView.m in Sources */,
 				659995DF1828EC8500694F57 /* SJABHelper.m in Sources */,
 				59584B3518199A5200B65162 /* OfficeDetailController.m in Sources */,
+				65AB26481856BD7C00F5EAF6 /* HomeScrollerController.m in Sources */,
 				5960DC8117F92A6C0024AD8B /* CustomPageControl.m in Sources */,
 				596D6F1218085DB1002CD0B3 /* MeettingController.m in Sources */,
 				6581E96F183C68E500A10D10 /* SevenSwitch.m in Sources */,
