@@ -133,8 +133,6 @@ NSString * stringTel =STRING_TEL(@"133");
 //    [((HomeController *)self.controller) getCount];
     _mailsum.hidden=YES;
     _officesum.hidden=YES;
-    
-   
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -190,6 +188,7 @@ NSString * stringTel =STRING_TEL(@"133");
     [self performSelector:@selector(homeToWarningDataView) withObject:nil afterDelay:0.3f];
 }
 
+//push通知到日程提醒详细
 -  (void)homeToWarningDataView{
     self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
     NSString *Type= dicLocalNotificationInfo[@"warningType"];

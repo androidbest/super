@@ -12,7 +12,6 @@
 
 //全局常量 基本数据类型
 #define OutTime 30
-#define DocumentsDirectory [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES) lastObject]
 
 //全局常量 对象
 //demo
