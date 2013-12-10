@@ -62,7 +62,6 @@ NSString * stringTel =STRING_TEL(@"133");
 	[_information setBackgroundColor:[UIColor colorWithRed:0.41 green:0.47 blue:0.98 alpha:1.0]];
     [_notice setBackgroundColor:[UIColor colorWithRed:0.63 green:0.31 blue:0.70 alpha:1.0]];
     [_sms setBackgroundColor:[UIColor colorWithRed:0.95 green:0.50 blue:0.12 alpha:1.0]];
-    [_address setBackgroundColor:[UIColor colorWithRed:0 green:0.74 blue:0.78 alpha:1.0]];
     [_office setBackgroundColor:[UIColor colorWithRed:0.23 green:0.54 blue:0.79 alpha:1.0]];
     [_mail setBackgroundColor:[UIColor colorWithRed:0.25 green:0.50 blue:0.98 alpha:1.0]];
     [_meetting setBackgroundColor:[UIColor colorWithRed:0.44 green:0.67 blue:0 alpha:1.0]];
@@ -75,10 +74,7 @@ NSString * stringTel =STRING_TEL(@"133");
     
     [_sms addTarget:self.controller action:@selector(sms) forControlEvents:UIControlEventTouchUpInside];
     [_sms setExclusiveTouch:YES];
-    
-    [_address addTarget:self.controller action:@selector(address) forControlEvents:UIControlEventTouchUpInside];
-    [_address setExclusiveTouch:YES];
-    
+
     [_office addTarget:self.controller action:@selector(office) forControlEvents:UIControlEventTouchUpInside];
     [_office setExclusiveTouch:YES];
     
@@ -87,6 +83,9 @@ NSString * stringTel =STRING_TEL(@"133");
     
     [_meetting addTarget:self.controller action:@selector(meetting) forControlEvents:UIControlEventTouchUpInside];
     [_meetting setExclusiveTouch:YES];
+    
+    [_Btnchat addTarget:self.controller action:@selector(Btnchat) forControlEvents:UIControlEventTouchUpInside];
+    [_Btnchat setExclusiveTouch:YES];
     
     UIView * view =[[UIView alloc] init];
     view.frame =CGRectMake(0, 0, ScreenWidth, 40);
@@ -121,6 +120,13 @@ NSString * stringTel =STRING_TEL(@"133");
     
     _mailsum.layer.cornerRadius = 10;
     _officesum.layer.cornerRadius=10;
+    
+
+    //广告
+    UIImageView *imageView =[[UIImageView alloc] init];
+    imageView.frame=CGRectMake(5, 5, 310, 150);
+    imageView.image=[UIImage imageNamed:@"about"];
+    [_ScrollHome addSubview:imageView];
     
     //发送Ec
     [((HomeController *)self.controller) sendEc];
@@ -158,6 +164,7 @@ NSString * stringTel =STRING_TEL(@"133");
 
 /*控制首页scrollView是否可以滑动*/
 - (void)viewDidAppear:(BOOL)animated{
+    _ScrollHome.contentSize=CGSizeMake(0, 670);
      [(BaseTabbar *)self.tabBarController TabbarScrollEnabled:YES];
 }
 

@@ -13,10 +13,13 @@
 @property (strong, nonatomic) IBOutlet UIButton *information;
 @property (strong, nonatomic) IBOutlet UIButton *notice;
 @property (strong, nonatomic) IBOutlet UIButton *sms;
-@property (strong, nonatomic) IBOutlet UIButton *address;
 @property (strong, nonatomic) IBOutlet UIButton *office;
 @property (strong, nonatomic) IBOutlet UIButton *mail;
 @property (strong, nonatomic) IBOutlet UIButton *meetting;
+@property (strong, nonatomic) IBOutlet UIButton *userInfo;
+@property (strong, nonatomic) IBOutlet UIButton *Btnchat;
+@property (strong, nonatomic) IBOutlet UIButton *btnWarning;
+@property (strong, nonatomic) IBOutlet UIScrollView *ScrollHome;
 
 @property (strong, nonatomic) IBOutlet UILabel *mailsum;
 

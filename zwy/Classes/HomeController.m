@@ -144,6 +144,14 @@
     [self.homeView performSegueWithIdentifier:@"hometomeetting" sender:self.homeView];
 }
 
+
+//即时聊天
+- (void)Btnchat{
+   [self initBackBarButtonItem:self.homeView];
+   [self.homeView performSegueWithIdentifier:@"homeToIM" sender:self.homeView];
+}
+
+
 //传输最后选择单位
 -(void)sendEc{
     [packageData sendEc:self Type:xmlNotifInfo];
