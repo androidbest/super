@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "GreetDetaInfo.h"
 @interface GreetingInfo : NSObject
-@property (strong ,nonatomic)NSMutableArray *arrGreetList;
-@property (strong ,nonatomic)GreetDetaInfo *detaInfo;
+@property (strong ,nonatomic)NSMutableArray *arrGreetList;//日程祝福语数组
+@property (strong ,nonatomic)GreetDetaInfo *detaInfo;//对应信息
 @end

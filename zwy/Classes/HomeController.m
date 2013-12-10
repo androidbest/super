@@ -135,7 +135,7 @@
 -(void)mail{
     [self initBackBarButtonItem:self.homeView];
     self.homeView.tabBarController.tabBar.hidden=YES;
-    [self.homeView performSegueWithIdentifier:@"hometoim" sender:self.homeView];
+    [self.homeView performSegueWithIdentifier:@"hometomail" sender:self.homeView];
 }
 //会议电话
 -(void)meetting{

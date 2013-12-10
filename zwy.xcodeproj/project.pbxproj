@@ -164,12 +164,6 @@
 		599D7D17181E2CE40099BE01 /* Safari-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 599D7D16181E2CE40099BE01 /* Safari-Small@2x.png */; };
 		59A8642C18256BFC00C752C8 /* SendMessageToWeiboViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59A8642918256BFC00C752C8 /* SendMessageToWeiboViewController.m */; };
 		59A8642D18256BFC00C752C8 /* ProvideMessageForWeiboViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59A8642B18256BFC00C752C8 /* ProvideMessageForWeiboViewController.m */; };
-		59BA7C701855B9CB00A6022F /* MessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 59BA7C6F1855B9CB00A6022F /* MessageView.m */; };
-		59BA7C731855BA7500A6022F /* ContactsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 59BA7C721855BA7500A6022F /* ContactsView.m */; };
-		59BA7C761855C2B200A6022F /* MyInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 59BA7C751855C2B200A6022F /* MyInfoView.m */; };
-		59BA7C791855C2DE00A6022F /* MessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59BA7C781855C2DE00A6022F /* MessageController.m */; };
-		59BA7C7C1855C2F400A6022F /* ContactsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59BA7C7B1855C2F400A6022F /* ContactsController.m */; };
-		59BA7C7F1855C30700A6022F /* MyInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59BA7C7E1855C30700A6022F /* MyInfoController.m */; };
 		59F21805180FCCEA00748CC4 /* DocFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = 59F21804180FCCEA00748CC4 /* DocFlow.m */; };
 		59F21808180FD6D100748CC4 /* Docaccessory.m in Sources */ = {isa = PBXBuildFile; fileRef = 59F21807180FD6D100748CC4 /* Docaccessory.m */; };
 		59F3D551180DA3640062ACF3 /* MailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 59F3D550180DA3640062ACF3 /* MailView.m */; };
@@ -555,18 +549,6 @@
 		59A8642918256BFC00C752C8 /* SendMessageToWeiboViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendMessageToWeiboViewController.m; sourceTree = "<group>"; };
 		59A8642A18256BFC00C752C8 /* ProvideMessageForWeiboViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProvideMessageForWeiboViewController.h; sourceTree = "<group>"; };
 		59A8642B18256BFC00C752C8 /* ProvideMessageForWeiboViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProvideMessageForWeiboViewController.m; sourceTree = "<group>"; };
-		59BA7C6E1855B9CB00A6022F /* MessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageView.h; sourceTree = "<group>"; };
-		59BA7C6F1855B9CB00A6022F /* MessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageView.m; sourceTree = "<group>"; };
-		59BA7C711855BA7500A6022F /* ContactsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsView.h; sourceTree = "<group>"; };
-		59BA7C721855BA7500A6022F /* ContactsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsView.m; sourceTree = "<group>"; };
-		59BA7C741855C2B200A6022F /* MyInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyInfoView.h; sourceTree = "<group>"; };
-		59BA7C751855C2B200A6022F /* MyInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyInfoView.m; sourceTree = "<group>"; };
-		59BA7C771855C2DE00A6022F /* MessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageController.h; sourceTree = "<group>"; };
-		59BA7C781855C2DE00A6022F /* MessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageController.m; sourceTree = "<group>"; };
-		59BA7C7A1855C2F400A6022F /* ContactsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsController.h; sourceTree = "<group>"; };
-		59BA7C7B1855C2F400A6022F /* ContactsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsController.m; sourceTree = "<group>"; };
-		59BA7C7D1855C30700A6022F /* MyInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyInfoController.h; sourceTree = "<group>"; };
-		59BA7C7E1855C30700A6022F /* MyInfoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyInfoController.m; sourceTree = "<group>"; };
 		59F21803180FCCEA00748CC4 /* DocFlow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocFlow.h; sourceTree = "<group>"; };
 		59F21804180FCCEA00748CC4 /* DocFlow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocFlow.m; sourceTree = "<group>"; };
 		59F21806180FD6D100748CC4 /* Docaccessory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Docaccessory.h; sourceTree = "<group>"; };
@@ -1106,7 +1088,6 @@
 		595CB9B517F167CB00228A6E /* controllayer */ = {
 			isa = PBXGroup;
 			children = (
-				59BA7C6D1855A25A00A6022F /* imController */,
 				65A26CA31839C42A006AF226 /* ScheduleController */,
 				65D967921812B95A00C1A05E /* AccessoryController */,
 				595A0C6A181129EA009C26B8 /* ec */,
@@ -1134,7 +1115,6 @@
 		595CB9B617F167D800228A6E /* viewlayer */ = {
 			isa = PBXGroup;
 			children = (
-				59BA7C6C1855A23E00A6022F /* imView */,
 				65A26C991839C387006AF226 /* scheduleView */,
 				65D9678E1812B8D700C1A05E /* AccessoryView */,
 				595A0C69181129E2009C26B8 /* ec */,
@@ -1532,32 +1512,6 @@
 				59A8642B18256BFC00C752C8 /* ProvideMessageForWeiboViewController.m */,
 			);
 			name = sina;
-			sourceTree = "<group>";
-		};
-		59BA7C6C1855A23E00A6022F /* imView */ = {
-			isa = PBXGroup;
-			children = (
-				59BA7C6E1855B9CB00A6022F /* MessageView.h */,
-				59BA7C6F1855B9CB00A6022F /* MessageView.m */,
-				59BA7C711855BA7500A6022F /* ContactsView.h */,
-				59BA7C721855BA7500A6022F /* ContactsView.m */,
-				59BA7C741855C2B200A6022F /* MyInfoView.h */,
-				59BA7C751855C2B200A6022F /* MyInfoView.m */,
-			);
-			name = imView;
-			sourceTree = "<group>";
-		};
-		59BA7C6D1855A25A00A6022F /* imController */ = {
-			isa = PBXGroup;
-			children = (
-				59BA7C771855C2DE00A6022F /* MessageController.h */,
-				59BA7C781855C2DE00A6022F /* MessageController.m */,
-				59BA7C7A1855C2F400A6022F /* ContactsController.h */,
-				59BA7C7B1855C2F400A6022F /* ContactsController.m */,
-				59BA7C7D1855C30700A6022F /* MyInfoController.h */,
-				59BA7C7E1855C30700A6022F /* MyInfoController.m */,
-			);
-			name = imController;
 			sourceTree = "<group>";
 		};
 		659AB33A180973C7000FCEC5 /* AddressBook */ = {
@@ -1970,9 +1924,7 @@
 				659BD0E5183F327D00FAC29E /* warningDataInfo.m in Sources */,
 				659AB384180979FA000FCEC5 /* AIMTableViewIndexBar.m in Sources */,
 				65A26CB7183A035A006AF226 /* ScheduleCell.m in Sources */,
-				59BA7C7F1855C30700A6022F /* MyInfoController.m in Sources */,
 				5989A12517F5849E00789DC6 /* MoreView.m in Sources */,
-				59BA7C761855C2B200A6022F /* MyInfoView.m in Sources */,
 				65D967981812E1ED00C1A05E /* CheckAccessoryView.m in Sources */,
 				594B813418037D0B00310CB1 /* EcinfoDetas.m in Sources */,
 				65A3B3941814C08900AD4069 /* MassTextingView.m in Sources */,
@@ -2010,7 +1962,6 @@
 				65B3AC8518195D4100F2EC04 /* SMSModeController.m in Sources */,
 				594B811918037CC700310CB1 /* DocContentInfo.m in Sources */,
 				595B79DF18092A8E006DD766 /* MoreController.m in Sources */,
-				59BA7C7C1855C2F400A6022F /* ContactsController.m in Sources */,
 				659AB37E18097878000FCEC5 /* zip.c in Sources */,
 				596D6EEE18085C63002CD0B3 /* SmsView.m in Sources */,
 				659AB36D18097803000FCEC5 /* PeopelInfo.m in Sources */,
@@ -2026,7 +1977,6 @@
 				659AB37C18097878000FCEC5 /* mztools.c in Sources */,
 				659F652E1813D4E200306C14 /* OfficeInfo.m in Sources */,
 				65A35B6E1820E50F002C7489 /* ActionSheetWeibo.m in Sources */,
-				59BA7C731855BA7500A6022F /* ContactsView.m in Sources */,
 				65A26CA61839C454006AF226 /* ScheduleController.m in Sources */,
 				65E59A8E184435B4004444E5 /* UpdataDate.m in Sources */,
 				596D6EEB18085C39002CD0B3 /* InformationView.m in Sources */,
@@ -2039,7 +1989,6 @@
 				594B812D18037CF800310CB1 /* SMSDetaInfo.m in Sources */,
 				594204371802B61000AA35C3 /* Tuser.m in Sources */,
 				595A0C681810E3C9009C26B8 /* DocFlowCell.m in Sources */,
-				59BA7C701855B9CB00A6022F /* MessageView.m in Sources */,
 				65D967911812B91C00C1A05E /* AccessoryView.m in Sources */,
 				59A8642D18256BFC00C752C8 /* ProvideMessageForWeiboViewController.m in Sources */,
 				65D9679B1812E98B00C1A05E /* CheckAccessoryController.m in Sources */,
@@ -2057,7 +2006,6 @@
 				595A0C7018112A29009C26B8 /* EcOptionController.m in Sources */,
 				6521F62F18166D9200CD7B76 /* MailAddressView.m in Sources */,
 				659995DF1828EC8500694F57 /* SJABHelper.m in Sources */,
-				59BA7C791855C2DE00A6022F /* MessageController.m in Sources */,
 				59584B3518199A5200B65162 /* OfficeDetailController.m in Sources */,
 				5960DC8117F92A6C0024AD8B /* CustomPageControl.m in Sources */,
 				596D6F1218085DB1002CD0B3 /* MeettingController.m in Sources */,

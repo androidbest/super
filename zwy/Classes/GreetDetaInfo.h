@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface GreetDetaInfo : NSObject
-@property (strong ,nonatomic)NSString *Content;
-@property (strong ,nonatomic)NSString *greetingcount;
-@property (strong ,nonatomic)NSString *ID;
+@property (strong ,nonatomic)NSString *Content;//内容
+@property (strong ,nonatomic)NSString *greetingcount;//人气
+@property (strong ,nonatomic)NSString *ID;//ID
 @end
