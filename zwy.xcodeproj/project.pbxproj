@@ -156,6 +156,12 @@
 		5977D18118225020003DD5A3 /* pic_sms@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5977D17E18225020003DD5A3 /* pic_sms@2x.png */; };
 		5977D18218225020003DD5A3 /* pic_weixin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5977D17F18225020003DD5A3 /* pic_weixin@2x.png */; };
 		5977D18318225020003DD5A3 /* pic_weibo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5977D18018225020003DD5A3 /* pic_weibo@2x.png */; };
+		59878CAA1856CA5900454D0E /* MessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 59878CA91856CA5900454D0E /* MessageView.m */; };
+		59878CAD1856E0E500454D0E /* ContactsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 59878CAC1856E0E500454D0E /* ContactsView.m */; };
+		59878CB31856E12800454D0E /* ContactsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59878CB21856E12800454D0E /* ContactsController.m */; };
+		59878CB61856E13C00454D0E /* MessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59878CB51856E13C00454D0E /* MessageController.m */; };
+		59878CBB1856E2AE00454D0E /* MyInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 59878CBA1856E2AE00454D0E /* MyInfoView.m */; };
+		59878CBE1856E51500454D0E /* MyInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59878CBD1856E51500454D0E /* MyInfoController.m */; };
 		5989A0E317F533CB00789DC6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5989A0E217F533CB00789DC6 /* Images.xcassets */; };
 		5989A11C17F583AE00789DC6 /* HomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5989A11B17F583AE00789DC6 /* HomeView.m */; };
 		5989A11F17F583C900789DC6 /* DaiBanView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5989A11E17F583C900789DC6 /* DaiBanView.m */; };
@@ -540,6 +546,18 @@
 		5977D17E18225020003DD5A3 /* pic_sms@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pic_sms@2x.png"; sourceTree = "<group>"; };
 		5977D17F18225020003DD5A3 /* pic_weixin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pic_weixin@2x.png"; sourceTree = "<group>"; };
 		5977D18018225020003DD5A3 /* pic_weibo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pic_weibo@2x.png"; sourceTree = "<group>"; };
+		59878CA81856CA5900454D0E /* MessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageView.h; sourceTree = "<group>"; };
+		59878CA91856CA5900454D0E /* MessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageView.m; sourceTree = "<group>"; };
+		59878CAB1856E0E500454D0E /* ContactsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsView.h; sourceTree = "<group>"; };
+		59878CAC1856E0E500454D0E /* ContactsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsView.m; sourceTree = "<group>"; };
+		59878CB11856E12800454D0E /* ContactsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsController.h; sourceTree = "<group>"; };
+		59878CB21856E12800454D0E /* ContactsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsController.m; sourceTree = "<group>"; };
+		59878CB41856E13C00454D0E /* MessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageController.h; sourceTree = "<group>"; };
+		59878CB51856E13C00454D0E /* MessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageController.m; sourceTree = "<group>"; };
+		59878CB91856E2AE00454D0E /* MyInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyInfoView.h; sourceTree = "<group>"; };
+		59878CBA1856E2AE00454D0E /* MyInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyInfoView.m; sourceTree = "<group>"; };
+		59878CBC1856E51500454D0E /* MyInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyInfoController.h; sourceTree = "<group>"; };
+		59878CBD1856E51500454D0E /* MyInfoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyInfoController.m; sourceTree = "<group>"; };
 		5989A0E217F533CB00789DC6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5989A11A17F583AE00789DC6 /* HomeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeView.h; sourceTree = "<group>"; };
 		5989A11B17F583AE00789DC6 /* HomeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeView.m; sourceTree = "<group>"; };
@@ -1100,6 +1118,7 @@
 		595CB9B517F167CB00228A6E /* controllayer */ = {
 			isa = PBXGroup;
 			children = (
+				59878CA71856C8B100454D0E /* imController */,
 				65AB26451856BD5A00F5EAF6 /* HomeScrollerController */,
 				65A26CA31839C42A006AF226 /* ScheduleController */,
 				65D967921812B95A00C1A05E /* AccessoryController */,
@@ -1128,6 +1147,7 @@
 		595CB9B617F167D800228A6E /* viewlayer */ = {
 			isa = PBXGroup;
 			children = (
+				59878CA61856C8A500454D0E /* imView */,
 				65AB26411856BD2200F5EAF6 /* HomeScrollView */,
 				65A26C991839C387006AF226 /* scheduleView */,
 				65D9678E1812B8D700C1A05E /* AccessoryView */,
@@ -1526,6 +1546,32 @@
 				59A8642B18256BFC00C752C8 /* ProvideMessageForWeiboViewController.m */,
 			);
 			name = sina;
+			sourceTree = "<group>";
+		};
+		59878CA61856C8A500454D0E /* imView */ = {
+			isa = PBXGroup;
+			children = (
+				59878CAB1856E0E500454D0E /* ContactsView.h */,
+				59878CAC1856E0E500454D0E /* ContactsView.m */,
+				59878CA81856CA5900454D0E /* MessageView.h */,
+				59878CA91856CA5900454D0E /* MessageView.m */,
+				59878CB91856E2AE00454D0E /* MyInfoView.h */,
+				59878CBA1856E2AE00454D0E /* MyInfoView.m */,
+			);
+			name = imView;
+			sourceTree = "<group>";
+		};
+		59878CA71856C8B100454D0E /* imController */ = {
+			isa = PBXGroup;
+			children = (
+				59878CB41856E13C00454D0E /* MessageController.h */,
+				59878CB51856E13C00454D0E /* MessageController.m */,
+				59878CB11856E12800454D0E /* ContactsController.h */,
+				59878CB21856E12800454D0E /* ContactsController.m */,
+				59878CBC1856E51500454D0E /* MyInfoController.h */,
+				59878CBD1856E51500454D0E /* MyInfoController.m */,
+			);
+			name = imController;
 			sourceTree = "<group>";
 		};
 		659AB33A180973C7000FCEC5 /* AddressBook */ = {
@@ -1955,6 +2001,7 @@
 				5943985217F42774000B6E9C /* BaseView.m in Sources */,
 				59584B2B181999BB00B65162 /* LoginView.m in Sources */,
 				596D6F0A18085D79002CD0B3 /* SmsController.m in Sources */,
+				59878CBE1856E51500454D0E /* MyInfoController.m in Sources */,
 				65B3AC7F18195CEC00F2EC04 /* SMSModeDetaView.m in Sources */,
 				659995D61828A10500694F57 /* AlterPasswordController.m in Sources */,
 				659BD0E5183F327D00FAC29E /* warningDataInfo.m in Sources */,
@@ -1987,6 +2034,7 @@
 				65AB264B1856C27D00F5EAF6 /* HomeInformationView.m in Sources */,
 				595B7A0B1809591A006DD766 /* PullRefreshTableView.m in Sources */,
 				595B509B180D0F8D003EC2AF /* HelpView.m in Sources */,
+				59878CB31856E12800454D0E /* ContactsController.m in Sources */,
 				595A0C7618113253009C26B8 /* CustomPush.m in Sources */,
 				65A573ED183AFDA30072A519 /* solarOrLunar.c in Sources */,
 				5941F6841813D146002735A3 /* AccountManager.m in Sources */,
@@ -2042,11 +2090,13 @@
 				65B3AC8818195D7300F2EC04 /* SMSModeDetaController.m in Sources */,
 				59584B3C18199A9800B65162 /* PackageData.m in Sources */,
 				65B3C7D218177AB000DF4C8E /* MassAddPeopleView.m in Sources */,
+				59878CB61856E13C00454D0E /* MessageController.m in Sources */,
 				595A0C7018112A29009C26B8 /* EcOptionController.m in Sources */,
 				6521F62F18166D9200CD7B76 /* MailAddressView.m in Sources */,
 				659995DF1828EC8500694F57 /* SJABHelper.m in Sources */,
 				59584B3518199A5200B65162 /* OfficeDetailController.m in Sources */,
 				65AB26481856BD7C00F5EAF6 /* HomeScrollerController.m in Sources */,
+				59878CBB1856E2AE00454D0E /* MyInfoView.m in Sources */,
 				5960DC8117F92A6C0024AD8B /* CustomPageControl.m in Sources */,
 				596D6F1218085DB1002CD0B3 /* MeettingController.m in Sources */,
 				6581E96F183C68E500A10D10 /* SevenSwitch.m in Sources */,
@@ -2078,6 +2128,7 @@
 				594204561802E5AA00AA35C3 /* AFURLSessionManager.m in Sources */,
 				595B5093180CF306003EC2AF /* NoticeDetailView.m in Sources */,
 				659AB34C18097555000FCEC5 /* GroupAddressView.m in Sources */,
+				59878CAD1856E0E500454D0E /* ContactsView.m in Sources */,
 				659AB37B18097878000FCEC5 /* ioapi.c in Sources */,
 				59584B241819995200B65162 /* DownloadCell.m in Sources */,
 				594204551802E5AA00AA35C3 /* AFURLResponseSerialization.m in Sources */,
@@ -2093,6 +2144,7 @@
 				5951FD7818079A5D0095F212 /* HomeController.m in Sources */,
 				659995DC1828E88C00694F57 /* AddPeopleBookController.m in Sources */,
 				65A9C8DD180EC7780032D170 /* InformationInfo.m in Sources */,
+				59878CAA1856CA5900454D0E /* MessageView.m in Sources */,
 				659BD0E2183F2D5D00FAC29E /* warningInfo.m in Sources */,
 				659995D91828E86100694F57 /* AddPeopleBookView.m in Sources */,
 				594B812E18037CF800310CB1 /* SmsSonDetaInto.m in Sources */,
