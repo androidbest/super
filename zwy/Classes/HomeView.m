@@ -25,13 +25,7 @@ NSString * stringTel =STRING_TEL(@"133");
 #import "Constants.h"
 #import "WorkView.h"
 #import "HolidayView.h"
-#import "AddressTabbar.h"
-#import "InformationView.h"
-#import "SmsView.h"
-#import "OfficeView.h"
-#import "MeettingView.h"
-#import "MailView.h"
-#import "scheduleView.h"
+#import "BaseTabbar.h"
 @interface HomeView ()
 //@property (strong ,nonatomic)AddressTabbar *addTabbar;
 //@property (strong ,nonatomic)InformationView *infomasView;
@@ -159,24 +153,18 @@ NSString * stringTel =STRING_TEL(@"133");
 
 //首页传值
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-//    UIViewController * viewController =segue.destinationViewController;
-//    if ([segue.identifier isEqualToString:@"homeToAddress"]) {
-//        _addTabbar =(AddressTabbar *)viewController;
-//    }else if([segue.identifier isEqualToString:@"hometoinformation"]){
-//        _infomasView=(InformationView *)viewController;
-//    }else if([segue.identifier isEqualToString:@"HomeToScheduleView"]){
-//        _schedulesView=(scheduleView *)viewController;
-//    }else if([segue.identifier isEqualToString:@"hometosms"]){
-//        _smssView =(SmsView *)viewController;
-//    }else if([segue.identifier isEqualToString:@"hometooffice"]){
-//        _officesView =(OfficeView *)viewController;
-//    }else if([segue.identifier isEqualToString:@"hometomail"]){
-//        _mailsView =(MailView *)viewController;
-//    }else if([segue.identifier isEqualToString:@"hometomeetting"]){
-//        _meetView =(MeettingView *)viewController;
-//    }
+
 }
 
+/*控制首页scrollView是否可以滑动*/
+- (void)viewDidAppear:(BOOL)animated{
+     [(BaseTabbar *)self.tabBarController TabbarScrollEnabled:YES];
+}
+
+- (void)viewDidDisappear:(BOOL)animated{
+    [(BaseTabbar *)self.tabBarController TabbarScrollEnabled:NO];
+}
+/*************************/
 
 
 - (void)didReceiveMemoryWarning

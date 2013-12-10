@@ -26,7 +26,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
 	// Do any additional setup after loading the view.
+}
+
+- (void)TabbarScrollEnabled:(BOOL)Enabled{
+   self.TabbarScrollView.scrollEnabled=Enabled;
 }
 
 - (void)didReceiveMemoryWarning

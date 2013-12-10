@@ -258,6 +258,8 @@
 		65AB264B1856C27D00F5EAF6 /* HomeInformationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65AB264A1856C27D00F5EAF6 /* HomeInformationView.m */; };
 		65AB264E1856C72F00F5EAF6 /* HomeInfomationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65AB264D1856C72F00F5EAF6 /* HomeInfomationController.m */; };
 		65AB26511856E84500F5EAF6 /* BaseTabbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 65AB26501856E84500F5EAF6 /* BaseTabbar.m */; };
+		65AB26571856F7A100F5EAF6 /* SGFocusImageFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 65AB26541856F7A100F5EAF6 /* SGFocusImageFrame.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		65AB26581856F7A100F5EAF6 /* SGFocusImageItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 65AB26561856F7A100F5EAF6 /* SGFocusImageItem.m */; };
 		65AC6603180F77A900C0CA4F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65AC6602180F77A900C0CA4F /* Main.storyboard */; };
 		65AC6606180FBDB900C0CA4F /* optionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65AC6605180FBDB900C0CA4F /* optionCell.m */; };
 		65AC660D180FCDBF00C0CA4F /* btn_check.png in Resources */ = {isa = PBXBuildFile; fileRef = 65AC660B180FCDBF00C0CA4F /* btn_check.png */; };
@@ -733,6 +735,10 @@
 		65AB264D1856C72F00F5EAF6 /* HomeInfomationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeInfomationController.m; sourceTree = "<group>"; };
 		65AB264F1856E84500F5EAF6 /* BaseTabbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTabbar.h; sourceTree = "<group>"; };
 		65AB26501856E84500F5EAF6 /* BaseTabbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTabbar.m; sourceTree = "<group>"; };
+		65AB26531856F7A100F5EAF6 /* SGFocusImageFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGFocusImageFrame.h; sourceTree = "<group>"; };
+		65AB26541856F7A100F5EAF6 /* SGFocusImageFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGFocusImageFrame.m; sourceTree = "<group>"; };
+		65AB26551856F7A100F5EAF6 /* SGFocusImageItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGFocusImageItem.h; sourceTree = "<group>"; };
+		65AB26561856F7A100F5EAF6 /* SGFocusImageItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGFocusImageItem.m; sourceTree = "<group>"; };
 		65AC6602180F77A900C0CA4F /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		65AC6604180FBDB900C0CA4F /* optionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = optionCell.h; sourceTree = "<group>"; };
 		65AC6605180FBDB900C0CA4F /* optionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = optionCell.m; sourceTree = "<group>"; };
@@ -1287,6 +1293,7 @@
 		595CB9BA17F17D7D00228A6E /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				65AB26521856F76700F5EAF6 /* SGFocus */,
 				65E59A8C184435B4004444E5 /* UpdataDate.h */,
 				65E59A8D184435B4004444E5 /* UpdataDate.m */,
 				6581E96D183C68E500A10D10 /* SevenSwitch.h */,
@@ -1768,6 +1775,17 @@
 			name = HomeScrollerController;
 			sourceTree = "<group>";
 		};
+		65AB26521856F76700F5EAF6 /* SGFocus */ = {
+			isa = PBXGroup;
+			children = (
+				65AB26531856F7A100F5EAF6 /* SGFocusImageFrame.h */,
+				65AB26541856F7A100F5EAF6 /* SGFocusImageFrame.m */,
+				65AB26551856F7A100F5EAF6 /* SGFocusImageItem.h */,
+				65AB26561856F7A100F5EAF6 /* SGFocusImageItem.m */,
+			);
+			name = SGFocus;
+			sourceTree = "<group>";
+		};
 		65D9678E1812B8D700C1A05E /* AccessoryView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2074,6 +2092,7 @@
 				596D6EEB18085C39002CD0B3 /* InformationView.m in Sources */,
 				596D6EE218085004002CD0B3 /* NoticeView.m in Sources */,
 				595B507E180CEACF003EC2AF /* TemplateCell.m in Sources */,
+				65AB26571856F7A100F5EAF6 /* SGFocusImageFrame.m in Sources */,
 				659AB381180978E5000FCEC5 /* AddressTabbar.m in Sources */,
 				659F65271813C9FF00306C14 /* OfficeAddressView.m in Sources */,
 				594B80FE18037BC500310CB1 /* AllSumInfo.m in Sources */,
@@ -2136,6 +2155,7 @@
 				659AB34C18097555000FCEC5 /* GroupAddressView.m in Sources */,
 				59878CAD1856E0E500454D0E /* ContactsView.m in Sources */,
 				659AB37B18097878000FCEC5 /* ioapi.c in Sources */,
+				65AB26581856F7A100F5EAF6 /* SGFocusImageItem.m in Sources */,
 				59584B241819995200B65162 /* DownloadCell.m in Sources */,
 				594204551802E5AA00AA35C3 /* AFURLResponseSerialization.m in Sources */,
 				5956D8DE181548CE00DF3585 /* DaibanController.m in Sources */,

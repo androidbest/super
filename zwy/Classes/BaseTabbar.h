@@ -10,4 +10,8 @@
 
 @interface BaseTabbar : UITabBarController
 
+@property (strong ,nonatomic)UIScrollView *TabbarScrollView;
+
+- (void)TabbarScrollEnabled:(BOOL)Enabled;
+
 @end

@@ -35,6 +35,7 @@
     self.listview.backgroundColor=[UIColor whiteColor];
     //    [self.listview setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     self.listview.separatorStyle = NO;
+    self.listview.pagingEnabled=YES;
     [self.view addSubview:self.listview];
     [self.listview LoadDataBegin];/*刷新数据*/
     
