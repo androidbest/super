@@ -9,11 +9,11 @@
 #import "HomeScrollView.h"
 #import "HomeScrollerController.h"
 #import "HomeInformationView.h"
-
+#import "BaseTabbar.h"
 @interface HomeScrollView ()
-{
-    UIScrollView *scrollView;
-}
+
+@property(strong ,nonatomic)UIScrollView *scrollView;
+
 @end
 
 @implementation HomeScrollView
@@ -40,28 +40,29 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    scrollView = [[UIScrollView alloc] initWithFrame:self.view.frame];
-    scrollView.delegate = self.controller;
-    scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight |
+    _scrollView = [[UIScrollView alloc] initWithFrame:self.view.frame];
+    _scrollView.delegate = self.controller;
+    _scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight |
     UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-    scrollView.autoresizesSubviews = YES;
-    scrollView.backgroundColor = [UIColor clearColor];
-    scrollView.canCancelContentTouches = NO;
-    scrollView.showsHorizontalScrollIndicator = NO;
-    scrollView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
-    scrollView.clipsToBounds = YES;
-    scrollView.scrollEnabled = YES;
-    scrollView.pagingEnabled = YES;
-    scrollView.bounces=NO;
-    [self.view addSubview:scrollView];
-    scrollView.contentSize=CGSizeMake(ScreenWidth*2, 0);
-    [scrollView setContentOffset:CGPointMake(320, 0)];
-	
+    _scrollView.autoresizesSubviews = YES;
+    _scrollView.backgroundColor = [UIColor clearColor];
+    _scrollView.canCancelContentTouches = NO;
+    _scrollView.showsHorizontalScrollIndicator = NO;
+    _scrollView.indicatorStyle = UIScrollViewIndicatorStyleWhite;
+    _scrollView.clipsToBounds = YES;
+    _scrollView.scrollEnabled = YES;
+    _scrollView.pagingEnabled = YES;
+    _scrollView.bounces=NO;
+    [self.view addSubview:_scrollView];
+    _scrollView.contentSize=CGSizeMake(ScreenWidth*2, 0);
+    [_scrollView setContentOffset:CGPointMake(320, 0)];
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
-    UITabBarController *detaView = [storyboard instantiateViewControllerWithIdentifier:@"zwyhome"];
+    BaseTabbar *detaView = [storyboard instantiateViewControllerWithIdentifier:@"zwyhome"];
+    detaView.TabbarScrollView=_scrollView;
     HomeInformationView *homeInfomaView =[storyboard instantiateViewControllerWithIdentifier:@"HomeInformationView"];
     [self setViewControllers:@[homeInfomaView,detaView] animated:YES];
+    
 }
 
 #pragma mark Add and remove
@@ -78,14 +79,14 @@
         [self addChildViewController:vC];
         [vC didMoveToParentViewController:self];
     }
-    if (scrollView)
+    if (_scrollView)
         [self reloadPages];
 }
 
 
 - (void)reloadPages {
     
-    for (UIView *view in scrollView.subviews) {
+    for (UIView *view in _scrollView.subviews) {
         [view removeFromSuperview];
     }
     
@@ -100,11 +101,11 @@
         rect.size.height = view.frame.size.height;
 		view.frame = rect;
         
-		[scrollView addSubview:view];
+		[_scrollView addSubview:view];
         
-		cx += scrollView.frame.size.width;
+		cx += _scrollView.frame.size.width;
 	}
-	[scrollView setContentSize:CGSizeMake(cx, [scrollView bounds].size.height)];
+	[_scrollView setContentSize:CGSizeMake(cx, [_scrollView bounds].size.height)];
     
     
 }

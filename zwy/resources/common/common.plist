@@ -5,7 +5,7 @@
 	<key>DebugHTTP</key>
 	<string>http://192.168.0.137:8989/phoenix/</string>
 	<key>httpurl</key>
-	<string>http://192.168.0.200:7778/phoneservice/</string>
+	<string>http://192.168.0.137:8989/phoenix/</string>
 	<key>helpurl</key>
 	<string>http://218.206.4.38:8081/phoneservice/help.html</string>
 	<key>temphttpurl</key>
