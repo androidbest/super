@@ -28,7 +28,25 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+//	_tableview.dataSource=self.controller;
+//    _tableview.delegate=self.controller;
+    
+    UISearchDisplayController *searchController = [[UISearchDisplayController alloc]
+                        initWithSearchBar:_searchBar contentsController:self];
+    searchController.delegate = self;
+    searchController.searchResultsDataSource = self;
+    searchController.searchResultsDelegate = self;
+}
+
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+//    if (tableView == self.tableView) {
+//        return ...;
+//    }
+    // If necessary (if self is the data source for other table views),
+    // check whether tableView is searchController.searchResultsTableView.
+    return 5;
 }
 
 -(void)viewWillAppear:(BOOL)animated{

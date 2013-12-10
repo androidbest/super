@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
         <!--Login View-->
@@ -535,16 +535,118 @@
                         <segue destination="3iH-Pf-BIC" kind="push" identifier="hometoNotice" id="q94-Bn-wUg"/>
                         <segue destination="kuN-yo-CK2" kind="push" identifier="hometoinformation" id="8ku-VM-47X"/>
                         <segue destination="yd5-vm-ZKx" kind="push" identifier="hometooffice" id="yUM-P0-VGZ"/>
-                        <segue destination="KVr-iM-7Jk" kind="push" identifier="hometomail" id="EJA-ys-7x4"/>
                         <segue destination="8ys-ze-uvD" kind="push" identifier="hometomeetting" id="hx8-pg-jlO"/>
                         <segue destination="f2v-cF-S57" kind="push" identifier="homeToAddress" id="s5F-tr-oYV"/>
                         <segue destination="CFe-LX-aoa" kind="push" identifier="hometosms" id="NM5-4S-gdU"/>
                         <segue destination="grI-bN-VNp" kind="push" identifier="HomeToScheduleView" id="0e8-Tf-HAH"/>
+                        <segue destination="d1u-wQ-879" kind="push" identifier="hometomail" id="6Dj-dO-wks"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="awo-ce-f04" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1127" y="3236"/>
+        </scene>
+        <!--Message View - Item 1-->
+        <scene sceneID="QpU-GJ-SRM">
+            <objects>
+                <viewController id="RJq-ew-dol" customClass="MessageView" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bvt-F5-eAY"/>
+                        <viewControllerLayoutGuide type="bottom" id="ibh-IZ-FWu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hNA-oh-zcQ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 1" id="S05-cd-xaW"/>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="4F7-St-iv0" id="g9S-Jr-U8e"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kUI-Rb-Wej" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="BaN-l9-Ma9">
+                    <connections>
+                        <outlet property="delegate" destination="RJq-ew-dol" id="nfU-jO-6kE"/>
+                        <outlet property="searchContentsController" destination="RJq-ew-dol" id="7Y8-CA-VpM"/>
+                        <outlet property="searchResultsDataSource" destination="RJq-ew-dol" id="Up1-ew-0Yg"/>
+                        <outlet property="searchResultsDelegate" destination="RJq-ew-dol" id="Sen-0t-PwY"/>
+                    </connections>
+                </searchDisplayController>
+                <searchDisplayController id="U6M-xP-6dv">
+                    <connections>
+                        <outlet property="delegate" destination="RJq-ew-dol" id="X1d-JE-Xmq"/>
+                        <outlet property="searchContentsController" destination="RJq-ew-dol" id="Z0S-7l-uWn"/>
+                        <outlet property="searchResultsDataSource" destination="RJq-ew-dol" id="wqh-oP-ZMa"/>
+                        <outlet property="searchResultsDelegate" destination="RJq-ew-dol" id="d0r-T1-EuV"/>
+                    </connections>
+                </searchDisplayController>
+                <searchDisplayController id="xRt-sj-Eoe">
+                    <connections>
+                        <outlet property="delegate" destination="RJq-ew-dol" id="WWx-UB-6WO"/>
+                        <outlet property="searchContentsController" destination="RJq-ew-dol" id="fVc-iL-tFd"/>
+                        <outlet property="searchResultsDataSource" destination="RJq-ew-dol" id="D5p-Tk-a3p"/>
+                        <outlet property="searchResultsDelegate" destination="RJq-ew-dol" id="PMK-gL-4SO"/>
+                    </connections>
+                </searchDisplayController>
+                <searchDisplayController id="Jb2-VA-E6M">
+                    <connections>
+                        <outlet property="delegate" destination="RJq-ew-dol" id="Q2Q-yT-rIF"/>
+                        <outlet property="searchContentsController" destination="RJq-ew-dol" id="yBt-XP-fdy"/>
+                        <outlet property="searchResultsDataSource" destination="RJq-ew-dol" id="h4D-Zo-13F"/>
+                        <outlet property="searchResultsDelegate" destination="RJq-ew-dol" id="JAJ-WY-ZzF"/>
+                    </connections>
+                </searchDisplayController>
+                <searchDisplayController id="4F7-St-iv0">
+                    <connections>
+                        <outlet property="delegate" destination="RJq-ew-dol" id="DLY-Q0-KR9"/>
+                        <outlet property="searchContentsController" destination="RJq-ew-dol" id="tsy-hB-mda"/>
+                        <outlet property="searchResultsDataSource" destination="RJq-ew-dol" id="2Xg-TQ-Ibc"/>
+                        <outlet property="searchResultsDelegate" destination="RJq-ew-dol" id="gSO-Bi-1tl"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="2288" y="2969"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="5Va-zC-JB2">
+            <objects>
+                <tabBarController definesPresentationContext="YES" id="d1u-wQ-879" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="gX8-Vb-99c"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="dXf-kt-jmf">
+                        <rect key="frame" x="129" y="330" width="163" height="49"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="RJq-ew-dol" kind="relationship" relationship="viewControllers" id="rge-Pe-mz8"/>
+                        <segue destination="0HW-LT-WKV" kind="relationship" relationship="viewControllers" id="lGw-JT-COF"/>
+                        <segue destination="TlP-4S-Sfv" kind="relationship" relationship="viewControllers" id="arp-8u-0SS"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oBT-D7-4NR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1818" y="3416"/>
+        </scene>
+        <!--Contacts View - Item 2-->
+        <scene sceneID="YuO-PR-cPa">
+            <objects>
+                <viewController id="0HW-LT-WKV" customClass="ContactsView" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="yuU-JA-VWl"/>
+                        <viewControllerLayoutGuide type="bottom" id="Pok-4g-gW7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Bzb-5i-Iv4">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 2" id="kGB-th-UdX"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lBy-9h-JSA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2296" y="3600"/>
         </scene>
         <!--Office View - 政 务 办 公-->
         <scene sceneID="IOT-It-TiO">
@@ -610,7 +712,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c2g-8C-1SS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1594" y="3695"/>
+            <point key="canvasLocation" x="1390" y="4071"/>
         </scene>
         <!--Mail View - 群 众 信 箱-->
         <scene sceneID="DkQ-j0-Fgu">
@@ -657,7 +759,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3ty-YE-8qs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2702" y="3551"/>
+            <point key="canvasLocation" x="3130" y="3269"/>
         </scene>
         <!--Doc Content View - 公文正文-->
         <scene sceneID="CXG-lc-9xV">
@@ -3283,6 +3385,25 @@
             </objects>
             <point key="canvasLocation" x="1267" y="5276"/>
         </scene>
+        <!--My Info View - Item-->
+        <scene sceneID="cSD-mI-zf8">
+            <objects>
+                <viewController id="TlP-4S-Sfv" customClass="MyInfoView" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="VdS-Mq-axm"/>
+                        <viewControllerLayoutGuide type="bottom" id="qqa-sN-q9m"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vUX-wb-JDF">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="3wg-ZH-dtM"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VjA-CR-cu0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2303" y="4178"/>
+        </scene>
         <!--Office Detail View-->
         <scene sceneID="uvd-Ph-U00">
             <objects>
@@ -4825,11 +4946,11 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="blo-VH-jXf"/>
-        <segue reference="XY3-9B-d3j"/>
-        <segue reference="5B2-S3-8Nb"/>
-        <segue reference="VnO-Jy-h2g"/>
-        <segue reference="fnu-ur-Sot"/>
         <segue reference="vH5-EP-k5r"/>
+        <segue reference="5B2-S3-8Nb"/>
+        <segue reference="fnu-ur-Sot"/>
+        <segue reference="VnO-Jy-h2g"/>
+        <segue reference="XY3-9B-d3j"/>
+        <segue reference="sAR-cD-OcR"/>
     </inferredMetricsTieBreakers>
 </document>

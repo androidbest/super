@@ -8,6 +8,8 @@
 
 #import "BaseView.h"
 
-@interface MessageView : BaseView
+@interface MessageView : BaseView<UISearchDisplayDelegate,UITableViewDataSource,UITableViewDelegate>
+
+@property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
 
 @end
