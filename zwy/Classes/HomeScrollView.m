@@ -87,7 +87,6 @@
     
     for (UIView *view in scrollView.subviews) {
         [view removeFromSuperview];
-        
     }
     
 	CGFloat cx = 0;
