@@ -28,26 +28,39 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//	_tableview.dataSource=self.controller;
-//    _tableview.delegate=self.controller;
     
-    UISearchDisplayController *searchController = [[UISearchDisplayController alloc]
-                        initWithSearchBar:_searchBar contentsController:self];
-    searchController.delegate = self;
-    searchController.searchResultsDataSource = self;
-    searchController.searchResultsDelegate = self;
-}
-
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    _searchBar = [[UISearchBar alloc] initWithFrame:CGRectZero];
+    _searchBar.placeholder = @"搜索";
+    _searchBar.delegate = self.controller;
+    [_searchBar sizeToFit];
     
-//    if (tableView == self.tableView) {
-//        return ...;
+    _tableView = [[UITableView alloc] initWithFrame:self.view.bounds];
+    _tableView.dataSource = self.controller;
+    _tableView.delegate = self.controller;
+    _tableView.tableHeaderView = self.searchBar;
+    _tableView.contentOffset = CGPointMake(0, CGRectGetHeight(_searchBar.bounds));
+    [self.view addSubview:_tableView];
+    
+//    if (animated) {
+        [self.tableView flashScrollIndicators];
 //    }
-    // If necessary (if self is the data source for other table views),
-    // check whether tableView is searchController.searchResultsTableView.
-    return 5;
+    
+//    _displayController = [[UISearchDisplayController alloc] initWithSearchBar:_searchBar contentsController:self];
+//    self.searchDisplayController.searchResultsDataSource = self;
+//    self.searchDisplayController.searchResultsDelegate = self;
+//    self.searchDisplayController.delegate = self;
 }
+
+
+//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+//    
+////    if (tableView == self.tableView) {
+////        return ...;
+////    }
+//    // If necessary (if self is the data source for other table views),
+//    // check whether tableView is searchController.searchResultsTableView.
+//    return 5;
+//}
 
 -(void)viewWillAppear:(BOOL)animated{
     self.tabBarController.navigationItem.title=@"最近消息";
