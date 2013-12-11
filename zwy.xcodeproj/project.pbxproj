@@ -251,6 +251,7 @@
 		65A8C472185838CD005285C4 /* banner3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 65A8C46F185838CD005285C4 /* banner3.jpg */; };
 		65A8C473185838CD005285C4 /* banner2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 65A8C470185838CD005285C4 /* banner2.jpg */; };
 		65A8C474185838CD005285C4 /* banner1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 65A8C471185838CD005285C4 /* banner1.jpg */; };
+		65A8C47718584082005285C4 /* InformationNewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A8C47618584082005285C4 /* InformationNewsCell.m */; };
 		65A9C8D3180E89A90032D170 /* btn_addPeople.png in Resources */ = {isa = PBXBuildFile; fileRef = 65A9C8D2180E89A90032D170 /* btn_addPeople.png */; };
 		65A9C8D6180E9AF70032D170 /* optionAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A9C8D5180E9AF70032D170 /* optionAddress.m */; };
 		65A9C8D9180EA6840032D170 /* OptionAddressController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A9C8D8180EA6840032D170 /* OptionAddressController.m */; };
@@ -722,6 +723,8 @@
 		65A8C46F185838CD005285C4 /* banner3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = banner3.jpg; sourceTree = "<group>"; };
 		65A8C470185838CD005285C4 /* banner2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = banner2.jpg; sourceTree = "<group>"; };
 		65A8C471185838CD005285C4 /* banner1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = banner1.jpg; sourceTree = "<group>"; };
+		65A8C47518584082005285C4 /* InformationNewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InformationNewsCell.h; sourceTree = "<group>"; };
+		65A8C47618584082005285C4 /* InformationNewsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformationNewsCell.m; sourceTree = "<group>"; };
 		65A9C8D2180E89A90032D170 /* btn_addPeople.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_addPeople.png; sourceTree = "<group>"; };
 		65A9C8D4180E9AF70032D170 /* optionAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = optionAddress.h; sourceTree = "<group>"; };
 		65A9C8D5180E9AF70032D170 /* optionAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = optionAddress.m; sourceTree = "<group>"; };
@@ -1416,6 +1419,8 @@
 				65A9C8DF180EC83F0032D170 /* InformationDetail.m */,
 				596D6EE918085C39002CD0B3 /* InformationView.h */,
 				596D6EEA18085C39002CD0B3 /* InformationView.m */,
+				65A8C47518584082005285C4 /* InformationNewsCell.h */,
+				65A8C47618584082005285C4 /* InformationNewsCell.m */,
 			);
 			name = Information;
 			sourceTree = "<group>";
@@ -2050,6 +2055,7 @@
 				659AB34F18097579000FCEC5 /* AddressDetailsView.m in Sources */,
 				5942045F1802F0B500AA35C3 /* ParseXML.m in Sources */,
 				5951D5E2180BC1820009CCAF /* RespList.m in Sources */,
+				65A8C47718584082005285C4 /* InformationNewsCell.m in Sources */,
 				65B3AC7C18195CBE00F2EC04 /* SMSModeView.m in Sources */,
 				59584B2F18199A0400B65162 /* AccessoryController.m in Sources */,
 				5942044F1802E5AA00AA35C3 /* AFHTTPRequestOperationManager.m in Sources */,
