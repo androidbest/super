@@ -20,6 +20,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *Btnchat;
 @property (strong, nonatomic) IBOutlet UIButton *btnWarning;
 @property (strong, nonatomic) IBOutlet UIScrollView *ScrollHome;
+@property (strong, nonatomic) IBOutlet UILabel *labelUsersAddress;
 
 @property (strong, nonatomic) IBOutlet UILabel *mailsum;
 

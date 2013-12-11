@@ -153,7 +153,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if(tableView.tag==0){
-        return 60;
+        return tableView.frame.size.height;
     }else{
         UITableViewCell * cell =[self tableView:tableView cellForRowAtIndexPath:indexPath];
         return cell.frame.size.height;
@@ -172,13 +172,12 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString * strCell1 =@"cell1";
     static NSString * strCell2 =@"cell2";
-    TemplateCell * cell;
+   
     if(tableView.tag==0){
         InformationNewsCell *cellNews=[tableView dequeueReusableCellWithIdentifier:strCell1];
-        if (!cell) {
+        if (!cellNews) {
             cellNews = [[InformationNewsCell alloc] initWithStyle:UITableViewCellStyleSubtitle
                                        reuseIdentifier:strCell1];
-            cellNews.accessoryType =UITableViewCellAccessoryDisclosureIndicator;
         }
         
         InformationInfo *info=arr0[indexPath.row];
@@ -186,11 +185,11 @@
         cellNews.detailTextLabel.text=info.content;
          return cellNews;
         
-        if ([arrYetNews containsObject:info.newsID]) cell.title.textColor=[UIColor grayColor];
-        else cell.title.textColor =[UIColor blackColor];
+//        if ([arrYetNews containsObject:info.newsID]) cell.title.textColor=[UIColor grayColor];
+//        else cell.title.textColor =[UIColor blackColor];
         
     }else{
-        cell =[tableView dequeueReusableCellWithIdentifier:strCell2];
+         TemplateCell * cell=[tableView dequeueReusableCellWithIdentifier:strCell2];
         if (!cell) {
             cell = [[TemplateCell alloc] initWithStyle:UITableViewCellStyleSubtitle
                                        reuseIdentifier:strCell2];
@@ -209,8 +208,9 @@
         rect =cell.frame;
         rect.size.height=cell.content.frame.size.height+30;
         cell.frame=rect;
+        return cell;
     }
-    return cell;
+   
 }
 
 

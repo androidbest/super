@@ -428,7 +428,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="100" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eo7-8r-E0u">
-                                        <rect key="frame" x="133" y="295" width="24" height="21"/>
+                                        <rect key="frame" x="133" y="298" width="24" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="1" green="0.03254181749" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -445,16 +445,32 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FdY-Di-Oyg">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FdY-Di-Oyg">
                                         <rect key="frame" x="165" y="147" width="150" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="1" green="0.19723975220000001" blue="0.070721802279999996" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <inset key="titleEdgeInsets" minX="10" minY="10" maxX="0.0" maxY="0.0"/>
                                         <state key="normal" title="王爽">
                                             <color key="titleColor" red="0.99441661010000004" green="0.99441661010000004" blue="0.99441661010000004" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="100" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WwR-Qn-iYt">
+                                        <rect key="frame" x="133" y="520" width="24" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="1" green="0.03254181749" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="星光三村" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gOJ-RZ-c5N">
+                                        <rect key="frame" x="177" y="182" width="127" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" red="0.99441661010000004" green="0.99441661010000004" blue="0.99441661010000004" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                             </scrollView>
                         </subviews>
@@ -467,7 +483,9 @@
                         <outlet property="ScrollHome" destination="WW5-UY-2bs" id="VtG-gP-9cH"/>
                         <outlet property="btnWarning" destination="pnc-4W-Fsm" id="zPd-eJ-DFm"/>
                         <outlet property="information" destination="QoZ-11-Apm" id="wKt-6n-y7t"/>
+                        <outlet property="labelUsersAddress" destination="gOJ-RZ-c5N" id="W0A-yP-gpj"/>
                         <outlet property="mail" destination="bBu-YH-qq3" id="TdB-lW-jON"/>
+                        <outlet property="mailsum" destination="WwR-Qn-iYt" id="7jE-Kz-Mj8"/>
                         <outlet property="meetting" destination="plg-gb-njD" id="zmM-bl-WMe"/>
                         <outlet property="notice" destination="aBW-R2-tEG" id="e8C-KU-uef"/>
                         <outlet property="office" destination="VHT-7y-EUS" id="vzb-OI-AKO"/>

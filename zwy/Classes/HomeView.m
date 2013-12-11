@@ -126,16 +126,16 @@ NSString * stringTel =STRING_TEL(@"133");
     
 
     //广告
-    NSArray *arrImagePath =@[@"banner3.jpg",@"banner1.jpg",@"banner2.jpg",@"banner3.jpg",@"banner1.jpg"];
+    NSArray *arrImagePath =@[@"newsBanner2.jpg",@"newsBanner1.jpg",@"newsBanner2.jpg",@"newsBanner1.jpg"];
     NSMutableArray *arrItemp=[NSMutableArray new];
-    for (int i = -1 ; i < 4; i++)
+    for (int i = -1 ; i < 3; i++)
     {
         SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithTitle:[ToolUtils numToString:i]
                                                                    image:arrImagePath[i+1]
                                                                      tag:i];
         [arrItemp addObject:item];
     }
-    SGFocusImageFrame *bannerView = [[SGFocusImageFrame alloc] initWithFrame:CGRectMake(0, -20, ScreenWidth, 160)
+    SGFocusImageFrame *bannerView = [[SGFocusImageFrame alloc] initWithFrame:CGRectMake(0, -20, ScreenWidth, 120)
                                                                     delegate:self.controller
                                                                   imageItems:arrItemp
                                                                       isAuto:YES
