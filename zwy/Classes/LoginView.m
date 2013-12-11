@@ -85,7 +85,6 @@
    /* HomeScrollView *homeView = [storyboard instantiateViewControllerWithIdentifier:@"HomeScrollView"];*/
     BaseTabbar *homeView =[storyboard instantiateViewControllerWithIdentifier:@"zwyhome"];
     [self presentViewController:homeView animated:NO completion:nil];
-    
 }
 
 
