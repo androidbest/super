@@ -56,6 +56,9 @@ NSString * stringTel =STRING_TEL(@"133");
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+         self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
+    
 	[_information setBackgroundColor:[UIColor colorWithRed:0.41 green:0.47 blue:0.98 alpha:1.0]];
     [_notice setBackgroundColor:[UIColor colorWithRed:0.63 green:0.31 blue:0.70 alpha:1.0]];
     [_sms setBackgroundColor:[UIColor colorWithRed:0.95 green:0.50 blue:0.12 alpha:1.0]];
@@ -181,8 +184,6 @@ NSString * stringTel =STRING_TEL(@"133");
 }
 
 - (void)viewDidDisappear:(BOOL)animated{
-    self.navigationController.navigationBarHidden=NO;
-    
     [(BaseTabbar *)self.tabBarController TabbarScrollEnabled:NO];
 }
 
@@ -190,7 +191,11 @@ NSString * stringTel =STRING_TEL(@"133");
     _ScrollHome.contentSize=CGSizeMake(0, 665);
 }
 /*************************/
-
+/*push到通讯录*/
+- (void)HomeToAddressBookView{
+    self.tabBarController.tabBar.hidden=YES;
+    [self performSegueWithIdentifier:@"homeToAddress" sender:self];
+}
 
 - (void)didReceiveMemoryWarning
 {

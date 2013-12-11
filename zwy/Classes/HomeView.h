@@ -28,4 +28,6 @@
 @property (strong, nonatomic)  UILabel *name;
 @property (strong, nonatomic)  UILabel *ecname;
 
+- (void)HomeToAddressBookView;
+
 @end

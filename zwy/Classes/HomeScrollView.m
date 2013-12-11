@@ -40,6 +40,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    /*
     _scrollView = [[UIScrollView alloc] initWithFrame:self.view.frame];
     _scrollView.delegate = self.controller;
     _scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight |
@@ -62,6 +63,7 @@
     detaView.TabbarScrollView=_scrollView;
     HomeInformationView *homeInfomaView =[storyboard instantiateViewControllerWithIdentifier:@"HomeInformationView"];
     [self setViewControllers:@[homeInfomaView,detaView] animated:YES];
+     */
     
 }
 

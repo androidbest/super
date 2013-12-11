@@ -7,7 +7,8 @@
 //
 
 #import "BaseTabbar.h"
-
+#import "AddressTabbar.h"
+#import "HomeView.h"
 @interface BaseTabbar ()
 
 @end
@@ -26,8 +27,33 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-	// Do any additional setup after loading the view.
+    for (int i=0; i<4 ;i++) {
+        UIButton * btnBar =[UIButton buttonWithType:UIButtonTypeCustom];
+        btnBar.frame =CGRectMake((ScreenWidth/4)*i, 0, (ScreenWidth/4), 49);
+        btnBar.tag=i;
+        btnBar.backgroundColor=[UIColor clearColor];
+        [btnBar addTarget:self action:@selector(selectedTab:) forControlEvents:UIControlEventTouchUpInside];
+        [self.tabBar addSubview:btnBar];
+    }
+    self.selectedIndex=2;
+	// Do any additional setup after loading the view. tabbarStroy
+}
+
+- (void)selectedTab:(UIButton *)btnBar{
+    if (btnBar.tag==0) {
+        for (UIViewController *viewController in self.viewControllers) {
+            if ([viewController isKindOfClass:[UINavigationController class]]) {
+                UINavigationController *navigationController =(UINavigationController*)viewController;
+                    if ([navigationController.topViewController isKindOfClass:[HomeView class]]) {
+                        [(HomeView *)navigationController.topViewController HomeToAddressBookView];
+                    }
+        
+            }
+        }
+        return;
+    }
+
+    self.selectedIndex=btnBar.tag;
 }
 
 - (void)TabbarScrollEnabled:(BOOL)Enabled{
