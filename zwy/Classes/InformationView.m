@@ -28,6 +28,9 @@
 {
     [super viewDidLoad];
     
+    //返回按钮
+    self.navigationItem.leftBarButtonItem=self.temporaryBarButtonItem;
+    
     
     [_selecter addTarget:self.controller action:@selector(segmentAction:) forControlEvents:UIControlEventValueChanged];
     self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
@@ -51,9 +54,14 @@
     
 }
 
+- (void)backButtonToHome{
+    if (!self.navigationController.navigationBarHidden)self.navigationController.navigationBarHidden=YES;
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.navigationController.navigationBarHidden=NO;
+    if (self.navigationController.navigationBarHidden) self.navigationController.navigationBarHidden=NO;
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{

@@ -47,11 +47,10 @@
 
 - (void)viewDidLoad
 {
-//    UITapGestureRecognizer * tap =[[UITapGestureRecognizer alloc] initWithTarget:self.controller action:@selector(endTextEditing)];
-//    [self.view addGestureRecognizer:tap];
-     self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
-    
     [super viewDidLoad];
+     self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
+    self.navigationItem.leftBarButtonItem=self.temporaryBarButtonItem;
+    
     [_btnSend addTarget:self.controller action:@selector(btnSendSMS:) forControlEvents:UIControlEventTouchUpInside];
     _btnSend.layer.masksToBounds = YES;
     _btnSend.layer.cornerRadius = 6.0;
@@ -88,9 +87,14 @@
 
 }
 
-- (void)viewWillAppear:(BOOL)animated{
+- (void)backButtonToHome{
+    if (!self.navigationController.navigationBarHidden)self.navigationController.navigationBarHidden=YES;
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:NO];
+   if (self.navigationController.navigationBarHidden) self.navigationController.navigationBarHidden=NO;
 }
 
 - (void)segmentAction:(id)sender{

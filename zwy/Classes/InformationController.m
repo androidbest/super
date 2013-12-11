@@ -8,12 +8,13 @@
 
 #define PATH_NEWS @"informationNews.plist"
 #define PATH_JOKES @"informationJokes.plist"
-
+#define MAX_PAGES 18
 #import "InformationController.h"
 #import "Constants.h"
 #import "ToolUtils.h"
 #import "TemplateCell.h"
 #import "InformationInfo.h"
+#import "InformationNewsCell.h"
 @implementation InformationController{
     NSString *page;
     NSMutableArray *arr0;
@@ -51,9 +52,9 @@
         else arrYetJokes =[NSMutableArray new];
         
         start=@"1";
-        end=@"20";
+        end=[ToolUtils numToString:MAX_PAGES];
         start1=@"1";
-        end1=@"20";
+        end1=[ToolUtils numToString:MAX_PAGES];
         [[NSNotificationCenter defaultCenter]addObserver:self
                                                 selector:@selector(handleData:)
                                                     name:xmlNotifInfo
@@ -173,19 +174,17 @@
     static NSString * strCell2 =@"cell2";
     TemplateCell * cell;
     if(tableView.tag==0){
-        cell =[tableView dequeueReusableCellWithIdentifier:strCell1];
+        InformationNewsCell *cellNews=[tableView dequeueReusableCellWithIdentifier:strCell1];
         if (!cell) {
-            cell = [[TemplateCell alloc] initWithStyle:UITableViewCellStyleSubtitle
+            cellNews = [[InformationNewsCell alloc] initWithStyle:UITableViewCellStyleSubtitle
                                        reuseIdentifier:strCell1];
-            cell.accessoryType =UITableViewCellAccessoryDisclosureIndicator;
-            CGRect rect =cell.title.frame;
-            rect.size.width=250;
-            cell.title.frame=rect;
+            cellNews.accessoryType =UITableViewCellAccessoryDisclosureIndicator;
         }
         
         InformationInfo *info=arr0[indexPath.row];
-        cell.title.text=info.title;
-        cell.content.text=info.content;
+        cellNews.textLabel.text=info.title;
+        cellNews.detailTextLabel.text=info.content;
+         return cellNews;
         
         if ([arrYetNews containsObject:info.newsID]) cell.title.textColor=[UIColor grayColor];
         else cell.title.textColor =[UIColor blackColor];
@@ -220,12 +219,12 @@
     //    [self performSelector:@selector(upData) withObject:nil afterDelay:2];
     if(tableView.tag==0){
         start=@"1";
-        end=@"20";
+        end=[ToolUtils numToString:MAX_PAGES];
         isUpdata=YES;
         [packageData reqHotNewsInfoXml:self start:start end:end SELType:xmlNotifInfo];
     }else if(tableView.tag==1){
         start1=@"1";
-        end1=@"20";
+        end1=[ToolUtils numToString:MAX_PAGES];
         isUpdata1=YES;
         [packageData reqJokeInfoXml:self start:start1 end:end1 SELType:xmlNotifInfo1];
     }
@@ -255,16 +254,16 @@
     if(tableView.tag==0){
         NSInteger start_=[ToolUtils stringToNum:start];
         NSInteger end_=[ToolUtils stringToNum:end];
-        start_+=20;
-        end_+=20;
+        start_+=MAX_PAGES;
+        end_+=MAX_PAGES;
         start=[ToolUtils numToString:start_];
         end=[ToolUtils numToString:end_];
         [packageData reqHotNewsInfoXml:self start:start end:end SELType:xmlNotifInfo];
     }else{
         NSInteger start_1=[ToolUtils stringToNum:start1];
         NSInteger end_1=[ToolUtils stringToNum:end1];
-        start_1+=20;
-        end_1+=20;
+        start_1+=MAX_PAGES;
+        end_1+=MAX_PAGES;
         start1=[ToolUtils numToString:start_1];
         end1=[ToolUtils numToString:end_1];
         [packageData reqJokeInfoXml:self start:start1 end:end1 SELType:xmlNotifInfo1];

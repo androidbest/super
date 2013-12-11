@@ -17,4 +17,5 @@
 @property (strong, nonatomic) PullRefreshTableView *listview2;
 @property (strong, nonatomic) PullRefreshTableView *listview3;
 @property (strong, nonatomic) UIActivityIndicatorView *activityIndicatorView;
+@property (strong, nonatomic) UIBarButtonItem *temporaryBarButtonItem;
 @end

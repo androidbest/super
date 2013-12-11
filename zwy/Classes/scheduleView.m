@@ -32,14 +32,7 @@
     self.navigationItem.backBarButtonItem= [[UIBarButtonItem alloc]initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
     
     //返回按钮
-    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    backButton.frame = CGRectMake(0.0, 0.0, 13.0, 20.0);
-    [backButton setImage:[UIImage imageNamed:@"navigation_back_over"] forState:UIControlStateNormal];
-    [backButton setImage:[UIImage imageNamed:@"navigation_back_out"] forState:UIControlStateHighlighted];
-    [backButton addTarget:self action:@selector(backButtonToHome) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *temporaryBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-    temporaryBarButtonItem.style = UIBarButtonItemStylePlain;
-    self.navigationItem.leftBarButtonItem=temporaryBarButtonItem;
+    self.navigationItem.leftBarButtonItem=self.temporaryBarButtonItem;
 
     
         [_segControl addTarget:self.controller action:@selector(segmentAction:) forControlEvents:UIControlEventValueChanged];

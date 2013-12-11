@@ -26,6 +26,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    //返回按钮
+    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    backButton.frame = CGRectMake(0.0, 0.0, 13.0, 20.0);
+    [backButton setImage:[UIImage imageNamed:@"navigation_back_over"] forState:UIControlStateNormal];
+    [backButton setImage:[UIImage imageNamed:@"navigation_back_out"] forState:UIControlStateHighlighted];
+    [backButton addTarget:self action:@selector(backButtonToHome) forControlEvents:UIControlEventTouchUpInside];
+    _temporaryBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+    _temporaryBarButtonItem.style = UIBarButtonItemStylePlain;
 	// Do any additional setup after loading the view.
 }
 
@@ -33,6 +42,10 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)backButtonToHome{
+
 }
 
 @end
