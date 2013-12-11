@@ -102,9 +102,7 @@
 
 //公告
 -(void)notice{
-    [self initBackBarButtonItem:self.homeView];
-    self.homeView.tabBarController.tabBar.hidden=YES;
-    [self.homeView performSegueWithIdentifier:@"HomeToScheduleView" sender:self.homeView];
+
 }
 
 //信息发布
@@ -152,6 +150,13 @@
 }
 
 
+//日程提醒
+- (void)btnWarning{
+    [self initBackBarButtonItem:self.homeView];
+    self.homeView.tabBarController.tabBar.hidden=YES;
+    [self.homeView performSegueWithIdentifier:@"HomeToScheduleView" sender:self.homeView];
+}
+
 //传输最后选择单位
 -(void)sendEc{
     [packageData sendEc:self Type:xmlNotifInfo];
@@ -166,4 +171,8 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+#pragma mark -  SGFocusImageFrameDelegate
+- (void)foucusImageFrame:(SGFocusImageFrame *)imageFrame currentItem:(NSInteger)index{
+
+}
 @end

@@ -70,6 +70,11 @@
     [send setValue:self forKey:@"data"];
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    if (self.navigationController.navigationBarHidden)self.navigationController.navigationBarHidden=NO;
+}
+
 -(void)segmentAction:(UISegmentedControl *)Seg{}
 
 - (void)didReceiveMemoryWarning

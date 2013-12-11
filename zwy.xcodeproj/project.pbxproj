@@ -248,6 +248,9 @@
 		65A573EC183AFDA30072A519 /* solarActionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A573E8183AFDA30072A519 /* solarActionView.m */; };
 		65A573ED183AFDA30072A519 /* solarOrLunar.c in Sources */ = {isa = PBXBuildFile; fileRef = 65A573E9183AFDA30072A519 /* solarOrLunar.c */; };
 		65A5EA6118472BA9004C77E3 /* schedule_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 65A5EA6018472BA9004C77E3 /* schedule_btn.png */; };
+		65A8C46C1857FC82005285C4 /* banner3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 65A8C4691857FC82005285C4 /* banner3.jpg */; };
+		65A8C46D1857FC82005285C4 /* banner2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 65A8C46A1857FC82005285C4 /* banner2.jpg */; };
+		65A8C46E1857FC82005285C4 /* banner1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 65A8C46B1857FC82005285C4 /* banner1.jpg */; };
 		65A9C8D3180E89A90032D170 /* btn_addPeople.png in Resources */ = {isa = PBXBuildFile; fileRef = 65A9C8D2180E89A90032D170 /* btn_addPeople.png */; };
 		65A9C8D6180E9AF70032D170 /* optionAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A9C8D5180E9AF70032D170 /* optionAddress.m */; };
 		65A9C8D9180EA6840032D170 /* OptionAddressController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A9C8D8180EA6840032D170 /* OptionAddressController.m */; };
@@ -716,6 +719,9 @@
 		65A573E9183AFDA30072A519 /* solarOrLunar.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = solarOrLunar.c; sourceTree = "<group>"; };
 		65A573EA183AFDA30072A519 /* solarOrLunar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = solarOrLunar.h; sourceTree = "<group>"; };
 		65A5EA6018472BA9004C77E3 /* schedule_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = schedule_btn.png; sourceTree = "<group>"; };
+		65A8C4691857FC82005285C4 /* banner3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = banner3.jpg; path = ../../../../banner3.jpg; sourceTree = "<group>"; };
+		65A8C46A1857FC82005285C4 /* banner2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = banner2.jpg; path = ../../../../banner2.jpg; sourceTree = "<group>"; };
+		65A8C46B1857FC82005285C4 /* banner1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = banner1.jpg; path = ../../../../banner1.jpg; sourceTree = "<group>"; };
 		65A9C8D2180E89A90032D170 /* btn_addPeople.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_addPeople.png; sourceTree = "<group>"; };
 		65A9C8D4180E9AF70032D170 /* optionAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = optionAddress.h; sourceTree = "<group>"; };
 		65A9C8D5180E9AF70032D170 /* optionAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = optionAddress.m; sourceTree = "<group>"; };
@@ -1285,6 +1291,9 @@
 		595CB9B817F168CC00228A6E /* common */ = {
 			isa = PBXGroup;
 			children = (
+				65A8C4691857FC82005285C4 /* banner3.jpg */,
+				65A8C46A1857FC82005285C4 /* banner2.jpg */,
+				65A8C46B1857FC82005285C4 /* banner1.jpg */,
 				595CB9EF17F17EF100228A6E /* common.plist */,
 			);
 			path = common;
@@ -1904,6 +1913,7 @@
 				5960DC8B17F95BE90024AD8B /* guide113602.png in Resources */,
 				65B3C7D71817C24C00DF4C8E /* btn_hidden_keybord.png in Resources */,
 				595CB98817F164AF00228A6E /* InfoPlist.strings in Resources */,
+				65A8C46D1857FC82005285C4 /* banner2.jpg in Resources */,
 				5975C17518067AA300EF7285 /* accessory_over@2x.png in Resources */,
 				65248507180C2CE700440958 /* navigation_updata_over.png in Resources */,
 				5977D18218225020003DD5A3 /* pic_weixin@2x.png in Resources */,
@@ -1931,9 +1941,11 @@
 				5960DC7D17F9298A0024AD8B /* point_out.png in Resources */,
 				5960DC8617F95BE30024AD8B /* guide96002.png in Resources */,
 				5960DC7E17F9298A0024AD8B /* point_over.png in Resources */,
+				65A8C46E1857FC82005285C4 /* banner1.jpg in Resources */,
 				5975C1821806981900EF7285 /* information_icon.png in Resources */,
 				65B3AC771819314900F2EC04 /* btn_SMS.png in Resources */,
 				59585BC117F8300200F73D97 /* home_out.png in Resources */,
+				65A8C46C1857FC82005285C4 /* banner3.jpg in Resources */,
 				5960DC8517F95BE30024AD8B /* guide96003.png in Resources */,
 				599D7D17181E2CE40099BE01 /* Safari-Small@2x.png in Resources */,
 				65A573E1183AFD930072A519 /* day.plist in Resources */,

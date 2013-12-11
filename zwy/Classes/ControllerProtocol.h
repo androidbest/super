@@ -11,7 +11,8 @@
 #import "MBProgressHUD.h"
 #import "AIMTableViewIndexBar.h"
 #import "MBProgressHUD.h"
-@protocol ControllerProtocol <UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate,UITextViewDelegate,UISearchBarDelegate,MFMessageComposeViewControllerDelegate,AIMTableViewIndexBarDelegate,MBProgressHUDDelegate,UIWebViewDelegate,UIActionSheetDelegate,UIAlertViewDelegate>
+#import "SGFocusImageFrame.h"
+@protocol ControllerProtocol <UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate,UITextViewDelegate,UISearchBarDelegate,MFMessageComposeViewControllerDelegate,AIMTableViewIndexBarDelegate,MBProgressHUDDelegate,UIWebViewDelegate,UIActionSheetDelegate,UIAlertViewDelegate,SGFocusImageFrameDelegate>
 @optional
 - (void)initWithData;
 //初始化进度条

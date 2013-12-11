@@ -14,6 +14,7 @@
 #import "LoginView.h"
 #import "HomeView.h"
 #import "HomeScrollView.h"
+#import "BaseTabbar.h"
 @implementation EcOptionController{
     NSMutableArray *arr;
     NSString *sgin;
@@ -65,7 +66,10 @@
                 LoginView *login=(LoginView *)self.ecOptionView.parentViewController;
                 
                 UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+                /*
                 HomeScrollView *detaView = [storyboard instantiateViewControllerWithIdentifier:@"HomeScrollView"];
+                 */
+                BaseTabbar *detaView =[storyboard instantiateViewControllerWithIdentifier:@"zwyhome"];
                 //                detaView.view.layer.position=CGPointMake(ScreenWidth+ScreenWidth/2, ScreenHeight/2);
                 CGRect rect=detaView.view.frame;
                 rect.origin.x=ScreenWidth+ScreenWidth/2;

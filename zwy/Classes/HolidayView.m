@@ -59,7 +59,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.navigationController.navigationBarHidden=NO;
+    if (self.navigationController.navigationBarHidden) self.navigationController.navigationBarHidden=NO;
 }
 
 - (void)didReceiveMemoryWarning

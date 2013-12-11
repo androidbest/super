@@ -29,8 +29,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-        self.navigationItem.backBarButtonItem= [[UIBarButtonItem alloc]initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
+    self.navigationItem.backBarButtonItem= [[UIBarButtonItem alloc]initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
     
+    //返回按钮
+    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    backButton.frame = CGRectMake(0.0, 0.0, 13.0, 20.0);
+    [backButton setImage:[UIImage imageNamed:@"navigation_back_over"] forState:UIControlStateNormal];
+    [backButton setImage:[UIImage imageNamed:@"navigation_back_out"] forState:UIControlStateHighlighted];
+    [backButton addTarget:self action:@selector(backButtonToHome) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *temporaryBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+    temporaryBarButtonItem.style = UIBarButtonItemStylePlain;
+    self.navigationItem.leftBarButtonItem=temporaryBarButtonItem;
+
     
         [_segControl addTarget:self.controller action:@selector(segmentAction:) forControlEvents:UIControlEventValueChanged];
     
@@ -85,20 +95,21 @@
     [_imageFirst addGestureRecognizer:tapGesture];
 }
 
--(void)segmentAction:(UISegmentedControl *)Seg{
+-(void)segmentAction:(UISegmentedControl *)Seg{}
 
-}
+- (void)btnAddSchedule{}
 
-- (void)btnAddSchedule{
+- (void)PushMassTextView{}
 
-}
-
-- (void)PushMassTextView{
-
+- (void)backButtonToHome{
+ if (!self.navigationController.navigationBarHidden)self.navigationController.navigationBarHidden=YES;
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-
+    [super viewWillAppear:animated];
+    if (self.navigationController.navigationBarHidden)self.navigationController.navigationBarHidden=NO;
+    
     NSString *strPath =[NSString stringWithFormat:@"%@/%@/%@/%@.plist",DocumentsDirectory,user.msisdn,user.eccode,Warning_Frist];
      BOOL isFirst=[[NSFileManager defaultManager] fileExistsAtPath:strPath];
     if (isFirst) {
@@ -130,20 +141,12 @@
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-//    UIViewController *send=segue.destinationViewController;
-//    if ([segue.identifier isEqualToString:@"ScheduleToNewsView"]) {
-//        NewsScheduleView * NewsView =(NewsScheduleView *)send;
-//        [NewsView.btnCancel setTitle:@"修改" forState:UIControlStateNormal];
-//        NewsView.schedView=self;
-//    }
+
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
-- (void)dissmissFromHomeView{
-    [self.navigationController popViewControllerAnimated:YES];
-}
+
 @end

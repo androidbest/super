@@ -20,5 +20,4 @@
 @property (strong, nonatomic) IBOutlet UIImageView *imageFirst;
 @property (strong ,nonatomic)UILabel *labelDays;
 
-- (void)dissmissFromHomeView;
 @end

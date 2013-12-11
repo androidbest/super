@@ -26,14 +26,11 @@ NSString * stringTel =STRING_TEL(@"133");
 #import "WorkView.h"
 #import "HolidayView.h"
 #import "BaseTabbar.h"
+#import "SGFocusImageItem.h"
+#import "SGFocusImageFrame.h"
+
 @interface HomeView ()
-//@property (strong ,nonatomic)AddressTabbar *addTabbar;
-//@property (strong ,nonatomic)InformationView *infomasView;
-//@property (strong ,nonatomic)SmsView *smssView;
-//@property (strong ,nonatomic)OfficeView *officesView;
-//@property (strong ,nonatomic)MeettingView *meetView;
-//@property (strong ,nonatomic)MailView *mailsView;
-//@property (strong ,nonatomic)scheduleView *schedulesView;
+
 @end
 
 @implementation HomeView
@@ -87,9 +84,12 @@ NSString * stringTel =STRING_TEL(@"133");
     [_Btnchat addTarget:self.controller action:@selector(Btnchat) forControlEvents:UIControlEventTouchUpInside];
     [_Btnchat setExclusiveTouch:YES];
     
+    [_btnWarning addTarget:self.controller action:@selector(btnWarning) forControlEvents:UIControlEventTouchUpInside];
+     [_btnWarning setExclusiveTouch:YES];
+    
     UIView * view =[[UIView alloc] init];
     view.frame =CGRectMake(0, 0, ScreenWidth, 40);
-    view.backgroundColor =self.navigationItem.titleView.backgroundColor;
+    view.backgroundColor =[UIColor clearColor];//self.navigationItem.titleView.backgroundColor;
     self.navigationItem.titleView=view;
     
     //标题
@@ -123,10 +123,23 @@ NSString * stringTel =STRING_TEL(@"133");
     
 
     //广告
-    UIImageView *imageView =[[UIImageView alloc] init];
-    imageView.frame=CGRectMake(5, 5, 310, 150);
-    imageView.image=[UIImage imageNamed:@"about"];
-    [_ScrollHome addSubview:imageView];
+    NSArray *arrImagePath =@[@"banner3.jpg",@"banner1.jpg",@"banner2.jpg",@"banner3.jpg",@"banner1.jpg"];
+    NSMutableArray *arrItemp=[NSMutableArray new];
+    for (int i = -1 ; i < 4; i++)
+    {
+        SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithTitle:[ToolUtils numToString:i]
+                                                                   image:arrImagePath[i+1]
+                                                                     tag:i];
+        [arrItemp addObject:item];
+    }
+    SGFocusImageFrame *bannerView = [[SGFocusImageFrame alloc] initWithFrame:CGRectMake(0, -20, ScreenWidth, 160)
+                                                                    delegate:self.controller
+                                                                  imageItems:arrItemp
+                                                                      isAuto:YES
+                                                                         num:3.0];
+    bannerView.tag=0;
+    [bannerView scrollToIndex:0];
+    [_ScrollHome addSubview:bannerView];
     
     //发送Ec
     [((HomeController *)self.controller) sendEc];
@@ -134,13 +147,10 @@ NSString * stringTel =STRING_TEL(@"133");
     _mailsum.hidden=YES;
     _officesum.hidden=YES;
     
-   
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
-    self.navigationController.navigationBarHidden=NO;
     self.tabBarController.tabBar.hidden=NO;
     _name.text=user.username;
     _ecname.text=user.ecname;
@@ -154,6 +164,7 @@ NSString * stringTel =STRING_TEL(@"133");
         user.ecSgin=nil;
     }
     
+    //本地通知处理方法
     if (isLocalNotification) [self performSelector:@selector(jumpScheduleView:) withObject:nil afterDelay:0.0f];
 }
 
@@ -164,12 +175,19 @@ NSString * stringTel =STRING_TEL(@"133");
 
 /*控制首页scrollView是否可以滑动*/
 - (void)viewDidAppear:(BOOL)animated{
-    _ScrollHome.contentSize=CGSizeMake(0, 670);
+     [self performSelector:@selector(setScrollViewContentSize) withObject:nil afterDelay:0.3f];
+     self.navigationController.navigationBarHidden=YES;
      [(BaseTabbar *)self.tabBarController TabbarScrollEnabled:YES];
 }
 
 - (void)viewDidDisappear:(BOOL)animated{
+    self.navigationController.navigationBarHidden=NO;
+    
     [(BaseTabbar *)self.tabBarController TabbarScrollEnabled:NO];
+}
+
+- (void)setScrollViewContentSize{
+    _ScrollHome.contentSize=CGSizeMake(0, 665);
 }
 /*************************/
 
@@ -181,6 +199,7 @@ NSString * stringTel =STRING_TEL(@"133");
 
 
 - (void)jumpScheduleView:(NSNotification *)notification{
+    
     self.tabBarController.selectedIndex=0;
     [self performSelector:@selector(homeToWarningDataView) withObject:nil afterDelay:0.3f];
 }
