@@ -28,42 +28,36 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.tabBarController.navigationItem.leftBarButtonItem =self.temporaryBarButtonItem;
+    if (self.navigationController.navigationBarHidden) self.navigationController.navigationBarHidden=NO;
     
     _searchBar = [[UISearchBar alloc] initWithFrame:CGRectZero];
     _searchBar.placeholder = @"搜索";
     _searchBar.delegate = self.controller;
     [_searchBar sizeToFit];
     
-    _tableView = [[UITableView alloc] initWithFrame:self.view.bounds];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, topLayout, ScreenWidth, ScreenHeight-topLayout-NavigationBarHeight)];
     _tableView.dataSource = self.controller;
     _tableView.delegate = self.controller;
     _tableView.tableHeaderView = self.searchBar;
     _tableView.contentOffset = CGPointMake(0, CGRectGetHeight(_searchBar.bounds));
+    _tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_tableView];
     
-//    if (animated) {
-        [self.tableView flashScrollIndicators];
-//    }
-    
-//    _displayController = [[UISearchDisplayController alloc] initWithSearchBar:_searchBar contentsController:self];
-//    self.searchDisplayController.searchResultsDataSource = self;
-//    self.searchDisplayController.searchResultsDelegate = self;
-//    self.searchDisplayController.delegate = self;
+    _displayController = [[UISearchDisplayController alloc] initWithSearchBar:_searchBar contentsController:self];
+    self.searchDisplayController.searchResultsDataSource = self.controller;
+    self.searchDisplayController.searchResultsDelegate = self.controller;
+    self.searchDisplayController.delegate = self.controller;
 }
 
 
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    
-////    if (tableView == self.tableView) {
-////        return ...;
-////    }
-//    // If necessary (if self is the data source for other table views),
-//    // check whether tableView is searchController.searchResultsTableView.
-//    return 5;
-//}
-
 -(void)viewWillAppear:(BOOL)animated{
     self.tabBarController.navigationItem.title=@"最近消息";
+}
+
+- (void)backButtonToHome{
+    if (!self.navigationController.navigationBarHidden)self.navigationController.navigationBarHidden=YES;
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning

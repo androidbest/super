@@ -170,6 +170,8 @@
 		599D7D17181E2CE40099BE01 /* Safari-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 599D7D16181E2CE40099BE01 /* Safari-Small@2x.png */; };
 		59A8642C18256BFC00C752C8 /* SendMessageToWeiboViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59A8642918256BFC00C752C8 /* SendMessageToWeiboViewController.m */; };
 		59A8642D18256BFC00C752C8 /* ProvideMessageForWeiboViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59A8642B18256BFC00C752C8 /* ProvideMessageForWeiboViewController.m */; };
+		59D78DE6185989260068D6D1 /* MesaageIMCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 59D78DE5185989260068D6D1 /* MesaageIMCell.m */; };
+		59D78DE818598D0F0068D6D1 /* default_avatar.png in Resources */ = {isa = PBXBuildFile; fileRef = 59D78DE718598D0F0068D6D1 /* default_avatar.png */; };
 		59F21805180FCCEA00748CC4 /* DocFlow.m in Sources */ = {isa = PBXBuildFile; fileRef = 59F21804180FCCEA00748CC4 /* DocFlow.m */; };
 		59F21808180FD6D100748CC4 /* Docaccessory.m in Sources */ = {isa = PBXBuildFile; fileRef = 59F21807180FD6D100748CC4 /* Docaccessory.m */; };
 		59F3D551180DA3640062ACF3 /* MailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 59F3D550180DA3640062ACF3 /* MailView.m */; };
@@ -580,6 +582,9 @@
 		59A8642918256BFC00C752C8 /* SendMessageToWeiboViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendMessageToWeiboViewController.m; sourceTree = "<group>"; };
 		59A8642A18256BFC00C752C8 /* ProvideMessageForWeiboViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProvideMessageForWeiboViewController.h; sourceTree = "<group>"; };
 		59A8642B18256BFC00C752C8 /* ProvideMessageForWeiboViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProvideMessageForWeiboViewController.m; sourceTree = "<group>"; };
+		59D78DE4185989260068D6D1 /* MesaageIMCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MesaageIMCell.h; sourceTree = "<group>"; };
+		59D78DE5185989260068D6D1 /* MesaageIMCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MesaageIMCell.m; sourceTree = "<group>"; };
+		59D78DE718598D0F0068D6D1 /* default_avatar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default_avatar.png; sourceTree = "<group>"; };
 		59F21803180FCCEA00748CC4 /* DocFlow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocFlow.h; sourceTree = "<group>"; };
 		59F21804180FCCEA00748CC4 /* DocFlow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocFlow.m; sourceTree = "<group>"; };
 		59F21806180FD6D100748CC4 /* Docaccessory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Docaccessory.h; sourceTree = "<group>"; };
@@ -1199,6 +1204,7 @@
 		595CB9B717F168BC00228A6E /* images */ = {
 			isa = PBXGroup;
 			children = (
+				59D78DE718598D0F0068D6D1 /* default_avatar.png */,
 				659F148A185861DE006BFC4D /* tabbar_AddressBook_out@2x.png */,
 				659F148B185861DE006BFC4D /* tabbar_AddressBook_over@2x.png */,
 				659F148618585DD0006BFC4D /* newsBanner1.jpg */,
@@ -1312,6 +1318,7 @@
 		595CB9BA17F17D7D00228A6E /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				59D78DE3185966FD0068D6D1 /* customCell */,
 				65AB26521856F76700F5EAF6 /* SGFocus */,
 				65E59A8C184435B4004444E5 /* UpdataDate.h */,
 				65E59A8D184435B4004444E5 /* UpdataDate.m */,
@@ -1327,8 +1334,6 @@
 				59584B20181998CD00B65162 /* KxMenu.m */,
 				65D9678B1812752A00C1A05E /* ActionSheetView.h */,
 				65D9678C1812752A00C1A05E /* ActionSheetView.m */,
-				595B507C180CEACF003EC2AF /* TemplateCell.h */,
-				595B507D180CEACF003EC2AF /* TemplateCell.m */,
 				659AB38518097A2B000FCEC5 /* pinyin.c */,
 				659AB38618097A2B000FCEC5 /* pinyin.h */,
 				659AB382180979FA000FCEC5 /* AIMTableViewIndexBar.h */,
@@ -1353,8 +1358,6 @@
 				595CB9BB17F17D8B00228A6E /* HUD */,
 				5960DC7F17F92A6C0024AD8B /* CustomPageControl.h */,
 				5960DC8017F92A6C0024AD8B /* CustomPageControl.m */,
-				595A0C661810E3C9009C26B8 /* DocFlowCell.h */,
-				595A0C671810E3C9009C26B8 /* DocFlowCell.m */,
 				595A0C7418113253009C26B8 /* CustomPush.h */,
 				595A0C7518113253009C26B8 /* CustomPush.m */,
 				6521F6331816A72600CD7B76 /* MailAddressCell.h */,
@@ -1607,6 +1610,19 @@
 				59878CBD1856E51500454D0E /* MyInfoController.m */,
 			);
 			name = imController;
+			sourceTree = "<group>";
+		};
+		59D78DE3185966FD0068D6D1 /* customCell */ = {
+			isa = PBXGroup;
+			children = (
+				595A0C661810E3C9009C26B8 /* DocFlowCell.h */,
+				595A0C671810E3C9009C26B8 /* DocFlowCell.m */,
+				595B507C180CEACF003EC2AF /* TemplateCell.h */,
+				595B507D180CEACF003EC2AF /* TemplateCell.m */,
+				59D78DE4185989260068D6D1 /* MesaageIMCell.h */,
+				59D78DE5185989260068D6D1 /* MesaageIMCell.m */,
+			);
+			name = customCell;
 			sourceTree = "<group>";
 		};
 		659AB33A180973C7000FCEC5 /* AddressBook */ = {
@@ -2011,6 +2027,7 @@
 				65BB30101829D7C3008370A0 /* btn_AddAddressbooks.png in Resources */,
 				65AC660D180FCDBF00C0CA4F /* btn_check.png in Resources */,
 				5975C17718067AA300EF7285 /* accessory_out@2x.png in Resources */,
+				59D78DE818598D0F0068D6D1 /* default_avatar.png in Resources */,
 				5960DC8717F95BE30024AD8B /* guide96001.png in Resources */,
 				652484FD180C28DE00440958 /* navigation_Edit_over.png in Resources */,
 				5975C16B1806784900EF7285 /* more_over.png in Resources */,
@@ -2223,6 +2240,7 @@
 				65A9C8E0180EC83F0032D170 /* InformationDetail.m in Sources */,
 				596D6EFD18085D10002CD0B3 /* MeettingView.m in Sources */,
 				595CBA0617F1925700228A6E /* ToolUtils.m in Sources */,
+				59D78DE6185989260068D6D1 /* MesaageIMCell.m in Sources */,
 				59F21805180FCCEA00748CC4 /* DocFlow.m in Sources */,
 				659AB35E180975D0000FCEC5 /* AddressDetailsController.m in Sources */,
 				659AB37018097851000FCEC5 /* ZipArchive.mm in Sources */,
