@@ -30,6 +30,8 @@
 - (id)initWithCoder:(NSCoder *)aDecoder{
     self =[super initWithCoder:aDecoder];
     if (self) {
+        self.tabBarItem=[self.tabBarItem initWithTitle:@"通讯录" image:[UIImage imageNamed:@"tabbar_AddressBook_out"] selectedImage:[UIImage imageNamed:@"tabbar_AddressBook_over"]];
+        
         HomeScrollerController *HomeScroContro=[HomeScrollerController new];
         HomeScroContro.HomeScroView=self;
         self.controller=HomeScroContro;

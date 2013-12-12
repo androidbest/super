@@ -217,8 +217,8 @@
 		659BD0E5183F327D00FAC29E /* warningDataInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 659BD0E4183F327D00FAC29E /* warningDataInfo.m */; };
 		659F148818585DD0006BFC4D /* newsBanner1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 659F148618585DD0006BFC4D /* newsBanner1.jpg */; };
 		659F148918585DD0006BFC4D /* newsBanner2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 659F148718585DD0006BFC4D /* newsBanner2.jpg */; };
-		659F148C185861DE006BFC4D /* tabbar_AddressBook_out.png in Resources */ = {isa = PBXBuildFile; fileRef = 659F148A185861DE006BFC4D /* tabbar_AddressBook_out.png */; };
-		659F148D185861DE006BFC4D /* tabbar_AddressBook_over.png in Resources */ = {isa = PBXBuildFile; fileRef = 659F148B185861DE006BFC4D /* tabbar_AddressBook_over.png */; };
+		659F148C185861DE006BFC4D /* tabbar_AddressBook_out@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 659F148A185861DE006BFC4D /* tabbar_AddressBook_out@2x.png */; };
+		659F148D185861DE006BFC4D /* tabbar_AddressBook_over@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 659F148B185861DE006BFC4D /* tabbar_AddressBook_over@2x.png */; };
 		659F65241813C96400306C14 /* OfficeAddressController.m in Sources */ = {isa = PBXBuildFile; fileRef = 659F65231813C96400306C14 /* OfficeAddressController.m */; };
 		659F65271813C9FF00306C14 /* OfficeAddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 659F65261813C9FF00306C14 /* OfficeAddressView.m */; };
 		659F652E1813D4E200306C14 /* OfficeInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 659F652D1813D4E200306C14 /* OfficeInfo.m */; };
@@ -665,8 +665,8 @@
 		659BD0E4183F327D00FAC29E /* warningDataInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = warningDataInfo.m; sourceTree = "<group>"; };
 		659F148618585DD0006BFC4D /* newsBanner1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = newsBanner1.jpg; sourceTree = "<group>"; };
 		659F148718585DD0006BFC4D /* newsBanner2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = newsBanner2.jpg; sourceTree = "<group>"; };
-		659F148A185861DE006BFC4D /* tabbar_AddressBook_out.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabbar_AddressBook_out.png; sourceTree = "<group>"; };
-		659F148B185861DE006BFC4D /* tabbar_AddressBook_over.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabbar_AddressBook_over.png; sourceTree = "<group>"; };
+		659F148A185861DE006BFC4D /* tabbar_AddressBook_out@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_AddressBook_out@2x.png"; sourceTree = "<group>"; };
+		659F148B185861DE006BFC4D /* tabbar_AddressBook_over@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_AddressBook_over@2x.png"; sourceTree = "<group>"; };
 		659F65221813C96400306C14 /* OfficeAddressController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfficeAddressController.h; sourceTree = "<group>"; };
 		659F65231813C96400306C14 /* OfficeAddressController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfficeAddressController.m; sourceTree = "<group>"; };
 		659F65251813C9FF00306C14 /* OfficeAddressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfficeAddressView.h; sourceTree = "<group>"; };
@@ -1195,8 +1195,8 @@
 		595CB9B717F168BC00228A6E /* images */ = {
 			isa = PBXGroup;
 			children = (
-				659F148A185861DE006BFC4D /* tabbar_AddressBook_out.png */,
-				659F148B185861DE006BFC4D /* tabbar_AddressBook_over.png */,
+				659F148A185861DE006BFC4D /* tabbar_AddressBook_out@2x.png */,
+				659F148B185861DE006BFC4D /* tabbar_AddressBook_over@2x.png */,
 				659F148618585DD0006BFC4D /* newsBanner1.jpg */,
 				659F148718585DD0006BFC4D /* newsBanner2.jpg */,
 				65A5EA6018472BA9004C77E3 /* schedule_btn.png */,
@@ -1932,7 +1932,7 @@
 				595B7A0018094B53006DD766 /* more_about_img@2x.png in Resources */,
 				595B79FE18094B53006DD766 /* more_accounts_image@2x.png in Resources */,
 				595B79FA18094B53006DD766 /* more_help_img.png in Resources */,
-				659F148C185861DE006BFC4D /* tabbar_AddressBook_out.png in Resources */,
+				659F148C185861DE006BFC4D /* tabbar_AddressBook_out@2x.png in Resources */,
 				5975C17618067AA300EF7285 /* more_over@2x.png in Resources */,
 				5975C16E1806784900EF7285 /* daiban_over.png in Resources */,
 				59584B1718190AFB00B65162 /* sms_template.png in Resources */,
@@ -1967,7 +1967,7 @@
 				65A573E3183AFD930072A519 /* month.plist in Resources */,
 				59585BBF17F8300200F73D97 /* home_out@2x.png in Resources */,
 				65A573E2183AFD930072A519 /* lunarcalenda.plist in Resources */,
-				659F148D185861DE006BFC4D /* tabbar_AddressBook_over.png in Resources */,
+				659F148D185861DE006BFC4D /* tabbar_AddressBook_over@2x.png in Resources */,
 				59584B1E18191ADE00B65162 /* docselected.png in Resources */,
 				65B3AC531819251100F2EC04 /* btn_numbers.png in Resources */,
 				65B3AC711819274200F2EC04 /* tabItem_SMS_out@2x.png in Resources */,

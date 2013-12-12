@@ -178,6 +178,11 @@
         if (!cellNews) {
             cellNews = [[InformationNewsCell alloc] initWithStyle:UITableViewCellStyleSubtitle
                                        reuseIdentifier:strCell1];
+            UIView * subview = [[UIView alloc] init];
+            subview.userInteractionEnabled = NO;// 不设为NO会屏蔽cell的点击事件
+            subview.backgroundColor = [UIColor redColor];// 设为透明从而使得cell.backgroundColor有效.
+            subview.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+            [cellNews addSubview:subview];
         }
         
         InformationInfo *info=arr0[indexPath.row];

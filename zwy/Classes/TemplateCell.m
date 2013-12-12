@@ -53,20 +53,21 @@
     return self;
 }
 
-- (void)drawRect:(CGRect)rect
-{
+- (void)drawRect:(CGRect)rect{
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     CGContextSetFillColorWithColor(context, [UIColor clearColor].CGColor);
     CGContextFillRect(context, rect);
     
     //上分割线，
-    CGContextSetStrokeColorWithColor(context, [UIColor grayColor].CGColor);
+    CGContextSetStrokeColorWithColor(context, [UIColor redColor].CGColor);
     CGContextStrokeRect(context, CGRectMake(5, -1, rect.size.width - 10, 1));
     
     //下分割线
-    CGContextSetStrokeColorWithColor(context, [UIColor colorWithRed:1 green:1 blue:1 alpha:.5].CGColor);
+    CGContextSetStrokeColorWithColor(context, [UIColor redColor].CGColor);
     CGContextStrokeRect(context, CGRectMake(5, rect.size.height, rect.size.width - 10, 1));
+    
+    // [self drawSegmentationInContent:context];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

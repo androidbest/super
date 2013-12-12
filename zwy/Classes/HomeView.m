@@ -178,7 +178,7 @@ NSString * stringTel =STRING_TEL(@"133");
 
 /*控制首页scrollView是否可以滑动*/
 - (void)viewDidAppear:(BOOL)animated{
-     [self performSelector:@selector(setScrollViewContentSize) withObject:nil afterDelay:0.3f];
+     [self performSelector:@selector(setScrollViewContentSize) withObject:nil afterDelay:0.1f];
      self.navigationController.navigationBarHidden=YES;
      [(BaseTabbar *)self.tabBarController TabbarScrollEnabled:YES];
 }
@@ -188,7 +188,7 @@ NSString * stringTel =STRING_TEL(@"133");
 }
 
 - (void)setScrollViewContentSize{
-    _ScrollHome.contentSize=CGSizeMake(0, 665);
+    _ScrollHome.contentSize=CGSizeMake(0, 625);
 }
 /*************************/
 /*push到通讯录*/
