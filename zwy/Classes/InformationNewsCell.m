@@ -7,14 +7,19 @@
 //
 
 #import "InformationNewsCell.h"
-
+#import "InformationCellContentView.h"
 @implementation InformationNewsCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-       
+        CGRect viewFrame = CGRectMake(0.0, 0.0,
+                                      self.contentView.bounds.size.width,
+                                      self.contentView.bounds.size.height);
+        InformationCellContentView *informationView =[[InformationCellContentView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight-64-44)];
+        informationView.backgroundColor=[UIColor clearColor];
+        [self.contentView addSubview:informationView];
     }
     return self;
 }
@@ -26,28 +31,5 @@
     // Configure the view for the selected state
 }
 
-- (void)drawRect:(CGRect)rect{
-        CGContextRef context = UIGraphicsGetCurrentContext();
-        
-        CGContextSetFillColorWithColor(context, [UIColor clearColor].CGColor);
-        CGContextFillRect(context, rect);
-        
-        //上分割线，
-        CGContextSetStrokeColorWithColor(context, [UIColor redColor].CGColor);
-        CGContextStrokeRect(context, CGRectMake(5, -1, rect.size.width - 10, 1));
-        
-        //下分割线
-        CGContextSetStrokeColorWithColor(context, [UIColor redColor].CGColor);
-        CGContextStrokeRect(context, CGRectMake(5, rect.size.height, rect.size.width - 10, 1));
-   
-   // [self drawSegmentationInContent:context];
-}
 
-- (void)drawSegmentationInContent:(CGContextRef)context{
-    CGContextSetRGBStrokeColor(context, 1.0, 0.5, 0.5, 1.0);//设置颜色
-    CGContextMoveToPoint(context, 10, 20);
-    CGContextAddLineToPoint(context, 300, 20);
-    CGContextSetLineWidth(context, 1.0);
-    CGContextStrokePath(context);
-}
 @end

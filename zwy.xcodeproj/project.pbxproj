@@ -252,6 +252,7 @@
 		65A573EC183AFDA30072A519 /* solarActionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A573E8183AFDA30072A519 /* solarActionView.m */; };
 		65A573ED183AFDA30072A519 /* solarOrLunar.c in Sources */ = {isa = PBXBuildFile; fileRef = 65A573E9183AFDA30072A519 /* solarOrLunar.c */; };
 		65A5EA6118472BA9004C77E3 /* schedule_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 65A5EA6018472BA9004C77E3 /* schedule_btn.png */; };
+		65A7B35318595C220018E32C /* InformationCellContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A7B35218595C220018E32C /* InformationCellContentView.m */; };
 		65A8C47718584082005285C4 /* InformationNewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A8C47618584082005285C4 /* InformationNewsCell.m */; };
 		65A9C8D3180E89A90032D170 /* btn_addPeople.png in Resources */ = {isa = PBXBuildFile; fileRef = 65A9C8D2180E89A90032D170 /* btn_addPeople.png */; };
 		65A9C8D6180E9AF70032D170 /* optionAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A9C8D5180E9AF70032D170 /* optionAddress.m */; };
@@ -725,6 +726,8 @@
 		65A573E9183AFDA30072A519 /* solarOrLunar.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = solarOrLunar.c; sourceTree = "<group>"; };
 		65A573EA183AFDA30072A519 /* solarOrLunar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = solarOrLunar.h; sourceTree = "<group>"; };
 		65A5EA6018472BA9004C77E3 /* schedule_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = schedule_btn.png; sourceTree = "<group>"; };
+		65A7B35118595C220018E32C /* InformationCellContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InformationCellContentView.h; sourceTree = "<group>"; };
+		65A7B35218595C220018E32C /* InformationCellContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformationCellContentView.m; sourceTree = "<group>"; };
 		65A8C47518584082005285C4 /* InformationNewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InformationNewsCell.h; sourceTree = "<group>"; };
 		65A8C47618584082005285C4 /* InformationNewsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformationNewsCell.m; sourceTree = "<group>"; };
 		65A9C8D2180E89A90032D170 /* btn_addPeople.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_addPeople.png; sourceTree = "<group>"; };
@@ -1425,6 +1428,8 @@
 				596D6EEA18085C39002CD0B3 /* InformationView.m */,
 				65A8C47518584082005285C4 /* InformationNewsCell.h */,
 				65A8C47618584082005285C4 /* InformationNewsCell.m */,
+				65A7B35118595C220018E32C /* InformationCellContentView.h */,
+				65A7B35218595C220018E32C /* InformationCellContentView.m */,
 			);
 			name = Information;
 			sourceTree = "<group>";
@@ -2094,6 +2099,7 @@
 				5941F6841813D146002735A3 /* AccountManager.m in Sources */,
 				5942043A1802B62500AA35C3 /* RespInfo.m in Sources */,
 				594B812C18037CF800310CB1 /* SMSInfo.m in Sources */,
+				65A7B35318595C220018E32C /* InformationCellContentView.m in Sources */,
 				65A9C8D6180E9AF70032D170 /* optionAddress.m in Sources */,
 				659F65311813D77A00306C14 /* officeDetaInfo.m in Sources */,
 				594B810118037BC500310CB1 /* SumEmailOrDocInfo.m in Sources */,
