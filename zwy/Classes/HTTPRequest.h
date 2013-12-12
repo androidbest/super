@@ -18,4 +18,7 @@
 +(void)LoadDownFile:(id)delegate URL:(NSString *)strUrl filePath:(NSString *)path  HUD:(MBProgressHUD *)hud;
 
 + (void)data;
+
+/*异步加载图片*/
++ (void)imageWithURL:(NSString *)URL imageView:(UIImageView *)imageView placeholderImage:(NSString *)imagePath;
 @end

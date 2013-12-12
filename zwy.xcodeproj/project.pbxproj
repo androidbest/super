@@ -255,6 +255,7 @@
 		65A573ED183AFDA30072A519 /* solarOrLunar.c in Sources */ = {isa = PBXBuildFile; fileRef = 65A573E9183AFDA30072A519 /* solarOrLunar.c */; };
 		65A5EA6118472BA9004C77E3 /* schedule_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 65A5EA6018472BA9004C77E3 /* schedule_btn.png */; };
 		65A7B35318595C220018E32C /* InformationCellContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A7B35218595C220018E32C /* InformationCellContentView.m */; };
+		65A7B3561859AAC40018E32C /* CompressImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A7B3551859AAC40018E32C /* CompressImage.m */; };
 		65A8C47718584082005285C4 /* InformationNewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A8C47618584082005285C4 /* InformationNewsCell.m */; };
 		65A9C8D3180E89A90032D170 /* btn_addPeople.png in Resources */ = {isa = PBXBuildFile; fileRef = 65A9C8D2180E89A90032D170 /* btn_addPeople.png */; };
 		65A9C8D6180E9AF70032D170 /* optionAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A9C8D5180E9AF70032D170 /* optionAddress.m */; };
@@ -733,6 +734,8 @@
 		65A5EA6018472BA9004C77E3 /* schedule_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = schedule_btn.png; sourceTree = "<group>"; };
 		65A7B35118595C220018E32C /* InformationCellContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InformationCellContentView.h; sourceTree = "<group>"; };
 		65A7B35218595C220018E32C /* InformationCellContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformationCellContentView.m; sourceTree = "<group>"; };
+		65A7B3541859AAC40018E32C /* CompressImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompressImage.h; sourceTree = "<group>"; };
+		65A7B3551859AAC40018E32C /* CompressImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompressImage.m; sourceTree = "<group>"; };
 		65A8C47518584082005285C4 /* InformationNewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InformationNewsCell.h; sourceTree = "<group>"; };
 		65A8C47618584082005285C4 /* InformationNewsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformationNewsCell.m; sourceTree = "<group>"; };
 		65A9C8D2180E89A90032D170 /* btn_addPeople.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_addPeople.png; sourceTree = "<group>"; };
@@ -1370,6 +1373,8 @@
 				65A0A24D183BB8E600AD22E6 /* DateSwitchView.m */,
 				65AB264F1856E84500F5EAF6 /* BaseTabbar.h */,
 				65AB26501856E84500F5EAF6 /* BaseTabbar.m */,
+				65A7B3541859AAC40018E32C /* CompressImage.h */,
+				65A7B3551859AAC40018E32C /* CompressImage.m */,
 			);
 			name = utils;
 			sourceTree = "<group>";
@@ -2242,6 +2247,7 @@
 				595CBA0617F1925700228A6E /* ToolUtils.m in Sources */,
 				59D78DE6185989260068D6D1 /* MesaageIMCell.m in Sources */,
 				59F21805180FCCEA00748CC4 /* DocFlow.m in Sources */,
+				65A7B3561859AAC40018E32C /* CompressImage.m in Sources */,
 				659AB35E180975D0000FCEC5 /* AddressDetailsController.m in Sources */,
 				659AB37018097851000FCEC5 /* ZipArchive.mm in Sources */,
 				5941F68A1813DFE7002735A3 /* AccountCell.m in Sources */,

@@ -39,6 +39,8 @@
 /*日程提醒置顶标示*/
 #define Warning_Frist @"warningFrist"
 
+/*缓存图片地址*/
+#define MESSGEFILEPATH @"messageFilePath"
 #import <Foundation/Foundation.h>
 @interface ConfigFile : NSObject
 

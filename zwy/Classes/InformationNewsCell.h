@@ -10,25 +10,27 @@
 
 @interface InformationNewsCell : UITableViewCell
 
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier withDelegate:(id)delegate;
+@property (strong ,nonatomic)UILabel *labelTitle1;
+@property (strong ,nonatomic)UILabel *labelTitle2;
+@property (strong ,nonatomic)UILabel *labelTitle3;
+@property (strong ,nonatomic)UILabel *labelTitle4;
+@property (strong ,nonatomic)UILabel *labelTitle5;
+@property (strong ,nonatomic)UILabel *labelTitle6;
 
-@property (strong ,nonatomic)UILabel *lableTitle1;
-@property (strong ,nonatomic)UILabel *lableTitle2;
-@property (strong ,nonatomic)UILabel *lableTitle3;
-@property (strong ,nonatomic)UILabel *lableTitle4;
-@property (strong ,nonatomic)UILabel *lableTitle5;
-@property (strong ,nonatomic)UILabel *lableTitle6;
+@property (strong ,nonatomic)UILabel *labelAddress1;
+@property (strong ,nonatomic)UILabel *labelAddress2;
+@property (strong ,nonatomic)UILabel *labelAddress3;
+@property (strong ,nonatomic)UILabel *labelAddress4;
+@property (strong ,nonatomic)UILabel *labelAddress5;
+@property (strong ,nonatomic)UILabel *labelAddress6;
 
-@property (strong ,nonatomic)UILabel *lableAddress1;
-@property (strong ,nonatomic)UILabel *lableAddress2;
-@property (strong ,nonatomic)UILabel *lableAddress3;
-@property (strong ,nonatomic)UILabel *lableAddress4;
-@property (strong ,nonatomic)UILabel *lableAddress5;
-@property (strong ,nonatomic)UILabel *lableAddress6;
+@property (strong ,nonatomic)UILabel *labelContent1;
+@property (strong ,nonatomic)UILabel *labelContent2;
+@property (strong ,nonatomic)UILabel *labelContent3;
+@property (strong ,nonatomic)UILabel *labelContent4;
+@property (strong ,nonatomic)UILabel *labelContent5;
+@property (strong ,nonatomic)UILabel *labelContent6;
 
-@property (strong ,nonatomic)UILabel *lableContent1;
-@property (strong ,nonatomic)UILabel *lableContent2;
-@property (strong ,nonatomic)UILabel *lableContent3;
-@property (strong ,nonatomic)UILabel *lableContent4;
-@property (strong ,nonatomic)UILabel *lableContent5;
-@property (strong ,nonatomic)UILabel *lableContent6;
+@property (strong ,nonatomic)UIImageView *imageFirstNews;
 @end

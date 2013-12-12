@@ -10,4 +10,8 @@
 
 @interface InformationCellContentView : UIView
 
+@property (assign)float ContextHeight;
+@property (assign)float SegmentationTopY;
+@property (assign)float SegmentationButtonY;
+
 @end

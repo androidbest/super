@@ -102,9 +102,10 @@
     
 }
 
-//处理网络数据
+//处理网络数据(新闻)
 -(void)handleData:(NSNotification *)notification{
     NSDictionary *dic=[notification userInfo];
+    [dic writeToFile:@"/Users/cqsxit/Desktop/Cdemo001/news.plist" atomically:NO];
     if (isUpdata) {
        [arr0 removeAllObjects];
         isUpdata=NO;
@@ -116,13 +117,12 @@
             [arr0 addObjectsFromArray:list.resplist];
             self.informationView.listview.separatorStyle = YES;
         }else{
-            
-            
             if(arr0.count==0)
             [ToolUtils alertInfo:@"暂无数据"];
             self.informationView.listview.reachedTheEnd=NO;
         }
     }else{
+        self.informationView.listview.reachedTheEnd=NO;
         [ToolUtils alertInfo:requestError];
     }
     [self.informationView.listview reloadDataPull];
@@ -163,7 +163,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if(tableView.tag==0){
-        return arr0.count;
+        return arr0.count/6;
     }else{
         return arr1.count;
     }
@@ -177,17 +177,62 @@
         InformationNewsCell *cellNews=[tableView dequeueReusableCellWithIdentifier:strCell1];
         if (!cellNews) {
             cellNews = [[InformationNewsCell alloc] initWithStyle:UITableViewCellStyleSubtitle
-                                       reuseIdentifier:strCell1];
-            UIView * subview = [[UIView alloc] init];
-            subview.userInteractionEnabled = NO;// 不设为NO会屏蔽cell的点击事件
-            subview.backgroundColor = [UIColor redColor];// 设为透明从而使得cell.backgroundColor有效.
-            subview.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-            [cellNews addSubview:subview];
+                                                  reuseIdentifier:strCell1
+                                                     withDelegate:self];
         }
         
-        InformationInfo *info=arr0[indexPath.row];
-        cellNews.textLabel.text=info.title;
-        cellNews.detailTextLabel.text=info.content;
+        int IndexNews=0;
+        while (IndexNews<6) {
+            int indexRow=IndexNews+6*indexPath.row;
+            InformationInfo *info=arr0[indexRow];
+            switch (IndexNews) {
+                case 0:
+                {
+                    cellNews.labelTitle1.text=info.title;
+                    cellNews.imageFirstNews.tag=indexRow;
+                    [HTTPRequest imageWithURL:info.imagePath imageView:cellNews.imageFirstNews placeholderImage:@"newsBanner2.jpg"];
+                }
+                    break;
+                case 1:
+                {
+                   cellNews.labelTitle2.text=info.title;
+                   cellNews.labelTitle2.tag=indexRow;
+                   cellNews.labelAddress2.text=info.sourceName;
+                }
+                    break;
+                case 2:
+                {
+                    cellNews.labelTitle3.text=info.title;
+                    cellNews.labelTitle3.tag=indexRow;
+                    cellNews.labelAddress3.text=info.sourceName;
+                }
+                    break;
+                case 3:
+                {
+                    cellNews.labelTitle4.text=info.title;
+                    cellNews.labelTitle4.tag=indexRow;
+                    cellNews.labelAddress4.text=info.sourceName;
+                }
+                    break;
+                case 4:
+                {
+                     cellNews.labelTitle5.text=info.title;
+                    cellNews.labelTitle5.tag=indexRow;
+                    cellNews.labelAddress5.text=info.sourceName;
+                }
+                    break;
+                case 5:
+                {
+                     cellNews.labelTitle6.text=info.title;
+                    cellNews.labelTitle6.tag=indexRow;
+                    cellNews.labelAddress6.text=info.sourceName;
+                }
+                    break;
+                default:
+                    break;
+            }
+            IndexNews++;
+        }
          return cellNews;
         
 //        if ([arrYetNews containsObject:info.newsID]) cell.title.textColor=[UIColor grayColor];
@@ -238,16 +283,12 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView.tag==0) {
-            [self.informationView performSegueWithIdentifier:@"informationtodetail" sender:self.informationView];
-            [self initBackBarButtonItem:self.informationView];
-            InformationInfo *info=arr0[indexPath.row];
-        self.informationView.informationInfo=info;
-        
-        
-        TemplateCell * cell =(TemplateCell *)[tableView cellForRowAtIndexPath:indexPath];
-        cell.title.textColor=[UIColor grayColor];
-        [arrYetNews addObject:info.newsID];
-        [arrYetNews writeToFile:[DocumentsDirectory stringByAppendingPathComponent:PATH_NEWS] atomically:NO];
+//        
+//        
+//        TemplateCell * cell =(TemplateCell *)[tableView cellForRowAtIndexPath:indexPath];
+//        cell.title.textColor=[UIColor grayColor];
+//        [arrYetNews addObject:info.newsID];
+//        [arrYetNews writeToFile:[DocumentsDirectory stringByAppendingPathComponent:PATH_NEWS] atomically:NO];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -274,7 +315,13 @@
         [packageData reqJokeInfoXml:self start:start1 end:end1 SELType:xmlNotifInfo1];
     }
 }
-
+- (void)PushToNewsDetaView:(UITapGestureRecognizer *)tapGestureRecognizer{
+    UIView *view =[tapGestureRecognizer view];
+    [self.informationView performSegueWithIdentifier:@"informationtodetail" sender:self.informationView];
+    [self initBackBarButtonItem:self.informationView];
+    InformationInfo *info=arr0[view.tag];
+    self.informationView.informationInfo=info;
+}
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     if(scrollView.tag==0){

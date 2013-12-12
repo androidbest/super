@@ -12,6 +12,8 @@
 #import "AnalysisData.h"
 #import "Constants.h"
 #import "AFURLConnectionOperation.h"
+#import "ConfigFile.h"
+#import "CompressImage.h"
 @implementation HTTPRequest
 
 + (void)JSONRequestOperation:(id)delegate Request:(NSMutableURLRequest *)request{
@@ -90,57 +92,34 @@
     [[NSOperationQueue mainQueue] addOperations:operations waitUntilFinished:NO];
 }
 
-//    NSArray *filesToUpload =@[@"http://img6.3lian.com/c23/desk2/8/30/015.jpg"];
-//    NSMutableArray *mutableOperations = [NSMutableArray array];
-//    for (NSURL *fileURL in filesToUpload) {
-//        NSURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST"
-//                                                                                           URLString:@"/Users/cqsxit/Desktop/zwy"
-//                                                                                          parameters:nil
-//                                                                           constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-//            [formData appendPartWithFileURL:fileURL name:@"images[]" error:nil];
-//        }];
-//
-//        AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-//
-//        [mutableOperations addObject:operation];
-//    }
+/*图片缓存*/
++ (void)imageWithURL:(NSString *)URL imageView:(UIImageView *)imageView placeholderImage:(NSString *)imagePath{
+    imageView.image = [UIImage imageNamed:imagePath];
+    NSString * PicPath =[[URL componentsSeparatedByString:@"/"] lastObject];
+    NSString * strpaths =[NSString stringWithFormat:@"%@/%@/%@",DocumentsDirectory,MESSGEFILEPATH,PicPath];
+    NSData * data = [NSData dataWithContentsOfFile:strpaths];
+    if (data) {
+        imageView.image = [UIImage imageWithData:data];
+        return;
+    }
+    NSURL * url =[NSURL URLWithString:URL];
+    NSMutableURLRequest * request =[[NSMutableURLRequest alloc] initWithURL:url];
+    AFHTTPRequestOperation *posterOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    posterOperation.responseSerializer = [AFImageResponseSerializer serializer];
+    [posterOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Response: %@", responseObject);
+       //压缩图片
+        imageView.alpha=0.0;
+        [UIView animateWithDuration:0.5 animations:^{
+            imageView.alpha=1.0;
+            [CompressImage setCellContentImage:imageView Image:(UIImage *)responseObject filePath:PicPath];
+        }];
+       
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Image request failed with error: %@", error);
+    }];
+    [[NSOperationQueue new] addOperation:posterOperation];
+}
 
-//    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-//    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
-//    NSURL *URL = [NSURL URLWithString:@"http://img6.3lian.com/c23/desk2/8/30/015.jpg"];
-//    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
-//    NSURLSessionDownloadTask *downloadTask = [manager downloadTaskWithRequest:request progress:nil destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
-//        NSURL *documentsDirectoryPath = [NSURL fileURLWithPath:[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject]];
-//        return [documentsDirectoryPath URLByAppendingPathComponent:[targetPath lastPathComponent]];
-//    } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
-//        NSDictionary  *dic =@{@"path":filePath,};
-//        [[NSNotificationCenter defaultCenter] postNotificationName:xmlNotifInfo object:delegate userInfo:dic];
-//        NSLog(@"File downloaded to: %@", filePath);
-//    }];
-//    [downloadTask resume];
 
-
-
-//    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-//    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
-//
-//    NSURL *URL = [NSURL URLWithString:@"http://arch.pconline.com.cn//pcedu/photo/0407/pic/040709fengjing01.jpg"];
-//    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
-//
-//    NSURL *filePath = [NSURL fileURLWithPath:@"/Users/cqsxit/Desktop/zwy/image.jpg"];
-//    NSURLSessionUploadTask *uploadTask = [manager uploadTaskWithRequest:request fromFile:filePath progress:nil completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
-//        if (error) {
-//            NSLog(@"Error: %@", error);
-//        } else {
-//            NSLog(@"Success: %@ %@", response, responseObject);
-//        }
-//    }];
-//    [uploadTask resume];
-//
-//    NSArray *operations = [AFURLConnectionOperation batchOfRequestOperations:@[@""] progressBlock:^(NSUInteger numberOfFinishedOperations, NSUInteger totalNumberOfOperations) {
-//        NSLog(@"%lu of %lu complete", (unsigned long)numberOfFinishedOperations, (unsigned long)totalNumberOfOperations);
-//    } completionBlock:^(NSArray *operations) {
-//        NSLog(@"All operations in batch complete");
-//    }];
-//    [[NSOperationQueue mainQueue] addOperations:operations waitUntilFinished:NO];
 @end
