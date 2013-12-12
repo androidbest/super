@@ -1115,6 +1115,7 @@
 		595CB9B317F1666E00228A6E /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				65A7B35018595B960018E32C /* New Groupa */,
 				595CB9B817F168CC00228A6E /* common */,
 				595CB9B717F168BC00228A6E /* images */,
 			);
@@ -1759,6 +1760,13 @@
 				65A573E0183AFD930072A519 /* year.plist */,
 			);
 			name = DateInfo;
+			sourceTree = "<group>";
+		};
+		65A7B35018595B960018E32C /* New Groupa */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "New Groupa";
 			sourceTree = "<group>";
 		};
 		65A9C8DA180EC7510032D170 /* information */ = {
