@@ -18,7 +18,7 @@
 -(id)initWithCoder:(NSCoder *)aDecoder{
     self=[super initWithCoder:aDecoder];
     if(self){
-        self.tabBarItem=[self.tabBarItem initWithTitle:@"我" image:[UIImage imageNamed:@"home_out"] selectedImage:[UIImage imageNamed:@"home_over"]];
+//        self.tabBarItem=[self.tabBarItem initWithTitle:@"我" image:[UIImage imageNamed:@"home_out"] selectedImage:[UIImage imageNamed:@"home_over"]];
         MyInfoController *myinfo=[MyInfoController new];
         myinfo.myInfoView=self;
         self.controller=myinfo;
@@ -29,7 +29,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+	_tableview.delegate=self.controller;
+    _tableview.dataSource=self.controller;
 }
 
 -(void)viewWillAppear:(BOOL)animated{

@@ -9,5 +9,6 @@
 #import "BaseView.h"
 
 @interface MyInfoView : BaseView
+@property (strong, nonatomic) IBOutlet UITableView *tableview;
 
 @end

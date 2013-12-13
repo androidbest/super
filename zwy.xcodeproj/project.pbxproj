@@ -166,6 +166,14 @@
 		5989A11C17F583AE00789DC6 /* HomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5989A11B17F583AE00789DC6 /* HomeView.m */; };
 		5989A11F17F583C900789DC6 /* DaiBanView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5989A11E17F583C900789DC6 /* DaiBanView.m */; };
 		5989A12517F5849E00789DC6 /* MoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5989A12417F5849E00789DC6 /* MoreView.m */; };
+		598ECDB9185AFE290059BBC7 /* MyImCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 598ECDB8185AFE290059BBC7 /* MyImCell.m */; };
+		598ECDBB185B00A20059BBC7 /* im_head.png in Resources */ = {isa = PBXBuildFile; fileRef = 598ECDBA185B00A20059BBC7 /* im_head.png */; };
+		598ECDC2185B13660059BBC7 /* im_contacts.png in Resources */ = {isa = PBXBuildFile; fileRef = 598ECDBC185B13660059BBC7 /* im_contacts.png */; };
+		598ECDC3185B13660059BBC7 /* im_contacts@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 598ECDBD185B13660059BBC7 /* im_contacts@2x.png */; };
+		598ECDC4185B13660059BBC7 /* im_message.png in Resources */ = {isa = PBXBuildFile; fileRef = 598ECDBE185B13660059BBC7 /* im_message.png */; };
+		598ECDC5185B13660059BBC7 /* im_message@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 598ECDBF185B13660059BBC7 /* im_message@2x.png */; };
+		598ECDC6185B13660059BBC7 /* im_my.png in Resources */ = {isa = PBXBuildFile; fileRef = 598ECDC0185B13660059BBC7 /* im_my.png */; };
+		598ECDC7185B13660059BBC7 /* im_my@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 598ECDC1185B13660059BBC7 /* im_my@2x.png */; };
 		599D7D15181E2CDB0099BE01 /* Safari@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 599D7D14181E2CDB0099BE01 /* Safari@2x~iphone.png */; };
 		599D7D17181E2CE40099BE01 /* Safari-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 599D7D16181E2CE40099BE01 /* Safari-Small@2x.png */; };
 		59A8642C18256BFC00C752C8 /* SendMessageToWeiboViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59A8642918256BFC00C752C8 /* SendMessageToWeiboViewController.m */; };
@@ -578,6 +586,15 @@
 		5989A11E17F583C900789DC6 /* DaiBanView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaiBanView.m; sourceTree = "<group>"; };
 		5989A12317F5849E00789DC6 /* MoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreView.h; sourceTree = "<group>"; };
 		5989A12417F5849E00789DC6 /* MoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreView.m; sourceTree = "<group>"; };
+		598ECDB7185AFE290059BBC7 /* MyImCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyImCell.h; sourceTree = "<group>"; };
+		598ECDB8185AFE290059BBC7 /* MyImCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyImCell.m; sourceTree = "<group>"; };
+		598ECDBA185B00A20059BBC7 /* im_head.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = im_head.png; sourceTree = "<group>"; };
+		598ECDBC185B13660059BBC7 /* im_contacts.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = im_contacts.png; sourceTree = "<group>"; };
+		598ECDBD185B13660059BBC7 /* im_contacts@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "im_contacts@2x.png"; sourceTree = "<group>"; };
+		598ECDBE185B13660059BBC7 /* im_message.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = im_message.png; sourceTree = "<group>"; };
+		598ECDBF185B13660059BBC7 /* im_message@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "im_message@2x.png"; sourceTree = "<group>"; };
+		598ECDC0185B13660059BBC7 /* im_my.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = im_my.png; sourceTree = "<group>"; };
+		598ECDC1185B13660059BBC7 /* im_my@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "im_my@2x.png"; sourceTree = "<group>"; };
 		599D7D14181E2CDB0099BE01 /* Safari@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Safari@2x~iphone.png"; sourceTree = "<group>"; };
 		599D7D16181E2CE40099BE01 /* Safari-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Safari-Small@2x.png"; sourceTree = "<group>"; };
 		59A8642818256BFC00C752C8 /* SendMessageToWeiboViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendMessageToWeiboViewController.h; sourceTree = "<group>"; };
@@ -1210,6 +1227,13 @@
 		595CB9B717F168BC00228A6E /* images */ = {
 			isa = PBXGroup;
 			children = (
+				598ECDBC185B13660059BBC7 /* im_contacts.png */,
+				598ECDBD185B13660059BBC7 /* im_contacts@2x.png */,
+				598ECDBE185B13660059BBC7 /* im_message.png */,
+				598ECDBF185B13660059BBC7 /* im_message@2x.png */,
+				598ECDC0185B13660059BBC7 /* im_my.png */,
+				598ECDC1185B13660059BBC7 /* im_my@2x.png */,
+				598ECDBA185B00A20059BBC7 /* im_head.png */,
 				59D78DE718598D0F0068D6D1 /* default_avatar.png */,
 				659F148A185861DE006BFC4D /* tabbar_AddressBook_out@2x.png */,
 				659F148B185861DE006BFC4D /* tabbar_AddressBook_over@2x.png */,
@@ -1631,6 +1655,8 @@
 				595B507D180CEACF003EC2AF /* TemplateCell.m */,
 				59D78DE4185989260068D6D1 /* MesaageIMCell.h */,
 				59D78DE5185989260068D6D1 /* MesaageIMCell.m */,
+				598ECDB7185AFE290059BBC7 /* MyImCell.h */,
+				598ECDB8185AFE290059BBC7 /* MyImCell.m */,
 			);
 			name = customCell;
 			sourceTree = "<group>";
@@ -1981,6 +2007,8 @@
 				59584B1518190AB500B65162 /* about.png in Resources */,
 				65248506180C2CE700440958 /* navigation_updata_out.png in Resources */,
 				5989A0E317F533CB00789DC6 /* Images.xcassets in Resources */,
+				598ECDBB185B00A20059BBC7 /* im_head.png in Resources */,
+				598ECDC6185B13660059BBC7 /* im_my.png in Resources */,
 				65CD687618239DDF00644394 /* list_NoData.jpg in Resources */,
 				65AC660E180FCDBF00C0CA4F /* btn_uncheck.png in Resources */,
 				5975C16A1806784900EF7285 /* more_out.png in Resources */,
@@ -1988,6 +2016,7 @@
 				65B3AC671819274200F2EC04 /* tabItem_call_over@2x.png in Resources */,
 				65B3AC6C1819274200F2EC04 /* tabItem_MyArBook_out.png in Resources */,
 				5960DC7D17F9298A0024AD8B /* point_out.png in Resources */,
+				598ECDC2185B13660059BBC7 /* im_contacts.png in Resources */,
 				5960DC8617F95BE30024AD8B /* guide96002.png in Resources */,
 				5960DC7E17F9298A0024AD8B /* point_over.png in Resources */,
 				5975C1821806981900EF7285 /* information_icon.png in Resources */,
@@ -2001,6 +2030,7 @@
 				65B3AC701819274200F2EC04 /* tabItem_SMS_out.png in Resources */,
 				65B3AC6E1819274200F2EC04 /* tabItem_MyArBook_over.png in Resources */,
 				65A573E4183AFD930072A519 /* year.plist in Resources */,
+				598ECDC7185B13660059BBC7 /* im_my@2x.png in Resources */,
 				5975C1871806981900EF7285 /* notice_icon.png in Resources */,
 				59585BC217F8300200F73D97 /* home_over@2x.png in Resources */,
 				65A573E3183AFD930072A519 /* month.plist in Resources */,
@@ -2034,6 +2064,7 @@
 				5960DC8C17F95BE90024AD8B /* guide113603.png in Resources */,
 				59584B1B18190B2200B65162 /* meetting_time.png in Resources */,
 				65B1B5861824ECC000D384D8 /* images_button.png in Resources */,
+				598ECDC3185B13660059BBC7 /* im_contacts@2x.png in Resources */,
 				65BB30101829D7C3008370A0 /* btn_AddAddressbooks.png in Resources */,
 				65AC660D180FCDBF00C0CA4F /* btn_check.png in Resources */,
 				5975C17718067AA300EF7285 /* accessory_out@2x.png in Resources */,
@@ -2051,6 +2082,7 @@
 				65BB30121829D7CF008370A0 /* addAddress_titles.png in Resources */,
 				65B3AC721819274200F2EC04 /* tabItem_SMS_over.png in Resources */,
 				65A35B741820EC81002C7489 /* share_xinlang.png in Resources */,
+				598ECDC4185B13660059BBC7 /* im_message.png in Resources */,
 				5975C1861806981900EF7285 /* mail_icon.png in Resources */,
 				5975C1851806981900EF7285 /* meetting_icon.png in Resources */,
 				5975C1831806981900EF7285 /* adress_icon.png in Resources */,
@@ -2061,6 +2093,7 @@
 				65A35B731820EC81002C7489 /* share_weixin.png in Resources */,
 				65B3AC761819314900F2EC04 /* btn_Call.png in Resources */,
 				65B3AC651819274200F2EC04 /* tabItem_call_out@2x.png in Resources */,
+				598ECDC5185B13660059BBC7 /* im_message@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2140,6 +2173,7 @@
 				659AB36D18097803000FCEC5 /* PeopelInfo.m in Sources */,
 				65A26CAF1839C494006AF226 /* WorkController.m in Sources */,
 				59F3D551180DA3640062ACF3 /* MailView.m in Sources */,
+				598ECDB9185AFE290059BBC7 /* MyImCell.m in Sources */,
 				65A26C9F1839C3F6006AF226 /* HolidayView.m in Sources */,
 				595CB9F317F1802D00228A6E /* Constants.m in Sources */,
 				594B810F18037CB800310CB1 /* PublicMailDetaInfo.m in Sources */,

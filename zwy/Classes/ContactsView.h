@@ -9,5 +9,7 @@
 #import "BaseView.h"
 
 @interface ContactsView : BaseView
-
+@property (strong, nonatomic) UISearchBar *searchBar;
+@property(nonatomic, strong) UISearchDisplayController *displayController;
+@property (strong, nonatomic) IBOutlet UITableView *uitableview;
 @end

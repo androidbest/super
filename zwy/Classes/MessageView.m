@@ -17,7 +17,7 @@
 -(id)initWithCoder:(NSCoder *)aDecoder{
     self=[super initWithCoder:aDecoder];
     if(self){
-        self.tabBarItem=[self.tabBarItem initWithTitle:@"消息" image:[UIImage imageNamed:@"home_out"] selectedImage:[UIImage imageNamed:@"home_over"]];
+//        self.tabBarItem=[self.tabBarItem initWithTitle:@"消息" image:[UIImage imageNamed:@"im_message"] selectedImage:[UIImage imageNamed:@"home_over"]];
         MessageController *contacts=[MessageController new];
         contacts.messageView=self;
         self.controller=contacts;
@@ -28,8 +28,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.tabBarController.navigationItem.leftBarButtonItem =self.temporaryBarButtonItem;
-    if (self.navigationController.navigationBarHidden) self.navigationController.navigationBarHidden=NO;
+//    self.tabBarController.navigationItem.leftBarButtonItem =self.temporaryBarButtonItem;
+    self.navigationController.navigationBarHidden=NO;
 
     _searchBar = [[UISearchBar alloc] initWithFrame:CGRectZero];
     _searchBar.placeholder = @"搜索";
@@ -55,10 +55,10 @@
     self.tabBarController.navigationItem.title=@"最近消息";
 }
 
-- (void)backButtonToHome{
-    if (!self.navigationController.navigationBarHidden)self.navigationController.navigationBarHidden=YES;
-    [self.navigationController popViewControllerAnimated:YES];
-}
+//- (void)backButtonToHome{
+//    if (!self.navigationController.navigationBarHidden)self.navigationController.navigationBarHidden=YES;
+//    [self.navigationController popViewControllerAnimated:YES];
+//}
 
 - (void)didReceiveMemoryWarning
 {

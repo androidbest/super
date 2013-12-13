@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
         <!--Login View-->
@@ -507,7 +507,7 @@
             </objects>
             <point key="canvasLocation" x="1127" y="3236"/>
         </scene>
-        <!--Message View - Item 1-->
+        <!--Message View - 消息-->
         <scene sceneID="QpU-GJ-SRM">
             <objects>
                 <viewController id="RJq-ew-dol" customClass="MessageView" sceneMemberID="viewController">
@@ -519,15 +519,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Lcs-Th-g7w">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Lcs-Th-g7w">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="566"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Lcs-Th-g7w" secondAttribute="trailing" id="Cr6-5F-ZrY"/>
+                            <constraint firstAttribute="bottom" secondItem="Lcs-Th-g7w" secondAttribute="bottom" constant="49" id="hKi-fD-V1o"/>
+                            <constraint firstItem="Lcs-Th-g7w" firstAttribute="top" secondItem="hNA-oh-zcQ" secondAttribute="top" id="w4w-eY-XlX"/>
+                            <constraint firstItem="Lcs-Th-g7w" firstAttribute="leading" secondItem="hNA-oh-zcQ" secondAttribute="leading" id="zqe-dw-fSu"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="S05-cd-xaW"/>
+                    <tabBarItem key="tabBarItem" title="消息" image="im_message.png" id="S05-cd-xaW"/>
                     <connections>
                         <outlet property="searchDisplayController" destination="4F7-St-iv0" id="g9S-Jr-U8e"/>
                         <outlet property="uitableview" destination="Lcs-Th-g7w" id="8Lm-wu-KDF"/>
@@ -598,7 +604,7 @@
             </objects>
             <point key="canvasLocation" x="1604" y="3274"/>
         </scene>
-        <!--Contacts View - Item 2-->
+        <!--Contacts View - 联系人-->
         <scene sceneID="YuO-PR-cPa">
             <objects>
                 <viewController id="0HW-LT-WKV" customClass="ContactsView" sceneMemberID="viewController">
@@ -610,21 +616,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="YSO-0K-pAn">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="YSO-0K-pAn">
+                                <rect key="frame" x="0.0" y="64" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="YSO-0K-pAn" firstAttribute="top" secondItem="Bzb-5i-Iv4" secondAttribute="top" id="2cg-Dg-lMW"/>
-                            <constraint firstAttribute="trailing" secondItem="YSO-0K-pAn" secondAttribute="trailing" id="8gn-6p-6ES"/>
-                            <constraint firstItem="YSO-0K-pAn" firstAttribute="leading" secondItem="Bzb-5i-Iv4" secondAttribute="leading" id="I0i-hT-peE"/>
-                            <constraint firstAttribute="bottom" secondItem="YSO-0K-pAn" secondAttribute="bottom" constant="49" id="VDx-Sh-EKW"/>
-                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="kGB-th-UdX"/>
+                    <tabBarItem key="tabBarItem" title="联系人" image="im_contacts.png" id="kGB-th-UdX"/>
+                    <connections>
+                        <outlet property="uitableview" destination="YSO-0K-pAn" id="pyJ-N8-DAS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lBy-9h-JSA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -3399,7 +3402,7 @@
             </objects>
             <point key="canvasLocation" x="1267" y="5276"/>
         </scene>
-        <!--My Info View - Item-->
+        <!--My Info View - 我-->
         <scene sceneID="cSD-mI-zf8">
             <objects>
                 <viewController id="TlP-4S-Sfv" customClass="MyInfoView" sceneMemberID="viewController">
@@ -3410,9 +3413,63 @@
                     <view key="view" contentMode="scaleToFill" id="vUX-wb-JDF">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="77" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="gwD-UW-UB8">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="myimCell" id="8QG-Nj-KDr" customClass="MyImCell">
+                                        <rect key="frame" x="0.0" y="86" width="320" height="77"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8QG-Nj-KDr" id="jwQ-YL-85q">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="76"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="头像" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YAK-LA-DFW">
+                                                    <rect key="frame" x="20" y="27" width="42" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8dB-WW-DD1">
+                                                    <rect key="frame" x="210" y="11" width="79" height="52"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal" backgroundImage="im_head.png">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="头像" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q9g-W8-m4X">
+                                                    <rect key="frame" x="232" y="27" width="42" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="content" destination="Q9g-W8-m4X" id="bMd-IS-ouC"/>
+                                            <outlet property="title" destination="YAK-LA-DFW" id="RPo-ir-qa4"/>
+                                            <outlet property="titleImg" destination="8dB-WW-DD1" id="vmg-zT-zi2"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="gwD-UW-UB8" secondAttribute="trailing" id="8zc-aU-rvS"/>
+                            <constraint firstItem="gwD-UW-UB8" firstAttribute="top" secondItem="vUX-wb-JDF" secondAttribute="top" id="hYJ-eD-7yL"/>
+                            <constraint firstItem="gwD-UW-UB8" firstAttribute="leading" secondItem="vUX-wb-JDF" secondAttribute="leading" id="q8J-0Y-7qA"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="3wg-ZH-dtM"/>
+                    <tabBarItem key="tabBarItem" title="我" image="im_my.png" id="3wg-ZH-dtM"/>
+                    <connections>
+                        <outlet property="tableview" destination="gwD-UW-UB8" id="76I-tR-HWw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VjA-CR-cu0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -4940,6 +4997,10 @@
         <image name="btn_hidden_keybord.png" width="66" height="34"/>
         <image name="btn_numbers.png" width="212" height="100"/>
         <image name="btn_uncheck.png" width="40" height="40"/>
+        <image name="im_contacts.png" width="30" height="30"/>
+        <image name="im_head.png" width="126" height="125"/>
+        <image name="im_message.png" width="30" height="30"/>
+        <image name="im_my.png" width="30" height="30"/>
         <image name="images_button.png" width="48" height="27"/>
         <image name="information_icon.png" width="102" height="101"/>
         <image name="list_NoData.jpg" width="453" height="342"/>

@@ -17,7 +17,7 @@
 -(id)initWithCoder:(NSCoder *)aDecoder{
     self=[super initWithCoder:aDecoder];
     if(self){
-        self.tabBarItem=[self.tabBarItem initWithTitle:@"联系人" image:[UIImage imageNamed:@"home_out"] selectedImage:[UIImage imageNamed:@"home_over"]];
+//        self.tabBarItem=[self.tabBarItem initWithTitle:@"联系人" image:[UIImage imageNamed:@"home_out"] selectedImage:[UIImage imageNamed:@"home_over"]];
         ContactsController *contacts=[ContactsController new];
         contacts.contactsView=self;
         self.controller=contacts;
@@ -27,7 +27,24 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+    [super viewDidLoad];    
+    _searchBar = [[UISearchBar alloc] initWithFrame:CGRectZero];
+    _searchBar.placeholder = @"搜索";
+    _searchBar.delegate = self.controller;
+    [_searchBar sizeToFit];
+    
+    _uitableview.dataSource = self.controller;
+    _uitableview.delegate = self.controller;
+    _uitableview.tableHeaderView = self.searchBar;
+    _uitableview.contentOffset = CGPointMake(0, CGRectGetHeight(_searchBar.bounds));
+    _uitableview.separatorStyle=UITableViewCellSeparatorStyleNone;
+    
+    _displayController = [[UISearchDisplayController alloc] initWithSearchBar:_searchBar contentsController:self.tabBarController];
+    self.searchDisplayController.searchResultsDataSource = self.controller;
+    self.searchDisplayController.searchResultsDelegate = self.controller;
+    self.searchDisplayController.delegate = self.controller;
+    
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
