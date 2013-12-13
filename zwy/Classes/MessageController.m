@@ -50,28 +50,15 @@
 [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-- (void)searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller
-{
-//    self.filteredPersons = self.famousPersons;
-    self.messageView.navigationController.navigationBarHidden=YES;
-    CGRect rect=self.messageView.tableView.frame;
-    rect.origin.y-=44;
-    self.messageView.tableView.frame=rect;
+- (void)searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller{
+
 }
 
-- (void)searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller
-{
-//    self.filteredPersons = nil;
-    self.messageView.navigationController.navigationBarHidden=NO;
-    CGRect rect=self.messageView.tableView.frame;
-    rect.origin.y+=44;
-    self.messageView.tableView.frame=rect;
+- (void)searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller{
+
 }
 
-- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
-{
-//    self.filteredPersons = [self.filteredPersons filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF contains[cd] %@", searchString]];
-    
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString{
     return YES;
 }
 @end

@@ -12,5 +12,5 @@
 
 @property (strong, nonatomic) UISearchBar *searchBar;
 @property(nonatomic, strong) UISearchDisplayController *displayController;
-@property(nonatomic, strong) UITableView *tableView;
+@property (strong, nonatomic) IBOutlet UITableView *uitableview;
 @end

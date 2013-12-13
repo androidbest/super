@@ -36,18 +36,16 @@
     _searchBar.delegate = self.controller;
     [_searchBar sizeToFit];
     
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, topLayout, ScreenWidth, ScreenHeight-topLayout-NavigationBarHeight)];
-    _tableView.dataSource = self.controller;
-    _tableView.delegate = self.controller;
-    _tableView.tableHeaderView = self.searchBar;
-    _tableView.contentOffset = CGPointMake(0, CGRectGetHeight(_searchBar.bounds));
-    _tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
-    [self.view addSubview:_tableView];
+    _uitableview.dataSource = self.controller;
+    _uitableview.delegate = self.controller;
+    _uitableview.tableHeaderView = self.searchBar;
+    _uitableview.contentOffset = CGPointMake(0, CGRectGetHeight(_searchBar.bounds));
+    _uitableview.separatorStyle=UITableViewCellSeparatorStyleNone;
     
-    _displayController = [[UISearchDisplayController alloc] initWithSearchBar:_searchBar contentsController:self];
-    self.searchDisplayController.searchResultsDataSource = self;
-    self.searchDisplayController.searchResultsDelegate = self;
-    self.searchDisplayController.delegate = self;
+    _displayController = [[UISearchDisplayController alloc] initWithSearchBar:_searchBar contentsController:self.tabBarController];
+    self.searchDisplayController.searchResultsDataSource = self.controller;
+    self.searchDisplayController.searchResultsDelegate = self.controller;
+    self.searchDisplayController.delegate = self.controller;
     
 //    [self setMySearchDisplayController:_displayController];
 }
@@ -109,15 +107,4 @@
     
     return YES;
 }
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 0;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString * messageIMCell =@"messageIMCell";
-    UITableViewCell * cell =[tableView dequeueReusableCellWithIdentifier:messageIMCell];
-    return cell;
-}
-
 @end

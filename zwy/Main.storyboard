@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
         <!--Login View-->
@@ -510,30 +510,6 @@
         <!--Message View - Item 1-->
         <scene sceneID="QpU-GJ-SRM">
             <objects>
-                <viewController id="RJq-ew-dol" customClass="MessageView" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="bvt-F5-eAY"/>
-                        <viewControllerLayoutGuide type="bottom" id="ibh-IZ-FWu"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="hNA-oh-zcQ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="S05-cd-xaW"/>
-                    <connections>
-                        <outlet property="searchDisplayController" destination="4F7-St-iv0" id="g9S-Jr-U8e"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="kUI-Rb-Wej" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="BaN-l9-Ma9">
-                    <connections>
-                        <outlet property="delegate" destination="RJq-ew-dol" id="nfU-jO-6kE"/>
-                        <outlet property="searchContentsController" destination="RJq-ew-dol" id="7Y8-CA-VpM"/>
-                        <outlet property="searchResultsDataSource" destination="RJq-ew-dol" id="Up1-ew-0Yg"/>
-                        <outlet property="searchResultsDelegate" destination="RJq-ew-dol" id="Sen-0t-PwY"/>
-                    </connections>
-                </searchDisplayController>
                 <searchDisplayController id="U6M-xP-6dv">
                     <connections>
                         <outlet property="delegate" destination="RJq-ew-dol" id="X1d-JE-Xmq"/>
@@ -548,6 +524,14 @@
                         <outlet property="searchContentsController" destination="RJq-ew-dol" id="fVc-iL-tFd"/>
                         <outlet property="searchResultsDataSource" destination="RJq-ew-dol" id="D5p-Tk-a3p"/>
                         <outlet property="searchResultsDelegate" destination="RJq-ew-dol" id="PMK-gL-4SO"/>
+                    </connections>
+                </searchDisplayController>
+                <searchDisplayController id="BaN-l9-Ma9">
+                    <connections>
+                        <outlet property="delegate" destination="RJq-ew-dol" id="nfU-jO-6kE"/>
+                        <outlet property="searchContentsController" destination="RJq-ew-dol" id="7Y8-CA-VpM"/>
+                        <outlet property="searchResultsDataSource" destination="RJq-ew-dol" id="Up1-ew-0Yg"/>
+                        <outlet property="searchResultsDelegate" destination="RJq-ew-dol" id="Sen-0t-PwY"/>
                     </connections>
                 </searchDisplayController>
                 <searchDisplayController id="Jb2-VA-E6M">
@@ -566,8 +550,32 @@
                         <outlet property="searchResultsDelegate" destination="RJq-ew-dol" id="gSO-Bi-1tl"/>
                     </connections>
                 </searchDisplayController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kUI-Rb-Wej" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="RJq-ew-dol" customClass="MessageView" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bvt-F5-eAY"/>
+                        <viewControllerLayoutGuide type="bottom" id="ibh-IZ-FWu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hNA-oh-zcQ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Lcs-Th-g7w">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="566"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 1" id="S05-cd-xaW"/>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="4F7-St-iv0" id="g9S-Jr-U8e"/>
+                        <outlet property="uitableview" destination="Lcs-Th-g7w" id="8Lm-wu-KDF"/>
+                    </connections>
+                </viewController>
             </objects>
-            <point key="canvasLocation" x="2296" y="2736"/>
+            <point key="canvasLocation" x="2230" y="2736"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="5Va-zC-JB2">
@@ -588,7 +596,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oBT-D7-4NR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1818" y="3416"/>
+            <point key="canvasLocation" x="1604" y="3274"/>
         </scene>
         <!--Contacts View - Item 2-->
         <scene sceneID="YuO-PR-cPa">
@@ -601,13 +609,26 @@
                     <view key="view" contentMode="scaleToFill" id="Bzb-5i-Iv4">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="YSO-0K-pAn">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="YSO-0K-pAn" firstAttribute="top" secondItem="Bzb-5i-Iv4" secondAttribute="top" id="2cg-Dg-lMW"/>
+                            <constraint firstAttribute="trailing" secondItem="YSO-0K-pAn" secondAttribute="trailing" id="8gn-6p-6ES"/>
+                            <constraint firstItem="YSO-0K-pAn" firstAttribute="leading" secondItem="Bzb-5i-Iv4" secondAttribute="leading" id="I0i-hT-peE"/>
+                            <constraint firstAttribute="bottom" secondItem="YSO-0K-pAn" secondAttribute="bottom" constant="49" id="VDx-Sh-EKW"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 2" id="kGB-th-UdX"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lBy-9h-JSA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2296" y="3380"/>
+            <point key="canvasLocation" x="2196" y="3408"/>
         </scene>
         <!--Office View - 政 务 办 公-->
         <scene sceneID="IOT-It-TiO">
@@ -3333,7 +3354,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VjA-CR-cu0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2303" y="4042"/>
+            <point key="canvasLocation" x="2196" y="4058"/>
         </scene>
         <!--Office Detail View-->
         <scene sceneID="uvd-Ph-U00">
