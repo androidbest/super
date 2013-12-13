@@ -314,11 +314,20 @@
         [packageData reqJokeInfoXml:self start:start1 end:end1 SELType:xmlNotifInfo1];
     }
 }
+
+#pragma mark - InformationNewsCellDelegate
 - (void)PushToNewsDetaView:(UITapGestureRecognizer *)tapGestureRecognizer{
     UIView *view =[tapGestureRecognizer view];
     [self.informationView performSegueWithIdentifier:@"informationtodetail" sender:self.informationView];
     [self initBackBarButtonItem:self.informationView];
     InformationInfo *info=arr0[view.tag];
+    _informationView.newsNumber=view.tag;
+    self.informationView.informationInfo=info;
+}
+
+- (void)PushNextNewsFromInformationDetaController{
+    _informationView.newsNumber++;
+     InformationInfo *info=arr0[_informationView.newsNumber];
     self.informationView.informationInfo=info;
 }
 

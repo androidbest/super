@@ -93,7 +93,7 @@
     [[NSOperationQueue mainQueue] addOperations:operations waitUntilFinished:NO];
 }
 
-/*图片缓存*/
+/*异步加载图片*/
 + (void)imageWithURL:(NSString *)URL imageView:(UIImageView *)imageView placeholderImage:(NSString *)imagePath{
     if (!URL)return;
     imageView.image = [UIImage imageNamed:imagePath];

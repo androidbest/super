@@ -17,5 +17,11 @@
 @property (strong ,nonatomic) UIImageView *imageContentView;
 @property (strong ,nonatomic) UILabel *labelContent;
 @property (strong ,nonatomic) UILabel *labelSource;
+@property (strong, nonatomic) IBOutlet UIButton *btnBack;
+@property (strong, nonatomic) IBOutlet UIButton *btnCommend;
+@property (strong, nonatomic) IBOutlet UIButton *btnShare;
+@property (strong, nonatomic) IBOutlet UIButton *btnComment;
+@property (strong, nonatomic) IBOutlet UIButton *btnNextNews;
+
 @property (strong, nonatomic)  InformationView *data;
 @end

@@ -11,6 +11,6 @@
 @interface InformationView : BaseView
 @property (strong, nonatomic) IBOutlet UISegmentedControl *selecter;
 @property (strong, nonatomic) InformationInfo *informationInfo;
-
+@property (assign) int newsNumber;
 - (void)dissmissFromHomeView;
 @end

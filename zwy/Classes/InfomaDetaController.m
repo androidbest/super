@@ -11,6 +11,16 @@
 @implementation InfomaDetaController
 
 
+
+- (id)init{
+    self =[super init];
+    if (self) {
+        
+    }
+    return self;
+}
+
+#pragma mark - 初始化界面
 - (void)initWithData{
     float scrollViewContentHeight=10;
     
@@ -31,8 +41,15 @@
                                                       options:NSStringDrawingUsesLineFragmentOrigin
                                                    attributes:@{NSFontAttributeName:_informaView.labelContent.font}
                                                       context:nil];
-    scrollViewContentHeight=_informaView.layerTitleBackView.bounds.size.height+scrollViewContentHeight;
     _informaView.labelContent.frame=CGRectMake(10, scrollViewContentHeight, 300, textRect.size.height);
-    _informaView.scrollView.contentSize=CGSizeMake(0, scrollViewContentHeight);
+    _informaView.scrollView.contentSize=CGSizeMake(0, scrollViewContentHeight+textRect.size.height);
 }
+
+#pragma mark -按钮操作
+- (void)btnNextnews:(UIButton *)sender{
+    
+    //刷新数据
+    [self initWithData];
+}
+
 @end

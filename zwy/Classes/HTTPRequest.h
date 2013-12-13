@@ -21,4 +21,5 @@
 
 /*异步加载图片*/
 + (void)imageWithURL:(NSString *)URL imageView:(UIImageView *)imageView placeholderImage:(NSString *)imagePath;
+
 @end
