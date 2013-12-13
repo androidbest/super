@@ -105,7 +105,6 @@
 //处理网络数据(新闻)
 -(void)handleData:(NSNotification *)notification{
     NSDictionary *dic=[notification userInfo];
-    [dic writeToFile:@"/Users/cqsxit/Desktop/Cdemo001/news.plist" atomically:NO];
     if (isUpdata) {
        [arr0 removeAllObjects];
         isUpdata=NO;

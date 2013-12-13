@@ -274,6 +274,7 @@
 		65AC660D180FCDBF00C0CA4F /* btn_check.png in Resources */ = {isa = PBXBuildFile; fileRef = 65AC660B180FCDBF00C0CA4F /* btn_check.png */; };
 		65AC660E180FCDBF00C0CA4F /* btn_uncheck.png in Resources */ = {isa = PBXBuildFile; fileRef = 65AC660C180FCDBF00C0CA4F /* btn_uncheck.png */; };
 		65AC6611180FE89000C0CA4F /* optionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 65AC6610180FE89000C0CA4F /* optionInfo.m */; };
+		65ACBE1A185ABC8D001E5636 /* InfomaDetaController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65ACBE19185ABC8D001E5636 /* InfomaDetaController.m */; };
 		65B1B5841824ECB900D384D8 /* list_yuan.png in Resources */ = {isa = PBXBuildFile; fileRef = 65B1B5831824ECB900D384D8 /* list_yuan.png */; };
 		65B1B5861824ECC000D384D8 /* images_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 65B1B5851824ECC000D384D8 /* images_button.png */; };
 		65B3AC531819251100F2EC04 /* btn_numbers.png in Resources */ = {isa = PBXBuildFile; fileRef = 65B3AC521819251100F2EC04 /* btn_numbers.png */; };
@@ -768,6 +769,8 @@
 		65AC660C180FCDBF00C0CA4F /* btn_uncheck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_uncheck.png; sourceTree = "<group>"; };
 		65AC660F180FE89000C0CA4F /* optionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = optionInfo.h; sourceTree = "<group>"; };
 		65AC6610180FE89000C0CA4F /* optionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = optionInfo.m; sourceTree = "<group>"; };
+		65ACBE18185ABC8D001E5636 /* InfomaDetaController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfomaDetaController.h; sourceTree = "<group>"; };
+		65ACBE19185ABC8D001E5636 /* InfomaDetaController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfomaDetaController.m; sourceTree = "<group>"; };
 		65B1B5831824ECB900D384D8 /* list_yuan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list_yuan.png; sourceTree = "<group>"; };
 		65B1B5851824ECC000D384D8 /* images_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = images_button.png; sourceTree = "<group>"; };
 		65B3AC521819251100F2EC04 /* btn_numbers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_numbers.png; sourceTree = "<group>"; };
@@ -1559,6 +1562,8 @@
 			children = (
 				596D6F0C18085D94002CD0B3 /* InformationController.h */,
 				596D6F0D18085D94002CD0B3 /* InformationController.m */,
+				65ACBE18185ABC8D001E5636 /* InfomaDetaController.h */,
+				65ACBE19185ABC8D001E5636 /* InfomaDetaController.m */,
 			);
 			name = information;
 			sourceTree = "<group>";
@@ -2212,6 +2217,7 @@
 				595B5093180CF306003EC2AF /* NoticeDetailView.m in Sources */,
 				659AB34C18097555000FCEC5 /* GroupAddressView.m in Sources */,
 				59878CAD1856E0E500454D0E /* ContactsView.m in Sources */,
+				65ACBE1A185ABC8D001E5636 /* InfomaDetaController.m in Sources */,
 				659AB37B18097878000FCEC5 /* ioapi.c in Sources */,
 				65AB26581856F7A100F5EAF6 /* SGFocusImageItem.m in Sources */,
 				59584B241819995200B65162 /* DownloadCell.m in Sources */,

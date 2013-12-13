@@ -12,6 +12,6 @@ static const CGSize imageSize = {60, 60};
 
 + (void)setCellContentImage:(UIImageView *)ImageViewCell Image:(UIImage *)image filePath:(NSString *)files;
 
-//写入本地缓存
-+ (void)writeFile:(UIImage *)image Type:(NSString * )type;
+/*淡化动画*/
++ (CAAnimation *)animationTransitionFade;
 @end

@@ -14,6 +14,7 @@
 #import "AFURLConnectionOperation.h"
 #import "ConfigFile.h"
 #import "CompressImage.h"
+#import "AFURLSessionManager.h"
 @implementation HTTPRequest
 
 + (void)JSONRequestOperation:(id)delegate Request:(NSMutableURLRequest *)request{
@@ -94,6 +95,7 @@
 
 /*图片缓存*/
 + (void)imageWithURL:(NSString *)URL imageView:(UIImageView *)imageView placeholderImage:(NSString *)imagePath{
+    if (!URL)return;
     imageView.image = [UIImage imageNamed:imagePath];
     NSString * PicPath =[[URL componentsSeparatedByString:@"/"] lastObject];
     NSString * strpaths =[NSString stringWithFormat:@"%@/%@/%@",DocumentsDirectory,MESSGEFILEPATH,PicPath];
@@ -109,17 +111,35 @@
     [posterOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"Response: %@", responseObject);
        //压缩图片
-        imageView.alpha=0.0;
-        [UIView animateWithDuration:0.5 animations:^{
-            imageView.alpha=1.0;
-            [CompressImage setCellContentImage:imageView Image:(UIImage *)responseObject filePath:PicPath];
-        }];
+        [CompressImage setCellContentImage:imageView Image:(UIImage *)responseObject filePath:PicPath];
+       
        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        //显示加载失败图片
+        [CompressImage setCellContentImage:imageView Image:[UIImage imageNamed:@"newsBanner1.jpg"] filePath:PicPath];
         NSLog(@"Image request failed with error: %@", error);
     }];
     [[NSOperationQueue new] addOperation:posterOperation];
 }
 
++ (void)uploadRequestOperation:(id)delegate data:(NSData*)data param:(NSMutableDictionary*)param url:(NSString *)url{
+    
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+    
+    NSURL *URL = [NSURL URLWithString:@"http://example.com/upload"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+    
+    NSURL *filePath = [NSURL fileURLWithPath:@"file://path/to/image.png"];
+    NSURLSessionUploadTask *uploadTask = [manager uploadTaskWithRequest:request fromFile:filePath progress:nil completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@", error);
+        } else {
+            NSLog(@"Success: %@ %@", response, responseObject);
+        }
+    }];
+    [uploadTask resume];
+    
+}
 
 @end
