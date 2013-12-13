@@ -8,7 +8,7 @@
 
 #import "BaseView.h"
 
-@interface MessageView : BaseView
+@interface MessageView : BaseView<UISearchDisplayDelegate,UITableViewDataSource,UITableViewDelegate>
 
 @property (strong, nonatomic) UISearchBar *searchBar;
 @property(nonatomic, strong) UISearchDisplayController *displayController;

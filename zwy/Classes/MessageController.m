@@ -38,9 +38,6 @@
     if (!cell) {
         cell = [[MesaageIMCell alloc] initWithStyle:UITableViewCellStyleSubtitle
                                    reuseIdentifier:messageIMCell];
-        
-//        cell.layer.borderWidth=1.0;
-//        cell.layer.borderColor=[[UIColor lightGrayColor] CGColor];
     }
     cell.title.text=@"fasdfasfasfd22222222222222222222222222222222222222222222222222222222222222222222";
     cell.content.text=@"aadfdsafasdfsadfasdfas11111111111111111111111111111111111111111111111111111111";
@@ -51,5 +48,30 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (void)searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller
+{
+//    self.filteredPersons = self.famousPersons;
+    self.messageView.navigationController.navigationBarHidden=YES;
+    CGRect rect=self.messageView.tableView.frame;
+    rect.origin.y-=44;
+    self.messageView.tableView.frame=rect;
+}
+
+- (void)searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller
+{
+//    self.filteredPersons = nil;
+    self.messageView.navigationController.navigationBarHidden=NO;
+    CGRect rect=self.messageView.tableView.frame;
+    rect.origin.y+=44;
+    self.messageView.tableView.frame=rect;
+}
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+//    self.filteredPersons = [self.filteredPersons filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF contains[cd] %@", searchString]];
+    
+    return YES;
 }
 @end
