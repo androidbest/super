@@ -31,7 +31,7 @@
 {
     [super viewDidLoad];
      if (!self.navigationController.navigationBarHidden)self.navigationController.navigationBarHidden=YES;
-    float layerHeight=90;
+    float layerHeight=90.0;
    
     /*标题背景*/
     _layerTitleBackView =[CALayer layer];
@@ -40,6 +40,19 @@
     _layerTitleBackView.backgroundColor=layerBorderColor;
     _layerTitleBackView.anchorPoint=CGPointMake(0, 0);
     [self.view.layer addSublayer:_layerTitleBackView];
+    
+    CALayer *layerSeg=[CALayer layer];
+    layerSeg.frame=CGRectMake(-ScreenWidth/2, layerHeight-0.5,ScreenWidth , 0.5);
+    layerBorderColor =[[UIColor grayColor] CGColor];
+    layerSeg.backgroundColor=layerBorderColor;
+    layerSeg.anchorPoint=CGPointMake(0, 0);
+    [self.view.layer addSublayer:layerSeg];
+    
+    CALayer *tabbarLayer =[CALayer layer];
+    tabbarLayer.frame=CGRectMake(-ScreenWidth/2, ScreenHeight-UITabBarHeight-0.5,ScreenWidth , 0.5);
+    tabbarLayer.backgroundColor=[[UIColor grayColor] CGColor];
+    tabbarLayer.anchorPoint=CGPointMake(0, 0);
+    [self.view.layer addSublayer:tabbarLayer];
     
     /*添加滑动视图*/
     CGRect rect =CGRectMake(0, layerHeight, ScreenWidth,ScreenHeight-layerHeight-UITabBarHeight);

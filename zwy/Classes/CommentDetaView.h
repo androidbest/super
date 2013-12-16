@@ -7,7 +7,11 @@
 //
 
 #import "BaseView.h"
+#import "InformationInfo.h"
 
 @interface CommentDetaView : BaseView
-
+@property (strong, nonatomic) IBOutlet UIButton *btnSend;
+@property (strong, nonatomic) IBOutlet UIButton *btnBack;
+@property (strong, nonatomic) IBOutlet UITextView *textContent;
+@property (strong, nonatomic) InformationInfo *InfoNewsDeta;
 @end
