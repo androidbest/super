@@ -131,6 +131,8 @@
 		596D6F0A18085D79002CD0B3 /* SmsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 596D6F0918085D79002CD0B3 /* SmsController.m */; };
 		596D6F0E18085D94002CD0B3 /* InformationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 596D6F0D18085D94002CD0B3 /* InformationController.m */; };
 		596D6F1218085DB1002CD0B3 /* MeettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 596D6F1118085DB1002CD0B3 /* MeettingController.m */; };
+		5970E1AD185ED1BD00C7719E /* MessageRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 5970E1AC185ED1BD00C7719E /* MessageRecord.m */; };
+		5970E1B0185ED8C700C7719E /* ChatRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 5970E1AF185ED8C700C7719E /* ChatRecord.m */; };
 		5975C1691806784900EF7285 /* accessory_out.png in Resources */ = {isa = PBXBuildFile; fileRef = 5975C1631806784900EF7285 /* accessory_out.png */; };
 		5975C16A1806784900EF7285 /* more_out.png in Resources */ = {isa = PBXBuildFile; fileRef = 5975C1641806784900EF7285 /* more_out.png */; };
 		5975C16B1806784900EF7285 /* more_over.png in Resources */ = {isa = PBXBuildFile; fileRef = 5975C1651806784900EF7285 /* more_over.png */; };
@@ -543,6 +545,10 @@
 		596D6F0D18085D94002CD0B3 /* InformationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformationController.m; sourceTree = "<group>"; };
 		596D6F1018085DB1002CD0B3 /* MeettingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeettingController.h; sourceTree = "<group>"; };
 		596D6F1118085DB1002CD0B3 /* MeettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeettingController.m; sourceTree = "<group>"; };
+		5970E1AB185ED1BD00C7719E /* MessageRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageRecord.h; sourceTree = "<group>"; };
+		5970E1AC185ED1BD00C7719E /* MessageRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageRecord.m; sourceTree = "<group>"; };
+		5970E1AE185ED8C700C7719E /* ChatRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatRecord.h; sourceTree = "<group>"; };
+		5970E1AF185ED8C700C7719E /* ChatRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatRecord.m; sourceTree = "<group>"; };
 		5975C1631806784900EF7285 /* accessory_out.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = accessory_out.png; sourceTree = "<group>"; };
 		5975C1641806784900EF7285 /* more_out.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = more_out.png; sourceTree = "<group>"; };
 		5975C1651806784900EF7285 /* more_over.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = more_over.png; sourceTree = "<group>"; };
@@ -898,6 +904,7 @@
 		5943984017F3D92B000B6E9C /* obj */ = {
 			isa = PBXGroup;
 			children = (
+				5970E1AA185ED0B800C7719E /* database */,
 				65E59A8F18449EC7004444E5 /* greetingInfo */,
 				659BD0DF183F2D3200FAC29E /* warningInfo */,
 				659F652B1813D4B400306C14 /* OfficeInfo */,
@@ -1370,8 +1377,6 @@
 				65A26CB01839F99D006AF226 /* DetailTextView.h */,
 				65A26CB11839F99D006AF226 /* DetailTextView.m */,
 				5977236A1824F463003F2701 /* weibo */,
-				59584B221819995200B65162 /* DownloadCell.h */,
-				59584B231819995200B65162 /* DownloadCell.m */,
 				659F65281813CD7000306C14 /* KxMenu.h */,
 				59584B20181998CD00B65162 /* KxMenu.m */,
 				65D9678B1812752A00C1A05E /* ActionSheetView.h */,
@@ -1621,6 +1626,17 @@
 			name = meetting;
 			sourceTree = "<group>";
 		};
+		5970E1AA185ED0B800C7719E /* database */ = {
+			isa = PBXGroup;
+			children = (
+				5970E1AB185ED1BD00C7719E /* MessageRecord.h */,
+				5970E1AC185ED1BD00C7719E /* MessageRecord.m */,
+				5970E1AE185ED8C700C7719E /* ChatRecord.h */,
+				5970E1AF185ED8C700C7719E /* ChatRecord.m */,
+			);
+			name = database;
+			sourceTree = "<group>";
+		};
 		5977236A1824F463003F2701 /* weibo */ = {
 			isa = PBXGroup;
 			children = (
@@ -1669,6 +1685,8 @@
 		59D78DE3185966FD0068D6D1 /* customCell */ = {
 			isa = PBXGroup;
 			children = (
+				59584B221819995200B65162 /* DownloadCell.h */,
+				59584B231819995200B65162 /* DownloadCell.m */,
 				595A0C661810E3C9009C26B8 /* DocFlowCell.h */,
 				595A0C671810E3C9009C26B8 /* DocFlowCell.m */,
 				595B507C180CEACF003EC2AF /* TemplateCell.h */,
@@ -2190,6 +2208,7 @@
 				594B811918037CC700310CB1 /* DocContentInfo.m in Sources */,
 				595B79DF18092A8E006DD766 /* MoreController.m in Sources */,
 				659AB37E18097878000FCEC5 /* zip.c in Sources */,
+				5970E1B0185ED8C700C7719E /* ChatRecord.m in Sources */,
 				596D6EEE18085C63002CD0B3 /* SmsView.m in Sources */,
 				659AB36D18097803000FCEC5 /* PeopelInfo.m in Sources */,
 				65A26CAF1839C494006AF226 /* WorkController.m in Sources */,
@@ -2261,6 +2280,7 @@
 				6521F63218166DBA00CD7B76 /* MailAddressController.m in Sources */,
 				596D6F0E18085D94002CD0B3 /* InformationController.m in Sources */,
 				65E59A9218449EE3004444E5 /* GreetingInfo.m in Sources */,
+				5970E1AD185ED1BD00C7719E /* MessageRecord.m in Sources */,
 				59584B3118199A2800B65162 /* AccountManagerController.m in Sources */,
 				594204531802E5AA00AA35C3 /* AFURLConnectionOperation.m in Sources */,
 				595B5096180CF345003EC2AF /* NoticeDetaInfo.m in Sources */,
