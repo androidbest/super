@@ -38,13 +38,26 @@
     _layerTitleBackView.zPosition=-1;
     [self.view.layer addSublayer:_layerTitleBackView];
 	
+    CALayer *layerSeg=[CALayer layer];
+    layerSeg.frame=CGRectMake(-ScreenWidth/2, layerHeight-0.5,ScreenWidth , 0.5);
+    layerBorderColor =[[UIColor grayColor] CGColor];
+    layerSeg.backgroundColor=layerBorderColor;
+    layerSeg.anchorPoint=CGPointMake(0, 0);
+    [self.view.layer addSublayer:layerSeg];
+    
+    CALayer *tabbarLayer =[CALayer layer];
+    tabbarLayer.frame=CGRectMake(-ScreenWidth/2, ScreenHeight-UITabBarHeight-0.5,ScreenWidth , 0.5);
+    tabbarLayer.backgroundColor=[[UIColor grayColor] CGColor];
+    tabbarLayer.anchorPoint=CGPointMake(0, 0);
+    [self.view.layer addSublayer:tabbarLayer];
+    
     [_btnBack addTarget:self.controller action:@selector(btnBack) forControlEvents:UIControlEventTouchUpInside];
     _btnBack.hidden=YES;
     [_btnComment addTarget:self.controller action:@selector(btnComment) forControlEvents:UIControlEventTouchUpInside];
     [_btnRefresh addTarget:self.controller action:@selector(btnRefresh) forControlEvents:UIControlEventTouchUpInside];
     [_btnBack1 addTarget:self.controller action:@selector(btnBack) forControlEvents:UIControlEventTouchUpInside];
     
-    self.tableViewComment=[[PullRefreshTableView alloc] initWithFrame:CGRectMake(0, layerHeight, ScreenWidth, ScreenHeight-layerHeight-UITabBarHeight) withDelegate:self.controller];
+    self.tableViewComment=[[PullRefreshTableView alloc] initWithFrame:CGRectMake(0, layerHeight+1, ScreenWidth, ScreenHeight-layerHeight-UITabBarHeight-2) withDelegate:self.controller];
     _tableViewComment.tag=0;
     self.tableViewComment.separatorStyle = NO;
     [self.view addSubview:_tableViewComment];

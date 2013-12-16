@@ -571,4 +571,15 @@ NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"U
     [request setHTTPBody:data];
     [HTTPRequest JSONRequestOperation:delegate Request:request SELType:sel];
 }
+
+//发表新闻评论
++ (void)sendNewsComment:(id)delegate name:(NSString *)name content:(NSString *)content discuesstime:(NSString *)discuesstime newsID:(NSString *)ID{
+    NSURL * url =[self urlByConfigFile];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><MSISDN>%@</MSISDN><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>addNewsDiscuess</METHOD><SESSIONID>2</SESSIONID><NAME>%@</NAME><CONTENT>%@</CONTENT><DISCUESSTIME>%@</DISCUESSTIME><NEWSID>%@</NEWSID></BODY></MESSAGE>",user.msisdn,user.eccode,name,content,discuesstime,ID];
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:data];
+    [HTTPRequest JSONRequestOperation:delegate Request:request];
+}
 @end

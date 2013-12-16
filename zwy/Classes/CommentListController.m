@@ -10,6 +10,7 @@
 
 #import "CommentListController.h"
 #import "TemplateCell.h"
+#import "CommentDetaView.h"
 
 @implementation CommentListController{
     BOOL isUpdata;
@@ -46,7 +47,8 @@
                 [ToolUtils alertInfo:@"暂无数据"];
             self.comListView.tableViewComment.reachedTheEnd=NO;
         }
-    
+        _comListView.commentCount.text=[NSString stringWithFormat:@"%d 条",_arrCommentList.count];
+        
     }else{
         
         [ToolUtils alertInfo:requestError];
@@ -88,11 +90,29 @@ static NSString *strCell=@"cell";
     TemplateCell *cell =[tableView dequeueReusableCellWithIdentifier:strCell];
     if (!cell) {
         cell =[[TemplateCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:strCell];
+        
+        //时间尺寸
+        CGRect lableRect=cell.time.frame;
+        lableRect.origin.x+=20;
+        cell.time.frame=lableRect;
+        
+        //标题尺寸
+        lableRect=cell.title.frame;
+        lableRect.origin.x-=10;
+        cell.title.frame=lableRect;
+        
+        //内容尺寸
+        lableRect=cell.content.frame;
+        lableRect.origin.x-=10;
+        lableRect.size.width+=15;
+        cell.content.frame=lableRect;
     }
     
-    float cellContentHeight=20;
+    float cellContentHeight=35;
     CommentDetaInfo *info =_arrCommentList[indexPath.row];
+    cell.title.text=info.name;
     cell.content.text=info.content;
+    cell.time.text=[self intervalToSting:info.discuesstime];
     cell.content.textColor=[UIColor blackColor];
     CGRect textRect = [cell.content.text boundingRectWithSize:CGSizeMake(280.0f, 1000.0f)
                                                       options:NSStringDrawingUsesLineFragmentOrigin
@@ -100,7 +120,7 @@ static NSString *strCell=@"cell";
                                                       context:nil];
     CGRect rect=cell.content.frame;
     rect.size.height=textRect.size.height;
-    rect.origin.y=cellContentHeight+10;
+    rect.origin.y=cellContentHeight+5;
     cell.content.frame=rect;
     cellContentHeight+=textRect.size.height+20;
     
@@ -108,9 +128,6 @@ static NSString *strCell=@"cell";
     rect =cell.frame;
     rect.size.height=cellContentHeight;
     cell.frame=rect;
-    return cell;
-
-    
     return cell;
 }
 
@@ -129,6 +146,20 @@ static NSString *strCell=@"cell";
 
 #pragma mark - baseControllerDelagete
 - (void)BasePrepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    
+    UIViewController *viewController=segue.destinationViewController;
+    if ([segue.identifier isEqualToString:@"CommentListToCommentDeta"]) {
+        [(CommentDetaView *)viewController setInfoNewsDeta:_comListView.InfoNewsDeta];
+    }
 }
+
+//将毫秒转换为字符串
+- (NSString  *)intervalToSting:(NSString *)time{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setFormatterBehavior:NSDateFormatterBehaviorDefault];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+    NSDate *warningDate = warningDate=[[NSDate alloc]initWithTimeIntervalSince1970:[time doubleValue]];
+    NSString *strTime =[formatter stringFromDate:warningDate];
+    return strTime;
+}
+
 @end

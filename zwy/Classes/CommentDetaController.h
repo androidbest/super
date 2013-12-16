@@ -7,7 +7,7 @@
 //
 
 #import "BaseController.h"
-
+#import "CommentDetaView.h"
 @interface CommentDetaController : BaseController
-
+@property (strong ,nonatomic)CommentDetaView *comDetaView;
 @end

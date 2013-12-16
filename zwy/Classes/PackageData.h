@@ -151,4 +151,6 @@
 //新闻资讯评论列表
 + (void)getCommentListData:(id)delegate newsID:(NSString *)ID pages:(int)pageId  SELType:(NSString *)sel;
 
+//发表新闻评论
++ (void)sendNewsComment:(id)delegate name:(NSString *)name content:(NSString *)content discuesstime:(NSString *)discuesstime newsID:(NSString *)ID;
 @end
