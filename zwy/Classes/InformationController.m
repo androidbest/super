@@ -127,7 +127,7 @@
     [self.informationView.listview reloadDataPull];
 }
 
-//处理网络数据
+//处理网络数据(笑话)
 -(void)handleData1:(NSNotification *)notification{
     NSDictionary *dic=[notification userInfo];
     if (isUpdata1) {
@@ -172,7 +172,8 @@
     static NSString * strCell1 =@"cell1";
     static NSString * strCell2 =@"cell2";
    
-    if(tableView.tag==0){
+    
+    if(tableView.tag==0){//新闻资讯(新闻内容)
         InformationNewsCell *cellNews=[tableView dequeueReusableCellWithIdentifier:strCell1];
         if (!cellNews) {
             cellNews = [[InformationNewsCell alloc] initWithStyle:UITableViewCellStyleSubtitle
@@ -189,7 +190,10 @@
                 {
                     cellNews.labelTitle1.text=info.title;
                     cellNews.imageFirstNews.tag=indexRow;
-                    [HTTPRequest imageWithURL:info.imagePath imageView:cellNews.imageFirstNews placeholderImage:@"newsBanner2.jpg"];
+                    [HTTPRequest imageWithURL:info.imagePath
+                                    imageView:cellNews.imageFirstNews
+                             placeholderImage:[UIImage imageNamed:@"newsBanner2.jpg"]
+                                   isDrawRect:drawRect_no];
                 }
                     break;
                 case 1:
@@ -237,25 +241,43 @@
 //        if ([arrYetNews containsObject:info.newsID]) cell.title.textColor=[UIColor grayColor];
 //        else cell.title.textColor =[UIColor blackColor];
         
-    }else{
+    }else{//新闻资讯(笑话)
          TemplateCell * cell=[tableView dequeueReusableCellWithIdentifier:strCell2];
         if (!cell) {
             cell = [[TemplateCell alloc] initWithStyle:UITableViewCellStyleSubtitle
                                        reuseIdentifier:strCell2];
         }
         InformationInfo *info=arr1[indexPath.row];
+       
+        
+        float cellContentHeight=20;
+        if (info.imagePath&&![info.imagePath isEqualToString:@"null"]) {
+            cell.imageContent.hidden=NO;
+            [HTTPRequest imageWithURL:info.imagePath
+                            imageView:cell.imageContent
+                     placeholderImage:[UIImage imageNamed:@"newsBanner2.jpg"]
+                           isDrawRect:drawRect_width];
+            cellContentHeight+=cell.imageContent.frame.size.height;
+        }else{
+            cell.imageContent.hidden=YES;
+            cellContentHeight-=20;
+        }
+        
         cell.content.text=info.content;
         cell.content.textColor=[UIColor blackColor];
         CGRect textRect = [cell.content.text boundingRectWithSize:CGSizeMake(280.0f, 1000.0f)
-                                             options:NSStringDrawingUsesLineFragmentOrigin
-                                          attributes:@{NSFontAttributeName:cell.content.font}
-                                             context:nil];
+                                                          options:NSStringDrawingUsesLineFragmentOrigin
+                                                       attributes:@{NSFontAttributeName:cell.content.font}
+                                                          context:nil];
         CGRect rect=cell.content.frame;
-        rect.size=textRect.size;
-        rect.origin.y=15;
+        rect.size.height=textRect.size.height;
+        rect.origin.y=cellContentHeight+10;
         cell.content.frame=rect;
+        cellContentHeight+=textRect.size.height+20;
+        
+        //设置cell尺寸
         rect =cell.frame;
-        rect.size.height=cell.content.frame.size.height+30;
+        rect.size.height=cellContentHeight;
         cell.frame=rect;
         return cell;
     }

@@ -10,6 +10,6 @@
 #import "InformationView.h"
 @interface InformationController : BaseController
 @property (strong ,nonatomic) InformationView* informationView;
-
+//新闻下一篇
 - (void)PushNextNewsFromInformationDetaController;
 @end

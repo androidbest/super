@@ -41,6 +41,10 @@
 
 /*缓存图片地址*/
 #define MESSGEFILEPATH @"messageFilePath"
+
+/*发送图片尺寸刷新通告*/
+#define NOTIFICATIONIMAGEDRAWRECT @"notificationImageDrawRect"
+
 #import <Foundation/Foundation.h>
 @interface ConfigFile : NSObject
 

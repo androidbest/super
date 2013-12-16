@@ -76,6 +76,22 @@
     _labelContent.numberOfLines=0;
     [_scrollView addSubview:_labelContent];
    
+    //按钮
+    [_btnBack addTarget:self.controller action:@selector(btnBack) forControlEvents:UIControlEventTouchUpInside];
+    [_btnBack setExclusiveTouch:YES];
+    
+    [_btnCommend addTarget:self.controller action:@selector(btnCommend) forControlEvents:UIControlEventTouchUpInside];
+    [_btnCommend setExclusiveTouch:YES];
+    
+    [_btnShare addTarget:self.controller action:@selector(btnShare) forControlEvents:UIControlEventTouchUpInside];
+    [_btnShare setExclusiveTouch:YES];
+    
+    [_btnComment addTarget:self.controller action:@selector(btnComment) forControlEvents:UIControlEventTouchUpInside];
+    [_btnComment setExclusiveTouch:YES];
+    
+    [_btnNextNews addTarget:self.controller action:@selector(btnNextNews) forControlEvents:UIControlEventTouchUpInside];
+    [_btnNextNews setExclusiveTouch:YES];
+    
     [self.controller initWithData];
 }
 
