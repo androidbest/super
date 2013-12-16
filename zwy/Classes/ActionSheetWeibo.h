@@ -10,7 +10,7 @@
 
 @class ActionSheetWeibo;
 @protocol ActionSheetWeiboDetaSource <NSObject>
-
+@optional
 - (void)actionSheetIndex:(NSInteger)index;
 
 @end

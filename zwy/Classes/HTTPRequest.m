@@ -13,7 +13,6 @@
 #import "Constants.h"
 #import "AFURLConnectionOperation.h"
 #import "ConfigFile.h"
-#import "CompressImage.h"
 #import "AFURLSessionManager.h"
 @implementation HTTPRequest
 
@@ -94,16 +93,20 @@
 }
 
 /*异步加载图片*/
-+ (void)imageWithURL:(NSString *)URL imageView:(UIImageView *)imageView placeholderImage:(NSString *)imagePath{
++ (void)imageWithURL:(NSString *)URL imageView:(UIImageView *)imageView placeholderImage:(UIImage *)image isDrawRect:(drawRectType_Height_Width)drawRectType{
     if (!URL)return;
-    imageView.image = [UIImage imageNamed:imagePath];
+    imageView.image =image;
     NSString * PicPath =[[URL componentsSeparatedByString:@"/"] lastObject];
     NSString * strpaths =[NSString stringWithFormat:@"%@/%@/%@",DocumentsDirectory,MESSGEFILEPATH,PicPath];
     NSData * data = [NSData dataWithContentsOfFile:strpaths];
     if (data) {
         imageView.image = [UIImage imageWithData:data];
+        if (drawRectType==drawRect_height)[CompressImage drawRectToImageView:imageView];
+        if (drawRectType==drawRect_width)[CompressImage drawRectToImageViewWidth:imageView];
         return;
     }
+    
+    
     NSURL * url =[NSURL URLWithString:URL];
     NSMutableURLRequest * request =[[NSMutableURLRequest alloc] initWithURL:url];
     AFHTTPRequestOperation *posterOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
@@ -111,12 +114,12 @@
     [posterOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"Response: %@", responseObject);
        //压缩图片
-        [CompressImage setCellContentImage:imageView Image:(UIImage *)responseObject filePath:PicPath];
+        [CompressImage setCellContentImage:imageView Image:(UIImage *)responseObject filePath:PicPath isDrawRect:drawRectType];
        
        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         //显示加载失败图片
-        [CompressImage setCellContentImage:imageView Image:[UIImage imageNamed:@"newsBanner1.jpg"] filePath:PicPath];
+        [CompressImage setCellContentImage:imageView Image:[UIImage imageNamed:@"newsBanner1.jpg"] filePath:PicPath isDrawRect:drawRectType];
         NSLog(@"Image request failed with error: %@", error);
     }];
     [[NSOperationQueue new] addOperation:posterOperation];

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "MBProgressHUD.h"
+#import "CompressImage.h"
 
 @interface HTTPRequest : NSObject
 
@@ -20,6 +21,6 @@
 + (void)data;
 
 /*异步加载图片*/
-+ (void)imageWithURL:(NSString *)URL imageView:(UIImageView *)imageView placeholderImage:(NSString *)imagePath;
++ (void)imageWithURL:(NSString *)URL imageView:(UIImageView *)imageView placeholderImage:(UIImage *)image isDrawRect:(drawRectType_Height_Width)drawRectType;
 
 @end

@@ -24,9 +24,152 @@
     return transition;
 }
 
+#pragma mark - touchPress
++ (void)touchPress:(int)index AnimationToView:(UIView *)view{
+ 
+    CATransition *  tran=[CATransition animation];
+    
+    
+    switch (index) {
+        case 10000:
+            tran.type = @"suckEffect";
+            break;
+        case 10001:
+            tran.type = @"rippleEffect";
+            break;
+        case 10002:
+            tran.type = @"pageCurl";
+            tran.subtype = kCATransitionFromRight;
+            
+            break;
+        case 10003:
+            tran.type = kCATransitionMoveIn;
+            tran.subtype = kCATransitionFromRight;
+            break;
+        case 10004:
+            tran.type = kCATransitionPush;
+            tran.subtype = kCATransitionFromRight;
+            break;
+        case 10005:
+            tran.type = kCATransitionReveal;
+            tran.subtype = kCATransitionFromRight;
+            break;
+        case 10006:
+            tran.type = kCATransitionReveal;
+            tran.subtype = kCATransitionFromLeft;
+            break;
+        case 10007:
+            tran.type = kCATransitionReveal;
+            
+            tran.subtype = kCATransitionFromTop;
+            break;
+            
+        case 10008:
+            tran.type = kCATransitionReveal;
+            
+            tran.subtype = kCATransitionFromBottom;
+            break;
+        case 10009:
+            tran.type = @"cube";
+            tran.subtype = kCATransitionFromBottom;
+            break;
+        case 10010:
+            tran.type = @"oglFlip";
+            tran.subtype = kCATransitionFromBottom;
+            break;
+        case 10011:
+            tran.type = @"rippleEffect";
+            break;
+        case 10012:
+            tran.type = @"cameraIrisHollowOpen";
+            break;
+        case 10013:
+            tran.type = @"cameraIrisHollowClose";
+            break;
+        case 10014:
+            tran.type = kCATransitionMoveIn;
+            tran.subtype = kCATransitionFromTop;
+            break;
+        case 10015:
+            tran.type = kCATransitionPush;
+            tran.subtype = kCATransitionFromTop;
+            break;
+        case 10016:
+            tran.type = @"pageCurl";
+            tran.subtype = kCATransitionFromTop;
+            break;
+        case 10017:
+            tran.type = @"pageCurl";
+            tran.subtype = kCATransitionFromLeft;
+            break;
+        case 10018:
+            tran.type = @"pageCurl";
+            tran.subtype = kCATransitionFromBottom;
+            break;
+        case 10019:
+            tran.type = @"oglFlip";
+            tran.subtype = kCATransitionFromTop;
+            break;
+        case 10020:
+            tran.type = @"oglFlip";
+            tran.subtype = kCATransitionFromLeft;
+            break;
+        case 10021:
+            tran.type = kCATransitionMoveIn;
+            tran.subtype = kCATransitionFromLeft;
+            
+            break;
+        case 10022:
+            tran.type = kCATransitionMoveIn;
+            tran.subtype = kCATransitionFromTop;
+            
+            break;
+        case 10023:
+            tran.type = kCATransitionMoveIn;
+            tran.subtype = kCATransitionFromBottom;
+            
+            break;
+        case 10024:
+            tran.type = kCATransitionPush;
+            tran.subtype = kCATransitionFromLeft;
+            break;
+        case 10025:
+            tran.type = kCATransitionPush;
+            tran.subtype = kCATransitionFromTop;
+            break;
+        case 10026:
+            tran.type = kCATransitionPush;
+            tran.subtype = kCATransitionFromBottom;
+            break;
+        case 10027:
+            tran.type = @"cube";
+            tran.subtype = kCATransitionFromRight;
+            break;
+        case 10028:
+            tran.type = @"cube";
+            tran.subtype = kCATransitionFromTop;
+            break;
+        case 10029:
+            tran.type = @"cube";
+            tran.subtype = kCATransitionFromLeft;
+            break;
+            
+        default:
+            break;
+    }
+    tran.duration=0.5;
+    [view.layer addAnimation:tran forKey:@"kongyu"];
+}
+
+///////////////////*****************////////////////////////
+///////////////////*****************////////////////////////
+
+///////////////////*****************////////////////////////
+///////////////////*****************////////////////////////
+
 #pragma mark -压缩图片
 //保存本地压缩图
-+ (void)setCellContentImage:(UIImageView *)ImageViewCell Image:(UIImage *)image filePath:(NSString *)files{
++ (void)setCellContentImage:(UIImageView *)ImageViewCell Image:(UIImage *)image filePath:(NSString *)files isDrawRect:(drawRectType_Height_Width)drawRectType{
     __block UIImage * blockImage =image;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         blockImage=[self imageContentWithSimple:image];
@@ -35,6 +178,19 @@
             [ImageViewCell.layer addAnimation:animation forKey:@"animationTransitionFade"];
             ImageViewCell.image=blockImage;
             [self writeFile:ImageViewCell.image Type:files];
+            if (drawRectType==drawRect_height){
+                [self drawRectToImageView:ImageViewCell];
+                [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATIONIMAGEDRAWRECT
+                                                                    object:nil
+                                                                  userInfo:nil];
+            }
+            if (drawRectType==drawRect_width) {
+                [self drawRectToImageViewWidth:ImageViewCell];
+                [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATIONIMAGEDRAWRECT
+                                                                    object:nil
+                                                                  userInfo:nil];
+            }
+            
         });
         
     });
@@ -78,4 +234,25 @@
     }
 }
 
+//等宽
++ (void)drawRectToImageView:(UIImageView *)imageView{
+    float width =CGImageGetWidth(imageView.image.CGImage);
+    float height=CGImageGetHeight(imageView.image.CGImage);
+    float WroH=width/height;
+    CGRect rect =imageView.frame;
+    rect.size.width=ScreenWidth-20;
+    rect.size.height=(ScreenWidth-20)/WroH;
+    imageView.frame=rect;
+}
+
+//等高
++ (void)drawRectToImageViewWidth:(UIImageView *)imageView{
+    float width =CGImageGetWidth(imageView.image.CGImage);
+    float height=CGImageGetHeight(imageView.image.CGImage);
+    float WroH=width/height;
+    CGRect rect =imageView.frame;
+    rect.size.width=100*WroH;
+    rect.size.height=100;
+    imageView.frame=rect;
+}
 @end

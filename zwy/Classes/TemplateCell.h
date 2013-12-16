@@ -14,4 +14,6 @@
 @property (strong, nonatomic) UILabel *content;
 @property (strong ,nonatomic) UIImageView * imageMark;
 @property (strong ,nonatomic) UILabel *greetingCount;
+@property (strong ,nonatomic)UIImageView *imageContent;
+
 @end
