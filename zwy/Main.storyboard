@@ -520,17 +520,17 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Lcs-Th-g7w">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="566"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="Lcs-Th-g7w" secondAttribute="trailing" id="Cr6-5F-ZrY"/>
-                            <constraint firstAttribute="bottom" secondItem="Lcs-Th-g7w" secondAttribute="bottom" constant="49" id="hKi-fD-V1o"/>
-                            <constraint firstItem="Lcs-Th-g7w" firstAttribute="top" secondItem="hNA-oh-zcQ" secondAttribute="top" id="w4w-eY-XlX"/>
-                            <constraint firstItem="Lcs-Th-g7w" firstAttribute="leading" secondItem="hNA-oh-zcQ" secondAttribute="leading" id="zqe-dw-fSu"/>
+                            <constraint firstItem="Lcs-Th-g7w" firstAttribute="leading" secondItem="hNA-oh-zcQ" secondAttribute="leading" id="0Ef-f2-mEa"/>
+                            <constraint firstAttribute="trailing" secondItem="Lcs-Th-g7w" secondAttribute="trailing" id="F0s-Ib-tRq"/>
+                            <constraint firstAttribute="bottom" secondItem="Lcs-Th-g7w" secondAttribute="bottom" constant="49" id="Qh7-7C-pen"/>
+                            <constraint firstItem="Lcs-Th-g7w" firstAttribute="top" secondItem="hNA-oh-zcQ" secondAttribute="top" id="oJk-Wb-wBW"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="消息" image="im_message.png" id="S05-cd-xaW"/>
@@ -616,17 +616,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="YSO-0K-pAn">
-                                <rect key="frame" x="0.0" y="64" width="320" height="568"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="YSO-0K-pAn">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="YSO-0K-pAn" firstAttribute="leading" secondItem="Bzb-5i-Iv4" secondAttribute="leading" id="AUD-Jf-rwO"/>
+                            <constraint firstAttribute="trailing" secondItem="YSO-0K-pAn" secondAttribute="trailing" id="OGw-e3-buY"/>
+                            <constraint firstItem="YSO-0K-pAn" firstAttribute="top" secondItem="Bzb-5i-Iv4" secondAttribute="top" constant="64" id="VqE-SQ-svs"/>
+                            <constraint firstAttribute="bottom" secondItem="YSO-0K-pAn" secondAttribute="bottom" constant="49" id="dIg-lc-dJq"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="联系人" image="im_contacts.png" id="kGB-th-UdX"/>
                     <connections>
-                        <outlet property="uitableview" destination="YSO-0K-pAn" id="pyJ-N8-DAS"/>
+                        <outlet property="uitableview" destination="YSO-0K-pAn" id="ctC-zU-bum"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lBy-9h-JSA" userLabel="First Responder" sceneMemberID="firstResponder"/>

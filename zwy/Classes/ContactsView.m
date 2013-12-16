@@ -27,7 +27,9 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];    
+    [super viewDidLoad];
+//    self.navigationController.navigationBar.translucent = YES;
+    self.navigationController.navigationBarHidden=NO;
     _searchBar = [[UISearchBar alloc] initWithFrame:CGRectZero];
     _searchBar.placeholder = @"搜索";
     _searchBar.delegate = self.controller;

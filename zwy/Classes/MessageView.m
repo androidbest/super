@@ -21,6 +21,14 @@
         MessageController *contacts=[MessageController new];
         contacts.messageView=self;
         self.controller=contacts;
+        
+        
+//        NSComparisonResult order = [[UIDevice currentDevice].systemVersion compare: @"7.0" options: NSNumericSearch];
+//        if (order == NSOrderedSame || order == NSOrderedDescending)
+//        {
+//            // OS version >= 7.0
+//            self.edgesForExtendedLayout = UIRectEdgeNone;
+//        }
     }
     return self;
 }
@@ -30,7 +38,6 @@
     [super viewDidLoad];
 //    self.tabBarController.navigationItem.leftBarButtonItem =self.temporaryBarButtonItem;
     self.navigationController.navigationBarHidden=NO;
-
     _searchBar = [[UISearchBar alloc] initWithFrame:CGRectZero];
     _searchBar.placeholder = @"搜索";
     _searchBar.delegate = self.controller;
@@ -48,7 +55,13 @@
     self.searchDisplayController.delegate = self.controller;
     
 //    [self setMySearchDisplayController:_displayController];
+    
+   
+    
 }
+
+
+
 
 
 -(void)viewWillAppear:(BOOL)animated{
