@@ -254,6 +254,10 @@
 		65A3B39A1814CC3F00AD4069 /* MassMyAddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A3B3991814CC3F00AD4069 /* MassMyAddressView.m */; };
 		65A3B39D1814CC7A00AD4069 /* MassMyaddressController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A3B39C1814CC7A00AD4069 /* MassMyaddressController.m */; };
 		65A3B3A318151C3E00AD4069 /* PeopleDedaInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A3B3A218151C3E00AD4069 /* PeopleDedaInfo.m */; };
+		65A3C24D185EA5480098C8F3 /* CommentListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A3C24C185EA5480098C8F3 /* CommentListView.m */; };
+		65A3C250185EA5690098C8F3 /* CommentDetaView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A3C24F185EA5690098C8F3 /* CommentDetaView.m */; };
+		65A3C253185EA5890098C8F3 /* CommentListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A3C252185EA5890098C8F3 /* CommentListController.m */; };
+		65A3C256185EA5A50098C8F3 /* CommentDetaController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A3C255185EA5A50098C8F3 /* CommentDetaController.m */; };
 		65A573E1183AFD930072A519 /* day.plist in Resources */ = {isa = PBXBuildFile; fileRef = 65A573DD183AFD930072A519 /* day.plist */; };
 		65A573E2183AFD930072A519 /* lunarcalenda.plist in Resources */ = {isa = PBXBuildFile; fileRef = 65A573DE183AFD930072A519 /* lunarcalenda.plist */; };
 		65A573E3183AFD930072A519 /* month.plist in Resources */ = {isa = PBXBuildFile; fileRef = 65A573DF183AFD930072A519 /* month.plist */; };
@@ -739,6 +743,14 @@
 		65A3B39C1814CC7A00AD4069 /* MassMyaddressController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MassMyaddressController.m; sourceTree = "<group>"; };
 		65A3B3A118151C3E00AD4069 /* PeopleDedaInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleDedaInfo.h; sourceTree = "<group>"; };
 		65A3B3A218151C3E00AD4069 /* PeopleDedaInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleDedaInfo.m; sourceTree = "<group>"; };
+		65A3C24B185EA5480098C8F3 /* CommentListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentListView.h; sourceTree = "<group>"; };
+		65A3C24C185EA5480098C8F3 /* CommentListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentListView.m; sourceTree = "<group>"; };
+		65A3C24E185EA5690098C8F3 /* CommentDetaView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentDetaView.h; sourceTree = "<group>"; };
+		65A3C24F185EA5690098C8F3 /* CommentDetaView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentDetaView.m; sourceTree = "<group>"; };
+		65A3C251185EA5890098C8F3 /* CommentListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentListController.h; sourceTree = "<group>"; };
+		65A3C252185EA5890098C8F3 /* CommentListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentListController.m; sourceTree = "<group>"; };
+		65A3C254185EA5A50098C8F3 /* CommentDetaController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentDetaController.h; sourceTree = "<group>"; };
+		65A3C255185EA5A50098C8F3 /* CommentDetaController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentDetaController.m; sourceTree = "<group>"; };
 		65A573DD183AFD930072A519 /* day.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = day.plist; sourceTree = "<group>"; };
 		65A573DE183AFD930072A519 /* lunarcalenda.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = lunarcalenda.plist; sourceTree = "<group>"; };
 		65A573DF183AFD930072A519 /* month.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = month.plist; sourceTree = "<group>"; };
@@ -1465,6 +1477,10 @@
 				65A8C47618584082005285C4 /* InformationNewsCell.m */,
 				65A7B35118595C220018E32C /* InformationCellContentView.h */,
 				65A7B35218595C220018E32C /* InformationCellContentView.m */,
+				65A3C24B185EA5480098C8F3 /* CommentListView.h */,
+				65A3C24C185EA5480098C8F3 /* CommentListView.m */,
+				65A3C24E185EA5690098C8F3 /* CommentDetaView.h */,
+				65A3C24F185EA5690098C8F3 /* CommentDetaView.m */,
 			);
 			name = Information;
 			sourceTree = "<group>";
@@ -1588,6 +1604,10 @@
 				596D6F0D18085D94002CD0B3 /* InformationController.m */,
 				65ACBE18185ABC8D001E5636 /* InfomaDetaController.h */,
 				65ACBE19185ABC8D001E5636 /* InfomaDetaController.m */,
+				65A3C251185EA5890098C8F3 /* CommentListController.h */,
+				65A3C252185EA5890098C8F3 /* CommentListController.m */,
+				65A3C254185EA5A50098C8F3 /* CommentDetaController.h */,
+				65A3C255185EA5A50098C8F3 /* CommentDetaController.m */,
 			);
 			name = information;
 			sourceTree = "<group>";
@@ -2128,6 +2148,7 @@
 				65D967981812E1ED00C1A05E /* CheckAccessoryView.m in Sources */,
 				594B813418037D0B00310CB1 /* EcinfoDetas.m in Sources */,
 				65A3B3941814C08900AD4069 /* MassTextingView.m in Sources */,
+				65A3C250185EA5690098C8F3 /* CommentDetaView.m in Sources */,
 				594204521802E5AA00AA35C3 /* AFSecurityPolicy.m in Sources */,
 				659AB34F18097579000FCEC5 /* AddressDetailsView.m in Sources */,
 				5942045F1802F0B500AA35C3 /* ParseXML.m in Sources */,
@@ -2194,7 +2215,9 @@
 				659F65271813C9FF00306C14 /* OfficeAddressView.m in Sources */,
 				594B80FE18037BC500310CB1 /* AllSumInfo.m in Sources */,
 				595CB9F617F1803600228A6E /* ConfigFile.m in Sources */,
+				65A3C256185EA5A50098C8F3 /* CommentDetaController.m in Sources */,
 				594B812D18037CF800310CB1 /* SMSDetaInfo.m in Sources */,
+				65A3C24D185EA5480098C8F3 /* CommentListView.m in Sources */,
 				594204371802B61000AA35C3 /* Tuser.m in Sources */,
 				595A0C681810E3C9009C26B8 /* DocFlowCell.m in Sources */,
 				65D967911812B91C00C1A05E /* AccessoryView.m in Sources */,
@@ -2224,6 +2247,7 @@
 				6581E96F183C68E500A10D10 /* SevenSwitch.m in Sources */,
 				594204501802E5AA00AA35C3 /* AFHTTPSessionManager.m in Sources */,
 				595CB98E17F164AF00228A6E /* AppDelegate.m in Sources */,
+				65A3C253185EA5890098C8F3 /* CommentListController.m in Sources */,
 				595CBA0517F1925700228A6E /* Reachability.m in Sources */,
 				596D6EF118085C77002CD0B3 /* OfficeView.m in Sources */,
 				59584B271819998100B65162 /* MailDetail.m in Sources */,

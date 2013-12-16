@@ -19,4 +19,5 @@
 -(void)initData:(id)base;
 -(void)updateAddressBook;
 
+- (void)BasePrepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender;
 @end

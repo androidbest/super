@@ -95,6 +95,11 @@
     [self.controller initWithData];
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    [self.controller  BasePrepareForSegue:segue sender:sender];
+}
+
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

@@ -82,7 +82,7 @@
 
 //评论
 - (void)btnComment{
-
+    [self.informaView performSegueWithIdentifier:@"InforMationDetaToCommentList" sender:self.informaView];
 }
 
 //下一篇
@@ -94,6 +94,13 @@
     [self initWithData];
 }
 
+#pragma mark - baseControllerDelagete
+- (void)BasePrepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+
+}
+
+
+#pragma mark -  compressImgae_Notification
 //刷新新闻内容坐标
 - (void)initWithLabelContentFrame{
     scrollViewContentHeight=10;
