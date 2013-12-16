@@ -14,10 +14,9 @@
 @property (strong ,nonatomic)NSString *sendeccode;//发送者eccode
 @property (strong ,nonatomic)NSString *sendecontent;//发送者内容
 @property (strong ,nonatomic)NSString *sendetime;//发送者语音url
-@property (strong ,nonatomic)NSString *sendetvoiceurl;//发送者时间
+@property (strong ,nonatomic)NSString *voiceurl;//音频url
 @property (strong ,nonatomic)NSString *receivermsisdn;//接收者电话号码
 @property (strong ,nonatomic)NSString *receivereccode;//接收者eccode
 @property (strong ,nonatomic)NSString *receivercontent;//接收者内容
 @property (strong ,nonatomic)NSString *receivertime;//接收者时间
-@property (strong ,nonatomic)NSString *sendevoiceurl;//发送者时间
 @end

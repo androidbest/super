@@ -30,5 +30,6 @@ extern UIView *coverView;
 extern BOOL isZaiXian;
 extern BOOL isLocalNotification;
 extern NSDictionary * dicLocalNotificationInfo;
+extern NSMutableArray * chatArr;
 @interface Constants : NSObject
 @end

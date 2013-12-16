@@ -23,5 +23,6 @@ Tuser *user=nil;
 NSMutableArray *arrEc=nil;
 NSDictionary * dicLocalNotificationInfo=nil;
 UIView *coverView=nil;
+NSMutableArray *chatArr=nil;
 @implementation Constants
 @end

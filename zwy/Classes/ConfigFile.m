@@ -104,7 +104,7 @@ static ConfigFile *configFile;
     if (arr.count==0&&!arr) return AllPeople;
     for (int i =0; i<arr.count-1; i++) {
         NSArray * arrData =[[arr objectAtIndex:i] componentsSeparatedByString:@","];
-        if (arrData.count>=7) {
+        if (arrData.count==10) {
             PeopelInfo *info=[PeopelInfo new];
             info.userID =[arrData objectAtIndex:0];
             info.Name=[arrData objectAtIndex:1];
@@ -114,6 +114,9 @@ static ConfigFile *configFile;
             info.groupID =[arrData objectAtIndex:5];
             info.superID=[arrData objectAtIndex:5];
             info.letter =[arrData objectAtIndex:6];
+            info.isecnumer=[arrData objectAtIndex:7];
+            info.headPath=[arrData objectAtIndex:8];
+            info.eccode=[arrData objectAtIndex:9];
             [AllPeople addObject:info];
         }
     }

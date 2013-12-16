@@ -133,6 +133,9 @@
 		596D6F1218085DB1002CD0B3 /* MeettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 596D6F1118085DB1002CD0B3 /* MeettingController.m */; };
 		5970E1AD185ED1BD00C7719E /* MessageRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 5970E1AC185ED1BD00C7719E /* MessageRecord.m */; };
 		5970E1B0185ED8C700C7719E /* ChatRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 5970E1AF185ED8C700C7719E /* ChatRecord.m */; };
+		5970E1B5185EF04800C7719E /* SqlLiteHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5970E1B4185EF04800C7719E /* SqlLiteHelper.m */; };
+		5970E1B7185EF19100C7719E /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5970E1B6185EF19100C7719E /* libsqlite3.0.dylib */; };
+		5970E1B9185EF19800C7719E /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5970E1B8185EF19800C7719E /* libsqlite3.dylib */; };
 		5975C1691806784900EF7285 /* accessory_out.png in Resources */ = {isa = PBXBuildFile; fileRef = 5975C1631806784900EF7285 /* accessory_out.png */; };
 		5975C16A1806784900EF7285 /* more_out.png in Resources */ = {isa = PBXBuildFile; fileRef = 5975C1641806784900EF7285 /* more_out.png */; };
 		5975C16B1806784900EF7285 /* more_over.png in Resources */ = {isa = PBXBuildFile; fileRef = 5975C1651806784900EF7285 /* more_over.png */; };
@@ -551,6 +554,10 @@
 		5970E1AC185ED1BD00C7719E /* MessageRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageRecord.m; sourceTree = "<group>"; };
 		5970E1AE185ED8C700C7719E /* ChatRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatRecord.h; sourceTree = "<group>"; };
 		5970E1AF185ED8C700C7719E /* ChatRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatRecord.m; sourceTree = "<group>"; };
+		5970E1B3185EF04800C7719E /* SqlLiteHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SqlLiteHelper.h; sourceTree = "<group>"; };
+		5970E1B4185EF04800C7719E /* SqlLiteHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SqlLiteHelper.m; sourceTree = "<group>"; };
+		5970E1B6185EF19100C7719E /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		5970E1B8185EF19800C7719E /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		5975C1631806784900EF7285 /* accessory_out.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = accessory_out.png; sourceTree = "<group>"; };
 		5975C1641806784900EF7285 /* more_out.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = more_out.png; sourceTree = "<group>"; };
 		5975C1651806784900EF7285 /* more_over.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = more_over.png; sourceTree = "<group>"; };
@@ -877,6 +884,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5970E1B9185EF19800C7719E /* libsqlite3.dylib in Frameworks */,
+				5970E1B7185EF19100C7719E /* libsqlite3.0.dylib in Frameworks */,
 				65A26CB41839F9CA006AF226 /* CoreText.framework in Frameworks */,
 				659AB38918097B1C000FCEC5 /* libz.1.1.3.dylib in Frameworks */,
 				659AB36618097772000FCEC5 /* MessageUI.framework in Frameworks */,
@@ -911,7 +920,7 @@
 			isa = PBXGroup;
 			children = (
 				65A3C25D185EE0630098C8F3 /* commentInfo */,
-				5970E1AA185ED0B800C7719E /* database */,
+				5970E1AA185ED0B800C7719E /* databaseinfo */,
 				65E59A8F18449EC7004444E5 /* greetingInfo */,
 				659BD0DF183F2D3200FAC29E /* warningInfo */,
 				659F652B1813D4B400306C14 /* OfficeInfo */,
@@ -1092,6 +1101,8 @@
 		595CB97C17F164AF00228A6E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5970E1B8185EF19800C7719E /* libsqlite3.dylib */,
+				5970E1B6185EF19100C7719E /* libsqlite3.0.dylib */,
 				65A26CB31839F9CA006AF226 /* CoreText.framework */,
 				659AB38818097B1C000FCEC5 /* libz.1.1.3.dylib */,
 				659AB36518097772000FCEC5 /* MessageUI.framework */,
@@ -1374,6 +1385,7 @@
 		595CB9BA17F17D7D00228A6E /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				5970E1B2185EEC6300C7719E /* database */,
 				59D78DE3185966FD0068D6D1 /* customCell */,
 				65AB26521856F76700F5EAF6 /* SGFocus */,
 				65E59A8C184435B4004444E5 /* UpdataDate.h */,
@@ -1633,13 +1645,22 @@
 			name = meetting;
 			sourceTree = "<group>";
 		};
-		5970E1AA185ED0B800C7719E /* database */ = {
+		5970E1AA185ED0B800C7719E /* databaseinfo */ = {
 			isa = PBXGroup;
 			children = (
 				5970E1AB185ED1BD00C7719E /* MessageRecord.h */,
 				5970E1AC185ED1BD00C7719E /* MessageRecord.m */,
 				5970E1AE185ED8C700C7719E /* ChatRecord.h */,
 				5970E1AF185ED8C700C7719E /* ChatRecord.m */,
+			);
+			name = databaseinfo;
+			sourceTree = "<group>";
+		};
+		5970E1B2185EEC6300C7719E /* database */ = {
+			isa = PBXGroup;
+			children = (
+				5970E1B3185EF04800C7719E /* SqlLiteHelper.h */,
+				5970E1B4185EF04800C7719E /* SqlLiteHelper.m */,
 			);
 			name = database;
 			sourceTree = "<group>";
@@ -2282,6 +2303,7 @@
 				59878CBB1856E2AE00454D0E /* MyInfoView.m in Sources */,
 				5960DC8117F92A6C0024AD8B /* CustomPageControl.m in Sources */,
 				596D6F1218085DB1002CD0B3 /* MeettingController.m in Sources */,
+				5970E1B5185EF04800C7719E /* SqlLiteHelper.m in Sources */,
 				6581E96F183C68E500A10D10 /* SevenSwitch.m in Sources */,
 				594204501802E5AA00AA35C3 /* AFHTTPSessionManager.m in Sources */,
 				595CB98E17F164AF00228A6E /* AppDelegate.m in Sources */,
