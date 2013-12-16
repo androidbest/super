@@ -14,6 +14,7 @@
 #import "WXApi.h"
 #import "WXApiObject.h"
 #import "SendMessageToWeiboViewController.h"
+#import "CommentListView.h"
 
 @implementation InfomaDetaController
 {
@@ -96,7 +97,10 @@
 
 #pragma mark - baseControllerDelagete
 - (void)BasePrepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-
+ UIViewController *viewController=segue.destinationViewController;
+    if ([segue.identifier isEqualToString:@"InforMationDetaToCommentList"]) {
+        [(CommentListView *)viewController setInfoNewsDeta:_informaView.data.informationInfo];
+    }
 }
 
 

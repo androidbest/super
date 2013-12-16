@@ -26,6 +26,9 @@
 #import "warningDataInfo.h"
 #import "GreetDetaInfo.h"
 #import "GreetingInfo.h"
+#import "CommentDetaInfo.h"
+#import "CommentListInfo.h"
+
 
 @interface AnalysisData : NSObject
 
@@ -106,4 +109,8 @@
 
 //获取日程提醒短信模版
 + (GreetingInfo *)getGreetingList:(NSDictionary *)dic;
+
+//新闻资讯列表
++ (CommentListInfo *)getCommentList:(NSDictionary *)dic;
+
 @end

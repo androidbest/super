@@ -260,6 +260,8 @@
 		65A3C250185EA5690098C8F3 /* CommentDetaView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A3C24F185EA5690098C8F3 /* CommentDetaView.m */; };
 		65A3C253185EA5890098C8F3 /* CommentListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A3C252185EA5890098C8F3 /* CommentListController.m */; };
 		65A3C256185EA5A50098C8F3 /* CommentDetaController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A3C255185EA5A50098C8F3 /* CommentDetaController.m */; };
+		65A3C25C185EE05C0098C8F3 /* CommentListInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A3C25B185EE05C0098C8F3 /* CommentListInfo.m */; };
+		65A3C260185EE08F0098C8F3 /* CommentDetaInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A3C25F185EE08F0098C8F3 /* CommentDetaInfo.m */; };
 		65A573E1183AFD930072A519 /* day.plist in Resources */ = {isa = PBXBuildFile; fileRef = 65A573DD183AFD930072A519 /* day.plist */; };
 		65A573E2183AFD930072A519 /* lunarcalenda.plist in Resources */ = {isa = PBXBuildFile; fileRef = 65A573DE183AFD930072A519 /* lunarcalenda.plist */; };
 		65A573E3183AFD930072A519 /* month.plist in Resources */ = {isa = PBXBuildFile; fileRef = 65A573DF183AFD930072A519 /* month.plist */; };
@@ -757,6 +759,10 @@
 		65A3C252185EA5890098C8F3 /* CommentListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentListController.m; sourceTree = "<group>"; };
 		65A3C254185EA5A50098C8F3 /* CommentDetaController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentDetaController.h; sourceTree = "<group>"; };
 		65A3C255185EA5A50098C8F3 /* CommentDetaController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentDetaController.m; sourceTree = "<group>"; };
+		65A3C25A185EE05C0098C8F3 /* CommentListInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentListInfo.h; sourceTree = "<group>"; };
+		65A3C25B185EE05C0098C8F3 /* CommentListInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentListInfo.m; sourceTree = "<group>"; };
+		65A3C25E185EE08F0098C8F3 /* CommentDetaInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentDetaInfo.h; sourceTree = "<group>"; };
+		65A3C25F185EE08F0098C8F3 /* CommentDetaInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentDetaInfo.m; sourceTree = "<group>"; };
 		65A573DD183AFD930072A519 /* day.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = day.plist; sourceTree = "<group>"; };
 		65A573DE183AFD930072A519 /* lunarcalenda.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = lunarcalenda.plist; sourceTree = "<group>"; };
 		65A573DF183AFD930072A519 /* month.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = month.plist; sourceTree = "<group>"; };
@@ -904,6 +910,7 @@
 		5943984017F3D92B000B6E9C /* obj */ = {
 			isa = PBXGroup;
 			children = (
+				65A3C25D185EE0630098C8F3 /* commentInfo */,
 				5970E1AA185ED0B800C7719E /* database */,
 				65E59A8F18449EC7004444E5 /* greetingInfo */,
 				659BD0DF183F2D3200FAC29E /* warningInfo */,
@@ -1832,6 +1839,17 @@
 			name = ScheduleController;
 			sourceTree = "<group>";
 		};
+		65A3C25D185EE0630098C8F3 /* commentInfo */ = {
+			isa = PBXGroup;
+			children = (
+				65A3C25A185EE05C0098C8F3 /* CommentListInfo.h */,
+				65A3C25B185EE05C0098C8F3 /* CommentListInfo.m */,
+				65A3C25E185EE08F0098C8F3 /* CommentDetaInfo.h */,
+				65A3C25F185EE08F0098C8F3 /* CommentDetaInfo.m */,
+			);
+			name = commentInfo;
+			sourceTree = "<group>";
+		};
 		65A573DB183AFD640072A519 /* solarOrLunar */ = {
 			isa = PBXGroup;
 			children = (
@@ -2185,6 +2203,7 @@
 				65AB264E1856C72F00F5EAF6 /* HomeInfomationController.m in Sources */,
 				659AB3491809750F000FCEC5 /* InfoDetailsView.m in Sources */,
 				59584B21181998CD00B65162 /* KxMenu.m in Sources */,
+				65A3C25C185EE05C0098C8F3 /* CommentListInfo.m in Sources */,
 				59584B291819999A00B65162 /* OfficeDetailView.m in Sources */,
 				5989A11C17F583AE00789DC6 /* HomeView.m in Sources */,
 				5957EFA61817B9CF00C565E1 /* DocContentView.m in Sources */,
@@ -2270,6 +2289,7 @@
 				595CBA0517F1925700228A6E /* Reachability.m in Sources */,
 				596D6EF118085C77002CD0B3 /* OfficeView.m in Sources */,
 				59584B271819998100B65162 /* MailDetail.m in Sources */,
+				65A3C260185EE08F0098C8F3 /* CommentDetaInfo.m in Sources */,
 				65D9678D1812752A00C1A05E /* ActionSheetView.m in Sources */,
 				65A573EC183AFDA30072A519 /* solarActionView.m in Sources */,
 				59550E7418126EDE00205544 /* GetEcCell.m in Sources */,

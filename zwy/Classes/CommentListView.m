@@ -43,7 +43,18 @@
     [_btnComment addTarget:self.controller action:@selector(btnComment) forControlEvents:UIControlEventTouchUpInside];
     [_btnRefresh addTarget:self.controller action:@selector(btnRefresh) forControlEvents:UIControlEventTouchUpInside];
     [_btnBack1 addTarget:self.controller action:@selector(btnBack) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.tableViewComment=[[PullRefreshTableView alloc] initWithFrame:CGRectMake(0, layerHeight, ScreenWidth, ScreenHeight-layerHeight-UITabBarHeight) withDelegate:self.controller];
+    _tableViewComment.tag=0;
+    self.tableViewComment.separatorStyle = NO;
+    [self.view addSubview:_tableViewComment];
+    [self.tableViewComment LoadDataBegin];/*刷新数据*/
 }
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    [self.controller  BasePrepareForSegue:segue sender:sender];
+}
+
 
 - (void)didReceiveMemoryWarning
 {

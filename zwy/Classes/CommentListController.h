@@ -10,4 +10,5 @@
 #import "CommentListView.h"
 @interface CommentListController : BaseController
 @property (strong ,nonatomic)CommentListView *comListView;
+@property (strong ,nonatomic)NSMutableArray *arrCommentList;
 @end

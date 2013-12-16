@@ -602,4 +602,32 @@ RespInfo *info=[RespInfo new];
     }
     return info;
 }
+
+//新闻资讯列表
++ (CommentListInfo *)getCommentList:(NSDictionary *)dic{
+    CommentListInfo *info =[CommentListInfo new];
+    info.arrCommentList =[[NSMutableArray alloc] init];
+    
+    NSObject *obj =[[[[dic objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"NewsDiscuessList"] objectForKey:@"NewsDiscuessInfo"];
+    if (!obj) return info;
+    NSArray * arr ;
+    if ([obj isKindOfClass:[NSArray class]]) {
+        arr=[NSArray arrayWithArray:(NSArray *)obj];
+    }else{
+        arr =[NSArray arrayWithObjects:(NSDictionary *)obj, nil];
+    }
+    for (int i=0;i<arr.count; i++) {
+        info.detaInfo =[CommentDetaInfo new];
+        info.detaInfo.content =[[[arr objectAtIndex:i] objectForKey:@"content"] objectForKey:@"text"];
+        info.detaInfo.content=[info.detaInfo.content stringByReplacingOccurrencesOfString:@"\r\n" withString:@"\n"];
+        info.detaInfo.discuesstime=[[[arr objectAtIndex:i] objectForKey:@"discuesstime"] objectForKey:@"text"];
+        info.detaInfo.ID=[[[arr objectAtIndex:i] objectForKey:@"id"] objectForKey:@"text"];
+        info.detaInfo.inserttime=[[[arr objectAtIndex:i] objectForKey:@"inserttime"] objectForKey:@"text"];
+        info.detaInfo.msisdn=[[[arr objectAtIndex:i] objectForKey:@"msisdn"] objectForKey:@"text"];
+        info.detaInfo.name=[[[arr objectAtIndex:i] objectForKey:@"name"] objectForKey:@"text"];
+        info.detaInfo.newsid=[[[arr objectAtIndex:i] objectForKey:@"newsid"] objectForKey:@"text"];
+        [info.arrCommentList addObject:info.detaInfo];
+    }
+    return info;
+}
 @end

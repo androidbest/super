@@ -301,19 +301,6 @@
     }
 }
 
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (tableView.tag==0) {
-//        
-//        
-//        TemplateCell * cell =(TemplateCell *)[tableView cellForRowAtIndexPath:indexPath];
-//        cell.title.textColor=[UIColor grayColor];
-//        [arrYetNews addObject:info.newsID];
-//        [arrYetNews writeToFile:[DocumentsDirectory stringByAppendingPathComponent:PATH_NEWS] atomically:NO];
-    }
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
 /*上拉加载*/
 - (void)refreshDataWithTableView:(PullRefreshTableView *)tableView{
     //    [self performSelector:@selector(loadData) withObject:nil afterDelay:2];
@@ -335,6 +322,12 @@
         end1=[ToolUtils numToString:end_1];
         [packageData reqJokeInfoXml:self start:start1 end:end1 SELType:xmlNotifInfo1];
     }
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (tableView.tag==0) {
+    }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark - InformationNewsCellDelegate

@@ -147,4 +147,8 @@
 
 //更新短信人气（＋1）
 + (void)updateGreetingCount:(id)delegate greetingID:(NSString *)ID greetingCount:(NSString *)count SELType:(NSString *)sel;
+
+//新闻资讯评论列表
++ (void)getCommentListData:(id)delegate newsID:(NSString *)ID pages:(int)pageId  SELType:(NSString *)sel;
+
 @end
