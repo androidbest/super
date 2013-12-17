@@ -249,5 +249,14 @@
     return time_;
 }
 
++ (NSTimeInterval)intervalFromDate:(NSDate *)date{
+    /*避免时差*/
+    NSTimeZone *zone = [NSTimeZone systemTimeZone];
+    NSInteger interval = [zone secondsFromGMTForDate:date];
+    NSDate *localeDate = [date  dateByAddingTimeInterval: interval];
+    NSTimeInterval time_=[localeDate timeIntervalSince1970];
+    return time_;
+}
+
 
 @end

@@ -53,6 +53,8 @@
     [_btnBack addTarget:self.controller action:@selector(btnBack) forControlEvents:UIControlEventTouchUpInside];
     [_btnSend addTarget:self.controller action:@selector(btnSend) forControlEvents:UIControlEventTouchUpInside];
     _textContent.delegate=self.controller;
+    _textContent.text=@"请输入内容";
+    _textContent.textColor=[UIColor grayColor];
 	// Do any additional setup after loading the view.
 }
 
@@ -61,5 +63,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+- (void)updateToCommentListView{}
 @end

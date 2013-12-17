@@ -92,7 +92,7 @@ NSString * stringTel =STRING_TEL(@"133");
     
     UIView * view =[[UIView alloc] init];
     view.frame =CGRectMake(0, 0, ScreenWidth, 40);
-    view.backgroundColor =[UIColor clearColor];//self.navigationItem.titleView.backgroundColor;
+    view.backgroundColor =self.navigationItem.titleView.backgroundColor;
     self.navigationItem.titleView=view;
     
     //标题
@@ -135,7 +135,7 @@ NSString * stringTel =STRING_TEL(@"133");
                                                                      tag:i];
         [arrItemp addObject:item];
     }
-    SGFocusImageFrame *bannerView = [[SGFocusImageFrame alloc] initWithFrame:CGRectMake(0, -20, ScreenWidth, 120)
+    SGFocusImageFrame *bannerView = [[SGFocusImageFrame alloc] initWithFrame:CGRectMake(5, 157, ScreenWidth-10, 80)
                                                                     delegate:self.controller
                                                                   imageItems:arrItemp
                                                                       isAuto:YES
@@ -179,7 +179,6 @@ NSString * stringTel =STRING_TEL(@"133");
 /*控制首页scrollView是否可以滑动*/
 - (void)viewDidAppear:(BOOL)animated{
      [self performSelector:@selector(setScrollViewContentSize) withObject:nil afterDelay:0.1f];
-     self.navigationController.navigationBarHidden=YES;
      [(BaseTabbar *)self.tabBarController TabbarScrollEnabled:YES];
 }
 

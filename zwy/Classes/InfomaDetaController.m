@@ -6,6 +6,8 @@
 //  Copyright (c) 2013年 sxit. All rights reserved.
 //
 
+#define NOTIFICATIONCOMMEND @"notificationcommend"
+
 #import "InfomaDetaController.h"
 #import "InformationController.h"
 #import "CompressImage.h"
@@ -72,7 +74,7 @@
 
 //赞
 - (void)btnCommend{
-
+    [packageData commendNews:self newsID:_informaView.data.informationInfo.newsID SELType:NOTIFICATIONCOMMEND];
 }
 
 //转发

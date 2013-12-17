@@ -43,19 +43,30 @@
         if(info.arrCommentList.count>0){
             [_arrCommentList addObjectsFromArray:info.arrCommentList];
             self.comListView.tableViewComment.separatorStyle = YES;
+            self.HUD.labelText = @"刷新完成";
+            self.HUD.mode = MBProgressHUDModeCustomView;
+            [self.HUD hide:YES afterDelay:1];
         }else{
-                [ToolUtils alertInfo:@"暂无数据"];
-            self.comListView.tableViewComment.reachedTheEnd=NO;
+             [ToolUtils alertInfo:@"暂无数据"];
+             self.comListView.tableViewComment.reachedTheEnd=NO;
+             [self.HUD hide:YES afterDelay:0];
         }
         _comListView.commentCount.text=[NSString stringWithFormat:@"%d 条",_arrCommentList.count];
         
     }else{
-        
+         [self.HUD hide:YES afterDelay:0];
         [ToolUtils alertInfo:requestError];
     }
     
     self.comListView.tableViewComment.reachedTheEnd=NO;
     [self.comListView.tableViewComment reloadDataPull];
+ 
+
+}
+
+#pragma mark - CommentDetaViewDelegate
+- (void)updateToCommentListView{
+    [self btnRefresh];//刷新数据
 }
 
 #pragma  mark - 按钮触发
@@ -71,7 +82,13 @@
 
 //刷新
 - (void)btnRefresh{
-
+    isUpdata=YES;
+    [packageData getCommentListData:self newsID:_comListView.InfoNewsDeta.newsID pages:0 SELType:NOTIFICATIONLISTDATA];
+    /*提交等待*/
+    self.HUD =[[MBProgressHUD alloc] initWithView:self.comListView.view];
+    self.HUD.labelText=@"正在刷新...";
+    [self.comListView.view addSubview:self.HUD];
+    [self.HUD show:YES];
 }
 
 #pragma mark - UITableViewDateSource
@@ -149,6 +166,7 @@ static NSString *strCell=@"cell";
     UIViewController *viewController=segue.destinationViewController;
     if ([segue.identifier isEqualToString:@"CommentListToCommentDeta"]) {
         [(CommentDetaView *)viewController setInfoNewsDeta:_comListView.InfoNewsDeta];
+        [(CommentDetaView *)viewController setCommentDetaViewDelegate:self];
     }
 }
 

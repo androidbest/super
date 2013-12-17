@@ -31,6 +31,16 @@
 
 //发送
 - (void)btnSend{
+    NSTimeInterval time =[[NSDate date] timeIntervalSince1970];
+    NSString *strTime =[NSString stringWithFormat:@"%f",time];
+    strTime=[[strTime componentsSeparatedByString:@"."] firstObject];
+    if (_comDetaView.textContent.text.length<=0||[_comDetaView.textContent.text isEqualToString:@"请输入内容"]) {
+        [ToolUtils alertInfo:@"内容不能为空"];
+        return;
+    }
+    
+    [packageData sendNewsComment:self content:_comDetaView.textContent.text discuesstime:strTime newsID:_comDetaView.InfoNewsDeta.newsID];
+    
     /*提交等待*/
     self.HUD =[[MBProgressHUD alloc] initWithView:self.comDetaView.view];
     self.HUD.labelText=@"正在发送..";
@@ -43,12 +53,21 @@
     NSDictionary *dic=[notification userInfo];
     RespInfo * info =[AnalysisData ReTurnInfo:dic];
     if ([info.respCode isEqualToString:@"0"]) {
-        self.HUD.labelText = @"发送成功";
+        self.HUD.labelText = @"评论成功";
+        self.HUD.mode = MBProgressHUDModeCustomView;
+        [self.HUD hide:YES afterDelay:1];
+        [self.comDetaView.commentDetaViewDelegate updateToCommentListView];
+        [self performSelector:@selector(dismissCommendSendView) withObject:self afterDelay:1.5];
     }else{
-        self.HUD.labelText = @"发送失败";
+        self.HUD.labelText = @"评论失败";
+        self.HUD.mode = MBProgressHUDModeCustomView;
+        [self.HUD hide:YES afterDelay:1];
     }
-    self.HUD.mode = MBProgressHUDModeCustomView;
-    [self.HUD hide:YES afterDelay:1];
+   
+}
+
+- (void)dismissCommendSendView{
+    [self.comDetaView dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark -  textiew提示语

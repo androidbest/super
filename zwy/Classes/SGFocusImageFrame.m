@@ -9,7 +9,7 @@
 #import "SGFocusImageFrame.h"
 #import "SGFocusImageItem.h"
 #import <objc/runtime.h>
-#define ITEM_WIDTH 320.0
+#define ITEM_WIDTH 310.0
 
 @interface SGFocusImageFrame () {
     UIScrollView *_scrollView;

@@ -27,18 +27,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    for (int i=0; i<4 ;i++) {
-        UIButton * btnBar =[UIButton buttonWithType:UIButtonTypeCustom];
-        btnBar.frame =CGRectMake((ScreenWidth/4)*i, 0, (ScreenWidth/4), 49);
-        btnBar.tag=i;
-        btnBar.backgroundColor=[UIColor clearColor];
-        [btnBar addTarget:self action:@selector(selectedTab:) forControlEvents:UIControlEventTouchUpInside];
-        [self.tabBar addSubview:btnBar];
-    }
-    self.selectedIndex=2;
 	// Do any additional setup after loading the view. tabbarStroy
 }
 
+/*
 - (void)selectedTab:(UIButton *)btnBar{
     if (btnBar.tag==0) {
         for (UIViewController *viewController in self.viewControllers) {
@@ -55,7 +47,7 @@
 
     self.selectedIndex=btnBar.tag;
 }
-
+*/
 - (void)TabbarScrollEnabled:(BOOL)Enabled{
    self.TabbarScrollView.scrollEnabled=Enabled;
 }

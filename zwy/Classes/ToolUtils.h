@@ -39,5 +39,8 @@
 #pragma mark  -当前时间转换为毫秒
 + (NSTimeInterval)TimeStingWithInterVal:(NSString *)strTime;
 
+#pragma mark  -当前时间转换为毫秒
++ (NSTimeInterval)intervalFromDate:(NSDate *)date;
+
 
 @end

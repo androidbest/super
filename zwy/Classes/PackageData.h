@@ -152,5 +152,8 @@
 + (void)getCommentListData:(id)delegate newsID:(NSString *)ID pages:(int)pageId  SELType:(NSString *)sel;
 
 //发表新闻评论
-+ (void)sendNewsComment:(id)delegate name:(NSString *)name content:(NSString *)content discuesstime:(NSString *)discuesstime newsID:(NSString *)ID;
++ (void)sendNewsComment:(id)delegate  content:(NSString *)content discuesstime:(NSString *)discuesstime newsID:(NSString *)ID;
+
+//新闻点赞
++ (void)commendNews:(id)delegate newsID:(NSString *)ID SELType:(NSString *)sel;
 @end

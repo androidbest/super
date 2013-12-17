@@ -57,6 +57,7 @@
     [_btnRefresh addTarget:self.controller action:@selector(btnRefresh) forControlEvents:UIControlEventTouchUpInside];
     [_btnBack1 addTarget:self.controller action:@selector(btnBack) forControlEvents:UIControlEventTouchUpInside];
     
+    
     self.tableViewComment=[[PullRefreshTableView alloc] initWithFrame:CGRectMake(0, layerHeight+1, ScreenWidth, ScreenHeight-layerHeight-UITabBarHeight-2) withDelegate:self.controller];
     _tableViewComment.tag=0;
     self.tableViewComment.separatorStyle = NO;
