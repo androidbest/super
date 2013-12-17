@@ -63,4 +63,5 @@
 + (void)pathUsersInfo;
 #pragma mark - 获取通讯录所有信息
 + (NSMutableArray *)setAllPeopleInfo:(NSString *)str;
++ (NSMutableArray *)setEcNumberInfo;
 @end

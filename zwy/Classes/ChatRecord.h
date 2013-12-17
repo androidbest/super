@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface ChatRecord : NSObject
+@property (strong ,nonatomic)NSString *cid;//主键
 @property (strong ,nonatomic)NSString *memberid;//相关联的id做为多方
 @property (strong ,nonatomic)NSString *sendmsisdn;//发送者电话号码
 @property (strong ,nonatomic)NSString *sendeccode;//发送者eccode

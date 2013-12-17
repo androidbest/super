@@ -8,6 +8,9 @@
 
 #import "ContactsController.h"
 #import "MesaageIMCell.h"
+#import "ConfigFile.h"
+#import "HTTPRequest.h"
+#import "PeopelInfo.h"
 @implementation ContactsController{
       NSMutableArray *arr;
 }
@@ -16,12 +19,19 @@
     self=[super init];
     if(self){
         arr=[NSMutableArray new];
-        
-        //        for(int i=0;i<20;i++){
-        //        arr addObject:[NSString stringWithFormat:@"%d"]
-        //        }
     }
     return self;
+}
+
+-(void)initECnumerData{
+    arr = [ConfigFile setEcNumberInfo];
+    BOOL blHave=[[NSFileManager defaultManager] fileExistsAtPath:[NSString stringWithFormat:@"%@/%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode,@"member.txt"]];
+    if(arr.count==0&&!blHave){
+        self.HUD.labelText = @"请同步单位通讯录";
+        self.HUD.mode = MBProgressHUDModeCustomView;
+        [self.HUD show:YES];
+        [self.HUD  hide:YES afterDelay:2];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -29,19 +39,18 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 20;
+    return arr.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString * messageIMCell =@"messageIMCell";
-    MesaageIMCell * cell =[tableView dequeueReusableCellWithIdentifier:messageIMCell];
+    static NSString * contacts =@"contactsChatCell";
+    MesaageIMCell * cell =[tableView dequeueReusableCellWithIdentifier:contacts];
     if (!cell) {
-        cell = [[MesaageIMCell alloc] initWithStyle:UITableViewCellStyleSubtitle
-                                    reuseIdentifier:messageIMCell];
+        cell = [[MesaageIMCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                    reuseIdentifier:contacts];
     }
-    cell.title.text=@"fasdfasfasfd22222222222222222222222222222222222222222222222222222222222222222222";
-    cell.content.text=@"aadfdsafasdfsadfasdfas11111111111111111111111111111111111111111111111111111111";
-    cell.time.text=@"2013-11-23 19:32";
-    cell.imageMark.image=[UIImage imageNamed:@"default_avatar"];
+    PeopelInfo *info=arr[indexPath.row];
+    cell.username.text=info.Name;
+    [HTTPRequest imageWithURL:info.headPath imageView:cell.imageMark placeholderImage:[UIImage imageNamed:@"default_avatar"]];
     return cell;
 }
 

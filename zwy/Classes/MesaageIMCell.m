@@ -37,9 +37,17 @@
         _time.textAlignment=NSTextAlignmentLeft;
         [self addSubview:_time];
         
+        
+        
         //"头像"标示
         _imageMark =[[UIImageView alloc] initWithFrame:CGRectMake(10, 9, 45, 45)];
         [self addSubview:_imageMark];
+        
+        _username =[[UILabel alloc] initWithFrame:CGRectMake(64,15,200,30)];
+        _username.font=[UIFont boldSystemFontOfSize:17];
+        _username.backgroundColor=[UIColor clearColor];
+        _username.textColor=[UIColor blackColor];
+        [self addSubview:_username];
         
         CALayer *bottomBorder = [CALayer layer];
 //        float height=self.frame.size.height-1.0f;

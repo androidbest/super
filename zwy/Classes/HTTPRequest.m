@@ -125,6 +125,36 @@
     [[NSOperationQueue new] addOperation:posterOperation];
 }
 
+//即时聊天头像
++ (void)imageWithURL:(NSString *)URL imageView:(UIImageView *)imageView placeholderImage:(UIImage *)image{
+    if (!URL)return;
+    imageView.image =image;
+    NSString * PicPath =[[URL componentsSeparatedByString:@"/"] lastObject];
+    NSString * strpaths =[NSString stringWithFormat:@"%@/%@/%@",DocumentsDirectory,MESSGEFILEPATH,PicPath];
+    NSData * data = [NSData dataWithContentsOfFile:strpaths];
+    if (data) {
+        imageView.image = [UIImage imageWithData:data];
+        return;
+    }
+    
+    NSURL * url =[NSURL URLWithString:URL];
+    NSMutableURLRequest * request =[[NSMutableURLRequest alloc] initWithURL:url];
+    AFHTTPRequestOperation *posterOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    posterOperation.responseSerializer = [AFImageResponseSerializer serializer];
+    [posterOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Response: %@", responseObject);
+        //压缩图片
+        imageView.image=(UIImage *)responseObject;
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        //显示加载失败图片
+        imageView.image=image;
+        NSLog(@"Image request failed with error: %@", error);
+    }];
+    [[NSOperationQueue new] addOperation:posterOperation];
+}
+
+
+
 + (void)uploadRequestOperation:(id)delegate data:(NSData*)data param:(NSMutableDictionary*)param url:(NSString *)url{
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];

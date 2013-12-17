@@ -24,5 +24,6 @@ NSMutableArray *arrEc=nil;
 NSDictionary * dicLocalNotificationInfo=nil;
 UIView *coverView=nil;
 NSMutableArray *chatArr=nil;
+SqlLiteHelper * sqlHelper=nil;
 @implementation Constants
 @end

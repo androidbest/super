@@ -19,6 +19,6 @@
 @property (strong ,nonatomic)NSString * letter;//名字全拼音
 @property (strong ,nonatomic)NSString * number;//不用的
 @property (strong ,nonatomic)NSString * isecnumer;//1.成员
-@property (strong ,nonatomic)NSString * headPath;//不用的
-@property (strong ,nonatomic)NSString * eccode;//不用的
+@property (strong ,nonatomic)NSString * headPath;//头像
+@property (strong ,nonatomic)NSString * eccode;//eccode
 @end

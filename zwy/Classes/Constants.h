@@ -9,7 +9,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Tuser.h"
-
+#import "SqlLiteHelper.h"
 //全局常量 基本数据类型
 #define OutTime 30
 #define DocumentsDirectory [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES) lastObject]
@@ -31,5 +31,6 @@ extern BOOL isZaiXian;
 extern BOOL isLocalNotification;
 extern NSDictionary * dicLocalNotificationInfo;
 extern NSMutableArray * chatArr;
+extern SqlLiteHelper * sqlHelper;
 @interface Constants : NSObject
 @end

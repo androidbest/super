@@ -10,4 +10,5 @@
 #import "ContactsView.h"
 @interface ContactsController : BaseController
 @property (strong ,nonatomic)ContactsView * contactsView;
+-(void)initECnumerData;
 @end

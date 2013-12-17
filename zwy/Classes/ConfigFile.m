@@ -104,7 +104,7 @@ static ConfigFile *configFile;
     if (arr.count==0&&!arr) return AllPeople;
     for (int i =0; i<arr.count-1; i++) {
         NSArray * arrData =[[arr objectAtIndex:i] componentsSeparatedByString:@","];
-        if (arrData.count==10) {
+        if (arrData.count>=7) {
             PeopelInfo *info=[PeopelInfo new];
             info.userID =[arrData objectAtIndex:0];
             info.Name=[arrData objectAtIndex:1];
@@ -114,10 +114,41 @@ static ConfigFile *configFile;
             info.groupID =[arrData objectAtIndex:5];
             info.superID=[arrData objectAtIndex:5];
             info.letter =[arrData objectAtIndex:6];
-            info.isecnumer=[arrData objectAtIndex:7];
-            info.headPath=[arrData objectAtIndex:8];
-            info.eccode=[arrData objectAtIndex:9];
             [AllPeople addObject:info];
+        }
+    }
+    return AllPeople;
+}
+
+//获取所有成员
++ (NSMutableArray *)setEcNumberInfo{
+    NSString *str=[NSString stringWithFormat:@"%@/%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode,@"member.txt"];
+    NSMutableArray* AllPeople =[[NSMutableArray alloc] init];
+    NSString *strGroup =[NSString stringWithContentsOfFile:str encoding:NSUTF8StringEncoding error:NULL];
+    NSArray *arrGroup=[strGroup componentsSeparatedByString:@"\n"];
+    if (arrGroup.count==0&&!arrGroup) return AllPeople;
+    NSString * strData =[NSString stringWithContentsOfFile:str encoding:NSUTF8StringEncoding error:NULL];
+    NSArray * arr = [strData componentsSeparatedByString:@"\n"];
+    if (arr.count==0&&!arr) return AllPeople;
+    for (int i =0; i<arr.count-1; i++) {
+        NSArray * arrData =[[arr objectAtIndex:i] componentsSeparatedByString:@","];
+        if (arrData.count==11) {
+            PeopelInfo *info=[PeopelInfo new];
+            info.userID =[arrData objectAtIndex:0];
+            info.Name=[arrData objectAtIndex:1];
+            info.job=[arrData objectAtIndex:2];
+            info.area =[arrData objectAtIndex:3];
+            info.tel=[arrData objectAtIndex:4];
+            info.groupID =[arrData objectAtIndex:5];
+            info.superID=[arrData objectAtIndex:5];
+            info.letter =[arrData objectAtIndex:6];
+            info.isecnumer=[arrData objectAtIndex:8];
+            info.headPath=[arrData objectAtIndex:9];
+            info.eccode=[arrData objectAtIndex:10];
+            if([info.isecnumer isEqualToString:@"1"]){
+            [AllPeople addObject:info];
+            }
+            
         }
     }
     return AllPeople;

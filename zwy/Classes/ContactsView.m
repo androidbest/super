@@ -28,6 +28,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.controller initData:self];
+    [(ContactsController *)(self.controller) initECnumerData];
 //    self.navigationController.navigationBar.translucent = YES;
     self.navigationController.navigationBarHidden=NO;
     _searchBar = [[UISearchBar alloc] initWithFrame:CGRectZero];

@@ -10,7 +10,7 @@
 #import "ConfigFile.h"
 #import "Constants.h"
 #import "ToolUtils.h"
-
+#import "SqlLiteHelper.h"
 @implementation AppDelegate{
 UIBackgroundTaskIdentifier backgroundTask;//写成成员
 
@@ -18,13 +18,12 @@ UIBackgroundTaskIdentifier backgroundTask;//写成成员
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
- 
-    
+      sqlHelper=[SqlLiteHelper new];
+      [sqlHelper createDB];
     
 //    if(application.enabledRemoteNotificationTypes){
 //        NSLog(@"aaadfdsafdsafdasf");
 //    }
-    
     
     //判断是否由远程消息通知触发应用程序启动
 //    if ([launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey]!=nil) {
@@ -40,6 +39,10 @@ UIBackgroundTaskIdentifier backgroundTask;//写成成员
 //    }
     
 //   [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeBadge)];
+    
+    
+    
+    
     
     //初始化配置文件
     self.window.backgroundColor=[UIColor whiteColor];
