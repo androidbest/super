@@ -55,6 +55,11 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
+    
+    
+    [self.contactsView performSegueWithIdentifier:@"homeToIM" sender:self.contactsView];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

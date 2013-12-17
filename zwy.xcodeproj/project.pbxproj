@@ -122,6 +122,10 @@
 		5960DC8B17F95BE90024AD8B /* guide113602.png in Resources */ = {isa = PBXBuildFile; fileRef = 5960DC8817F95BE90024AD8B /* guide113602.png */; };
 		5960DC8C17F95BE90024AD8B /* guide113603.png in Resources */ = {isa = PBXBuildFile; fileRef = 5960DC8917F95BE90024AD8B /* guide113603.png */; };
 		5960DC8D17F95BE90024AD8B /* guide113601.png in Resources */ = {isa = PBXBuildFile; fileRef = 5960DC8A17F95BE90024AD8B /* guide113601.png */; };
+		5960E3BE18603E5500EA0FFA /* ContactsDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5960E3BD18603E5400EA0FFA /* ContactsDetailView.m */; };
+		5960E3C11860470300EA0FFA /* ChatMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5960E3C01860470300EA0FFA /* ChatMessageView.m */; };
+		5960E3C41860473700EA0FFA /* ContactsDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5960E3C31860473700EA0FFA /* ContactsDetailController.m */; };
+		5960E3CA1860491E00EA0FFA /* ChatMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5960E3C91860491E00EA0FFA /* ChatMessageController.m */; };
 		596D6EE218085004002CD0B3 /* NoticeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 596D6EE118085004002CD0B3 /* NoticeView.m */; };
 		596D6EE818085037002CD0B3 /* NoticeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 596D6EE718085037002CD0B3 /* NoticeController.m */; };
 		596D6EEB18085C39002CD0B3 /* InformationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 596D6EEA18085C39002CD0B3 /* InformationView.m */; };
@@ -531,6 +535,14 @@
 		5960DC8817F95BE90024AD8B /* guide113602.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guide113602.png; sourceTree = "<group>"; };
 		5960DC8917F95BE90024AD8B /* guide113603.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guide113603.png; sourceTree = "<group>"; };
 		5960DC8A17F95BE90024AD8B /* guide113601.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guide113601.png; sourceTree = "<group>"; };
+		5960E3BC18603E5400EA0FFA /* ContactsDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsDetailView.h; sourceTree = "<group>"; };
+		5960E3BD18603E5400EA0FFA /* ContactsDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsDetailView.m; sourceTree = "<group>"; };
+		5960E3BF1860470300EA0FFA /* ChatMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessageView.h; sourceTree = "<group>"; };
+		5960E3C01860470300EA0FFA /* ChatMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessageView.m; sourceTree = "<group>"; };
+		5960E3C21860473700EA0FFA /* ContactsDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsDetailController.h; sourceTree = "<group>"; };
+		5960E3C31860473700EA0FFA /* ContactsDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsDetailController.m; sourceTree = "<group>"; };
+		5960E3C81860491E00EA0FFA /* ChatMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessageController.h; sourceTree = "<group>"; };
+		5960E3C91860491E00EA0FFA /* ChatMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessageController.m; sourceTree = "<group>"; };
 		596D6EE018085004002CD0B3 /* NoticeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoticeView.h; sourceTree = "<group>"; };
 		596D6EE118085004002CD0B3 /* NoticeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoticeView.m; sourceTree = "<group>"; };
 		596D6EE618085037002CD0B3 /* NoticeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoticeController.h; sourceTree = "<group>"; };
@@ -1693,6 +1705,10 @@
 				59878CA91856CA5900454D0E /* MessageView.m */,
 				59878CB91856E2AE00454D0E /* MyInfoView.h */,
 				59878CBA1856E2AE00454D0E /* MyInfoView.m */,
+				5960E3BC18603E5400EA0FFA /* ContactsDetailView.h */,
+				5960E3BD18603E5400EA0FFA /* ContactsDetailView.m */,
+				5960E3BF1860470300EA0FFA /* ChatMessageView.h */,
+				5960E3C01860470300EA0FFA /* ChatMessageView.m */,
 			);
 			name = imView;
 			sourceTree = "<group>";
@@ -1706,6 +1722,10 @@
 				59878CB21856E12800454D0E /* ContactsController.m */,
 				59878CBC1856E51500454D0E /* MyInfoController.h */,
 				59878CBD1856E51500454D0E /* MyInfoController.m */,
+				5960E3C21860473700EA0FFA /* ContactsDetailController.h */,
+				5960E3C31860473700EA0FFA /* ContactsDetailController.m */,
+				5960E3C81860491E00EA0FFA /* ChatMessageController.h */,
+				5960E3C91860491E00EA0FFA /* ChatMessageController.m */,
 			);
 			name = imController;
 			sourceTree = "<group>";
@@ -2336,8 +2356,10 @@
 				594204561802E5AA00AA35C3 /* AFURLSessionManager.m in Sources */,
 				595B5093180CF306003EC2AF /* NoticeDetailView.m in Sources */,
 				659AB34C18097555000FCEC5 /* GroupAddressView.m in Sources */,
+				5960E3C11860470300EA0FFA /* ChatMessageView.m in Sources */,
 				59878CAD1856E0E500454D0E /* ContactsView.m in Sources */,
 				65ACBE1A185ABC8D001E5636 /* InfomaDetaController.m in Sources */,
+				5960E3CA1860491E00EA0FFA /* ChatMessageController.m in Sources */,
 				659AB37B18097878000FCEC5 /* ioapi.c in Sources */,
 				65AB26581856F7A100F5EAF6 /* SGFocusImageItem.m in Sources */,
 				59584B241819995200B65162 /* DownloadCell.m in Sources */,
@@ -2345,6 +2367,7 @@
 				5956D8DE181548CE00DF3585 /* DaibanController.m in Sources */,
 				595CB98A17F164AF00228A6E /* main.m in Sources */,
 				5955934D18000CAB0047C328 /* MBProgressHUD.m in Sources */,
+				5960E3BE18603E5500EA0FFA /* ContactsDetailView.m in Sources */,
 				65AC6611180FE89000C0CA4F /* optionInfo.m in Sources */,
 				595A0C651810CB04009C26B8 /* OfficeFlowController.m in Sources */,
 				659995D31828A0DF00694F57 /* AlterPassword.m in Sources */,
@@ -2378,6 +2401,7 @@
 				659AB37018097851000FCEC5 /* ZipArchive.mm in Sources */,
 				5941F68A1813DFE7002735A3 /* AccountCell.m in Sources */,
 				59A8642C18256BFC00C752C8 /* SendMessageToWeiboViewController.m in Sources */,
+				5960E3C41860473700EA0FFA /* ContactsDetailController.m in Sources */,
 				65A26CA21839C41B006AF226 /* WorkView.m in Sources */,
 				659AB35F180975D0000FCEC5 /* CallTelController.m in Sources */,
 			);

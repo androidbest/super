@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
         <!--Login View-->
@@ -658,6 +658,7 @@
                     <tabBarItem key="tabBarItem" title="联系人" image="im_contacts.png" id="kGB-th-UdX"/>
                     <connections>
                         <outlet property="uitableview" destination="YSO-0K-pAn" id="ctC-zU-bum"/>
+                        <segue destination="FkV-nz-gA5" kind="push" identifier="contactstodetail" id="rV3-ah-ZrU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lBy-9h-JSA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -775,7 +776,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3ty-YE-8qs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2914" y="3757"/>
+            <point key="canvasLocation" x="2814" y="3949"/>
         </scene>
         <!--Doc Content View - 公文正文-->
         <scene sceneID="CXG-lc-9xV">
@@ -1291,7 +1292,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x7q-IV-j6j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3448" y="3207"/>
+            <point key="canvasLocation" x="3676" y="3147"/>
         </scene>
         <!--Mail Address View - 选择办理人-->
         <scene sceneID="AD1-vJ-zQZ">
@@ -1350,6 +1351,161 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uJb-eU-LE1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4099" y="3200"/>
+        </scene>
+        <!--Contacts Detail View-->
+        <scene sceneID="Kl7-Ys-Yho">
+            <objects>
+                <viewController id="FkV-nz-gA5" customClass="ContactsDetailView" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gCc-Jm-4Fx"/>
+                        <viewControllerLayoutGuide type="bottom" id="XVt-1B-Lba"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="M4F-yI-RHX">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="姓名:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fKe-q7-vf6">
+                                <rect key="frame" x="20" y="89" width="65" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="号码:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w4e-xP-9sA">
+                                <rect key="frame" x="20" y="146" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="部门:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XyS-Ca-myS">
+                                <rect key="frame" x="20" y="191" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.69999999999999973" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YJq-Py-pJs">
+                                <rect key="frame" x="0.0" y="133" width="320" height="1"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.69999999999999973" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EvC-FO-hxQ">
+                                <rect key="frame" x="0.0" y="178" width="320" height="1"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="职务:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YB6-xZ-ZX7">
+                                <rect key="frame" x="20" y="237" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="开发部" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GKT-Ih-poy">
+                                <rect key="frame" x="72" y="191" width="248" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="张三" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xnn-oi-nwS">
+                                <rect key="frame" x="72" y="91" width="157" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="default_avatar.png" translatesAutoresizingMaskIntoConstraints="NO" id="f0l-sn-uZu">
+                                <rect key="frame" x="243" y="72" width="57" height="53"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="13752923254" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cQX-DG-hCi">
+                                <rect key="frame" x="70" y="146" width="250" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.69999999999999973" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tNn-X0-cyI">
+                                <rect key="frame" x="0.0" y="224" width="320" height="1"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="开发部" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S7M-RQ-PEh">
+                                <rect key="frame" x="70" y="237" width="250" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.69999999999999973" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kYu-fv-GWt">
+                                <rect key="frame" x="0.0" y="268" width="320" height="1"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eVQ-qA-zbs">
+                                <rect key="frame" x="20" y="318" width="280" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="发消息">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Trq-Ej-LCp">
+                                <rect key="frame" x="219" y="141" width="46" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="Safari-Small.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wdc-LP-ZNi">
+                                <rect key="frame" x="269" y="140" width="46" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" backgroundImage="Safari.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="NHB-7Y-tKA"/>
+                    <connections>
+                        <outlet property="call" destination="Trq-Ej-LCp" id="ire-Xw-8Ft"/>
+                        <outlet property="department" destination="GKT-Ih-poy" id="qj0-eX-gkx"/>
+                        <outlet property="job" destination="S7M-RQ-PEh" id="CPv-or-GNZ"/>
+                        <outlet property="msisdn" destination="cQX-DG-hCi" id="qTl-Pd-ecJ"/>
+                        <outlet property="sms" destination="Wdc-LP-ZNi" id="uLV-xb-x2W"/>
+                        <outlet property="sumbitBtn" destination="eVQ-qA-zbs" id="HTd-ue-0X3"/>
+                        <outlet property="username" destination="xnn-oi-nwS" id="980-Jm-yro"/>
+                        <segue destination="Jqg-4j-mrf" kind="push" id="W0s-tw-rhR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hDd-Xi-ode" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2603" y="2970"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="3Dg-2R-Jsw">
+            <objects>
+                <viewController id="Jqg-4j-mrf" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="PGg-rM-VFG"/>
+                        <viewControllerLayoutGuide type="bottom" id="LY9-yD-eqb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="FAo-Cg-Dcs">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="dI6-BZ-LoP"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pyf-ec-oTA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3069" y="2960"/>
         </scene>
         <!--Meetting View - 会 议 电 话-->
         <scene sceneID="Iy9-aL-jK9">
@@ -1516,7 +1672,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="26Q-la-Voc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2725" y="3080"/>
+            <point key="canvasLocation" x="3301" y="3590"/>
         </scene>
         <!--Notice Detail View - 政 府 公 告-->
         <scene sceneID="P5e-8i-H5j">
@@ -5158,6 +5314,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Safari-Small.png" width="29" height="29"/>
+        <image name="Safari.png" width="59" height="60"/>
         <image name="about.png" width="470" height="533"/>
         <image name="addAddress_titles.png" width="50" height="50"/>
         <image name="adress_icon.png" width="100" height="100"/>
@@ -5169,6 +5327,7 @@
         <image name="btn_hidden_keybord.png" width="66" height="34"/>
         <image name="btn_numbers.png" width="212" height="100"/>
         <image name="btn_uncheck.png" width="40" height="40"/>
+        <image name="default_avatar.png" width="44" height="44"/>
         <image name="im_contacts.png" width="30" height="30"/>
         <image name="im_head.png" width="126" height="125"/>
         <image name="im_message.png" width="30" height="30"/>
@@ -5193,11 +5352,11 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="EdD-tC-bMF"/>
-        <segue reference="M4x-Zx-QGZ"/>
-        <segue reference="sAR-cD-OcR"/>
-        <segue reference="dzP-Uh-6LZ"/>
-        <segue reference="XY3-9B-d3j"/>
         <segue reference="Zzm-EU-QHF"/>
+        <segue reference="dD8-YG-A6q"/>
+        <segue reference="sAR-cD-OcR"/>
+        <segue reference="EdD-tC-bMF"/>
+        <segue reference="XY3-9B-d3j"/>
+        <segue reference="dzP-Uh-6LZ"/>
     </inferredMetricsTieBreakers>
 </document>

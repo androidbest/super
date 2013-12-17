@@ -17,7 +17,6 @@
 -(id)initWithCoder:(NSCoder *)aDecoder{
     self=[super initWithCoder:aDecoder];
     if(self){
-//        self.tabBarItem=[self.tabBarItem initWithTitle:@"联系人" image:[UIImage imageNamed:@"home_out"] selectedImage:[UIImage imageNamed:@"home_over"]];
         ContactsController *contacts=[ContactsController new];
         contacts.contactsView=self;
         self.controller=contacts;
