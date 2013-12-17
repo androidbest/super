@@ -28,10 +28,6 @@
 {
     [super viewDidLoad];
     
-    //返回按钮
-    self.navigationItem.leftBarButtonItem=self.temporaryBarButtonItem;
-    
-    
     [_selecter addTarget:self.controller action:@selector(segmentAction:) forControlEvents:UIControlEventValueChanged];
     self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
     
@@ -52,10 +48,6 @@
     [self.view addSubview:self.listview1];
     self.listview1.hidden=YES;
     
-}
-
-- (void)backButtonToHome{
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)viewWillAppear:(BOOL)animated{

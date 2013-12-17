@@ -5,12 +5,13 @@
 //  Created by wangshuang on 10/11/13.
 //  Copyright (c) 2013 sxit. All rights reserved.
 //
-
+#define NOTIFICATIONFIRSTNEWS @"notificationFirstNews"
 #import "HomeController.h"
 #import "Constants.h"
 #import "PackageData.h"
 #import "AnalysisData.h"
 #import "SumEmailOrDocInfo.h"
+#import "InformationInfo.h"
 @implementation HomeController{
     NSString *sign;
 
@@ -30,8 +31,18 @@
                                                 selector:@selector(receiveCount:)
                                                     name:@"getCount"
                                                   object:self];
+        
+        [[NSNotificationCenter defaultCenter]addObserver:self
+                                                selector:@selector(notificationFirstNews:)
+                                                    name:NOTIFICATIONFIRSTNEWS
+                                                  object:self];
+        
     }
     return self;
+}
+
+- (void)initWithData{
+    [packageData reqHotNewsInfoXml:self start:@"1" end:@"2" SELType:NOTIFICATIONFIRSTNEWS];
 }
 
 -(void)receiveCount:(NSNotification *)notification{
@@ -60,6 +71,24 @@
             }
 
 }
+
+//首页头条新闻展示
+- (void)notificationFirstNews:(NSNotification *)notification{
+     NSDictionary *dic=[notification userInfo];
+    if(dic){
+        RespList *list=[AnalysisData newsInfo:dic];
+        if(list.resplist.count>0){
+            InformationInfo*info =[list.resplist firstObject];
+            _homeView.labelNewsTitle.text=info.title;
+            [HTTPRequest setImageWithURL:info.imagePath ImageBolck:^(UIImage *image) {
+                [_homeView.information setBackgroundImage:image forState:UIControlStateNormal];
+            }];
+        }
+    }
+
+}
+
+
 
 //处理网络数据
 -(void)handleData:(NSNotification *)notification{

@@ -8,6 +8,8 @@
 
 #import "ToolUtils.h"
 #import "ConfigFile.h"
+#import "solarOrLunar.h"
+#import "Date+string.h"
 @implementation ToolUtils
 
 
@@ -256,6 +258,26 @@
     NSDate *localeDate = [date  dateByAddingTimeInterval: interval];
     NSTimeInterval time_=[localeDate timeIntervalSince1970];
     return time_;
+}
+
++ (NSString *)solarOrLunar:(NSDate *)date{
+    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *strTime =[dateFormatter stringFromDate:date];
+    int year =[[[strTime componentsSeparatedByString:@"-"] firstObject] integerValue];
+    int month =[[[strTime componentsSeparatedByString:@"-"] objectAtIndex:1] integerValue];
+    int day =[[[strTime componentsSeparatedByString:@"-"] lastObject] integerValue];
+    hjz lunar =solar_to_lunar(year, month, day);//将当前的公历时间转换为农历
+    NSString *strYear =[NSString stringWithFormat:@"%d",lunar.year];
+    strYear =[Date_string setYearBaseSting:strYear];
+    NSString *strMonth =[NSString stringWithFormat:@"%dx%d",lunar.month,lunar.reserved];
+    if (lunar.month<10) strMonth =[@"0" stringByAppendingString:strMonth];
+    strMonth =[Date_string setMonthBaseSting:strMonth];
+    NSString *strDay=[NSString stringWithFormat:@"%d",lunar.day];
+    if (lunar.day<10) strDay =[@"0" stringByAppendingString:strDay];
+    strDay=[Date_string setDayBaseSting:strDay];
+    NSString *strLunarTime=[NSString stringWithFormat:@"%@月%@日",strMonth,strDay];
+    return strLunarTime;
 }
 
 

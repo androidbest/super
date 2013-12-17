@@ -28,7 +28,6 @@
 {
     [super viewDidLoad];
          self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
-    self.navigationItem.leftBarButtonItem=self.temporaryBarButtonItem;
     
     [_selecter addTarget:self.controller action:@selector(segmentAction:) forControlEvents:UIControlEventValueChanged];
     self.listview =[[PullRefreshTableView alloc] initWithFrame:CGRectMake(0, topLayout+NavigationBarHeight, ScreenWidth,ScreenHeight-topLayout-NavigationBarHeight) withDelegate:self.controller];
@@ -69,11 +68,6 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     UIViewController *send=segue.destinationViewController;
     [send setValue:self forKey:@"data"];
-}
-
-- (void)backButtonToHome{
-    if (!self.navigationController.navigationBarHidden)self.navigationController.navigationBarHidden=YES;
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)viewWillAppear:(BOOL)animated{

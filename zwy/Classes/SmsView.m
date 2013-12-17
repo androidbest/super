@@ -49,7 +49,6 @@
 {
     [super viewDidLoad];
      self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
-    self.navigationItem.leftBarButtonItem=self.temporaryBarButtonItem;
     
     [_btnSend addTarget:self.controller action:@selector(btnSendSMS:) forControlEvents:UIControlEventTouchUpInside];
     _btnSend.layer.masksToBounds = YES;
@@ -85,11 +84,6 @@
 
 - (void)endTextEditing{
 
-}
-
-- (void)backButtonToHome{
-    if (!self.navigationController.navigationBarHidden)self.navigationController.navigationBarHidden=YES;
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)viewWillAppear:(BOOL)animated{

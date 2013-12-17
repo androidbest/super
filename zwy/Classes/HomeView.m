@@ -60,11 +60,15 @@ NSString * stringTel =STRING_TEL(@"133");
          self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
     
 	[_information setBackgroundColor:[UIColor colorWithRed:0.41 green:0.47 blue:0.98 alpha:1.0]];
-    [_notice setBackgroundColor:[UIColor colorWithRed:0.63 green:0.31 blue:0.70 alpha:1.0]];
-    [_sms setBackgroundColor:[UIColor colorWithRed:0.95 green:0.50 blue:0.12 alpha:1.0]];
-    [_office setBackgroundColor:[UIColor colorWithRed:0.23 green:0.54 blue:0.79 alpha:1.0]];
-    [_mail setBackgroundColor:[UIColor colorWithRed:0.25 green:0.50 blue:0.98 alpha:1.0]];
-    [_meetting setBackgroundColor:[UIColor colorWithRed:0.44 green:0.67 blue:0 alpha:1.0]];
+    [_notice setBackgroundColor:[UIColor colorWithRed:249.0/255.0 green:43.0/255.0 blue:82.0/255.0 alpha:1.0]];
+    [_sms setBackgroundColor:[UIColor colorWithRed:255.0/255.0 green:198.0/255.0 blue:0.0/255.0 alpha:1.0]];
+    [_office setBackgroundColor:[UIColor colorWithRed:25.0/255.0 green:152.0/255.0 blue:233.0/255.0 alpha:1.0]];
+    [_mail setBackgroundColor:[UIColor colorWithRed:252.0/255.0 green:132.0/255.0 blue:45.0/255.0 alpha:1.0]];
+    [_meetting setBackgroundColor:[UIColor colorWithRed:113.0/255.0 green:195.0/255.0 blue:11.0/255.0 alpha:1.0]];
+    [_labelNewsTitle setBackgroundColor:[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.5]];
+    [_btnWarning setBackgroundColor:[UIColor colorWithRed:255.0/255.0 green:198.0/255.0 blue:0.0/255.0 alpha:1.0]];
+    [_Btnchat setBackgroundColor:[UIColor colorWithRed:34.0/255.0 green:220.0/255.0 blue:170.0/255.0 alpha:1.0]];
+    [_btnAddressBook setBackgroundColor:[UIColor colorWithRed:234.0/255.0 green:66.0/255.0 blue:237.0/255.0 alpha:1.0]];
     
     [_information addTarget:self.controller action:@selector(information) forControlEvents:UIControlEventTouchUpInside];
     [_information setExclusiveTouch:YES];
@@ -90,33 +94,35 @@ NSString * stringTel =STRING_TEL(@"133");
     [_btnWarning addTarget:self.controller action:@selector(btnWarning) forControlEvents:UIControlEventTouchUpInside];
      [_btnWarning setExclusiveTouch:YES];
     
+    [_btnAddressBook addTarget:self.controller action:@selector(address) forControlEvents:UIControlEventTouchUpInside];
+    
     UIView * view =[[UIView alloc] init];
     view.frame =CGRectMake(0, 0, ScreenWidth, 40);
     view.backgroundColor =self.navigationItem.titleView.backgroundColor;
     self.navigationItem.titleView=view;
     
-    //标题
-    _homeTitle =[[UILabel alloc] initWithFrame:CGRectMake(10,10,100,25)];
-    _homeTitle.text=@"政务易";
-    _homeTitle.font=[UIFont systemFontOfSize:25];
+    //姓名
+    _homeTitle =[[UILabel alloc] initWithFrame:CGRectMake(0,0,280,20)];
+    _homeTitle.text=[user.username stringByAppendingString:@",您好"];
+    _homeTitle.font=[UIFont systemFontOfSize:18];
     _homeTitle.textColor=[UIColor colorWithRed:0.25 green:0.59 blue:1.0 alpha:1.0];
     _homeTitle.backgroundColor=[UIColor clearColor];
     [view addSubview:_homeTitle];
     
-    //姓名
-    _name =[[UILabel alloc] initWithFrame:CGRectMake(110,5,190,15)];
-    _name.text=user.username;
-    _name.textAlignment=NSTextAlignmentRight;
+    //“欢迎标题”
+    _name =[[UILabel alloc] initWithFrame:CGRectMake(3,22,190,15)];
+    _name.text=@"欢迎登录中国移动政务易";
+    _name.textAlignment=NSTextAlignmentLeft;
     _name.font=[UIFont systemFontOfSize:12];
     _name.textColor=[UIColor grayColor];
     _name.backgroundColor=[UIColor clearColor];
     [view addSubview:_name];
     
     //单位名称
-    _ecname =[[UILabel alloc] initWithFrame:CGRectMake(110,22,190,15)];
-    _ecname.text=user.ecname;
-    _ecname.font=[UIFont systemFontOfSize:12];
-    _ecname.textAlignment=NSTextAlignmentRight;
+    _ecname =[[UILabel alloc] initWithFrame:CGRectMake(265,7,40,20)];
+    _ecname.text=@"重庆";
+    _ecname.font=[UIFont systemFontOfSize:18];
+    _ecname.textAlignment=NSTextAlignmentLeft;
     _ecname.textColor=[UIColor grayColor];
     _ecname.backgroundColor=[UIColor clearColor];
     [view addSubview:_ecname];
@@ -135,7 +141,7 @@ NSString * stringTel =STRING_TEL(@"133");
                                                                      tag:i];
         [arrItemp addObject:item];
     }
-    SGFocusImageFrame *bannerView = [[SGFocusImageFrame alloc] initWithFrame:CGRectMake(5, 157, ScreenWidth-10, 80)
+    SGFocusImageFrame *bannerView = [[SGFocusImageFrame alloc] initWithFrame:CGRectMake(5, 160, ScreenWidth-10, 80)
                                                                     delegate:self.controller
                                                                   imageItems:arrItemp
                                                                       isAuto:YES
@@ -150,16 +156,18 @@ NSString * stringTel =STRING_TEL(@"133");
     _mailsum.hidden=YES;
     _officesum.hidden=YES;
     
+    [self.controller initWithData];
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.tabBarController.tabBar.hidden=NO;
-    _name.text=user.username;
-    _ecname.text=user.ecname;
-//    [((HomeController *)self.controller) sendEc];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
     [((HomeController *)self.controller) getCount];
     
+    _homeTitle.text=[user.username stringByAppendingString:@",您好"];
+    _labelUsersAddress.text=[@"农历:" stringByAppendingString:[ToolUtils solarOrLunar:[NSDate date]]];
     
     if([user.ecSgin isEqualToString:@"0"]){
         [((HomeController *)self.controller) sendEc];
@@ -187,7 +195,7 @@ NSString * stringTel =STRING_TEL(@"133");
 }
 
 - (void)setScrollViewContentSize{
-    _ScrollHome.contentSize=CGSizeMake(0, 625);
+    _ScrollHome.contentSize=CGSizeMake(0, 568-UITabBarHeight-NavigationBarHeight-20);
 }
 /*************************/
 /*push到通讯录*/

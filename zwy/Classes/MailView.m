@@ -28,7 +28,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationItem.leftBarButtonItem=self.temporaryBarButtonItem;
     
     [_selecter addTarget:self.controller action:@selector(segmentAction:) forControlEvents:UIControlEventValueChanged];
          self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
@@ -55,11 +54,6 @@
     MailDetail * detail =(MailDetail *)send;
     detail.MailDelegate=self.controller;
     [send setValue:self forKey:@"data"];
-}
-
-- (void)backButtonToHome{
-    if (!self.navigationController.navigationBarHidden)self.navigationController.navigationBarHidden=YES;
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)viewWillAppear:(BOOL)animated{

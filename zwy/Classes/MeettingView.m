@@ -33,8 +33,6 @@
 {
     [super viewDidLoad];
     self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
-    //返回按钮
-    self.navigationItem.leftBarButtonItem=self.temporaryBarButtonItem;
     
     //初使化数据
     [_btnCheck addTarget:self.controller action:@selector(btnCheck) forControlEvents:UIControlEventTouchUpInside];
@@ -101,10 +99,6 @@
     
 }
 
-- (void)backButtonToHome{
-    if (!self.navigationController.navigationBarHidden)self.navigationController.navigationBarHidden=YES;
-    [self.navigationController popViewControllerAnimated:YES];
-}
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];

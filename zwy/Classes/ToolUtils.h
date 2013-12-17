@@ -42,5 +42,6 @@
 #pragma mark  -当前时间转换为毫秒
 + (NSTimeInterval)intervalFromDate:(NSDate *)date;
 
-
+//公历转农历
++ (NSString *)solarOrLunar:(NSDate *)date;
 @end

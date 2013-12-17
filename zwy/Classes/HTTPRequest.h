@@ -10,6 +10,8 @@
 #import "MBProgressHUD.h"
 #import "CompressImage.h"
 
+typedef void (^imageWithRequst)(UIImage *image);
+
 @interface HTTPRequest : NSObject
 
 + (void)JSONRequestOperation:(id)delegate Request:(NSMutableURLRequest *)request;
@@ -24,5 +26,8 @@
 + (void)imageWithURL:(NSString *)URL imageView:(UIImageView *)imageView placeholderImage:(UIImage *)image isDrawRect:(drawRectType_Height_Width)drawRectType;
 
 + (void)imageWithURL:(NSString *)URL imageView:(UIImageView *)imageView placeholderImage:(UIImage *)image;
+
+/*获取网络图片*/
++ (void)setImageWithURL:(NSString *)URL ImageBolck:(imageWithRequst)ImageBolck;
 
 @end

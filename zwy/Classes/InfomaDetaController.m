@@ -22,6 +22,8 @@
 {
     float scrollViewContentHeight;
     NSString *strContent;
+    NSMutableArray *arrComment;
+    NSString *strCommendPath;
 }
 
 
@@ -39,6 +41,20 @@
 
 #pragma mark - 初始化界面
 - (void)initWithData{
+    strCommendPath =[NSString stringWithFormat:@"%@/%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode,PATH_COMMEND];
+    arrComment =[[NSMutableArray alloc] initWithContentsOfFile:strCommendPath];
+    if (arrComment) {
+        if ([arrComment containsObject:_informaView.data.informationInfo.newsID]) {
+            _informaView.btnCommend.enabled=NO;
+            [_informaView.btnCommend setTitle:@"已赞" forState:UIControlStateNormal];
+        }else{
+            _informaView.btnCommend.enabled=YES;
+            [_informaView.btnCommend setTitle:@"点赞" forState:UIControlStateNormal];
+        }
+    }else{
+        arrComment =[[NSMutableArray alloc] init];
+    }
+    
      scrollViewContentHeight=10;
     
     InformationInfo *info=_informaView.data.informationInfo;
@@ -73,8 +89,15 @@
 }
 
 //赞
-- (void)btnCommend{
+- (void)btnCommend:(id)sender{
+    //添加点赞记录到本地
+    [arrComment addObject:_informaView.data.informationInfo.newsID];
+    [arrComment writeToFile:strCommendPath atomically:NO];
+    [_informaView.btnCommend setTitle:@"已赞" forState:UIControlStateNormal];
+    [(UIButton *)sender setEnabled:NO];
+    
     [packageData commendNews:self newsID:_informaView.data.informationInfo.newsID SELType:NOTIFICATIONCOMMEND];
+    
 }
 
 //转发

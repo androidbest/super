@@ -45,6 +45,9 @@
 /*发送图片尺寸刷新通告*/
 #define NOTIFICATIONIMAGEDRAWRECT @"notificationImageDrawRect"
 
+/*已赞新闻咨询保存plist文件*/
+#define PATH_COMMEND @"commends.plist"
+
 #import <Foundation/Foundation.h>
 @interface ConfigFile : NSObject
 

@@ -153,7 +153,29 @@
     [[NSOperationQueue new] addOperation:posterOperation];
 }
 
-
++ (void)setImageWithURL:(NSString *)URL ImageBolck:(imageWithRequst)ImageBolck{
+    if (!URL)return;
+    NSString * PicPath =[[URL componentsSeparatedByString:@"/"] lastObject];
+    NSString * strpaths =[NSString stringWithFormat:@"%@/%@/%@",DocumentsDirectory,MESSGEFILEPATH,PicPath];
+    NSData * data = [NSData dataWithContentsOfFile:strpaths];
+    if (data) {
+        ImageBolck([UIImage imageWithData:data]);
+        return;
+    }
+    
+    NSURL * url =[NSURL URLWithString:URL];
+    NSMutableURLRequest * request =[[NSMutableURLRequest alloc] initWithURL:url];
+    AFHTTPRequestOperation *posterOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    posterOperation.responseSerializer = [AFImageResponseSerializer serializer];
+    [posterOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Response: %@", responseObject);
+        ImageBolck(responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+       
+        NSLog(@"Image request failed with error: %@", error);
+    }];
+    [[NSOperationQueue new] addOperation:posterOperation];
+}
 
 + (void)uploadRequestOperation:(id)delegate data:(NSData*)data param:(NSMutableDictionary*)param url:(NSString *)url{
     

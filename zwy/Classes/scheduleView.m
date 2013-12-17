@@ -95,7 +95,6 @@
 - (void)PushMassTextView{}
 
 - (void)backButtonToHome{
- if (!self.navigationController.navigationBarHidden)self.navigationController.navigationBarHidden=YES;
     [self.navigationController popViewControllerAnimated:YES];
 }
 

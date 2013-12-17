@@ -93,7 +93,7 @@
     [_btnBack addTarget:self.controller action:@selector(btnBack) forControlEvents:UIControlEventTouchUpInside];
     [_btnBack setExclusiveTouch:YES];
     
-    [_btnCommend addTarget:self.controller action:@selector(btnCommend) forControlEvents:UIControlEventTouchUpInside];
+    [_btnCommend addTarget:self.controller action:@selector(btnCommend:) forControlEvents:UIControlEventTouchUpInside];
     [_btnCommend setExclusiveTouch:YES];
     
     [_btnShare addTarget:self.controller action:@selector(btnShare) forControlEvents:UIControlEventTouchUpInside];
@@ -112,6 +112,10 @@
     [self.controller  BasePrepareForSegue:segue sender:sender];
 }
 
+
+- (void)btnCommend:(id)sender{
+
+}
 
 - (void)didReceiveMemoryWarning
 {
