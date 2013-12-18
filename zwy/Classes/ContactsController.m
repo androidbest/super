@@ -55,11 +55,9 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    
-    
-    
-    [self.contactsView performSegueWithIdentifier:@"homeToIM" sender:self.contactsView];
+    self.contactsView.info=arr[indexPath.row];
+    self.contactsView.tabBarController.navigationItem.title=@"";
+    [self.contactsView performSegueWithIdentifier:@"contactstodetail" sender:self.contactsView];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

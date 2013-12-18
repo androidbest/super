@@ -7,7 +7,7 @@
 //
 
 #import "BaseView.h"
-
+#import "PeopelInfo.h"
 @interface ContactsDetailView : BaseView
 @property (strong, nonatomic) IBOutlet UILabel *username;
 @property (strong, nonatomic) IBOutlet UILabel *msisdn;
@@ -16,5 +16,6 @@
 @property (strong, nonatomic) IBOutlet UIButton *sumbitBtn;
 @property (strong, nonatomic) IBOutlet UIButton *call;
 @property (strong, nonatomic) IBOutlet UIButton *sms;
-
+@property (strong, nonatomic) IBOutlet UIImageView *imageView;
+@property (strong, nonatomic) PeopelInfo *data;
 @end

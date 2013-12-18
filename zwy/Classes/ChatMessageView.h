@@ -7,7 +7,7 @@
 //
 
 #import "BaseView.h"
-
+#import "PeopelInfo.h"
 @interface ChatMessageView : BaseView
-
+@property (strong, nonatomic) PeopelInfo *chat;
 @end

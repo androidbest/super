@@ -50,6 +50,13 @@
     
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    //将page2设定成Storyboard Segue的目标UIViewController
+    id page2 = segue.destinationViewController;
+    //将值透过Storyboard Segue带给页面2的string变数
+    [page2 setValue:_info forKey:@"data"];
+}
+
 -(void)viewWillAppear:(BOOL)animated{
     self.tabBarController.navigationItem.title=@"联系人";
 }

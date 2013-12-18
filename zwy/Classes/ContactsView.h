@@ -7,9 +7,11 @@
 //
 
 #import "BaseView.h"
-
+#import "PeopelInfo.h"
 @interface ContactsView : BaseView
 @property (strong, nonatomic) UISearchBar *searchBar;
 @property(nonatomic, strong) UISearchDisplayController *displayController;
 @property (strong, nonatomic) IBOutlet UITableView *uitableview;
+
+@property (strong, nonatomic) PeopelInfo *info;
 @end
