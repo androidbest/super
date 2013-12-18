@@ -44,17 +44,16 @@
     layerSeg.anchorPoint=CGPointMake(0, 0);
     [self.view.layer addSublayer:layerSeg];
     
-    CALayer *tabbarLayer =[CALayer layer];
-    tabbarLayer.frame=CGRectMake(-ScreenWidth/2, ScreenHeight-UITabBarHeight-0.5,ScreenWidth , 0.5);
-    tabbarLayer.backgroundColor=[[UIColor grayColor] CGColor];
-    tabbarLayer.anchorPoint=CGPointMake(0, 0);
-    [self.view.layer addSublayer:tabbarLayer];
     
     [_btnBack addTarget:self.controller action:@selector(btnBack) forControlEvents:UIControlEventTouchUpInside];
     [_btnSend addTarget:self.controller action:@selector(btnSend) forControlEvents:UIControlEventTouchUpInside];
+    
+    _textContent =[[UITextView alloc] initWithFrame:CGRectMake(10, topLayout+10, 300, ScreenHeight-216-topLayout-20)];
     _textContent.delegate=self.controller;
     _textContent.text=@"请输入内容";
+    _textContent.font =[UIFont systemFontOfSize:16];
     _textContent.textColor=[UIColor grayColor];
+    [self.view addSubview:_textContent];
 	// Do any additional setup after loading the view.
 }
 

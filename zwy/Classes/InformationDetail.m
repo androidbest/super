@@ -54,6 +54,16 @@
     tabbarLayer.anchorPoint=CGPointMake(0, 0);
     [self.view.layer addSublayer:tabbarLayer];
     
+    /*赞动画层*/
+    _labelCommend=[[UILabel alloc] init];
+    _labelCommend.frame=CGRectMake(0, 0, 20, 20);
+    _labelCommend.text=@"+1";
+    _labelCommend.alpha=0.0;
+    _labelCommend.textColor=[UIColor redColor];
+    _labelCommend.center=_btnCommend.center;
+    [self.view addSubview:_labelCommend];
+    
+    
     /*添加滑动视图*/
     CGRect rect =CGRectMake(0, layerHeight, ScreenWidth,ScreenHeight-layerHeight-UITabBarHeight);
     _scrollView = [[UIScrollView alloc] initWithFrame:rect];

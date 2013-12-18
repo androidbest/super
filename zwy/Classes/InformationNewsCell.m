@@ -20,13 +20,8 @@
                                       ScreenHeight-64-44);
         InformationCellContentView *informationView =[[InformationCellContentView alloc] initWithFrame:viewFrame];
         informationView.backgroundColor=[UIColor clearColor];
-        [self.contentView addSubview:informationView];
-        
-        
-        //添加点击手势
-       UITapGestureRecognizer *tapToInformationView=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(PushToNewsDetaView:)];
-        [informationView addGestureRecognizer:tapToInformationView];
-        
+
+
         //头新闻图片
          UITapGestureRecognizer *tapToImageFirstNews =[[UITapGestureRecognizer alloc] initWithTarget:delegate action:@selector(PushToNewsDetaView:)];
         _imageFirstNews=[[UIImageView alloc] init];
@@ -146,6 +141,10 @@
         _labelAddress6.textColor=[UIColor grayColor];
         [informationView addSubview:_labelAddress6];
         
+        //添加点击手势
+        UITapGestureRecognizer *tapToInformationView=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(PushToNewsDetaView:)];
+        [informationView addGestureRecognizer:tapToInformationView];
+        [self.contentView addSubview:informationView];
     }
     return self;
 }

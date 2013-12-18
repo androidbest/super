@@ -51,7 +51,7 @@
         [self addSubview:_greetingCount];
         
         //"内容图片"
-        _imageContent =[[UIImageView alloc] initWithFrame:CGRectMake(20, 20, 280, 80)];
+        _imageContent =[[UIImageView alloc] initWithFrame:CGRectMake(25, 20, 280, 100)];
         _imageContent.hidden=YES;
         [self addSubview:_imageContent];
     }
@@ -59,20 +59,7 @@
 }
 
 - (void)drawRect:(CGRect)rect{
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    
-    CGContextSetFillColorWithColor(context, [UIColor clearColor].CGColor);
-    CGContextFillRect(context, rect);
-    
-    //上分割线
-    CGContextSetStrokeColorWithColor(context, [UIColor redColor].CGColor);
-    CGContextStrokeRect(context, CGRectMake(5, -1, rect.size.width - 10, 1));
-    
-    //下分割线
-    CGContextSetStrokeColorWithColor(context, [UIColor redColor].CGColor);
-    CGContextStrokeRect(context, CGRectMake(5, rect.size.height, rect.size.width - 10, 1));
-    
-    // [self drawSegmentationInContent:context];
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

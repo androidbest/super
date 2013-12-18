@@ -22,6 +22,6 @@
 @property (strong, nonatomic) IBOutlet UIButton *btnShare;
 @property (strong, nonatomic) IBOutlet UIButton *btnComment;
 @property (strong, nonatomic) IBOutlet UIButton *btnNextNews;
-
+@property (strong, nonatomic) UILabel *labelCommend;
 @property (strong, nonatomic)  InformationView *data;
 @end

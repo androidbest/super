@@ -42,9 +42,11 @@
     [packageData sendNewsComment:self content:_comDetaView.textContent.text discuesstime:strTime newsID:_comDetaView.InfoNewsDeta.newsID];
     
     /*提交等待*/
-    self.HUD =[[MBProgressHUD alloc] initWithView:self.comDetaView.view];
+    if (!self.HUD){
+        self.HUD =[[MBProgressHUD alloc] initWithView:self.comDetaView.view];
+        [self.comDetaView.view addSubview:self.HUD];
+    }
     self.HUD.labelText=@"正在发送..";
-    [self.comDetaView.view addSubview:self.HUD];
     [self.HUD show:YES];
 }
 

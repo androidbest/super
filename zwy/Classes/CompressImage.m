@@ -24,6 +24,82 @@
     return transition;
 }
 
+/*
+ *缩放动画(由小变大)
+ */
+
++ (CAAnimation *)animationTransitionOglflip{
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+    //  animation.beginTime=10;
+    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn]; /* 动画的开始与结束的快慢*/
+    animation.duration                = 1.5;
+    animation.autoreverses            = NO;
+    animation.repeatCount            = 1;  //"forever"
+    animation.removedOnCompletion    = NO;
+    animation.fromValue =[NSNumber numberWithFloat:1.0];	//动画起始值
+    animation.toValue = [NSNumber numberWithFloat:1.5];		//动画目标值
+    return animation;
+    
+}
+/*
+ * 位移动画
+ */
++ (CAAnimation *)animationRotate:(UIView *)view
+{
+    // rotate animation
+    // CATransform3D rotationTransform  = CATransform3DMakeRotation(M_PI, 1.0, 0, 0.0);
+    
+    CABasicAnimation* animation;
+    animation=[CABasicAnimation animationWithKeyPath:@"position"];
+    //动画类型
+    animation.duration=1.5;        //动画持续时间
+    animation.repeatCount=1;     //动画重复次数
+    animation.beginTime=0.0f;    //动画开始时间
+    animation.autoreverses=YES;  //动画是否回复
+    animation.fromValue=[NSValue valueWithCGPoint:CGPointMake(view.layer.frame.origin.x+10, view.layer.frame.origin.y)];//动画起始值
+    animation.toValue=[NSValue valueWithCGPoint:CGPointMake(view.layer.frame.origin.x+10, view.layer.frame.origin.y-50)];//动画的目标值
+    return animation;
+}
+/*
+ * 6、组合动画
+ */
++ (CAAnimation *)groupAnimation:(UIView *)view{
+    view.alpha=1.0;
+    [UIView animateWithDuration:1.5 animations:^{
+        view.alpha=0.0;
+    }];
+    CAAnimation* myAnimationFallingDown        = [self animationRotate:view];//位移动画
+    CAAnimation* animationTransitionOglflip    = [self animationTransitionOglflip];//缩放动画
+    
+    CAAnimationGroup*m_pGroupAnimation    = [CAAnimationGroup animation];
+    
+    //设置动画代理
+    m_pGroupAnimation.delegate = self;
+    
+    m_pGroupAnimation.removedOnCompletion = NO;
+    
+    m_pGroupAnimation.duration             = 1.5;//动画时间
+    m_pGroupAnimation.timingFunction      = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];//开始与结束时的快慢
+    /** timingFunction
+     *
+     *  用于变化起点和终点之间的插值计算,形象点说它决定了动画运行的节奏,比如是均匀变化(相同时间变化量相同)还是
+     *  先快后慢,先慢后快还是先慢再快再慢.
+     *
+     *  动画的开始与结束的快慢,有五个预置分别为(下同):
+     *  kCAMediaTimingFunctionLinear            线性,即匀速
+     *  kCAMediaTimingFunctionEaseIn            先慢后快
+     *  kCAMediaTimingFunctionEaseOut           先快后慢
+     *  kCAMediaTimingFunctionEaseInEaseOut     先慢后快再慢
+     *  kCAMediaTimingFunctionDefault           实际效果是动画中间比较快.
+     */
+    m_pGroupAnimation.repeatCount         = 1;//FLT_MAX;  //"forever";
+    m_pGroupAnimation.fillMode             = kCAFillModeForwards;
+    m_pGroupAnimation.animations             = [NSArray arrayWithObjects:
+                                                myAnimationFallingDown,
+                                                animationTransitionOglflip,
+                                                nil];
+    return m_pGroupAnimation;
+}
 #pragma mark - touchPress
 + (void)touchPress:(int)index AnimationToView:(UIView *)view{
  
@@ -251,7 +327,11 @@
     float height=CGImageGetHeight(imageView.image.CGImage);
     float WroH=width/height;
     CGRect rect =imageView.frame;
-    rect.size.width=100*WroH;
+    if (100*WroH>270) {
+        rect.size.width=270;
+    }else{
+     rect.size.width=100*WroH;
+    }
     rect.size.height=100;
     imageView.frame=rect;
 }

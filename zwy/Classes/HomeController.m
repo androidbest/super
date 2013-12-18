@@ -125,7 +125,6 @@
 //资讯
 -(void)information{
     [self initBackBarButtonItem:self.homeView];
-    self.homeView.tabBarController.tabBar.hidden=YES;
     [self.homeView performSegueWithIdentifier:@"hometoinformation" sender:self.homeView];
 }
 
@@ -138,22 +137,20 @@
 //信息发布
 -(void)sms{
     [self initBackBarButtonItem:self.homeView];
-    self.homeView.tabBarController.tabBar.hidden=YES;
     [self.homeView performSegueWithIdentifier:@"hometosms" sender:self.homeView];
 }
 
 //通讯录
 -(void)address{
     [self initBackBarButtonItem:self.homeView];
-    self.homeView.tabBarController.tabBar.hidden=YES;
     [self.homeView performSegueWithIdentifier:@"homeToAddress" sender:self.homeView];
     
 }
 
 //政务办公
 -(void)office{
+    NSLog(@"%f",_homeView.ScrollHome.contentSize.height);
     [self initBackBarButtonItem:self.homeView];
-    self.homeView.tabBarController.tabBar.hidden=YES;
     [self.homeView performSegueWithIdentifier:@"hometooffice" sender:self.homeView];
     
     
@@ -162,13 +159,11 @@
 //群众信箱
 -(void)mail{
     [self initBackBarButtonItem:self.homeView];
-    self.homeView.tabBarController.tabBar.hidden=YES;
     [self.homeView performSegueWithIdentifier:@"hometomail" sender:self.homeView];
 }
 //会议电话
 -(void)meetting{
     [self initBackBarButtonItem:self.homeView];
-    self.homeView.tabBarController.tabBar.hidden=YES;
     [self.homeView performSegueWithIdentifier:@"hometomeetting" sender:self.homeView];
 }
 

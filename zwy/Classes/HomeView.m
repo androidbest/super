@@ -59,6 +59,7 @@ NSString * stringTel =STRING_TEL(@"133");
     
          self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
     
+    [_information setBackgroundImage:[UIImage imageNamed:@"error_image.jpg"] forState:UIControlStateNormal];
 	[_information setBackgroundColor:[UIColor colorWithRed:0.41 green:0.47 blue:0.98 alpha:1.0]];
     [_notice setBackgroundColor:[UIColor colorWithRed:249.0/255.0 green:43.0/255.0 blue:82.0/255.0 alpha:1.0]];
     [_sms setBackgroundColor:[UIColor colorWithRed:255.0/255.0 green:198.0/255.0 blue:0.0/255.0 alpha:1.0]];
@@ -166,8 +167,14 @@ NSString * stringTel =STRING_TEL(@"133");
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [((HomeController *)self.controller) getCount];
     
+//显示时间
+    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"yyyy年MM月dd日"];
+    NSString *strTime =[dateFormatter stringFromDate:[NSDate date]];
+    [_btnDate setTitle:strTime forState:UIControlStateNormal];
     _homeTitle.text=[user.username stringByAppendingString:@",您好"];
     _labelUsersAddress.text=[@"农历:" stringByAppendingString:[ToolUtils solarOrLunar:[NSDate date]]];
+/*********/
     
     if([user.ecSgin isEqualToString:@"0"]){
         [((HomeController *)self.controller) sendEc];

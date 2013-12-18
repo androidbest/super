@@ -130,11 +130,13 @@
 //处理网络数据(笑话)
 -(void)handleData1:(NSNotification *)notification{
     NSDictionary *dic=[notification userInfo];
-    if (isUpdata1) {
-        [arr1 removeAllObjects];
-        isUpdata1=NO;
-    }
+
     if(dic){
+        if (isUpdata1) {
+            [arr1 removeAllObjects];
+            isUpdata1=NO;
+        }
+        
         RespList *list=[AnalysisData JokeInfo:dic];
         if(list.resplist.count>0){
            [arr1 addObjectsFromArray:list.resplist];
@@ -192,7 +194,7 @@
                     cellNews.imageFirstNews.tag=indexRow;
                     [HTTPRequest imageWithURL:info.imagePath
                                     imageView:cellNews.imageFirstNews
-                             placeholderImage:[UIImage imageNamed:@"newsBanner2.jpg"]
+                             placeholderImage:[UIImage imageNamed:@"error_image.jpg"]
                                    isDrawRect:drawRect_no];
                 }
                     break;
@@ -251,29 +253,38 @@
        
         
         float cellContentHeight=20;
-        if (info.imagePath&&![info.imagePath isEqualToString:@"null"]) {
-            cell.imageContent.hidden=NO;
-            [HTTPRequest imageWithURL:info.imagePath
-                            imageView:cell.imageContent
-                     placeholderImage:[UIImage imageNamed:@"newsBanner2.jpg"]
-                           isDrawRect:drawRect_width];
-            cellContentHeight+=cell.imageContent.frame.size.height;
-        }else{
-            cell.imageContent.hidden=YES;
-            cellContentHeight-=20;
-        }
-        
         cell.content.text=info.content;
         cell.content.textColor=[UIColor blackColor];
         CGRect textRect = [cell.content.text boundingRectWithSize:CGSizeMake(280.0f, 1000.0f)
                                                           options:NSStringDrawingUsesLineFragmentOrigin
                                                        attributes:@{NSFontAttributeName:cell.content.font}
                                                           context:nil];
+        //设置内容尺寸
         CGRect rect=cell.content.frame;
         rect.size.height=textRect.size.height;
-        rect.origin.y=cellContentHeight+10;
+        rect.origin.y=15;
         cell.content.frame=rect;
-        cellContentHeight+=textRect.size.height+20;
+        cellContentHeight+=textRect.size.height+5;
+        
+        
+        if (info.imagePath&&![info.imagePath isEqualToString:@"null"]) {
+            cell.imageContent.hidden=NO;
+            [HTTPRequest imageWithURL:info.imagePath
+                            imageView:cell.imageContent
+                     placeholderImage:[UIImage imageNamed:@"error_image.jpg"]
+                           isDrawRect:drawRect_width];
+            rect=cell.imageContent.frame;
+            rect.origin.y=cellContentHeight;
+            cell.imageContent.frame=rect;
+            
+            cellContentHeight+=cell.imageContent.frame.size.height+20;
+           
+        }else{
+            cell.imageContent.hidden=YES;
+        }
+        
+       //设置图片尺寸
+       
         
         //设置cell尺寸
         rect =cell.frame;

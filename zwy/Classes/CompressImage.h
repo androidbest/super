@@ -22,14 +22,18 @@ typedef enum {
 //等宽
 + (void)drawRectToImageView:(UIImageView *)imageView;
 
-/*淡化动画*/
-+ (CAAnimation *)animationTransitionFade;
-
 //等高
 + (void)drawRectToImageViewWidth:(UIImageView *)imageView;
 
 #pragma mark - touchPress
 + (void)touchPress:(int)index AnimationToView:(UIView *)view;
 
+/*
+ * 6、组合动画
+ */
++ (CAAnimation *)groupAnimation:(UIView *)view;
+
+/*淡化动画*/
++ (CAAnimation *)animationTransitionFade;
 
 @end

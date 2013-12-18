@@ -90,6 +90,10 @@
 
 //赞
 - (void)btnCommend:(id)sender{
+    //添加“+1”动画效果
+    CAAnimation *animation =[CompressImage groupAnimation:_informaView.labelCommend];
+    [_informaView.labelCommend.layer addAnimation:animation forKey:@"animation"];
+
     //添加点赞记录到本地
     [arrComment addObject:_informaView.data.informationInfo.newsID];
     [arrComment writeToFile:strCommendPath atomically:NO];

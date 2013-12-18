@@ -94,8 +94,8 @@
 
 /*异步加载图片*/
 + (void)imageWithURL:(NSString *)URL imageView:(UIImageView *)imageView placeholderImage:(UIImage *)image isDrawRect:(drawRectType_Height_Width)drawRectType{
-    if (!URL)return;
     imageView.image =image;
+    if (!URL)return;
     NSString * PicPath =[[URL componentsSeparatedByString:@"/"] lastObject];
     NSString * strpaths =[NSString stringWithFormat:@"%@/%@/%@",DocumentsDirectory,MESSGEFILEPATH,PicPath];
     NSData * data = [NSData dataWithContentsOfFile:strpaths];
@@ -119,7 +119,7 @@
        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         //显示加载失败图片
-        [CompressImage setCellContentImage:imageView Image:[UIImage imageNamed:@"newsBanner1.jpg"] filePath:PicPath isDrawRect:drawRectType];
+        [CompressImage setCellContentImage:imageView Image:[UIImage imageNamed:@"error_image.jpg"] filePath:PicPath isDrawRect:drawRectType];
         NSLog(@"Image request failed with error: %@", error);
     }];
     [[NSOperationQueue new] addOperation:posterOperation];

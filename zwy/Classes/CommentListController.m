@@ -47,9 +47,11 @@
             self.HUD.mode = MBProgressHUDModeCustomView;
             [self.HUD hide:YES afterDelay:1];
         }else{
-             [ToolUtils alertInfo:@"暂无数据"];
-             self.comListView.tableViewComment.reachedTheEnd=NO;
-             [self.HUD hide:YES afterDelay:0];
+            self.HUD.mode = MBProgressHUDModeCustomView;
+            self.HUD.labelText = @"暂无评论";
+            [self.HUD hide:YES afterDelay:1];
+            
+            self.comListView.tableViewComment.reachedTheEnd=NO;
         }
         _comListView.commentCount.text=[NSString stringWithFormat:@"%d 条",_arrCommentList.count];
         
@@ -85,9 +87,11 @@
     isUpdata=YES;
     [packageData getCommentListData:self newsID:_comListView.InfoNewsDeta.newsID pages:0 SELType:NOTIFICATIONLISTDATA];
     /*提交等待*/
-    self.HUD =[[MBProgressHUD alloc] initWithView:self.comListView.view];
+    if (!self.HUD){
+     self.HUD =[[MBProgressHUD alloc] initWithView:self.comListView.view];
+        [self.comListView.view addSubview:self.HUD];
+    }
     self.HUD.labelText=@"正在刷新...";
-    [self.comListView.view addSubview:self.HUD];
     [self.HUD show:YES];
 }
 
