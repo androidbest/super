@@ -131,7 +131,8 @@
 
 //公告
 -(void)notice{
-
+    [self initBackBarButtonItem:self.homeView];
+    [self.homeView performSegueWithIdentifier:@"hometoNotice" sender:self.homeView];
 }
 
 //信息发布
