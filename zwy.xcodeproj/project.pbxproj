@@ -2619,8 +2619,7 @@
 				INFOPLIST_FILE = "zwy/zwy-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\\\"$(SRCROOT)/zwy\\\"",
-					/Users/cqsxit/Desktop/zwy1.6.0/zwy,
+					"\"$(SRCROOT)/zwy/\"",
 				);
 				LINK_WITH_STANDARD_LIBRARIES = YES;
 				OTHER_LDFLAGS = "-Objc";
@@ -2642,8 +2641,7 @@
 				INFOPLIST_FILE = "zwy/zwy-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\\\"$(SRCROOT)/zwy\\\"",
-					/Users/cqsxit/Desktop/zwy1.6.0/zwy,
+					"\"$(SRCROOT)/zwy/\"",
 				);
 				LINK_WITH_STANDARD_LIBRARIES = YES;
 				OTHER_LDFLAGS = "-Objc";

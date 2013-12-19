@@ -8,6 +8,10 @@
 
 #define NOTIFICATIONCOMMEND @"notificationcommend"
 
+#define WiressSDKDemoAppKey     @"801213517"
+#define WiressSDKDemoAppSecret  @"9819935c0ad171df934d0ffb340a3c2d"
+#define REDIRECTURI             @"http://www.ying7wang7.com"
+
 #import "InfomaDetaController.h"
 #import "InformationController.h"
 #import "CompressImage.h"
@@ -17,9 +21,12 @@
 #import "WXApiObject.h"
 #import "SendMessageToWeiboViewController.h"
 #import "CommentListView.h"
-#import "WeiboApi.h"
+
+
+
 
 @implementation InfomaDetaController
+
 {
     float scrollViewContentHeight;
     NSString *strContent;
@@ -44,6 +51,15 @@
 
 #pragma mark - 初始化界面
 - (void)initWithData{
+    
+    if(self.wbapi == nil)
+    {
+    self.wbapi = [[WeiboApi alloc]initWithAppKey:WiressSDKDemoAppKey
+                                        andSecret:WiressSDKDemoAppSecret
+                                   andRedirectUri:REDIRECTURI];
+    }
+    
+    
     if ([_informaView.data.informationInfo.newsID isEqualToString:newsID]) {
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.informaView.view animated:YES];
         hud.mode = MBProgressHUDModeText;
@@ -195,7 +211,19 @@
             
         }
             break;
+            
+        case 3:{
+         //腾讯微博
+        [_wbapi loginWithDelegate:self andRootController:self.informaView];
+        }
+            
+            break;
+            
+            default:
+            
+            break;
     }
+    
 }
 
 //新浪微博数据
@@ -243,6 +271,67 @@
     //        NSLog(@"Message sent");
     //    else
     //        NSLog(@"Message failed");
+}
+
+
+#pragma mark TengxunWeiboAuthDelegate
+/**
+ * @brief   重刷授权成功后的回调
+ * @param   INPUT   wbapi 成功后返回的WeiboApi对象，accesstoken,openid,refreshtoken,expires 等授权信息都在此处返回
+ * @return  无返回
+ */
+- (void)DidAuthRefreshed:(WeiboApi *)wbapi_
+{
+    
+    NSString *str = [[NSString alloc]initWithFormat:@"accesstoken = %@\r openid = %@\r appkey=%@ \r appsecret=%@\r", wbapi_.accessToken, wbapi_.openid, wbapi_.appKey, wbapi_.appSecret];
+    
+    NSLog(@"result = %@",str);
+
+}
+
+/**
+ * @brief   重刷授权失败后的回调
+ * @param   INPUT   error   标准出错信息
+ * @return  无返回
+ */
+- (void)DidAuthRefreshFail:(NSError *)error
+{
+    NSString *str = [[NSString alloc] initWithFormat:@"refresh token error, errcode = %@",error.userInfo];
+    
+    NSLog(@"%@",str);
+}
+
+/**
+ * @brief   授权成功后的回调
+ * @param   INPUT   wbapi 成功后返回的WeiboApi对象，accesstoken,openid,refreshtoken,expires 等授权信息都在此处返回
+ * @return  无返回
+ */
+- (void)DidAuthFinished:(WeiboApi *)wbapi_
+{
+    NSString *str = [[NSString alloc]initWithFormat:@"accesstoken = %@\r openid = %@\r appkey=%@ \r appsecret=%@\r", wbapi_.accessToken, wbapi_.openid, wbapi_.appKey, wbapi_.appSecret];
+    
+    NSLog(@"result = %@",str);
+}
+
+/**
+ * @brief   授权成功后的回调
+ * @param   INPUT   wbapi   weiboapi 对象，取消授权后，授权信息会被清空
+ * @return  无返回
+ */
+- (void)DidAuthCanceled:(WeiboApi *)wbapi_
+{
+    
+}
+
+/**
+ * @brief   授权成功后的回调
+ * @param   INPUT   error   标准出错信息
+ * @return  无返回
+ */
+- (void)DidAuthFailWithError:(NSError *)error
+{
+    NSString *str = [[NSString alloc] initWithFormat:@"refresh token error, errcode = %@",error.userInfo];
+    NSLog(@"%@",str);
 }
 
 
