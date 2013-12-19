@@ -6,6 +6,10 @@
 //  Copyright (c) 2013 sxit. All rights reserved.
 //
 
+#define WiressSDKDemoAppKey     @"801213517"
+#define WiressSDKDemoAppSecret  @"9819935c0ad171df934d0ffb340a3c2d"
+#define REDIRECTURI             @"http://www.ying7wang7.com"
+
 #import "MoreController.h"
 #import "ToolUtils.h"
 #import "WXApi.h"
@@ -46,6 +50,14 @@
         image2=@[[UIImage imageNamed:@"check_update_img"],[UIImage imageNamed:@"more_update_pwd_img"]];
         image3=@[[UIImage imageNamed:@"more_download_image"],[UIImage imageNamed:@"more_help_img"],[UIImage imageNamed:@"more_about_img"]];
         allimage=@[image1,image2,image3];
+        
+        if(self.wbapi == nil)
+        {
+            self.wbapi = [[WeiboApi alloc]initWithAppKey:WiressSDKDemoAppKey
+                                               andSecret:WiressSDKDemoAppSecret
+                                          andRedirectUri:REDIRECTURI];
+        }
+        
     }
     return self;
 }
@@ -241,6 +253,17 @@
             
         }
             break;
+            
+        case 3:{
+            //腾讯微博
+            [self.wbapi requestWithParams:[self packageData] apiName:@"t/add_pic" httpMethod:@"POST" delegate:self];
+        }
+            
+            break;
+            
+        default:
+            
+            break;
     }
 }
 
@@ -312,4 +335,63 @@
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+
+
+
+#pragma mark WeiboRequestDelegate
+
+/**
+ *分享成功回调
+ */
+- (void)didReceiveRawData:(NSData *)data reqNo:(int)reqno
+{
+    [self showHUDText:@"分享成功" showTime:1.0];
+}
+
+/**
+ * @brief 未授权分享调用接口
+ */
+- (void)didFailWithError:(NSError *)error reqNo:(int)reqno
+{
+    NSString *ErrorInfo =error.userInfo[@"errcode"];
+    if ([ErrorInfo isEqualToString:@"203"]) {//未授权
+        //腾讯微博
+        [_wbapi loginWithDelegate:self andRootController:self.moreView];
+    }else if(ErrorInfo){
+        [self showHUDText:@"授权失败" showTime:1.0];
+    }else{
+        [self showHUDText:@"网络错误" showTime:1.0];
+    }
+}
+
+#pragma mark TengxunWeiboAuthDelegate
+/**
+ * @brief   授权成功后的回调
+ */
+- (void)DidAuthFinished:(WeiboApi *)wbapi_
+{
+    /*授权成功后发送发送内容*/
+    [self.wbapi requestWithParams:[self packageData] apiName:@"t/add_pic" httpMethod:@"POST" delegate:self];
+}
+
+//组装腾讯微博数据
+- (NSMutableDictionary *)packageData{
+    UIImage *pic = [UIImage imageNamed:@"about.png"];
+    NSMutableDictionary *params = [[NSMutableDictionary alloc]initWithObjectsAndKeys:@"json",@"format",
+                                   str, @"content",
+                                   pic, @"pic",
+                                   nil];
+    return params;
+}
+
+- (void)showHUDText:(NSString *)text showTime:(NSTimeInterval)time{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.moreView.view animated:YES];
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText =text;
+    hud.margin = 10.f;
+    hud.yOffset = 150.f;
+    hud.removeFromSuperViewOnHide = YES;
+    [hud hide:YES afterDelay:time];
+}
+
 @end

@@ -26,7 +26,7 @@
 - (id)initWithCoder:(NSCoder *)aDecoder {
   self =[super initWithCoder:aDecoder];
     if(self){
-        self.tabBarItem=[self.tabBarItem initWithTitle:@"公文附件" image:[UIImage imageNamed:@"accessory_out"] selectedImage:[UIImage imageNamed:@"accessory_over"]];
+        self.tabBarItem=[self.tabBarItem initWithTitle:@"公文附件" image:[UIImage imageNamed:@"tabbar_office_out_1_6"] selectedImage:[UIImage imageNamed:@"tabbar_office_over_1_6"]];
         
         AccessoryController *contro =[[AccessoryController alloc] init];
         self.controller=contro;

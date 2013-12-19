@@ -17,7 +17,7 @@
 -(id)initWithCoder:(NSCoder *)aDecoder{
     self=[super initWithCoder:aDecoder];
     if(self){
-        self.tabBarItem=[self.tabBarItem initWithTitle:@"更多" image:[UIImage imageNamed:@"more_out"] selectedImage:[UIImage imageNamed:@"more_over"]];
+        self.tabBarItem=[self.tabBarItem initWithTitle:@"更多" image:[UIImage imageNamed:@"tabbar_more_out_1_6"] selectedImage:[UIImage imageNamed:@"tabbar_more_over_1_6"]];
         
         MoreController *more=[MoreController new];
         more.moreView=self;

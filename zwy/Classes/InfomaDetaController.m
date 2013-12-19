@@ -214,7 +214,7 @@
             
         case 3:{
          //腾讯微博
-        [_wbapi loginWithDelegate:self andRootController:self.informaView];
+         [self.wbapi requestWithParams:[self packageData] apiName:@"t/add_pic" httpMethod:@"POST" delegate:self];
         }
             
             break;
@@ -264,75 +264,66 @@
 - (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
 {
     [controller dismissViewControllerAnimated:YES completion:nil];
-    
-    //    if (result == MessageComposeResultCancelled)
-    //        NSLog(@"Message cancelled");
-    //    else if (result == MessageComposeResultSent)
-    //        NSLog(@"Message sent");
-    //    else
-    //        NSLog(@"Message failed");
+    if (result == MessageComposeResultSent) {
+        [self showHUDText:@"发送成功" showTime:1.0];
+    }
 }
 
+#pragma mark WeiboRequestDelegate
+
+/**
+ *分享成功回调
+ */
+- (void)didReceiveRawData:(NSData *)data reqNo:(int)reqno
+{
+    [self showHUDText:@"转发成功" showTime:1.0];
+    
+}
+
+/**
+ * @brief 未授权分享调用接口
+ */
+- (void)didFailWithError:(NSError *)error reqNo:(int)reqno
+{
+    NSString *ErrorInfo =error.userInfo[@"errcode"];
+    if ([ErrorInfo isEqualToString:@"203"]) {//未授权
+        //腾讯微博
+        [_wbapi loginWithDelegate:self andRootController:self.informaView];
+    }else if(ErrorInfo){
+        [self showHUDText:@"授权失败" showTime:1.0];
+    }else{
+        [self showHUDText:@"网络错误" showTime:1.0];
+    }
+}
 
 #pragma mark TengxunWeiboAuthDelegate
 /**
- * @brief   重刷授权成功后的回调
- * @param   INPUT   wbapi 成功后返回的WeiboApi对象，accesstoken,openid,refreshtoken,expires 等授权信息都在此处返回
- * @return  无返回
- */
-- (void)DidAuthRefreshed:(WeiboApi *)wbapi_
-{
-    
-    NSString *str = [[NSString alloc]initWithFormat:@"accesstoken = %@\r openid = %@\r appkey=%@ \r appsecret=%@\r", wbapi_.accessToken, wbapi_.openid, wbapi_.appKey, wbapi_.appSecret];
-    
-    NSLog(@"result = %@",str);
-
-}
-
-/**
- * @brief   重刷授权失败后的回调
- * @param   INPUT   error   标准出错信息
- * @return  无返回
- */
-- (void)DidAuthRefreshFail:(NSError *)error
-{
-    NSString *str = [[NSString alloc] initWithFormat:@"refresh token error, errcode = %@",error.userInfo];
-    
-    NSLog(@"%@",str);
-}
-
-/**
  * @brief   授权成功后的回调
- * @param   INPUT   wbapi 成功后返回的WeiboApi对象，accesstoken,openid,refreshtoken,expires 等授权信息都在此处返回
- * @return  无返回
  */
 - (void)DidAuthFinished:(WeiboApi *)wbapi_
 {
-    NSString *str = [[NSString alloc]initWithFormat:@"accesstoken = %@\r openid = %@\r appkey=%@ \r appsecret=%@\r", wbapi_.accessToken, wbapi_.openid, wbapi_.appKey, wbapi_.appSecret];
-    
-    NSLog(@"result = %@",str);
+    /*授权成功后发送发送内容*/
+    [self.wbapi requestWithParams:[self packageData] apiName:@"t/add_pic" httpMethod:@"POST" delegate:self];
 }
 
-/**
- * @brief   授权成功后的回调
- * @param   INPUT   wbapi   weiboapi 对象，取消授权后，授权信息会被清空
- * @return  无返回
- */
-- (void)DidAuthCanceled:(WeiboApi *)wbapi_
-{
-    
+//组装腾讯微博数据
+- (NSMutableDictionary *)packageData{
+    UIImage *pic = _informaView.imageContentView.image;
+    NSMutableDictionary *params = [[NSMutableDictionary alloc]initWithObjectsAndKeys:@"json",@"format",
+                                  _informaView.data.informationInfo.title, @"content",
+                                   pic, @"pic",
+                                   nil];
+    return params;
 }
 
-/**
- * @brief   授权成功后的回调
- * @param   INPUT   error   标准出错信息
- * @return  无返回
- */
-- (void)DidAuthFailWithError:(NSError *)error
-{
-    NSString *str = [[NSString alloc] initWithFormat:@"refresh token error, errcode = %@",error.userInfo];
-    NSLog(@"%@",str);
+- (void)showHUDText:(NSString *)text showTime:(NSTimeInterval)time{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.informaView.view animated:YES];
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText =text;
+    hud.margin = 10.f;
+    hud.yOffset = 150.f;
+    hud.removeFromSuperViewOnHide = YES;
+    [hud hide:YES afterDelay:time];
 }
-
 
 @end

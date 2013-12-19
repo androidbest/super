@@ -17,7 +17,7 @@
 -(id)initWithCoder:(NSCoder *)aDecoder{
     self=[super initWithCoder:aDecoder];
     if(self){
-        self.tabBarItem=[self.tabBarItem initWithTitle:@"待办事宜" image:[UIImage imageNamed:@"daiban_out"] selectedImage:[UIImage imageNamed:@"daiban_over"]];
+        self.tabBarItem=[self.tabBarItem initWithTitle:@"待办事宜" image:[UIImage imageNamed:@"tabbar_daiban_out_1_6"] selectedImage:[UIImage imageNamed:@"tabbar_daiban_over_1_6"]];
         
         DaibanController *home=[DaibanController new];
         home.daibanView=self;
@@ -64,10 +64,6 @@
     self.listview3.separatorStyle = NO;
     [self.view addSubview:self.listview3];
     self.listview3.hidden=YES;
-
-    
-    
-    
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{

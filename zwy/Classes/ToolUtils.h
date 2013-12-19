@@ -22,13 +22,20 @@
 + (void) alertInfo:(NSString *)string delegate:(id)delegate otherBtn:(NSString *)BtnTitle;
 +(void) hideTabBar:(UITabBarController*) tabbarcontroller;
 +(void) showTabBar:(UITabBarController*) tabbarcontroller;
-+(NSData *)packageJsonFormat:(NSDictionary *) dic;
-+(NSDictionary *)analyzeJsonFormat:(NSData *) dic;
+
+
+
 +(BOOL)isValidateEmail:(NSString *)email;
 +(BOOL)isValidatePhone:(NSString *)phone;
 +(NSString*)numToString:(NSInteger)num;
 +(NSInteger)stringToNum:(NSString *)str;
 + (void)TableViewPullDownAnimation:(UITableView *)view PathAnimationType:(int)type;
+
+#pragma mark -组装json
++(NSData *)packageJsonFormat:(NSDictionary *) dic;
+
+#pragma mark -解析json
++(NSDictionary *)analyzeJsonFormat:(NSData *) dic;
 
 #pragma mark -时间比较
 +(int)compareOneDay:(NSString *)startDate withAnotherDay:(NSString *)endDate;

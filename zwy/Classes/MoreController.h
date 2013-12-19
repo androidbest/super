@@ -8,6 +8,8 @@
 
 #import "BaseController.h"
 #import "MoreView.h"
-@interface MoreController : BaseController
+#import "WeiboApi.h"
+@interface MoreController : BaseController<WeiboRequestDelegate,WeiboAuthDelegate>
 @property (strong ,nonatomic)MoreView * moreView;
+@property (nonatomic , retain) WeiboApi *wbapi;
 @end

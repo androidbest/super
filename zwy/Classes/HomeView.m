@@ -38,7 +38,7 @@ NSString * stringTel =STRING_TEL(@"133");
 -(id)initWithCoder:(NSCoder *)aDecoder{
     self=[super initWithCoder:aDecoder];
     if(self){
-       self.tabBarItem=[self.tabBarItem initWithTitle:@"首页" image:[UIImage imageNamed:@"home_out"] selectedImage:[UIImage imageNamed:@"home_over"]];
+       self.tabBarItem=[self.tabBarItem initWithTitle:@"首页" image:[UIImage imageNamed:@"tabbar_home_out_1_6"] selectedImage:[UIImage imageNamed:@"tabbar_home_over_1_6"]];
         
         HomeController *home=[HomeController new];
         home.HomeView=self;
@@ -245,4 +245,6 @@ NSString * stringTel =STRING_TEL(@"133");
         [self.navigationController pushViewController:detaView animated:YES];
     }
 }
+
+- (void)address{}
 @end
