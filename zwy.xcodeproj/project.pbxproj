@@ -115,6 +115,7 @@
 		595CBA0017F1917200228A6E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 595CB9FF17F1917200228A6E /* CoreLocation.framework */; };
 		595CBA0517F1925700228A6E /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 595CBA0217F1925700228A6E /* Reachability.m */; };
 		595CBA0617F1925700228A6E /* ToolUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 595CBA0417F1925700228A6E /* ToolUtils.m */; };
+		595E74BA18629D9E003863D3 /* DAKeyboardControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 595E74B918629D9E003863D3 /* DAKeyboardControl.m */; };
 		5960DC7D17F9298A0024AD8B /* point_out.png in Resources */ = {isa = PBXBuildFile; fileRef = 5960DC7B17F9298A0024AD8B /* point_out.png */; };
 		5960DC7E17F9298A0024AD8B /* point_over.png in Resources */ = {isa = PBXBuildFile; fileRef = 5960DC7C17F9298A0024AD8B /* point_over.png */; };
 		5960DC8117F92A6C0024AD8B /* CustomPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 5960DC8017F92A6C0024AD8B /* CustomPageControl.m */; };
@@ -548,6 +549,8 @@
 		595CBA0217F1925700228A6E /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		595CBA0317F1925700228A6E /* ToolUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolUtils.h; sourceTree = "<group>"; };
 		595CBA0417F1925700228A6E /* ToolUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolUtils.m; sourceTree = "<group>"; };
+		595E74B818629D9E003863D3 /* DAKeyboardControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAKeyboardControl.h; sourceTree = "<group>"; };
+		595E74B918629D9E003863D3 /* DAKeyboardControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DAKeyboardControl.m; sourceTree = "<group>"; };
 		5960DC7B17F9298A0024AD8B /* point_out.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = point_out.png; sourceTree = "<group>"; };
 		5960DC7C17F9298A0024AD8B /* point_over.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = point_over.png; sourceTree = "<group>"; };
 		5960DC7F17F92A6C0024AD8B /* CustomPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPageControl.h; sourceTree = "<group>"; };
@@ -1463,6 +1466,7 @@
 		595CB9BA17F17D7D00228A6E /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				595E74B718629D65003863D3 /* keyboard */,
 				5970E1B2185EEC6300C7719E /* database */,
 				59D78DE3185966FD0068D6D1 /* customCell */,
 				65AB26521856F76700F5EAF6 /* SGFocus */,
@@ -1555,6 +1559,15 @@
 				5942044D1802E5AA00AA35C3 /* AFURLSessionManager.m */,
 			);
 			name = AFNetworking;
+			sourceTree = "<group>";
+		};
+		595E74B718629D65003863D3 /* keyboard */ = {
+			isa = PBXGroup;
+			children = (
+				595E74B818629D9E003863D3 /* DAKeyboardControl.h */,
+				595E74B918629D9E003863D3 /* DAKeyboardControl.m */,
+			);
+			name = keyboard;
 			sourceTree = "<group>";
 		};
 		596D6EF218085C87002CD0B3 /* notice */ = {
@@ -2445,6 +2458,7 @@
 				659AB34C18097555000FCEC5 /* GroupAddressView.m in Sources */,
 				5960E3C11860470300EA0FFA /* ChatMessageView.m in Sources */,
 				59878CAD1856E0E500454D0E /* ContactsView.m in Sources */,
+				595E74BA18629D9E003863D3 /* DAKeyboardControl.m in Sources */,
 				65ACBE1A185ABC8D001E5636 /* InfomaDetaController.m in Sources */,
 				5960E3CA1860491E00EA0FFA /* ChatMessageController.m in Sources */,
 				659AB37B18097878000FCEC5 /* ioapi.c in Sources */,

@@ -8,6 +8,7 @@
 
 #import "ChatMessageView.h"
 #import "ChatMessageController.h"
+#import "DAKeyboardControl.h"
 @interface ChatMessageView ()
 
 @end
@@ -31,6 +32,8 @@
     _send.layer.masksToBounds = YES;
     _send.layer.cornerRadius = 6.0;
     
+    [_send addTarget:self.controller action:NSSelectorFromString(@"sendMessage") forControlEvents:UIControlEventTouchUpInside];
+    
     _toolbar.layer.borderWidth=0.5;
     _toolbar.layer.borderColor=[[UIColor lightGrayColor] CGColor];
     
@@ -38,9 +41,28 @@
     _im_text.layer.cornerRadius=6.0;
     _im_text.layer.borderWidth=0.5;
     _im_text.layer.borderColor=[[UIColor lightGrayColor] CGColor];
-    
     _tableview.separatorStyle=UITableViewCellSeparatorStyleNone;
     
+    __weak UIView *tempToolBar=_toolbar;
+    __weak UITableView *tempTableView=_tableview;
+    
+    self.view.keyboardTriggerOffset = tempToolBar.bounds.size.height;
+    [self.view addKeyboardPanningWithActionHandler:^(CGRect keyboardFrameInView) {
+        /*
+         Try not to call "self" inside this block (retain cycle).
+         But if you do, make sure to remove DAKeyboardControl
+         when you are done with the view controller by calling:
+         [self.view removeKeyboardControl];
+         */
+        
+        CGRect toolBarFrame = tempToolBar.frame;
+        toolBarFrame.origin.y = keyboardFrameInView.origin.y - toolBarFrame.size.height;
+        tempToolBar.frame = toolBarFrame;
+        
+        CGRect tableViewFrame = tempTableView.frame;
+        tableViewFrame.size.height = toolBarFrame.origin.y;
+        tempTableView.frame = tableViewFrame;
+    }];
     
 	
 }
