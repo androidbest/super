@@ -7,7 +7,8 @@
 //
 
 #import "ChatMessageController.h"
-
+#import "ChatMessageCell.h"
+#import "CompressImage.h"
 @implementation ChatMessageController{
     NSMutableArray *arrData;
     NSMutableArray *arrTime;
@@ -58,5 +59,18 @@
 //                                                  avatar:[self shouldHaveAvatarForRowAtIndexPath:indexPath]];
 //    }
 //}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString * strCell =@"chatmessage";
+    ChatMessageCell * cell =[tableView dequeueReusableCellWithIdentifier:strCell];
+    NSString *text=arrData[indexPath.row];
+    cell.chatTime.text=[NSDateFormatter localizedStringFromDate:arrData[indexPath.row]
+                                                      dateStyle:kCFDateFormatterMediumStyle
+                                                      timeStyle:NSDateFormatterShortStyle];
+    cell.rightMessage=[CompressImage bubbleView:text];
+    return cell;
+}
 
 @end

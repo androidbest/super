@@ -20,7 +20,7 @@
     UIFont *font = [UIFont systemFontOfSize:13];
     CGRect textRect = [text boundingRectWithSize:CGSizeMake(150.0f, 1000.0f)
                                                       options:NSStringDrawingUsesLineFragmentOrigin
-                                                   attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]}
+                                                   attributes:@{NSFontAttributeName:font}
                                                       context:nil];
     
     UILabel *bubbleText = [[UILabel alloc] initWithFrame:CGRectMake(24.0f+20, 14.0f-9, textRect.size.width+10, textRect.size.height+10)];

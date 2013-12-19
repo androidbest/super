@@ -35,5 +35,6 @@ typedef enum {
 
 /*淡化动画*/
 + (CAAnimation *)animationTransitionFade;
++ (UIImageView *)bubbleView:(NSString *)text;
 
 @end
