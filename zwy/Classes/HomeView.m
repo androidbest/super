@@ -61,6 +61,7 @@ NSString * stringTel =STRING_TEL(@"133");
     
     [_information setBackgroundImage:[UIImage imageNamed:@"error_image.jpg"] forState:UIControlStateNormal];
 	[_information setBackgroundColor:[UIColor colorWithRed:0.41 green:0.47 blue:0.98 alpha:1.0]];
+    [_btnDate setBackgroundColor:[UIColor colorWithRed:255.0/255.0 green:198.0/255.0 blue:0.0/255.0 alpha:1.0]];
     [_notice setBackgroundColor:[UIColor colorWithRed:249.0/255.0 green:43.0/255.0 blue:82.0/255.0 alpha:1.0]];
     [_sms setBackgroundColor:[UIColor colorWithRed:255.0/255.0 green:198.0/255.0 blue:0.0/255.0 alpha:1.0]];
     [_office setBackgroundColor:[UIColor colorWithRed:25.0/255.0 green:152.0/255.0 blue:233.0/255.0 alpha:1.0]];

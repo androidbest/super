@@ -47,7 +47,7 @@
             self.HUD.mode = MBProgressHUDModeCustomView;
             [self.HUD hide:YES afterDelay:1];
         }else{
-            self.HUD.mode = MBProgressHUDModeCustomView;
+            self.HUD.mode = MBProgressHUDModeText;
             self.HUD.labelText = @"暂无评论";
             [self.HUD hide:YES afterDelay:1];
             
@@ -63,7 +63,6 @@
     self.comListView.tableViewComment.reachedTheEnd=NO;
     [self.comListView.tableViewComment reloadDataPull];
  
-
 }
 
 #pragma mark - CommentDetaViewDelegate

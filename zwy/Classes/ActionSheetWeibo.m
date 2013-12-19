@@ -23,7 +23,7 @@
     self=[super init];
     NSString * strTitle;
     if (self) {
-        strTitle =[NSString stringWithFormat:@"%@%@",_title,@"\n\n\n\n\n\n\n"];
+        strTitle =[NSString stringWithFormat:@"%@%@",_title,@"\n\n\n\n\n\n\n\n\n\n\n\n\n"];
         [self setActionSheetStyle:UIActionSheetStyleDefault];
         self.DetaSource=delegate;
     }
@@ -70,9 +70,6 @@
     labelWeixin.text=@"微信";
     [self addSubview:labelWeixin];
     
-    
-    
-    
     UIButton * btn3 =[UIButton buttonWithType:UIButtonTypeCustom];
     btn3.frame =CGRectMake(230, 40, 65, 65);
     btn3.tag=2;
@@ -89,6 +86,24 @@
     labelXinlang.textColor=[UIColor grayColor];
     labelXinlang.text=@"新浪";
     [self addSubview:labelXinlang];
+    
+    UIButton *btn4 =[UIButton buttonWithType:UIButtonTypeCustom];
+    btn4.frame =CGRectMake(30, 40+65+40, 65, 65);
+    btn4.tag=3;
+    [btn4 setImage:[UIImage imageNamed:@"tengxunWeibo"] forState:UIControlStateNormal];
+    [btn4 addTarget:self action:@selector(btnIndex:) forControlEvents:UIControlEventTouchUpInside];
+    [btn4 setExclusiveTouch:YES];
+    [self addSubview:btn4];
+    UILabel *labelTengxun=[[UILabel alloc] init];
+    labelTengxun.frame =CGRectMake(0, 0, 60, 20);
+    labelTengxun.center=CGPointMake(btn4.center.x, 120+65+40);
+    labelTengxun.textAlignment=NSTextAlignmentCenter;
+    labelTengxun.font =[UIFont systemFontOfSize:14];
+    labelTengxun.backgroundColor=[UIColor clearColor];
+    labelTengxun.textColor=[UIColor grayColor];
+    labelTengxun.text=@"腾讯微博";
+    [self addSubview:labelTengxun];
+    
 }
 
 - (void)btnIndex:(UIButton *)sender{

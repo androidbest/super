@@ -17,6 +17,7 @@
 #import "WXApiObject.h"
 #import "SendMessageToWeiboViewController.h"
 #import "CommentListView.h"
+#import "WeiboApi.h"
 
 @implementation InfomaDetaController
 {
@@ -24,6 +25,7 @@
     NSString *strContent;
     NSMutableArray *arrComment;
     NSString *strCommendPath;
+    NSString *newsID;
 }
 
 
@@ -35,12 +37,29 @@
                                                      name:NOTIFICATIONIMAGEDRAWRECT
                                                    object:nil];
         strContent=@"";
+        newsID=@"000000";
     }
     return self;
 }
 
 #pragma mark - 初始化界面
 - (void)initWithData{
+    if ([_informaView.data.informationInfo.newsID isEqualToString:newsID]) {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.informaView.view animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = @"已是最后一篇";
+        hud.margin = 10.f;
+        hud.yOffset = 150.f;
+        hud.removeFromSuperViewOnHide = YES;
+        [hud hide:YES afterDelay:1];
+        
+    }else{
+        if (![newsID isEqualToString:@"000000"])
+            [CompressImage touchPress:10000 AnimationToView:_informaView.view];
+        
+        newsID=_informaView.data.informationInfo.newsID;
+    }
+    
     strCommendPath =[NSString stringWithFormat:@"%@/%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode,PATH_COMMEND];
     arrComment =[[NSMutableArray alloc] initWithContentsOfFile:strCommendPath];
     if (arrComment) {
@@ -117,7 +136,7 @@
 
 //下一篇
 - (void)btnNextNews{
-    [CompressImage touchPress:10000 AnimationToView:_informaView.view];
+    
     [(InformationController *)_informaView.data.controller PushNextNewsFromInformationDetaController];
     //刷新数据
     _informaView.scrollView.contentOffset=CGPointMake(0, 0);

@@ -353,7 +353,8 @@
 
 - (void)PushNextNewsFromInformationDetaController{
     _informationView.newsNumber++;
-     InformationInfo *info=arr0[_informationView.newsNumber];
+    if (_informationView.newsNumber>arr0.count-1)return;
+    InformationInfo *info=arr0[_informationView.newsNumber];
     self.informationView.informationInfo=info;
 }
 
