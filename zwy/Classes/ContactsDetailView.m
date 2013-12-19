@@ -60,7 +60,9 @@
     //将page2设定成Storyboard Segue的目标UIViewController
     id page2 = segue.destinationViewController;
     //将值透过Storyboard Segue带给页面2的string变数
-    [page2 setValue:_data forKey:@"chat"];
+    
+//    PeopelInfo *info=_data;
+    [page2 setValue:_data forKey:@"chatData"];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
