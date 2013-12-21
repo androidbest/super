@@ -20,4 +20,5 @@
 @property (strong ,nonatomic)NSString *senderavatar;//自己头像地址
 @property (strong ,nonatomic)NSString *receiveravatar;//对方头像地址
 @property (strong ,nonatomic)NSString *sendtime;
+@property (strong ,nonatomic)NSString *receivername;//姓名
 @end

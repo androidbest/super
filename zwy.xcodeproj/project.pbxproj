@@ -329,6 +329,19 @@
 		65AC660E180FCDBF00C0CA4F /* btn_uncheck.png in Resources */ = {isa = PBXBuildFile; fileRef = 65AC660C180FCDBF00C0CA4F /* btn_uncheck.png */; };
 		65AC6611180FE89000C0CA4F /* optionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 65AC6610180FE89000C0CA4F /* optionInfo.m */; };
 		65ACBE1A185ABC8D001E5636 /* InfomaDetaController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65ACBE19185ABC8D001E5636 /* InfomaDetaController.m */; };
+		65AE477E186584EB00EF9022 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65AE477D186584EB00EF9022 /* CoreData.framework */; };
+		65AE47811865851E00EF9022 /* ChatSQLMode.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 65AE477F1865851E00EF9022 /* ChatSQLMode.xcdatamodeld */; };
+		65AE4785186585A800EF9022 /* CoreDataManageContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 65AE4784186585A800EF9022 /* CoreDataManageContext.m */; };
+		65AE478818658A7400EF9022 /* ChatEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 65AE478718658A7400EF9022 /* ChatEntity.m */; };
+		65AE478B18658A7400EF9022 /* SessionEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 65AE478A18658A7400EF9022 /* SessionEntity.m */; };
+		65AE47941865A41F00EF9022 /* images_1_6_addressBook.png in Resources */ = {isa = PBXBuildFile; fileRef = 65AE478C1865A41F00EF9022 /* images_1_6_addressBook.png */; };
+		65AE47951865A41F00EF9022 /* images_1_6_bangong.png in Resources */ = {isa = PBXBuildFile; fileRef = 65AE478D1865A41F00EF9022 /* images_1_6_bangong.png */; };
+		65AE47961865A41F00EF9022 /* images_1_6_chat.png in Resources */ = {isa = PBXBuildFile; fileRef = 65AE478E1865A41F00EF9022 /* images_1_6_chat.png */; };
+		65AE47971865A41F00EF9022 /* images_1_6_mail.png in Resources */ = {isa = PBXBuildFile; fileRef = 65AE478F1865A41F00EF9022 /* images_1_6_mail.png */; };
+		65AE47981865A41F00EF9022 /* images_1_6_notification.png in Resources */ = {isa = PBXBuildFile; fileRef = 65AE47901865A41F00EF9022 /* images_1_6_notification.png */; };
+		65AE47991865A41F00EF9022 /* images_1_6_tel.png in Resources */ = {isa = PBXBuildFile; fileRef = 65AE47911865A41F00EF9022 /* images_1_6_tel.png */; };
+		65AE479A1865A41F00EF9022 /* ios_1_6_sms.png in Resources */ = {isa = PBXBuildFile; fileRef = 65AE47921865A41F00EF9022 /* ios_1_6_sms.png */; };
+		65AE479B1865A41F00EF9022 /* ios_1_6_warning.png in Resources */ = {isa = PBXBuildFile; fileRef = 65AE47931865A41F00EF9022 /* ios_1_6_warning.png */; };
 		65B1B5841824ECB900D384D8 /* list_yuan.png in Resources */ = {isa = PBXBuildFile; fileRef = 65B1B5831824ECB900D384D8 /* list_yuan.png */; };
 		65B1B5861824ECC000D384D8 /* images_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 65B1B5851824ECC000D384D8 /* images_button.png */; };
 		65B3AC531819251100F2EC04 /* btn_numbers.png in Resources */ = {isa = PBXBuildFile; fileRef = 65B3AC521819251100F2EC04 /* btn_numbers.png */; };
@@ -898,6 +911,22 @@
 		65AC6610180FE89000C0CA4F /* optionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = optionInfo.m; sourceTree = "<group>"; };
 		65ACBE18185ABC8D001E5636 /* InfomaDetaController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfomaDetaController.h; sourceTree = "<group>"; };
 		65ACBE19185ABC8D001E5636 /* InfomaDetaController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfomaDetaController.m; sourceTree = "<group>"; };
+		65AE477D186584EB00EF9022 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		65AE47801865851E00EF9022 /* ChatSQLMode.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ChatSQLMode.xcdatamodel; sourceTree = "<group>"; };
+		65AE4783186585A800EF9022 /* CoreDataManageContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataManageContext.h; sourceTree = "<group>"; };
+		65AE4784186585A800EF9022 /* CoreDataManageContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataManageContext.m; sourceTree = "<group>"; };
+		65AE478618658A7400EF9022 /* ChatEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatEntity.h; sourceTree = "<group>"; };
+		65AE478718658A7400EF9022 /* ChatEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatEntity.m; sourceTree = "<group>"; };
+		65AE478918658A7400EF9022 /* SessionEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionEntity.h; sourceTree = "<group>"; };
+		65AE478A18658A7400EF9022 /* SessionEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionEntity.m; sourceTree = "<group>"; };
+		65AE478C1865A41F00EF9022 /* images_1_6_addressBook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = images_1_6_addressBook.png; sourceTree = "<group>"; };
+		65AE478D1865A41F00EF9022 /* images_1_6_bangong.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = images_1_6_bangong.png; sourceTree = "<group>"; };
+		65AE478E1865A41F00EF9022 /* images_1_6_chat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = images_1_6_chat.png; sourceTree = "<group>"; };
+		65AE478F1865A41F00EF9022 /* images_1_6_mail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = images_1_6_mail.png; sourceTree = "<group>"; };
+		65AE47901865A41F00EF9022 /* images_1_6_notification.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = images_1_6_notification.png; sourceTree = "<group>"; };
+		65AE47911865A41F00EF9022 /* images_1_6_tel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = images_1_6_tel.png; sourceTree = "<group>"; };
+		65AE47921865A41F00EF9022 /* ios_1_6_sms.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ios_1_6_sms.png; sourceTree = "<group>"; };
+		65AE47931865A41F00EF9022 /* ios_1_6_warning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ios_1_6_warning.png; sourceTree = "<group>"; };
 		65B1B5831824ECB900D384D8 /* list_yuan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list_yuan.png; sourceTree = "<group>"; };
 		65B1B5851824ECC000D384D8 /* images_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = images_button.png; sourceTree = "<group>"; };
 		65B3AC521819251100F2EC04 /* btn_numbers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_numbers.png; sourceTree = "<group>"; };
@@ -966,6 +995,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65AE477E186584EB00EF9022 /* CoreData.framework in Frameworks */,
 				5970E1B9185EF19800C7719E /* libsqlite3.dylib in Frameworks */,
 				5970E1B7185EF19100C7719E /* libsqlite3.0.dylib in Frameworks */,
 				65A26CB41839F9CA006AF226 /* CoreText.framework in Frameworks */,
@@ -1194,6 +1224,7 @@
 		595CB97C17F164AF00228A6E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				65AE477D186584EB00EF9022 /* CoreData.framework */,
 				5970E1B8185EF19800C7719E /* libsqlite3.dylib */,
 				5970E1B6185EF19100C7719E /* libsqlite3.0.dylib */,
 				65A26CB31839F9CA006AF226 /* CoreText.framework */,
@@ -1288,6 +1319,7 @@
 		595CB9B417F167BC00228A6E /* modellayer */ = {
 			isa = PBXGroup;
 			children = (
+				65AE47821865853100EF9022 /* chatMode */,
 				59584B3A18199A9800B65162 /* PackageData.h */,
 				59584B3B18199A9800B65162 /* PackageData.m */,
 				594204601802F0C000AA35C3 /* AnalysisData.h */,
@@ -1359,6 +1391,14 @@
 		595CB9B717F168BC00228A6E /* images */ = {
 			isa = PBXGroup;
 			children = (
+				65AE478C1865A41F00EF9022 /* images_1_6_addressBook.png */,
+				65AE478D1865A41F00EF9022 /* images_1_6_bangong.png */,
+				65AE478E1865A41F00EF9022 /* images_1_6_chat.png */,
+				65AE478F1865A41F00EF9022 /* images_1_6_mail.png */,
+				65AE47901865A41F00EF9022 /* images_1_6_notification.png */,
+				65AE47911865A41F00EF9022 /* images_1_6_tel.png */,
+				65AE47921865A41F00EF9022 /* ios_1_6_sms.png */,
+				65AE47931865A41F00EF9022 /* ios_1_6_warning.png */,
 				595E74BF1862DB22003863D3 /* chat_righttext.png */,
 				595E74C01862DB22003863D3 /* chat_lefttext.png */,
 				65A0020F1862D525001A7AC1 /* tabbar_office_out_1_6.png */,
@@ -2089,6 +2129,20 @@
 			name = SGFocus;
 			sourceTree = "<group>";
 		};
+		65AE47821865853100EF9022 /* chatMode */ = {
+			isa = PBXGroup;
+			children = (
+				65AE477F1865851E00EF9022 /* ChatSQLMode.xcdatamodeld */,
+				65AE4783186585A800EF9022 /* CoreDataManageContext.h */,
+				65AE4784186585A800EF9022 /* CoreDataManageContext.m */,
+				65AE478918658A7400EF9022 /* SessionEntity.h */,
+				65AE478A18658A7400EF9022 /* SessionEntity.m */,
+				65AE478618658A7400EF9022 /* ChatEntity.h */,
+				65AE478718658A7400EF9022 /* ChatEntity.m */,
+			);
+			name = chatMode;
+			sourceTree = "<group>";
+		};
 		65D9678E1812B8D700C1A05E /* AccessoryView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2211,6 +2265,7 @@
 				5975C17518067AA300EF7285 /* accessory_over@2x.png in Resources */,
 				65248507180C2CE700440958 /* navigation_updata_over.png in Resources */,
 				5977D18218225020003DD5A3 /* pic_weixin@2x.png in Resources */,
+				65AE47941865A41F00EF9022 /* images_1_6_addressBook.png in Resources */,
 				65A5EA6118472BA9004C77E3 /* schedule_btn.png in Resources */,
 				659F148818585DD0006BFC4D /* newsBanner1.jpg in Resources */,
 				5977D18118225020003DD5A3 /* pic_sms@2x.png in Resources */,
@@ -2256,10 +2311,12 @@
 				595CB9F017F17EF100228A6E /* common.plist in Resources */,
 				65B3AC701819274200F2EC04 /* tabItem_SMS_out.png in Resources */,
 				65B3AC6E1819274200F2EC04 /* tabItem_MyArBook_over.png in Resources */,
+				65AE47971865A41F00EF9022 /* images_1_6_mail.png in Resources */,
 				65A573E4183AFD930072A519 /* year.plist in Resources */,
 				598ECDC7185B13660059BBC7 /* im_my@2x.png in Resources */,
 				5975C1871806981900EF7285 /* notice_icon.png in Resources */,
 				59585BC217F8300200F73D97 /* home_over@2x.png in Resources */,
+				65AE47951865A41F00EF9022 /* images_1_6_bangong.png in Resources */,
 				65A573E3183AFD930072A519 /* month.plist in Resources */,
 				59585BBF17F8300200F73D97 /* home_out@2x.png in Resources */,
 				65A573E2183AFD930072A519 /* lunarcalenda.plist in Resources */,
@@ -2290,6 +2347,7 @@
 				65AC6603180F77A900C0CA4F /* Main.storyboard in Resources */,
 				59584B1F18191ADE00B65162 /* docunselect.png in Resources */,
 				597723681824EFD9003F2701 /* WeiboSDK.bundle in Resources */,
+				65AE479A1865A41F00EF9022 /* ios_1_6_sms.png in Resources */,
 				65A7EAFB18617BDE008002E5 /* news_tabbar_tack.png in Resources */,
 				5957CD981861FD1200BB0C5D /* voice_pressed.png in Resources */,
 				5975C1881806981900EF7285 /* sms_icon.png in Resources */,
@@ -2298,6 +2356,7 @@
 				59585BC017F8300200F73D97 /* home_over.png in Resources */,
 				595E74C21862DB22003863D3 /* chat_lefttext.png in Resources */,
 				65A7EAF918617BDE008002E5 /* news_tabbar_next.png in Resources */,
+				65AE47981865A41F00EF9022 /* images_1_6_notification.png in Resources */,
 				5960DC8C17F95BE90024AD8B /* guide113603.png in Resources */,
 				59584B1B18190B2200B65162 /* meetting_time.png in Resources */,
 				65B1B5861824ECC000D384D8 /* images_button.png in Resources */,
@@ -2326,6 +2385,7 @@
 				65BB30121829D7CF008370A0 /* addAddress_titles.png in Resources */,
 				65B3AC721819274200F2EC04 /* tabItem_SMS_over.png in Resources */,
 				65A35B741820EC81002C7489 /* share_xinlang.png in Resources */,
+				65AE479B1865A41F00EF9022 /* ios_1_6_warning.png in Resources */,
 				598ECDC4185B13660059BBC7 /* im_message.png in Resources */,
 				5975C1861806981900EF7285 /* mail_icon.png in Resources */,
 				5975C1851806981900EF7285 /* meetting_icon.png in Resources */,
@@ -2336,11 +2396,13 @@
 				65A7EAF718617BDE008002E5 /* news_tabbar_commend.png in Resources */,
 				5977D18318225020003DD5A3 /* pic_weibo@2x.png in Resources */,
 				5960DC8D17F95BE90024AD8B /* guide113601.png in Resources */,
+				65AE47961865A41F00EF9022 /* images_1_6_chat.png in Resources */,
 				65A7EAF618617BDE008002E5 /* news_mode_btndiss.png in Resources */,
 				65A35B731820EC81002C7489 /* share_weixin.png in Resources */,
 				65B3AC761819314900F2EC04 /* btn_Call.png in Resources */,
 				65B3AC651819274200F2EC04 /* tabItem_call_out@2x.png in Resources */,
 				595E74C11862DB22003863D3 /* chat_righttext.png in Resources */,
+				65AE47991865A41F00EF9022 /* images_1_6_tel.png in Resources */,
 				65A7EAEA18617B9E008002E5 /* tabbar_home_over_1_6@2x.png in Resources */,
 				598ECDC5185B13660059BBC7 /* im_message@2x.png in Resources */,
 				65A7EAE918617B9E008002E5 /* tabbar_home_out_1_6@2x.png in Resources */,
@@ -2368,6 +2430,7 @@
 				5943985217F42774000B6E9C /* BaseView.m in Sources */,
 				59584B2B181999BB00B65162 /* LoginView.m in Sources */,
 				596D6F0A18085D79002CD0B3 /* SmsController.m in Sources */,
+				65AE47811865851E00EF9022 /* ChatSQLMode.xcdatamodeld in Sources */,
 				59878CBE1856E51500454D0E /* MyInfoController.m in Sources */,
 				65B3AC7F18195CEC00F2EC04 /* SMSModeDetaView.m in Sources */,
 				659995D61828A10500694F57 /* AlterPasswordController.m in Sources */,
@@ -2460,7 +2523,9 @@
 				595B509F180D1270003EC2AF /* HelpController.m in Sources */,
 				65AB26441856BD4D00F5EAF6 /* HomeScrollView.m in Sources */,
 				596D6EE818085037002CD0B3 /* NoticeController.m in Sources */,
+				65AE4785186585A800EF9022 /* CoreDataManageContext.m in Sources */,
 				594B811E18037CD800310CB1 /* GroupsInfo.m in Sources */,
+				65AE478818658A7400EF9022 /* ChatEntity.m in Sources */,
 				59584B3418199A5200B65162 /* OfficeController.m in Sources */,
 				59584B3918199A6F00B65162 /* MailController.m in Sources */,
 				65A26C9C1839C3A8006AF226 /* NewsScheduleView.m in Sources */,
@@ -2548,6 +2613,7 @@
 				59584B3818199A6F00B65162 /* MailDetailController.m in Sources */,
 				65A9C8E0180EC83F0032D170 /* InformationDetail.m in Sources */,
 				596D6EFD18085D10002CD0B3 /* MeettingView.m in Sources */,
+				65AE478B18658A7400EF9022 /* SessionEntity.m in Sources */,
 				595CBA0617F1925700228A6E /* ToolUtils.m in Sources */,
 				596B78C61861A2C100179CD1 /* ChatMessageCell.m in Sources */,
 				59D78DE6185989260068D6D1 /* MesaageIMCell.m in Sources */,
@@ -2802,6 +2868,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		65AE477F1865851E00EF9022 /* ChatSQLMode.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				65AE47801865851E00EF9022 /* ChatSQLMode.xcdatamodel */,
+			);
+			currentVersion = 65AE47801865851E00EF9022 /* ChatSQLMode.xcdatamodel */;
+			name = ChatSQLMode.xcdatamodeld;
+			path = ../../ChatSQLMode.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 595CB97217F164AF00228A6E /* Project object */;
 }
