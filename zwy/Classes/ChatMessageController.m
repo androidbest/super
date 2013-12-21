@@ -36,6 +36,11 @@
     NSDictionary *dic=[notification userInfo];
     if(dic){
        
+        
+        
+        
+        
+        
     }else{
         [ToolUtils alertInfo:requestError];
     }
@@ -43,8 +48,30 @@
 
 -(void)sendMessage{
     [arrData addObject:self.chatMessageView.im_text.text];
-    [arrTime addObject:[NSDate date]];
+    NSDateFormatter * formatter = [NSDateFormatter new];
+    [formatter setDateFormat: @"yy/MM/dd HH:mm"];
+    NSString *dateString = [formatter stringFromDate:[NSDate date]];
+    
+    [arrTime addObject:dateString];
+    
+    ChatMsgObj *obj=[ChatMsgObj new];
+    obj.chattype=@"0";
+    obj.sendeccode=user.eccode;
+    obj.sendmsisdn=user.msisdn;
+    obj.receivereccode=self.chatMessageView.chatData.eccode;
+    obj.receivermsisdn=self.chatMessageView.chatData.tel;
+    obj.content=self.chatMessageView.im_text.text;
+    obj.sendtime=dateString;
+    obj.receiveravatar=self.chatMessageView.chatData.headPath;
+    obj.groupid=@"";
+    obj.senderavatar=@"";
+    obj.receiveravatar=@"";
+    obj.filepath=@"";
+    [packageData imSend:self chat:obj];
     self.chatMessageView.im_text.text=nil;
+    
+    
+    
     [self.chatMessageView.tableview reloadData];
     NSInteger rows = [self.chatMessageView.tableview numberOfRowsInSection:0];
     if(rows > 0) {
@@ -52,10 +79,6 @@
                               atScrollPosition:UITableViewScrollPositionBottom
                                       animated:YES];
     }
-    ChatMsgObj *obj=[ChatMsgObj new];
-    obj.
-    
-    [packageData imSend:self chat:nil];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -101,9 +124,7 @@
                                     reuseIdentifier:strCell];
     }
     NSString *text=arrData[indexPath.row];
-    cell.chatTime.text=[NSDateFormatter localizedStringFromDate:arrTime[indexPath.row]
-                                                      dateStyle:kCFDateFormatterMediumStyle
-                                                      timeStyle:NSDateFormatterShortStyle];
+    cell.chatTime.text=arrTime[indexPath.row];
 //    [CompressImage bubbleView:text imageView:cell.leftMessage];
 //    [ToolUtils bubbleView:text from:NO withPosition:60 view:cell.leftMessage];
     return cell;
@@ -133,6 +154,17 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+//文字编辑
+- (void)textViewDidChange:(UITextView *)textView{
+    if(textView.text.length==0){
+        [self.chatMessageView.send setEnabled:NO];
+        [self.chatMessageView.send setAlpha:0.4];
+    }else{
+        [self.chatMessageView.send setEnabled:YES];
+        [self.chatMessageView.send setAlpha:1.0];
+    }
 }
 
 @end

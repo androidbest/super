@@ -51,13 +51,16 @@
     [_send addTarget:self.controller action:NSSelectorFromString(@"sendMessage") forControlEvents:UIControlEventTouchUpInside];
     [_send setTitle:@"发送" forState:UIControlStateNormal];
     [_send setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    _send.titleLabel.font=[UIFont systemFontOfSize:13];
+    [_send setEnabled:NO];
+    [_send setAlpha:0.4];
     
     _im_text=[[UITextView alloc] initWithFrame:CGRectMake(49, 5, 208, 35)];
     _im_text.layer.masksToBounds=YES;
     _im_text.layer.cornerRadius=6.0;
     _im_text.layer.borderWidth=0.5;
     _im_text.layer.borderColor=[[UIColor lightGrayColor] CGColor];
-    
+    _im_text.delegate=self.controller;
     
     _voicepress=[[UIButton alloc]initWithFrame:CGRectMake(9, 6, 38, 34)];
     [_voicepress setBackgroundImage:[UIImage imageNamed:@"voice_press"] forState:UIControlStateNormal];
@@ -83,7 +86,6 @@
     
     [self.view addSubview:_tableview];
     [self.view addSubview:_toolbar];
-    
     
     UITapGestureRecognizer* singleRecognizer;
     singleRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self.controller action:NSSelectorFromString(@"SingleTap:")];
@@ -146,6 +148,13 @@
                          insets.bottom = self.view.frame.size.height - _toolbar.frame.origin.y - inputViewFrame.size.height;
                          _tableview.contentInset = insets;
                          _tableview.scrollIndicatorInsets = insets;
+                         
+                         NSInteger rows = [self.tableview numberOfRowsInSection:0];
+                         if(rows > 0) {
+                             [self.tableview scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:rows - 1 inSection:0]
+                                                                   atScrollPosition:UITableViewScrollPositionBottom
+                                                                           animated:YES];
+                         }
                      }
                      completion:^(BOOL finished) {
                      }];
@@ -171,11 +180,11 @@
 }
 
 
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    [super touchesEnded:touches withEvent:event];
-    [_im_text resignFirstResponder];
-}
+//- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+//{
+//    [super touchesEnded:touches withEvent:event];
+//    [_im_text resignFirstResponder];
+//}
 
 -(void)dealloc{
 
