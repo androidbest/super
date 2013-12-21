@@ -241,11 +241,11 @@
 ///////////////////*****************////////////////////////
 
 //自动拉长图片
-+ (UIImageView *)bubbleView:(NSString *)text{
-    UIImageView *returnView = [[UIImageView alloc] initWithFrame:CGRectZero];
++ (UIImageView *)bubbleView:(NSString *)text imageView:(UIImageView *) returnView{
+//    UIImageView *returnView = [[UIImageView alloc] initWithFrame:CGRectZero];
     returnView.backgroundColor = [UIColor clearColor];
     
-    UIImage *bubble =[UIImage imageNamed:@"chat_righttext.png"];
+    UIImage *bubble =[UIImage imageNamed:@"chat_lefttext.png"];
     UIImageView *bubbleImageView = [[UIImageView alloc] initWithImage:[bubble stretchableImageWithLeftCapWidth:21 topCapHeight:14]];
     
     UIFont *font = [UIFont systemFontOfSize:13];

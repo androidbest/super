@@ -43,6 +43,7 @@
 		5951FD7818079A5D0095F212 /* HomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5951FD7718079A5D0095F212 /* HomeController.m */; };
 		59550E7418126EDE00205544 /* GetEcCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 59550E7318126EDE00205544 /* GetEcCell.m */; };
 		5955934D18000CAB0047C328 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 5955934C18000CAB0047C328 /* MBProgressHUD.m */; };
+		59568289186444E500D122D8 /* ChatMsgObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 59568288186444E500D122D8 /* ChatMsgObj.m */; };
 		5956D8DE181548CE00DF3585 /* DaibanController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5956D8DD181548CE00DF3585 /* DaibanController.m */; };
 		5957CD981861FD1200BB0C5D /* voice_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 5957CD961861FD1200BB0C5D /* voice_pressed.png */; };
 		5957CD991861FD1200BB0C5D /* voice_press.png in Resources */ = {isa = PBXBuildFile; fileRef = 5957CD971861FD1200BB0C5D /* voice_press.png */; };
@@ -459,6 +460,8 @@
 		59550E7318126EDE00205544 /* GetEcCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetEcCell.m; sourceTree = "<group>"; };
 		5955934B18000CAB0047C328 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		5955934C18000CAB0047C328 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		59568287186444E500D122D8 /* ChatMsgObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMsgObj.h; sourceTree = "<group>"; };
+		59568288186444E500D122D8 /* ChatMsgObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMsgObj.m; sourceTree = "<group>"; };
 		5956D8DC181548CE00DF3585 /* DaibanController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaibanController.h; sourceTree = "<group>"; };
 		5956D8DD181548CE00DF3585 /* DaibanController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaibanController.m; sourceTree = "<group>"; };
 		5957CD961861FD1200BB0C5D /* voice_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = voice_pressed.png; sourceTree = "<group>"; };
@@ -999,6 +1002,7 @@
 		5943984017F3D92B000B6E9C /* obj */ = {
 			isa = PBXGroup;
 			children = (
+				59568286186444AB00D122D8 /* chatmessageinfo */,
 				65A3C25D185EE0630098C8F3 /* commentInfo */,
 				5970E1AA185ED0B800C7719E /* databaseinfo */,
 				65E59A8F18449EC7004444E5 /* greetingInfo */,
@@ -1096,6 +1100,15 @@
 				594B813218037D0B00310CB1 /* EcinfoDetas.m */,
 			);
 			name = ecinfo;
+			sourceTree = "<group>";
+		};
+		59568286186444AB00D122D8 /* chatmessageinfo */ = {
+			isa = PBXGroup;
+			children = (
+				59568287186444E500D122D8 /* ChatMsgObj.h */,
+				59568288186444E500D122D8 /* ChatMsgObj.m */,
+			);
+			name = chatmessageinfo;
 			sourceTree = "<group>";
 		};
 		595A0C69181129E2009C26B8 /* ec */ = {
@@ -2484,6 +2497,7 @@
 				65E59A9218449EE3004444E5 /* GreetingInfo.m in Sources */,
 				5970E1AD185ED1BD00C7719E /* MessageRecord.m in Sources */,
 				59584B3118199A2800B65162 /* AccountManagerController.m in Sources */,
+				59568289186444E500D122D8 /* ChatMsgObj.m in Sources */,
 				594204531802E5AA00AA35C3 /* AFURLConnectionOperation.m in Sources */,
 				595B5096180CF345003EC2AF /* NoticeDetaInfo.m in Sources */,
 				65AC6606180FBDB900C0CA4F /* optionCell.m in Sources */,

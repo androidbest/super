@@ -630,4 +630,16 @@ RespInfo *info=[RespInfo new];
     }
     return info;
 }
+
+//即时聊天发送信息
++ (RespInfo *)imSend:(NSDictionary *)dic{
+   RespInfo *info=[RespInfo new];
+    return info;
+}
+
+//即时聊天接收信息
++ (RespInfo *)imRevice:(NSDictionary *)dic{
+   RespInfo *info=[RespInfo new];
+   return info;
+}
 @end

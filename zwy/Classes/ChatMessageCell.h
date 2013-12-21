@@ -9,10 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface ChatMessageCell : UITableViewCell
-@property (strong, nonatomic) IBOutlet UILabel *chatTime;
-@property (strong, nonatomic) IBOutlet UIButton *leftHead;
-@property (strong, nonatomic) IBOutlet UIButton *rightHead;
-@property (strong, nonatomic) IBOutlet UIImageView *leftMessage;
-@property (strong, nonatomic) IBOutlet UIImageView *rightMessage;
+@property (strong, nonatomic) UILabel *chatTime;
+@property (strong, nonatomic) UIButton *leftHead;
+@property (strong, nonatomic) UIButton *rightHead;
+@property (strong, nonatomic) UIImageView *leftMessage;
+@property (strong, nonatomic) UIImageView *rightMessage;
 
 @end

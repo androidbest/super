@@ -9,10 +9,10 @@
 #import "BaseView.h"
 #import "PeopelInfo.h"
 @interface ChatMessageView : BaseView
-@property (strong, nonatomic) IBOutlet UITableView *tableview;
-@property (strong, nonatomic) IBOutlet UITextView *im_text;
-@property (strong, nonatomic) IBOutlet UIButton *voicepress;
-@property (strong, nonatomic) IBOutlet UIButton *send;
-@property (strong, nonatomic) IBOutlet UIView *toolbar;
+@property (strong, nonatomic) UITableView *tableview;
+@property (strong, nonatomic) UITextView *im_text;
+@property (strong, nonatomic) UIButton *voicepress;
+@property (strong, nonatomic) UIButton *send;
+@property (strong, nonatomic) UIView *toolbar;
 @property (strong, nonatomic) PeopelInfo *chatData;
 @end

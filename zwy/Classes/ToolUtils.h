@@ -51,4 +51,9 @@
 
 //公历转农历
 + (NSString *)solarOrLunar:(NSDate *)date;
+
+//类型转换
++ (UIViewAnimationOptions)animationOptionsForCurve:(UIViewAnimationCurve)curve;
+//泡泡文本
++ (UIView *)bubbleView:(NSString *)text from:(BOOL)fromSelf withPosition:(int)position view:(UIView *)returnView;
 @end

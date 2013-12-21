@@ -280,4 +280,72 @@
     return strLunarTime;
 }
 
++ (UIViewAnimationOptions)animationOptionsForCurve:(UIViewAnimationCurve)curve
+{
+    switch (curve) {
+        case UIViewAnimationCurveEaseInOut:
+            return UIViewAnimationOptionCurveEaseInOut;
+            break;
+        case UIViewAnimationCurveEaseIn:
+            return UIViewAnimationOptionCurveEaseIn;
+            break;
+        case UIViewAnimationCurveEaseOut:
+            return UIViewAnimationOptionCurveEaseOut;
+            break;
+        case UIViewAnimationCurveLinear:
+            return UIViewAnimationOptionCurveLinear;
+            break;
+    }
+    
+    return kNilOptions;
+}
+
+//泡泡文本
++(UIView *)bubbleView:(NSString *)text from:(BOOL)fromSelf withPosition:(int)position view:(UIView *)returnView{
+    
+    //计算大小
+    UIFont *font = [UIFont systemFontOfSize:13];
+//	CGSize size = [text sizeWithFont:font constrainedToSize:CGSizeMake(180.0f, 20000.0f) lineBreakMode:NSLineBreakByWordWrapping];
+    CGRect textRect = [text boundingRectWithSize:CGSizeMake(180.0f, 20000.0f)
+                                                      options:NSStringDrawingUsesLineFragmentOrigin
+                                                   attributes:@{NSFontAttributeName:font}
+                                                      context:nil];
+    
+    
+	// build single chat bubble cell with given text
+	returnView.backgroundColor = [UIColor clearColor];
+	
+    //背影图片
+	UIImage *bubble = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fromSelf?@"chat_lefttext":@"chat_righttext" ofType:@"png"]];
+    
+	UIImageView *bubbleImageView = [[UIImageView alloc] initWithImage:[bubble stretchableImageWithLeftCapWidth:floorf(bubble.size.width/2) topCapHeight:floorf(bubble.size.height/2)]];
+	NSLog(@"%f,%f",textRect.size.width,textRect.size.height);
+	
+    
+    //添加文本信息
+	UILabel *bubbleText = [[UILabel alloc] initWithFrame:CGRectMake(fromSelf?15.0f:22.0f, 20.0f, textRect.size.width+10, textRect.size.height+10)];
+	bubbleText.backgroundColor = [UIColor clearColor];
+	bubbleText.font = font;
+	bubbleText.numberOfLines = 0;
+	bubbleText.lineBreakMode = NSLineBreakByWordWrapping;
+	bubbleText.text = text;
+	
+	bubbleImageView.frame = CGRectMake(0.0f, 14.0f, bubbleText.frame.size.width+30.0f, bubbleText.frame.size.height+20.0f);
+    
+	if(fromSelf)
+		returnView.frame = CGRectMake(320-position-(bubbleText.frame.size.width+30.0f), 0.0f, bubbleText.frame.size.width+30.0f, bubbleText.frame.size.height+30.0f);
+	else
+		returnView.frame = CGRectMake(position, 0.0f, bubbleText.frame.size.width+30.0f, bubbleText.frame.size.height+30.0f);
+	
+	[returnView addSubview:bubbleImageView];
+	[returnView addSubview:bubbleText];
+    
+//    CGRect rect=returnView.frame;
+//    rect.size.height=20;
+//    returnView.frame=rect;
+    
+    
+    return returnView;
+}
+
 @end

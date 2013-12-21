@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "ChatMsgObj.h"
 @interface packageData : NSObject
 
 //获取EC单位信息列表接口
@@ -156,4 +156,10 @@
 
 //新闻点赞
 + (void)commendNews:(id)delegate newsID:(NSString *)ID SELType:(NSString *)sel;
+
+//即时聊天发送信息
++ (void)imSend:(id)delegate chat:(ChatMsgObj *)obj;
+
+//即时聊天接收信息
++ (void)imRevice:(id)delegate chat:(ChatMsgObj *)obj;
 @end

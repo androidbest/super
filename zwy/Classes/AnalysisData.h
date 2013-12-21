@@ -113,4 +113,10 @@
 //新闻资讯列表
 + (CommentListInfo *)getCommentList:(NSDictionary *)dic;
 
+//即时聊天发送信息
++ (RespInfo *)imSend:(NSDictionary *)dic;
+
+//即时聊天接收信息
++ (RespInfo *)imRevice:(NSDictionary *)dic;
+
 @end

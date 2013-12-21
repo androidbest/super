@@ -10,6 +10,7 @@
 #import "HTTPRequest.h"
 #import "Constants.h"
 #import "Tuser.h"
+#import "ChatMsgObj.h"
 @implementation packageData
 
 //获取URL
@@ -25,7 +26,7 @@
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     
-    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><SECURITYKEY>NOKEY</SECURITYKEY><ECCODE>null</ECCODE></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>queryEcInfo</METHOD></BODY></MESSAGE>",msisdn];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><SECURITYKEY>NOKEY</SECURITYKEY><ECCODE>null</ECCODE></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>queryEcInfo</METHOD></BODY></MESSAGE>",msisdn];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];
@@ -37,7 +38,7 @@
 +(void)getSecurityCode:(id)delegate msisdn:(NSString *) msisdn{
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>NOKEY</SECURITYKEY></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>requestVerifyCode</METHOD></BODY></MESSAGE>",msisdn,@""];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>NOKEY</SECURITYKEY></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>requestVerifyCode</METHOD></BODY></MESSAGE>",msisdn,@""];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];
@@ -49,7 +50,7 @@
 + (void)checkCode:(id)delegate  Code:(NSString *)code msisdn:(NSString *) msisdn{
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>LOGIN</SECURITYKEY></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>checkVerifyCode</METHOD><VERFYCODE>%@</VERFYCODE></BODY></MESSAGE>",msisdn,@"",code];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>LOGIN</SECURITYKEY></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>checkVerifyCode</METHOD><VERFYCODE>%@</VERFYCODE></BODY></MESSAGE>",msisdn,@"",code];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];
@@ -60,7 +61,7 @@
 +(void)checkPassword:(id)delegate msisdn:(NSString *) msisdn{
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><SECURITYKEY>NOKEY</SECURITYKEY></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>getPassword</METHOD></BODY></MESSAGE>",msisdn];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><SECURITYKEY>NOKEY</SECURITYKEY></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>getPassword</METHOD></BODY></MESSAGE>",msisdn];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];
@@ -72,7 +73,7 @@
 + (void)Loginvalidation:(id)delegate Password:(NSString *)passWord  Count:(NSString *)count msisdn:(NSString *)msisdn eccode:(NSString *)eccode{
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-     NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>NOKEY</SECURITYKEY></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>auth</METHOD><PASSWORD>%@</PASSWORD><COUNT>%@</COUNT></BODY></MESSAGE>",msisdn,eccode,passWord,count];
+     NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>NOKEY</SECURITYKEY></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>auth</METHOD><PASSWORD>%@</PASSWORD><COUNT>%@</COUNT></BODY></MESSAGE>",msisdn,eccode,passWord,count];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];
@@ -84,7 +85,7 @@
 + (void)sendEc:(id)delegate Type:(NSString *)type{
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>NOKEY</SECURITYKEY></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>updateLastEccoed</METHOD><LASTECCODE>%@</LASTECCODE></BODY></MESSAGE>",user.msisdn,user.eccode,user.eccode];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>NOKEY</SECURITYKEY></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>updateLastEccoed</METHOD><LASTECCODE>%@</LASTECCODE></BODY></MESSAGE>",user.msisdn,user.eccode,user.eccode];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];
@@ -97,7 +98,7 @@
 + (void)autoLoginvalidation:(id)delegate  Count:(NSString *)count msisdn:(NSString *)msisdn eccode:(NSString *)eccode{
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>NOKEY</SECURITYKEY></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>autoLogin</METHOD><COUNT>%@</COUNT></BODY></MESSAGE>",msisdn,eccode,count];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>NOKEY</SECURITYKEY></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>autoLogin</METHOD><COUNT>%@</COUNT></BODY></MESSAGE>",msisdn,eccode,count];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];
@@ -109,7 +110,7 @@
 + (void)SendSMS:(id)delegate receiverTel:(NSString*)receiverTel receiverName:(NSString *)receiverName content:(NSString *)content sendTime:(NSString*)time groupId:(NSString *)groupId{
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-        NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>111</SECURITYKEY></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>sendSms</METHOD><SESSIONID>2</SESSIONID><SENDER>%@</SENDER><CONTENT>%@</CONTENT><RECEIVERMSISDN>%@</RECEIVERMSISDN><RECEIVERNAME>%@</RECEIVERNAME><AUDITER></AUDITER><SENDTIME>%@</SENDTIME><GROUPID>%@</GROUPID></BODY></MESSAGE>",user.msisdn,user.eccode,user.msisdn,content,receiverTel,receiverName,time,groupId];
+        NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>111</SECURITYKEY></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>sendSms</METHOD><SESSIONID>2</SESSIONID><SENDER>%@</SENDER><CONTENT>%@</CONTENT><RECEIVERMSISDN>%@</RECEIVERMSISDN><RECEIVERNAME>%@</RECEIVERNAME><AUDITER></AUDITER><SENDTIME>%@</SENDTIME><GROUPID>%@</GROUPID></BODY></MESSAGE>",user.msisdn,user.eccode,user.msisdn,content,receiverTel,receiverName,time,groupId];
 //    NSString * str = @"<?xml version=\"1.0\" encoding=\"utf-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>13752923254</PHONE><SECURITYKEY>null</SECURITYKEY><ECCODE>4952000001</ECCODE></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>sendSms</METHOD><SESSIONID>null</SESSIONID><SENDER>13752923254</SENDER><CONTENT>元旦来到，祝你在新年里：事业如日中天，心情阳光灿烂，工资地覆天翻，未来风光无限，爱情浪漫依然，快乐游戏人间。 重庆市渝北区星光三村</CONTENT><RECEIVERMSISDN>18716688785,18716467628,13752923254,</RECEIVERMSISDN><RECEIVERNAME>唐何易,史进,王爽,</RECEIVERNAME><AUDITER>null</AUDITER><SENDTIME>0</SENDTIME><GROUPID></GROUPID></BODY></MESSAGE>";
     
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
@@ -122,7 +123,7 @@
 + (void)SendVoice:(id)delegate receiverTel:(NSString*)receiverTel receiverName:(NSString *)receiverName content:(NSString *)content sendTime:(NSString*)time groupId:(NSString *)groupId{
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>NOKEY</SECURITYKEY></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>sendTTS</METHOD><SESSIONID>2</SESSIONID><SENDER>%@</SENDER><CONTENT>%@</CONTENT><RECEIVERMSISDN>%@</RECEIVERMSISDN><RECEIVERNAME>%@</RECEIVERNAME><AUDITER></AUDITER><SENDTIME>%@</SENDTIME><GROUPID>%@</GROUPID></BODY></MESSAGE>",user.msisdn,user.eccode,user.msisdn,content,receiverTel,receiverName,time,groupId];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>NOKEY</SECURITYKEY></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>sendTTS</METHOD><SESSIONID>2</SESSIONID><SENDER>%@</SENDER><CONTENT>%@</CONTENT><RECEIVERMSISDN>%@</RECEIVERMSISDN><RECEIVERNAME>%@</RECEIVERNAME><AUDITER></AUDITER><SENDTIME>%@</SENDTIME><GROUPID>%@</GROUPID></BODY></MESSAGE>",user.msisdn,user.eccode,user.msisdn,content,receiverTel,receiverName,time,groupId];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];
@@ -134,7 +135,7 @@
 +(void)templateInfor:(id)delegate{
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>queryTemplateTypeInfo</METHOD><SESSIONID>2</SESSIONID><TYPE>1</TYPE></BODY></MESSAGE>",user.msisdn,user.eccode];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>queryTemplateTypeInfo</METHOD><SESSIONID>2</SESSIONID><TYPE>1</TYPE></BODY></MESSAGE>",user.msisdn,user.eccode];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];
@@ -145,7 +146,7 @@
 + (void)getTemplate:(id)delegate TemplateID:(NSString *)ID pageNmu:(NSString *)pageNum{
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-  NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>getTemplateInfo</METHOD><SESSIONID>2</SESSIONID><TYPE>1</TYPE><PAGEID>%@</PAGEID><PAGESIZE>20</PAGESIZE><TEMPLATEID>%@</TEMPLATEID><CONTENT></CONTENT></BODY></MESSAGE>",user.msisdn,user.eccode,pageNum,ID];
+  NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>getTemplateInfo</METHOD><SESSIONID>2</SESSIONID><TYPE>1</TYPE><PAGEID>%@</PAGEID><PAGESIZE>20</PAGESIZE><TEMPLATEID>%@</TEMPLATEID><CONTENT></CONTENT></BODY></MESSAGE>",user.msisdn,user.eccode,pageNum,ID];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];
@@ -156,7 +157,7 @@
 + (void)scheduleConf:(id)delegate receiverTel:(NSString*)receiverTel receiverName:(NSString *)receiverName groupID:(NSString *)groupID time:(NSString *)time{
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-   NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>NOKEY</SECURITYKEY></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>scheduleConf</METHOD><SESSIONID>2</SESSIONID><STARTTIME>%@</STARTTIME><RECEIVERLIST>%@</RECEIVERLIST><RECEIVERNAME>%@</RECEIVERNAME><GROUPID>%@</GROUPID></BODY></MESSAGE>",user.msisdn,user.eccode,time,receiverTel,receiverName,groupID];
+   NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>NOKEY</SECURITYKEY></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>scheduleConf</METHOD><SESSIONID>2</SESSIONID><STARTTIME>%@</STARTTIME><RECEIVERLIST>%@</RECEIVERLIST><RECEIVERNAME>%@</RECEIVERNAME><GROUPID>%@</GROUPID></BODY></MESSAGE>",user.msisdn,user.eccode,time,receiverTel,receiverName,groupID];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];
@@ -167,7 +168,7 @@
 + (void)getNoticeList:(id)delegate pages:(NSString *)pageID{
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>getNoticeList</METHOD><SESSIONID>2</SESSIONID><INFOTYPE>0</INFOTYPE><PAGEID>%@</PAGEID><PAGESIZE>20</PAGESIZE></BODY></MESSAGE>",user.msisdn,user.eccode,pageID];
+NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>getNoticeList</METHOD><SESSIONID>2</SESSIONID><INFOTYPE>0</INFOTYPE><PAGEID>%@</PAGEID><PAGESIZE>20</PAGESIZE></BODY></MESSAGE>",user.msisdn,user.eccode,pageID];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];
@@ -178,7 +179,7 @@ NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"U
 + (void)reqHotNewsInfoXml:(id)delegate start:(NSString *)start end:(NSString *)end SELType:(NSString *)sel{
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><BODY><REQSIGN>0</REQSIGN><METHOD>getNews</METHOD><PHONE>%@</PHONE><STARTRN>%@</STARTRN><ENDRN>%@</ENDRN></BODY></MESSAGE>",user.msisdn,start,end];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>getNews</METHOD><PHONE>%@</PHONE><STARTRN>%@</STARTRN><ENDRN>%@</ENDRN></BODY></MESSAGE>",user.msisdn,start,end];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];
@@ -189,7 +190,7 @@ NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"U
 + (void)reqJokeInfoXml:(id)delegate start:(NSString *)start end:(NSString *)end SELType:(NSString *)sel{
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><BODY><REQSIGN>0</REQSIGN><METHOD>getJoke</METHOD><PHONE>%@</PHONE><STARTRN>%@</STARTRN><ENDRN>%@</ENDRN></BODY></MESSAGE>",user.msisdn,start,end];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>getJoke</METHOD><PHONE>%@</PHONE><STARTRN>%@</STARTRN><ENDRN>%@</ENDRN></BODY></MESSAGE>",user.msisdn,start,end];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];
@@ -200,7 +201,7 @@ NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"U
 + (void)getUserCount:(id)delegate groupID:(NSString *)gorupID Type:(NSString *)type{
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>getUserCount</METHOD><SESSIONID>2</SESSIONID><GROUPID>%@</GROUPID><TYPE>%@</TYPE></BODY></MESSAGE>",user.msisdn,user.eccode,gorupID,type];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>getUserCount</METHOD><SESSIONID>2</SESSIONID><GROUPID>%@</GROUPID><TYPE>%@</TYPE></BODY></MESSAGE>",user.msisdn,user.eccode,gorupID,type];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];
@@ -211,7 +212,7 @@ NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"U
 + (void)getGroupCount:(id)delegate groupID:(NSString *)groupid{
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>getGroupCount</METHOD><SESSIONID>2</SESSIONID><GROUPID>%@</GROUPID></BODY></MESSAGE>",user.msisdn,user.eccode,groupid];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>getGroupCount</METHOD><SESSIONID>2</SESSIONID><GROUPID>%@</GROUPID></BODY></MESSAGE>",user.msisdn,user.eccode,groupid];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];
@@ -223,7 +224,7 @@ NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"U
 + (void)getGroups:(id)delegate groupID:(NSString *)groupid pages:(NSString *)pageID groupName:(NSString *)groupName SELType:(NSString *)sel{
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>getGroups</METHOD><SESSIONID>2</SESSIONID><GROUPID>%@</GROUPID><PAGEID>%@</PAGEID><PAGESIZE>20</PAGESIZE><GROUPNAME><%@/GROUPNAME></BODY></MESSAGE>",user.msisdn,user.eccode,groupid,pageID,groupName];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>getGroups</METHOD><SESSIONID>2</SESSIONID><GROUPID>%@</GROUPID><PAGEID>%@</PAGEID><PAGESIZE>20</PAGESIZE><GROUPNAME><%@/GROUPNAME></BODY></MESSAGE>",user.msisdn,user.eccode,groupid,pageID,groupName];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];
@@ -234,7 +235,7 @@ NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"U
 + (void)getGroupmember:(id)delegate groupID:(NSString *)groupid pages:(NSString *)pageId Type:(NSString *)type condition:(NSString *)condition SELType:(NSString *)sel{
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>getUsers</METHOD><SESSIONID>2</SESSIONID><GROUPID>%@</GROUPID><PAGEID>%@</PAGEID><PAGESIZE>20</PAGESIZE><TYPE>%@</TYPE><CONDITION>%@</CONDITION></BODY></MESSAGE>",user.msisdn,user.eccode,groupid,pageId,@"1",condition];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>getUsers</METHOD><SESSIONID>2</SESSIONID><GROUPID>%@</GROUPID><PAGEID>%@</PAGEID><PAGESIZE>20</PAGESIZE><TYPE>%@</TYPE><CONDITION>%@</CONDITION></BODY></MESSAGE>",user.msisdn,user.eccode,groupid,pageId,@"1",condition];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];
@@ -245,7 +246,7 @@ NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"U
 + (void)getDocList:(id)delegate infoType:(NSString *)type pages:(NSString *)pageid SELType:(NSString *)sel{
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>getDocList</METHOD><SESSIONID>1</SESSIONID><INFOTYPE>%@</INFOTYPE><PAGEID>%@</PAGEID><PAGESIZE>20</PAGESIZE></BODY></MESSAGE>",user.msisdn,user.eccode,type,pageid];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>getDocList</METHOD><SESSIONID>1</SESSIONID><INFOTYPE>%@</INFOTYPE><PAGEID>%@</PAGEID><PAGESIZE>20</PAGESIZE></BODY></MESSAGE>",user.msisdn,user.eccode,type,pageid];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];
@@ -257,7 +258,7 @@ NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"U
 +(void)alreadyDocList:(id)delegate type:(NSString *)type pageNum:(NSString *)pageNum SELType:(NSString *)sel{
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-   NSString *str =[NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"utf-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><SECURITYKEY>2</SECURITYKEY><ECCODE>%@</ECCODE></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>getDocListend</METHOD><SESSIONID>1</SESSIONID><PAGEID>%@</PAGEID><PAGESIZE>20</PAGESIZE><INFOTYPE>%@</INFOTYPE></BODY></MESSAGE>",user.msisdn,user.eccode,pageNum,type];
+   NSString *str =[NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"utf-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><SECURITYKEY>2</SECURITYKEY><ECCODE>%@</ECCODE></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>getDocListend</METHOD><SESSIONID>1</SESSIONID><PAGEID>%@</PAGEID><PAGESIZE>20</PAGESIZE><INFOTYPE>%@</INFOTYPE></BODY></MESSAGE>",user.msisdn,user.eccode,pageNum,type];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];
@@ -268,7 +269,7 @@ NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"U
 +(void)docFlow:(id)delegate ID:(NSString *)ID{
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    NSString * str =[NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"utf-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><SECURITYKEY>LOGIN</SECURITYKEY><ECCODE>%@</ECCODE></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>showFlowDocList</METHOD><SESSIONID></SESSIONID><DOCID>%@</DOCID></BODY></MESSAGE>",user.msisdn,user.eccode,ID];
+    NSString * str =[NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"utf-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><SECURITYKEY>LOGIN</SECURITYKEY><ECCODE>%@</ECCODE></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>showFlowDocList</METHOD><SESSIONID></SESSIONID><DOCID>%@</DOCID></BODY></MESSAGE>",user.msisdn,user.eccode,ID];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];
@@ -280,7 +281,7 @@ NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"U
 + (void)getDocInfo:(id)delegate ID:(NSString *)Id{
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>getDocInfo</METHOD><SESSIONID>2</SESSIONID><ID>%@</ID></BODY></MESSAGE>",user.msisdn,user.eccode,Id];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>getDocInfo</METHOD><SESSIONID>2</SESSIONID><ID>%@</ID></BODY></MESSAGE>",user.msisdn,user.eccode,Id];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];
@@ -291,7 +292,7 @@ NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"U
 + (void)getDocInfoType:(id)delegate ID:(NSString *)Id Type:(NSString *)type{
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>getDocInfo</METHOD><SESSIONID>null</SESSIONID><ID>%@<ID><TYPE>%@<TYPE></BODY></MESSAGE>",user.msisdn,user.eccode,Id,type];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>getDocInfo</METHOD><SESSIONID>null</SESSIONID><ID>%@<ID><TYPE>%@<TYPE></BODY></MESSAGE>",user.msisdn,user.eccode,Id,type];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];
@@ -303,7 +304,7 @@ NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"U
 + (void)handleDoc:(id)delegate ID:(NSString *)Id Type:(NSString *)type OperType:(NSString *)operType tempTel:(NSString *)tel Status:(NSString *)status context:(NSString *)content groupid:(NSString *)groupid{
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>handleDoc</METHOD><SESSIONID>2</SESSIONID><ID>%@</ID><TYPE>%@</TYPE><OPERTYPE>%@</OPERTYPE><TEMP>%@</TEMP><STATUS>%@</STATUS><REPLYCONTENT>%@</REPLYCONTENT><GROUPID>%@</GROUPID></BODY></MESSAGE>",user.msisdn,user.eccode,Id,type,operType,tel,status,content,groupid];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>handleDoc</METHOD><SESSIONID>2</SESSIONID><ID>%@</ID><TYPE>%@</TYPE><OPERTYPE>%@</OPERTYPE><TEMP>%@</TEMP><STATUS>%@</STATUS><REPLYCONTENT>%@</REPLYCONTENT><GROUPID>%@</GROUPID></BODY></MESSAGE>",user.msisdn,user.eccode,Id,type,operType,tel,status,content,groupid];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];
@@ -314,7 +315,7 @@ NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"U
 + (void)queryDocumentAttachment:(id)delegate ID:(NSString *)Id SELType:(NSString *)sel{
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>queryDocumentAttachment</METHOD><SESSIONID>2</SESSIONID><ID>%@</ID></BODY></MESSAGE>",user.msisdn,user.eccode,Id];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>queryDocumentAttachment</METHOD><SESSIONID>2</SESSIONID><ID>%@</ID></BODY></MESSAGE>",user.msisdn,user.eccode,Id];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];
@@ -325,7 +326,7 @@ NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"U
 + (void)getPublicMailList:(id)delegate Pages:(NSString *)pageId SELType:(NSString *)sel{
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>getPublicMailList</METHOD><SESSIONID>2</SESSIONID><PAGEID>%@</PAGEID><PAGESIZE>20</PAGESIZE></BODY></MESSAGE>",user.msisdn,user.eccode,pageId];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>getPublicMailList</METHOD><SESSIONID>2</SESSIONID><PAGEID>%@</PAGEID><PAGESIZE>20</PAGESIZE></BODY></MESSAGE>",user.msisdn,user.eccode,pageId];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];
@@ -336,7 +337,7 @@ NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"U
 + (void)getAuditMailList:(id)delegate Pages:(NSString *)pageId SELType:(NSString *)sel{
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>getAuditMailList</METHOD><SESSIONID>2</SESSIONID><PAGEID>%@</PAGEID><PAGESIZE>20</PAGESIZE></BODY></MESSAGE>",user.msisdn,user.eccode,pageId];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>getAuditMailList</METHOD><SESSIONID>2</SESSIONID><PAGEID>%@</PAGEID><PAGESIZE>20</PAGESIZE></BODY></MESSAGE>",user.msisdn,user.eccode,pageId];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];
@@ -347,7 +348,7 @@ NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"U
 + (void)getPublicMailUsers:(id)delegate pages:(NSString *)pageId Condition:(NSString *)condition{
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>getPublicMailUsers</METHOD><SESSIONID>2</SESSIONID><PAGEID>%@</PAGEID><PAGESIZE>20</PAGESIZE><CONDITION>%@</CONDITION></BODY></MESSAGE>",user.msisdn,user.eccode,pageId,condition];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>getPublicMailUsers</METHOD><SESSIONID>2</SESSIONID><PAGEID>%@</PAGEID><PAGESIZE>20</PAGESIZE><CONDITION>%@</CONDITION></BODY></MESSAGE>",user.msisdn,user.eccode,pageId,condition];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];
@@ -358,7 +359,7 @@ NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"U
 + (void)getPublicMailGroups:(id)delegate pages:(NSString *)pageId Condition:(NSString *)condition{
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>getPublicMailGroups</METHOD><SESSIONID>2</SESSIONID><PAGEID>%@</PAGEID><PAGESIZE>20</PAGESIZE><CONDITION>%@</CONDITION></BODY></MESSAGE>",user.msisdn,user.eccode,pageId,condition];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>getPublicMailGroups</METHOD><SESSIONID>2</SESSIONID><PAGEID>%@</PAGEID><PAGESIZE>20</PAGESIZE><CONDITION>%@</CONDITION></BODY></MESSAGE>",user.msisdn,user.eccode,pageId,condition];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];
@@ -369,7 +370,7 @@ NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"U
 + (void)processmail:(id)delegate LogID:(NSString *)logId MsgType:(NSString *)MsgType contentType:(NSString *)ContentType BF:(NSString *)BF NextProcessTel:(NSString *)ProcessTel limitTime:(NSString *)time content:(NSString *)content pageName:(NSString *)pageName{
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>processmail</METHOD><SESSIONID>2</SESSIONID><LOGID>%@</LOGID><MSGTYPE>%@</MSGTYPE><CONTENTTYPE>%@</CONTENTTYPE><BF>%@</BF><NEXTPROCESS>%@</NEXTPROCESS><LIMITTIME>%@</LIMITTIME><RECONTENT>%@</RECONTENT><PAGENAME>%@</PAGENAME></BODY></MESSAGE>",user.msisdn,user.eccode,logId,MsgType,ContentType,BF,ProcessTel,time,content,pageName];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>processmail</METHOD><SESSIONID>2</SESSIONID><LOGID>%@</LOGID><MSGTYPE>%@</MSGTYPE><CONTENTTYPE>%@</CONTENTTYPE><BF>%@</BF><NEXTPROCESS>%@</NEXTPROCESS><LIMITTIME>%@</LIMITTIME><RECONTENT>%@</RECONTENT><PAGENAME>%@</PAGENAME></BODY></MESSAGE>",user.msisdn,user.eccode,logId,MsgType,ContentType,BF,ProcessTel,time,content,pageName];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];
@@ -380,7 +381,7 @@ NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"U
 + (void)auditmail:(id)delegate LogID:(NSString *)logId BF:(NSString *)BF nextProcessTel:(NSString *)ProcessTel Recontent:(NSString *)content{
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>auditmail</METHOD><SESSIONID>2</SESSIONID><LOGID>%@</LOGID><BF>%@</BF><NEXTPROCESS>%@</NEXTPROCESS><RECONTENT>%@</RECONTENT></BODY></MESSAGE>",user.msisdn,user.eccode,logId,BF,ProcessTel,content];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>auditmail</METHOD><SESSIONID>2</SESSIONID><LOGID>%@</LOGID><BF>%@</BF><NEXTPROCESS>%@</NEXTPROCESS><RECONTENT>%@</RECONTENT></BODY></MESSAGE>",user.msisdn,user.eccode,logId,BF,ProcessTel,content];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];
@@ -392,7 +393,7 @@ NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"U
 + (void)saveFeedback:(id)delegate Title:(NSString *)title Type:(NSString *)type Content:(NSString *)content{
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>saveFeedback</METHOD><SESSIONID>2</SESSIONID><TITLE>%@</TITLE><TYPE>%@</TYPE><CONTENT>%@</CONTENT></BODY></MESSAGE>",user.msisdn,user.eccode,title,type,content];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>saveFeedback</METHOD><SESSIONID>2</SESSIONID><TITLE>%@</TITLE><TYPE>%@</TYPE><CONTENT>%@</CONTENT></BODY></MESSAGE>",user.msisdn,user.eccode,title,type,content];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];
@@ -403,7 +404,7 @@ NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"U
 + (void)phoneStatisticsFun:(id)delegate Install:(NSString *)install{
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><BODY><REQSIGN>0</REQSIGN><METHOD>SaveException</METHOD><INSTALL>%@</INSTALL></BODY></MESSAGE>",install];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>SaveException</METHOD><INSTALL>%@</INSTALL></BODY></MESSAGE>",install];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];
@@ -414,7 +415,7 @@ NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"U
 + (void)getSum:(id)delegate Type:(NSString *)type{
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>getSum</METHOD></BODY></MESSAGE>",user.msisdn,user.eccode];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>getSum</METHOD></BODY></MESSAGE>",user.msisdn,user.eccode];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];
@@ -425,7 +426,7 @@ NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"U
 + (void)showAddressInfo:(id)delegate GroupID:(NSString *)groupId Pages:(NSString *)PageId Type:(NSString *)type Condition:(NSString *)condition{
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>showAddressInfo</METHOD><SESSIONID>2</SESSIONID><GROUPID>%@</ GROUPID><PAGEID>%@</PAGEID><PAGESIZE>20</PAGESIZE><TYPE>%@</TYPE><CONDITION>%@</CONDITION></BODY></MESSAGE>",user.msisdn,user.eccode,groupId,PageId,type,condition];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>showAddressInfo</METHOD><SESSIONID>2</SESSIONID><GROUPID>%@</ GROUPID><PAGEID>%@</PAGEID><PAGESIZE>20</PAGESIZE><TYPE>%@</TYPE><CONDITION>%@</CONDITION></BODY></MESSAGE>",user.msisdn,user.eccode,groupId,PageId,type,condition];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];
@@ -437,7 +438,7 @@ NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"U
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setTimeoutInterval:OutTime];
-    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>showFlowDocList</METHOD><DOCID>%@</DOCID></BODY></MESSAGE>",user.msisdn,user.eccode,docId];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>showFlowDocList</METHOD><DOCID>%@</DOCID></BODY></MESSAGE>",user.msisdn,user.eccode,docId];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];
@@ -448,7 +449,7 @@ NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"U
 + (void)updateLastEccoed:(id)delegate lastEcconde:(NSString *)lastEcconde{
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>updateLastEccoed</METHOD><LASTECCODE>%@</LASTECCODE></BODY></MESSAGE>",user.msisdn,lastEcconde];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>updateLastEccoed</METHOD><LASTECCODE>%@</LASTECCODE></BODY></MESSAGE>",user.msisdn,lastEcconde];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];
@@ -459,7 +460,7 @@ NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"U
 + (void)updateAddressBook:(id)delegate updatetime:(NSString *)time{
    NSURL * url =[self urlByConfigFile];
    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    NSString * str =[NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><SECURITYKEY>NOKEY</SECURITYKEY><ECCODE>%@</ECCODE></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>getEcInfoList</METHOD><updatetime>%@</updatetime></BODY></MESSAGE>",user.msisdn,user.eccode,time];
+    NSString * str =[NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><SECURITYKEY>NOKEY</SECURITYKEY><ECCODE>%@</ECCODE></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>getEcInfoList</METHOD><updatetime>%@</updatetime></BODY></MESSAGE>",user.msisdn,user.eccode,time];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];
@@ -470,7 +471,7 @@ NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"U
 + (void)AlterPassword:(id)delegate beforePassword:(NSString *)beforePassword NewPassword:(NSString *)newPassword{
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    NSString * str =[NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><SECURITYKEY>NOKEY</SECURITYKEY><ECCODE>%@</ECCODE></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>modifyECMemberPass</METHOD><ECCODE>%@</ECCODE><PHONE>%@</PHONE><OLDPASSWORD>%@</OLDPASSWORD><NEWPASSWORD>%@</NEWPASSWORD></BODY></MESSAGE>",user.msisdn,user.eccode,user.eccode,user.msisdn,beforePassword,newPassword];
+    NSString * str =[NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><SECURITYKEY>NOKEY</SECURITYKEY><ECCODE>%@</ECCODE></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>modifyECMemberPass</METHOD><ECCODE>%@</ECCODE><PHONE>%@</PHONE><OLDPASSWORD>%@</OLDPASSWORD><NEWPASSWORD>%@</NEWPASSWORD></BODY></MESSAGE>",user.msisdn,user.eccode,user.eccode,user.msisdn,beforePassword,newPassword];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];
@@ -485,7 +486,7 @@ NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"U
   ////////////////////////////////////////////////////////////
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><MSISDN>%@</MSISDN><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>getWarningDatas</METHOD><SESSIONID>2</SESSIONID><PAGEID>%d</PAGEID><PAGESIZE>0</PAGESIZE><TYPE>%@</TYPE></BODY></MESSAGE>",user.msisdn,user.eccode,0,waringType];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><MSISDN>%@</MSISDN><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>getWarningDatas</METHOD><SESSIONID>2</SESSIONID><PAGEID>%d</PAGEID><PAGESIZE>0</PAGESIZE><TYPE>%@</TYPE></BODY></MESSAGE>",user.msisdn,user.eccode,0,waringType];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];
@@ -505,7 +506,7 @@ NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"U
     
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><MSISDN>%@</MSISDN><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>addWarningdata</METHOD><SESSIONID>2</SESSIONID><CONTENT>%@</CONTENT><TYPE>%d</TYPE><WARNINGDATE>%@</WARNINGDATE><REPEATTIME>%@</REPEATTIME><GREETINGTYPE>%d</GREETINGTYPE></BODY></MESSAGE>",user.msisdn,user.eccode,content,tpye,date,waringRequstType,greetingType];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><MSISDN>%@</MSISDN><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>addWarningdata</METHOD><SESSIONID>2</SESSIONID><CONTENT>%@</CONTENT><TYPE>%d</TYPE><WARNINGDATE>%@</WARNINGDATE><REPEATTIME>%@</REPEATTIME><GREETINGTYPE>%d</GREETINGTYPE></BODY></MESSAGE>",user.msisdn,user.eccode,content,tpye,date,waringRequstType,greetingType];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];
@@ -521,7 +522,7 @@ NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"U
     
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><MSISDN>%@</MSISDN><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>updateWarningData</METHOD><SESSIONID>2</SESSIONID><UPDATEID>%@</UPDATEID><CONTENT>%@</CONTENT><TYPE>%d</TYPE><WARNINGDATE>%@</WARNINGDATE><REPEATTIME>%d</REPEATTIME><GREETINGTYPE>%d</GREETINGTYPE></BODY></MESSAGE>",user.msisdn,user.eccode,ID,content,tpye,date,requstType,greetingType];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><MSISDN>%@</MSISDN><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>updateWarningData</METHOD><SESSIONID>2</SESSIONID><UPDATEID>%@</UPDATEID><CONTENT>%@</CONTENT><TYPE>%d</TYPE><WARNINGDATE>%@</WARNINGDATE><REPEATTIME>%d</REPEATTIME><GREETINGTYPE>%d</GREETINGTYPE></BODY></MESSAGE>",user.msisdn,user.eccode,ID,content,tpye,date,requstType,greetingType];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];
@@ -532,7 +533,7 @@ NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"U
 + (void)deleteWarningData:(id)delegate warningID:(NSString *)ID SELType:(NSString *)sel{
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><MSISDN>%@</MSISDN><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>deleteWarningData</METHOD><SESSIONID>2</SESSIONID><DELETEID>%@</DELETEID></BODY></MESSAGE>",user.msisdn,user.eccode,ID];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><MSISDN>%@</MSISDN><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>deleteWarningData</METHOD><SESSIONID>2</SESSIONID><DELETEID>%@</DELETEID></BODY></MESSAGE>",user.msisdn,user.eccode,ID];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];
@@ -543,7 +544,7 @@ NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"U
 + (void)getGreetings:(id)delegate greetingType:(NSString *)type SELType:(NSString *)sel{
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><MSISDN>%@</MSISDN><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>getGreetings</METHOD><GREETINGTYPE>%@</GREETINGTYPE><SESSIONID>2</SESSIONID></BODY></MESSAGE>",user.msisdn,user.eccode,type];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><MSISDN>%@</MSISDN><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>getGreetings</METHOD><GREETINGTYPE>%@</GREETINGTYPE><SESSIONID>2</SESSIONID></BODY></MESSAGE>",user.msisdn,user.eccode,type];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];
@@ -554,7 +555,7 @@ NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"U
 + (void)updateGreetingCount:(id)delegate greetingID:(NSString *)ID greetingCount:(NSString *)count SELType:(NSString *)sel{
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><MSISDN>%@</MSISDN><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>updateGreetingCount</METHOD><SESSIONID>2</SESSIONID><GREETID>%@</GREETID><GREETINGCOUNT>%@</GREETINGCOUNT></BODY></MESSAGE>",user.msisdn,user.eccode,ID,count];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><MSISDN>%@</MSISDN><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>updateGreetingCount</METHOD><SESSIONID>2</SESSIONID><GREETID>%@</GREETID><GREETINGCOUNT>%@</GREETINGCOUNT></BODY></MESSAGE>",user.msisdn,user.eccode,ID,count];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];
@@ -565,7 +566,7 @@ NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"U
 + (void)getCommentListData:(id)delegate newsID:(NSString *)ID pages:(int)pageId  SELType:(NSString *)sel{
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><MSISDN>%@</MSISDN><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>getNewsDiscuess</METHOD><SESSIONID>2</SESSIONID><NEWSID>%@</NEWSID></BODY></MESSAGE>",user.msisdn,user.eccode,ID];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><MSISDN>%@</MSISDN><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>getNewsDiscuess</METHOD><SESSIONID>2</SESSIONID><NEWSID>%@</NEWSID></BODY></MESSAGE>",user.msisdn,user.eccode,ID];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];
@@ -576,7 +577,7 @@ NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"U
 + (void)sendNewsComment:(id)delegate  content:(NSString *)content discuesstime:(NSString *)discuesstime newsID:(NSString *)ID{
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><MSISDN>%@</MSISDN><ECCODE>%@</ECCODE><ECNAME>%@</ECNAME><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>addNewsDiscuess</METHOD><SESSIONID>2</SESSIONID><NAME>%@</NAME><CONTENT>%@</CONTENT><DISCUESSTIME>%@</DISCUESSTIME><NEWSID>%@</NEWSID></BODY></MESSAGE>",user.msisdn,user.eccode,user.ecname,user.username,content,discuesstime,ID];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><MSISDN>%@</MSISDN><ECCODE>%@</ECCODE><ECNAME>%@</ECNAME><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>addNewsDiscuess</METHOD><SESSIONID>2</SESSIONID><NAME>%@</NAME><CONTENT>%@</CONTENT><DISCUESSTIME>%@</DISCUESSTIME><NEWSID>%@</NEWSID></BODY></MESSAGE>",user.msisdn,user.eccode,user.ecname,user.username,content,discuesstime,ID];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];
@@ -587,10 +588,31 @@ NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"U
 + (void)commendNews:(id)delegate newsID:(NSString *)ID SELType:(NSString *)sel{
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><MSISDN>%@</MSISDN><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><REQSIGN>0</REQSIGN><METHOD>updateAgree</METHOD><NEWSID>%@</NEWSID><SESSIONID>2</SESSIONID></BODY></MESSAGE>",user.msisdn,user.eccode,ID];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><MSISDN>%@</MSISDN><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>updateAgree</METHOD><NEWSID>%@</NEWSID><SESSIONID>2</SESSIONID></BODY></MESSAGE>",user.msisdn,user.eccode,ID];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];
     [HTTPRequest JSONRequestOperation:delegate Request:request SELType:sel];
+}
+//即时聊天发送信息
++ (void)imSend:(id)delegate chat:(ChatMsgObj *)obj{
+    NSURL * url =[self urlByConfigFile];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><MSISDN>%@</MSISDN><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>addChatData</METHOD><CHATTYPE>%@</CHATTYPE><SENDERECCODE>%@</SENDERECCODE><SENDERMSISDN>%@</SENDERMSISDN><RECEIVERECCODE>%@</RECEIVERECCODE><RECEIVERMSISDN>%@</RECEIVERMSISDN><SENDERTIME>%@</SENDERTIME><CONTENT>%@</CONTENT><FILEPATH>%@</FILEPATH><GROUPID>%@</GROUPID><SENDERIMGPATH>%@</SENDERIMGPATH><RECEIVERIMGPATH>%@</RECEIVERIMGPATH></BODY></MESSAGE>",user.msisdn,user.eccode,obj.chattype,obj.sendeccode,obj.sendmsisdn,obj.receivereccode,obj.receivermsisdn,obj.sendtime,obj.content,obj.filepath,obj.groupid,obj.senderavatar,obj.receiveravatar];
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:data];
+    [HTTPRequest JSONRequestOperation:delegate Request:request];
+}
+
+//即时聊天接收信息
++ (void)imRevice:(id)delegate chat:(ChatMsgObj *)obj{
+    NSURL * url =[self urlByConfigFile];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><MSISDN>%@</MSISDN><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>getChatData</METHOD><MSISDN>%@</MSISDN><ECCODE>%@</ECCODE></BODY></MESSAGE>",user.msisdn,user.eccode,user.msisdn,user.eccode];
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:data];
+    [HTTPRequest JSONRequestOperation:delegate Request:request];
 }
 @end
