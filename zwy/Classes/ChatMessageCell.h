@@ -12,7 +12,7 @@
 @property (strong, nonatomic) UILabel *chatTime;
 @property (strong, nonatomic) UIButton *leftHead;
 @property (strong, nonatomic) UIButton *rightHead;
-@property (strong, nonatomic) UIImageView *leftMessage;
-@property (strong, nonatomic) UIImageView *rightMessage;
+@property (strong, nonatomic) UIView *leftMessage;
+@property (strong, nonatomic) UIView *rightMessage;
 
 @end

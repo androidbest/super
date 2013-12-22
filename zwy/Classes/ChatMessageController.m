@@ -13,8 +13,9 @@
 #import "PackageData.h"
 #import "AnalysisData.h"
 @implementation ChatMessageController{
-    NSMutableArray *arrData;
-    NSMutableArray *arrTime;
+    NSMutableArray *arrData;//数据储存
+    NSMutableArray *arrTime;//时间保存
+    NSMutableArray *arrBool;//判断高度
 }
 
 -(id)init{
@@ -22,6 +23,7 @@
     if(self){
         arrData=[NSMutableArray new];
         arrTime=[NSMutableArray new];
+        arrBool=[NSMutableArray new];
         [[NSNotificationCenter defaultCenter]addObserver:self
                                                 selector:@selector(handleData:)
                                                     name:xmlNotifInfo
@@ -48,30 +50,27 @@
 
 -(void)sendMessage{
     [arrData addObject:self.chatMessageView.im_text.text];
-    NSDateFormatter * formatter = [NSDateFormatter new];
-    [formatter setDateFormat: @"yy/MM/dd HH:mm"];
-    NSString *dateString = [formatter stringFromDate:[NSDate date]];
+    [arrTime addObject:[NSDate date]];
     
-    [arrTime addObject:dateString];
-    
-    ChatMsgObj *obj=[ChatMsgObj new];
-    obj.chattype=@"0";
-    obj.sendeccode=user.eccode;
-    obj.sendmsisdn=user.msisdn;
-    obj.receivereccode=self.chatMessageView.chatData.eccode;
-    obj.receivermsisdn=self.chatMessageView.chatData.tel;
-    obj.content=self.chatMessageView.im_text.text;
-    obj.sendtime=dateString;
-    obj.receiveravatar=self.chatMessageView.chatData.headPath;
-    obj.groupid=@"";
-    obj.senderavatar=@"";
-    obj.receiveravatar=@"";
-    obj.filepath=@"";
-    [packageData imSend:self chat:obj];
+//    ChatMsgObj *obj=[ChatMsgObj new];
+//    obj.chattype=@"0";
+//    obj.sendeccode=user.eccode;
+//    obj.sendmsisdn=user.msisdn;
+//    obj.receivereccode=self.chatMessageView.chatData.eccode;
+//    obj.receivermsisdn=self.chatMessageView.chatData.tel;
+//    obj.content=self.chatMessageView.im_text.text;
+//    obj.sendtime=dateString;
+//    obj.receiveravatar=self.chatMessageView.chatData.headPath;
+//    obj.groupid=@"";
+//    obj.senderavatar=@"";
+//    obj.receiveravatar=@"";
+//    obj.filepath=@"";
+//    [packageData imSend:self chat:obj];
     self.chatMessageView.im_text.text=nil;
+    [self.chatMessageView.send setEnabled:NO];
+    [self.chatMessageView.send setAlpha:0.4];
     
-    
-    
+    [arrBool removeAllObjects];
     [self.chatMessageView.tableview reloadData];
     NSInteger rows = [self.chatMessageView.tableview numberOfRowsInSection:0];
     if(rows > 0) {
@@ -104,29 +103,56 @@
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{    
-//    if([self compareTime:indexPath]){
-//        return 65;
-//    }else{
-//        return 55;
-//    }
+{
     
-    return 65;
+    float leng=0.0;
+     NSString *text=arrData[indexPath.row];
+     UIView *v=[ToolUtils bubbleView:text from:NO];
+    if([self compareTime:indexPath]){
+        leng=v.frame.size.height+30;
+        [arrBool addObject:@"0"];
+    }else{
+        leng=v.frame.size.height+10;
+        [arrBool addObject:@"1"];
+    }
+    return leng;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString * strCell =@"chatmessage";
-    ChatMessageCell * cell =[tableView dequeueReusableCellWithIdentifier:strCell];
-    if (!cell) {
-        cell = [[ChatMessageCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                    reuseIdentifier:strCell];
-    }
+//    ChatMessageCell * cell =[tableView dequeueReusableCellWithIdentifier:strCell];
+    
+    
+//    if (!cell) {
+//        cell = [[ChatMessageCell alloc] initWithStyle:UITableViewCellStyleDefault
+//                                    reuseIdentifier:strCell];
+//    }
+    
+    ChatMessageCell * cell = [[ChatMessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:strCell];
+    
     NSString *text=arrData[indexPath.row];
-    cell.chatTime.text=arrTime[indexPath.row];
 //    [CompressImage bubbleView:text imageView:cell.leftMessage];
-//    [ToolUtils bubbleView:text from:NO withPosition:60 view:cell.leftMessage];
+    NSString *strBool=arrBool[indexPath.row];
+    [ToolUtils bubbleView:text from:NO withPosition:60 view:cell.leftMessage];
+    if([strBool isEqualToString:@"1"]){
+        cell.chatTime.hidden=YES;
+        CGRect rectLeftHead=cell.leftHead.frame;
+        rectLeftHead.origin.y-=20;
+        cell.leftHead.frame=rectLeftHead;
+        
+        CGRect rectLeftMessage=cell.leftMessage.frame;
+        rectLeftMessage.origin.y-=20;
+        cell.leftMessage.frame=rectLeftMessage;
+        
+    }else{
+        NSDateFormatter * formatter = [NSDateFormatter new];
+        [formatter setDateFormat: @"yy/MM/dd HH:mm"];
+        NSString *dateString = [formatter stringFromDate:arrTime[indexPath.row]];
+        cell.chatTime.text=dateString;
+        cell.chatTime.hidden=NO;
+    }
     return cell;
 }
 
@@ -137,8 +163,8 @@
         if(indexPath.row==0){
             return YES;
         }else{
-            int last=[(NSDate *)arrTime[indexPath.row] timeIntervalSince1970];
-            int now=[(NSDate *)arrTime[indexPath.row] timeIntervalSince1970];
+            NSInteger last=[arrTime[indexPath.row-1] timeIntervalSince1970];
+            NSInteger now=[arrTime[indexPath.row] timeIntervalSince1970];
             if((now-last)>=120){
                 return YES;
             }else{
@@ -166,5 +192,4 @@
         [self.chatMessageView.send setAlpha:1.0];
     }
 }
-
 @end

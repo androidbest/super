@@ -16,20 +16,23 @@
     if (self) {
         
         //"时间"标签
-        _chatTime =[[UILabel alloc] initWithFrame:CGRectMake(0,5,320,15)];
+        _chatTime =[[UILabel alloc] initWithFrame:CGRectMake(110,5,110,15)];
         _chatTime.font=[UIFont systemFontOfSize:13];
         _chatTime.backgroundColor=[UIColor clearColor];
         _chatTime.textColor=[UIColor lightGrayColor];
+//        _chatTime.layer.borderWidth=0.5;
+//        _chatTime.layer.borderColor=[[UIColor lightGrayColor] CGColor];
         _chatTime.textAlignment=NSTextAlignmentCenter;
+        
         [self addSubview:_chatTime];
         
         //"左头像"标签
-        _leftHead=[[UIButton alloc] initWithFrame:CGRectMake(10,20,40,40)];
+        _leftHead=[[UIButton alloc] initWithFrame:CGRectMake(10,30,40,40)];
         [_leftHead setBackgroundImage:[UIImage imageNamed:@"default_avatar"] forState:UIControlStateNormal];
         [self addSubview:_leftHead];
         
         //左内容
-        _leftMessage =[[UIImageView alloc] initWithFrame:CGRectZero];
+        _leftMessage =[[UIView alloc] initWithFrame:CGRectZero];
         [self addSubview:_leftMessage];
         
         
