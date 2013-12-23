@@ -26,6 +26,7 @@ typedef void (^imageWithRequst)(UIImage *image);
 + (void)imageWithURL:(NSString *)URL imageView:(UIImageView *)imageView placeholderImage:(UIImage *)image isDrawRect:(drawRectType_Height_Width)drawRectType;
 
 + (void)imageWithURL:(NSString *)URL imageView:(UIImageView *)imageView placeholderImage:(UIImage *)image;
++ (void)imageWithURL:(NSString *)URL imageView:(UIButton *)imageView placeUIButtonImage:(UIImage *)image;
 
 /*获取网络图片*/
 + (void)setImageWithURL:(NSString *)URL ImageBolck:(imageWithRequst)ImageBolck;

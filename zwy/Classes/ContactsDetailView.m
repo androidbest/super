@@ -32,8 +32,6 @@
     _username.text=_data.Name;
     _msisdn.text=_data.tel;
     _department.text=_data.area;
-    [HTTPRequest imageWithURL:_data.headPath imageView:_imageView placeholderImage:[UIImage imageNamed:@"default_avatar"]];
-    
     if([_data.job isEqualToString:@"null"]){
      _job.text=@"未分配";
     }else{

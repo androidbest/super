@@ -7,8 +7,38 @@
 //
 
 #import "ContactsDetailController.h"
-
+#import "AnalysisData.h"
+#import "PackageData.h"
 @implementation ContactsDetailController
+-(id)init{
+    self=[super init];
+    if(self){
+        [[NSNotificationCenter defaultCenter]addObserver:self
+                                                selector:@selector(handleData:)
+                                                    name:xmlNotifInfo
+                                                  object:self];
+    
+    }
+    return self;
+}
+
+-(void)handleData:(NSNotification *)notification{
+    NSDictionary *dic=[notification userInfo];
+    if(dic){
+        NSString *url=[AnalysisData imHeadUrl:dic];
+        if(url&&![url isEqualToString:@"null"]){
+        [HTTPRequest imageWithURL:url imageView:self.contactsDetailView.imageView placeholderImage:[UIImage imageNamed:@"default_avatar"]];
+        }
+    }
+}
+
+-(void)initDatatoData{
+    if((!self.contactsDetailView.data.headPath)||[self.contactsDetailView.data.headPath isEqualToString:@"null"]){
+        [packageData imHeadUrl:self msisdn:self.contactsDetailView.data.tel eccode:self.contactsDetailView.data.eccode];
+    }else{
+    [HTTPRequest imageWithURL:self.contactsDetailView.data.headPath imageView:self.contactsDetailView.imageView placeholderImage:[UIImage imageNamed:@"default_avatar"]];
+    }
+}
 
 -(void)submit{
     [self initBackBarButtonItem:self.contactsDetailView];
@@ -52,5 +82,9 @@
     //        NSLog(@"Message sent");
     //    else
     //        NSLog(@"Message failed");
+}
+
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 @end

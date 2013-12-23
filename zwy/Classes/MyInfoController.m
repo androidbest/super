@@ -26,7 +26,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if(indexPath.row==0){
-        return 60;
+        return 80;
     }
     return 44;
 }
@@ -37,9 +37,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     MyImCell * cell =[tableView dequeueReusableCellWithIdentifier:@"myimCell"];
+    cell.accessoryType =UITableViewCellAccessoryDisclosureIndicator;
     switch (indexPath.row) {
         case 0:
             cell.title.text=@"头像";
+            [HTTPRequest imageWithURL:user.headurl imageView:cell.titleImg placeUIButtonImage:[UIImage imageNamed:@"im_head"]];
             cell.content.hidden=YES;
             break;
         case 1:
@@ -59,6 +61,7 @@
             break;
         case 4:
             cell.title.text=@"职务";
+            
             cell.content.text=@"";
             cell.titleImg.hidden=YES;
             break;

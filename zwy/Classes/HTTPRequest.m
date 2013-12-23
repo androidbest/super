@@ -153,6 +153,34 @@
     [[NSOperationQueue new] addOperation:posterOperation];
 }
 
+//个人头像
++ (void)imageWithURL:(NSString *)URL imageView:(UIButton *)imageView placeUIButtonImage:(UIImage *)image{
+    if (!URL)return;
+    [imageView setBackgroundImage:image forState:UIControlStateNormal];
+    NSString * PicPath =[[URL componentsSeparatedByString:@"/"] lastObject];
+    NSString * strpaths =[NSString stringWithFormat:@"%@/%@/%@",DocumentsDirectory,MESSGEFILEPATH,PicPath];
+    NSData * data = [NSData dataWithContentsOfFile:strpaths];
+    if (data) {
+        [imageView setBackgroundImage:[UIImage imageWithData:data] forState:UIControlStateNormal];
+        return;
+    }
+    
+    NSURL * url =[NSURL URLWithString:URL];
+    NSMutableURLRequest * request =[[NSMutableURLRequest alloc] initWithURL:url];
+    AFHTTPRequestOperation *posterOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    posterOperation.responseSerializer = [AFImageResponseSerializer serializer];
+    [posterOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Response: %@", responseObject);
+        //压缩图片
+        [imageView setBackgroundImage:(UIImage *)responseObject forState:UIControlStateNormal];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        //显示加载失败图片
+        [imageView setBackgroundImage:image forState:UIControlStateNormal];
+        NSLog(@"Image request failed with error: %@", error);
+    }];
+    [[NSOperationQueue new] addOperation:posterOperation];
+}
+
 + (void)setImageWithURL:(NSString *)URL ImageBolck:(imageWithRequst)ImageBolck{
     if (!URL)return;
     NSString * PicPath =[[URL componentsSeparatedByString:@"/"] lastObject];

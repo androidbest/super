@@ -14,7 +14,7 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        // Initialization code
+        _content.textAlignment=NSTextAlignmentRight;
     }
     return self;
 }

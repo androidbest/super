@@ -10,4 +10,5 @@
 #import "ContactsDetailView.h"
 @interface ContactsDetailController : BaseController
 @property (strong ,nonatomic)ContactsDetailView * contactsDetailView;
+-(void)initDatatoData;
 @end
