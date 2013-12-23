@@ -12,10 +12,12 @@
 #import "ToolUtils.h"
 #import "PackageData.h"
 #import "AnalysisData.h"
+#import "RespInfo.h"
 @implementation ChatMessageController{
     NSMutableArray *arrData;//数据储存
     NSMutableArray *arrTime;//时间保存
     NSMutableArray *arrBool;//判断高度
+    ChatMsgObj *obj;
 }
 
 -(id)init{
@@ -37,46 +39,57 @@
 -(void)handleData:(NSNotification *)notification{
     NSDictionary *dic=[notification userInfo];
     if(dic){
-       
+        RespInfo *info=[AnalysisData imSend:dic];
+        if(info.respCode==0){
         
+            
+            
+        }else{
         
-        
-        
-        
+            
+        }
     }else{
         [ToolUtils alertInfo:requestError];
     }
 }
 
 -(void)sendMessage{
-    [arrData addObject:self.chatMessageView.im_text.text];
-    [arrTime addObject:[NSDate date]];
     
-//    ChatMsgObj *obj=[ChatMsgObj new];
-//    obj.chattype=@"0";
-//    obj.sendeccode=user.eccode;
-//    obj.sendmsisdn=user.msisdn;
-//    obj.receivereccode=self.chatMessageView.chatData.eccode;
-//    obj.receivermsisdn=self.chatMessageView.chatData.tel;
-//    obj.content=self.chatMessageView.im_text.text;
-//    obj.sendtime=dateString;
-//    obj.receiveravatar=self.chatMessageView.chatData.headPath;
-//    obj.groupid=@"";
-//    obj.senderavatar=@"";
-//    obj.receiveravatar=@"";
-//    obj.filepath=@"";
-//    [packageData imSend:self chat:obj];
+    NSDate *date=[NSDate date];
+    [arrTime addObject:date];
+    NSDateFormatter * formatter = [NSDateFormatter new];
+    [formatter setDateFormat: @"yy/MM/dd HH:mm"];
+    
+    obj=[ChatMsgObj new];
+    obj.chattype=@"0";
+    obj.sendeccode=user.eccode;
+    obj.sendmsisdn=user.msisdn;
+    obj.receivereccode=@"4952000001";
+    obj.receivermsisdn=@"13883832863";
+    obj.content=self.chatMessageView.im_text.text;
+    NSString *dateString = [formatter stringFromDate:date];
+    obj.sendtime=dateString;
+    obj.sendtimeNSdate=date;
+    obj.receiveravatar=self.chatMessageView.chatData.headPath;
+    obj.groupid=@"";
+    obj.senderavatar=user.headurl;
+    obj.receiveravatar=self.chatMessageView.chatData.headPath;
+    obj.filepath=@"";
+    [packageData imRevice:self chat:obj];
+    
+    
+    [arrData addObject:self.chatMessageView.im_text.text];
+    [arrTime addObject:date];
     self.chatMessageView.im_text.text=nil;
     [self.chatMessageView.send setEnabled:NO];
     [self.chatMessageView.send setAlpha:0.4];
-    
     [arrBool removeAllObjects];
     [self.chatMessageView.tableview reloadData];
     NSInteger rows = [self.chatMessageView.tableview numberOfRowsInSection:0];
     if(rows > 0) {
         [self.chatMessageView.tableview scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:rows - 1 inSection:0]
-                              atScrollPosition:UITableViewScrollPositionBottom
-                                      animated:YES];
+                                              atScrollPosition:UITableViewScrollPositionBottom
+                                                      animated:YES];
     }
 }
 

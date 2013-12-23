@@ -16,6 +16,7 @@
 #import "DocContentInfo.h"
 #import "DocFlow.h"
 #import "UpdataDate.h"
+#import "ChatMsgObj.h"
 @implementation AnalysisData
 
 
@@ -73,11 +74,10 @@ RespInfo *info=[RespInfo new];
 + (Tuser*)LoginData:(NSDictionary *)dicData{
     Tuser *user=[Tuser new];
     user.respcode=[[[[[dicData objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"AuthInfo"] objectForKey:@"respCode"] objectForKey:@"text"];
-
         user.username =[[[[[dicData objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"AuthInfo"] objectForKey:@"userName"] objectForKey:@"text"];
         user.ecname=[[[[[dicData objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"AuthInfo"] objectForKey:@"ecName"] objectForKey:@"text"];
         user.ecsignname=[[[[[dicData objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"AuthInfo"] objectForKey:@"ecSignName"] objectForKey:@"text"];
-
+        user.headurl=[[[[[dicData objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"AuthInfo"] objectForKey:@"imgpath"] objectForKey:@"text"];
     return user;
 }
 
@@ -89,7 +89,7 @@ RespInfo *info=[RespInfo new];
     user.username =[[[[[dicData objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"AuthInfo"] objectForKey:@"userName"] objectForKey:@"text"];
     user.ecname=[[[[[dicData objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"AuthInfo"] objectForKey:@"ecName"] objectForKey:@"text"];
     user.ecsignname=[[[[[dicData objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"AuthInfo"] objectForKey:@"ecSignName"] objectForKey:@"text"];
-    
+    user.headurl=[[[[[dicData objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"AuthInfo"] objectForKey:@"imgpath"] objectForKey:@"text"];
     return user;
 }
 
@@ -634,12 +634,38 @@ RespInfo *info=[RespInfo new];
 //即时聊天发送信息
 + (RespInfo *)imSend:(NSDictionary *)dic{
    RespInfo *info=[RespInfo new];
+   info.respCode=[[[[[dic objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"RespInfo"] objectForKey:@"respCode"] objectForKey:@"text"];
+   info.respMsg=[[[[[dic objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"RespInfo"] objectForKey:@"respMessage"] objectForKey:@"text"];
     return info;
 }
 
 //即时聊天接收信息
-+ (RespInfo *)imRevice:(NSDictionary *)dic{
-   RespInfo *info=[RespInfo new];
-   return info;
++ (ChatMsgObj *)imRevice:(NSDictionary *)dic{
+   ChatMsgObj *obj=nil;
+   NSString *ret=[[[dic objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"ChatData"];
+    if(ret){
+        obj=[ChatMsgObj new];
+        obj.chattype=[[[[[[dic objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"ChatData"] objectForKey:@"ChatDataInfo"] objectForKey:@"chattype"] objectForKey:@"text"];
+        obj.content=[[[[[[dic objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"ChatData"] objectForKey:@"ChatDataInfo"] objectForKey:@"content"] objectForKey:@"text"];
+        obj.filepath=[[[[[[dic objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"ChatData"] objectForKey:@"ChatDataInfo"] objectForKey:@"filepath"] objectForKey:@"text"];
+        obj.groupid=[[[[[[dic objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"ChatData"] objectForKey:@"ChatDataInfo"] objectForKey:@"groupid"] objectForKey:@"text"];
+        obj.receivereccode=[[[[[[dic objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"ChatData"] objectForKey:@"ChatDataInfo"] objectForKey:@"receivereccode"] objectForKey:@"text"];
+        obj.receiveravatar=[[[[[[dic objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"ChatData"] objectForKey:@"ChatDataInfo"] objectForKey:@"receiverimgpath"] objectForKey:@"text"];
+        obj.receivermsisdn=[[[[[[dic objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"ChatData"] objectForKey:@"ChatDataInfo"] objectForKey:@"receivermsisdn"] objectForKey:@"text"];
+        obj.receivername=[[[[[[dic objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"ChatData"] objectForKey:@"ChatDataInfo"] objectForKey:@"receivername"] objectForKey:@"text"];
+        obj.sendeccode=[[[[[[dic objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"ChatData"] objectForKey:@"ChatDataInfo"] objectForKey:@"sendereccode"] objectForKey:@"text"];
+        obj.senderavatar=[[[[[[dic objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"ChatData"] objectForKey:@"ChatDataInfo"] objectForKey:@"senderimgpath"] objectForKey:@"text"];
+        obj.sendmsisdn=[[[[[[dic objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"ChatData"] objectForKey:@"ChatDataInfo"] objectForKey:@"sendermsisdn"] objectForKey:@"text"];
+        obj.sendname=[[[[[[dic objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"ChatData"] objectForKey:@"ChatDataInfo"] objectForKey:@"sendername"] objectForKey:@"text"];
+        obj.sendtime=[[[[[[dic objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"ChatData"] objectForKey:@"ChatDataInfo"] objectForKey:@"sendertime"] objectForKey:@"text"];
+        obj.voicetime=[[[[[[dic objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"ChatData"] objectForKey:@"ChatDataInfo"] objectForKey:@"voicetime"] objectForKey:@"text"];
+    }
+   return obj;
+}
+
+//头像地址
++ (NSString *)imHeadUrl:(NSDictionary *)dic{
+    NSString *url=[[[dic objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"imgpath"];
+    return url;
 }
 @end

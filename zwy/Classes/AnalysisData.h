@@ -28,6 +28,7 @@
 #import "GreetingInfo.h"
 #import "CommentDetaInfo.h"
 #import "CommentListInfo.h"
+#import "ChatMsgObj.h"
 
 
 @interface AnalysisData : NSObject
@@ -117,6 +118,9 @@
 + (RespInfo *)imSend:(NSDictionary *)dic;
 
 //即时聊天接收信息
-+ (RespInfo *)imRevice:(NSDictionary *)dic;
++ (ChatMsgObj *)imRevice:(NSDictionary *)dic;
+
+//头像地址
++ (NSString *)imHeadUrl:(NSDictionary *)dic;
 
 @end
