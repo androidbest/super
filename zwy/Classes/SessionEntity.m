@@ -15,6 +15,7 @@
 @dynamic session_groupuuid;
 @dynamic session_receiveravatar;
 @dynamic session_receivername;
+@dynamic session_pinyinName;
 @dynamic session_receivermsisdn;
 @dynamic session_receivereccode;
 @dynamic session_chatMessageID;

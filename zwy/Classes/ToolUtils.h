@@ -57,4 +57,7 @@
 //泡泡文本
 + (UIView *)bubbleView:(NSString *)text from:(BOOL)fromSelf withPosition:(int)position view:(UIView *)returnView;
 +(UIView *)bubbleView:(NSString *)text from:(BOOL)fromSelf;
+
+#pragma mark - 汉字转换为拼音
++ (NSString *)pinyinFromString:(NSString *)str;
 @end

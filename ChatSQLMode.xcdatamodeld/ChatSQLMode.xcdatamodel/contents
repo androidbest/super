@@ -15,6 +15,7 @@
         <attribute name="session_chatMessageID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="session_content" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="session_groupuuid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="session_pinyinName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="session_receiveravatar" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="session_receivereccode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="session_receivermsisdn" optional="YES" attributeType="String" syncable="YES"/>
@@ -26,6 +27,6 @@
     </entity>
     <elements>
         <element name="ChatEntity" positionX="-9" positionY="90" width="128" height="178"/>
-        <element name="SessionEntity" positionX="-279" positionY="90" width="128" height="208"/>
+        <element name="SessionEntity" positionX="-279" positionY="90" width="128" height="223"/>
     </elements>
 </model>

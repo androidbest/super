@@ -16,6 +16,7 @@
 @property (nonatomic, retain) NSNumber * session_groupuuid;       //组id
 @property (nonatomic, retain) NSString * session_receiveravatar;  //对方头像地址
 @property (nonatomic, retain) NSString * session_receivername;    //对方姓名
+@property (nonatomic, retain) NSString * session_pinyinName;      //姓名全拼
 @property (nonatomic, retain) NSString * session_receivermsisdn;  //对方电话
 @property (nonatomic, retain) NSString * session_receivereccode;  //对方ec
 @property (nonatomic, retain) NSString * session_chatMessageID;   //自己电话_自己ec_对方电话_对方EC

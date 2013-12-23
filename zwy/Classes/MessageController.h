@@ -11,4 +11,5 @@
 @interface MessageController : BaseController
 @property (strong ,nonatomic)MessageView * messageView;
 @property (strong ,nonatomic)NSMutableArray *arrSession;
+@property (strong ,nonatomic)NSArray *arrSeaPeople;
 @end

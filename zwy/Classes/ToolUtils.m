@@ -10,6 +10,7 @@
 #import "ConfigFile.h"
 #import "solarOrLunar.h"
 #import "Date+string.h"
+#import "PinYin4Objc.h"
 @implementation ToolUtils
 
 
@@ -401,4 +402,12 @@
     return returnView;
 }
 
++ (NSString *)pinyinFromString:(NSString *)str{
+    HanyuPinyinOutputFormat *outputFormat=[[HanyuPinyinOutputFormat alloc] init];
+    [outputFormat setToneType:ToneTypeWithoutTone];
+    [outputFormat setVCharType:VCharTypeWithV];
+    [outputFormat setCaseType:CaseTypeLowercase];
+    NSString *outputPinyin=[PinyinHelper toHanyuPinyinStringWithNSString:str withHanyuPinyinOutputFormat:outputFormat withNSString:@""];
+    return outputPinyin;
+}
 @end

@@ -114,6 +114,7 @@
     NSPredicate * predicate;
     predicate = [NSPredicate predicateWithFormat:strPre];
     NSArray * results = [_arrAllLink filteredArrayUsingPredicate: predicate];
+    
     if (_contactsView.searchBar.text.length!=0&&isSearching)self.contactsView.info=_arrSeaPeople[indexPath.row];
     else  self.contactsView.info=[results objectAtIndex:indexPath.row];
     

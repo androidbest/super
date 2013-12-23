@@ -11,7 +11,7 @@
 #import "SessionEntity.h"
 #import "ChatEntity.h"
 #import "Constants.h"
-
+#import "ToolUtils.h"
 static CoreDataManageContext *coreData=nil;
 
 @implementation CoreDataManageContext
@@ -67,7 +67,7 @@ static CoreDataManageContext *coreData=nil;
     [frq setEntity:emEty];
     
     //设置搜索条件
-    NSString *chatMessageID =[NSString stringWithFormat:@"%@%@%@%@",user.msisdn,user.eccode,messageObjct.sendmsisdn,messageObjct.sendeccode];
+    NSString *chatMessageID =[NSString stringWithFormat:@"%@%@%@",user.msisdn,user.eccode,messageObjct.sendmsisdn];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"session_chatMessageID == %@", chatMessageID];
     [frq setPredicate:predicate];
     
@@ -82,6 +82,7 @@ static CoreDataManageContext *coreData=nil;
         Sessions.session_receivermsisdn=messageObjct.sendmsisdn;
         Sessions.session_receivereccode=messageObjct.sendeccode;
         Sessions.session_selfid=[user.msisdn stringByAppendingString:user.eccode];
+        Sessions.session_pinyinName =[ToolUtils pinyinFromString:messageObjct.receivername];
     }else{
         Sessions=objs[0];
     }
