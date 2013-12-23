@@ -36,14 +36,15 @@
     _searchBar.delegate = self.controller;
     [_searchBar sizeToFit];
     
-    _uitableview.dataSource = self.controller;
-    _uitableview.delegate = self.controller;
-    _uitableview.tableHeaderView = self.searchBar;
-    _uitableview.contentOffset = CGPointMake(0, CGRectGetHeight(_searchBar.bounds));
-    _uitableview.separatorStyle=UITableViewCellSeparatorStyleNone;
     UIEdgeInsets insets=_uitableview.contentInset;
     insets.top=64;
     _uitableview.contentInset=insets;
+    _uitableview.dataSource = self.controller;
+    _uitableview.delegate = self.controller;
+    _uitableview.tableHeaderView = self.searchBar;
+//    _uitableview.contentOffset = CGPointMake(0, CGRectGetHeight(_searchBar.bounds));
+    _uitableview.separatorStyle=UITableViewCellSeparatorStyleNone;
+    
     
     _displayController = [[UISearchDisplayController alloc] initWithSearchBar:_searchBar contentsController:self.tabBarController];
     self.searchDisplayController.searchResultsDataSource = self.controller;
