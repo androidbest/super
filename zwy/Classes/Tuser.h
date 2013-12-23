@@ -16,4 +16,5 @@
 @property (strong ,nonatomic)NSString * username;//用户姓名
 @property (strong ,nonatomic)NSString * respcode;//返回结果
 @property (strong ,nonatomic)NSString * ecSgin;//发送EC标识
+@property (strong ,nonatomic)NSString * headurl;//头像
 @end
