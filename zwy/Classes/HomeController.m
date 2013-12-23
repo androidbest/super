@@ -12,6 +12,8 @@
 #import "AnalysisData.h"
 #import "SumEmailOrDocInfo.h"
 #import "InformationInfo.h"
+#import "CoreDataManageContext.h"
+
 @implementation HomeController{
     NSString *sign;
 
@@ -36,7 +38,6 @@
                                                 selector:@selector(notificationFirstNews:)
                                                     name:NOTIFICATIONFIRSTNEWS
                                                   object:self];
-        
     }
     return self;
 }

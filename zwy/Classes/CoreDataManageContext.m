@@ -42,7 +42,7 @@ static CoreDataManageContext *coreData=nil;
 
 /*
  *获取会话表单
- *返回的object为“SessionEntity”
+ *返回object为“SessionEntity”
  */
 - (NSArray *)getSessionListWithSelfID:(NSString *)selfID{
     NSEntityDescription * emEty = [NSEntityDescription entityForName:@"SessionEntity" inManagedObjectContext:self.managedObjectContext];
@@ -67,7 +67,7 @@ static CoreDataManageContext *coreData=nil;
     [frq setEntity:emEty];
     
     //设置搜索条件
-    NSString *chatMessageID =[NSString stringWithFormat:@"%@%@%@%@",user.msisdn,user.eccode,messageObjct.sendeccode,messageObjct.sendmsisdn];
+    NSString *chatMessageID =[NSString stringWithFormat:@"%@%@%@%@",user.msisdn,user.eccode,messageObjct.sendmsisdn,messageObjct.sendeccode];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"session_chatMessageID == %@", chatMessageID];
     [frq setPredicate:predicate];
     
@@ -114,7 +114,7 @@ static CoreDataManageContext *coreData=nil;
 
 /*
  *获取对应聊天记录
- *返回的object为“ChatEntity”
+ *返回object为“ChatEntity”
  */
 - (NSArray *)getUserChatMessageWithChatMessageID:(NSString *)chatMessageID FetchOffset:(NSUInteger)offset FetchLimit:(NSUInteger)limit{
     NSEntityDescription * emEty = [NSEntityDescription entityForName:@"ChatEntity" inManagedObjectContext:self.managedObjectContext];

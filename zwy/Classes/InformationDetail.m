@@ -84,7 +84,7 @@
     
     /*来源*/
     _labelSource =[[UILabel alloc] init];
-    _labelSource.frame=CGRectMake(10, layerHeight-20, ScreenWidth-20, 10);
+    _labelSource.frame=CGRectMake(10, layerHeight-20, ScreenWidth-20, 12);
     _labelSource.textColor=[UIColor whiteColor];
     _labelSource.font =[UIFont systemFontOfSize:12];
     [self.view addSubview:_labelSource];

@@ -142,13 +142,13 @@ static ConfigFile *configFile;
             info.groupID =[arrData objectAtIndex:5];
             info.superID=[arrData objectAtIndex:5];
             info.letter =[arrData objectAtIndex:6];
+            info.Firetletter =[[arrData objectAtIndex:6] substringToIndex:1];
             info.isecnumer=[arrData objectAtIndex:8];
             info.headPath=[arrData objectAtIndex:9];
             info.eccode=[arrData objectAtIndex:10];
             if([info.isecnumer isEqualToString:@"1"]){
             [AllPeople addObject:info];
             }
-            
         }
     }
     return AllPeople;

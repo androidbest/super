@@ -10,4 +10,5 @@
 #import "MessageView.h"
 @interface MessageController : BaseController
 @property (strong ,nonatomic)MessageView * messageView;
+@property (strong ,nonatomic)NSMutableArray *arrSession;
 @end

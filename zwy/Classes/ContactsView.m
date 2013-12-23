@@ -29,6 +29,7 @@
     [super viewDidLoad];
     [self.controller initData:self];
     [(ContactsController *)(self.controller) initECnumerData];
+    _indexBar.delegate=self.controller;
 //    self.navigationController.navigationBar.translucent = YES;
     self.navigationController.navigationBarHidden=NO;
     _searchBar = [[UISearchBar alloc] initWithFrame:CGRectZero];
@@ -47,11 +48,9 @@
     
     
     _displayController = [[UISearchDisplayController alloc] initWithSearchBar:_searchBar contentsController:self.tabBarController];
-    self.searchDisplayController.searchResultsDataSource = self.controller;
-    self.searchDisplayController.searchResultsDelegate = self.controller;
-    self.searchDisplayController.delegate = self.controller;
-    
-    
+    [_displayController setDelegate:self.controller];
+    [_displayController setSearchResultsDataSource:self.controller];
+    [_displayController setSearchResultsDelegate:self.controller];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

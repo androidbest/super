@@ -17,6 +17,7 @@
 @property (strong ,nonatomic)NSString * groupID;//部门
 @property (strong ,nonatomic)NSString * superID;//父ID
 @property (strong ,nonatomic)NSString * letter;//名字全拼音
+@property (strong ,nonatomic)NSString *Firetletter;//首字母
 @property (strong ,nonatomic)NSString * number;//不用的
 @property (strong ,nonatomic)NSString * isecnumer;//1.成员
 @property (strong ,nonatomic)NSString * headPath;//头像

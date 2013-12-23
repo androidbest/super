@@ -18,4 +18,5 @@
 @property (strong, nonatomic) IBOutlet UIButton *sms;
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
 @property (strong, nonatomic) PeopelInfo *data;
+
 @end

@@ -37,7 +37,7 @@
         [self performSelector:@selector(jumpHome) withObject:nil afterDelay:0.0f];
     }
     
-    
+   
     //引导页
 	[self guidePage];
     //初使化数据

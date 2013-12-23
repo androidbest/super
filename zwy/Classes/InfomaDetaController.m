@@ -94,6 +94,7 @@
     
     InformationInfo *info=_informaView.data.informationInfo;
 //标题
+    strContent=info.title;
    _informaView.labelTitle.text=info.title;
    _informaView.labelSource.text=info.sourceName;
    _informaView.labelContent.text=info.content;
@@ -101,7 +102,7 @@
          _informaView.imageContentView.hidden=NO;
         [HTTPRequest imageWithURL:info.imagePath
                         imageView:_informaView.imageContentView
-                 placeholderImage:[UIImage imageNamed:@"list_NoData.jpg"]
+                 placeholderImage:[UIImage imageNamed:@"error_image.jpg"]
                        isDrawRect:drawRect_height];
         scrollViewContentHeight+=_informaView.imageContentView.frame.size.height+10;
     }else{
