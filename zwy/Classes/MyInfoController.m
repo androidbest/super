@@ -56,13 +56,16 @@
             break;
         case 3:
             cell.title.text=@"部门";
-            cell.content.text=@"";
+            cell.content.text=user.ecname;
             cell.titleImg.hidden=YES;
             break;
         case 4:
             cell.title.text=@"职务";
-            
-            cell.content.text=@"";
+            if(user.job||![user.job isEqualToString:@"null"]){
+            cell.content.text=user.job;
+            }else{
+            cell.content.text=@"未分配";
+            }
             cell.titleImg.hidden=YES;
             break;
     }

@@ -90,6 +90,7 @@ RespInfo *info=[RespInfo new];
     user.ecname=[[[[[dicData objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"AuthInfo"] objectForKey:@"ecName"] objectForKey:@"text"];
     user.ecsignname=[[[[[dicData objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"AuthInfo"] objectForKey:@"ecSignName"] objectForKey:@"text"];
     user.headurl=[[[[[dicData objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"AuthInfo"] objectForKey:@"imgpath"] objectForKey:@"text"];
+    user.job=[[[[[dicData objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"AuthInfo"] objectForKey:@"dutyname"] objectForKey:@"text"];
     return user;
 }
 

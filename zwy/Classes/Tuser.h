@@ -17,4 +17,6 @@
 @property (strong ,nonatomic)NSString * respcode;//返回结果
 @property (strong ,nonatomic)NSString * ecSgin;//发送EC标识
 @property (strong ,nonatomic)NSString * headurl;//头像
+@property (strong ,nonatomic)NSString * job;//职务
+@property (strong ,nonatomic)NSString * groupname;//部门名称
 @end

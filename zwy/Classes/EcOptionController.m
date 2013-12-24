@@ -56,12 +56,14 @@
                 user.ecsignname=autoUser.ecsignname;
                 user.username=autoUser.username;
                 user.headurl=autoUser.headurl;
+                user.job=autoUser.job;
                 NSUserDefaults *appConfig=[NSUserDefaults standardUserDefaults];
                 [appConfig setValue:user.msisdn forKey:@"msisdn"];
                 [appConfig setValue:user.ecname forKey:@"ecname"];
                 [appConfig setValue:user.username forKey:@"username"];
                 [appConfig setValue:user.eccode forKey:@"eccode"];
                 [appConfig setValue:user.headurl forKey:@"headurl"];
+                [appConfig setValue:user.job forKey:@"job"];
                 [appConfig setBool:YES forKey:@"isLogin"];
                 [appConfig synchronize];
                 
