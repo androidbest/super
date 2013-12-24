@@ -162,6 +162,8 @@
 }
 //会议电话
 -(void)meetting{
+    [HTTPRequest uploadRequestOperation:self];
+    return;
     [self initBackBarButtonItem:self.homeView];
     [self.homeView performSegueWithIdentifier:@"hometomeetting" sender:self.homeView];
 }

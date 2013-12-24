@@ -28,6 +28,9 @@ typedef enum {
 #pragma mark - touchPress
 + (void)touchPress:(int)index AnimationToView:(UIView *)view;
 
+//写入本地缓存
++ (void)writeFile:(UIImage *)image Type:(NSString * )type;
+
 /*
  * 6、组合动画
  */

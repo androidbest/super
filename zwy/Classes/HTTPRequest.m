@@ -14,6 +14,7 @@
 #import "AFURLConnectionOperation.h"
 #import "ConfigFile.h"
 #import "AFURLSessionManager.h"
+
 @implementation HTTPRequest
 
 + (void)JSONRequestOperation:(id)delegate Request:(NSMutableURLRequest *)request{
@@ -144,7 +145,8 @@
     [posterOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"Response: %@", responseObject);
         //压缩图片
-        imageView.image=(UIImage *)responseObject;
+        [CompressImage setCellContentImage:imageView Image:[UIImage imageNamed:@"error_image.jpg"] filePath:PicPath isDrawRect:drawRect_no];
+        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         //显示加载失败图片
         imageView.image=image;
@@ -170,9 +172,10 @@
     AFHTTPRequestOperation *posterOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     posterOperation.responseSerializer = [AFImageResponseSerializer serializer];
     [posterOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"Response: %@", responseObject);
+        [CompressImage  writeFile:responseObject Type:PicPath];
         //压缩图片
         [imageView setBackgroundImage:(UIImage *)responseObject forState:UIControlStateNormal];
+        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         //显示加载失败图片
         [imageView setBackgroundImage:image forState:UIControlStateNormal];
@@ -196,8 +199,10 @@
     AFHTTPRequestOperation *posterOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     posterOperation.responseSerializer = [AFImageResponseSerializer serializer];
     [posterOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"Response: %@", responseObject);
+       
+        [CompressImage  writeFile:responseObject Type:PicPath];
         ImageBolck(responseObject);
+        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
        
         NSLog(@"Image request failed with error: %@", error);
@@ -205,15 +210,15 @@
     [[NSOperationQueue new] addOperation:posterOperation];
 }
 
-+ (void)uploadRequestOperation:(id)delegate data:(NSData*)data param:(NSMutableDictionary*)param url:(NSString *)url{
++ (void)uploadRequestOperation:(id)delegate{
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
     
-    NSURL *URL = [NSURL URLWithString:@"http://example.com/upload"];
+    NSURL *URL = [NSURL URLWithString:@"http://192.168.0.200:7778/phoneservice/"];
     NSURLRequest *request = [NSURLRequest requestWithURL:URL];
-    
-    NSURL *filePath = [NSURL fileURLWithPath:@"file://path/to/image.png"];
+    NSString * strPath =[[NSBundle mainBundle] pathForResource:@"tengxunWeibo" ofType:@"png"];
+    NSURL *filePath = [NSURL fileURLWithPath:strPath];
     NSURLSessionUploadTask *uploadTask = [manager uploadTaskWithRequest:request fromFile:filePath progress:nil completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
         if (error) {
             NSLog(@"Error: %@", error);
@@ -224,5 +229,43 @@
     [uploadTask resume];
     
 }
+//+ (void)uploadRequestOperation:(id)delegate data:(NSData*)data param:(NSMutableDictionary*)param url:(NSString *)url{
+
+//    //注册通告
+//    [[NSNotificationCenter defaultCenter]addObserver:delegate
+//                                            selector:@selector(uploadRet:)
+//                                                name:@"upload"
+//                                              object:nil];
+    
+//    AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:url]];
+//    NSMutableURLRequest *req = [httpClient multipartFormRequestWithMethod:@"POST" path:[NSString stringWithFormat:@"servlet/IOSUploadServlet?type=%@&userId=%@" ,param[@"type"],param[@"userId"]] parameters:param constructingBodyWithBlock: ^(id formData) {
+//        [formData appendPartWithFileData:data
+//                                    name:@"uploadfile"
+//                                fileName:@"uploadfile.jpg"
+//                                mimeType:@"image/jpeg"];
+//    }];
+//    [req setTimeoutInterval:25];
+//    
+//    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:req];
+//    [operation setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
+//        NSLog(@"Sent %lld of %lld bytes", totalBytesWritten, totalBytesExpectedToWrite);
+//    }];
+//    
+//    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
+//     {
+//         NSLog(@"成功呢！json ===%@",operation.responseString);
+//         NSDictionary *dic1=[ToolUtils analyzeJsonFormat:operation.responseData];
+//         NSLog(@"%@",dic1);
+//         
+//         [[NSNotificationCenter defaultCenter] postNotificationName:@"upload"
+//                                                             object:dic1];
+//     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//         NSLog(@"Failure: %@", error);
+//         [[NSNotificationCenter defaultCenter] postNotificationName:@"upload" object:nil];
+//     }];
+//    
+//    [httpClient enqueueHTTPRequestOperation:operation];
+//    
+//}
 
 @end
