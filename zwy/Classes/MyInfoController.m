@@ -61,7 +61,7 @@
             break;
         case 4:
             cell.title.text=@"职务";
-            if(user.job||![user.job isEqualToString:@"null"]){
+            if(user.job&&![user.job isEqualToString:@"null"]){
             cell.content.text=user.job;
             }else{
             cell.content.text=@"未分配";

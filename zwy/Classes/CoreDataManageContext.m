@@ -67,7 +67,7 @@ static CoreDataManageContext *coreData=nil;
     [frq setEntity:emEty];
     
     //设置搜索条件
-    NSString *chatMessageID =[NSString stringWithFormat:@"%@%@%@",user.msisdn,user.eccode,messageObjct.sendmsisdn];
+    NSString *chatMessageID =[NSString stringWithFormat:@"%@_%@_%@_%@",user.msisdn,user.eccode,messageObjct.sendmsisdn,messageObjct.receivereccode];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"session_chatMessageID == %@", chatMessageID];
     [frq setPredicate:predicate];
     
@@ -262,7 +262,8 @@ static CoreDataManageContext *coreData=nil;
 // Returns the URL to the application's Documents directory.
 - (NSURL *)applicationDocumentsDirectory
 {
-    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+//    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    return [NSURL URLWithString:@"file:///Users/sxit/Desktop/test/"];
 }
 
 @end

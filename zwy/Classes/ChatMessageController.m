@@ -13,6 +13,7 @@
 #import "PackageData.h"
 #import "AnalysisData.h"
 #import "RespInfo.h"
+#import "CoreDataManageContext.h"
 @implementation ChatMessageController{
     NSMutableArray *arrData;//数据储存
     NSMutableArray *arrTime;//时间保存
@@ -40,16 +41,15 @@
     NSDictionary *dic=[notification userInfo];
     if(dic){
         RespInfo *info=[AnalysisData imSend:dic];
-        if(info.respCode==0){
-        
-            
-            
+        if([info.respCode isEqualToString:@"0"]){
+           //发送成功
+            [[CoreDataManageContext newInstance] setChatInfo:obj status:0 isChek:YES];
         }else{
-        
+        //发送失败
             
         }
     }else{
-        [ToolUtils alertInfo:requestError];
+        //发送失败
     }
 }
 
@@ -64,8 +64,8 @@
     obj.chattype=@"0";
     obj.sendeccode=user.eccode;
     obj.sendmsisdn=user.msisdn;
-    obj.receivereccode=@"4952000001";
-    obj.receivermsisdn=@"13883832863";
+    obj.receivereccode=self.chatMessageView.chatData.eccode;
+    obj.receivermsisdn=self.chatMessageView.chatData.tel;
     obj.content=self.chatMessageView.im_text.text;
     NSString *dateString = [formatter stringFromDate:date];
     obj.sendtime=dateString;
@@ -75,7 +75,7 @@
     obj.senderavatar=user.headurl;
     obj.receiveravatar=self.chatMessageView.chatData.headPath;
     obj.filepath=@"";
-    [packageData imRevice:self chat:obj];
+    [packageData imSend:self chat:obj];
     
     
     [arrData addObject:self.chatMessageView.im_text.text];
