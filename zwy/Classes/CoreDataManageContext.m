@@ -83,7 +83,7 @@ static CoreDataManageContext *coreData=nil;
     SessionEntity *Sessions=nil;
     if (objs.count<=0){
         Sessions =(SessionEntity *)[[NSManagedObject alloc] initWithEntity:emEty insertIntoManagedObjectContext:self.managedObjectContext];
-        Sessions.session_groupuuid=[NSNumber numberWithInt:[messageObjct.groupid intValue]];
+        Sessions.session_groupuuid=messageObjct.groupid;
         Sessions.session_chatMessageID=chatMessageID;
         Sessions.session_receivermsisdn=messageObjct.sendmsisdn;
         Sessions.session_receivereccode=messageObjct.sendeccode;
@@ -97,17 +97,17 @@ static CoreDataManageContext *coreData=nil;
     Sessions.session_receiveravatar=messageObjct.receiveravatar;
     Sessions.session_receivername=messageObjct.receivername;
     Sessions.session_content=messageObjct.content;
-    if (isChek) Sessions.session_unreadcount =[NSNumber numberWithInt:0];
-    else Sessions.session_unreadcount=[NSNumber numberWithInt:[Sessions.session_unreadcount intValue]+1];
+    if (isChek) Sessions.session_unreadcount =@"0";
+    else Sessions.session_unreadcount=[NSString stringWithFormat:@"%d",[Sessions.session_unreadcount intValue]+1];
     Sessions.session_times =[[NSDate alloc]initWithTimeIntervalSince1970:[messageObjct.sendtime doubleValue]];
     
     
     //插入聊天记录
     ChatEntity *chatInfo =[NSEntityDescription insertNewObjectForEntityForName:@"ChatEntity" inManagedObjectContext:self.managedObjectContext];
-    chatInfo.chat_groupuuid=[NSNumber numberWithInt:[messageObjct.groupid intValue]];
+    chatInfo.chat_groupuuid=messageObjct.groupid;
     chatInfo.chat_groupname=messageObjct.receivername;
     chatInfo.chat_times=[[NSDate alloc]initWithTimeIntervalSince1970:[messageObjct.sendtime doubleValue]];
-    chatInfo.chat_msgtype=[NSNumber numberWithInt:[messageObjct.chattype intValue]];
+    chatInfo.chat_msgtype=messageObjct.chattype;
     chatInfo.chat_content=messageObjct.content;
     chatInfo.chat_voiceurl=messageObjct.filepath;
     chatInfo.chat_MessageID=chatMessageID;
@@ -268,8 +268,8 @@ static CoreDataManageContext *coreData=nil;
 // Returns the URL to the application's Documents directory.
 - (NSURL *)applicationDocumentsDirectory
 {
-//    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-    return [NSURL URLWithString:@"file:///Users/sxit/Desktop/test/"];
+    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    return [NSURL URLWithString:@"file:///Users/cqsxit/Desktop/push_dev/"];
 }
 
 @end

@@ -13,7 +13,7 @@
 
 @interface SessionEntity : NSManagedObject
 
-@property (nonatomic, retain) NSNumber * session_groupuuid;       //组id
+@property (nonatomic, retain) NSString * session_groupuuid;       //组id
 @property (nonatomic, retain) NSString * session_receiveravatar;  //对方头像地址
 @property (nonatomic, retain) NSString * session_receivername;    //对方姓名
 @property (nonatomic, retain) NSString * session_pinyinName;      //姓名全拼
@@ -22,7 +22,7 @@
 @property (nonatomic, retain) NSString * session_chatMessageID;   //自己电话_自己ec_对方电话_对方EC
 @property (nonatomic, retain) NSString * session_selfid;          //自己电话_自己ec
 @property (nonatomic, retain) NSString * session_content;         //内容
-@property (nonatomic, retain) NSNumber * session_unreadcount;     //未读总条数
+@property (nonatomic, retain) NSString * session_unreadcount;     //未读总条数
 @property (nonatomic, retain) NSDate * session_times;             //时间
 @property (nonatomic, retain) NSSet *session_chats;               //指向"消息表"
 @end

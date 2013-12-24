@@ -13,6 +13,7 @@
 #import "SumEmailOrDocInfo.h"
 #import "InformationInfo.h"
 #import "CoreDataManageContext.h"
+#import "PhotoOptional.h"
 
 @implementation HomeController{
     NSString *sign;
@@ -150,11 +151,8 @@
 
 //政务办公
 -(void)office{
-    NSLog(@"%f",_homeView.ScrollHome.contentSize.height);
     [self initBackBarButtonItem:self.homeView];
     [self.homeView performSegueWithIdentifier:@"hometooffice" sender:self.homeView];
-    
-    
 }
 
 //群众信箱

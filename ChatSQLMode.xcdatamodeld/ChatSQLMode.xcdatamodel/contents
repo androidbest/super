@@ -3,9 +3,9 @@
     <entity name="ChatEntity" representedClassName="ChatEntity" syncable="YES">
         <attribute name="chat_content" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="chat_groupname" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="chat_groupuuid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="chat_groupuuid" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="chat_MessageID" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="chat_msgtype" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="chat_msgtype" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="chat_status" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="chat_times" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="chat_voiceurl" optional="YES" attributeType="String" syncable="YES"/>
@@ -14,7 +14,7 @@
     <entity name="SessionEntity" representedClassName="SessionEntity" syncable="YES">
         <attribute name="session_chatMessageID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="session_content" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="session_groupuuid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="session_groupuuid" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="session_pinyinName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="session_receiveravatar" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="session_receivereccode" optional="YES" attributeType="String" syncable="YES"/>
@@ -22,7 +22,7 @@
         <attribute name="session_receivername" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="session_selfid" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="session_times" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="session_unreadcount" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="session_unreadcount" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="session_chats" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ChatEntity" inverseName="chat_sessionObjct" inverseEntity="ChatEntity" syncable="YES"/>
     </entity>
     <elements>

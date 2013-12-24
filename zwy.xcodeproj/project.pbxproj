@@ -269,6 +269,7 @@
 		65A26CB21839F99D006AF226 /* DetailTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A26CB11839F99D006AF226 /* DetailTextView.m */; };
 		65A26CB41839F9CA006AF226 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65A26CB31839F9CA006AF226 /* CoreText.framework */; };
 		65A26CB7183A035A006AF226 /* ScheduleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A26CB6183A035A006AF226 /* ScheduleCell.m */; };
+		65A2AC5F186923DD000E9147 /* PhotoOptional.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A2AC5E186923DD000E9147 /* PhotoOptional.m */; };
 		65A35B6E1820E50F002C7489 /* ActionSheetWeibo.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A35B6D1820E50F002C7489 /* ActionSheetWeibo.m */; };
 		65A35B721820EC81002C7489 /* share_SMS.png in Resources */ = {isa = PBXBuildFile; fileRef = 65A35B6F1820EC81002C7489 /* share_SMS.png */; };
 		65A35B731820EC81002C7489 /* share_weixin.png in Resources */ = {isa = PBXBuildFile; fileRef = 65A35B701820EC81002C7489 /* share_weixin.png */; };
@@ -825,6 +826,8 @@
 		65A26CB31839F9CA006AF226 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		65A26CB5183A035A006AF226 /* ScheduleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleCell.h; sourceTree = "<group>"; };
 		65A26CB6183A035A006AF226 /* ScheduleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleCell.m; sourceTree = "<group>"; };
+		65A2AC5D186923DD000E9147 /* PhotoOptional.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoOptional.h; sourceTree = "<group>"; };
+		65A2AC5E186923DD000E9147 /* PhotoOptional.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoOptional.m; sourceTree = "<group>"; };
 		65A35B6C1820E50F002C7489 /* ActionSheetWeibo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionSheetWeibo.h; sourceTree = "<group>"; };
 		65A35B6D1820E50F002C7489 /* ActionSheetWeibo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionSheetWeibo.m; sourceTree = "<group>"; };
 		65A35B6F1820EC81002C7489 /* share_SMS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share_SMS.png; sourceTree = "<group>"; };
@@ -1567,6 +1570,8 @@
 		595CB9BA17F17D7D00228A6E /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				65A2AC5D186923DD000E9147 /* PhotoOptional.h */,
+				65A2AC5E186923DD000E9147 /* PhotoOptional.m */,
 				65B19E051868346300C61C16 /* PinYin */,
 				595E74B718629D65003863D3 /* keyboard */,
 				5970E1B2185EEC6300C7719E /* database */,
@@ -2473,6 +2478,7 @@
 				59878CBE1856E51500454D0E /* MyInfoController.m in Sources */,
 				65B3AC7F18195CEC00F2EC04 /* SMSModeDetaView.m in Sources */,
 				659995D61828A10500694F57 /* AlterPasswordController.m in Sources */,
+				65A2AC5F186923DD000E9147 /* PhotoOptional.m in Sources */,
 				659BD0E5183F327D00FAC29E /* warningDataInfo.m in Sources */,
 				659AB384180979FA000FCEC5 /* AIMTableViewIndexBar.m in Sources */,
 				65A26CB7183A035A006AF226 /* ScheduleCell.m in Sources */,
@@ -2790,7 +2796,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: WeiDi Zhong (54PM9A3JDB)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "zwy/zwy-Prefix.pch";
@@ -2812,7 +2818,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: WeiDi Zhong (54PM9A3JDB)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "zwy/zwy-Prefix.pch";

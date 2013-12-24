@@ -13,10 +13,10 @@
 
 @interface ChatEntity : NSManagedObject
 
-@property (nonatomic, retain) NSNumber * chat_groupuuid;        // 组id
+@property (nonatomic, retain) NSString * chat_groupuuid;        // 组id
 @property (nonatomic, retain) NSString * chat_groupname;        // 组姓名
 @property (nonatomic, retain) NSDate * chat_times;              // 时间
-@property (nonatomic, retain) NSNumber * chat_msgtype;          // 0:文本 1语音
+@property (nonatomic, retain) NSString * chat_msgtype;          // 0:文本 1语音
 @property (nonatomic, retain) NSString * chat_content;          // 内容
 @property (nonatomic, retain) NSString * chat_voiceurl;         // 语音地址
 @property (nonatomic, retain) NSString * chat_MessageID;        // 自己电话_自己ec_对方电话_对方EC
