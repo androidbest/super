@@ -67,8 +67,7 @@
     obj.receivereccode=self.chatMessageView.chatData.eccode;
     obj.receivermsisdn=self.chatMessageView.chatData.tel;
     obj.content=self.chatMessageView.im_text.text;
-    NSString *dateString = [formatter stringFromDate:date];
-    obj.sendtime=dateString;
+    obj.sendtime=[NSString stringWithFormat:@"%f",[date timeIntervalSince1970]];
     obj.sendtimeNSdate=date;
     obj.receiveravatar=self.chatMessageView.chatData.headPath;
     obj.groupid=@"";

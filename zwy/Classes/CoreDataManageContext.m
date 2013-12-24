@@ -48,9 +48,15 @@ static CoreDataManageContext *coreData=nil;
     NSEntityDescription * emEty = [NSEntityDescription entityForName:@"SessionEntity" inManagedObjectContext:self.managedObjectContext];
     NSFetchRequest *frq = [[NSFetchRequest alloc]init];
     [frq setEntity:emEty];
+    
     //设置搜索条件
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"session_selfid == %@", selfID];
     [frq setPredicate:predicate];
+    
+    //设置排序方式
+    NSSortDescriptor * sort = [[NSSortDescriptor alloc] initWithKey:@"session_times" ascending:NO];
+    NSArray * sortDescriptors = [NSArray arrayWithObject: sort];
+    [frq setSortDescriptors: sortDescriptors];
     
     NSArray *objs =[self.managedObjectContext executeFetchRequest:frq error:nil];
     return objs;
@@ -67,7 +73,7 @@ static CoreDataManageContext *coreData=nil;
     [frq setEntity:emEty];
     
     //设置搜索条件
-    NSString *chatMessageID =[NSString stringWithFormat:@"%@_%@_%@_%@",user.msisdn,user.eccode,messageObjct.sendmsisdn,messageObjct.receivereccode];
+    NSString *chatMessageID =[NSString stringWithFormat:@"%@_%@_%@_%@",user.msisdn,user.eccode,messageObjct.receivermsisdn,messageObjct.receivereccode];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"session_chatMessageID == %@", chatMessageID];
     [frq setPredicate:predicate];
     
