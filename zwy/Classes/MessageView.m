@@ -8,11 +8,14 @@
 
 #import "MessageView.h"
 #import "MessageController.h"
+#import "CoreDataManageContext.h"
 @interface MessageView ()
 
 @end
 
-@implementation MessageView
+@implementation MessageView{
+    BOOL isfirst;
+}
 
 -(id)initWithCoder:(NSCoder *)aDecoder{
     self=[super initWithCoder:aDecoder];
@@ -56,6 +59,21 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     self.tabBarController.navigationItem.title=@"最近消息";
+    
+    NSString *strSelfID =[NSString stringWithFormat:@"%@%@",user.msisdn,user.eccode];
+    ((MessageController *)self.controller).arrSession = [[NSMutableArray alloc]initWithArray:[[CoreDataManageContext new] getSessionListWithSelfID:strSelfID]];
+    if(isfirst){
+        isfirst=YES;
+    }else{
+    [_uitableview reloadData];
+    }
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    //将page2设定成Storyboard Segue的目标UIViewController
+    id page2 = segue.destinationViewController;
+    //将值透过Storyboard Segue带给页面2的string变数
+    [page2 setValue:_info forKey:@"chatData"];
 }
 
 - (void)didReceiveMemoryWarning

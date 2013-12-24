@@ -31,6 +31,10 @@
                                                 selector:@selector(handleData:)
                                                     name:xmlNotifInfo
                                                   object:self];
+        
+        
+        
+        
     }
     return self;
 }
@@ -66,13 +70,13 @@
     obj.sendmsisdn=user.msisdn;
     obj.receivereccode=self.chatMessageView.chatData.eccode;
     obj.receivermsisdn=self.chatMessageView.chatData.tel;
+    obj.receiveravatar=self.chatMessageView.chatData.headPath;
+    obj.receivername=self.chatMessageView.chatData.Name;
     obj.content=self.chatMessageView.im_text.text;
     obj.sendtime=[NSString stringWithFormat:@"%f",[date timeIntervalSince1970]];
     obj.sendtimeNSdate=date;
-    obj.receiveravatar=self.chatMessageView.chatData.headPath;
     obj.groupid=@"";
     obj.senderavatar=user.headurl;
-    obj.receiveravatar=self.chatMessageView.chatData.headPath;
     obj.filepath=@"";
     [packageData imSend:self chat:obj];
     

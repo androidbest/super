@@ -73,7 +73,7 @@ static CoreDataManageContext *coreData=nil;
     [frq setEntity:emEty];
     
     //设置搜索条件
-    NSString *chatMessageID =[NSString stringWithFormat:@"%@_%@_%@_%@",user.msisdn,user.eccode,messageObjct.receivermsisdn,messageObjct.receivereccode];
+    NSString *chatMessageID =[NSString stringWithFormat:@"%@%@%@%@",user.msisdn,user.eccode,messageObjct.receivermsisdn,messageObjct.receivereccode];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"session_chatMessageID == %@", chatMessageID];
     [frq setPredicate:predicate];
     

@@ -10,7 +10,7 @@
 #import "MesaageIMCell.h"
 #import "CoreDataManageContext.h"
 #import "SessionEntity.h"
-
+#import "PeopelInfo.h"
 @implementation MessageController{
     NSArray *arrLetter;
     NSArray *arrNumber;
@@ -20,8 +20,6 @@
 -(id)init{
     self=[super init];
     if(self){
-        NSString *strSelfID =[NSString stringWithFormat:@"%@%@",user.msisdn,user.eccode];
-        _arrSession= [[NSMutableArray alloc]initWithArray:[[CoreDataManageContext new] getSessionListWithSelfID:strSelfID]];
         arrLetter =[NSMutableArray arrayWithObjects:
                           @"a",@"b",@"c",@"d",@"e",@"f",
                           @"g",@"h",@"i",@"j",@"k",@"l",
@@ -54,7 +52,7 @@
    
     }
     NSDateFormatter * dateFormatter = [[NSDateFormatter alloc]init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+    [dateFormatter setDateFormat:@"yy/MM/dd HH:mm"];
     
     SessionEntity * sessionInfo=nil;
     if (_messageView.searchBar.text.length!=0&&isSearching)sessionInfo=_arrSeaPeople[indexPath.row];
@@ -63,15 +61,29 @@
     cell.title.text=sessionInfo.session_receivername;
     cell.content.text=sessionInfo.session_content;
     cell.time.text=[dateFormatter stringFromDate:sessionInfo.session_times];
+//    cell.username.text=sessionInfo.session_receivername;
     [HTTPRequest imageWithURL:sessionInfo.session_receiveravatar imageView:cell.imageMark placeholderImage:[UIImage  imageNamed:@"default_avatar"]];
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     SessionEntity * sessionInfo=nil;
-    if (_messageView.searchBar.text.length!=0&&isSearching)sessionInfo=_arrSeaPeople[indexPath.row];
-    else sessionInfo=_arrSession[indexPath.row];
+    if (_messageView.searchBar.text.length!=0&&isSearching){
+     sessionInfo=_arrSeaPeople[indexPath.row];
+    }
+    else{
+    sessionInfo=_arrSession[indexPath.row];
+    }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    PeopelInfo *info=[PeopelInfo new];
+    info.tel=sessionInfo.session_receivermsisdn;
+    info.eccode=sessionInfo.session_receivereccode;
+    info.headPath=sessionInfo.session_receiveravatar;
+    info.groupID=sessionInfo.session_groupuuid;
+    info.Name=sessionInfo.session_receivername;
+    self.messageView.info=info;
+    self.messageView.tabBarController.navigationItem.title=@"";
+    [self.messageView performSegueWithIdentifier:@"msgtochat" sender:self.messageView];
 }
 #pragma mark - UISearchDisplayDelegate
 - (void)filteredListContentForSearchText:(NSString*)searchText scope:(NSString*)scope
