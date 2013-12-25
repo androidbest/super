@@ -20,7 +20,7 @@
 @property (nonatomic, retain) NSString * chat_content;          // 内容
 @property (nonatomic, retain) NSString * chat_voiceurl;         // 语音地址
 @property (nonatomic, retain) NSString * chat_MessageID;        // 自己电话_自己ec_对方电话_对方EC
-@property (nonatomic, retain) NSNumber * chat_status;           // 0.自己发 1.对方发
+@property (nonatomic, retain) NSString * chat_status;           // 0.自己发 1.对方发
 @property (nonatomic, retain) SessionEntity *chat_sessionObjct; // 指向回话表
 
 @end

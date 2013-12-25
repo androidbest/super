@@ -24,4 +24,5 @@
 @property (strong ,nonatomic)NSString *sendtime;//字符串格式
 @property (strong ,nonatomic)NSDate *sendtimeNSdate;//发送时间 date格式
 @property (strong ,nonatomic)NSString *voicetime;//语音秒数
+@property (strong ,nonatomic)NSString *status;//0.自己发 1.对方发
 @end

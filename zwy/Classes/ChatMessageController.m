@@ -13,17 +13,23 @@
 #import "PackageData.h"
 #import "AnalysisData.h"
 #import "RespInfo.h"
+#import "PeopelInfo.h"
 #import "CoreDataManageContext.h"
+#import "Constants.h"
+#import "ChatEntity.h"
+#import "SessionEntity.h"
 @implementation ChatMessageController{
     NSMutableArray *arrData;//数据储存
     NSMutableArray *arrTime;//时间保存
     NSMutableArray *arrBool;//判断高度
+    NSInteger num;
     ChatMsgObj *obj;
 }
 
 -(id)init{
     self=[super init];
     if(self){
+        num=0;
         arrData=[NSMutableArray new];
         arrTime=[NSMutableArray new];
         arrBool=[NSMutableArray new];
@@ -32,12 +38,35 @@
                                                     name:xmlNotifInfo
                                                   object:self];
         
-//        arrData addObjectsFromArray:[CoreDataManageContext newInstance] getUserChatMessageWithChatMessageID:<#(NSString *)#> FetchOffset:<#(NSUInteger)#> FetchLimit:<#(NSUInteger)#>
-        
-        
-        
+
     }
     return self;
+}
+
+-(void)initDatatoData{
+    PeopelInfo *info=self.chatMessageView.chatData;
+    NSString *chatMessageID =[NSString stringWithFormat:@"%@%@%@%@",user.msisdn,user.eccode,info.tel,info.eccode];
+    //        [arrData addObjectsFromArray:];
+    NSArray *tempArr=[[CoreDataManageContext newInstance] getUserChatMessageWithChatMessageID:chatMessageID FetchOffset:num FetchLimit:10];
+    
+    for(ChatEntity *chat in tempArr){
+        ChatMsgObj *chatObj=[ChatMsgObj new];
+        chatObj.chattype=chat.chat_msgtype;
+        chatObj.sendeccode=user.eccode;
+        chatObj.sendmsisdn=user.msisdn;
+        chatObj.receivereccode=chat.chat_sessionObjct.session_receivermsisdn;
+        chatObj.receivermsisdn=chat.chat_sessionObjct.session_receivereccode;
+        chatObj.receiveravatar=chat.chat_sessionObjct.session_receiveravatar;
+        chatObj.receivername=chat.chat_sessionObjct.session_receivername;
+        chatObj.content=chat.chat_content;
+        chatObj.sendtime=[ToolUtils NSDateToNSString:chat.chat_times format:@"yy/MM/dd HH:mm"];
+        chatObj.groupid=@"";
+        chatObj.senderavatar=user.headurl;
+        chatObj.filepath=@"";
+        chatObj.status=chat.chat_status;
+        [arrData addObject:chatObj];
+        [arrTime addObject:chat.chat_times];
+    }
 }
 
 
@@ -48,7 +77,7 @@
         RespInfo *info=[AnalysisData imSend:dic];
         if([info.respCode isEqualToString:@"0"]){
            //发送成功
-            [[CoreDataManageContext newInstance] setChatInfo:obj status:0 isChek:YES];
+            [[CoreDataManageContext newInstance] setChatInfo:obj status:@"0" isChek:YES];
         }else{
         //发送失败
             
@@ -74,15 +103,16 @@
     obj.receiveravatar=self.chatMessageView.chatData.headPath;
     obj.receivername=self.chatMessageView.chatData.Name;
     obj.content=self.chatMessageView.im_text.text;
-    obj.sendtime=[NSString stringWithFormat:@"%f",[date timeIntervalSince1970]];
+    obj.sendtime=[formatter stringFromDate:date];
     obj.sendtimeNSdate=date;
     obj.groupid=@"";
     obj.senderavatar=user.headurl;
     obj.filepath=@"";
+    obj.status=@"1";
     [packageData imSend:self chat:obj];
     
     
-    [arrData addObject:self.chatMessageView.im_text.text];
+    [arrData addObject:obj];
     [arrTime addObject:date];
     self.chatMessageView.im_text.text=nil;
     [self.chatMessageView.send setEnabled:NO];
@@ -123,8 +153,13 @@
 {
     
     float leng=0.0;
-     NSString *text=arrData[indexPath.row];
-     UIView *v=[ToolUtils bubbleView:text from:NO];
+     ChatMsgObj *msgObj=arrData[indexPath.row];
+    UIView *v=nil;
+    if([msgObj.status isEqualToString:@"0"]){
+    v=[ToolUtils bubbleView:msgObj.content from:YES];
+    }else{
+    v=[ToolUtils bubbleView:msgObj.content from:NO];
+    }
     if([self compareTime:indexPath]){
         leng=v.frame.size.height+30;
         [arrBool addObject:@"0"];
@@ -148,35 +183,91 @@
 //    }
     
     ChatMessageCell * cell = [[ChatMessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:strCell];
-    
-    NSString *text=arrData[indexPath.row];
-//    [CompressImage bubbleView:text imageView:cell.leftMessage];
+    ChatMsgObj *msgObj=arrData[indexPath.row];
     NSString *strBool=arrBool[indexPath.row];
-    [ToolUtils bubbleView:text from:NO withPosition:60 view:cell.leftMessage];
+    if([msgObj.status isEqualToString:@"0"]){
+        cell.leftHead.hidden=YES;
+        cell.rightHead.hidden=NO;
+        [cell.rightHead addTarget:self action:@selector(rightPushDetail:) forControlEvents:UIControlEventTouchUpInside];
+        
+    [HTTPRequest imageWithURL:user.headurl imageView:cell.rightHead placeUIButtonImage:[UIImage imageNamed:@"default_avatar"]];
+    [ToolUtils bubbleView:msgObj.content from:YES withPosition:60 view:cell.rightMessage];
     if([strBool isEqualToString:@"1"]){
-        cell.chatTime.hidden=YES;
-        CGRect rectLeftHead=cell.leftHead.frame;
-        rectLeftHead.origin.y-=20;
-        cell.leftHead.frame=rectLeftHead;
-        
-        CGRect rectLeftMessage=cell.leftMessage.frame;
-        rectLeftMessage.origin.y-=20;
-        cell.leftMessage.frame=rectLeftMessage;
-        
+            cell.chatTime.hidden=YES;
+            CGRect rectLeftHead=cell.rightHead.frame;
+            rectLeftHead.origin.y-=20;
+            cell.rightHead.frame=rectLeftHead;
+            CGRect rectLeftMessage=cell.rightMessage.frame;
+            rectLeftMessage.origin.y-=20;
+            cell.rightMessage.frame=rectLeftMessage;
+        }else{
+            cell.chatTime.text=[ToolUtils NSDateToNSString:arrTime[indexPath.row] format:@"yy/MM/dd HH:mm"];
+            cell.chatTime.hidden=NO;
+        }
     }else{
-        NSDateFormatter * formatter = [NSDateFormatter new];
-        [formatter setDateFormat: @"yy/MM/dd HH:mm"];
-        NSString *dateString = [formatter stringFromDate:arrTime[indexPath.row]];
-        cell.chatTime.text=dateString;
-        cell.chatTime.hidden=NO;
+        cell.rightHead.hidden=YES;
+        cell.leftHead.hidden=NO;
+        cell.leftHead.tag=[ToolUtils stringToNum:msgObj.receivermsisdn];
+        [cell.leftHead addTarget:self action:@selector(leftPushDetail:) forControlEvents:UIControlEventTouchUpInside];
+        [HTTPRequest imageWithURL:msgObj.receiveravatar imageView:cell.rightHead placeUIButtonImage:[UIImage imageNamed:@"default_avatar"]];
+        [ToolUtils bubbleView:msgObj.content from:NO withPosition:60 view:cell.leftMessage];
+        if([strBool isEqualToString:@"1"]){
+            cell.chatTime.hidden=YES;
+            CGRect rectLeftHead=cell.leftHead.frame;
+            rectLeftHead.origin.y-=20;
+            cell.leftHead.frame=rectLeftHead;
+            
+            CGRect rectLeftMessage=cell.leftMessage.frame;
+            rectLeftMessage.origin.y-=20;
+            cell.leftMessage.frame=rectLeftMessage;
+        }else{
+            cell.chatTime.text=[ToolUtils NSDateToNSString:arrTime[indexPath.row] format:@"yy/MM/dd HH:mm"];
+            cell.chatTime.hidden=NO;
+        }
     }
-    return cell;
+        return cell;
+}
+
+-(void)leftPushDetail:(UIButton *)btn{
+    NSMutableArray  *arr = [ConfigFile setEcNumberInfo];
+    NSString *strSearchbar =[NSString stringWithFormat:@"SELF.tel CONTAINS '%@'",[ToolUtils numToString:btn.tag]];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat: strSearchbar];
+    NSArray *arrRet =[arr filteredArrayUsingPredicate: predicate];
+    if(arrRet.count>0){
+        PeopelInfo *pe=arrRet[0];
+        self.chatMessageView.chatHead=[PeopelInfo new];
+        self.chatMessageView.chatHead.tel=pe.tel;
+        self.chatMessageView.chatHead.job=pe.job;
+        self.chatMessageView.chatHead.area=pe.area;
+        self.chatMessageView.chatHead.status=@"1";
+        self.chatMessageView.chatHead.Name=pe.Name;
+    }
+   [self.chatMessageView performSegueWithIdentifier:@"chattoDetailhead" sender:self.chatMessageView];
+}
+
+-(void)rightPushDetail:(UIButton *)btn{
+    NSMutableArray  *arr = [ConfigFile setEcNumberInfo];
+    NSString *strSearchbar =[NSString stringWithFormat:@"SELF.tel CONTAINS '%@'",user.msisdn];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat: strSearchbar];
+    NSArray *arrRet =[arr filteredArrayUsingPredicate: predicate];
+    if(arrRet.count>0){
+        PeopelInfo *pe=arrRet[0];
+        self.chatMessageView.chatHead=[PeopelInfo new];
+        self.chatMessageView.chatHead.tel=pe.tel;
+        self.chatMessageView.chatHead.job=pe.job;
+        self.chatMessageView.chatHead.area=pe.area;
+        self.chatMessageView.chatHead.status=@"1";
+        self.chatMessageView.chatHead.Name=pe.Name;
+    }
+
+    [self.chatMessageView performSegueWithIdentifier:@"chattoDetailhead" sender:self.chatMessageView];
+    
 }
 
 //时间比较
 -(BOOL)compareTime:(NSIndexPath *)indexPath{
-    NSInteger num=arrTime.count;
-    if(num>0){
+    NSInteger numTime=arrTime.count;
+    if(numTime>0){
         if(indexPath.row==0){
             return YES;
         }else{

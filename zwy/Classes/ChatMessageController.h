@@ -10,4 +10,5 @@
 #import "ChatMessageView.h"
 @interface ChatMessageController : BaseController
 @property (strong ,nonatomic)ChatMessageView * chatMessageView;
+-(void)initDatatoData;
 @end

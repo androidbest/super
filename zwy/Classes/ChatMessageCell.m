@@ -23,7 +23,6 @@
 //        _chatTime.layer.borderWidth=0.5;
 //        _chatTime.layer.borderColor=[[UIColor lightGrayColor] CGColor];
         _chatTime.textAlignment=NSTextAlignmentCenter;
-        
         [self addSubview:_chatTime];
         
         //"左头像"标签
@@ -35,6 +34,14 @@
         _leftMessage =[[UIView alloc] initWithFrame:CGRectZero];
         [self addSubview:_leftMessage];
         
+        //"右头像"标签
+        _rightHead=[[UIButton alloc] initWithFrame:CGRectMake(270,30,40,40)];
+        [_leftHead setBackgroundImage:[UIImage imageNamed:@"default_avatar"] forState:UIControlStateNormal];
+        [self addSubview:_rightHead];
+        
+        //右内容
+        _rightMessage =[[UIView alloc] initWithFrame:CGRectZero];
+        [self addSubview:_rightMessage];
         
         
         //"时间"标签

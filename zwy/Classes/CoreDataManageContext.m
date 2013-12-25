@@ -67,7 +67,7 @@ static CoreDataManageContext *coreData=nil;
  *chatType: 0.自己发 1.对方发
  *isChek: 如果已点击查看为 YES ,否则 NO
  */
-- (void)setChatInfo:(ChatMsgObj *)messageObjct status:(NSNumber *)chatType isChek:(BOOL)isChek{
+- (void)setChatInfo:(ChatMsgObj *)messageObjct status:(NSString *)chatType isChek:(BOOL)isChek{
     NSEntityDescription * emEty = [NSEntityDescription entityForName:@"SessionEntity" inManagedObjectContext:self.managedObjectContext];
     NSFetchRequest *frq = [[NSFetchRequest alloc]init];
     [frq setEntity:emEty];
@@ -85,8 +85,8 @@ static CoreDataManageContext *coreData=nil;
         Sessions =(SessionEntity *)[[NSManagedObject alloc] initWithEntity:emEty insertIntoManagedObjectContext:self.managedObjectContext];
         Sessions.session_groupuuid=messageObjct.groupid;
         Sessions.session_chatMessageID=chatMessageID;
-        Sessions.session_receivermsisdn=messageObjct.sendmsisdn;
-        Sessions.session_receivereccode=messageObjct.sendeccode;
+        Sessions.session_receivermsisdn=messageObjct.receivermsisdn;
+        Sessions.session_receivereccode=messageObjct.receivereccode;
         Sessions.session_selfid=[user.msisdn stringByAppendingString:user.eccode];
         Sessions.session_pinyinName =[ToolUtils pinyinFromString:messageObjct.receivername];
     }else{
@@ -99,14 +99,13 @@ static CoreDataManageContext *coreData=nil;
     Sessions.session_content=messageObjct.content;
     if (isChek) Sessions.session_unreadcount =@"0";
     else Sessions.session_unreadcount=[NSString stringWithFormat:@"%d",[Sessions.session_unreadcount intValue]+1];
-    Sessions.session_times =[[NSDate alloc]initWithTimeIntervalSince1970:[messageObjct.sendtime doubleValue]];
-    
+    Sessions.session_times =[ToolUtils NSStringToNSDate:messageObjct.sendtime format:@"yy/MM/dd HH:mm"];
     
     //插入聊天记录
     ChatEntity *chatInfo =[NSEntityDescription insertNewObjectForEntityForName:@"ChatEntity" inManagedObjectContext:self.managedObjectContext];
     chatInfo.chat_groupuuid=messageObjct.groupid;
     chatInfo.chat_groupname=messageObjct.receivername;
-    chatInfo.chat_times=[[NSDate alloc]initWithTimeIntervalSince1970:[messageObjct.sendtime doubleValue]];
+    chatInfo.chat_times=[ToolUtils NSStringToNSDate:messageObjct.sendtime format:@"yy/MM/dd HH:mm"];
     chatInfo.chat_msgtype=messageObjct.chattype;
     chatInfo.chat_content=messageObjct.content;
     chatInfo.chat_voiceurl=messageObjct.filepath;
@@ -268,8 +267,8 @@ static CoreDataManageContext *coreData=nil;
 // Returns the URL to the application's Documents directory.
 - (NSURL *)applicationDocumentsDirectory
 {
-    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-    return [NSURL URLWithString:@"file:///Users/cqsxit/Desktop/push_dev/"];
+//    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    return [NSURL URLWithString:@"file:///Users/sxit/Desktop/test"];
 }
 
 @end

@@ -22,4 +22,5 @@
 @property (strong ,nonatomic)NSString * isecnumer;//1.成员
 @property (strong ,nonatomic)NSString * headPath;//头像
 @property (strong ,nonatomic)NSString * eccode;//eccode
+@property (strong ,nonatomic)NSString * status;//0.联系人界面 1.聊天界面
 @end

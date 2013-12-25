@@ -38,6 +38,7 @@
      _job.text=_data.job;
     }
     
+    
     [_sumbitBtn setBackgroundColor:[UIColor colorWithRed:0.26 green:0.47 blue:0.98 alpha:1.0]];
     _sumbitBtn.layer.masksToBounds = YES;
     _sumbitBtn.layer.cornerRadius = 6.0;
@@ -46,6 +47,17 @@
     [_sumbitBtn addTarget:self.controller action:NSSelectorFromString(@"submit") forControlEvents:UIControlEventTouchUpInside];
     [_call addTarget:self.controller action:NSSelectorFromString(@"callTell") forControlEvents:UIControlEventTouchUpInside];
     [_sms addTarget:self.controller action:NSSelectorFromString(@"smsSend") forControlEvents:UIControlEventTouchUpInside];
+    
+    if([_data.status isEqualToString:@"1"]){
+        _sumbitBtn.hidden=YES;
+    }
+    
+    if([_data.tel isEqualToString:user.msisdn]){
+        _call.hidden=YES;
+        _sms.hidden=YES;
+    }
+    
+    [((ContactsDetailController *)self.controller) initDatatoData];
 }
 
 - (void)didReceiveMemoryWarning

@@ -38,6 +38,26 @@
     return date;
 }
 
+#pragma mark - 日期转字符串
++ (NSString * )NSDateToNSString: (NSDate * )date format:(NSString *)format
+{
+    NSDateFormatter * formatter = [NSDateFormatter new];
+    [formatter setDateFormat: format];
+    NSString *dateString = [formatter stringFromDate:date];
+    return dateString;
+}
+
+#pragma mark - 字符串转日期
++ (NSDate * )NSStringToNSDate: (NSString * )string format:(NSString *)format
+{
+    NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat: format];
+    NSDate *date = [formatter dateFromString :string];
+    return date;
+}
+
+
+
 #pragma mark - 判断网络状态
 +(BOOL)isExistenceNetwork
 {

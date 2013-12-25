@@ -84,8 +84,7 @@
     _tableview.delegate=self.controller;
     _tableview.dataSource=self.controller;
     
-    [self.view addSubview:_tableview];
-    [self.view addSubview:_toolbar];
+    
     
     UITapGestureRecognizer* singleRecognizer;
     singleRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self.controller action:NSSelectorFromString(@"SingleTap:")];
@@ -101,12 +100,30 @@
     //设置滑动方向
     [swipeRecognizer setDirection:UISwipeGestureRecognizerDirectionDown];
     [_tableview addGestureRecognizer:swipeRecognizer];
+    
+    
+    [((ChatMessageController *)self.controller) initDatatoData];
+    
+    [self.view addSubview:_tableview];
+    [self.view addSubview:_toolbar];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
    
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"MessageViewToOptionChatView"]) {
+        [self.controller BasePrepareForSegue:segue sender:sender];
+        return;
+    }
+    //将page2设定成Storyboard Segue的目标UIViewController
+    id page2 = segue.destinationViewController;
+    //将值透过Storyboard Segue带给页面2的string变数
+    _chatData.status=@"1";
+    [page2 setValue:_chatHead forKey:@"data"];
 }
 
 -(void)viewWillAppear:(BOOL)animated{

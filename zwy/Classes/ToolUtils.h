@@ -16,6 +16,9 @@
 +(NSDate *)getCurrentDate;
 + (NSString *)NSDateToNSString: (NSDate * )date;
 + (NSDate * )NSStringToNSDate: (NSString * )string;
++ (NSString * )NSDateToNSString: (NSDate * )date format:(NSString *)format;
++ (NSDate * )NSStringToNSDate: (NSString * )string format:(NSString *)format;
+
 +(BOOL)isExistenceNetwork;
 + (void) alertInfo:(NSString*) string;
 + (void) alertInfo:(NSString*) string lister:(id<UIAlertViewDelegate>) lister;
