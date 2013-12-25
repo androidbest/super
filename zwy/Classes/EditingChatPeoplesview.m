@@ -27,7 +27,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+	[self.controller initWithData];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{

@@ -11,6 +11,7 @@
 #import "CoreDataManageContext.h"
 #import "SessionEntity.h"
 #import "PeopelInfo.h"
+#import "OptionChatPeopleView.h"
 @implementation MessageController{
     NSArray *arrLetter;
     NSArray *arrNumber;
@@ -41,7 +42,15 @@
 }
 
 - (void)BasePrepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-
+    if ([segue.identifier isEqualToString:@"MessageViewToOptionChatView"]) {
+        UINavigationController *navigation =segue.destinationViewController;
+        OptionChatPeopleView *optionView=(OptionChatPeopleView*)navigation.topViewController;
+        optionView.OptionChatPeopleDelegate=self;
+    }
+}
+#pragma mark -OptionChatPeopleDelegate
+- (void)MessageViewToChatMessageView:(NSArray *)peoples{
+ [self.messageView performSegueWithIdentifier:@"msgtochat" sender:self.messageView];
 }
 
 #pragma mark - UITableViewDateSource

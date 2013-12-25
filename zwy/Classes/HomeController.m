@@ -14,6 +14,7 @@
 #import "InformationInfo.h"
 #import "CoreDataManageContext.h"
 #import "PhotoOptional.h"
+#import "EditingChatPeoplesview.h"
 
 @implementation HomeController{
     NSString *sign;
@@ -162,6 +163,10 @@
 }
 //会议电话
 -(void)meetting{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+    EditingChatPeoplesview *detaView = [storyboard instantiateViewControllerWithIdentifier:@"EditingChatPeoplesview"];
+    [self.homeView.navigationController pushViewController:detaView animated:YES];
+    return;
     [self initBackBarButtonItem:self.homeView];
     [self.homeView performSegueWithIdentifier:@"hometomeetting" sender:self.homeView];
 }

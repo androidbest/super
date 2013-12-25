@@ -11,9 +11,7 @@
 @interface OptionChatPeopleView : BaseView
 @property (strong, nonatomic) UISearchBar *searchBar;
 @property(nonatomic, strong) UISearchDisplayController *displayController;
-@property (strong, nonatomic) IBOutlet UIButton *btnCancel;
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *btnAdd;
 @property (strong, nonatomic) IBOutlet UITableView *tableViewPeople;
-@property (strong, nonatomic) IBOutlet UINavigationBar *optionNaviBar;
-
+@property (assign ,nonatomic)id OptionChatPeopleDelegate;
+- (void)MessageViewToChatMessageView:(NSArray *)peoples;
 @end

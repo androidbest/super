@@ -17,7 +17,7 @@
         //勾选图片
         _imageViewAdd =[[UIImageView alloc] init];
         _imageViewAdd.frame =CGRectMake(10, 20, 20, 20);
-        _imageViewAdd.image=[UIImage imageNamed:@""];
+        _imageViewAdd.image=[UIImage imageNamed:@"btn_uncheck"];
         [self addSubview:_imageViewAdd];
         
         //头像
@@ -27,8 +27,9 @@
         
         //姓名标签
         _labelTitle =[[UILabel alloc] init];
-        _labelTitle.frame=CGRectMake(90, 20, 20, 200);
-        _labelTitle.backgroundColor=[UIColor clearColor];
+        _labelTitle.frame=CGRectMake(90, 20, 200, 20);
+        _labelTitle.backgroundColor=[UIColor whiteColor];
+        _labelTitle.textColor =[UIColor blackColor];
         _labelTitle.font =[UIFont boldSystemFontOfSize:17];
         [self addSubview:_labelTitle];
     }
