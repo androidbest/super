@@ -189,7 +189,9 @@ NSString * stringTel =STRING_TEL(@"133");
 
 //首页传值
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:@"homeToIM"]) {
 
+    }
 }
 
 /*控制首页scrollView是否可以滑动*/

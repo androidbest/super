@@ -34,6 +34,16 @@
     return self;
 }
 
+//添加聊天
+- (void)btnAddPeople
+{
+    [self.messageView performSegueWithIdentifier:@"MessageViewToOptionChatView" sender:self.messageView];
+}
+
+- (void)BasePrepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+
+}
+
 #pragma mark - UITableViewDateSource
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 64;

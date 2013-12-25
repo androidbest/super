@@ -61,6 +61,8 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+
+    self.tabBarController.navigationItem.rightBarButtonItem=nil;
     self.tabBarController.navigationItem.title=@"联系人";
 }
 

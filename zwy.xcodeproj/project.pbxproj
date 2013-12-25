@@ -345,6 +345,11 @@
 		65AE47991865A41F00EF9022 /* images_1_6_tel.png in Resources */ = {isa = PBXBuildFile; fileRef = 65AE47911865A41F00EF9022 /* images_1_6_tel.png */; };
 		65AE479A1865A41F00EF9022 /* ios_1_6_sms.png in Resources */ = {isa = PBXBuildFile; fileRef = 65AE47921865A41F00EF9022 /* ios_1_6_sms.png */; };
 		65AE479B1865A41F00EF9022 /* ios_1_6_warning.png in Resources */ = {isa = PBXBuildFile; fileRef = 65AE47931865A41F00EF9022 /* ios_1_6_warning.png */; };
+		65B177AA186A821D009A18CC /* OptionChatPeopleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B177A9186A821D009A18CC /* OptionChatPeopleView.m */; };
+		65B177AD186A8372009A18CC /* EditingChatPeoplesview.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B177AC186A8372009A18CC /* EditingChatPeoplesview.m */; };
+		65B177B0186A8397009A18CC /* OptionChatPeopleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B177AF186A8397009A18CC /* OptionChatPeopleController.m */; };
+		65B177B3186A83AB009A18CC /* EditingChatPeoplesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B177B2186A83AB009A18CC /* EditingChatPeoplesController.m */; };
+		65B177B6186AB7B9009A18CC /* AddChatPeoplesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B177B5186AB7B9009A18CC /* AddChatPeoplesCell.m */; };
 		65B19E111868348100C61C16 /* ChineseToPinyinResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B19E071868348100C61C16 /* ChineseToPinyinResource.m */; };
 		65B19E121868348100C61C16 /* HanyuPinyinOutputFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B19E091868348100C61C16 /* HanyuPinyinOutputFormat.m */; };
 		65B19E131868348100C61C16 /* NSString+PinYin4Cocoa.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B19E0B1868348100C61C16 /* NSString+PinYin4Cocoa.m */; };
@@ -940,6 +945,16 @@
 		65AE47911865A41F00EF9022 /* images_1_6_tel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = images_1_6_tel.png; sourceTree = "<group>"; };
 		65AE47921865A41F00EF9022 /* ios_1_6_sms.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ios_1_6_sms.png; sourceTree = "<group>"; };
 		65AE47931865A41F00EF9022 /* ios_1_6_warning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ios_1_6_warning.png; sourceTree = "<group>"; };
+		65B177A8186A821D009A18CC /* OptionChatPeopleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionChatPeopleView.h; sourceTree = "<group>"; };
+		65B177A9186A821D009A18CC /* OptionChatPeopleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionChatPeopleView.m; sourceTree = "<group>"; };
+		65B177AB186A8372009A18CC /* EditingChatPeoplesview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditingChatPeoplesview.h; sourceTree = "<group>"; };
+		65B177AC186A8372009A18CC /* EditingChatPeoplesview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditingChatPeoplesview.m; sourceTree = "<group>"; };
+		65B177AE186A8397009A18CC /* OptionChatPeopleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionChatPeopleController.h; sourceTree = "<group>"; };
+		65B177AF186A8397009A18CC /* OptionChatPeopleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionChatPeopleController.m; sourceTree = "<group>"; };
+		65B177B1186A83AB009A18CC /* EditingChatPeoplesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditingChatPeoplesController.h; sourceTree = "<group>"; };
+		65B177B2186A83AB009A18CC /* EditingChatPeoplesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditingChatPeoplesController.m; sourceTree = "<group>"; };
+		65B177B4186AB7B9009A18CC /* AddChatPeoplesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddChatPeoplesCell.h; sourceTree = "<group>"; };
+		65B177B5186AB7B9009A18CC /* AddChatPeoplesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddChatPeoplesCell.m; sourceTree = "<group>"; };
 		65B19E061868348100C61C16 /* ChineseToPinyinResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChineseToPinyinResource.h; sourceTree = "<group>"; };
 		65B19E071868348100C61C16 /* ChineseToPinyinResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChineseToPinyinResource.m; sourceTree = "<group>"; };
 		65B19E081868348100C61C16 /* HanyuPinyinOutputFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HanyuPinyinOutputFormat.h; sourceTree = "<group>"; };
@@ -1889,6 +1904,10 @@
 		59878CA61856C8A500454D0E /* imView */ = {
 			isa = PBXGroup;
 			children = (
+				65B177AB186A8372009A18CC /* EditingChatPeoplesview.h */,
+				65B177AC186A8372009A18CC /* EditingChatPeoplesview.m */,
+				65B177A8186A821D009A18CC /* OptionChatPeopleView.h */,
+				65B177A9186A821D009A18CC /* OptionChatPeopleView.m */,
 				59878CAB1856E0E500454D0E /* ContactsView.h */,
 				59878CAC1856E0E500454D0E /* ContactsView.m */,
 				59878CA81856CA5900454D0E /* MessageView.h */,
@@ -1899,6 +1918,8 @@
 				5960E3BD18603E5400EA0FFA /* ContactsDetailView.m */,
 				5960E3BF1860470300EA0FFA /* ChatMessageView.h */,
 				5960E3C01860470300EA0FFA /* ChatMessageView.m */,
+				65B177B4186AB7B9009A18CC /* AddChatPeoplesCell.h */,
+				65B177B5186AB7B9009A18CC /* AddChatPeoplesCell.m */,
 			);
 			name = imView;
 			sourceTree = "<group>";
@@ -1916,6 +1937,10 @@
 				5960E3C31860473700EA0FFA /* ContactsDetailController.m */,
 				5960E3C81860491E00EA0FFA /* ChatMessageController.h */,
 				5960E3C91860491E00EA0FFA /* ChatMessageController.m */,
+				65B177AE186A8397009A18CC /* OptionChatPeopleController.h */,
+				65B177AF186A8397009A18CC /* OptionChatPeopleController.m */,
+				65B177B1186A83AB009A18CC /* EditingChatPeoplesController.h */,
+				65B177B2186A83AB009A18CC /* EditingChatPeoplesController.m */,
 			);
 			name = imController;
 			sourceTree = "<group>";
@@ -2525,10 +2550,12 @@
 				595A0C7618113253009C26B8 /* CustomPush.m in Sources */,
 				65A573ED183AFDA30072A519 /* solarOrLunar.c in Sources */,
 				5941F6841813D146002735A3 /* AccountManager.m in Sources */,
+				65B177B6186AB7B9009A18CC /* AddChatPeoplesCell.m in Sources */,
 				5942043A1802B62500AA35C3 /* RespInfo.m in Sources */,
 				594B812C18037CF800310CB1 /* SMSInfo.m in Sources */,
 				65A7B35318595C220018E32C /* InformationCellContentView.m in Sources */,
 				65A9C8D6180E9AF70032D170 /* optionAddress.m in Sources */,
+				65B177B0186A8397009A18CC /* OptionChatPeopleController.m in Sources */,
 				659F65311813D77A00306C14 /* officeDetaInfo.m in Sources */,
 				594B810118037BC500310CB1 /* SumEmailOrDocInfo.m in Sources */,
 				5943985C17F446AE000B6E9C /* BaseController.m in Sources */,
@@ -2542,6 +2569,7 @@
 				659AB36D18097803000FCEC5 /* PeopelInfo.m in Sources */,
 				65A26CAF1839C494006AF226 /* WorkController.m in Sources */,
 				59F3D551180DA3640062ACF3 /* MailView.m in Sources */,
+				65B177AA186A821D009A18CC /* OptionChatPeopleView.m in Sources */,
 				598ECDB9185AFE290059BBC7 /* MyImCell.m in Sources */,
 				65A26C9F1839C3F6006AF226 /* HolidayView.m in Sources */,
 				595CB9F317F1802D00228A6E /* Constants.m in Sources */,
@@ -2663,6 +2691,7 @@
 				65A26CB21839F99D006AF226 /* DetailTextView.m in Sources */,
 				659AB35218097593000FCEC5 /* CallTelView.m in Sources */,
 				65A3B39A1814CC3F00AD4069 /* MassMyAddressView.m in Sources */,
+				65B177B3186A83AB009A18CC /* EditingChatPeoplesController.m in Sources */,
 				5943985917F43569000B6E9C /* LoginController.m in Sources */,
 				65A26CAC1839C485006AF226 /* HolidayController.m in Sources */,
 				594204511802E5AA00AA35C3 /* AFNetworkReachabilityManager.m in Sources */,
@@ -2675,6 +2704,7 @@
 				596B78C61861A2C100179CD1 /* ChatMessageCell.m in Sources */,
 				59D78DE6185989260068D6D1 /* MesaageIMCell.m in Sources */,
 				59F21805180FCCEA00748CC4 /* DocFlow.m in Sources */,
+				65B177AD186A8372009A18CC /* EditingChatPeoplesview.m in Sources */,
 				65A7B3561859AAC40018E32C /* CompressImage.m in Sources */,
 				659AB35E180975D0000FCEC5 /* AddressDetailsController.m in Sources */,
 				65B19E141868348100C61C16 /* PinyinFormatter.m in Sources */,
