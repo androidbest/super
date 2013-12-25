@@ -73,7 +73,7 @@ static CoreDataManageContext *coreData=nil;
     [frq setEntity:emEty];
     
     //设置搜索条件
-    NSString *chatMessageID =[NSString stringWithFormat:@"%@_%@_%@_%@",user.msisdn,user.eccode,messageObjct.receivermsisdn,messageObjct.receivereccode];
+    NSString *chatMessageID =[NSString stringWithFormat:@"%@%@%@%@",user.msisdn,user.eccode,messageObjct.receivermsisdn,messageObjct.receivereccode];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"session_chatMessageID == %@", chatMessageID];
     [frq setPredicate:predicate];
     
@@ -140,7 +140,7 @@ static CoreDataManageContext *coreData=nil;
     [frq setFetchOffset:offset];//从第几条开始取
     [frq setFetchLimit:limit];//最大取值数
     
-    NSArray *objs =[self.managedObjectContext executeFetchRequest:frq error:nil];
+    NSArray *objs =[self.managedObjectContext executeFetchRequest:frq error:nil]; 
     return objs;
 }
 

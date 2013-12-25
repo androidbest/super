@@ -22,7 +22,7 @@
         [self addSubview:_title];
         
         //"内容"标签
-        _content =[[UILabel alloc] initWithFrame:CGRectMake(64,35,250,10)];
+        _content =[[UILabel alloc] initWithFrame:CGRectMake(64,30,250,20)];
         _content.numberOfLines=1;
         _content.font=[UIFont systemFontOfSize:13];
         _content.backgroundColor=[UIColor clearColor];
@@ -52,7 +52,7 @@
         CALayer *bottomBorder = [CALayer layer];
 //        float height=self.frame.size.height-1.0f;
         float width=self.frame.size.width;
-        bottomBorder.frame = CGRectMake(0.0f, 62, width, 1.0f);
+        bottomBorder.frame = CGRectMake(0.0f, 63, width, 1.0f);
         bottomBorder.backgroundColor = [UIColor colorWithWhite:0.7f alpha:0.5f].CGColor;
         [self.layer addSublayer:bottomBorder];
         

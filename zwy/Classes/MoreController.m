@@ -127,8 +127,8 @@
                 [HUD showAnimated:YES whileExecutingBlock:^{
                     //对话框显示时需要执行的操作
                     if ([ToolUtils isExistenceNetwork]) {
-                        [self onCheckVersion];
                         isnetwork=@"0";
+                        [self onCheckVersion];
                     }else{
                         isnetwork=@"1";
                     }
@@ -137,6 +137,8 @@
                     
                     if([isnetwork isEqualToString:@"1"]){
                         [ToolUtils alertInfo:@"网络不可用，请检查网络"];
+                    }else if([isnetwork isEqualToString:@"2"]){
+                        [ToolUtils alertInfo:@"服务器异常"];
                     }else{
                         NSString *lastVersion=nil;
                         NSMutableDictionary *releaseInfo=nil;
@@ -219,8 +221,12 @@
     NSHTTPURLResponse *urlResponse = nil;
     NSError *error = nil;
     NSData *recervedData = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponse error:&error];
-    NSDictionary *root = [NSJSONSerialization JSONObjectWithData:recervedData options:kNilOptions error:nil];
-    tempArray =root[@"results"];
+    if(recervedData){
+        NSDictionary *root = [NSJSONSerialization JSONObjectWithData:recervedData options:kNilOptions error:nil];
+        tempArray =root[@"results"];
+    }else{
+    isnetwork=@"2";
+    }
 }
 
 

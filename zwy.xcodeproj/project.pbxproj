@@ -39,6 +39,8 @@
 		594B812D18037CF800310CB1 /* SMSDetaInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 594B812918037CF800310CB1 /* SMSDetaInfo.m */; };
 		594B812E18037CF800310CB1 /* SmsSonDetaInto.m in Sources */ = {isa = PBXBuildFile; fileRef = 594B812B18037CF800310CB1 /* SmsSonDetaInto.m */; };
 		594B813418037D0B00310CB1 /* EcinfoDetas.m in Sources */ = {isa = PBXBuildFile; fileRef = 594B813218037D0B00310CB1 /* EcinfoDetas.m */; };
+		595176BA186987AD007056D6 /* im_phone.png in Resources */ = {isa = PBXBuildFile; fileRef = 595176B8186987AD007056D6 /* im_phone.png */; };
+		595176BB186987AD007056D6 /* im_sms.png in Resources */ = {isa = PBXBuildFile; fileRef = 595176B9186987AD007056D6 /* im_sms.png */; };
 		5951D5E2180BC1820009CCAF /* RespList.m in Sources */ = {isa = PBXBuildFile; fileRef = 5951D5E1180BC1820009CCAF /* RespList.m */; };
 		5951FD7818079A5D0095F212 /* HomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5951FD7718079A5D0095F212 /* HomeController.m */; };
 		59550E7418126EDE00205544 /* GetEcCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 59550E7318126EDE00205544 /* GetEcCell.m */; };
@@ -472,6 +474,8 @@
 		594B812B18037CF800310CB1 /* SmsSonDetaInto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmsSonDetaInto.m; sourceTree = "<group>"; };
 		594B813118037D0B00310CB1 /* EcinfoDetas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EcinfoDetas.h; sourceTree = "<group>"; };
 		594B813218037D0B00310CB1 /* EcinfoDetas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EcinfoDetas.m; sourceTree = "<group>"; };
+		595176B8186987AD007056D6 /* im_phone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = im_phone.png; sourceTree = "<group>"; };
+		595176B9186987AD007056D6 /* im_sms.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = im_sms.png; sourceTree = "<group>"; };
 		5951D5E0180BC1820009CCAF /* RespList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RespList.h; sourceTree = "<group>"; };
 		5951D5E1180BC1820009CCAF /* RespList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RespList.m; sourceTree = "<group>"; };
 		5951FD7618079A5D0095F212 /* HomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeController.h; sourceTree = "<group>"; };
@@ -1412,6 +1416,8 @@
 		595CB9B717F168BC00228A6E /* images */ = {
 			isa = PBXGroup;
 			children = (
+				595176B8186987AD007056D6 /* im_phone.png */,
+				595176B9186987AD007056D6 /* im_sms.png */,
 				65AE478C1865A41F00EF9022 /* images_1_6_addressBook.png */,
 				65AE478D1865A41F00EF9022 /* images_1_6_bangong.png */,
 				65AE478E1865A41F00EF9022 /* images_1_6_chat.png */,
@@ -2336,6 +2342,7 @@
 				65A7EAED18617B9E008002E5 /* tabbar_office_out_1_6@2x.png in Resources */,
 				659F148918585DD0006BFC4D /* newsBanner2.jpg in Resources */,
 				65B3AC671819274200F2EC04 /* tabItem_call_over@2x.png in Resources */,
+				595176BA186987AD007056D6 /* im_phone.png in Resources */,
 				65B3AC6C1819274200F2EC04 /* tabItem_MyArBook_out.png in Resources */,
 				5960DC7D17F9298A0024AD8B /* point_out.png in Resources */,
 				598ECDC2185B13660059BBC7 /* im_contacts.png in Resources */,
@@ -2380,6 +2387,7 @@
 				65A7EAFA18617BDE008002E5 /* news_tabbar_share.png in Resources */,
 				5975C1691806784900EF7285 /* accessory_out.png in Resources */,
 				65A002061862D46A001A7AC1 /* tabbar_daiban_over_1_6.png in Resources */,
+				595176BB186987AD007056D6 /* im_sms.png in Resources */,
 				5975C17818067AA300EF7285 /* daiban_over@2x.png in Resources */,
 				65A002091862D4D3001A7AC1 /* tabbar_home_out_1_6.png in Resources */,
 				65A35B721820EC81002C7489 /* share_SMS.png in Resources */,

@@ -145,8 +145,9 @@
     [posterOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"Response: %@", responseObject);
         //压缩图片
-        [CompressImage setCellContentImage:imageView Image:[UIImage imageNamed:@"error_image.jpg"] filePath:PicPath isDrawRect:drawRect_no];
-        
+//        [CompressImage setCellContentImage:imageView Image:[UIImage imageNamed:@"default_avatar"] filePath:PicPath isDrawRect:drawRect_no];
+        [CompressImage  writeFile:responseObject Type:PicPath];
+        imageView.image =(UIImage *)responseObject;
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         //显示加载失败图片
         imageView.image=image;
