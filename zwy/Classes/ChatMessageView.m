@@ -64,7 +64,7 @@
     
     _voicepress=[[UIButton alloc]initWithFrame:CGRectMake(9, 6, 38, 34)];
     [_voicepress setBackgroundImage:[UIImage imageNamed:@"voice_press"] forState:UIControlStateNormal];
-    
+    [_voicepress addTarget:self.controller action:NSSelectorFromString(@"voicepress") forControlEvents:UIControlEventTouchUpInside];
     
     
     _toolbar=[[UIView alloc] initWithFrame:CGRectMake(0,ScreenHeight-47,ScreenWidth, 47)];

@@ -38,7 +38,6 @@
      _job.text=_data.job;
     }
     
-    
     [_sumbitBtn setBackgroundColor:[UIColor colorWithRed:0.26 green:0.47 blue:0.98 alpha:1.0]];
     _sumbitBtn.layer.masksToBounds = YES;
     _sumbitBtn.layer.cornerRadius = 6.0;

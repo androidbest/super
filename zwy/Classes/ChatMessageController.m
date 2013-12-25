@@ -241,7 +241,9 @@
         self.chatMessageView.chatHead.area=pe.area;
         self.chatMessageView.chatHead.status=@"1";
         self.chatMessageView.chatHead.Name=pe.Name;
+        self.chatMessageView.chatHead.headPath=user.headurl;
     }
+    [self initBackBarButtonItem:self.chatMessageView];
    [self.chatMessageView performSegueWithIdentifier:@"chattoDetailhead" sender:self.chatMessageView];
 }
 
@@ -258,10 +260,19 @@
         self.chatMessageView.chatHead.area=pe.area;
         self.chatMessageView.chatHead.status=@"1";
         self.chatMessageView.chatHead.Name=pe.Name;
+        self.chatMessageView.chatHead.headPath=pe.headPath;
     }
-
+    [self initBackBarButtonItem:self.chatMessageView];
     [self.chatMessageView performSegueWithIdentifier:@"chattoDetailhead" sender:self.chatMessageView];
     
+}
+
+//语音切换
+-(void)voicepress{
+    self.chatMessageView.send.hidden=YES;
+    self.chatMessageView.im_text.hidden=YES;
+    self.chatMessageView.voiceSend.hidden=NO;
+    [self.chatMessageView.voicepress setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
 }
 
 //时间比较

@@ -13,6 +13,7 @@
 @property (strong, nonatomic) UITextView *im_text;
 @property (strong, nonatomic) UIButton *voicepress;
 @property (strong, nonatomic) UIButton *send;
+@property (strong, nonatomic) UIButton *voiceSend;
 @property (strong, nonatomic) UIView *toolbar;
 @property (strong, nonatomic) PeopelInfo *chatData;
 @property (strong, nonatomic) PeopelInfo *chatHead;
