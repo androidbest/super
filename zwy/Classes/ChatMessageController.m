@@ -32,6 +32,7 @@
                                                     name:xmlNotifInfo
                                                   object:self];
         
+//        arrData addObjectsFromArray:[CoreDataManageContext newInstance] getUserChatMessageWithChatMessageID:<#(NSString *)#> FetchOffset:<#(NSUInteger)#> FetchLimit:<#(NSUInteger)#>
         
         
         

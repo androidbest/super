@@ -140,7 +140,7 @@ static CoreDataManageContext *coreData=nil;
     [frq setFetchOffset:offset];//从第几条开始取
     [frq setFetchLimit:limit];//最大取值数
     
-    NSArray *objs =[self.managedObjectContext executeFetchRequest:frq error:nil];
+    NSArray *objs =[self.managedObjectContext executeFetchRequest:frq error:nil]; 
     return objs;
 }
 
