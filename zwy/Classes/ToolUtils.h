@@ -63,4 +63,7 @@
 
 #pragma mark - 汉字转换为拼音
 + (NSString *)pinyinFromString:(NSString *)str;
+
+#pragma mark -UUID获取
++ (NSString*) uuid;
 @end

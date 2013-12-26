@@ -60,6 +60,8 @@
     [page2 setValue:_info forKey:@"data"];
 }
 
+
+
 -(void)viewWillAppear:(BOOL)animated{
 
     self.tabBarController.navigationItem.rightBarButtonItem=nil;
