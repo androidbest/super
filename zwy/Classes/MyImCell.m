@@ -14,7 +14,15 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        
+        //"标题"标签
+        _content =[[UILabel alloc] initWithFrame:CGRectMake(75,27,100,21)];
+        _content.font=[UIFont boldSystemFontOfSize:17];
+        _content.backgroundColor=[UIColor clearColor];
+        _content.textColor=[UIColor lightGrayColor];
         _content.textAlignment=NSTextAlignmentRight;
+        [self addSubview:_content];
+        
     }
     return self;
 }

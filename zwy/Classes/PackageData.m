@@ -616,7 +616,7 @@ NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"U
     [HTTPRequest JSONRequestOperation:delegate Request:request];
 }
 
-//头像地址
+//获取头像地址
 + (void)imHeadUrl:(id)delegate msisdn:(NSString *)msisdn eccode:(NSString *)eccode{
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
@@ -625,5 +625,24 @@ NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"U
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];
     [HTTPRequest JSONRequestOperation:delegate Request:request];
+}
+
+//上传头像
++ (void)imUploadUrl:(id)delegate type:(NSString *)type data:(NSData *)data selType:(NSString *)selType uuid:(NSString *)uuid{
+    NSString * strPath =[[NSBundle mainBundle] pathForResource:@"common" ofType:@"plist"];
+    NSDictionary * dic =[NSDictionary dictionaryWithContentsOfFile:strPath];
+    NSURL * url =[NSURL URLWithString:dic[@"hosturl"]];
+    [HTTPRequest uploadRequestOperation:delegate type:type imageData:data url:url selType:selType uuid:uuid];
+}
+
+//上传链接
++ (void)imUploadLink:(id)delegate msisdn:(NSString *)msisdn eccode:(NSString *)eccode memberid:(NSString *)memberid selType:(NSString *)selType url:(NSString *)url{
+    NSURL * nsurl =[self urlByConfigFile];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:nsurl];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><MSISDN>%@</MSISDN><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>updateAvatarPath</METHOD><MSISDN>%@</MSISDN><ECCODE>%@</ECCODE><MEMBERID>%@</MEMBERID><IMGPATH>%@</IMGPATH></BODY></MESSAGE>",user.msisdn,user.eccode,user.msisdn,user.eccode,user.userid,url];
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:data];
+    [HTTPRequest JSONRequestOperation:delegate Request:request SELType:selType];
 }
 @end

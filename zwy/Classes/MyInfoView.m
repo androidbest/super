@@ -29,6 +29,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.controller initData:self];
 	_tableview.delegate=self.controller;
     _tableview.dataSource=self.controller;
 }

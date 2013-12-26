@@ -14,24 +14,56 @@
     NSMutableArray *arr;
     UIButton *btnHead;
     BOOL isInitHead;
+    NSString *uuid;
 }
 
 -(id)init{
     self=[super init];
     if(self){
      arr=[NSMutableArray new];
-        isInitHead=YES;
-        
+     isInitHead=YES;
+     
+     [[NSNotificationCenter defaultCenter]addObserver:self
+                                                selector:@selector(handleData:)
+                                                    name:xmlNotifInfo
+                                                  object:self];
+    [[NSNotificationCenter defaultCenter]addObserver:self
+                                                selector:@selector(reqUrl:)
+                                                    name:@"reqUrl"
+                                                  object:self];
         
     }
     return self;
 }
 
+
+//处理网络数据
+-(void)handleData:(NSNotification *)notification{
+    NSDictionary *dic=[notification userInfo];
+    if(dic){
+        NSString * strPath =[[NSBundle mainBundle] pathForResource:@"common" ofType:@"plist"];
+        NSDictionary * dic =[NSDictionary dictionaryWithContentsOfFile:strPath];
+        [packageData imUploadLink:self msisdn:user.msisdn eccode:user.eccode memberid:user.userid selType:@"reqUrl" url:[NSString stringWithFormat:@"%@%@.jpg",dic[@"hosturl"],uuid]];
+        self.HUD.labelText = @"上传成功";
+    }else{
+        self.HUD.labelText = @"发送失败";
+    }
+    self.HUD.mode = MBProgressHUDModeCustomView;
+    [self.HUD hide:YES afterDelay:1];
+}
+
+//请求url
+-(void)reqUrl:(NSNotification *)notification{
+     NSDictionary *dic=[notification userInfo];
+    if(dic){
+    }
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if(indexPath.row==0){
-        return 80;
+        return 60;
     }
-    return 44;
+    return 55;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -41,6 +73,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     MyImCell * cell =[tableView dequeueReusableCellWithIdentifier:@"myimCell"];
     cell.accessoryType =UITableViewCellAccessoryDisclosureIndicator;
+    if (indexPath.row!=0) {
+        cell.userInteractionEnabled = NO;
+    }
+    
     switch (indexPath.row) {
         case 0:
             if (isInitHead) {
@@ -53,6 +89,7 @@
             }
             break;
         case 1:
+            cell.title.frame=CGRectMake(50, 10, 50, 50);
             cell.title.text=@"姓名";
             cell.content.text=user.username;
             cell.titleImg.hidden=YES;
@@ -102,17 +139,21 @@
             {
             PhotoOptional *photoController=[PhotoOptional newInstance];
               BOOL isStart= [photoController startMediaBrowser:self.myInfoView isAllowsEditing:YES photoImage:^(UIImage *image) {
-                    [btnHead setBackgroundImage:image forState:UIControlStateNormal];
+                  [btnHead setBackgroundImage:image forState:UIControlStateNormal];
+                  
+                  self.HUD.labelText = @"正在上传..";
+                  [self.HUD show:YES];
+                  [packageData imUploadUrl:self type:@"0" data:UIImageJPEGRepresentation(image,0.1) selType:xmlNotifInfo uuid:@""];
                 }];
                 if (!isStart) [ToolUtils alertInfo:@"获取权限失败!"];
             }
-               
                 break;
             case 1:
             {
                 PhotoOptional *photoController=[PhotoOptional newInstance];
                 BOOL isStart=   [photoController startCameraController:self.myInfoView isAllowsEditing:YES photoImage:^(UIImage *image) {
                     [btnHead setBackgroundImage:image forState:UIControlStateNormal];
+                    [packageData imUploadUrl:self type:@"0" data:UIImageJPEGRepresentation(image,0.1) selType:xmlNotifInfo uuid:@""];
                 }];
                  if (!isStart) [ToolUtils alertInfo:@"设备摄像头错误!"];
             }
@@ -121,5 +162,8 @@
                 break;
         }
     }
+}
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 @end

@@ -19,4 +19,5 @@
 @property (strong ,nonatomic)NSString * headurl;//头像
 @property (strong ,nonatomic)NSString * job;//职务
 @property (strong ,nonatomic)NSString * groupname;//部门名称
+@property (strong ,nonatomic)NSString * userid;//用户id
 @end

@@ -120,7 +120,7 @@
 //即时聊天接收信息
 + (ChatMsgObj *)imRevice:(NSDictionary *)dic;
 
-//头像地址
+//获取头像地址
 + (NSString *)imHeadUrl:(NSDictionary *)dic;
 
 @end

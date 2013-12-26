@@ -15,7 +15,6 @@
 #import "CoreDataManageContext.h"
 #import "PhotoOptional.h"
 #import "EditingChatPeoplesview.h"
-
 @implementation HomeController{
     NSString *sign;
 
@@ -171,6 +170,12 @@
     return;
     [self initBackBarButtonItem:self.homeView];
     [self.homeView performSegueWithIdentifier:@"hometomeetting" sender:self.homeView];
+    
+    
+    
+//    NSData *data = [[NSData alloc] initWithContentsOfFile:@"/Users/sxit/Desktop/20131226162901.wav"];
+//    NSURL *url=[NSURL URLWithString:@"http://192.168.0.137:8989"];;
+//    [HTTPRequest uploadRequestOperation:self type:@"1" imageData:data url:url selType:@""];
 }
 
 

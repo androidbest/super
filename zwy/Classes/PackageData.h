@@ -10,6 +10,9 @@
 #import "ChatMsgObj.h"
 @interface packageData : NSObject
 
+
++ (NSURL *)urlByConfigFile;
+
 //获取EC单位信息列表接口
 +(void)getECinterface:(id)delegate msisdn:(NSString *)msisdn;
 
@@ -165,4 +168,10 @@
 
 //头像地址
 + (void)imHeadUrl:(id)delegate msisdn:(NSString *)msisdn eccode:(NSString *)eccode;
+
+//上传头像
++ (void)imUploadUrl:(id)delegate type:(NSString *)type data:(NSData *)data selType:(NSString *)selType uuid:(NSString *)uuid;
+
+//上传链接
++ (void)imUploadLink:(id)delegate msisdn:(NSString *)msisdn eccode:(NSString *)eccode memberid:(NSString *)memberid selType:(NSString *)selType url:(NSString *)url;
 @end

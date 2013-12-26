@@ -31,5 +31,5 @@ typedef void (^imageWithRequst)(UIImage *image);
 /*获取网络图片*/
 + (void)setImageWithURL:(NSString *)URL placeholderImage:(UIImage *)image ImageBolck:(imageWithRequst)ImageBolck;
 
-+ (void)uploadRequestOperation:(id)delegate imageData:(NSData *)data url:(NSString *)url;
++ (void)uploadRequestOperation:(id)delegate type:(NSString *)type imageData:(NSData *)data url:(NSURL *)url selType:(NSString *)selType uuid:(NSString *)uuid;
 @end
