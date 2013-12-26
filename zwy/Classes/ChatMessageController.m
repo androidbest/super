@@ -26,6 +26,7 @@
     NSMutableArray *arrBool;//判断高度
     NSInteger num;
     ChatMsgObj *obj;
+    NSString *originWav;
 }
 
 -(id)init{
@@ -301,19 +302,24 @@
 }
 
 -(void)recordBtnLongPressed:(UITapGestureRecognizer*)longPressedRecognizer{
+    NSLog(@"fadsfasdfasfsafasfasfasf");
+    //长按开始
+    if(longPressedRecognizer.state == UIGestureRecognizerStateBegan) {
+        //设置文件名
+        originWav = [VoiceRecorderBaseVC getCurrentTimeString];
+        //开始录音
+        [self.chatMessageView.recorderVC beginRecordByFileName:originWav];
+    }//长按结束
+    else if(longPressedRecognizer.state == UIGestureRecognizerStateEnded || longPressedRecognizer.state == UIGestureRecognizerStateCancelled){
+        
+    }
+}
 
-//    //长按开始
-//    if(longPressedRecognizer.state == UIGestureRecognizerStateBegan) {
-//        //设置文件名
-//        self.originWav = [VoiceRecorderBaseVC getCurrentTimeString];
-//        //开始录音
-//        [recorderVC beginRecordByFileName:self.originWav];
-//    }//长按结束
-//    else if(longPressedRecognizer.state == UIGestureRecognizerStateEnded || longPressedRecognizer.state == UIGestureRecognizerStateCancelled){
-//        
-//    }
-
-
+#pragma mark - VoiceRecorderBaseVC Delegate Methods
+//录音完成回调，返回文件路径和文件名
+- (void)VoiceRecorderBaseVCRecordFinish:(NSString *)_filePath fileName:(NSString*)_fileName{
+    NSLog(@"录音完成，文件路径:%@",_filePath);
+//    [self setLabelByFilePath:_filePath fileName:_fileName convertTime:0 label:_originWavLabel];
 }
 
 //时间比较

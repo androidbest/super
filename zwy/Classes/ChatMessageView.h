@@ -8,6 +8,7 @@
 
 #import "BaseView.h"
 #import "PeopelInfo.h"
+#import "ChatVoiceRecorderVC.h"
 @interface ChatMessageView : BaseView
 @property (strong, nonatomic) UITableView *tableview;
 @property (strong, nonatomic) UITextView *im_text;
@@ -18,4 +19,6 @@
 @property (strong, nonatomic) PeopelInfo *chatData;
 @property (strong, nonatomic) PeopelInfo *chatHead;
 @property (strong, nonatomic) NSMutableArray *arrPeoples;
+@property (strong, nonatomic)ChatVoiceRecorderVC *recorderVC;
+@property (retain, nonatomic)AVAudioPlayer *player;
 @end

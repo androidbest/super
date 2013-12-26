@@ -8,6 +8,7 @@
 
 #import "BaseController.h"
 #import "ChatMessageView.h"
+#import "ChatVoiceRecorderVC.h"
 @interface ChatMessageController : BaseController
 @property (strong ,nonatomic)ChatMessageView * chatMessageView;
 -(void)initDatatoData;

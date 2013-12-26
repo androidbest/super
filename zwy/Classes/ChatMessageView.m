@@ -135,6 +135,28 @@
     
     [self.view addSubview:_tableview];
     [self.view addSubview:_toolbar];
+    
+    //初始化播放器的时候如下设置
+//    UInt32 sessionCategory = kAudioSessionCategory_MediaPlayback;
+//    AudioSessionSetProperty(kAudioSessionProperty_AudioCategory,
+//                            sizeof(sessionCategory),
+//                            &sessionCategory);
+//    
+//    UInt32 audioRouteOverride = kAudioSessionOverrideAudioRoute_Speaker;
+//    AudioSessionSetProperty (kAudioSessionProperty_OverrideCategoryDefaultToSpeaker,sizeof (audioRouteOverride),&audioRouteOverride);
+//    
+//    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+//    //默认情况下扬声器播放
+//    [audioSession setActive:YES error:nil];
+//    [audioSession setCategory:AVAudioSessionCategoryPlayback error:nil];
+    
+    
+    //初始化录音vc
+    _recorderVC = [[ChatVoiceRecorderVC alloc]init];
+    _recorderVC.vrbDelegate = self.controller;
+    
+    //初始化播放器
+    _player = [[AVAudioPlayer alloc]init];
 }
 
 - (void)didReceiveMemoryWarning

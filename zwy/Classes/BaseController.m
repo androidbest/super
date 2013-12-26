@@ -22,6 +22,9 @@
 - (void)tableViewIndexBar:(AIMTableViewIndexBar*)indexBar didSelectSectionAtIndex:(NSInteger)index{
 }
 
+- (void)VoiceRecorderBaseVCRecordFinish:(NSString *)_filePath fileName:(NSString*)_fileName{}
+
+
 
 //初始化进度条
 -(void)initData:(BaseView *)base{
