@@ -136,10 +136,12 @@
 #pragma mark - 移除触摸观察者
 - (void)removeScreenTouchObserver{
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"nScreenTouch" object:nil];//移除nScreenTouch事件
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"getChatVideo" object:nil];//(ZWY改动)
 }
 #pragma mark - 添加触摸观察者
 - (void)addScreenTouchObserver{
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onScreenTouch:) name:@"nScreenTouch" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(videoEnded:) name:@"getChatVideo" object:nil];//(ZWY改动)
 }
 -(void)onScreenTouch:(NSNotification *)notification {
     UIEvent *event=[notification.userInfo objectForKey:@"data"];
@@ -182,11 +184,11 @@
 }
 #pragma mark - 触摸移动
 - (void)touchMoved:(CGPoint)_point{
-    /*
+    
     curTouchPoint = _point;
     //判断是否移动到取消区域
     canNotSend = _point.y < kCancelOriginY ? YES : NO;
-    */
+    
     //设置取消动画
     [recorderView prepareToDelete:canNotSend];
 }
@@ -214,7 +216,26 @@
         }
     }];
 }
+#pragma mark - 触摸结束 (ZWY改动)
+- (void)videoEnded:(NSNotification *)notification{
+    //停止计时器
+    [self stopTimer];
+    
+    curTouchPoint = CGPointZero;
+    [self removeScreenTouchObserver];
+    
+    [UIView hideViewByCompletion:^(BOOL finish){
+        
+        //停止录音
+        if (recorder.isRecording)
+            [recorder stop];
+    
+        //回调录音文件路径
+        if ([self.vrbDelegate respondsToSelector:@selector(VoiceRecorderBaseVCRecordFinish:fileName:)])
+            [self.vrbDelegate VoiceRecorderBaseVCRecordFinish:recordFilePath fileName:recordFileName];
+    }];
 
+}
     
 #pragma mark - AVAudioRecorder Delegate Methods
 - (void)audioRecorderDidFinishRecording:(AVAudioRecorder *)recorder successfully:(BOOL)flag{

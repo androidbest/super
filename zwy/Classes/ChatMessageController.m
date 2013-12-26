@@ -302,16 +302,18 @@
 }
 
 -(void)recordBtnLongPressed:(UITapGestureRecognizer*)longPressedRecognizer{
-    NSLog(@"fadsfasdfasfsafasfasfasf");
+   NSLog(@"ok");
     //长按开始
     if(longPressedRecognizer.state == UIGestureRecognizerStateBegan) {
+         NSLog(@"kaishi");
         //设置文件名
         originWav = [VoiceRecorderBaseVC getCurrentTimeString];
         //开始录音
         [self.chatMessageView.recorderVC beginRecordByFileName:originWav];
     }//长按结束
     else if(longPressedRecognizer.state == UIGestureRecognizerStateEnded || longPressedRecognizer.state == UIGestureRecognizerStateCancelled){
-        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"getChatVideo" object:nil userInfo:nil];//(ZWY改动)
+        NSLog(@"结束");
     }
 }
 

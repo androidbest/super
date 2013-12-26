@@ -49,7 +49,9 @@
         optionView.OptionChatPeopleDelegate=self;
     }else if ([segue.identifier isEqualToString:@"msgtochat"]){
         ChatMessageView *viewComtroller =segue.destinationViewController;
-        [viewComtroller.arrPeoples addObjectsFromArray:(NSArray *)sender];
+        if ([sender isKindOfClass:[NSArray class]]) {
+           [viewComtroller.arrPeoples addObjectsFromArray:(NSArray *)sender];
+        }
     }
 }
 #pragma mark -OptionChatPeopleDelegate
@@ -97,7 +99,7 @@
     else{
     sessionInfo=_arrSession[indexPath.row];
     }
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+   
     PeopelInfo *info=[PeopelInfo new];
     info.tel=sessionInfo.session_receivermsisdn;
     info.eccode=sessionInfo.session_receivereccode;
@@ -107,6 +109,8 @@
     self.messageView.info=info;
     self.messageView.tabBarController.navigationItem.title=@"";
     [self.messageView performSegueWithIdentifier:@"msgtochat" sender:self.messageView];
+    
+     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 #pragma mark - UISearchDisplayDelegate
 - (void)filteredListContentForSearchText:(NSString*)searchText scope:(NSString*)scope

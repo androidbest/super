@@ -40,10 +40,6 @@ UIBackgroundTaskIdentifier backgroundTask;//写成成员
     
 //   [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeBadge)];
     
-    
-    
-    
-    
     //初始化配置文件
     self.window.backgroundColor=[UIColor whiteColor];
     [[ConfigFile newInstance] initData];

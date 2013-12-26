@@ -58,6 +58,7 @@ static NSMutableArray   *displayViewAry;//已显示的页面数组
     return (AppDelegate *)[[UIApplication sharedApplication] delegate];
 }
 + (UIView *)getTopView{
+    return [[UIApplication sharedApplication] keyWindow];//钟伟迪
     return [[[UIView getAppDelegate] viewController] view];
 }
 
@@ -85,6 +86,11 @@ static NSMutableArray   *displayViewAry;//已显示的页面数组
         displayViewAry = [[NSMutableArray alloc]init];
     
     UIView *topView = [UIView getTopView];
+    
+    //(ZWY改动)
+    UITapGestureRecognizer *tap =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(saveVideo)];
+    [topView addGestureRecognizer:tap];
+    /**/
     
     //存储页面信息
     ViewInfo *info = [[ViewInfo alloc]init];
@@ -122,6 +128,11 @@ static NSMutableArray   *displayViewAry;//已显示的页面数组
         default:
             break;
     }
+}
+
+//(ZWY改动)
++ (void)saveVideo{
+[[NSNotificationCenter defaultCenter] postNotificationName:@"getChatVideo" object:nil userInfo:nil];//(ZWY改动)
 }
 /**
  显示view
