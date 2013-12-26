@@ -72,6 +72,9 @@
     if ([segue.identifier isEqualToString:@"MessageViewToOptionChatView"]) {
         [self.controller BasePrepareForSegue:segue sender:sender];
         return;
+    }else if ([segue.identifier isEqualToString:@"msgtochat"]){
+        [self.controller BasePrepareForSegue:segue sender:sender];
+        return;
     }
     //将page2设定成Storyboard Segue的目标UIViewController
     id page2 = segue.destinationViewController;

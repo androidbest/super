@@ -309,6 +309,7 @@
 		65A3C256185EA5A50098C8F3 /* CommentDetaController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A3C255185EA5A50098C8F3 /* CommentDetaController.m */; };
 		65A3C25C185EE05C0098C8F3 /* CommentListInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A3C25B185EE05C0098C8F3 /* CommentListInfo.m */; };
 		65A3C260185EE08F0098C8F3 /* CommentDetaInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A3C25F185EE08F0098C8F3 /* CommentDetaInfo.m */; };
+		65A441AC186BC5BB005A184A /* PhotoButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A441AB186BC5BB005A184A /* PhotoButton.m */; };
 		65A573E1183AFD930072A519 /* day.plist in Resources */ = {isa = PBXBuildFile; fileRef = 65A573DD183AFD930072A519 /* day.plist */; };
 		65A573E2183AFD930072A519 /* lunarcalenda.plist in Resources */ = {isa = PBXBuildFile; fileRef = 65A573DE183AFD930072A519 /* lunarcalenda.plist */; };
 		65A573E3183AFD930072A519 /* month.plist in Resources */ = {isa = PBXBuildFile; fileRef = 65A573DF183AFD930072A519 /* month.plist */; };
@@ -920,6 +921,8 @@
 		65A3C25B185EE05C0098C8F3 /* CommentListInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentListInfo.m; sourceTree = "<group>"; };
 		65A3C25E185EE08F0098C8F3 /* CommentDetaInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentDetaInfo.h; sourceTree = "<group>"; };
 		65A3C25F185EE08F0098C8F3 /* CommentDetaInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentDetaInfo.m; sourceTree = "<group>"; };
+		65A441AA186BC5BB005A184A /* PhotoButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoButton.h; sourceTree = "<group>"; };
+		65A441AB186BC5BB005A184A /* PhotoButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoButton.m; sourceTree = "<group>"; };
 		65A573DD183AFD930072A519 /* day.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = day.plist; sourceTree = "<group>"; };
 		65A573DE183AFD930072A519 /* lunarcalenda.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = lunarcalenda.plist; sourceTree = "<group>"; };
 		65A573DF183AFD930072A519 /* month.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = month.plist; sourceTree = "<group>"; };
@@ -1748,6 +1751,8 @@
 				65AB26501856E84500F5EAF6 /* BaseTabbar.m */,
 				65A7B3541859AAC40018E32C /* CompressImage.h */,
 				65A7B3551859AAC40018E32C /* CompressImage.m */,
+				65A441AA186BC5BB005A184A /* PhotoButton.h */,
+				65A441AB186BC5BB005A184A /* PhotoButton.m */,
 			);
 			name = utils;
 			sourceTree = "<group>";
@@ -2681,6 +2686,7 @@
 				65A26C9F1839C3F6006AF226 /* HolidayView.m in Sources */,
 				595CB9F317F1802D00228A6E /* Constants.m in Sources */,
 				594B810F18037CB800310CB1 /* PublicMailDetaInfo.m in Sources */,
+				65A441AC186BC5BB005A184A /* PhotoButton.m in Sources */,
 				65A0A24E183BB8E600AD22E6 /* DateSwitchView.m in Sources */,
 				65A26C981839C37C006AF226 /* scheduleView.m in Sources */,
 				65A3B39D1814CC7A00AD4069 /* MassMyaddressController.m in Sources */,

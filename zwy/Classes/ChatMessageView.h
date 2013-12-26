@@ -17,4 +17,5 @@
 @property (strong, nonatomic) UIView *toolbar;
 @property (strong, nonatomic) PeopelInfo *chatData;
 @property (strong, nonatomic) PeopelInfo *chatHead;
+@property (strong, nonatomic) NSMutableArray *arrPeoples;
 @end

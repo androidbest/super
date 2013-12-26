@@ -173,8 +173,8 @@
     AFHTTPRequestOperation *posterOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     posterOperation.responseSerializer = [AFImageResponseSerializer serializer];
     [posterOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
         [CompressImage  writeFile:responseObject Type:PicPath];
-        //压缩图片
         [imageView setBackgroundImage:(UIImage *)responseObject forState:UIControlStateNormal];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -185,7 +185,7 @@
     [[NSOperationQueue new] addOperation:posterOperation];
 }
 
-+ (void)setImageWithURL:(NSString *)URL ImageBolck:(imageWithRequst)ImageBolck{
++ (void)setImageWithURL:(NSString *)URL placeholderImage:(UIImage *)image ImageBolck:(imageWithRequst)ImageBolck;{
     if (!URL)return;
     NSString * PicPath =[[URL componentsSeparatedByString:@"/"] lastObject];
     NSString * strpaths =[NSString stringWithFormat:@"%@/%@/%@",DocumentsDirectory,MESSGEFILEPATH,PicPath];
@@ -205,8 +205,8 @@
         ImageBolck(responseObject);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-       
-        NSLog(@"Image request failed with error: %@", error);
+        [CompressImage  writeFile:image Type:PicPath];
+         NSLog(@"Image request failed with error: %@", error);
     }];
     [[NSOperationQueue new] addOperation:posterOperation];
 }

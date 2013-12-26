@@ -37,6 +37,7 @@
                                                  selector:@selector(handleWillHideKeyboard:)
                                                      name:UIKeyboardWillHideNotification
                                                    object:nil];
+         if (!_arrPeoples) _arrPeoples=[[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -44,6 +45,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if (_arrPeoples.count>0) {
+        UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        rightBtn.frame = CGRectMake(0.0, 0.0, 25.0, 25.0);
+        [rightBtn setImage:[UIImage imageNamed:@"tabItem_groupArBook_out"] forState:UIControlStateNormal];
+        [rightBtn addTarget:self.controller action:@selector(rightDown) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
+        rightItem.style = UIBarButtonItemStylePlain;
+        self.navigationItem.rightBarButtonItem =rightItem;
+    }
+
+    
     _send=[[UIButton alloc] initWithFrame:CGRectMake(265, 6, 50, 35)];
     [_send setBackgroundColor:[UIColor colorWithRed:0.26 green:0.47 blue:0.98 alpha:1.0]];
     _send.layer.masksToBounds = YES;
@@ -135,6 +147,9 @@
     if ([segue.identifier isEqualToString:@"MessageViewToOptionChatView"]) {
         [self.controller BasePrepareForSegue:segue sender:sender];
         return;
+    } else if([segue.identifier isEqualToString:@"ChatMessageToEditingPeoplesView"]){
+        [self.controller BasePrepareForSegue:segue sender:sender];
+        return;
     }
     //将page2设定成Storyboard Segue的目标UIViewController
     id page2 = segue.destinationViewController;
@@ -219,6 +234,11 @@
 //    [super touchesEnded:touches withEvent:event];
 //    [_im_text resignFirstResponder];
 //}
+
+- (void)rightDown
+{
+
+}
 
 -(void)dealloc{
 

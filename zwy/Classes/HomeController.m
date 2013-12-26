@@ -83,7 +83,9 @@
         if(list.resplist.count>0){
             InformationInfo*info =[list.resplist firstObject];
             _homeView.labelNewsTitle.text=info.title;
-            [HTTPRequest setImageWithURL:info.imagePath ImageBolck:^(UIImage *image) {
+            [HTTPRequest setImageWithURL:info.imagePath
+                        placeholderImage:[UIImage imageNamed:@"error_image"]
+                              ImageBolck:^(UIImage *image) {
                 [_homeView.information setBackgroundImage:image forState:UIControlStateNormal];
             }];
         }

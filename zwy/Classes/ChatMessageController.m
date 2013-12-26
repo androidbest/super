@@ -18,6 +18,8 @@
 #import "Constants.h"
 #import "ChatEntity.h"
 #import "SessionEntity.h"
+#import "EditingChatPeoplesview.h"
+
 @implementation ChatMessageController{
     NSMutableArray *arrData;//数据储存
     NSMutableArray *arrTime;//时间保存
@@ -86,6 +88,19 @@
         //发送失败
     }
 }
+
+//编辑群组人员
+- (void)rightDown
+{
+    [self.chatMessageView performSegueWithIdentifier:@"ChatMessageToEditingPeoplesView" sender:nil];
+}
+- (void)BasePrepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"ChatMessageToEditingPeoplesView"]){
+        EditingChatPeoplesview *editingView =segue.destinationViewController;
+        editingView.chatView=_chatMessageView;
+    }
+}
+
 
 -(void)sendMessage{
     

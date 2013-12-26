@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <scenes>
         <!--Login View-->
@@ -1096,7 +1096,7 @@
         <!--Editing Chat Peoplesview - 聊天信息-->
         <scene sceneID="qxC-He-iSF">
             <objects>
-                <viewController id="TyQ-Rm-eTE" customClass="EditingChatPeoplesview" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EditingChatPeoplesview" id="TyQ-Rm-eTE" customClass="EditingChatPeoplesview" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3zy-9e-tEu"/>
                         <viewControllerLayoutGuide type="bottom" id="3UN-45-Mm3"/>
@@ -1121,6 +1121,7 @@
                     <navigationItem key="navigationItem" title="聊天信息" id="IKZ-aw-CRQ"/>
                     <connections>
                         <outlet property="btnRemove" destination="cnM-0U-05i" id="MS7-XP-4CJ"/>
+                        <segue destination="iJw-Zz-xNK" kind="modal" identifier="EditingChatViewToOptionView" id="Kjl-lf-Ncz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8pa-bn-NbY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -5005,22 +5006,17 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mqu-29-NS8">
-                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="选择联系人" id="NN1-ah-3ou"/>
                     <connections>
-                        <outlet property="optionNaviBar" destination="mqu-29-NS8" id="pmc-Nr-0H1"/>
                         <outlet property="tableViewPeople" destination="DHl-me-Wov" id="s8O-VC-KvB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i0s-VW-ptY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3095" y="3356"/>
+            <point key="canvasLocation" x="3151" y="3364"/>
         </scene>
         <!--Sms View - 信 息 发 布-->
         <scene sceneID="KgI-Bm-VAP">
@@ -5510,13 +5506,14 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="dD8-YG-A6q"/>
-        <segue reference="XY3-9B-d3j"/>
+        <segue reference="Zzm-EU-QHF"/>
         <segue reference="EdD-tC-bMF"/>
-        <segue reference="sAR-cD-OcR"/>
         <segue reference="dzP-Uh-6LZ"/>
+        <segue reference="XY3-9B-d3j"/>
+        <segue reference="sAR-cD-OcR"/>
+        <segue reference="dD8-YG-A6q"/>
         <segue reference="ayr-QV-4U7"/>
         <segue reference="09P-Hu-JWI"/>
-        <segue reference="Zzm-EU-QHF"/>
+        <segue reference="Kjl-lf-Ncz"/>
     </inferredMetricsTieBreakers>
 </document>

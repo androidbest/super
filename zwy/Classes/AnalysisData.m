@@ -666,7 +666,7 @@ RespInfo *info=[RespInfo new];
 
 //头像地址
 + (NSString *)imHeadUrl:(NSDictionary *)dic{
-    NSString *url=[[[dic objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"imgpath"];
+    NSString *url=[[[[dic objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"imgpath"] objectForKey:@"text"];
     return url;
 }
 @end

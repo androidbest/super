@@ -29,7 +29,7 @@ typedef void (^imageWithRequst)(UIImage *image);
 + (void)imageWithURL:(NSString *)URL imageView:(UIButton *)imageView placeUIButtonImage:(UIImage *)image;
 
 /*获取网络图片*/
-+ (void)setImageWithURL:(NSString *)URL ImageBolck:(imageWithRequst)ImageBolck;
++ (void)setImageWithURL:(NSString *)URL placeholderImage:(UIImage *)image ImageBolck:(imageWithRequst)ImageBolck;
 
 + (void)uploadRequestOperation:(id)delegate imageData:(NSData *)data url:(NSString *)url;
 @end

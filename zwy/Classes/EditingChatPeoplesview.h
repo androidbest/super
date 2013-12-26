@@ -7,8 +7,8 @@
 //
 
 #import "BaseView.h"
-
+#import "ChatMessageView.h"
 @interface EditingChatPeoplesview : BaseView
 @property (strong, nonatomic) IBOutlet UIButton *btnRemove;
-@property (strong ,nonatomic)NSMutableArray *arrPeoples;
+@property (strong ,nonatomic)ChatMessageView *chatView;
 @end
