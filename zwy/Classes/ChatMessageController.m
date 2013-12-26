@@ -285,6 +285,22 @@
     
 }
 
+-(void)recordBtnLongPressed:(UITapGestureRecognizer*)longPressedRecognizer{
+
+//    //长按开始
+//    if(longPressedRecognizer.state == UIGestureRecognizerStateBegan) {
+//        //设置文件名
+//        self.originWav = [VoiceRecorderBaseVC getCurrentTimeString];
+//        //开始录音
+//        [recorderVC beginRecordByFileName:self.originWav];
+//    }//长按结束
+//    else if(longPressedRecognizer.state == UIGestureRecognizerStateEnded || longPressedRecognizer.state == UIGestureRecognizerStateCancelled){
+//        
+//    }
+
+
+}
+
 //时间比较
 -(BOOL)compareTime:(NSIndexPath *)indexPath{
     NSInteger numTime=arrTime.count;

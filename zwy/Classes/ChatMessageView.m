@@ -64,7 +64,9 @@
     [_voiceSend setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     _voiceSend.titleLabel.font=[UIFont systemFontOfSize:13];
     _voiceSend.hidden=YES;
-    
+    UILongPressGestureRecognizer *longPrees = [[UILongPressGestureRecognizer alloc]initWithTarget:self.controller action:NSSelectorFromString(@"recordBtnLongPressed:")];
+    longPrees.delegate = self.controller;
+    [_voiceSend addGestureRecognizer:longPrees];
     
     
     
