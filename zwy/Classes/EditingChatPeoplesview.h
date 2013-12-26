@@ -10,5 +10,6 @@
 #import "ChatMessageView.h"
 @interface EditingChatPeoplesview : BaseView
 @property (strong, nonatomic) IBOutlet UIButton *btnRemove;
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong ,nonatomic)ChatMessageView *chatView;
 @end

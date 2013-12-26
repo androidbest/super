@@ -38,6 +38,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
+    
     _searchBar = [[UISearchBar alloc] initWithFrame:CGRectZero];
     _searchBar.placeholder = @"搜索";
     _searchBar.delegate = self.controller;

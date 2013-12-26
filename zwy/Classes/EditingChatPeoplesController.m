@@ -42,24 +42,28 @@
             int btnTag=lineIndex*widthIndex+j;
             PhotoButton *btn=[PhotoButton buttonWithType:UIButtonTypeCustom];
             btn.frame=CGRectMake((imageHeadSize+imageInterval)*j+imageInterval, imageInterval+(imageHeadSize+imageInterval)*lineIndex, imageHeadSize, imageHeadSize);
-            [self.editingView.view  addSubview:btn];
+            [self.editingView.scrollView  addSubview:btn];
             
             NSObject *obj =_editingView.chatView.arrPeoples[btnTag];
             if ([obj isEqual:@"10000"]) {
                 btn.layerBubble.hidden=YES;
                 btn.tag=10000;
-                [btn setBackgroundColor:[UIColor brownColor]];
+                [btn setBackgroundImage:[UIImage imageNamed:@"im_head"] forState:UIControlStateNormal];
                 [btn addTarget:self action:@selector(btnAddpeople:) forControlEvents:UIControlEventTouchUpInside];
             }else if([obj isEqual:@"10001"]){
                 btn.layerBubble.hidden=YES;
                 btn.tag=10001;
-                [btn setBackgroundColor:[UIColor redColor]];
+                [btn setBackgroundImage:[UIImage imageNamed:@"btn_clear_people"] forState:UIControlStateNormal];
                 [btn addTarget:self action:@selector(btnDeletePeople:) forControlEvents:UIControlEventTouchUpInside];
             }else{
-                [btn setBackgroundColor:[UIColor greenColor]];
                 btn.tag=btnTag;
                 btn.layerBubble.hidden=!isDelete;
                 [btn addTarget:self action:@selector(btnPeopleHead:) forControlEvents:UIControlEventTouchUpInside];
+                [btn setBackgroundImage:[UIImage imageNamed:@"default_avatar"] forState:UIControlStateNormal];
+                PeopelInfo *info =_editingView.chatView.arrPeoples[btnTag];
+                [HTTPRequest setImageWithURL:info.headPath placeholderImage:[UIImage imageNamed:@"default_avatar"] ImageBolck:^(UIImage *image) {
+                    [btn setBackgroundImage:image forState:UIControlStateNormal];
+                }];
             }
             
         }
@@ -72,25 +76,36 @@
         NSObject *obj =_editingView.chatView.arrPeoples[btnTag];
         PhotoButton *btn=[PhotoButton buttonWithType:UIButtonTypeCustom];
         btn.frame=CGRectMake((imageHeadSize+imageInterval)*i+imageInterval, imageInterval+(imageHeadSize+imageInterval)*lineIndex, imageHeadSize, imageHeadSize);
-        [self.editingView.view  addSubview:btn];
+        [self.editingView.scrollView  addSubview:btn];
         
         if ([obj isEqual:@"10000"]) {
             btn.layerBubble.hidden=YES;
             btn.tag=10000;
-            [btn setBackgroundColor:[UIColor brownColor]];
+             [btn setBackgroundImage:[UIImage imageNamed:@"im_head"] forState:UIControlStateNormal];
             [btn addTarget:self action:@selector(btnAddpeople:) forControlEvents:UIControlEventTouchUpInside];
         }else if([obj isEqual:@"10001"]){
             btn.layerBubble.hidden=YES;
             btn.tag=10001;
-            [btn setBackgroundColor:[UIColor redColor]];
+            [btn setBackgroundImage:[UIImage imageNamed:@"btn_clear_people"] forState:UIControlStateNormal];
             [btn addTarget:self action:@selector(btnDeletePeople:) forControlEvents:UIControlEventTouchUpInside];
         }else{
-            [btn setBackgroundColor:[UIColor greenColor]];
             btn.tag=btnTag;
             btn.layerBubble.hidden=!isDelete;
             [btn addTarget:self action:@selector(btnPeopleHead:) forControlEvents:UIControlEventTouchUpInside];
+            [btn setBackgroundImage:[UIImage imageNamed:@"default_avatar"] forState:UIControlStateNormal];
+            PeopelInfo *info =_editingView.chatView.arrPeoples[btnTag];
+            [HTTPRequest setImageWithURL:info.headPath placeholderImage:[UIImage imageNamed:@"default_avatar"] ImageBolck:^(UIImage *image) {
+                [btn setBackgroundImage:image forState:UIControlStateNormal];
+            }];
         }
     }
+    
+    if (_editingView.chatView.arrPeoples.count%widthIndex==0) {
+        [self.editingView.scrollView setContentSize:CGSizeMake(320, lineIndex*(imageHeadSize+imageInterval))];
+    }else{
+        [self.editingView.scrollView setContentSize:CGSizeMake(320, (lineIndex+1)*(imageHeadSize+imageInterval))];
+    }
+    
 }
 
 #pragma mark - 按钮
@@ -100,6 +115,23 @@
     [self.editingView performSegueWithIdentifier:@"EditingChatViewToOptionView" sender:nil];
 }
 
+- (void)BasePrepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:@"EditingChatViewToOptionView"]) {
+        UINavigationController *navigation =segue.destinationViewController;
+        OptionChatPeopleView *optionView=(OptionChatPeopleView*)navigation.topViewController;
+        optionView.OptionChatPeopleDelegate=self;
+        optionView.ismodeAnimation=YES;
+        optionView.arrReqeatePeoples=[[NSArray alloc] initWithArray:_editingView.chatView.arrPeoples];
+    }
+}
+
+#pragma mark -OptionChatPeopleDelegate
+- (void)MessageViewToChatMessageView:(NSArray *)peoples{
+    NSIndexSet * indexSet=[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(_editingView.chatView.arrPeoples.count-2,peoples.count)];
+    [_editingView.chatView.arrPeoples insertObjects:peoples atIndexes:indexSet];
+    [self updatePeoples];
+}
+
 //删除
 - (void)btnDeletePeople:(PhotoButton *)sender{
     if (isDelete) {
@@ -107,7 +139,7 @@
     }else{
         isDelete=YES;
     }
-    for (UIView *view in _editingView.view.subviews) {
+    for (UIView *view in _editingView.scrollView.subviews) {
         if ([view isKindOfClass:[PhotoButton class]]) {
             PhotoButton *btn =(PhotoButton *)view;
             if(btn.tag==10000||btn.tag==10001)btn.layerBubble.hidden=YES;
@@ -120,7 +152,7 @@
 - (void)btnPeopleHead:(PhotoButton *)sender{
     if (isDelete) {
         [_editingView.chatView.arrPeoples removeObjectAtIndex:sender.tag];
-        for (UIView *view in _editingView.view.subviews) {
+        for (UIView *view in _editingView.scrollView.subviews) {
             if ([view isKindOfClass:[PhotoButton class]]) {
                 [view removeFromSuperview];
             }
@@ -128,13 +160,6 @@
         [self updatePeoples];
     }else{
         
-    }
-}
-
-- (void)BasePrepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if ([segue.identifier isEqualToString:@"EditingChatViewToOptionView"]) {
-        OptionChatPeopleView *optionView=[OptionChatPeopleView new];
-        optionView.OptionChatPeopleDelegate =self;
     }
 }
 

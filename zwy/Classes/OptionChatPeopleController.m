@@ -30,18 +30,32 @@
                      @"5",@"6",@"7",@"8",@"9"];
         isSearching=NO;
         
-        [self initPeople];
+        
         
         
     }
     return self;
 }
 
+- (void)initWithData{
+[self initPeople];
+}
+
 -(void)initPeople{
-    _arrAllLink = [ConfigFile setEcNumberInfo];
+    _arrAllLink =[ConfigFile setEcNumberInfo];
     BOOL blHave=[[NSFileManager defaultManager] fileExistsAtPath:[NSString stringWithFormat:@"%@/%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode,@"member.txt"]];
     if(_arrAllLink.count==0&&!blHave){
         [self showHUDText:@"请先同步通讯录" showTime:1.0];
+    }else if (_optionView.arrReqeatePeoples) {
+        for (int i=0;i<_optionView.arrReqeatePeoples.count-2; i++) {
+            PeopelInfo *info =_optionView.arrReqeatePeoples[i];
+            NSString * strPre=[NSString stringWithFormat:@"SELF.userID == '%@'",info.userID];
+            NSPredicate * predicate;
+            predicate = [NSPredicate predicateWithFormat:strPre];
+            NSArray *arr=[self.arrAllLink filteredArrayUsingPredicate: predicate];
+            [self.arrAllLink removeObjectsInArray:arr];
+        }
+       
     }
     
     NSMutableArray * arrRemoveObject=[[NSMutableArray alloc] init];
@@ -66,7 +80,7 @@
 
 //确定添加按钮
 - (void)rightDown{
-    [self.optionView dismissViewControllerAnimated:NO completion:nil];
+    [self.optionView dismissViewControllerAnimated:_optionView.ismodeAnimation completion:nil];
     [self.optionView.OptionChatPeopleDelegate MessageViewToChatMessageView:_arrOption];
 }
 

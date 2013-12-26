@@ -27,6 +27,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
     _searchBar = [[UISearchBar alloc] initWithFrame:CGRectZero];
     _searchBar.placeholder = @"搜索";
     _searchBar.delegate = self.controller;
@@ -53,14 +54,10 @@
     temporaryBarButtonItem.style = UIBarButtonItemStylePlain;
     self.navigationItem.leftBarButtonItem=temporaryBarButtonItem;
     
-    UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    rightBtn.frame = CGRectMake(0.0, 0.0, 20.0, 20.0);
-    [rightBtn setTitle:@"确认" forState:UIControlStateNormal];
-    [rightBtn addTarget:self.controller action:@selector(rightDown) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
-    rightItem.style = UIBarButtonItemStylePlain;
-    self.navigationItem.rightBarButtonItem =rightItem;
+    UIBarButtonItem *rightButton  =[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self.controller action:@selector(rightDown)];
+    self.navigationItem.rightBarButtonItem=rightButton;
     
+    [self.controller initWithData];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
@@ -76,5 +73,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+- (void)MessageViewToChatMessageView:(NSArray *)peoples{}
 @end
