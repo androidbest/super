@@ -55,6 +55,20 @@
     [_send setEnabled:NO];
     [_send setAlpha:0.4];
     
+    _voiceSend=[[UIButton alloc] initWithFrame:CGRectMake(59, 7, 250, 30)];
+    [_voiceSend setBackgroundColor:[UIColor colorWithRed:0.26 green:0.47 blue:0.98 alpha:1.0]];
+    _voiceSend.layer.masksToBounds = YES;
+    _voiceSend.layer.cornerRadius = 6.0;
+//    [_voiceSend addTarget:self.controller action:NSSelectorFromString(@"sendMessage") forControlEvents:UIControlEventTouchUpInside];
+    [_voiceSend setTitle:@"按住 说话" forState:UIControlStateNormal];
+    [_voiceSend setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    _voiceSend.titleLabel.font=[UIFont systemFontOfSize:13];
+    _voiceSend.hidden=YES;
+    
+    
+    
+    
+    
     _im_text=[[UITextView alloc] initWithFrame:CGRectMake(49, 5, 208, 35)];
     _im_text.layer.masksToBounds=YES;
     _im_text.layer.cornerRadius=6.0;
@@ -64,7 +78,8 @@
     
     _voicepress=[[UIButton alloc]initWithFrame:CGRectMake(9, 6, 38, 34)];
     [_voicepress setBackgroundImage:[UIImage imageNamed:@"voice_press"] forState:UIControlStateNormal];
-    [_voicepress addTarget:self.controller action:NSSelectorFromString(@"voicepress") forControlEvents:UIControlEventTouchUpInside];
+    [_voicepress addTarget:self.controller action:NSSelectorFromString(@"voicepress:") forControlEvents:UIControlEventTouchUpInside];
+    _voicepress.tag=0;
     
     
     _toolbar=[[UIView alloc] initWithFrame:CGRectMake(0,ScreenHeight-47,ScreenWidth, 47)];
@@ -75,7 +90,7 @@
     [_toolbar addSubview:_send];
     [_toolbar addSubview:_im_text];
     [_toolbar addSubview:_voicepress];
-    
+    [_toolbar addSubview:_voiceSend];
     _tableview=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight-47)];
     _tableview.separatorStyle=UITableViewCellSeparatorStyleNone;
     UIEdgeInsets insets=_tableview.contentInset;

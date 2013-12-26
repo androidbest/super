@@ -12,7 +12,9 @@
 #import "AIMTableViewIndexBar.h"
 #import "MBProgressHUD.h"
 #import "SGFocusImageFrame.h"
-@protocol ControllerProtocol <UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate,UITextViewDelegate,UISearchBarDelegate,MFMessageComposeViewControllerDelegate,AIMTableViewIndexBarDelegate,MBProgressHUDDelegate,UIWebViewDelegate,UIActionSheetDelegate,UIAlertViewDelegate,SGFocusImageFrameDelegate,UISearchDisplayDelegate>
+#import "VoiceConverter.h"
+#import "VoiceRecorderBaseVC.h"
+@protocol ControllerProtocol <UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate,UITextViewDelegate,UISearchBarDelegate,MFMessageComposeViewControllerDelegate,AIMTableViewIndexBarDelegate,MBProgressHUDDelegate,UIWebViewDelegate,UIActionSheetDelegate,UIAlertViewDelegate,SGFocusImageFrameDelegate,UISearchDisplayDelegate,VoiceRecorderBaseVCDelegate>
 @optional
 - (void)initWithData;
 //初始化进度条

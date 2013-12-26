@@ -268,11 +268,21 @@
 }
 
 //语音切换
--(void)voicepress{
-    self.chatMessageView.send.hidden=YES;
-    self.chatMessageView.im_text.hidden=YES;
-    self.chatMessageView.voiceSend.hidden=NO;
-    [self.chatMessageView.voicepress setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateNormal];
+-(void)voicepress:(UIButton *)btn{
+    if(btn.tag==0){
+        self.chatMessageView.send.hidden=YES;
+        self.chatMessageView.im_text.hidden=YES;
+        self.chatMessageView.voiceSend.hidden=NO;
+        [self.chatMessageView.voicepress setBackgroundImage:[UIImage imageNamed:@"voice_play"] forState:UIControlStateNormal];
+        btn.tag=1;
+    }else{
+        self.chatMessageView.send.hidden=NO;
+        self.chatMessageView.im_text.hidden=NO;
+        self.chatMessageView.voiceSend.hidden=YES;
+       [self.chatMessageView.voicepress setBackgroundImage:[UIImage imageNamed:@"voice_press"] forState:UIControlStateNormal];
+        btn.tag=0;
+    }
+    
 }
 
 //时间比较
