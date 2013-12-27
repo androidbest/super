@@ -118,7 +118,7 @@
 + (RespInfo *)imSend:(NSDictionary *)dic;
 
 //即时聊天接收信息
-+ (ChatMsgObj *)imRevice:(NSDictionary *)dic;
++ (NSMutableArray *)imRevice:(NSDictionary *)dic;
 
 //获取头像地址
 + (NSString *)imHeadUrl:(NSDictionary *)dic;

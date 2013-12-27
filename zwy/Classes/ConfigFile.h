@@ -48,6 +48,9 @@
 /*已赞新闻咨询保存plist文件*/
 #define PATH_COMMEND @"commends.plist"
 
+/*聊天信息接受通告名*/
+#define NOTIFICATIONCHAT @"notificationChat"
+
 #import <Foundation/Foundation.h>
 @interface ConfigFile : NSObject
 

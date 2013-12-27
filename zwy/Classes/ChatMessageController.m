@@ -73,6 +73,14 @@
     }
 }
 
+#pragma mark -接收聊天新消息，更新表单
+/*
+ *通告中心为"HomeController"
+ */
+- (void)getMessage:(NSNotification *)notification{
+    NSMutableArray * arr=[notification object];
+    NSLog(@"%@",arr);
+}
 
 //处理网络数据
 -(void)handleData:(NSNotification *)notification{

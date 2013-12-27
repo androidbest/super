@@ -19,11 +19,14 @@ BOOL isZaiXian =YES;
 BOOL isLocalNotification=NO;
 
 //全局变量
+NSTimer *EX_timerUpdateMessage=nil;
+NSString *EX_chatMessageID=nil;
 Tuser *user=nil;
 NSMutableArray *arrEc=nil;
 NSDictionary * dicLocalNotificationInfo=nil;
 UIView *coverView=nil;
 NSMutableArray *chatArr=nil;
 SqlLiteHelper * sqlHelper=nil;
+
 @implementation Constants
 @end

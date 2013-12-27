@@ -192,6 +192,8 @@
     self.navigationItem.title=_chatData.Name;
     }
     
+    //添加观察者
+    [self addMessageObserver];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -199,7 +201,21 @@
     [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+    
+    //移除观察者
+    [self removeMessageObserver];
 }
+
+#pragma mark - 移除接受消息观察者
+- (void)removeMessageObserver{
+    [[NSNotificationCenter defaultCenter] removeObserver:self.controller name:NOTIFICATIONCHAT object:nil];//移除事件
+}
+
+#pragma mark - 添加接受消息观察者
+- (void)addMessageObserver{
+    [[NSNotificationCenter defaultCenter] addObserver:self.controller selector:@selector(getMessage:) name:NOTIFICATIONCHAT object:nil];
+}
+
 
 - (void)keyboardWillShowHide:(NSNotification *)notification
 {
@@ -276,6 +292,10 @@
 
 - (void)rightDown
 {
+
+}
+
+- (void)getMessage:(id)notification{
 
 }
 

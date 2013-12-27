@@ -164,7 +164,7 @@
 + (void)imSend:(id)delegate chat:(ChatMsgObj *)obj;
 
 //即时聊天接收信息
-+ (void)imRevice:(id)delegate chat:(ChatMsgObj *)obj;
++ (void)imRevice:(id)delegate SELType:(NSString *)sel;
 
 //头像地址
 + (void)imHeadUrl:(id)delegate msisdn:(NSString *)msisdn eccode:(NSString *)eccode;

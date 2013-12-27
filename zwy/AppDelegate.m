@@ -6,11 +6,33 @@
 //  Copyright (c) 2013 sxit. All rights reserved.
 //
 
+#define NOTIFICATIONMESSAGE @"notificationMessage"
+
+#define DoorsBgTaskBegin() { \
+UIApplication *app = [UIApplication sharedApplication]; \
+UIBackgroundTaskIdentifier task = [app beginBackgroundTaskWithExpirationHandler:^{ \
+[app endBackgroundTask:task]; \
+/* task = UIBackgroundTaskInvalid; */ \
+}]; \
+dispatch_block_t block = ^{ \
+
+#define DoorsBgTaskEnd() \
+[app endBackgroundTask:task]; \
+/* task = UIBackgroundTaskInvalid; */ \
+}; \
+dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), block); \
+}
+
+
 #import "AppDelegate.h"
 #import "ConfigFile.h"
 #import "Constants.h"
 #import "ToolUtils.h"
 #import "SqlLiteHelper.h"
+#import "PackageData.h"
+#import "CoreDataManageContext.h"
+#import "AnalysisData.h"
+
 @implementation AppDelegate{
 UIBackgroundTaskIdentifier backgroundTask;//写成成员
 
@@ -20,6 +42,12 @@ UIBackgroundTaskIdentifier backgroundTask;//写成成员
 {
       sqlHelper=[SqlLiteHelper new];
       [sqlHelper createDB];
+    
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self
+                                            selector:@selector(notificationImRevice:)
+                                                name:NOTIFICATIONMESSAGE
+                                              object:self];
     
 //    if(application.enabledRemoteNotificationTypes){
 //        NSLog(@"aaadfdsafdsafdasf");
@@ -177,26 +205,6 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    
-    if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 6.0))
-    {
-        // Acquired additional time
-        UIDevice *device = [UIDevice currentDevice];
-        BOOL backgroundSupported = NO;
-        if ([device respondsToSelector:@selector(isMultitaskingSupported)])
-        {
-            backgroundSupported = device.multitaskingSupported;
-        }
-        if (backgroundSupported)
-        {
-            backgroundTask = [application beginBackgroundTaskWithExpirationHandler:^{
-                [application endBackgroundTask:backgroundTask];
-                backgroundTask = UIBackgroundTaskInvalid;
-            }];
-        }
-    }
 
     
 }
@@ -243,19 +251,38 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo
     }
 }
 
-///*
-//删除本地通知
-//*/
-//+(void)deleteLocalNotification:(NSString*)alarmKey
-//{
-//    NSArray*allLocalNotification=[[UIApplication sharedApplication]scheduledLocalNotifications];
-//     for(UILocalNotification*localNotification in allLocalNotification){
-////        NSString*alarmValue=[localNotification.userInfo objectForKey:@"ID"];
-////        if([alarmKey isEqualToString:alarmValue]&&[localNotification.userInfo[@"RequestType"] isEqualToString:@"0"]){
-//            [[UIApplication sharedApplication]cancelLocalNotification:localNotification];
-////        }
-//        }
-//}
+- (void)timerFired:(id)sender{
+    [packageData imRevice:self SELType:NOTIFICATIONMESSAGE];
+}
+
+/*接受消息*/
+- (void)notificationImRevice:(NSNotification *)notification{
+    NSDictionary *dic=[notification userInfo];
+    NSMutableArray *arrmessages =[AnalysisData imRevice:dic];
+    if (!arrmessages||arrmessages.count==0)return;
+    
+    
+    /*插入数据*/
+    CoreDataManageContext *coredataManage =[CoreDataManageContext newInstance];
+    for (int i=0; i<arrmessages.count; i++) {
+        ChatMsgObj *obj =arrmessages[i];
+        NSString *chatMessageID =[NSString stringWithFormat:@"%@%@%@%@",user.msisdn,user.eccode,obj.receivermsisdn,obj.receivereccode];
+        if ([EX_chatMessageID  isEqualToString:chatMessageID]) {
+            [coredataManage setChatInfo:obj status:@"1" isChek:YES];
+        }else {
+            [coredataManage setChatInfo:obj status:@"1" isChek:YES];
+        }
+    }
+    
+    /*刷新数据
+     *发送通告
+     *观察者为"MessageController"--"ChatMessageController"
+     */
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATIONCHAT object:arrmessages userInfo:nil];
+    
+}
+
+
 
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -267,10 +294,17 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    if (!EX_timerUpdateMessage) {
+           EX_timerUpdateMessage = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(timerFired:) userInfo:nil repeats:YES];
+        //关闭定时器
+        [EX_timerUpdateMessage setFireDate:[NSDate distantFuture]];
+    }
+    
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
 @end

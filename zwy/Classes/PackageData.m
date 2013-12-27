@@ -606,14 +606,14 @@ NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"U
 }
 
 //即时聊天接收信息
-+ (void)imRevice:(id)delegate chat:(ChatMsgObj *)obj{
++ (void)imRevice:(id)delegate SELType:(NSString *)sel{
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><MSISDN>%@</MSISDN><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>getChatData</METHOD><MSISDN>%@</MSISDN><ECCODE>%@</ECCODE></BODY></MESSAGE>",user.msisdn,user.eccode,user.msisdn,user.eccode];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];
-    [HTTPRequest JSONRequestOperation:delegate Request:request];
+    [HTTPRequest JSONRequestOperation:delegate Request:request SELType:sel];
 }
 
 //获取头像地址

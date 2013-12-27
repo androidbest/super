@@ -316,6 +316,8 @@
     return newImage;
 }
 
+
+
 //写入本地缓存
 + (void)writeFile:(UIImage *)image Type:(NSString * )type{
     __block UIImage * blockImage =image;

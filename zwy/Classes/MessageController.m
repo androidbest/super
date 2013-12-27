@@ -37,6 +37,15 @@
     return self;
 }
 
+#pragma mark -接收聊天新消息，更新表单
+/*
+ *通告中心为"HomeController"
+ */
+- (void)getMessage:(NSNotification *)notification{
+    NSString *strSelfID =[NSString stringWithFormat:@"%@%@",user.msisdn,user.eccode];
+    _arrSession = [[NSMutableArray alloc]initWithArray:[[CoreDataManageContext newInstance] getSessionListWithSelfID:strSelfID]];
+    [_messageView.uitableview reloadData];
+}
 //添加聊天
 - (void)btnAddPeople
 {

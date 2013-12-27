@@ -79,7 +79,28 @@
     }else{
     [_uitableview reloadData];
     }
+    //添加观察者
+    [self addMessageObserver];
 }
+
+- (void)viewWillDisappear:(BOOL)animated{
+    //移除观察者
+    [self removeMessageObserver];
+}
+
+
+#pragma mark - 移除接受消息观察者
+- (void)removeMessageObserver{
+    [[NSNotificationCenter defaultCenter] removeObserver:self.controller name:NOTIFICATIONCHAT object:nil];//移除事件
+}
+
+#pragma mark - 添加接受消息观察者
+- (void)addMessageObserver{
+    [[NSNotificationCenter defaultCenter] addObserver:self.controller selector:@selector(getMessage:) name:NOTIFICATIONCHAT object:nil];
+}
+
+
+
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"MessageViewToOptionChatView"]) {
@@ -98,6 +119,9 @@
 
 - (void)btnAddPeople
 {}
+
+- (void)getMessage:(id)notification{
+}
 
 - (void)didReceiveMemoryWarning
 {

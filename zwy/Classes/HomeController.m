@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 sxit. All rights reserved.
 //
 #define NOTIFICATIONFIRSTNEWS @"notificationFirstNews"
+#define NOTIFICATIONMESSAGE @"notificationMessage"
+
 #import "HomeController.h"
 #import "Constants.h"
 #import "PackageData.h"
@@ -15,15 +17,15 @@
 #import "CoreDataManageContext.h"
 #import "PhotoOptional.h"
 #import "EditingChatPeoplesview.h"
+#import "CoreDataManageContext.h"
 @implementation HomeController{
     NSString *sign;
-
 }
 
 -(id)init{
     self=[super init];
     if(self){
-        
+        EX_chatMessageID=@"";
         [[NSNotificationCenter defaultCenter]addObserver:self
                                                 selector:@selector(handleData:)
                                                     name:xmlNotifInfo
@@ -39,6 +41,11 @@
                                                 selector:@selector(notificationFirstNews:)
                                                     name:NOTIFICATIONFIRSTNEWS
                                                   object:self];
+        
+
+        
+        //开启扫描信息定时器
+        if (EX_timerUpdateMessage)[EX_timerUpdateMessage setFireDate:[NSDate distantPast]];
     }
     return self;
 }

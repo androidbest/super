@@ -643,27 +643,37 @@ RespInfo *info=[RespInfo new];
 }
 
 //即时聊天接收信息
-+ (ChatMsgObj *)imRevice:(NSDictionary *)dic{
-   ChatMsgObj *obj=nil;
-   NSString *ret=[[[dic objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"ChatData"];
-    if(ret){
-        obj=[ChatMsgObj new];
-        obj.chattype=[[[[[[dic objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"ChatData"] objectForKey:@"ChatDataInfo"] objectForKey:@"chattype"] objectForKey:@"text"];
-        obj.content=[[[[[[dic objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"ChatData"] objectForKey:@"ChatDataInfo"] objectForKey:@"content"] objectForKey:@"text"];
-        obj.filepath=[[[[[[dic objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"ChatData"] objectForKey:@"ChatDataInfo"] objectForKey:@"filepath"] objectForKey:@"text"];
-        obj.groupid=[[[[[[dic objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"ChatData"] objectForKey:@"ChatDataInfo"] objectForKey:@"groupid"] objectForKey:@"text"];
-        obj.receivereccode=[[[[[[dic objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"ChatData"] objectForKey:@"ChatDataInfo"] objectForKey:@"receivereccode"] objectForKey:@"text"];
-        obj.receiveravatar=[[[[[[dic objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"ChatData"] objectForKey:@"ChatDataInfo"] objectForKey:@"receiverimgpath"] objectForKey:@"text"];
-        obj.receivermsisdn=[[[[[[dic objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"ChatData"] objectForKey:@"ChatDataInfo"] objectForKey:@"receivermsisdn"] objectForKey:@"text"];
-        obj.receivername=[[[[[[dic objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"ChatData"] objectForKey:@"ChatDataInfo"] objectForKey:@"receivername"] objectForKey:@"text"];
-        obj.sendeccode=[[[[[[dic objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"ChatData"] objectForKey:@"ChatDataInfo"] objectForKey:@"sendereccode"] objectForKey:@"text"];
-        obj.senderavatar=[[[[[[dic objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"ChatData"] objectForKey:@"ChatDataInfo"] objectForKey:@"senderimgpath"] objectForKey:@"text"];
-        obj.sendmsisdn=[[[[[[dic objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"ChatData"] objectForKey:@"ChatDataInfo"] objectForKey:@"sendermsisdn"] objectForKey:@"text"];
-        obj.sendname=[[[[[[dic objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"ChatData"] objectForKey:@"ChatDataInfo"] objectForKey:@"sendername"] objectForKey:@"text"];
-        obj.sendtime=[[[[[[dic objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"ChatData"] objectForKey:@"ChatDataInfo"] objectForKey:@"sendertime"] objectForKey:@"text"];
-        obj.voicetime=[[[[[[dic objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"ChatData"] objectForKey:@"ChatDataInfo"] objectForKey:@"voicetime"] objectForKey:@"text"];
++ (NSMutableArray *)imRevice:(NSDictionary *)dic{
+    
+    NSObject *objs =[[[[dic objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"ChatData"] objectForKey:@"ChatDataInfo"];
+    if (!objs) return nil;
+    NSArray * arr ;
+    if ([objs isKindOfClass:[NSArray class]]) {
+        arr=[NSArray arrayWithArray:(NSArray *)objs];
+    }else{
+        arr =[NSArray arrayWithObjects:(NSDictionary *)objs, nil];
     }
-   return obj;
+    
+    NSMutableArray *arrInfos =[[NSMutableArray alloc] init];
+    for (int i=0;i<arr.count; i++) {
+        ChatMsgObj * obj=[ChatMsgObj new];
+        obj.chattype=[[[arr objectAtIndex:i] objectForKey:@"chattype"] objectForKey:@"text"];
+        obj.content=[[[arr objectAtIndex:i] objectForKey:@"content"] objectForKey:@"text"];
+        obj.filepath=[[[arr objectAtIndex:i] objectForKey:@"filepath"] objectForKey:@"text"];
+        obj.groupid=[[[arr objectAtIndex:i] objectForKey:@"groupid"] objectForKey:@"text"];
+        obj.receivereccode=[[[arr objectAtIndex:i] objectForKey:@"receivereccode"] objectForKey:@"text"];
+        obj.receiveravatar=[[[arr objectAtIndex:i] objectForKey:@"receiverimgpath"] objectForKey:@"text"];
+        obj.receivermsisdn=[[[arr objectAtIndex:i] objectForKey:@"receivermsisdn"] objectForKey:@"text"];
+        obj.receivername=[[[arr objectAtIndex:i] objectForKey:@"receivername"] objectForKey:@"text"];
+        obj.sendeccode=[[[arr objectAtIndex:i] objectForKey:@"sendereccode"] objectForKey:@"text"];
+        obj.senderavatar=[[[arr objectAtIndex:i] objectForKey:@"senderimgpath"] objectForKey:@"text"];
+        obj.receivermsisdn=[[[arr objectAtIndex:i] objectForKey:@"sendermsisdn"] objectForKey:@"text"];
+        obj.sendname=[[[arr objectAtIndex:i] objectForKey:@"sendername"] objectForKey:@"text"];
+        obj.sendtime=[[[arr objectAtIndex:i] objectForKey:@"sendertime"] objectForKey:@"text"];
+        obj.voicetime=[[[arr objectAtIndex:i] objectForKey:@"voicetime"] objectForKey:@"text"];
+        [arrInfos addObject:obj];
+    }
+    return arrInfos;
 }
 
 //头像地址

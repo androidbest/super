@@ -197,11 +197,12 @@ NSString * stringTel =STRING_TEL(@"133");
 /*控制首页scrollView是否可以滑动*/
 - (void)viewDidAppear:(BOOL)animated{
      [self performSelector:@selector(setScrollViewContentSize) withObject:nil afterDelay:0.1f];
-     [(BaseTabbar *)self.tabBarController TabbarScrollEnabled:YES];
+  //   [(BaseTabbar *)self.tabBarController TabbarScrollEnabled:YES];
 }
 
 - (void)viewDidDisappear:(BOOL)animated{
-    [(BaseTabbar *)self.tabBarController TabbarScrollEnabled:NO];
+  //  [(BaseTabbar *)self.tabBarController TabbarScrollEnabled:NO];
+
 }
 
 - (void)setScrollViewContentSize{
