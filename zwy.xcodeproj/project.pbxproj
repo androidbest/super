@@ -156,6 +156,7 @@
 		5960E3C11860470300EA0FFA /* ChatMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5960E3C01860470300EA0FFA /* ChatMessageView.m */; };
 		5960E3C41860473700EA0FFA /* ContactsDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5960E3C31860473700EA0FFA /* ContactsDetailController.m */; };
 		5960E3CA1860491E00EA0FFA /* ChatMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5960E3C91860491E00EA0FFA /* ChatMessageController.m */; };
+		59618872186D596B005AAD81 /* addGroup.png in Resources */ = {isa = PBXBuildFile; fileRef = 59618871186D596B005AAD81 /* addGroup.png */; };
 		596B78C61861A2C100179CD1 /* ChatMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 596B78C51861A2C100179CD1 /* ChatMessageCell.m */; };
 		596D6EE218085004002CD0B3 /* NoticeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 596D6EE118085004002CD0B3 /* NoticeView.m */; };
 		596D6EE818085037002CD0B3 /* NoticeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 596D6EE718085037002CD0B3 /* NoticeController.m */; };
@@ -670,6 +671,7 @@
 		5960E3C31860473700EA0FFA /* ContactsDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsDetailController.m; sourceTree = "<group>"; };
 		5960E3C81860491E00EA0FFA /* ChatMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessageController.h; sourceTree = "<group>"; };
 		5960E3C91860491E00EA0FFA /* ChatMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessageController.m; sourceTree = "<group>"; };
+		59618871186D596B005AAD81 /* addGroup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addGroup.png; sourceTree = "<group>"; };
 		596B78C41861A2C100179CD1 /* ChatMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessageCell.h; sourceTree = "<group>"; };
 		596B78C51861A2C100179CD1 /* ChatMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessageCell.m; sourceTree = "<group>"; };
 		596D6EE018085004002CD0B3 /* NoticeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoticeView.h; sourceTree = "<group>"; };
@@ -1528,6 +1530,7 @@
 		595CB9B717F168BC00228A6E /* images */ = {
 			isa = PBXGroup;
 			children = (
+				59618871186D596B005AAD81 /* addGroup.png */,
 				59491F35186B32B900FF9B3F /* speaker_0.png */,
 				59491F36186B32B900FF9B3F /* speaker_1.png */,
 				59491F37186B32B900FF9B3F /* speaker_2.png */,
@@ -2486,6 +2489,7 @@
 				59491F29186B26E500FF9B3F /* voice_play.png in Resources */,
 				599D7D17181E2CE40099BE01 /* Safari-Small@2x.png in Resources */,
 				65A573E1183AFD930072A519 /* day.plist in Resources */,
+				59618872186D596B005AAD81 /* addGroup.png in Resources */,
 				5975C17A18067AA300EF7285 /* more_out@2x.png in Resources */,
 				595CB9F017F17EF100228A6E /* common.plist in Resources */,
 				65B3AC701819274200F2EC04 /* tabItem_SMS_out.png in Resources */,

@@ -13,6 +13,7 @@
 #import "PeopelInfo.h"
 #import "OptionChatPeopleView.h"
 #import "ChatMessageView.h"
+#import "CoreDataManageContext.h"
 @implementation MessageController{
     NSArray *arrLetter;
     NSArray *arrNumber;
@@ -56,6 +57,7 @@
 }
 #pragma mark -OptionChatPeopleDelegate
 - (void)MessageViewToChatMessageView:(NSArray *)peoples{
+ self.messageView.tabBarController.navigationItem.title=@"";
  [self.messageView performSegueWithIdentifier:@"msgtochat" sender:peoples];
 }
 

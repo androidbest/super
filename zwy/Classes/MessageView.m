@@ -56,12 +56,22 @@
     [_displayController setSearchResultsDataSource:self.controller];
     [_displayController setSearchResultsDelegate:self.controller];
     
+    
+    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    rightButton.frame = CGRectMake(0.0, 0.0, 35.0, 25.0);
+    [rightButton setImage:[UIImage imageNamed:@"addGroup"] forState:UIControlStateNormal];
+    [rightButton addTarget:self.controller action:@selector(btnAddPeople) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *temporaryBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
+    temporaryBarButtonItem.style = UIBarButtonItemStylePlain;
+    self.tabBarController.navigationItem.rightBarButtonItem=temporaryBarButtonItem;
+    
+//    UIBarButtonItem *rightButton  =[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self.controller action:@selector(btnAddPeople)];
+//    self.tabBarController.navigationItem.rightBarButtonItem=rightButton;
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    _info=nil;
     self.tabBarController.navigationItem.title=@"最近消息";
-    UIBarButtonItem *rightButton  =[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self.controller action:@selector(btnAddPeople)];
-    self.tabBarController.navigationItem.rightBarButtonItem=rightButton;
     NSString *strSelfID =[NSString stringWithFormat:@"%@%@",user.msisdn,user.eccode];
     ((MessageController *)self.controller).arrSession = [[NSMutableArray alloc]initWithArray:[[CoreDataManageContext new] getSessionListWithSelfID:strSelfID]];
     if(isfirst){
@@ -74,15 +84,16 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"MessageViewToOptionChatView"]) {
         [self.controller BasePrepareForSegue:segue sender:sender];
-        return;
     }else if ([segue.identifier isEqualToString:@"msgtochat"]){
-        [self.controller BasePrepareForSegue:segue sender:sender];
-        return;
+        if(_info){
+            //将page2设定成Storyboard Segue的目标UIViewController
+            id page2 = segue.destinationViewController;
+            //将值透过Storyboard Segue带给页面2的string变数
+            [page2 setValue:_info forKey:@"chatData"];
+        }else{
+            [self.controller BasePrepareForSegue:segue sender:sender];
+        }
     }
-    //将page2设定成Storyboard Segue的目标UIViewController
-    id page2 = segue.destinationViewController;
-    //将值透过Storyboard Segue带给页面2的string变数
-    [page2 setValue:_info forKey:@"chatData"];
 }
 
 - (void)btnAddPeople

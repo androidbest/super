@@ -106,6 +106,20 @@ static PhotoOptional * PhOption=nil;
     
 }
 - (void)PushNotification:(UIImage *)image{
-    blcokOptionalImgae(image);
+    blcokOptionalImgae([self imageContentWithSimple:image]);
+}
+
+//压缩图片
+- (UIImage *)imageContentWithSimple:(UIImage*)image{
+    float width =CGImageGetWidth(image.CGImage);
+    float height=CGImageGetHeight(image.CGImage);
+    float WroH=width/height;
+    NSData * data =UIImageJPEGRepresentation(image, 0.1);
+    image=[UIImage imageWithData:data];
+    UIGraphicsBeginImageContext(CGSizeMake(WroH*60, 60));
+    [image drawInRect:CGRectMake(0,0,WroH*60,60)];
+    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
 }
 @end

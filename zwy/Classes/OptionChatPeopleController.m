@@ -281,8 +281,8 @@ shouldReloadTableForSearchScope:(NSInteger)searchOption
     MBProgressHUD *hud =[MBProgressHUD showHUDAddedTo:self.optionView.navigationController.view animated:YES];
     hud.mode = MBProgressHUDModeText;
     hud.labelText =text;
-    hud.margin = 10.f;
-    hud.yOffset = 150.f;
+//    hud.margin = 10.f;
+//    hud.yOffset = 150.f;
     hud.removeFromSuperViewOnHide = YES;
     [hud hide:YES afterDelay:time];
 }

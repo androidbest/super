@@ -181,7 +181,17 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    if(_arrPeoples.count>0){
+        NSString *temp=@"";
+    for(PeopelInfo *info in _arrPeoples){
+        temp=[NSString stringWithFormat:@"%@,",[temp stringByAppendingString:info.Name]];
+    }
+    temp=[temp substringToIndex:temp.length-1];
+    self.navigationItem.title=temp;
+    }else{
     self.navigationItem.title=_chatData.Name;
+    }
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated

@@ -27,6 +27,7 @@
     NSInteger num;
     ChatMsgObj *obj;
     NSString *originWav;
+//    NSString *groupid;
 }
 
 -(id)init{
@@ -63,9 +64,9 @@
         chatObj.receivername=chat.chat_sessionObjct.session_receivername;
         chatObj.content=chat.chat_content;
         chatObj.sendtime=[ToolUtils NSDateToNSString:chat.chat_times format:@"yy/MM/dd HH:mm"];
-        chatObj.groupid=@"";
+        chatObj.groupid=chat.chat_sessionObjct.session_groupuuid;
         chatObj.senderavatar=user.headurl;
-        chatObj.filepath=@"";
+        chatObj.filepath=chat.chat_voiceurl;
         chatObj.status=chat.chat_status;
         [arrData addObject:chatObj];
         [arrTime addObject:chat.chat_times];
@@ -107,27 +108,41 @@
     
     NSDate *date=[NSDate date];
     [arrTime addObject:date];
-    NSDateFormatter * formatter = [NSDateFormatter new];
-    [formatter setDateFormat: @"yy/MM/dd HH:mm"];
+    if(self.chatMessageView.voicepress.tag==0){
+        obj=[ChatMsgObj new];
+        obj.chattype=@"0";
+        obj.sendeccode=user.eccode;
+        obj.sendmsisdn=user.msisdn;
+        obj.receivereccode=self.chatMessageView.chatData.eccode;
+        obj.receivermsisdn=self.chatMessageView.chatData.tel;
+        obj.receiveravatar=self.chatMessageView.chatData.headPath;
+        obj.receivername=self.chatMessageView.chatData.Name;
+        obj.content=self.chatMessageView.im_text.text;
+        obj.sendtime=[ToolUtils NSDateToNSString:date format:@"yy/MM/dd HH:mm"];
+        obj.sendtimeNSdate=date;
+        obj.groupid=@"";
+        obj.senderavatar=user.headurl;
+        obj.filepath=@"";
+        obj.status=@"1";
+    }else{
+        obj=[ChatMsgObj new];
+        obj.chattype=@"1";
+        obj.sendeccode=user.eccode;
+        obj.sendmsisdn=user.msisdn;
+        obj.receivereccode=self.chatMessageView.chatData.eccode;
+        obj.receivermsisdn=self.chatMessageView.chatData.tel;
+        obj.receiveravatar=self.chatMessageView.chatData.headPath;
+        obj.receivername=self.chatMessageView.chatData.Name;
+        obj.content=self.chatMessageView.im_text.text;
+        obj.sendtime=[ToolUtils NSDateToNSString:date format:@"yy/MM/dd HH:mm"];
+        obj.sendtimeNSdate=date;
+        obj.groupid=@"";
+        obj.senderavatar=user.headurl;
+        obj.filepath=@"";
+        obj.status=@"1";
+    }
     
-    obj=[ChatMsgObj new];
-    obj.chattype=@"0";
-    obj.sendeccode=user.eccode;
-    obj.sendmsisdn=user.msisdn;
-    obj.receivereccode=self.chatMessageView.chatData.eccode;
-    obj.receivermsisdn=self.chatMessageView.chatData.tel;
-    obj.receiveravatar=self.chatMessageView.chatData.headPath;
-    obj.receivername=self.chatMessageView.chatData.Name;
-    obj.content=self.chatMessageView.im_text.text;
-    obj.sendtime=[formatter stringFromDate:date];
-    obj.sendtimeNSdate=date;
-    obj.groupid=@"";
-    obj.senderavatar=user.headurl;
-    obj.filepath=@"";
-    obj.status=@"1";
     [packageData imSend:self chat:obj];
-    
-    
     [arrData addObject:obj];
     [arrTime addObject:date];
     self.chatMessageView.im_text.text=nil;
@@ -290,6 +305,7 @@
         self.chatMessageView.im_text.hidden=YES;
         self.chatMessageView.voiceSend.hidden=NO;
         [self.chatMessageView.voicepress setBackgroundImage:[UIImage imageNamed:@"voice_play"] forState:UIControlStateNormal];
+        [self.chatMessageView.im_text resignFirstResponder];
         btn.tag=1;
     }else{
         self.chatMessageView.send.hidden=NO;

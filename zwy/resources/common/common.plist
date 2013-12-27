@@ -7,10 +7,10 @@
 	<key>helpurl</key>
 	<string>http://218.206.4.38:8081/phoneservice/help.html</string>
 	<key>httpurl</key>
-	<string>http://192.168.0.200:7778/phoneservice/</string>
+	<string>http://192.168.0.137:8989/phoenix/</string>
 	<key>temphttpurl</key>
 	<string>http://218.206.4.38:8081/phoneservice/</string>
 	<key>hosturl</key>
-	<string>http://192.168.0.200:7778/</string>
+	<string>http://192.168.0.137:8989</string>
 </dict>
 </plist>
