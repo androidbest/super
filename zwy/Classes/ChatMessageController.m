@@ -26,6 +26,8 @@
     NSMutableArray *arrBool;//判断高度
     NSInteger num;
     ChatMsgObj *obj;
+    NSMutableArray *chatMsgObjArr;//群组发送者临时的数组
+    NSString *grouid;
     NSString *originWav;
 //    NSString *groupid;
 }
@@ -37,18 +39,37 @@
         arrData=[NSMutableArray new];
         arrTime=[NSMutableArray new];
         arrBool=[NSMutableArray new];
+        chatMsgObjArr=[NSMutableArray new];
         [[NSNotificationCenter defaultCenter]addObserver:self
                                                 selector:@selector(handleData:)
                                                     name:xmlNotifInfo
                                                   object:self];
-        
 
     }
     return self;
 }
 
+//初始化数据
 -(void)initDatatoData{
     PeopelInfo *info=self.chatMessageView.chatData;
+    
+    //群组处理
+    if(info.groupID&&![info.groupID isEqualToString:@"null"]&&![info.groupID isEqualToString:@""]){
+        grouid=info.groupID;
+        NSArray * msisdn =[info.tel componentsSeparatedByString:@","];
+        NSArray * name =[info.Name componentsSeparatedByString:@","];
+        NSArray * headPath =[info.headPath componentsSeparatedByString:@","];
+        for(int i=0;i<msisdn.count;i++){
+            PeopelInfo *peopel=[PeopelInfo new];
+            peopel.Name=name[i];
+            peopel.tel=msisdn[i];
+            peopel.headPath=headPath[i];
+            peopel.eccode=user.eccode;
+            [self.chatMessageView.arrPeoples addObject:peopel];
+        }
+    }
+    
+    //读取聊天记录
     NSString *chatMessageID =[NSString stringWithFormat:@"%@%@%@%@",user.msisdn,user.eccode,info.tel,info.eccode];
     //        [arrData addObjectsFromArray:];
     NSArray *tempArr=[[CoreDataManageContext newInstance] getUserChatMessageWithChatMessageID:chatMessageID FetchOffset:num FetchLimit:10];
@@ -88,8 +109,8 @@
     if(dic){
         RespInfo *info=[AnalysisData imSend:dic];
         if([info.respCode isEqualToString:@"0"]){
-           //发送成功
-            [[CoreDataManageContext newInstance] setChatInfo:obj status:@"0" isChek:YES];
+           //发送成功,入本地数据库
+            [[CoreDataManageContext newInstance] setChatInfo:obj status:@"0" isChek:YES gid:grouid arr:chatMsgObjArr];
         }else{
         //发送失败
             
@@ -113,49 +134,109 @@
 
 
 -(void)sendMessage{
-    
+    [chatMsgObjArr removeAllObjects];
     NSDate *date=[NSDate date];
-    [arrTime addObject:date];
-    if(self.chatMessageView.voicepress.tag==0){
-        obj=[ChatMsgObj new];
-        obj.chattype=@"0";
-        obj.sendeccode=user.eccode;
-        obj.sendmsisdn=user.msisdn;
-        obj.receivereccode=self.chatMessageView.chatData.eccode;
-        obj.receivermsisdn=self.chatMessageView.chatData.tel;
-        obj.receiveravatar=self.chatMessageView.chatData.headPath;
-        obj.receivername=self.chatMessageView.chatData.Name;
-        obj.content=self.chatMessageView.im_text.text;
-        obj.sendtime=[ToolUtils NSDateToNSString:date format:@"yy/MM/dd HH:mm"];
-        obj.sendtimeNSdate=date;
-        obj.groupid=@"";
-        obj.senderavatar=user.headurl;
-        obj.filepath=@"";
-        obj.status=@"1";
+//    NSString *groupid=[ToolUtils uuid];
+    if(self.chatMessageView.arrPeoples.count>0){
+        
+        NSString *temp=nil;
+        for(PeopelInfo *info in self.chatMessageView.arrPeoples){
+         temp=[NSString stringWithFormat:@"%@,",[temp stringByAppendingString:info.Name]];
+        }
+        temp=[temp substringToIndex:temp.length-1];
+        
+        if(!(grouid&&![grouid isEqualToString:@"null"])){
+           grouid=[ToolUtils uuid];
+        }
+        
+        //如果是群组，是多人接收
+        for(PeopelInfo *info in self.chatMessageView.arrPeoples){
+            if(self.chatMessageView.voicepress.tag==0){
+                obj=[ChatMsgObj new];
+                obj.chattype=@"0";
+                obj.sendeccode=user.eccode;
+                obj.sendmsisdn=user.msisdn;
+                obj.receivereccode=info.eccode;
+                obj.receivermsisdn=info.tel;
+                obj.receiveravatar=info.headPath;
+                obj.receivername=temp;
+                obj.content=self.chatMessageView.im_text.text;
+                obj.sendtime=[ToolUtils NSDateToNSString:date format:@"yy/MM/dd HH:mm"];
+                obj.sendtimeNSdate=date;
+                obj.groupid=grouid;
+                obj.senderavatar=user.headurl;
+                obj.filepath=@"";
+                obj.status=@"0";
+                
+                self.chatMessageView.im_text.text=nil;
+                [self.chatMessageView.send setEnabled:NO];
+                [self.chatMessageView.send setAlpha:0.4];
+            }else{
+                obj=[ChatMsgObj new];
+                obj.chattype=@"1";
+                obj.sendeccode=user.eccode;
+                obj.sendmsisdn=user.msisdn;
+                obj.receivereccode=info.eccode;
+                obj.receivermsisdn=info.tel;
+                obj.receiveravatar=info.headPath;
+                obj.receivername=temp;
+                obj.content=self.chatMessageView.im_text.text;
+                obj.sendtime=[ToolUtils NSDateToNSString:date format:@"yy/MM/dd HH:mm"];
+                obj.sendtimeNSdate=date;
+                obj.groupid=grouid;
+                obj.senderavatar=user.headurl;
+                obj.filepath=@"";
+                obj.status=@"0";
+            }
+            [packageData imSend:self chat:obj];
+            [chatMsgObjArr addObject:obj];
+        }
+        
     }else{
-        obj=[ChatMsgObj new];
-        obj.chattype=@"1";
-        obj.sendeccode=user.eccode;
-        obj.sendmsisdn=user.msisdn;
-        obj.receivereccode=self.chatMessageView.chatData.eccode;
-        obj.receivermsisdn=self.chatMessageView.chatData.tel;
-        obj.receiveravatar=self.chatMessageView.chatData.headPath;
-        obj.receivername=self.chatMessageView.chatData.Name;
-        obj.content=self.chatMessageView.im_text.text;
-        obj.sendtime=[ToolUtils NSDateToNSString:date format:@"yy/MM/dd HH:mm"];
-        obj.sendtimeNSdate=date;
-        obj.groupid=@"";
-        obj.senderavatar=user.headurl;
-        obj.filepath=@"";
-        obj.status=@"1";
+        //单个，单人接收
+        if(self.chatMessageView.voicepress.tag==0){
+            obj=[ChatMsgObj new];
+            obj.chattype=@"0";
+            obj.sendeccode=user.eccode;
+            obj.sendmsisdn=user.msisdn;
+            obj.receivereccode=self.chatMessageView.chatData.eccode;
+            obj.receivermsisdn=self.chatMessageView.chatData.tel;
+            obj.receiveravatar=self.chatMessageView.chatData.headPath;
+            obj.receivername=self.chatMessageView.chatData.Name;
+            obj.content=self.chatMessageView.im_text.text;
+            obj.sendtime=[ToolUtils NSDateToNSString:date format:@"yy/MM/dd HH:mm"];
+            obj.sendtimeNSdate=date;
+            obj.groupid=@"";
+            obj.senderavatar=user.headurl;
+            obj.filepath=@"";
+            obj.status=@"0";
+            
+            self.chatMessageView.im_text.text=nil;
+            [self.chatMessageView.send setEnabled:NO];
+            [self.chatMessageView.send setAlpha:0.4];
+        }else{
+            obj=[ChatMsgObj new];
+            obj.chattype=@"1";
+            obj.sendeccode=user.eccode;
+            obj.sendmsisdn=user.msisdn;
+            obj.receivereccode=self.chatMessageView.chatData.eccode;
+            obj.receivermsisdn=self.chatMessageView.chatData.tel;
+            obj.receiveravatar=self.chatMessageView.chatData.headPath;
+            obj.receivername=self.chatMessageView.chatData.Name;
+            obj.content=self.chatMessageView.im_text.text;
+            obj.sendtime=[ToolUtils NSDateToNSString:date format:@"yy/MM/dd HH:mm"];
+            obj.sendtimeNSdate=date;
+            obj.groupid=@"";
+            obj.senderavatar=user.headurl;
+            obj.filepath=@"";
+            obj.status=@"0";
+        }
+        [packageData imSend:self chat:obj];
     }
     
-    [packageData imSend:self chat:obj];
+    
     [arrData addObject:obj];
     [arrTime addObject:date];
-    self.chatMessageView.im_text.text=nil;
-    [self.chatMessageView.send setEnabled:NO];
-    [self.chatMessageView.send setAlpha:0.4];
     [arrBool removeAllObjects];
     [self.chatMessageView.tableview reloadData];
     NSInteger rows = [self.chatMessageView.tableview numberOfRowsInSection:0];
@@ -267,6 +348,7 @@
         return cell;
 }
 
+//点击左边头像
 -(void)leftPushDetail:(UIButton *)btn{
     NSMutableArray  *arr = [ConfigFile setEcNumberInfo];
     NSString *strSearchbar =[NSString stringWithFormat:@"SELF.tel CONTAINS '%@'",[ToolUtils numToString:btn.tag]];
@@ -286,6 +368,7 @@
    [self.chatMessageView performSegueWithIdentifier:@"chattoDetailhead" sender:self.chatMessageView];
 }
 
+//点击右边头像
 -(void)rightPushDetail:(UIButton *)btn{
     NSMutableArray  *arr = [ConfigFile setEcNumberInfo];
     NSString *strSearchbar =[NSString stringWithFormat:@"SELF.tel CONTAINS '%@'",user.msisdn];

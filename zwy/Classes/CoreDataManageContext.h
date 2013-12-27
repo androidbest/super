@@ -23,7 +23,7 @@
 - (NSArray *)getSessionListWithSelfID:(NSString *)selfID;
 
 #pragma mark -接受、发送消息，更新表单信息
-- (void)setChatInfo:(ChatMsgObj *)messageObjct status:(NSString *)chatType isChek:(BOOL)isChek;
+- (void)setChatInfo:(ChatMsgObj *)messageObjct status:(NSString *)chatType isChek:(BOOL)isChek gid:(NSString *)gid arr:(NSMutableArray*)arr;
 
 #pragma mark -获取对应的聊天记录
 - (NSArray *)getUserChatMessageWithChatMessageID:(NSString *)chatMessageID FetchOffset:(NSUInteger)offset FetchLimit:(NSUInteger)limit;

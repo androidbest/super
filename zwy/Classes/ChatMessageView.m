@@ -23,6 +23,9 @@
 -(id)initWithCoder:(NSCoder *)aDecoder{
     self=[super initWithCoder:aDecoder];
     if(self){
+        
+        if (!_arrPeoples) _arrPeoples=[[NSMutableArray alloc] init];
+        
         ChatMessageController *contacts=[ChatMessageController new];
         contacts.chatMessageView=self;
         self.controller=contacts;
@@ -37,7 +40,7 @@
                                                  selector:@selector(handleWillHideKeyboard:)
                                                      name:UIKeyboardWillHideNotification
                                                    object:nil];
-         if (!_arrPeoples) _arrPeoples=[[NSMutableArray alloc] init];
+        
     }
     return self;
 }
@@ -45,6 +48,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    if (!(_arrPeoples.count>0)) {
+        [((ChatMessageController *)self.controller) initDatatoData];
+    }
+    
     if (_arrPeoples.count>0) {
         UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         rightBtn.frame = CGRectMake(0.0, 0.0, 25.0, 25.0);
@@ -130,25 +138,22 @@
     [swipeRecognizer setDirection:UISwipeGestureRecognizerDirectionDown];
     [_tableview addGestureRecognizer:swipeRecognizer];
     
-    
-    [((ChatMessageController *)self.controller) initDatatoData];
-    
     [self.view addSubview:_tableview];
     [self.view addSubview:_toolbar];
     
     //初始化播放器的时候如下设置
-//    UInt32 sessionCategory = kAudioSessionCategory_MediaPlayback;
-//    AudioSessionSetProperty(kAudioSessionProperty_AudioCategory,
-//                            sizeof(sessionCategory),
-//                            &sessionCategory);
-//    
-//    UInt32 audioRouteOverride = kAudioSessionOverrideAudioRoute_Speaker;
-//    AudioSessionSetProperty (kAudioSessionProperty_OverrideCategoryDefaultToSpeaker,sizeof (audioRouteOverride),&audioRouteOverride);
-//    
-//    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
-//    //默认情况下扬声器播放
-//    [audioSession setActive:YES error:nil];
-//    [audioSession setCategory:AVAudioSessionCategoryPlayback error:nil];
+    UInt32 sessionCategory = kAudioSessionCategory_MediaPlayback;
+    AudioSessionSetProperty(kAudioSessionProperty_AudioCategory,
+                            sizeof(sessionCategory),
+                            &sessionCategory);
+    
+    UInt32 audioRouteOverride = kAudioSessionOverrideAudioRoute_Speaker;
+    AudioSessionSetProperty (kAudioSessionProperty_OverrideCategoryDefaultToSpeaker,sizeof (audioRouteOverride),&audioRouteOverride);
+    
+    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+    //默认情况下扬声器播放
+    [audioSession setActive:YES error:nil];
+    [audioSession setCategory:AVAudioSessionCategoryPlayback error:nil];
     
     
     //初始化录音vc

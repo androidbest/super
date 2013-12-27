@@ -112,7 +112,11 @@
     }
    
     PeopelInfo *info=[PeopelInfo new];
-    info.tel=sessionInfo.session_receivermsisdn;
+    if(sessionInfo.session_groupuuid&&![sessionInfo.session_groupuuid isEqualToString:@"null"]){
+        info.tel=sessionInfo.session_groupuuid;
+    }else{
+        info.tel=sessionInfo.session_receivermsisdn;
+    }
     info.eccode=sessionInfo.session_receivereccode;
     info.headPath=sessionInfo.session_receiveravatar;
     info.groupID=sessionInfo.session_groupuuid;
@@ -120,7 +124,6 @@
     self.messageView.info=info;
     self.messageView.tabBarController.navigationItem.title=@"";
     [self.messageView performSegueWithIdentifier:@"msgtochat" sender:self.messageView];
-    
      [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 #pragma mark - UISearchDisplayDelegate

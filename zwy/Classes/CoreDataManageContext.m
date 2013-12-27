@@ -67,57 +67,137 @@ static CoreDataManageContext *coreData=nil;
  *chatType: 0.自己发 1.对方发
  *isChek: 如果已点击查看为 YES ,否则 NO
  */
-- (void)setChatInfo:(ChatMsgObj *)messageObjct status:(NSString *)chatType isChek:(BOOL)isChek{
+- (void)setChatInfo:(ChatMsgObj *)messageObjct status:(NSString *)chatType isChek:(BOOL)isChek gid:(NSString *)gid arr:(NSMutableArray*)arr{
     NSEntityDescription * emEty = [NSEntityDescription entityForName:@"SessionEntity" inManagedObjectContext:self.managedObjectContext];
     NSFetchRequest *frq = [[NSFetchRequest alloc]init];
     [frq setEntity:emEty];
     
-    //设置搜索条件
-    NSString *chatMessageID =[NSString stringWithFormat:@"%@%@%@%@",user.msisdn,user.eccode,messageObjct.receivermsisdn,messageObjct.receivereccode];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"session_chatMessageID == %@", chatMessageID];
-    [frq setPredicate:predicate];
-    
-    NSArray *objs =[self.managedObjectContext executeFetchRequest:frq error:nil];
-    
-    //获取对应的实体
-    SessionEntity *Sessions=nil;
-    if (objs.count<=0){
-        Sessions =(SessionEntity *)[[NSManagedObject alloc] initWithEntity:emEty insertIntoManagedObjectContext:self.managedObjectContext];
-        Sessions.session_groupuuid=messageObjct.groupid;
-        Sessions.session_chatMessageID=chatMessageID;
-        Sessions.session_receivermsisdn=messageObjct.receivermsisdn;
-        Sessions.session_receivereccode=messageObjct.receivereccode;
-        Sessions.session_selfid=[user.msisdn stringByAppendingString:user.eccode];
-        Sessions.session_pinyinName =[ToolUtils pinyinFromString:messageObjct.receivername];
+    NSString *chatMessageID=@"";
+    if(gid&&![gid isEqualToString:@"null"]&&![gid isEqualToString:@""]){
+    chatMessageID =[NSString stringWithFormat:@"%@%@%@%@",user.msisdn,user.eccode,gid,messageObjct.receivereccode];
+        
+        //设置搜索条件
+        
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"session_chatMessageID == %@", chatMessageID];
+        [frq setPredicate:predicate];
+        NSArray *objs =[self.managedObjectContext executeFetchRequest:frq error:nil];
+        
+        NSString *msisdn=@"";
+        NSString *eccode=@"";
+        NSString *name=@"";
+        NSString *content=@"";
+        NSString *avatar=@"";
+        NSString *tims=@"";
+        if(arr.count>0){
+            
+//            for(PeopelInfo *info in _arrPeoples){
+//                temp=[NSString stringWithFormat:@"%@,",[temp stringByAppendingString:info.Name]];
+//            }
+//            temp=[temp substringToIndex:temp.length-1];
+            
+            for(ChatMsgObj *msgobj in arr){
+            msisdn=[NSString stringWithFormat:@"%@,",[msisdn stringByAppendingString:msgobj.receivermsisdn]];
+            eccode=msgobj.receivereccode;
+            name=[NSString stringWithFormat:@"%@,",[name stringByAppendingString:msgobj.receivername]];
+            content=msgobj.content;
+            avatar=[NSString stringWithFormat:@"%@,",[avatar stringByAppendingString:msgobj.receiveravatar]];
+            tims=msgobj.sendtime;
+            }
+            msisdn=[msisdn substringToIndex:msisdn.length-1];
+            name=[name substringToIndex:name.length-1];
+            avatar=[avatar substringToIndex:avatar.length-1];
+        }
+        
+        
+        //获取对应的实体
+        SessionEntity *Sessions=nil;
+        if (objs.count<=0){
+            Sessions =(SessionEntity *)[[NSManagedObject alloc] initWithEntity:emEty insertIntoManagedObjectContext:self.managedObjectContext];
+            Sessions.session_groupuuid=gid;
+            Sessions.session_chatMessageID=chatMessageID;
+            Sessions.session_receivermsisdn=msisdn;
+            Sessions.session_receivereccode=eccode;
+            Sessions.session_selfid=[user.msisdn stringByAppendingString:user.eccode];
+            Sessions.session_pinyinName =[ToolUtils pinyinFromString:name];
+        }else{
+            Sessions=objs[0];
+        }
+        
+        //更新Sessions消息
+        Sessions.session_receiveravatar=avatar;
+        Sessions.session_receivername=name;
+        Sessions.session_content=content;
+        if (isChek) Sessions.session_unreadcount =@"0";
+        else Sessions.session_unreadcount=[NSString stringWithFormat:@"%d",[Sessions.session_unreadcount intValue]+1];
+        Sessions.session_times =[ToolUtils NSStringToNSDate:tims format:@"yy/MM/dd HH:mm"];
+        
+        
+        if(arr.count>0){
+            for(ChatMsgObj *msgobj in arr){
+                //插入聊天记录
+                ChatEntity *chatInfo =[NSEntityDescription insertNewObjectForEntityForName:@"ChatEntity" inManagedObjectContext:self.managedObjectContext];
+                chatInfo.chat_groupuuid=messageObjct.groupid;
+                chatInfo.chat_groupname=messageObjct.receivername;
+                chatInfo.chat_times=[ToolUtils NSStringToNSDate:messageObjct.sendtime format:@"yy/MM/dd HH:mm"];
+                chatInfo.chat_msgtype=messageObjct.chattype;
+                chatInfo.chat_content=messageObjct.content;
+                chatInfo.chat_voiceurl=messageObjct.filepath;
+                chatInfo.chat_MessageID=chatMessageID;
+                chatInfo.chat_status=chatType;
+                chatInfo.chat_sessionObjct=Sessions;
+                [Sessions addSession_chatsObject:chatInfo];
+            }
+        }
+       
+        [self saveContext];//保存
     }else{
-        Sessions=objs[0];
+    chatMessageID =[NSString stringWithFormat:@"%@%@%@%@",user.msisdn,user.eccode,messageObjct.receivermsisdn,messageObjct.receivereccode];
+        
+        //设置搜索条件
+        
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"session_chatMessageID == %@", chatMessageID];
+        [frq setPredicate:predicate];
+        
+        NSArray *objs =[self.managedObjectContext executeFetchRequest:frq error:nil];
+        
+        //获取对应的实体
+        SessionEntity *Sessions=nil;
+        if (objs.count<=0){
+            Sessions =(SessionEntity *)[[NSManagedObject alloc] initWithEntity:emEty insertIntoManagedObjectContext:self.managedObjectContext];
+            Sessions.session_groupuuid=messageObjct.groupid;
+            Sessions.session_chatMessageID=chatMessageID;
+            Sessions.session_receivermsisdn=messageObjct.receivermsisdn;
+            Sessions.session_receivereccode=messageObjct.receivereccode;
+            Sessions.session_selfid=[user.msisdn stringByAppendingString:user.eccode];
+            Sessions.session_pinyinName =[ToolUtils pinyinFromString:messageObjct.receivername];
+        }else{
+            Sessions=objs[0];
+        }
+        
+        //更新Sessions消息
+        Sessions.session_receiveravatar=messageObjct.receiveravatar;
+        Sessions.session_receivername=messageObjct.receivername;
+        Sessions.session_content=messageObjct.content;
+        if (isChek) Sessions.session_unreadcount =@"0";
+        else Sessions.session_unreadcount=[NSString stringWithFormat:@"%d",[Sessions.session_unreadcount intValue]+1];
+        Sessions.session_times =[ToolUtils NSStringToNSDate:messageObjct.sendtime format:@"yy/MM/dd HH:mm"];
+        
+        //插入聊天记录
+        ChatEntity *chatInfo =[NSEntityDescription insertNewObjectForEntityForName:@"ChatEntity" inManagedObjectContext:self.managedObjectContext];
+        chatInfo.chat_groupuuid=messageObjct.groupid;
+        chatInfo.chat_groupname=messageObjct.receivername;
+        chatInfo.chat_times=[ToolUtils NSStringToNSDate:messageObjct.sendtime format:@"yy/MM/dd HH:mm"];
+        chatInfo.chat_msgtype=messageObjct.chattype;
+        chatInfo.chat_content=messageObjct.content;
+        chatInfo.chat_voiceurl=messageObjct.filepath;
+        chatInfo.chat_MessageID=chatMessageID;
+        chatInfo.chat_status=chatType;
+        chatInfo.chat_sessionObjct=Sessions;
+        
+        [Sessions addSession_chatsObject:chatInfo];
+        [self saveContext];//保存
     }
-    
-    //更新Sessions消息
-    Sessions.session_receiveravatar=messageObjct.receiveravatar;
-    Sessions.session_receivername=messageObjct.receivername;
-    Sessions.session_content=messageObjct.content;
-    if (isChek) Sessions.session_unreadcount =@"0";
-    else Sessions.session_unreadcount=[NSString stringWithFormat:@"%d",[Sessions.session_unreadcount intValue]+1];
-    Sessions.session_times =[ToolUtils NSStringToNSDate:messageObjct.sendtime format:@"yy/MM/dd HH:mm"];
-    
-    //插入聊天记录
-    ChatEntity *chatInfo =[NSEntityDescription insertNewObjectForEntityForName:@"ChatEntity" inManagedObjectContext:self.managedObjectContext];
-    chatInfo.chat_groupuuid=messageObjct.groupid;
-    chatInfo.chat_groupname=messageObjct.receivername;
-    chatInfo.chat_times=[ToolUtils NSStringToNSDate:messageObjct.sendtime format:@"yy/MM/dd HH:mm"];
-    chatInfo.chat_msgtype=messageObjct.chattype;
-    chatInfo.chat_content=messageObjct.content;
-    chatInfo.chat_voiceurl=messageObjct.filepath;
-    chatInfo.chat_MessageID=chatMessageID;
-    chatInfo.chat_status=chatType;
-    chatInfo.chat_sessionObjct=Sessions;
-    
-    [Sessions addSession_chatsObject:chatInfo];
-    [self saveContext];//保存
-}
-
-
+   }
 /*
  *获取对应聊天记录
  *返回object为“ChatEntity”
