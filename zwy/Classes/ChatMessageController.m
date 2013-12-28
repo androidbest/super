@@ -55,7 +55,7 @@
     NSString *temp=@"";
     
     //群组处理
-    if(info.imGroupid&&![info.imGroupid isEqualToString:@"null"]&&![info.imGroupid isEqualToString:@""]){
+    if(info.imGroupid&&![info.imGroupid isEqualToString:@"null"]&&![info.imGroupid isEqualToString:@""]&&![info.imGroupid isEqualToString:@"(null)"]){
         grouid=info.imGroupid;
         NSArray * msisdn =[info.tel componentsSeparatedByString:@","];
         NSArray * name =[info.Name componentsSeparatedByString:@","];
