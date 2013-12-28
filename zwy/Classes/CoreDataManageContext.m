@@ -136,8 +136,11 @@ static CoreDataManageContext *coreData=nil;
     if(gid&&![gid isEqualToString:@"null"]&&![gid isEqualToString:@""]){
     chatMessageID =[NSString stringWithFormat:@"%@%@%@%@",user.msisdn,user.eccode,gid,messageObjct.receivereccode];
         
-        //设置搜索条件
+        //去除特殊字符
+        NSCharacterSet *set = [NSCharacterSet characterSetWithCharactersInString:@"\r\n"];
+        chatMessageID = [chatMessageID stringByTrimmingCharactersInSet:set];
         
+        //设置搜索条件
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"session_chatMessageID == %@", chatMessageID];
         [frq setPredicate:predicate];
         NSArray *objs =[self.managedObjectContext executeFetchRequest:frq error:nil];
@@ -200,6 +203,10 @@ static CoreDataManageContext *coreData=nil;
         [self saveContext];//保存
     }else{
     chatMessageID =[NSString stringWithFormat:@"%@%@%@%@",user.msisdn,user.eccode,messageObjct.receivermsisdn,messageObjct.receivereccode];
+        
+        //去除特殊字符
+        NSCharacterSet *set = [NSCharacterSet characterSetWithCharactersInString:@"\r\n"];
+        chatMessageID = [chatMessageID stringByTrimmingCharactersInSet:set];
         
         //设置搜索条件
         
