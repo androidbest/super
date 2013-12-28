@@ -112,14 +112,14 @@
     }
    
     PeopelInfo *info=[PeopelInfo new];
-    if(sessionInfo.session_groupuuid&&![sessionInfo.session_groupuuid isEqualToString:@"null"]){
+    if(sessionInfo.session_groupuuid&&![sessionInfo.session_groupuuid isEqualToString:@"null"]&&![sessionInfo.session_groupuuid isEqualToString:@""]){
         info.tel=sessionInfo.session_groupuuid;
     }else{
         info.tel=sessionInfo.session_receivermsisdn;
     }
     info.eccode=sessionInfo.session_receivereccode;
     info.headPath=sessionInfo.session_receiveravatar;
-    info.groupID=sessionInfo.session_groupuuid;
+    info.imGroupid=sessionInfo.session_groupuuid;
     info.Name=sessionInfo.session_receivername;
     self.messageView.info=info;
     self.messageView.tabBarController.navigationItem.title=@"";

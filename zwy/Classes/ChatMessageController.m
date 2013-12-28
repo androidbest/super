@@ -54,8 +54,8 @@
     PeopelInfo *info=self.chatMessageView.chatData;
     
     //群组处理
-    if(info.groupID&&![info.groupID isEqualToString:@"null"]&&![info.groupID isEqualToString:@""]){
-        grouid=info.groupID;
+    if(info.imGroupid&&![info.imGroupid isEqualToString:@"null"]&&![info.imGroupid isEqualToString:@""]){
+        grouid=info.imGroupid;
         NSArray * msisdn =[info.tel componentsSeparatedByString:@","];
         NSArray * name =[info.Name componentsSeparatedByString:@","];
         NSArray * headPath =[info.headPath componentsSeparatedByString:@","];
@@ -123,6 +123,7 @@
 //编辑群组人员
 - (void)rightDown
 {
+//    [self.chatMessageView.im_text resignFirstResponder];
     [self.chatMessageView performSegueWithIdentifier:@"ChatMessageToEditingPeoplesView" sender:nil];
 }
 - (void)BasePrepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
@@ -139,13 +140,13 @@
 //    NSString *groupid=[ToolUtils uuid];
     if(self.chatMessageView.arrPeoples.count>0){
         
-        NSString *temp=nil;
+        NSString *temp=@"";
         for(PeopelInfo *info in self.chatMessageView.arrPeoples){
          temp=[NSString stringWithFormat:@"%@,",[temp stringByAppendingString:info.Name]];
         }
         temp=[temp substringToIndex:temp.length-1];
         
-        if(!(grouid&&![grouid isEqualToString:@"null"])){
+        if(!(grouid&&![grouid isEqualToString:@"null"]&&![grouid isEqualToString:@""])){
            grouid=[ToolUtils uuid];
         }
         
@@ -168,9 +169,7 @@
                 obj.filepath=@"";
                 obj.status=@"0";
                 
-                self.chatMessageView.im_text.text=nil;
-                [self.chatMessageView.send setEnabled:NO];
-                [self.chatMessageView.send setAlpha:0.4];
+                
             }else{
                 obj=[ChatMsgObj new];
                 obj.chattype=@"1";
@@ -192,6 +191,13 @@
             [chatMsgObjArr addObject:obj];
         }
         
+        if(self.chatMessageView.voicepress.tag==0){
+            self.chatMessageView.im_text.text=nil;
+            [self.chatMessageView.send setEnabled:NO];
+            [self.chatMessageView.send setAlpha:0.4];
+        }
+       
+        
     }else{
         //单个，单人接收
         if(self.chatMessageView.voicepress.tag==0){
@@ -206,7 +212,6 @@
             obj.content=self.chatMessageView.im_text.text;
             obj.sendtime=[ToolUtils NSDateToNSString:date format:@"yy/MM/dd HH:mm"];
             obj.sendtimeNSdate=date;
-            obj.groupid=@"";
             obj.senderavatar=user.headurl;
             obj.filepath=@"";
             obj.status=@"0";
@@ -226,7 +231,6 @@
             obj.content=self.chatMessageView.im_text.text;
             obj.sendtime=[ToolUtils NSDateToNSString:date format:@"yy/MM/dd HH:mm"];
             obj.sendtimeNSdate=date;
-            obj.groupid=@"";
             obj.senderavatar=user.headurl;
             obj.filepath=@"";
             obj.status=@"0";
