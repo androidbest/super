@@ -667,7 +667,6 @@ RespInfo *info=[RespInfo new];
         obj.receivername=[[[arr objectAtIndex:i] objectForKey:@"sendername"] objectForKey:@"text"];
         obj.sendeccode=[[[arr objectAtIndex:i] objectForKey:@"sendereccode"] objectForKey:@"text"];
         obj.senderavatar=[[[arr objectAtIndex:i] objectForKey:@"senderimgpath"] objectForKey:@"text"];
-        obj.receivermsisdn=[[[arr objectAtIndex:i] objectForKey:@"receivermsisdn"] objectForKey:@"text"];
         obj.sendmsisdn =[[[arr objectAtIndex:i] objectForKey:@"receivermsisdn"] objectForKey:@"text"];
         obj.sendname=[[[arr objectAtIndex:i] objectForKey:@"receivername"] objectForKey:@"text"];
         obj.sendtime=[[[arr objectAtIndex:i] objectForKey:@"sendertime"] objectForKey:@"text"];
