@@ -74,6 +74,11 @@
     }
     //读取聊天记录
     chatMessageID =[NSString stringWithFormat:@"%@%@%@%@",user.msisdn,user.eccode,temp,info.eccode];
+
+    NSCharacterSet *set = [NSCharacterSet characterSetWithCharactersInString:@"\r\n"];
+    chatMessageID = [chatMessageID stringByTrimmingCharactersInSet:set];
+
+    //
     EX_chatMessageID=chatMessageID;
     //        [arrData addObjectsFromArray:];
     NSArray *tempArr=[[CoreDataManageContext newInstance] getUserChatMessageWithChatMessageID:chatMessageID FetchOffset:num FetchLimit:10];
@@ -97,6 +102,7 @@
         [arrTime addObject:chat.chat_times];
     }
 }
+
 
 #pragma mark -接收聊天新消息，更新表单
 /*

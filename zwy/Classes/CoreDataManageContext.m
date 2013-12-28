@@ -256,7 +256,7 @@ static CoreDataManageContext *coreData=nil;
     [frq setEntity:emEty];
     
     //设置搜索条件
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"chat_MessageID == %@", chatMessageID];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"chat_MessageID CONTAINS %@", chatMessageID];
     [frq setPredicate:predicate];
     
     //设置排序方式
