@@ -24,6 +24,7 @@ extern NSString * const requestError;
 extern NSString * const wnLoadAddress;
 
 //全局变量
+extern NSString *EX_newToken;
 extern NSString *EX_chatMessageID;
 extern NSTimer *EX_timerUpdateMessage;
 extern Tuser *user;

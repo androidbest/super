@@ -42,12 +42,15 @@
                                                     name:NOTIFICATIONFIRSTNEWS
                                                   object:self];
         
-
-        
+      
         //开启扫描信息定时器
         if (EX_timerUpdateMessage)[EX_timerUpdateMessage setFireDate:[NSDate distantPast]];
+         else   EX_timerUpdateMessage = [NSTimer scheduledTimerWithTimeInterval:3.0 target:[[UIApplication sharedApplication] delegate] selector:@selector(timerFired:) userInfo:nil repeats:YES];
     }
     return self;
+}
+
+-(void)timerFired:(id)sender{
 }
 
 - (void)initWithData{

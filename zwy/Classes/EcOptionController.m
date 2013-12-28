@@ -67,6 +67,11 @@
                 [appConfig setBool:YES forKey:@"isLogin"];
                 [appConfig synchronize];
                 
+                
+                //发送上线状态(不处理返回数据)
+                [packageData iosLoginIn:self];
+                
+                
                 LoginView *login=(LoginView *)self.ecOptionView.parentViewController;
                 
                 UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];

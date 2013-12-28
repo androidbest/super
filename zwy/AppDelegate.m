@@ -22,7 +22,8 @@ dispatch_block_t block = ^{ \
 }; \
 dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), block); \
 }
-
+const int kTimerInterval = 1 * 3;              // 3秒，定时器时间间隔
+const int kSysMaxTimePerBgTask = 10 * 600;      // 10分钟，系统为每个后台任务分配的最大时间
 
 #import "AppDelegate.h"
 #import "ConfigFile.h"
@@ -66,7 +67,7 @@ UIBackgroundTaskIdentifier backgroundTask;//写成成员
 ////        }
 //    }
     
-//   [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeBadge)];
+   [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeBadge)];
     
     //初始化配置文件
     self.window.backgroundColor=[UIColor whiteColor];
@@ -97,7 +98,7 @@ UIBackgroundTaskIdentifier backgroundTask;//写成成员
     newToken = [newToken stringByReplacingOccurrencesOfString:@" " withString:@""];
     newToken = [newToken stringByReplacingOccurrencesOfString:@"<" withString:@""];
     newToken = [newToken stringByReplacingOccurrencesOfString:@">" withString:@""];
-    
+    EX_newToken=newToken;
     
 //    NSString *token = [NSString stringWithFormat:@"%@", deviceToken];
     NSLog(@"%@", newToken); 
@@ -108,8 +109,7 @@ UIBackgroundTaskIdentifier backgroundTask;//写成成员
 }
 
 //处理收到的消息推送
-- (void)application:(UIApplication *)application
-didReceiveRemoteNotification:(NSDictionary *)userInfo
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
     
 //    [application cancelLocalNotification:notification];
@@ -205,8 +205,19 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-
-    
+    //发送后台通知（激活APNS）
+        [packageData iosProcessKill:self];
+/*
+     int i = kSysMaxTimePerBgTask;
+    while (i > 0)
+    {
+        DoorsBgTaskBegin();
+        [NSThread sleepForTimeInterval:kTimerInterval];
+        if ([EX_timerUpdateMessage isValid])[self timerFired:nil];
+        DoorsBgTaskEnd();
+        i--;
+    }
+*/
 }
 
 
@@ -268,9 +279,9 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo
         ChatMsgObj *obj =arrmessages[i];
         NSString *chatMessageID =[NSString stringWithFormat:@"%@%@%@%@",user.msisdn,user.eccode,obj.receivermsisdn,obj.receivereccode];
         if ([EX_chatMessageID  isEqualToString:chatMessageID]) {
-            [coredataManage setChatInfo:obj status:@"1" isChek:YES];
+            [coredataManage setChatInfo:obj status:@"1" isChek:YES  gid:nil arr:nil];
         }else {
-            [coredataManage setChatInfo:obj status:@"1" isChek:YES];
+            [coredataManage setChatInfo:obj status:@"1" isChek:YES  gid:nil arr:nil];
         }
     }
     
@@ -293,13 +304,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    if (!EX_timerUpdateMessage) {
-           EX_timerUpdateMessage = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(timerFired:) userInfo:nil repeats:YES];
-        //关闭定时器
-        [EX_timerUpdateMessage setFireDate:[NSDate distantFuture]];
-    }
-    
+    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.    
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

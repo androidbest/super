@@ -645,4 +645,43 @@ NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"U
     [request setHTTPBody:data];
     [HTTPRequest JSONRequestOperation:delegate Request:request SELType:selType];
 }
+
+//登录提示（回传服务器）
++ (void)iosLoginIn:(id)delegate{
+    EX_newToken =@"ca8e35608d346b6adc16526ecc254e0673bc3618a2226caf08b2d3f58e9a004f";
+    if (!EX_newToken)return;
+    NSURL * nsurl =[self urlByConfigFile];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:nsurl];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><MSISDN>%@</MSISDN><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>iosLoginIn</METHOD><BASICCODE>%@</BASICCODE><MSISDN>%@</MSISDN><ECCODE>%@</ECCODE></BODY></MESSAGE>",user.msisdn,user.eccode,EX_newToken,user.msisdn,user.eccode];
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:data];
+    [HTTPRequest JSONRequestOperation:delegate Request:request  SELType:@"servicelayer"];
+}
+
+//注销提示（回传服务器）
++ (void)iosLoginOut:(id)delegate{
+    EX_newToken =@"ca8e35608d346b6adc16526ecc254e0673bc3618a2226caf08b2d3f58e9a004f";
+    if (!EX_newToken)return;
+    NSURL * nsurl =[self urlByConfigFile];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:nsurl];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><MSISDN>%@</MSISDN><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>iosLoginOut</METHOD><BASICCODE>%@</BASICCODE><MSISDN>%@</MSISDN><ECCODE>%@</ECCODE></BODY></MESSAGE>",user.msisdn,user.eccode,EX_newToken,user.msisdn,user.eccode];
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:data];
+    [HTTPRequest JSONRequestOperation:delegate Request:request  SELType:@"servicelayer"];
+}
+
+//转入后台提示（回传服务器）
++ (void)iosProcessKill:(id)delegate{
+    EX_newToken =@"ca8e35608d346b6adc16526ecc254e0673bc3618a2226caf08b2d3f58e9a004f";
+    if (!EX_newToken)return;
+    NSURL * nsurl =[self urlByConfigFile];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:nsurl];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><MSISDN>%@</MSISDN><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>iosProcessKill</METHOD><BASICCODE>%@</BASICCODE><MSISDN>%@</MSISDN><ECCODE>%@</ECCODE></BODY></MESSAGE>",user.msisdn,user.eccode,EX_newToken,user.msisdn,user.eccode];
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:data];
+    [HTTPRequest JSONRequestOperation:delegate Request:request  SELType:@"servicelayer"];
+}
 @end

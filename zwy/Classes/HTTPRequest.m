@@ -46,14 +46,14 @@
     [op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary * dic  = [ParseXML dicTIonaryForXML:(NSXMLParser *)responseObject error:nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:sel object:delegate userInfo:dic];
-        NSLog(@"xml: %@", dic);
+         NSLog(@"xml: %@", dic);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
+         NSLog(@"Error: %@", error);
         [[NSNotificationCenter defaultCenter] postNotificationName:sel object:delegate userInfo:nil];
     }];
     
     [[NSOperationQueue new] addOperation:op];
-    //    [[NSOperationQueue mainQueue] addOperation:op];
+    //[[NSOperationQueue mainQueue] addOperation:op];
 }
 
 //同步通讯录

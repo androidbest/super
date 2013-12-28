@@ -174,4 +174,14 @@
 
 //上传链接
 + (void)imUploadLink:(id)delegate msisdn:(NSString *)msisdn eccode:(NSString *)eccode memberid:(NSString *)memberid selType:(NSString *)selType url:(NSString *)url;
+
+//登录提示（回传服务器）
++ (void)iosLoginIn:(id)delegate;
+
+//注销提示（回传服务器）
++ (void)iosLoginOut:(id)delegate;
+
+//转入后台提示（回传服务器）
++ (void)iosProcessKill:(id)delegate;
+
 @end

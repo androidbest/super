@@ -143,6 +143,16 @@
             [[UIApplication sharedApplication]cancelLocalNotification:localNotification];
         }
         
+        /*
+         *关闭扫描聊天消息定时器
+         */
+        [EX_timerUpdateMessage setFireDate:[NSDate distantFuture]];
+        [EX_timerUpdateMessage invalidate];
+         EX_timerUpdateMessage=nil;
+        
+        /*回传服务器“已注销"*/
+        [packageData iosLoginOut:self];
+        
         NSUserDefaults *appConfig=[NSUserDefaults standardUserDefaults];
         [appConfig setBool:NO forKey:@"isLogin"];
         [appConfig synchronize];
@@ -244,6 +254,16 @@
                 if(coverView){
                     coverView.hidden=YES;
                 }
+                
+                /*
+                 *关闭扫描聊天消息定时器
+                 */
+                [EX_timerUpdateMessage setFireDate:[NSDate distantFuture]];
+                [EX_timerUpdateMessage invalidate];
+                EX_timerUpdateMessage=nil;
+                
+                /*回传服务器“已注销"*/
+                [packageData iosLoginOut:self];
                 
                 CGRect rect=self.account.view.frame;
                 [UIView beginAnimations:nil context:UIGraphicsGetCurrentContext()];

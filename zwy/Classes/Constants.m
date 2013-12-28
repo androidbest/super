@@ -19,6 +19,7 @@ BOOL isZaiXian =YES;
 BOOL isLocalNotification=NO;
 
 //全局变量
+NSString *EX_newToken=nil;
 NSTimer *EX_timerUpdateMessage=nil;
 NSString *EX_chatMessageID=nil;
 Tuser *user=nil;
