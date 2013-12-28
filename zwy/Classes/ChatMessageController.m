@@ -140,11 +140,11 @@
 //    NSString *groupid=[ToolUtils uuid];
     if(self.chatMessageView.arrPeoples.count>0){
         
-        NSString *temp=@"";
-        for(PeopelInfo *info in self.chatMessageView.arrPeoples){
-         temp=[NSString stringWithFormat:@"%@,",[temp stringByAppendingString:info.Name]];
-        }
-        temp=[temp substringToIndex:temp.length-1];
+//        NSString *temp=@"";
+//        for(PeopelInfo *info in self.chatMessageView.arrPeoples){
+//         temp=[NSString stringWithFormat:@"%@,",[temp stringByAppendingString:info.Name]];
+//        }
+//        temp=[temp substringToIndex:temp.length-1];
         
         if(!(grouid&&![grouid isEqualToString:@"null"]&&![grouid isEqualToString:@""])){
            grouid=[ToolUtils uuid];
@@ -160,7 +160,7 @@
                 obj.receivereccode=info.eccode;
                 obj.receivermsisdn=info.tel;
                 obj.receiveravatar=info.headPath;
-                obj.receivername=temp;
+                obj.receivername=info.Name;
                 obj.content=self.chatMessageView.im_text.text;
                 obj.sendtime=[ToolUtils NSDateToNSString:date format:@"yy/MM/dd HH:mm"];
                 obj.sendtimeNSdate=date;
@@ -178,7 +178,7 @@
                 obj.receivereccode=info.eccode;
                 obj.receivermsisdn=info.tel;
                 obj.receiveravatar=info.headPath;
-                obj.receivername=temp;
+                obj.receivername=info.Name;
                 obj.content=self.chatMessageView.im_text.text;
                 obj.sendtime=[ToolUtils NSDateToNSString:date format:@"yy/MM/dd HH:mm"];
                 obj.sendtimeNSdate=date;

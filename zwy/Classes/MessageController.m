@@ -98,7 +98,10 @@
     cell.content.text=sessionInfo.session_content;
     cell.time.text=[dateFormatter stringFromDate:sessionInfo.session_times];
 //    cell.username.text=sessionInfo.session_receivername;
-    [HTTPRequest imageWithURL:sessionInfo.session_receiveravatar imageView:cell.imageMark placeholderImage:[UIImage  imageNamed:@"default_avatar"]];
+//    NSString *url=@"";
+//    if()
+    
+//    [HTTPRequest imageWithURL:url imageView:cell.imageMark placeholderImage:[UIImage  imageNamed:@"default_avatar"]];
     return cell;
 }
 
