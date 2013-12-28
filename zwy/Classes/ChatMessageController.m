@@ -29,7 +29,7 @@
     NSMutableArray *chatMsgObjArr;//群组发送者临时的数组
     NSString *grouid;
     NSString *originWav;
-//    NSString *groupid;
+    NSString *chatMessageID;
 }
 
 -(id)init{
@@ -52,6 +52,7 @@
 //初始化数据
 -(void)initDatatoData{
     PeopelInfo *info=self.chatMessageView.chatData;
+    NSString *temp=@"";
     
     //群组处理
     if(info.imGroupid&&![info.imGroupid isEqualToString:@"null"]&&![info.imGroupid isEqualToString:@""]){
@@ -67,10 +68,12 @@
             peopel.eccode=user.eccode;
             [self.chatMessageView.arrPeoples addObject:peopel];
         }
+        temp=info.imGroupid;
+    }else{
+        temp=info.tel;
     }
-    
     //读取聊天记录
-    NSString *chatMessageID =[NSString stringWithFormat:@"%@%@%@%@",user.msisdn,user.eccode,info.tel,info.eccode];
+    chatMessageID =[NSString stringWithFormat:@"%@%@%@%@",user.msisdn,user.eccode,temp,info.eccode];
     //        [arrData addObjectsFromArray:];
     NSArray *tempArr=[[CoreDataManageContext newInstance] getUserChatMessageWithChatMessageID:chatMessageID FetchOffset:num FetchLimit:10];
     
@@ -99,8 +102,34 @@
  *通告中心为"HomeController"
  */
 - (void)getMessage:(NSNotification *)notification{
-    NSMutableArray * arr=[notification object];
-    NSLog(@"%@",arr);
+    [arrData removeAllObjects];
+    [arrTime removeAllObjects];
+    
+    if(!chatMessageID||[chatMessageID isEqualToString:@""]){
+      chatMessageID =[NSString stringWithFormat:@"%@%@%@%@",user.msisdn,user.eccode,grouid,user.eccode];
+    }
+    
+    NSArray *tempArr=[[CoreDataManageContext newInstance] getUserChatMessageWithChatMessageID:chatMessageID FetchOffset:num FetchLimit:10];
+    
+    for(ChatEntity *chat in tempArr){
+        ChatMsgObj *chatObj=[ChatMsgObj new];
+        chatObj.chattype=chat.chat_msgtype;
+        chatObj.sendeccode=user.eccode;
+        chatObj.sendmsisdn=user.msisdn;
+        chatObj.receivereccode=chat.chat_sessionObjct.session_receivermsisdn;
+        chatObj.receivermsisdn=chat.chat_sessionObjct.session_receivereccode;
+        chatObj.receiveravatar=chat.chat_sessionObjct.session_receiveravatar;
+        chatObj.receivername=chat.chat_sessionObjct.session_receivername;
+        chatObj.content=chat.chat_content;
+        chatObj.sendtime=[ToolUtils NSDateToNSString:chat.chat_times format:@"yy/MM/dd HH:mm"];
+        chatObj.groupid=chat.chat_sessionObjct.session_groupuuid;
+        chatObj.senderavatar=user.headurl;
+        chatObj.filepath=chat.chat_voiceurl;
+        chatObj.status=chat.chat_status;
+        [arrData addObject:chatObj];
+        [arrTime addObject:chat.chat_times];
+    }
+
 }
 
 //处理网络数据
@@ -123,7 +152,6 @@
 //编辑群组人员
 - (void)rightDown
 {
-//    [self.chatMessageView.im_text resignFirstResponder];
     [self.chatMessageView performSegueWithIdentifier:@"ChatMessageToEditingPeoplesView" sender:nil];
 }
 - (void)BasePrepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{

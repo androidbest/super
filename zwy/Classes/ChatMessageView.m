@@ -141,6 +141,13 @@
     [self.view addSubview:_tableview];
     [self.view addSubview:_toolbar];
     
+    NSInteger rows = [self.tableview numberOfRowsInSection:0];
+    if(rows > 0) {
+        [self.tableview scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:rows - 1 inSection:0]
+                                              atScrollPosition:UITableViewScrollPositionBottom
+                                                      animated:NO];
+    }
+    
     //初始化播放器的时候如下设置
     UInt32 sessionCategory = kAudioSessionCategory_MediaPlayback;
     AudioSessionSetProperty(kAudioSessionProperty_AudioCategory,

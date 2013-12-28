@@ -260,7 +260,7 @@ static CoreDataManageContext *coreData=nil;
     [frq setPredicate:predicate];
     
     //设置排序方式
-    NSSortDescriptor * sort = [[NSSortDescriptor alloc] initWithKey:@"chat_times" ascending:NO];
+    NSSortDescriptor * sort = [[NSSortDescriptor alloc] initWithKey:@"chat_times" ascending:YES];
     NSArray * sortDescriptors = [NSArray arrayWithObject: sort];
     [frq setSortDescriptors: sortDescriptors];
     

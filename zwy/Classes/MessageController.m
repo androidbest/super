@@ -98,10 +98,13 @@
     cell.content.text=sessionInfo.session_content;
     cell.time.text=[dateFormatter stringFromDate:sessionInfo.session_times];
 //    cell.username.text=sessionInfo.session_receivername;
-//    NSString *url=@"";
-//    if()
-    
-//    [HTTPRequest imageWithURL:url imageView:cell.imageMark placeholderImage:[UIImage  imageNamed:@"default_avatar"]];
+    NSString *url=@"";
+    if(sessionInfo.session_groupuuid&&![sessionInfo.session_groupuuid isEqualToString:@"null"]&&![sessionInfo.session_groupuuid isEqualToString:@""]){
+        url=[sessionInfo.session_receiveravatar componentsSeparatedByString:@","][0];
+    }else{
+        url=sessionInfo.session_receiveravatar;
+    }
+    [HTTPRequest imageWithURL:url imageView:cell.imageMark placeholderImage:[UIImage  imageNamed:@"default_avatar"]];
     return cell;
 }
 
@@ -115,11 +118,12 @@
     }
    
     PeopelInfo *info=[PeopelInfo new];
-    if(sessionInfo.session_groupuuid&&![sessionInfo.session_groupuuid isEqualToString:@"null"]&&![sessionInfo.session_groupuuid isEqualToString:@""]){
-        info.tel=sessionInfo.session_groupuuid;
-    }else{
-        info.tel=sessionInfo.session_receivermsisdn;
-    }
+//    if(sessionInfo.session_groupuuid&&![sessionInfo.session_groupuuid isEqualToString:@"null"]&&![sessionInfo.session_groupuuid isEqualToString:@""]){
+//        info.tel=sessionInfo.session_groupuuid;
+//    }else{
+//        info.tel=sessionInfo.session_receivermsisdn;
+//    }
+    info.tel=sessionInfo.session_receivermsisdn;
     info.eccode=sessionInfo.session_receivereccode;
     info.headPath=sessionInfo.session_receiveravatar;
     info.imGroupid=sessionInfo.session_groupuuid;
