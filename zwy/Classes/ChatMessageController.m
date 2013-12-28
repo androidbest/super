@@ -129,6 +129,8 @@
         [arrData addObject:chatObj];
         [arrTime addObject:chat.chat_times];
     }
+    
+    [self.chatMessageView.tableview reloadData];
 
 }
 
