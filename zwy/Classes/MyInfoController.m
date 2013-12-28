@@ -145,6 +145,7 @@
                   [self.HUD show:YES];
                   [packageData imUploadUrl:self type:@"0" data:UIImageJPEGRepresentation(image,0.1) selType:xmlNotifInfo uuid:[ToolUtils uuid]];
                 }];
+                
                 if (!isStart) [ToolUtils alertInfo:@"获取权限失败!"];
             }
                 break;
@@ -153,7 +154,7 @@
                 PhotoOptional *photoController=[PhotoOptional newInstance];
                 BOOL isStart=   [photoController startCameraController:self.myInfoView isAllowsEditing:YES photoImage:^(UIImage *image) {
                     [btnHead setBackgroundImage:image forState:UIControlStateNormal];
-                    [packageData imUploadUrl:self type:@"0" data:UIImageJPEGRepresentation(image,0.1) selType:xmlNotifInfo uuid:[ToolUtils uuid]];
+                    [packageData imUploadUrl:self type:@"0" data:UIImageJPEGRepresentation(image,1.0) selType:xmlNotifInfo uuid:[ToolUtils uuid]];
                 }];
                  if (!isStart) [ToolUtils alertInfo:@"设备摄像头错误!"];
             }

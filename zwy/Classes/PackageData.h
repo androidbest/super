@@ -184,4 +184,7 @@
 //转入后台提示（回传服务器）
 + (void)iosProcessKill:(id)delegate;
 
+//回到前台提示(回传服务器)
++ (void)iosProcessRestart:(id)delegate;
+
 @end

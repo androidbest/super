@@ -37,6 +37,8 @@
     temporaryBarButtonItem.style = UIBarButtonItemStylePlain;
     self.navigationItem.leftBarButtonItem=temporaryBarButtonItem;
 	[self.controller initWithData];
+    
+    [_btnRemove addTarget:self.controller action:@selector(btnRemove) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{

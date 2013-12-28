@@ -97,6 +97,12 @@
     cell.title.text=sessionInfo.session_receivername;
     cell.content.text=sessionInfo.session_content;
     cell.time.text=[dateFormatter stringFromDate:sessionInfo.session_times];
+    if ([sessionInfo.session_unreadcount isEqualToString:@"0"]) {
+        cell.labelCount.hidden=YES;
+    }else{
+        cell.labelCount.hidden=NO;
+        cell.labelCount.text=sessionInfo.session_unreadcount;
+    }
 //    cell.username.text=sessionInfo.session_receivername;
     NSString *url=@"";
     if(sessionInfo.session_groupuuid&&![sessionInfo.session_groupuuid isEqualToString:@"null"]&&![sessionInfo.session_groupuuid isEqualToString:@""]){
@@ -117,6 +123,8 @@
     sessionInfo=_arrSession[indexPath.row];
     }
    
+    [[CoreDataManageContext newInstance] updateWithSessionEntity:sessionInfo];
+    
     PeopelInfo *info=[PeopelInfo new];
 //    if(sessionInfo.session_groupuuid&&![sessionInfo.session_groupuuid isEqualToString:@"null"]&&![sessionInfo.session_groupuuid isEqualToString:@""]){
 //        info.tel=sessionInfo.session_groupuuid;

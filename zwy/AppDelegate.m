@@ -279,9 +279,18 @@ UIBackgroundTaskIdentifier backgroundTask;//写成成员
         ChatMsgObj *obj =arrmessages[i];
         NSString *chatMessageID =[NSString stringWithFormat:@"%@%@%@%@",user.msisdn,user.eccode,obj.receivermsisdn,obj.receivereccode];
         if ([EX_chatMessageID  isEqualToString:chatMessageID]) {
-            [coredataManage setChatInfo:obj status:@"1" isChek:YES  gid:nil arr:nil];
+            if (!obj.groupid||[obj.groupid isEqualToString:@"(null)"]||[obj.groupid isEqualToString:@""]) {
+               [coredataManage setChatInfo:obj status:@"1" isChek:YES  gid:nil arr:nil];
+            }else{
+                [coredataManage setChatInfo:obj status:@"1" isChek:YES];
+            }
+           
         }else {
-            [coredataManage setChatInfo:obj status:@"1" isChek:YES  gid:nil arr:nil];
+            if (!obj.groupid||[obj.groupid isEqualToString:@"(null)"]||[obj.groupid isEqualToString:@""]) {
+                [coredataManage setChatInfo:obj status:@"1" isChek:NO  gid:nil arr:nil];
+            }else{
+                [coredataManage setChatInfo:obj status:@"1" isChek:NO];
+            }
         }
     }
     
@@ -304,6 +313,8 @@ UIBackgroundTaskIdentifier backgroundTask;//写成成员
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
+     //发送前台通知（冻结APNS)
+    [packageData iosProcessRestart:self];
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.    
 }
 

@@ -74,6 +74,7 @@
     }
     //读取聊天记录
     chatMessageID =[NSString stringWithFormat:@"%@%@%@%@",user.msisdn,user.eccode,temp,info.eccode];
+    EX_chatMessageID=chatMessageID;
     //        [arrData addObjectsFromArray:];
     NSArray *tempArr=[[CoreDataManageContext newInstance] getUserChatMessageWithChatMessageID:chatMessageID FetchOffset:num FetchLimit:10];
     
@@ -131,7 +132,12 @@
     }
     
     [self.chatMessageView.tableview reloadData];
-
+    NSInteger rows = [self.chatMessageView.tableview numberOfRowsInSection:0];
+    if(rows > 0) {
+        [self.chatMessageView.tableview scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:rows - 1 inSection:0]
+                                              atScrollPosition:UITableViewScrollPositionBottom
+                                                      animated:YES];
+    }
 }
 
 //处理网络数据

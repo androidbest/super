@@ -31,6 +31,14 @@
     [self updatePeoples];
 }
 
+//退出群组
+- (void)btnRemove{
+    [_editingView.chatView.arrPeoples removeAllObjects];
+    _editingView.chatView.arrPeoples=nil;
+    
+    [self.editingView.navigationController popViewControllerAnimated:YES];
+}
+
 - (void)updatePeoples{
     int widthIndex=4;
     int lineIndex=0;

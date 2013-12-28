@@ -302,6 +302,11 @@ static CoreDataManageContext *coreData=nil;
     [self saveContext];
 }
 
+#pragma mark - 更新数据
+- (void)updateWithSessionEntity:(SessionEntity *)sessionInfo{
+    sessionInfo.session_unreadcount=@"0";
+    [self saveContext];
+}
 
 - (void)saveContext
 {
@@ -395,7 +400,8 @@ static CoreDataManageContext *coreData=nil;
 // Returns the URL to the application's Documents directory.
 - (NSURL *)applicationDocumentsDirectory
 {
-//    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    return [NSURL URLWithString:@"file:///Users/cqsxit/Desktop/push_dev"];
+    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
     return [NSURL URLWithString:@"file:///Users/sxit/Desktop/test"];
 }
 

@@ -14,4 +14,5 @@
 @property (strong, nonatomic) UILabel *username;
 @property (strong, nonatomic) UILabel *content;
 @property (strong ,nonatomic) UIImageView * imageMark;
+@property (strong, nonatomic) UILabel *labelCount;
 @end

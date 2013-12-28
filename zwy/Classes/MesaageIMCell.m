@@ -37,6 +37,7 @@
         _time.textAlignment=NSTextAlignmentLeft;
         [self addSubview:_time];
         
+   
         
         
         //"头像"标示
@@ -55,6 +56,18 @@
         bottomBorder.frame = CGRectMake(0.0f, 63, width, 1.0f);
         bottomBorder.backgroundColor = [UIColor colorWithWhite:0.7f alpha:0.5f].CGColor;
         [self.layer addSublayer:bottomBorder];
+        
+        //未读条数
+        _labelCount =[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 20, 15)];
+        _labelCount.center=CGPointMake(52, 10);
+        _labelCount.layer.masksToBounds = YES;
+        _labelCount.layer.cornerRadius = 15/2;
+        _labelCount.backgroundColor =[UIColor redColor];
+        _labelCount.font=[UIFont systemFontOfSize:11];
+        _labelCount.hidden=YES;
+        _labelCount.textColor =[UIColor whiteColor];
+        _labelCount.textAlignment=NSTextAlignmentCenter;
+        [self addSubview:_labelCount];
         
     }
     return self;

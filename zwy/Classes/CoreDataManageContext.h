@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 #import "ChatMsgObj.h"
+#import "SessionEntity.h"
 
 @interface CoreDataManageContext : NSObject
 
@@ -32,4 +33,7 @@
 
 #pragma mark - 删除对应聊天记录
 - (void)deleteChatInfoWithChatMessageID:(NSString *)chatMessageID;
+
+#pragma mark - 更新数据
+- (void)updateWithSessionEntity:(SessionEntity *)sessionInfo;
 @end

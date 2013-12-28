@@ -56,7 +56,13 @@
     [_displayController setSearchResultsDataSource:self.controller];
     [_displayController setSearchResultsDelegate:self.controller];
     
-    
+//    UIBarButtonItem *rightButton  =[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self.controller action:@selector(btnAddPeople)];
+//    self.tabBarController.navigationItem.rightBarButtonItem=rightButton;
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    _info=nil;
+    self.tabBarController.navigationItem.title=@"最近消息";
     UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
     rightButton.frame = CGRectMake(0.0, 0.0, 35.0, 25.0);
     [rightButton setImage:[UIImage imageNamed:@"addGroup"] forState:UIControlStateNormal];
@@ -65,13 +71,7 @@
     temporaryBarButtonItem.style = UIBarButtonItemStylePlain;
     self.tabBarController.navigationItem.rightBarButtonItem=temporaryBarButtonItem;
     
-//    UIBarButtonItem *rightButton  =[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self.controller action:@selector(btnAddPeople)];
-//    self.tabBarController.navigationItem.rightBarButtonItem=rightButton;
-}
-
--(void)viewWillAppear:(BOOL)animated{
-    _info=nil;
-    self.tabBarController.navigationItem.title=@"最近消息";
+    
     NSString *strSelfID =[NSString stringWithFormat:@"%@%@",user.msisdn,user.eccode];
     ((MessageController *)self.controller).arrSession = [[NSMutableArray alloc]initWithArray:[[CoreDataManageContext new] getSessionListWithSelfID:strSelfID]];
     if(isfirst){
@@ -81,6 +81,7 @@
     }
     //添加观察者
     [self addMessageObserver];
+    EX_chatMessageID=@"";
 }
 
 - (void)viewWillDisappear:(BOOL)animated{

@@ -80,6 +80,10 @@
 
 //确定添加按钮
 - (void)rightDown{
+    if (_arrOption.count<2){
+        [ToolUtils alertInfo:@"群聊人数必须大于3人"];
+        return;
+    }
     [self.optionView dismissViewControllerAnimated:_optionView.ismodeAnimation completion:nil];
     [self.optionView.OptionChatPeopleDelegate MessageViewToChatMessageView:_arrOption];
 }
