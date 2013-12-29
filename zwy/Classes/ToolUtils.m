@@ -321,8 +321,9 @@
     return kNilOptions;
 }
 
+//selType 0. 1.语音、
 //泡泡文本
-+(UIView *)bubbleView:(NSString *)text from:(BOOL)fromSelf withPosition:(int)position view:(UIView *)returnView{
++(UIView *)bubbleView:(NSString *)text from:(BOOL)fromSelf withPosition:(int)position view:(UIView *)returnView selfType:(NSString *)selfType{
     
     //计算大小
     UIFont *font = [UIFont systemFontOfSize:13];
@@ -335,11 +336,18 @@
     
 	// build single chat bubble cell with given text
 	returnView.backgroundColor = [UIColor clearColor];
-	
+
+    UIImageView *bubbleImageView=nil;
     //背影图片
-	UIImage *bubble = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fromSelf?@"chat_lefttext":@"chat_righttext" ofType:@"png"]];
-    
-	UIImageView *bubbleImageView = [[UIImageView alloc] initWithImage:[bubble stretchableImageWithLeftCapWidth:10 topCapHeight:70]];
+    if([selfType isEqualToString:@"0"]){
+    UIImage *bubble = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fromSelf?@"chat_lefttext":@"chat_righttext" ofType:@"png"]];
+    bubbleImageView = [[UIImageView alloc] initWithImage:[bubble stretchableImageWithLeftCapWidth:40 topCapHeight:70]];
+    }else{
+    UIImage *bubble = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fromSelf?@"rightvoice":@"leftvoice" ofType:@"png"]];
+    bubbleImageView = [[UIImageView alloc] initWithImage:[bubble stretchableImageWithLeftCapWidth:40 topCapHeight:70]];
+    }
+	
+	
 //	NSLog(@"%f,%f",textRect.size.width,textRect.size.height);
 	
     
@@ -372,7 +380,7 @@
 }
 
 //泡泡文本
-+(UIView *)bubbleView:(NSString *)text from:(BOOL)fromSelf{
++(UIView *)bubbleView:(NSString *)text from:(BOOL)fromSelf selfType:(NSString *)selfType{
     
     //计算大小
     UIFont *font = [UIFont systemFontOfSize:13];
@@ -388,10 +396,19 @@
 	returnView.backgroundColor = [UIColor clearColor];
 	
     //背影图片
-	UIImage *bubble = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fromSelf?@"chat_lefttext":@"chat_righttext" ofType:@"png"]];
-    
-	UIImageView *bubbleImageView = [[UIImageView alloc] initWithImage:[bubble stretchableImageWithLeftCapWidth:21 topCapHeight:70]];
-	NSLog(@"%f,%f",textRect.size.width,textRect.size.height);
+//	UIImage *bubble = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fromSelf?@"chat_lefttext":@"chat_righttext" ofType:@"png"]];
+//    
+//	UIImageView *bubbleImageView = [[UIImageView alloc] initWithImage:[bubble stretchableImageWithLeftCapWidth:21 topCapHeight:70]];
+	
+    UIImageView *bubbleImageView=nil;
+    //背影图片
+    if([selfType isEqualToString:@"0"]){
+        UIImage *bubble = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fromSelf?@"chat_lefttext":@"chat_righttext" ofType:@"png"]];
+        bubbleImageView = [[UIImageView alloc] initWithImage:[bubble stretchableImageWithLeftCapWidth:40 topCapHeight:70]];
+    }else{
+        UIImage *bubble = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fromSelf?@"rightvoice":@"leftvoice" ofType:@"png"]];
+        bubbleImageView = [[UIImageView alloc] initWithImage:[bubble stretchableImageWithLeftCapWidth:40 topCapHeight:70]];
+    }
 	
     
     //添加文本信息

@@ -156,6 +156,29 @@
     [[NSOperationQueue new] addOperation:posterOperation];
 }
 
+//语音下载
++ (void)voiceWithURL:(NSString *)URL{
+    if (!URL)return;
+    NSString * PicPath =[[URL componentsSeparatedByString:@"/"] lastObject];
+    NSString * strpaths =[NSString stringWithFormat:@"%@/%@/%@",DocumentsDirectory,MESSGEFILEPATH,PicPath];
+    NSData * data = [NSData dataWithContentsOfFile:strpaths];
+    if (data) {
+        return;
+    }
+    
+    NSURL * url =[NSURL URLWithString:URL];
+    NSMutableURLRequest * request =[[NSMutableURLRequest alloc] initWithURL:url];
+    AFHTTPRequestOperation *posterOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    posterOperation.responseSerializer = [AFImageResponseSerializer serializer];
+    [posterOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [((NSData *)responseObject) writeToFile:@"" atomically:NO];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        //显示加载失败的voice
+        NSLog(@"voice request failed with error: %@", error);
+    }];
+    [[NSOperationQueue new] addOperation:posterOperation];
+}
+
 //个人头像
 + (void)imageWithURL:(NSString *)URL imageView:(UIButton *)imageView placeUIButtonImage:(UIImage *)image{
     if (!URL)return;

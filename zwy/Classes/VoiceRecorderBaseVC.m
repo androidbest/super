@@ -7,7 +7,7 @@
 //
 
 #import "VoiceRecorderBaseVC.h"
-
+#import "ConfigFile.h"
 @interface VoiceRecorderBaseVC ()
 @end
 
@@ -59,7 +59,8 @@
  */
 + (NSString*)getCacheDirectory
 {
-    NSString *str=[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0];
+    NSString * str =[NSString stringWithFormat:@"%@/%@",DocumentsDirectory,MESSGEFILEPATH];
+//    NSString *str=[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0];
     return str;
 
 //    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
