@@ -14,5 +14,4 @@
 @property (strong ,nonatomic)ChatMessageView *chatView;
 @property (strong ,nonatomic)NSString *chatMessageID;
 @property (assign ,nonatomic) id EditingChatDelegate;
-- (void)removeChatGroup;
 @end

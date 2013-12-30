@@ -80,7 +80,7 @@
 
 //确定添加按钮
 - (void)rightDown{
-    if (_arrOption.count<2){
+    if (_arrOption.count<2&&_optionView.arrReqeatePeoples.count<3){
         [ToolUtils alertInfo:@"群聊人数必须大于3人"];
         return;
     }
