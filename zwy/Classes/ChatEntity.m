@@ -20,5 +20,5 @@
 @dynamic chat_MessageID;
 @dynamic chat_status;
 @dynamic chat_sessionObjct;
-
+@dynamic chat_voicetime;
 @end

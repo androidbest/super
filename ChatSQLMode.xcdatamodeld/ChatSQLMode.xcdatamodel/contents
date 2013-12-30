@@ -8,6 +8,7 @@
         <attribute name="chat_msgtype" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="chat_status" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="chat_times" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="chat_voicetime" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="chat_voiceurl" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="chat_sessionObjct" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SessionEntity" inverseName="session_chats" inverseEntity="SessionEntity" syncable="YES"/>
     </entity>

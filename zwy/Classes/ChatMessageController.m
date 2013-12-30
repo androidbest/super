@@ -137,6 +137,7 @@
         chatObj.senderavatar=user.headurl;
         chatObj.filepath=chat.chat_voiceurl;
         chatObj.status=chat.chat_status;
+        chatObj.voicetime=chat.chat_voicetime;
         [arrData addObject:chatObj];
         [arrTime addObject:chat.chat_times];
     }
