@@ -216,6 +216,7 @@
 //编辑群组人员
 - (void)rightDown
 {
+    [self.chatMessageView.im_text resignFirstResponder];
     [self.chatMessageView performSegueWithIdentifier:@"ChatMessageToEditingPeoplesView" sender:nil];
 }
 - (void)BasePrepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
@@ -450,6 +451,7 @@
             [HTTPRequest voiceWithURL:msgObj.filepath];
             [cell.rightMessage addTarget:self action:@selector(UesrClicked:) forControlEvents:UIControlEventTouchUpInside];
             cell.rightMessage.voiceurl=msgObj.filepath;
+            
         }
         
         //加指示灯

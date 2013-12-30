@@ -357,7 +357,12 @@
 	bubbleText.font = font;
 	bubbleText.numberOfLines = 0;
 	bubbleText.lineBreakMode = NSLineBreakByWordWrapping;
-	bubbleText.text = text;
+    if([selfType isEqualToString:@"0"]){
+    bubbleText.text = text;
+    }else{
+    bubbleText.text = @"";
+    }
+	
 	
 	bubbleImageView.frame = CGRectMake(0.0f, 0.0f, bubbleText.frame.size.width+30.0f, bubbleText.frame.size.height+20.0f);
     
@@ -417,7 +422,11 @@
 	bubbleText.font = font;
 	bubbleText.numberOfLines = 0;
 	bubbleText.lineBreakMode = NSLineBreakByWordWrapping;
-	bubbleText.text = text;
+	if([selfType isEqualToString:@"0"]){
+        bubbleText.text = text;
+    }else{
+        bubbleText.text = @"";
+    }
 	
 	bubbleImageView.frame = CGRectMake(0.0f, 0.0f, bubbleText.frame.size.width+30.0f, bubbleText.frame.size.height+20.0f);
     
