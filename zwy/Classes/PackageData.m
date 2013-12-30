@@ -621,7 +621,7 @@ NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"U
 + (void)imHeadUrl:(id)delegate msisdn:(NSString *)msisdn eccode:(NSString *)eccode{
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><MSISDN>%@</MSISDN><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>getAvatarAddr</METHOD><MSISDN>%@</MSISDN><ECCODE>%@</ECCODE></BODY></MESSAGE>",user.msisdn,user.eccode,msisdn,eccode];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>getAvatarAddr</METHOD><MSISDN>%@</MSISDN><ECCODE>%@</ECCODE></BODY></MESSAGE>",msisdn,eccode];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];

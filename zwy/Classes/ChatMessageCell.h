@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "VoiceBtn.h"
 @interface ChatMessageCell : UITableViewCell
 @property (strong, nonatomic) UILabel *chatTime;
 @property (strong, nonatomic) UIButton *leftHead;
 @property (strong, nonatomic) UIButton *rightHead;
-@property (strong, nonatomic) UIView *leftMessage;
-@property (strong, nonatomic) UIView *rightMessage;
+@property (strong, nonatomic) VoiceBtn *leftMessage;
+@property (strong, nonatomic) VoiceBtn *rightMessage;
 
 @end

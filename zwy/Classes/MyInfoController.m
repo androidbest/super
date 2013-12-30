@@ -41,12 +41,12 @@
 -(void)handleData:(NSNotification *)notification{
     NSDictionary *dic=[notification userInfo];
     if(dic){
-        NSString * strPath =[[NSBundle mainBundle] pathForResource:@"common" ofType:@"plist"];
-        NSDictionary * dic =[NSDictionary dictionaryWithContentsOfFile:strPath];
-        [packageData imUploadLink:self msisdn:user.msisdn eccode:user.eccode memberid:user.userid selType:@"reqUrl" url:[NSString stringWithFormat:@"%@%@.jpg",dic[@"hosturl"],uuid]];
+//        NSString * strPath =[[NSBundle mainBundle] pathForResource:@"common" ofType:@"plist"];
+//        NSDictionary * dic =[NSDictionary dictionaryWithContentsOfFile:strPath];
+        [packageData imUploadLink:self msisdn:user.msisdn eccode:user.eccode memberid:user.userid selType:@"reqUrl" url:dic[@"fileurl"]];
         self.HUD.labelText = @"上传成功";
     }else{
-        self.HUD.labelText = @"发送失败";
+        self.HUD.labelText = @"上传失败";
     }
     self.HUD.mode = MBProgressHUDModeCustomView;
     [self.HUD hide:YES afterDelay:1];
@@ -143,7 +143,7 @@
                   
                   self.HUD.labelText = @"正在上传..";
                   [self.HUD show:YES];
-                  [packageData imUploadUrl:self type:@"0" data:UIImageJPEGRepresentation(image,0.1) selType:xmlNotifInfo uuid:[ToolUtils uuid]];
+                  [packageData imUploadUrl:self type:@"0" data:UIImageJPEGRepresentation(image,0.1) selType:xmlNotifInfo uuid:@""];
                 }];
                 
                 if (!isStart) [ToolUtils alertInfo:@"获取权限失败!"];
@@ -154,7 +154,7 @@
                 PhotoOptional *photoController=[PhotoOptional newInstance];
                 BOOL isStart=   [photoController startCameraController:self.myInfoView isAllowsEditing:YES photoImage:^(UIImage *image) {
                     [btnHead setBackgroundImage:image forState:UIControlStateNormal];
-                    [packageData imUploadUrl:self type:@"0" data:UIImageJPEGRepresentation(image,1.0) selType:xmlNotifInfo uuid:[ToolUtils uuid]];
+                    [packageData imUploadUrl:self type:@"0" data:UIImageJPEGRepresentation(image,1.0) selType:xmlNotifInfo uuid:@""];
                 }];
                  if (!isStart) [ToolUtils alertInfo:@"设备摄像头错误!"];
             }

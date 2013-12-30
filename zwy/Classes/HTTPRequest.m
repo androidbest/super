@@ -15,6 +15,7 @@
 #import "ConfigFile.h"
 #import "AFURLSessionManager.h"
 #import "AFHTTPRequestOperationManager.h"
+#import "ToolUtils.h"
 @implementation HTTPRequest
 
 + (void)JSONRequestOperation:(id)delegate Request:(NSMutableURLRequest *)request{
@@ -256,7 +257,7 @@
     AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:url];
     //    NSDictionary *parameters = @{@"foo": @"bar"};
     ///phoenix/IosUpServlet?type=1&
-    [manager POST:[NSString stringWithFormat:@"/phoneservice/IosUpServlet?type=%@&uuid=%@",type,uuid] parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    [manager POST:[NSString stringWithFormat:@"/phoenix/IosUpServlet?type=%@&uuid=%@",type,uuid] parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         NSString *mimeType=@"";
         if([type isEqualToString:@"0"]){
             mimeType=@"image/jpeg";
@@ -269,7 +270,8 @@
                                 mimeType:mimeType];
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"Success: %@", operation.responseString);
-        [[NSNotificationCenter defaultCenter] postNotificationName:selType object:delegate userInfo:[NSDictionary new]];
+//        NSDictionary *dic1=[ToolUtils analyzeJsonFormat:operation.responseData];
+        [[NSNotificationCenter defaultCenter] postNotificationName:selType object:delegate userInfo:[ToolUtils analyzeJsonFormat:operation.responseData]];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
         [[NSNotificationCenter defaultCenter] postNotificationName:selType object:delegate userInfo:nil];

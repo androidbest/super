@@ -31,7 +31,7 @@
         [self addSubview:_leftHead];
         
         //左内容
-        _leftMessage =[[UIView alloc] initWithFrame:CGRectZero];
+        _leftMessage =[[VoiceBtn alloc] initWithFrame:CGRectZero];
         [self addSubview:_leftMessage];
         
         //"右头像"标签
@@ -40,9 +40,14 @@
         [self addSubview:_rightHead];
         
         //右内容
-        _rightMessage =[[UIView alloc] initWithFrame:CGRectZero];
+        _rightMessage =[[VoiceBtn alloc] initWithFrame:CGRectZero];
         [self addSubview:_rightMessage];
         
+        
+//        UIGestureRecognizer *singleTap = [[UIGestureRecognizer alloc] initWithTarget:self action:@selector(UesrClicked:)];
+//        singleTap.voiceurl=msgObj.filepath;
+//        [_rightMessage addGestureRecognizer:singleTap];
+//        _rightMessage.userInteractionEnabled = YES;
         
         //"时间"标签
 //        _time =[[UILabel alloc] initWithFrame:CGRectMake(140,10,150 ,20)];
@@ -68,10 +73,6 @@
 //        _imageContent =[[UIImageView alloc] initWithFrame:CGRectMake(25, 20, 280, 100)];
 //        _imageContent.hidden=YES;
 //        [self addSubview:_imageContent];
-        
-        
-        
-        
     }
     return self;
 }

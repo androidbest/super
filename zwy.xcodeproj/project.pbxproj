@@ -157,6 +157,8 @@
 		5960E3C41860473700EA0FFA /* ContactsDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5960E3C31860473700EA0FFA /* ContactsDetailController.m */; };
 		5960E3CA1860491E00EA0FFA /* ChatMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5960E3C91860491E00EA0FFA /* ChatMessageController.m */; };
 		59618872186D596B005AAD81 /* addGroup.png in Resources */ = {isa = PBXBuildFile; fileRef = 59618871186D596B005AAD81 /* addGroup.png */; };
+		59653CED18714294002AF6CE /* VoiceGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 59653CEC18714294002AF6CE /* VoiceGestureRecognizer.m */; };
+		59653CF0187156D9002AF6CE /* VoiceBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 59653CEF187156D9002AF6CE /* VoiceBtn.m */; };
 		596B78C61861A2C100179CD1 /* ChatMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 596B78C51861A2C100179CD1 /* ChatMessageCell.m */; };
 		596D6EE218085004002CD0B3 /* NoticeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 596D6EE118085004002CD0B3 /* NoticeView.m */; };
 		596D6EE818085037002CD0B3 /* NoticeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 596D6EE718085037002CD0B3 /* NoticeController.m */; };
@@ -672,6 +674,10 @@
 		5960E3C81860491E00EA0FFA /* ChatMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessageController.h; sourceTree = "<group>"; };
 		5960E3C91860491E00EA0FFA /* ChatMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessageController.m; sourceTree = "<group>"; };
 		59618871186D596B005AAD81 /* addGroup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addGroup.png; sourceTree = "<group>"; };
+		59653CEB18714294002AF6CE /* VoiceGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoiceGestureRecognizer.h; sourceTree = "<group>"; };
+		59653CEC18714294002AF6CE /* VoiceGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoiceGestureRecognizer.m; sourceTree = "<group>"; };
+		59653CEE187156D9002AF6CE /* VoiceBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VoiceBtn.h; sourceTree = "<group>"; };
+		59653CEF187156D9002AF6CE /* VoiceBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VoiceBtn.m; sourceTree = "<group>"; };
 		596B78C41861A2C100179CD1 /* ChatMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMessageCell.h; sourceTree = "<group>"; };
 		596B78C51861A2C100179CD1 /* ChatMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMessageCell.m; sourceTree = "<group>"; };
 		596D6EE018085004002CD0B3 /* NoticeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoticeView.h; sourceTree = "<group>"; };
@@ -1698,6 +1704,7 @@
 		595CB9BA17F17D7D00228A6E /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				59653CEA18714225002AF6CE /* gestureRecognizer */,
 				59491F34186B325E00FF9B3F /* voiceutils */,
 				65A2AC5D186923DD000E9147 /* PhotoOptional.h */,
 				65A2AC5E186923DD000E9147 /* PhotoOptional.m */,
@@ -1804,6 +1811,17 @@
 				595E74B918629D9E003863D3 /* DAKeyboardControl.m */,
 			);
 			name = keyboard;
+			sourceTree = "<group>";
+		};
+		59653CEA18714225002AF6CE /* gestureRecognizer */ = {
+			isa = PBXGroup;
+			children = (
+				59653CEB18714294002AF6CE /* VoiceGestureRecognizer.h */,
+				59653CEC18714294002AF6CE /* VoiceGestureRecognizer.m */,
+				59653CEE187156D9002AF6CE /* VoiceBtn.h */,
+				59653CEF187156D9002AF6CE /* VoiceBtn.m */,
+			);
+			name = gestureRecognizer;
 			sourceTree = "<group>";
 		};
 		596D6EF218085C87002CD0B3 /* notice */ = {
@@ -2629,6 +2647,7 @@
 				659AB384180979FA000FCEC5 /* AIMTableViewIndexBar.m in Sources */,
 				65A26CB7183A035A006AF226 /* ScheduleCell.m in Sources */,
 				5989A12517F5849E00789DC6 /* MoreView.m in Sources */,
+				59653CED18714294002AF6CE /* VoiceGestureRecognizer.m in Sources */,
 				65D967981812E1ED00C1A05E /* CheckAccessoryView.m in Sources */,
 				594B813418037D0B00310CB1 /* EcinfoDetas.m in Sources */,
 				65A3B3941814C08900AD4069 /* MassTextingView.m in Sources */,
@@ -2772,6 +2791,7 @@
 				594B810018037BC500310CB1 /* FlowDocInfo.m in Sources */,
 				594204541802E5AA00AA35C3 /* AFURLRequestSerialization.m in Sources */,
 				65B3C7D518177ACC00DF4C8E /* MassAddPeopleController.m in Sources */,
+				59653CF0187156D9002AF6CE /* VoiceBtn.m in Sources */,
 				59491F4E186B32F400FF9B3F /* ChatVoiceRecorderVC.m in Sources */,
 				659AB36C18097803000FCEC5 /* GroupInfo.m in Sources */,
 				659F65241813C96400306C14 /* OfficeAddressController.m in Sources */,

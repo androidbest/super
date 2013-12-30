@@ -19,6 +19,7 @@
 #import "ChatEntity.h"
 #import "SessionEntity.h"
 #import "EditingChatPeoplesview.h"
+#import "VoiceGestureRecognizer.h"
 
 @implementation ChatMessageController{
     NSMutableArray *arrData;//数据储存
@@ -34,6 +35,9 @@
     NSString *convertWav;        //amr转wav的文件名
     NSString *voicetime;         //语音秒数
     NSString *amrSavePath;       //语音保存地址
+    NSString *wavSavePath;       //语音保存地址
+    AVAudioPlayer *player;
+    NSData *voicedata;           //上传的数据流
 }
 
 -(id)init{
@@ -45,13 +49,38 @@
         arrBool=[NSMutableArray new];
         chatMsgObjArr=[NSMutableArray new];
         [[NSNotificationCenter defaultCenter]addObserver:self
-                                                selector:@selector(handleData:)
+                                                selector:@selector(handleDataSelf:)
                                                     name:xmlNotifInfo
+                                         object:self];
+        
+        [[NSNotificationCenter defaultCenter]addObserver:self
+                                                selector:@selector(uploadVoice:)
+                                                    name:@"uploadVoice"
                                                   object:self];
+        player=[AVAudioPlayer new];
 
     }
     return self;
 }
+
+//上传结果
+-(void)uploadVoice:(NSNotification *)notification{
+    NSDictionary *dic=[notification userInfo];
+    if(dic){
+        obj.filepath=dic[@"fileurl"];
+        if(chatMsgObjArr.count>0){
+            for(ChatMsgObj *msgobj in chatMsgObjArr){
+               [packageData imSend:self chat:msgobj];
+            }
+        }else{
+             [packageData imSend:self chat:obj];
+        }
+    }else{
+    
+    
+    }
+}
+
 
 //初始化数据
 -(void)initDatatoData{
@@ -151,7 +180,7 @@
 }
 
 //处理网络数据
--(void)handleData:(NSNotification *)notification{
+-(void)handleDataSelf:(NSNotification *)notification{
     NSDictionary *dic=[notification userInfo];
     if(dic){
         RespInfo *info=[AnalysisData imSend:dic];
@@ -215,7 +244,7 @@
                 obj.senderavatar=user.headurl;
                 obj.filepath=@"";
                 obj.status=@"0";
-                
+                [packageData imSend:self chat:obj];
                 
             }else{
                 obj=[ChatMsgObj new];
@@ -235,7 +264,6 @@
                 obj.status=@"0";
                 obj.voicetime=voicetime;
             }
-            [packageData imSend:self chat:obj];
             [chatMsgObjArr addObject:obj];
         }
         
@@ -243,9 +271,12 @@
             self.chatMessageView.im_text.text=nil;
             [self.chatMessageView.send setEnabled:NO];
             [self.chatMessageView.send setAlpha:0.4];
+            
         }
-       
         
+        if([obj.chattype isEqualToString:@"1"]){
+           [packageData imUploadUrl:self type:@"1" data:voicedata selType:@"uploadVoice" uuid:@""];
+        }
     }else{
         //单个，单人接收
         if(self.chatMessageView.voicepress.tag==0){
@@ -267,6 +298,7 @@
             self.chatMessageView.im_text.text=nil;
             [self.chatMessageView.send setEnabled:NO];
             [self.chatMessageView.send setAlpha:0.4];
+            [packageData imSend:self chat:obj];
         }else{
             obj=[ChatMsgObj new];
             obj.chattype=@"1";
@@ -280,17 +312,17 @@
             obj.sendtime=[ToolUtils NSDateToNSString:date format:@"yy/MM/dd HH:mm"];
             obj.sendtimeNSdate=date;
             obj.senderavatar=user.headurl;
-            obj.filepath=amrSavePath;
+            obj.filepath=@"";
             obj.status=@"0";
             obj.voicetime=voicetime;
+            [packageData imUploadUrl:self type:@"1" data:voicedata selType:@"uploadVoice" uuid:@""];
         }
-        [[CoreDataManageContext newInstance] setChatInfo:obj status:@"0" isChek:YES gid:grouid arr:chatMsgObjArr];
-//        [packageData imSend:self chat:obj];
+       
     }
     
     
     [arrData addObject:obj];
-    [arrTime addObject:date];
+    [arrTime addObject: date];
     [arrBool removeAllObjects];
     [self.chatMessageView.tableview reloadData];
     NSInteger rows = [self.chatMessageView.tableview numberOfRowsInSection:0];
@@ -381,16 +413,17 @@
             rectLeftMessage.origin.y-=20;
             cell.rightMessage.frame=rectLeftMessage;
         
-        if([msgObj.chattype isEqualToString:@"1"]){
-            cell.rightMessage.userInteractionEnabled = YES;
-            UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(UesrClicked:)];
-            [cell.rightMessage addGestureRecognizer:singleTap];
-            [HTTPRequest voiceWithURL:msgObj.filepath];
-        }
         }else{
             cell.chatTime.text=[ToolUtils NSDateToNSString:arrTime[indexPath.row] format:@"yy/MM/dd HH:mm"];
             cell.chatTime.hidden=NO;
         }
+        
+        if([msgObj.chattype isEqualToString:@"1"]){
+            [HTTPRequest voiceWithURL:msgObj.filepath];
+            [cell.rightMessage addTarget:self action:@selector(UesrClicked:) forControlEvents:UIControlEventTouchUpInside];
+            cell.rightMessage.voiceurl=msgObj.filepath;
+        }
+        
     }else{
         cell.rightHead.hidden=YES;
         cell.leftHead.hidden=NO;
@@ -407,25 +440,46 @@
             CGRect rectLeftMessage=cell.leftMessage.frame;
             rectLeftMessage.origin.y-=20;
             cell.leftMessage.frame=rectLeftMessage;
-            
-            if([msgObj.chattype isEqualToString:@"1"]){
-                cell.leftMessage.userInteractionEnabled = YES;
-                UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(UesrClicked:)];
-                [cell.leftMessage addGestureRecognizer:singleTap];
-                [HTTPRequest voiceWithURL:msgObj.filepath];
-            }
-            
         }else{
             cell.chatTime.text=[ToolUtils NSDateToNSString:arrTime[indexPath.row] format:@"yy/MM/dd HH:mm"];
             cell.chatTime.hidden=NO;
         }
+        
+        if([msgObj.chattype isEqualToString:@"1"]){
+            [HTTPRequest voiceWithURL:msgObj.filepath];
+            [cell.leftMessage addTarget:self action:@selector(UesrClicked:) forControlEvents:UIControlEventTouchUpInside];
+            cell.leftMessage.voiceurl=msgObj.filepath;
+//            cell.leftMessage.userInteractionEnabled = YES;
+//            VoiceGestureRecognizer *singleTap = [[VoiceGestureRecognizer alloc] initWithTarget:self action:@selector(UesrClicked:)];
+//            singleTap.voiceurl=msgObj.filepath;
+//            [cell.leftMessage addGestureRecognizer:singleTap];
+        }
+        
     }
         return cell;
 }
 
--(void)UesrClicked:(UIGestureRecognizer*)gestureRecognizer{
-
-
+//播放音频
+-(void)UesrClicked:(UIButton*)btn{
+    NSString *voiceurl=((VoiceBtn *)btn).voiceurl;
+    if (!voiceurl)return;
+    NSString * PicPath =[[voiceurl componentsSeparatedByString:@"/"] lastObject];
+    NSString * strpaths =[NSString stringWithFormat:@"%@/%@/%@",DocumentsDirectory,MESSGEFILEPATH,PicPath];
+    NSData * data = [NSData dataWithContentsOfFile:strpaths];
+    if (!data) return;
+    PicPath=[PicPath stringByDeletingPathExtension];
+    strpaths =[NSString stringWithFormat:@"%@/%@/%@.wav",DocumentsDirectory,MESSGEFILEPATH,PicPath];
+    data = [NSData dataWithContentsOfFile:strpaths];
+    if(data){
+        [self audioPlay:PicPath];
+    }else{
+        [self amrTowav:PicPath];
+    data = [NSData dataWithContentsOfFile:strpaths];
+    if(data){
+    [self audioPlay:PicPath];
+    }
+//      [[NSFileManager defaultManager] fileExistsAtPath:strSavePath];  
+    }
 }
 
 //点击左边头像
@@ -494,7 +548,7 @@
     if(longPressedRecognizer.state == UIGestureRecognizerStateBegan) {
          NSLog(@"kaishi");
         //设置文件名
-        originWav = [VoiceRecorderBaseVC getCurrentTimeString];
+        originWav = [ToolUtils uuid];
         //开始录音
         [self.chatMessageView.recorderVC beginRecordByFileName:originWav];
     }//长按结束
@@ -508,6 +562,7 @@
 //录音完成回调，返回文件路径和文件名
 - (void)VoiceRecorderBaseVCRecordFinish:(NSString *)_filePath fileName:(NSString*)_fileName{
     NSLog(@"录音完成，文件路径:%@",_filePath);
+    wavSavePath=_filePath;
     [self getVoicetime:_filePath fileName:_fileName convertTime:0 label:nil];
     [self wavToamr];
     [self sendMessage];
@@ -516,11 +571,10 @@
 //wav转amr
 -(void)wavToamr{
     if (originWav.length > 0){
-        convertAmr = [originWav stringByAppendingString:@"wavToAmr"];
         //转格式
-        amrSavePath=[VoiceRecorderBaseVC getPathByFileName:convertAmr ofType:@"amr"];
+        amrSavePath=[VoiceRecorderBaseVC getPathByFileName:originWav ofType:@"amr"];
         [VoiceConverter wavToAmr:[VoiceRecorderBaseVC getPathByFileName:originWav ofType:@"wav"] amrSavePath:amrSavePath];
-        
+        voicedata=[NSData dataWithContentsOfFile:amrSavePath];
 //        [self setLabelByFilePath:[VoiceRecorderBaseVC getPathByFileName:convertAmr ofType:@"amr"] fileName:convertAmr convertTime:[[NSDate date] timeIntervalSinceDate:date] label:nil];
     }
 }
@@ -535,20 +589,16 @@
 }
 
 //amr转wav
--(void)amrTowav{
-    if (convertAmr.length > 0){
-        convertWav = [originWav stringByAppendingString:@"amrToWav"];
+-(void)amrTowav:(NSString *)_fileName{
+    if (_fileName.length > 0){
         //转格式
-        [VoiceConverter amrToWav:[VoiceRecorderBaseVC getPathByFileName:convertAmr ofType:@"amr"] wavSavePath:[VoiceRecorderBaseVC getPathByFileName:convertWav ofType:@"wav"]];
-//        
-//        [self setLabelByFilePath:[VoiceRecorderBaseVC getPathByFileName:convertWav ofType:@"wav"] fileName:convertWav convertTime:[[NSDate date] timeIntervalSinceDate:date] label:_amrTowavLabel];
+        [VoiceConverter amrToWav:[VoiceRecorderBaseVC getPathByFileName:_fileName ofType:@"amr"] wavSavePath:[VoiceRecorderBaseVC getPathByFileName:_fileName ofType:@"wav"]];
     }
 }
 
 //播放音频
--(void)audioPlay:(NSString *)path{
-    AVAudioPlayer *player=nil;
-    player = [player initWithContentsOfURL:[NSURL URLWithString:[VoiceRecorderBaseVC getPathByFileName:path ofType:@"wav"]] error:nil];
+-(void)audioPlay:(NSString *)_fileName{
+    player = [player initWithContentsOfURL:[NSURL URLWithString:[VoiceRecorderBaseVC getPathByFileName:_fileName ofType:@"wav"]] error:nil];
     [player play];
 }
 
@@ -575,7 +625,9 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-[tableView deselectRowAtIndexPath:indexPath animated:YES];
+//    ChatMessageCell *cell=(ChatMessageCell *)[tableView cellForRowAtIndexPath:indexPath];
+//    NSLog(@"%@",cell.rightMessage.gestureRecognizers);
+   [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 //文字编辑

@@ -57,6 +57,7 @@
                 user.username=autoUser.username;
                 user.headurl=autoUser.headurl;
                 user.job=autoUser.job;
+                user.userid=autoUser.userid;
                 NSUserDefaults *appConfig=[NSUserDefaults standardUserDefaults];
                 [appConfig setValue:user.msisdn forKey:@"msisdn"];
                 [appConfig setValue:user.ecname forKey:@"ecname"];
@@ -64,6 +65,7 @@
                 [appConfig setValue:user.eccode forKey:@"eccode"];
                 [appConfig setValue:user.headurl forKey:@"headurl"];
                 [appConfig setValue:user.job forKey:@"job"];
+                [appConfig setValue:user.userid forKey:@"userid"];
                 [appConfig setBool:YES forKey:@"isLogin"];
                 [appConfig synchronize];
                 

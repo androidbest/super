@@ -149,15 +149,16 @@
     }
     
     //初始化播放器的时候如下设置
-    UInt32 sessionCategory = kAudioSessionCategory_MediaPlayback;
-    AudioSessionSetProperty(kAudioSessionProperty_AudioCategory,
-                            sizeof(sessionCategory),
-                            &sessionCategory);
-    
-    UInt32 audioRouteOverride = kAudioSessionOverrideAudioRoute_Speaker;
-    AudioSessionSetProperty (kAudioSessionProperty_OverrideCategoryDefaultToSpeaker,sizeof (audioRouteOverride),&audioRouteOverride);
+//    UInt32 sessionCategory = kAudioSessionCategory_MediaPlayback;
+//    AudioSessionSetProperty(kAudioSessionProperty_AudioCategory,
+//                            sizeof(sessionCategory),
+//                            &sessionCategory);
+//    
+//    UInt32 audioRouteOverride = kAudioSessionOverrideAudioRoute_Speaker;
+//    AudioSessionSetProperty (kAudioSessionProperty_OverrideCategoryDefaultToSpeaker,sizeof (audioRouteOverride),&audioRouteOverride);
     
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+    [audioSession isOtherAudioPlaying];
     //默认情况下扬声器播放
     [audioSession setActive:YES error:nil];
     [audioSession setCategory:AVAudioSessionCategoryPlayback error:nil];
