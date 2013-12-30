@@ -31,8 +31,17 @@
 //            // OS version >= 7.0
 //            self.edgesForExtendedLayout = UIRectEdgeNone;
 //        }
+        UIBarButtonItem *temporaryBarButtonItem = [[UIBarButtonItem alloc] init];
+        temporaryBarButtonItem.title = @"back";
+        temporaryBarButtonItem.target = self;
+        temporaryBarButtonItem.action = @selector(back:);
+        self.navigationItem.backBarButtonItem = temporaryBarButtonItem;
     }
     return self;
+}
+
+- (void)back:(id)sender{
+
 }
 
 - (void)viewDidLoad
