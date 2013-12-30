@@ -320,6 +320,7 @@
 		65A573EB183AFDA30072A519 /* Date+string.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A573E6183AFDA30072A519 /* Date+string.m */; };
 		65A573EC183AFDA30072A519 /* solarActionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A573E8183AFDA30072A519 /* solarActionView.m */; };
 		65A573ED183AFDA30072A519 /* solarOrLunar.c in Sources */ = {isa = PBXBuildFile; fileRef = 65A573E9183AFDA30072A519 /* solarOrLunar.c */; };
+		65A5774F1871904800DFE24D /* PullHistroyTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A5774E1871904800DFE24D /* PullHistroyTableView.m */; };
 		65A5EA6118472BA9004C77E3 /* schedule_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 65A5EA6018472BA9004C77E3 /* schedule_btn.png */; };
 		65A7B35318595C220018E32C /* InformationCellContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A7B35218595C220018E32C /* InformationCellContentView.m */; };
 		65A7B3561859AAC40018E32C /* CompressImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A7B3551859AAC40018E32C /* CompressImage.m */; };
@@ -941,6 +942,8 @@
 		65A573E8183AFDA30072A519 /* solarActionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = solarActionView.m; sourceTree = "<group>"; };
 		65A573E9183AFDA30072A519 /* solarOrLunar.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = solarOrLunar.c; sourceTree = "<group>"; };
 		65A573EA183AFDA30072A519 /* solarOrLunar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = solarOrLunar.h; sourceTree = "<group>"; };
+		65A5774D1871904800DFE24D /* PullHistroyTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullHistroyTableView.h; sourceTree = "<group>"; };
+		65A5774E1871904800DFE24D /* PullHistroyTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PullHistroyTableView.m; sourceTree = "<group>"; };
 		65A5EA6018472BA9004C77E3 /* schedule_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = schedule_btn.png; sourceTree = "<group>"; };
 		65A7B35118595C220018E32C /* InformationCellContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InformationCellContentView.h; sourceTree = "<group>"; };
 		65A7B35218595C220018E32C /* InformationCellContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InformationCellContentView.m; sourceTree = "<group>"; };
@@ -1337,6 +1340,8 @@
 		595B7A081809575C006DD766 /* iosrefresh */ = {
 			isa = PBXGroup;
 			children = (
+				65A5774D1871904800DFE24D /* PullHistroyTableView.h */,
+				65A5774E1871904800DFE24D /* PullHistroyTableView.m */,
 				595B7A091809591A006DD766 /* PullRefreshTableView.h */,
 				595B7A0A1809591A006DD766 /* PullRefreshTableView.m */,
 			);
@@ -2856,6 +2861,7 @@
 				5960E3C41860473700EA0FFA /* ContactsDetailController.m in Sources */,
 				65A26CA21839C41B006AF226 /* WorkView.m in Sources */,
 				659AB35F180975D0000FCEC5 /* CallTelController.m in Sources */,
+				65A5774F1871904800DFE24D /* PullHistroyTableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

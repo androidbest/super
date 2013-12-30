@@ -141,6 +141,41 @@
     [self.messageView performSegueWithIdentifier:@"msgtochat" sender:self.messageView];
      [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
+
+#pragma mark - UITableViewDelegate
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (_messageView.searchBar.text.length!=0&&isSearching){
+        return NO;
+    }
+    else{
+        return YES;
+    }
+}
+
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    SessionEntity * sessionInfo=nil;
+    if (_messageView.searchBar.text.length!=0&&isSearching){
+        sessionInfo=_arrSeaPeople[indexPath.row];
+    }
+    else{
+        sessionInfo=_arrSession[indexPath.row];
+    }
+    
+    CoreDataManageContext *coreText=[CoreDataManageContext newInstance];
+    [coreText deleteChatInfoWithChatMessageID:sessionInfo.session_chatMessageID];
+    
+    [_arrSession removeObject:_arrSession[indexPath.row]];
+    
+    [tableView beginUpdates];
+    [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    [tableView endUpdates];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return @"删除";
+}
+
 #pragma mark - UISearchDisplayDelegate
 - (void)filteredListContentForSearchText:(NSString*)searchText scope:(NSString*)scope
 {
