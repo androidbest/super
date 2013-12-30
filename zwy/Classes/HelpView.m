@@ -32,7 +32,7 @@
     self.helpWebPage.scalesPageToFit =YES;
     self.helpWebPage.delegate =self.controller;
     self.activityIndicatorView = [[UIActivityIndicatorView alloc]
-                             initWithFrame : CGRectMake(0, 0, 32.0f, 32.0f)] ;
+                             initWithFrame : CGRectMake(0, 0, 32.0f, 32.0f)];
     self.helpWebPage.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     [self.activityIndicatorView setCenter: self.view.center] ;
     [self.activityIndicatorView setActivityIndicatorViewStyle: UIActivityIndicatorViewStyleGray] ;

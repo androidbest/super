@@ -43,36 +43,6 @@
         _rightMessage =[[VoiceBtn alloc] initWithFrame:CGRectZero];
         [self addSubview:_rightMessage];
         
-        
-//        UIGestureRecognizer *singleTap = [[UIGestureRecognizer alloc] initWithTarget:self action:@selector(UesrClicked:)];
-//        singleTap.voiceurl=msgObj.filepath;
-//        [_rightMessage addGestureRecognizer:singleTap];
-//        _rightMessage.userInteractionEnabled = YES;
-        
-        //"时间"标签
-//        _time =[[UILabel alloc] initWithFrame:CGRectMake(140,10,150 ,20)];
-//        _time.font=[UIFont systemFontOfSize:13];
-//        _time.backgroundColor=[UIColor clearColor];
-//        _time.textColor=[UIColor grayColor];
-//        _time.textAlignment=NSTextAlignmentRight;
-//        [self addSubview:_time];
-//        
-//        //"已读未读"标示
-//        _imageMark =[[UIImageView alloc] initWithFrame:CGRectMake(10, 15, 8, 8)];
-//        _imageMark.image=[UIImage imageNamed:@"list_yuan"];
-//        _imageMark.hidden=YES;
-//        [self addSubview:_imageMark];
-//        
-//        //"人气数"标签
-//        _greetingCount =[[UILabel alloc] initWithFrame:CGRectMake(320-100, self.frame.size.height-40, 90, 30)];
-//        _greetingCount.hidden=YES;
-//        _greetingCount.textAlignment=NSTextAlignmentRight;
-//        [self addSubview:_greetingCount];
-//        
-//        //"内容图片"
-//        _imageContent =[[UIImageView alloc] initWithFrame:CGRectMake(25, 20, 280, 100)];
-//        _imageContent.hidden=YES;
-//        [self addSubview:_imageContent];
     }
     return self;
 }

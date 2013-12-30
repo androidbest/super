@@ -170,9 +170,9 @@
     NSURL * url =[NSURL URLWithString:URL];
     NSMutableURLRequest * request =[[NSMutableURLRequest alloc] initWithURL:url];
     AFHTTPRequestOperation *posterOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    posterOperation.responseSerializer = [AFImageResponseSerializer serializer];
+    posterOperation.responseSerializer = [AFCompoundResponseSerializer serializer];
     [posterOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [((NSData *)responseObject) writeToFile:@"" atomically:NO];
+        [((NSData *)responseObject) writeToFile:strpaths atomically:NO];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         //显示加载失败的voice
         NSLog(@"voice request failed with error: %@", error);
@@ -257,7 +257,7 @@
     AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:url];
     //    NSDictionary *parameters = @{@"foo": @"bar"};
     ///phoenix/IosUpServlet?type=1&
-    [manager POST:[NSString stringWithFormat:@"/phoenix/IosUpServlet?type=%@&uuid=%@",type,uuid] parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    [manager POST:[NSString stringWithFormat:@"/phoneservice/IosUpServlet?type=%@&uuid=%@",type,uuid] parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         NSString *mimeType=@"";
         if([type isEqualToString:@"0"]){
             mimeType=@"image/jpeg";

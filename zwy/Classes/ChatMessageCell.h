@@ -14,5 +14,4 @@
 @property (strong, nonatomic) UIButton *rightHead;
 @property (strong, nonatomic) VoiceBtn *leftMessage;
 @property (strong, nonatomic) VoiceBtn *rightMessage;
-
 @end
