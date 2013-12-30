@@ -29,18 +29,7 @@
         ChatMessageController *contacts=[ChatMessageController new];
         contacts.chatMessageView=self;
         self.controller=contacts;
-        
-        //键盘显示
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(handleWillShowKeyboard:)
-                                                     name:UIKeyboardWillShowNotification
-                                                   object:nil];
-        //键盘隐藏
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(handleWillHideKeyboard:)
-                                                     name:UIKeyboardWillHideNotification
-                                                   object:nil];
-        
+
     }
     return self;
 }
@@ -204,7 +193,18 @@
     }else{
     self.navigationItem.title=_chatData.Name;
     }
-//
+    //键盘显示
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleWillShowKeyboard:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    //键盘隐藏
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleWillHideKeyboard:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
+    
+    
 //    //添加观察者
     [self addMessageObserver];
 }
@@ -215,12 +215,11 @@
 
 //    //移除观察者
     [self removeMessageObserver];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
--(void)dealloc{
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
-    	[[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
-}
 
 #pragma mark - 移除接受消息观察者
 - (void)removeMessageObserver{
