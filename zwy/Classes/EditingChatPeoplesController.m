@@ -10,6 +10,8 @@
 #import "PeopelInfo.h"
 #import "PhotoButton.h"
 #import "OptionChatPeopleView.h"
+#import "CoreDataManageContext.h"
+#import "MessageView.h"
 @implementation EditingChatPeoplesController
 {
     BOOL isDelete;
@@ -35,8 +37,15 @@
 - (void)btnRemove{
     [_editingView.chatView.arrPeoples removeAllObjects];
     _editingView.chatView.arrPeoples=nil;
-    
-    [self.editingView.navigationController popViewControllerAnimated:YES];
+    [[CoreDataManageContext newInstance] deleteChatInfoWithChatMessageID:_editingView.chatMessageID];
+    NSArray *navArr=self.editingView.navigationController.viewControllers;
+    for (UIViewController *nav in navArr)
+    {
+        if ([nav isKindOfClass:[UITabBarController class]])
+        {
+            [self.editingView.navigationController popToViewController:nav animated:YES];
+        }
+    }
 }
 
 - (void)updatePeoples{
@@ -159,6 +168,11 @@
 //点击对应头像
 - (void)btnPeopleHead:(PhotoButton *)sender{
     if (isDelete) {
+        if (_editingView.chatView.arrPeoples.count<5) {
+            [self showHUDText:@"群聊人数必须大于3人" showTime:1];
+            return;
+        }
+        
         [_editingView.chatView.arrPeoples removeObjectAtIndex:sender.tag];
         for (UIView *view in _editingView.scrollView.subviews) {
             if ([view isKindOfClass:[PhotoButton class]]) {
@@ -171,4 +185,13 @@
     }
 }
 
+- (void)showHUDText:(NSString *)text showTime:(NSTimeInterval)time{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.editingView.view animated:YES];
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText =text;
+    hud.margin = 10.f;
+    hud.yOffset = 150.f;
+    hud.removeFromSuperViewOnHide = YES;
+    [hud hide:YES afterDelay:time];
+}
 @end

@@ -211,6 +211,7 @@
     }
 }
 
+/*************************************/
 //编辑群组人员
 - (void)rightDown
 {
@@ -220,8 +221,10 @@
     if([segue.identifier isEqualToString:@"ChatMessageToEditingPeoplesView"]){
         EditingChatPeoplesview *editingView =segue.destinationViewController;
         editingView.chatView=_chatMessageView;
+        editingView.chatMessageID=chatMessageID;
     }
 }
+/*************************************/
 
 
 -(void)sendMessage{

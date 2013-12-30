@@ -39,6 +39,8 @@
 	[self.controller initWithData];
     
     [_btnRemove addTarget:self.controller action:@selector(btnRemove) forControlEvents:UIControlEventTouchUpInside];
+    _btnRemove.layer.masksToBounds = YES;
+    _btnRemove.layer.cornerRadius = 6.0;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{

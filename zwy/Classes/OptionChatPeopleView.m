@@ -36,7 +36,6 @@
     _tableViewPeople.dataSource = self.controller;
     _tableViewPeople.delegate = self.controller;
     _tableViewPeople.tableHeaderView = self.searchBar;
-    _tableViewPeople.separatorStyle=UITableViewCellSeparatorStyleNone;
     
     
     _displayController = [[UISearchDisplayController alloc] initWithSearchBar:_searchBar contentsController:self];
