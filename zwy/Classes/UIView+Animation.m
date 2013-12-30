@@ -88,7 +88,7 @@ static NSMutableArray   *displayViewAry;//已显示的页面数组
     UIView *topView = [UIView getTopView];
     
     //(ZWY改动)
-    UITapGestureRecognizer *tap =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(saveVideo)];
+    UITapGestureRecognizer *tap =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(saveVideo:)];
     [topView addGestureRecognizer:tap];
     /**/
     
@@ -131,8 +131,10 @@ static NSMutableArray   *displayViewAry;//已显示的页面数组
 }
 
 //(ZWY改动)
-+ (void)saveVideo{
-[[NSNotificationCenter defaultCenter] postNotificationName:@"getChatVideo" object:nil userInfo:nil];//(ZWY改动)
++ (void)saveVideo:(UITapGestureRecognizer *)tap{
+    UIView *view =[tap view];
+    [view removeGestureRecognizer:tap];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"getChatVideo" object:nil userInfo:nil];//(ZWY改动)
 }
 /**
  显示view
