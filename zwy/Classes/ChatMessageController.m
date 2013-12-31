@@ -107,6 +107,14 @@
             peopel.eccode=user.eccode;
             [self.chatMessageView.arrPeoples addObject:peopel];
         }
+        //组装自己
+        PeopelInfo *selfPeople=[PeopelInfo new];
+        selfPeople.Name=user.username;
+        selfPeople.tel=user.msisdn;
+        selfPeople.headPath=user.headurl;
+        selfPeople.eccode=user.eccode;
+        [self.chatMessageView.arrPeoples addObject:selfPeople];
+        
         temp=info.imGroupid;
     }else{
         temp=info.tel;
@@ -457,7 +465,9 @@
         //加指示灯
         if(isSend){
             if((arrData.count-1)==indexPath.row){
-                activityIndicatorView.center=CGPointMake(cell.rightMessage.frame.origin.x-20,cell.center.y);
+                activityIndicatorView.center=CGPointMake(cell.rightMessage.frame.origin.x-20,cell.rightMessage.center.y-5);
+                NSLog(@"%f",cell.frame.size.height/2);
+                
                 [cell addSubview:activityIndicatorView];
                 [activityIndicatorView startAnimating];
                 cell.rightMessage.voiceurl=wavSavePath;
