@@ -25,6 +25,15 @@
         _chatTime.textAlignment=NSTextAlignmentCenter;
         [self addSubview:_chatTime];
         
+        _voiceTimes =[[UILabel alloc] initWithFrame:CGRectZero];
+        _voiceTimes.font=[UIFont systemFontOfSize:13];
+        _voiceTimes.backgroundColor=[UIColor clearColor];
+        _voiceTimes.textColor=[UIColor lightGrayColor];
+        //        _chatTime.layer.borderWidth=0.5;
+        //        _chatTime.layer.borderColor=[[UIColor lightGrayColor] CGColor];
+        _chatTime.textAlignment=NSTextAlignmentCenter;
+        [self addSubview:_voiceTimes];
+        
         //"左头像"标签
         _leftHead=[[UIButton alloc] initWithFrame:CGRectMake(10,30,40,40)];
         [_leftHead setBackgroundImage:[UIImage imageNamed:@"default_avatar"] forState:UIControlStateNormal];
