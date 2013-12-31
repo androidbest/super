@@ -492,28 +492,10 @@
             rectLeftMessage.origin.y-=20;
             cell.leftMessage.frame=rectLeftMessage;
             
-            
-            if((arrData.count-1)==indexPath.row){
-                activityIndicatorView.center=CGPointMake(rectLeftMessage.origin.x-10, rectLeftMessage.origin.y/2);
-                [cell addSubview:activityIndicatorView];
-                [activityIndicatorView startAnimating];
-                isSend=NO;
-            }
-            
         }else{
             cell.chatTime.text=[ToolUtils NSDateToNSString:arrTime[indexPath.row] format:@"yy/MM/dd HH:mm"];
             cell.chatTime.hidden=NO;
         }
-        
-//        //加指示灯
-//        if(isSend){
-//            if((arrData.count-1)==indexPath.row){
-//                activityIndicatorView.center=CGPointMake(cell.leftMessage.frame.origin.x-20,cell.center.y);
-//                [cell addSubview:activityIndicatorView];
-//                [activityIndicatorView startAnimating];
-//                isSend=NO;
-//            }
-//        }
         
         //语音点击事件
         if([msgObj.chattype isEqualToString:@"1"]){
