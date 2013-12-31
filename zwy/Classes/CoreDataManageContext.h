@@ -36,4 +36,6 @@
 
 #pragma mark - 更新数据
 - (void)updateWithSessionEntity:(SessionEntity *)sessionInfo;
+
+- (void)saveContext;
 @end

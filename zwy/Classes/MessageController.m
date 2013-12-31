@@ -138,7 +138,7 @@
     info.Name=sessionInfo.session_receivername;
     self.messageView.info=info;
     self.messageView.tabBarController.navigationItem.title=@"";
-    [self.messageView performSegueWithIdentifier:@"msgtochat" sender:self.messageView];
+    [self.messageView performSegueWithIdentifier:@"msgtochat" sender:sessionInfo];
      [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

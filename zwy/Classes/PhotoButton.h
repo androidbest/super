@@ -12,4 +12,5 @@
 @interface PhotoButton : UIButton
 
 @property(strong ,nonatomic)CALayer *layerBubble;
+@property(strong, nonatomic)UILabel *labelName;
 @end

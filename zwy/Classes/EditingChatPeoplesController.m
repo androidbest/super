@@ -15,6 +15,9 @@
 @implementation EditingChatPeoplesController
 {
     BOOL isDelete;
+    NSString *Names;
+    NSString *HeadPaths;
+    NSString *msisdns;
 }
 - (id)init{
     self =[super init];
@@ -54,7 +57,13 @@
     float imageHeadSize=55;
     float imageInterval=20;
     
+    Names=Nil;
+    HeadPaths=Nil;
+    msisdns=Nil;
+    
+    
     for (int i=0; i<_editingView.chatView.arrPeoples.count/widthIndex; i++) {
+        NSLog(@"%d",_editingView.chatView.arrPeoples.count/widthIndex);
         for (int j=0; j<widthIndex; j++) {
             int btnTag=lineIndex*widthIndex+j;
             PhotoButton *btn=[PhotoButton buttonWithType:UIButtonTypeCustom];
@@ -65,12 +74,12 @@
             if ([obj isEqual:@"10000"]) {
                 btn.layerBubble.hidden=YES;
                 btn.tag=10000;
-                [btn setBackgroundImage:[UIImage imageNamed:@"im_head"] forState:UIControlStateNormal];
+                [btn setBackgroundImage:[UIImage imageNamed:@"chat_jiahao"] forState:UIControlStateNormal];
                 [btn addTarget:self action:@selector(btnAddpeople:) forControlEvents:UIControlEventTouchUpInside];
             }else if([obj isEqual:@"10001"]){
                 btn.layerBubble.hidden=YES;
                 btn.tag=10001;
-                [btn setBackgroundImage:[UIImage imageNamed:@"btn_clear_people"] forState:UIControlStateNormal];
+                [btn setBackgroundImage:[UIImage imageNamed:@"chat_jianhao"] forState:UIControlStateNormal];
                 [btn addTarget:self action:@selector(btnDeletePeople:) forControlEvents:UIControlEventTouchUpInside];
             }else{
                 btn.tag=btnTag;
@@ -78,9 +87,19 @@
                 [btn addTarget:self action:@selector(btnPeopleHead:) forControlEvents:UIControlEventTouchUpInside];
                 [btn setBackgroundImage:[UIImage imageNamed:@"default_avatar"] forState:UIControlStateNormal];
                 PeopelInfo *info =_editingView.chatView.arrPeoples[btnTag];
+                btn.labelName.text=info.Name;
                 [HTTPRequest setImageWithURL:info.headPath placeholderImage:[UIImage imageNamed:@"default_avatar"] ImageBolck:^(UIImage *image) {
                     [btn setBackgroundImage:image forState:UIControlStateNormal];
                 }];
+                
+                if (!Names) Names=info.Name;
+                else Names=[NSString stringWithFormat:@"%@,%@",Names,info.Name];
+                
+                if (!HeadPaths) HeadPaths=info.headPath;
+                else HeadPaths=[NSString stringWithFormat:@"%@,%@",HeadPaths,info.headPath];
+                
+                if (!msisdns) msisdns =info.tel;
+                else msisdns=[NSString stringWithFormat:@"%@,%@",msisdns,info.tel];
             }
             
         }
@@ -98,12 +117,12 @@
         if ([obj isEqual:@"10000"]) {
             btn.layerBubble.hidden=YES;
             btn.tag=10000;
-             [btn setBackgroundImage:[UIImage imageNamed:@"im_head"] forState:UIControlStateNormal];
+             [btn setBackgroundImage:[UIImage imageNamed:@"chat_jiahao"] forState:UIControlStateNormal];
             [btn addTarget:self action:@selector(btnAddpeople:) forControlEvents:UIControlEventTouchUpInside];
         }else if([obj isEqual:@"10001"]){
             btn.layerBubble.hidden=YES;
             btn.tag=10001;
-            [btn setBackgroundImage:[UIImage imageNamed:@"btn_clear_people"] forState:UIControlStateNormal];
+            [btn setBackgroundImage:[UIImage imageNamed:@"chat_jianhao"] forState:UIControlStateNormal];
             [btn addTarget:self action:@selector(btnDeletePeople:) forControlEvents:UIControlEventTouchUpInside];
         }else{
             btn.tag=btnTag;
@@ -111,18 +130,40 @@
             [btn addTarget:self action:@selector(btnPeopleHead:) forControlEvents:UIControlEventTouchUpInside];
             [btn setBackgroundImage:[UIImage imageNamed:@"default_avatar"] forState:UIControlStateNormal];
             PeopelInfo *info =_editingView.chatView.arrPeoples[btnTag];
+            btn.labelName.text=info.Name;
             [HTTPRequest setImageWithURL:info.headPath placeholderImage:[UIImage imageNamed:@"default_avatar"] ImageBolck:^(UIImage *image) {
                 [btn setBackgroundImage:image forState:UIControlStateNormal];
             }];
+            
+            if (!Names) Names=info.Name;
+            else Names=[NSString stringWithFormat:@"%@,%@",Names,info.Name];
+            
+            if (!HeadPaths) HeadPaths=info.headPath;
+            else HeadPaths=[NSString stringWithFormat:@"%@,%@",HeadPaths,info.headPath];
+            
+            if (!msisdns) msisdns =info.tel;
+            else msisdns=[NSString stringWithFormat:@"%@,%@",msisdns,info.tel];
         }
     }
     
+    //改变滑动视图滑动范围
     if (_editingView.chatView.arrPeoples.count%widthIndex==0) {
         [self.editingView.scrollView setContentSize:CGSizeMake(320, lineIndex*(imageHeadSize+imageInterval))];
     }else{
         [self.editingView.scrollView setContentSize:CGSizeMake(320, (lineIndex+1)*(imageHeadSize+imageInterval))];
     }
     
+    //更新数据库信息
+    [self updateCoreData];
+}
+
+
+- (void)updateCoreData{
+    if (!_editingView.chatView.sessionInfo) return;
+    _editingView.chatView.sessionInfo.session_receivermsisdn=msisdns;
+    _editingView.chatView.sessionInfo.session_receiveravatar=HeadPaths;
+    _editingView.chatView.sessionInfo.session_receivername=Names;
+    [[CoreDataManageContext newInstance] saveContext];
 }
 
 #pragma mark - 按钮

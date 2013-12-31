@@ -117,10 +117,12 @@
         [self.controller BasePrepareForSegue:segue sender:sender];
     }else if ([segue.identifier isEqualToString:@"msgtochat"]){
         if(_info){
-            //将page2设定成Storyboard Segue的目标UIViewController
+            
             id page2 = segue.destinationViewController;
-            //将值透过Storyboard Segue带给页面2的string变数
+           
             [page2 setValue:_info forKey:@"chatData"];
+            [page2 setValue:sender forKey:@"sessionInfo"];
+            
         }else{
             [self.controller BasePrepareForSegue:segue sender:sender];
         }

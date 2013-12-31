@@ -91,6 +91,11 @@
         [ToolUtils alertInfo:@"群聊人数必须大于3人"];
         return;
     }
+    
+    if (![_arrOption containsObject:[self getPeopleInfoFromUserInfo]]) {
+       [_arrOption addObject:[self getPeopleInfoFromUserInfo]];//将自己加入群组
+    }
+    
     [self.optionView dismissViewControllerAnimated:_optionView.ismodeAnimation completion:nil];
     [self.optionView.OptionChatPeopleDelegate MessageViewToChatMessageView:_arrOption];
 }
@@ -296,6 +301,17 @@ shouldReloadTableForSearchScope:(NSInteger)searchOption
 //    hud.yOffset = 150.f;
     hud.removeFromSuperViewOnHide = YES;
     [hud hide:YES afterDelay:time];
+}
+
+- (PeopelInfo *)getPeopleInfoFromUserInfo{
+    PeopelInfo *Info =[PeopelInfo new];
+    Info.userID =user.userid;
+    Info.Name=user.username;
+    Info.tel =user.msisdn;
+    Info.letter=user.msisdn;
+    Info.headPath=user.headurl;
+    Info.eccode=user.eccode;
+    return Info;
 }
 
 @end
