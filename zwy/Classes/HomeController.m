@@ -138,8 +138,6 @@
 }
 //资讯
 -(void)information{
-    [packageData imRevice:self SELType:NOTIFICATIONMESSAGE];
-    return;
     [self initBackBarButtonItem:self.homeView];
     [self.homeView performSegueWithIdentifier:@"hometoinformation" sender:self.homeView];
 }

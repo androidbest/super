@@ -39,6 +39,7 @@
         return;
     }
     
+    [_comDetaView.textContent resignFirstResponder];
     [packageData sendNewsComment:self content:_comDetaView.textContent.text discuesstime:strTime newsID:_comDetaView.InfoNewsDeta.newsID];
     
     /*提交等待*/

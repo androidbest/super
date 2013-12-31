@@ -278,18 +278,19 @@ UIBackgroundTaskIdentifier backgroundTask;//写成成员
     CoreDataManageContext *coredataManage =[CoreDataManageContext newInstance];
     for (int i=0; i<arrmessages.count; i++) {
         ChatMsgObj *obj =arrmessages[i];
-        NSString *chatMessageID =[NSString stringWithFormat:@"%@%@%@%@",user.msisdn,user.eccode,obj.receivermsisdn,obj.receivereccode];
+        NSString *chatMessageID =[NSString stringWithFormat:@"%@%@%@%@",user.msisdn,user.eccode,obj.receivermsisdn,user.eccode];
         if ([EX_chatMessageID  isEqualToString:chatMessageID]) {
-            if (!obj.groupid||[obj.groupid isEqualToString:@"(null)"]||[obj.groupid isEqualToString:@""]) {
+            if (!obj.groupid||[obj.groupid isEqualToString:@"(null)"]||[obj.groupid isEqualToString:@""]) {//接收个人
                [coredataManage setChatInfo:obj status:@"1" isChek:YES  gid:nil arr:nil];
-            }else{
+            }else{//接受组
                 [coredataManage setChatInfo:obj status:@"1" isChek:YES];
             }
            
         }else {
-            if (!obj.groupid||[obj.groupid isEqualToString:@"(null)"]||[obj.groupid isEqualToString:@""]) {
+            if (!obj.groupid||[obj.groupid isEqualToString:@"(null)"]||[obj.groupid isEqualToString:@""]) {//接收个人
                 [coredataManage setChatInfo:obj status:@"1" isChek:NO  gid:nil arr:nil];
-            }else{
+            }else{//接受组
+                chatMessageID =[NSString stringWithFormat:@"%@%@%@%@",user.msisdn,user.eccode,obj.receivermsisdn,user.eccode];
                 [coredataManage setChatInfo:obj status:@"1" isChek:NO];
             }
         }
