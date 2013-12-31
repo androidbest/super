@@ -106,12 +106,9 @@ static CoreDataManageContext *coreData=nil;
     }
     
     //更新Sessions消息
-     messageObjct.receiveravatar=[messageObjct.receiveravatar substringToIndex:messageObjct.receiveravatar.length-1];
-    Sessions.session_receiveravatar=messageObjct.receiveravatar;
-    
-    messageObjct.sendname=[messageObjct.sendname substringToIndex:messageObjct.sendname.length-1];
+    Sessions.session_receiveravatar=messageObjct.senderavatar;
     Sessions.session_receivername=messageObjct.sendname;
-    
+    Sessions.session_receivermsisdn=messageObjct.sendmsisdn;
     Sessions.session_content=messageObjct.content;
     if (isChek) Sessions.session_unreadcount =@"0";
     else Sessions.session_unreadcount=[NSString stringWithFormat:@"%d",[Sessions.session_unreadcount intValue]+1];
