@@ -455,7 +455,10 @@
             [HTTPRequest voiceWithURL:msgObj.filepath];
             [cell.rightMessage addTarget:self action:@selector(UesrClicked:) forControlEvents:UIControlEventTouchUpInside];
             cell.rightMessage.voiceurl=msgObj.filepath;
-            
+            cell.voiceTimes.text=msgObj.voicetime;
+            cell.voiceTimes.frame=CGRectMake(cell.rightMessage.frame.origin.x-20, cell.rightMessage.frame.origin.y,10,10);
+        }else{
+            cell.voiceTimes.hidden=YES;
         }
         
         //加指示灯
@@ -467,6 +470,7 @@
                 [cell addSubview:activityIndicatorView];
                 [activityIndicatorView startAnimating];
                 cell.rightMessage.voiceurl=wavSavePath;
+                cell.voiceTimes.text=voicetime;
                 isSend=NO;
             }
         }
@@ -505,6 +509,10 @@
             [HTTPRequest voiceWithURL:msgObj.filepath];
             [cell.leftMessage addTarget:self action:@selector(UesrClicked:) forControlEvents:UIControlEventTouchUpInside];
             cell.leftMessage.voiceurl=msgObj.filepath;
+            cell.voiceTimes.text=msgObj.voicetime;
+            cell.voiceTimes.frame=CGRectMake(cell.rightMessage.frame.origin.x-20, cell.rightMessage.frame.origin.y,10,10);
+        }else{
+            cell.voiceTimes.hidden=YES;
         }
         
     }
