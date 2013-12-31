@@ -58,6 +58,13 @@
        
     }
     
+    NSString * strPre=[NSString stringWithFormat:@"SELF.tel == '%@'",user.msisdn];
+    NSPredicate * predicate;
+    predicate = [NSPredicate predicateWithFormat:strPre];
+    NSArray *arr=[self.arrAllLink filteredArrayUsingPredicate: predicate];
+    [self.arrAllLink removeObjectsInArray:arr];
+    
+    
     NSMutableArray * arrRemoveObject=[[NSMutableArray alloc] init];
     for (int i = 0; i<_arrSection.count; i++) {
         NSString * strPre=[NSString stringWithFormat:@"SELF.Firetletter == '%@'",_arrSection[i]];

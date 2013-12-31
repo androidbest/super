@@ -72,7 +72,7 @@ static CoreDataManageContext *coreData=nil;
     NSFetchRequest *frq = [[NSFetchRequest alloc]init];
     [frq setEntity:emEty];
 
-    NSString *chatMessageID =[NSString stringWithFormat:@"%@%@%@%@",user.msisdn,user.eccode,messageObjct.groupid,messageObjct.receivereccode];
+    NSString *chatMessageID =[NSString stringWithFormat:@"%@%@%@%@",user.msisdn,user.eccode,messageObjct.groupid,user.eccode];
     
     //设置搜索条件
     
@@ -85,19 +85,24 @@ static CoreDataManageContext *coreData=nil;
     SessionEntity *Sessions=nil;
     if (objs.count<=0){
         Sessions =(SessionEntity *)[[NSManagedObject alloc] initWithEntity:emEty insertIntoManagedObjectContext:self.managedObjectContext];
-//        Sessions.session_groupuuid=messageObjct.groupid;
-//        Sessions.session_chatMessageID=chatMessageID;
-//        Sessions.session_receivermsisdn=messageObjct.receivermsisdn;
-//        Sessions.session_receivereccode=messageObjct.receivereccode;
-//        Sessions.session_selfid=[user.msisdn stringByAppendingString:user.eccode];
-//        Sessions.session_pinyinName =[ToolUtils pinyinFromString:messageObjct.receivername];
+        Sessions.session_groupuuid=messageObjct.groupid;
+        Sessions.session_chatMessageID=chatMessageID;
+        messageObjct.sendmsisdn=[messageObjct.sendmsisdn substringToIndex:messageObjct.sendmsisdn.length-1];
+        Sessions.session_receivermsisdn=messageObjct.sendmsisdn;
+        Sessions.session_receivereccode=messageObjct.receivereccode;
+        Sessions.session_selfid=[user.msisdn stringByAppendingString:user.eccode];
+        Sessions.session_pinyinName =[ToolUtils pinyinFromString:messageObjct.receivername];
     }else{
         Sessions=objs[0];
     }
     
     //更新Sessions消息
-//    Sessions.session_receiveravatar=messageObjct.receiveravatar;
-//    Sessions.session_receivername=messageObjct.receivername;
+     messageObjct.receiveravatar=[messageObjct.receiveravatar substringToIndex:messageObjct.receiveravatar.length-1];
+    Sessions.session_receiveravatar=messageObjct.receiveravatar;
+    
+    messageObjct.sendname=[messageObjct.sendname substringToIndex:messageObjct.sendname.length-1];
+    Sessions.session_receivername=messageObjct.sendname;
+    
     Sessions.session_content=messageObjct.content;
     if (isChek) Sessions.session_unreadcount =@"0";
     else Sessions.session_unreadcount=[NSString stringWithFormat:@"%d",[Sessions.session_unreadcount intValue]+1];

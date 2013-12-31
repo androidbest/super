@@ -132,7 +132,7 @@
 //        info.tel=sessionInfo.session_receivermsisdn;
 //    }
     info.tel=sessionInfo.session_receivermsisdn;
-    info.eccode=sessionInfo.session_receivereccode;
+    info.eccode=user.eccode;
     info.headPath=sessionInfo.session_receiveravatar;
     info.imGroupid=sessionInfo.session_groupuuid;
     info.Name=sessionInfo.session_receivername;
