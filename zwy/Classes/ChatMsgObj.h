@@ -25,4 +25,6 @@
 @property (strong ,nonatomic)NSDate *sendtimeNSdate;//发送时间 date格式
 @property (strong ,nonatomic)NSString *voicetime;//语音秒数
 @property (strong ,nonatomic)NSString *status;//0.自己发 1.对方发
+@property (strong ,nonatomic)NSString *gsendermsisdn;//组发送者电话
+@property (strong ,nonatomic)NSString *gsenderheadurl;//组发送者头像
 @end

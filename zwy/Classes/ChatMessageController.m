@@ -107,14 +107,6 @@
             peopel.eccode=user.eccode;
             [self.chatMessageView.arrPeoples addObject:peopel];
         }
-        //组装自己
-        PeopelInfo *selfPeople=[PeopelInfo new];
-        selfPeople.Name=user.username;
-        selfPeople.tel=user.msisdn;
-        selfPeople.headPath=user.headurl;
-        selfPeople.eccode=user.eccode;
-        [self.chatMessageView.arrPeoples addObject:selfPeople];
-        
         temp=info.imGroupid;
     }else{
         temp=info.tel;
@@ -135,8 +127,8 @@
         chatObj.chattype=chat.chat_msgtype;
         chatObj.sendeccode=user.eccode;
         chatObj.sendmsisdn=user.msisdn;
-        chatObj.receivereccode=chat.chat_sessionObjct.session_receivermsisdn;
-        chatObj.receivermsisdn=chat.chat_sessionObjct.session_receivereccode;
+        chatObj.receivereccode=chat.chat_sessionObjct.session_receivereccode;
+        chatObj.receivermsisdn=chat.chat_sessionObjct.session_receivermsisdn;
         chatObj.receiveravatar=chat.chat_sessionObjct.session_receiveravatar;
         chatObj.receivername=chat.chat_sessionObjct.session_receivername;
         chatObj.content=chat.chat_content;
@@ -146,6 +138,8 @@
         chatObj.filepath=chat.chat_voiceurl;
         chatObj.status=chat.chat_status;
         chatObj.voicetime=chat.chat_voicetime;
+        chatObj.gsendermsisdn=chat.chat_gsendermsisdn;
+        chatObj.gsenderheadurl=chat.chat_gsenderheadurl;
         [arrData addObject:chatObj];
         [arrTime addObject:chat.chat_times];
     }
@@ -171,8 +165,8 @@
         chatObj.chattype=chat.chat_msgtype;
         chatObj.sendeccode=user.eccode;
         chatObj.sendmsisdn=user.msisdn;
-        chatObj.receivereccode=chat.chat_sessionObjct.session_receivermsisdn;
-        chatObj.receivermsisdn=chat.chat_sessionObjct.session_receivereccode;
+        chatObj.receivereccode=chat.chat_sessionObjct.session_receivereccode;
+        chatObj.receivermsisdn=chat.chat_sessionObjct.session_receivermsisdn;
         chatObj.receiveravatar=chat.chat_sessionObjct.session_receiveravatar;
         chatObj.receivername=chat.chat_sessionObjct.session_receivername;
         chatObj.content=chat.chat_content;
@@ -181,6 +175,8 @@
         chatObj.senderavatar=user.headurl;
         chatObj.filepath=chat.chat_voiceurl;
         chatObj.status=chat.chat_status;
+        chatObj.gsendermsisdn=chat.chat_gsendermsisdn;
+        chatObj.gsenderheadurl=chat.chat_gsenderheadurl;
         [arrData addObject:chatObj];
         [arrTime addObject:chat.chat_times];
     }
@@ -478,9 +474,16 @@
     }else{
         cell.rightHead.hidden=YES;
         cell.leftHead.hidden=NO;
+        NSString *url=@"";
+        if(msgObj.groupid&&![msgObj.groupid isEqualToString:@"null"]&&![msgObj.groupid isEqualToString:@""]){
+        cell.leftHead.tag=[ToolUtils stringToNum:msgObj.gsendermsisdn];
+            url=msgObj.gsenderheadurl;
+        }else{
         cell.leftHead.tag=[ToolUtils stringToNum:msgObj.receivermsisdn];
+            url=msgObj.receiveravatar;
+        }
+        [HTTPRequest imageWithURL:url imageView:cell.leftHead placeUIButtonImage:[UIImage imageNamed:@"default_avatar"]];
         [cell.leftHead addTarget:self action:@selector(leftPushDetail:) forControlEvents:UIControlEventTouchUpInside];
-        [HTTPRequest imageWithURL:msgObj.receiveravatar imageView:cell.rightHead placeUIButtonImage:[UIImage imageNamed:@"default_avatar"]];
         [ToolUtils bubbleView:msgObj.content from:NO withPosition:60 view:cell.leftMessage selfType:msgObj.chattype];
         if([strBool isEqualToString:@"1"]){
             cell.chatTime.hidden=YES;

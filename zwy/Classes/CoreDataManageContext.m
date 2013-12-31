@@ -81,15 +81,24 @@ static CoreDataManageContext *coreData=nil;
     
     NSArray *objs =[self.managedObjectContext executeFetchRequest:frq error:nil];
     
+//    NSString *gsender=messageObjct.receivermsisdn;
+//    NSString *gsendheadurl=messageObjct.receiveravatar;
+//    NSString *gsendname=messageObjct.receivername;
+    
+    messageObjct.senderavatar=[messageObjct.senderavatar stringByAppendingString:messageObjct.receiveravatar];
+    messageObjct.sendmsisdn=[messageObjct.sendmsisdn stringByAppendingString:messageObjct.receivermsisdn];
+    messageObjct.sendname=[messageObjct.sendname stringByAppendingString:messageObjct.receivername];
+    
     //获取对应的实体
     SessionEntity *Sessions=nil;
     if (objs.count<=0){
         Sessions =(SessionEntity *)[[NSManagedObject alloc] initWithEntity:emEty insertIntoManagedObjectContext:self.managedObjectContext];
         Sessions.session_groupuuid=messageObjct.groupid;
         Sessions.session_chatMessageID=chatMessageID;
-        messageObjct.sendmsisdn=[messageObjct.sendmsisdn substringToIndex:messageObjct.sendmsisdn.length-1];
         Sessions.session_receivermsisdn=messageObjct.sendmsisdn;
         Sessions.session_receivereccode=messageObjct.receivereccode;
+        Sessions.session_receiveravatar=messageObjct.senderavatar;
+        Sessions.session_receivername=messageObjct.sendname;
         Sessions.session_selfid=[user.msisdn stringByAppendingString:user.eccode];
         Sessions.session_pinyinName =[ToolUtils pinyinFromString:messageObjct.receivername];
     }else{
@@ -120,6 +129,8 @@ static CoreDataManageContext *coreData=nil;
     chatInfo.chat_status=chatType;
     chatInfo.chat_sessionObjct=Sessions;
     chatInfo.chat_voicetime=messageObjct.voicetime;
+    chatInfo.chat_gsendermsisdn=messageObjct.receivermsisdn;
+    chatInfo.chat_gsenderheadurl=messageObjct.receiveravatar;
     [Sessions addSession_chatsObject:chatInfo];
     [self saveContext];//保存
 

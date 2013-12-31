@@ -21,4 +21,6 @@
 @dynamic chat_status;
 @dynamic chat_sessionObjct;
 @dynamic chat_voicetime;
+@dynamic chat_gsendermsisdn;
+@dynamic chat_gsenderheadurl;
 @end

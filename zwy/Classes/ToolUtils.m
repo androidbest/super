@@ -341,7 +341,7 @@
     //背影图片
     if([selfType isEqualToString:@"0"]){
     UIImage *bubble = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fromSelf?@"chat_lefttext":@"chat_righttext" ofType:@"png"]];
-    bubbleImageView = [[UIImageView alloc] initWithImage:[bubble stretchableImageWithLeftCapWidth:40 topCapHeight:70]];
+    bubbleImageView = [[UIImageView alloc] initWithImage:[bubble stretchableImageWithLeftCapWidth:10 topCapHeight:70]];
     }else{
     UIImage *bubble = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fromSelf?@"rightvoice":@"leftvoice" ofType:@"png"]];
     bubbleImageView = [[UIImageView alloc] initWithImage:[bubble stretchableImageWithLeftCapWidth:40 topCapHeight:70]];
@@ -409,7 +409,7 @@
     //背影图片
     if([selfType isEqualToString:@"0"]){
         UIImage *bubble = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fromSelf?@"chat_lefttext":@"chat_righttext" ofType:@"png"]];
-        bubbleImageView = [[UIImageView alloc] initWithImage:[bubble stretchableImageWithLeftCapWidth:40 topCapHeight:70]];
+        bubbleImageView = [[UIImageView alloc] initWithImage:[bubble stretchableImageWithLeftCapWidth:10 topCapHeight:70]];
     }else{
         UIImage *bubble = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fromSelf?@"rightvoice":@"leftvoice" ofType:@"png"]];
         bubbleImageView = [[UIImageView alloc] initWithImage:[bubble stretchableImageWithLeftCapWidth:40 topCapHeight:70]];

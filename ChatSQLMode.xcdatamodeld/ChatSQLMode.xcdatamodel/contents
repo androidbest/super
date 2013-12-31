@@ -4,6 +4,8 @@
         <attribute name="chat_content" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="chat_groupname" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="chat_groupuuid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="chat_gsenderheadurl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="chat_gsendermsisdn" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="chat_MessageID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="chat_msgtype" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="chat_status" optional="YES" attributeType="String" syncable="YES"/>
