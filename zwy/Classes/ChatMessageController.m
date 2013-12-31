@@ -278,7 +278,7 @@
                 obj.receivermsisdn=info.tel;
                 obj.receiveravatar=info.headPath;
                 obj.receivername=info.Name;
-                obj.content=self.chatMessageView.im_text.text;
+                obj.content=@"语音";
                 obj.sendtime=[ToolUtils NSDateToNSString:date format:@"yy/MM/dd HH:mm"];
                 obj.sendtimeNSdate=date;
                 obj.groupid=grouid;
@@ -331,7 +331,7 @@
             obj.receivermsisdn=self.chatMessageView.chatData.tel;
             obj.receiveravatar=self.chatMessageView.chatData.headPath;
             obj.receivername=self.chatMessageView.chatData.Name;
-            obj.content=self.chatMessageView.im_text.text;
+            obj.content=@"语音";
             obj.sendtime=[ToolUtils NSDateToNSString:date format:@"yy/MM/dd HH:mm"];
             obj.sendtimeNSdate=date;
             obj.senderavatar=user.headurl;
@@ -418,10 +418,6 @@
 //        cell = [[ChatMessageCell alloc] initWithStyle:UITableViewCellStyleDefault
 //                                    reuseIdentifier:strCell];
 //    }
-    
-    
-    
-    
     ChatMessageCell * cell = [[ChatMessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:strCell];
 //    cell.leftMessage.frame=CGRectMake(60, 10, 200, 50);
 //    UIImageView *view=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
@@ -456,7 +452,7 @@
             [cell.rightMessage addTarget:self action:@selector(UesrClicked:) forControlEvents:UIControlEventTouchUpInside];
             cell.rightMessage.voiceurl=msgObj.filepath;
             cell.voiceTimes.text=msgObj.voicetime;
-            cell.voiceTimes.frame=CGRectMake(cell.rightMessage.frame.origin.x-20, cell.rightMessage.frame.origin.y,10,10);
+            cell.voiceTimes.frame=CGRectMake(cell.rightMessage.frame.origin.x-20, cell.rightMessage.center.y,20,10);
         }else{
             cell.voiceTimes.hidden=YES;
         }
@@ -480,10 +476,10 @@
         cell.leftHead.hidden=NO;
         NSString *url=@"";
         if(msgObj.groupid&&![msgObj.groupid isEqualToString:@"null"]&&![msgObj.groupid isEqualToString:@""]){
-        cell.leftHead.tag=[ToolUtils stringToNum:msgObj.gsendermsisdn];
+        cell.leftHead.tag=indexPath.row;
             url=msgObj.gsenderheadurl;
         }else{
-        cell.leftHead.tag=[ToolUtils stringToNum:msgObj.receivermsisdn];
+        cell.leftHead.tag=indexPath.row;
             url=msgObj.receiveravatar;
         }
         [HTTPRequest imageWithURL:url imageView:cell.leftHead placeUIButtonImage:[UIImage imageNamed:@"default_avatar"]];
@@ -514,7 +510,6 @@
         }else{
             cell.voiceTimes.hidden=YES;
         }
-        
     }
         return cell;
 }
@@ -548,7 +543,14 @@
 //点击左边头像
 -(void)leftPushDetail:(UIButton *)btn{
     NSMutableArray  *arr = [ConfigFile setEcNumberInfo];
-    NSString *strSearchbar =[NSString stringWithFormat:@"SELF.tel CONTAINS '%@'",[ToolUtils numToString:btn.tag]];
+    ChatMsgObj *msgobj=arrData[btn.tag];
+    NSString *msisdn=@"";
+    if(msgobj.groupid&&![msgobj.groupid isEqualToString:@"null"]&&![msgobj.groupid isEqualToString:@""]){
+        msisdn=msgobj.gsendermsisdn;
+    }else{
+        msisdn=msgobj.receivermsisdn;
+    }
+    NSString *strSearchbar =[NSString stringWithFormat:@"SELF.tel CONTAINS '%@'",msisdn];
     NSPredicate *predicate = [NSPredicate predicateWithFormat: strSearchbar];
     NSArray *arrRet =[arr filteredArrayUsingPredicate: predicate];
     if(arrRet.count>0){
