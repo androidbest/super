@@ -76,6 +76,7 @@
         obj.filepath=dic[@"fileurl"];
         if(chatMsgObjArr.count>0){
             for(ChatMsgObj *msgobj in chatMsgObjArr){
+                msgobj.filepath=obj.filepath;
                [packageData imSend:self chat:msgobj];
             }
         }else{
@@ -283,7 +284,7 @@
                 obj.sendtimeNSdate=date;
                 obj.groupid=grouid;
                 obj.senderavatar=user.headurl;
-                obj.filepath=amrSavePath;
+                obj.filepath=@"";
                 obj.status=@"0";
                 obj.voicetime=voicetime;
             }
@@ -316,12 +317,12 @@
             obj.sendtimeNSdate=date;
             obj.senderavatar=user.headurl;
             obj.filepath=@"";
-            obj.status=@"0";
+            obj.status=@"1";
             
             self.chatMessageView.im_text.text=nil;
             [self.chatMessageView.send setEnabled:NO];
             [self.chatMessageView.send setAlpha:0.4];
-            [packageData imSend:self chat:obj];
+//            [packageData imSend:self chat:obj];
         }else{
             obj=[ChatMsgObj new];
             obj.chattype=@"1";
@@ -389,11 +390,13 @@
     
     float leng=0.0;
      ChatMsgObj *msgObj=arrData[indexPath.row];
-    UIView *v=nil;
+    UIView *v=[UIView new];
     if([msgObj.status isEqualToString:@"0"]){
-    v=[ToolUtils bubbleView:msgObj.content from:YES selfType:msgObj.chattype];
+//    [ToolUtils bubbleView:msgObj.content from:YES view:v selfType:msgObj.chattype];
+    [ToolUtils bubbleView:msgObj.content from:YES withPosition:0 view:v selfType:msgObj.chattype];
     }else{
-    v=[ToolUtils bubbleView:msgObj.content from:NO selfType:msgObj.chattype];
+//    [ToolUtils bubbleView:msgObj.content from:NO selfType:msgObj.chattype];
+    [ToolUtils bubbleView:msgObj.content from:NO withPosition:0 view:v selfType:msgObj.chattype];
     }
     if([self compareTime:indexPath]){
         leng=v.frame.size.height+30;
@@ -452,7 +455,7 @@
             [cell.rightMessage addTarget:self action:@selector(UesrClicked:) forControlEvents:UIControlEventTouchUpInside];
             cell.rightMessage.voiceurl=msgObj.filepath;
             cell.voiceTimes.text=msgObj.voicetime;
-            cell.voiceTimes.frame=CGRectMake(cell.rightMessage.frame.origin.x-20, cell.rightMessage.center.y,20,10);
+            cell.voiceTimes.frame=CGRectMake(cell.rightMessage.frame.origin.x-20, cell.rightMessage.center.y-5,20,10);
         }else{
             cell.voiceTimes.hidden=YES;
         }

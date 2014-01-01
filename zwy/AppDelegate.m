@@ -41,9 +41,8 @@ UIBackgroundTaskIdentifier backgroundTask;//写成成员
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-      sqlHelper=[SqlLiteHelper new];
-      [sqlHelper createDB];
-    
+//      sqlHelper=[SqlLiteHelper new];
+//      [sqlHelper createDB];
     [[NSNotificationCenter defaultCenter]addObserver:self
                                             selector:@selector(notificationImRevice:)
                                                 name:NOTIFICATIONMESSAGE
