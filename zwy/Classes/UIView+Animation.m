@@ -134,6 +134,7 @@ static NSMutableArray   *displayViewAry;//已显示的页面数组
 + (void)saveVideo:(UITapGestureRecognizer *)tap{
     UIView *view =[tap view];
     [view removeGestureRecognizer:tap];
+
     [[NSNotificationCenter defaultCenter] postNotificationName:@"getChatVideo" object:nil userInfo:nil];//(ZWY改动)
 }
 /**
@@ -176,6 +177,14 @@ static NSMutableArray   *displayViewAry;//已显示的页面数组
 
 #pragma mark - 触摸背景
 + (void)maskViewTouch{
+    /*删除window上所有手势*/
+    UIView *view =[self getTopView];
+    NSArray *allGestureRecognizers =[view gestureRecognizers];
+    for (id ges in allGestureRecognizers){
+        [view removeGestureRecognizer:(UIGestureRecognizer *)ges];
+    }
+    /*********/
+    
     if ([displayViewAry count] > 0){
         ViewInfo *info = [displayViewAry lastObject];
         
@@ -191,6 +200,7 @@ static NSMutableArray   *displayViewAry;//已显示的页面数组
                 break;
         }
     }
+    
 }
 #pragma mark - 移除遮罩和已显示页面
 + (void)removeMaskViewAndDisplay:(ViewInfo*)info{
