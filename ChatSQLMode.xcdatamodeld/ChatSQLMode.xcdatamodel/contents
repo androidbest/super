@@ -26,6 +26,7 @@
         <attribute name="session_selfid" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="session_times" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="session_unreadcount" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="session_voicetimes" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="session_chats" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ChatEntity" inverseName="chat_sessionObjct" inverseEntity="ChatEntity" syncable="YES"/>
     </entity>
     <elements>

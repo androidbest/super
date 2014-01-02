@@ -24,4 +24,5 @@
 @dynamic session_unreadcount;
 @dynamic session_times;
 @dynamic session_chats;
+@dynamic session_voicetimes;
 @end

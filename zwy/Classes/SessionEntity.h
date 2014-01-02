@@ -22,8 +22,9 @@
 @property (nonatomic, retain) NSString * session_chatMessageID;   //自己电话_自己ec_对方电话_对方EC
 @property (nonatomic, retain) NSString * session_selfid;          //自己电话_自己ec
 @property (nonatomic, retain) NSString * session_content;         //内容
+@property (nonatomic, retain) NSString * session_voicetimes;         //语音秒数
 @property (nonatomic, retain) NSString * session_unreadcount;     //未读总条数
-@property (nonatomic, retain) NSDate * session_times;             //时间
+@property (nonatomic, retain) NSDate * session_times;             //时间session_voicetimes
 @property (nonatomic, retain) NSSet *session_chats;               //指向"消息表"
 @end
 
