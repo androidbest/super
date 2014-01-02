@@ -8,9 +8,9 @@
 
 #import "ChatRecorderView.h"
 
-#define kTrashImage1         [UIImage imageNamed:@"recorder_trash_can0.png"]
-#define kTrashImage2         [UIImage imageNamed:@"recorder_trash_can1.png"]
-#define kTrashImage3         [UIImage imageNamed:@"recorder_trash_can2.png"]
+#define kTrashImage1         [UIImage imageNamed:@"chat_jiahao.png"]
+#define kTrashImage2         [UIImage imageNamed:@"chat_jiahao.png"]
+#define kTrashImage3         [UIImage imageNamed:@"chat_jiahao.png"]
 
 @interface ChatRecorderView(){
     NSArray         *peakImageAry;
