@@ -127,7 +127,6 @@ static NSString *SG_FOCUS_ITEM_ASS_KEY = @"loopScrollview";
         //加载图片
 //        imageView.backgroundColor = i%2?[UIColor redColor]:[UIColor blueColor];
         imageView.image=[UIImage imageNamed:item.image];
-        
         [_scrollView addSubview:imageView];
         [imageView release];
     }
@@ -173,7 +172,7 @@ static NSString *SG_FOCUS_ITEM_ASS_KEY = @"loopScrollview";
             [self.delegate foucusImageFrame:self didSelectItem:item];
         }
     }
-    NSLog(@"%d",page);
+    [self.delegate foucusImageFrame:self tapGesItem:page];
 }
 
 - (void)moveToTargetPosition:(CGFloat)targetX
