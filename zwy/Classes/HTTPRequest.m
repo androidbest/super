@@ -257,7 +257,7 @@
     AFHTTPRequestOperationManager *manager = [[AFHTTPRequestOperationManager alloc] initWithBaseURL:url];
     //    NSDictionary *parameters = @{@"foo": @"bar"};
     ///phoenix/IosUpServlet?type=1&
-    [manager POST:[NSString stringWithFormat:@"/phoenix/IosUpServlet?type=%@&uuid=%@",type,uuid] parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    [manager POST:[NSString stringWithFormat:@"/phoneservice/IosUpServlet?type=%@&uuid=%@",type,uuid] parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         NSString *mimeType=@"";
         if([type isEqualToString:@"0"]){
             mimeType=@"image/jpeg";
