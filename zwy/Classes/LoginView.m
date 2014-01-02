@@ -161,7 +161,7 @@ _verifyField.text=@"";
         }
     }
     UIButton * btnJion=[UIButton buttonWithType:UIButtonTypeCustom];
-    btnJion.frame=CGRectMake(640+80, ScreenHeight-65, 160, 40);
+    btnJion.frame=CGRectMake(640+80, ScreenHeight-90, 160, 40);
     [btnJion addTarget:self.controller action:@selector(dismissLeadView:) forControlEvents:UIControlEventTouchUpInside];
     [btnJion setBackgroundColor:[UIColor colorWithRed:0.34 green:0.76 blue:0.91 alpha:1.0]];
     [btnJion setTitle:@"立即体验" forState:UIControlStateNormal];
