@@ -41,7 +41,7 @@
                   symbolName = "-[AppDelegate notificationImRevice:]"
                   moduleName = "zwy"
                   urlString = "file://localhost/Users/sxit/Documents/project/pro/zwy/zwy/AppDelegate.m"
-                  timestampString = "410342350.480297"
+                  timestampString = "410348101.930825"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "277"
@@ -55,7 +55,7 @@
                   symbolName = "-[AppDelegate notificationImRevice:]"
                   moduleName = "zwy"
                   urlString = "file://localhost/Users/sxit/Documents/project/pro/zwy/zwy/AppDelegate.m"
-                  timestampString = "410342350.480542"
+                  timestampString = "410348101.93114"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "277"
@@ -104,11 +104,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "zwy/Classes/ChatMessageController.m"
-            timestampString = "410341707.904965"
+            timestampString = "410344445.237226"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "529"
-            endingLineNumber = "529"
+            startingLineNumber = "523"
+            endingLineNumber = "523"
             landmarkName = "-UesrClicked:"
             landmarkType = "5">
          </BreakpointContent>
@@ -120,27 +120,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "zwy/Classes/ChatMessageController.m"
-            timestampString = "410341707.904965"
+            timestampString = "410346854.343535"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "203"
-            endingLineNumber = "203"
-            landmarkName = "-handleDataSelf:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "zwy/Classes/ChatMessageController.m"
-            timestampString = "410341408.306971"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
             landmarkName = "-uploadVoice:"
             landmarkType = "5">
          </BreakpointContent>
@@ -151,13 +135,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "zwy/Classes/ToolUtils.m"
-            timestampString = "410341975.211479"
+            filePath = "zwy/Classes/ChatMessageController.m"
+            timestampString = "410347018.834439"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "398"
-            endingLineNumber = "398"
-            landmarkName = "+bubbleView:from:withPosition:view:selfType:voicetime:"
+            startingLineNumber = "203"
+            endingLineNumber = "203"
+            landmarkName = "-handleDataSelf:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

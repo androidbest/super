@@ -318,7 +318,7 @@
             obj.sendtimeNSdate=date;
             obj.senderavatar=user.headurl;
             obj.filepath=@"";
-            obj.status=@"1";
+            obj.status=@"0";
             
             self.chatMessageView.im_text.text=nil;
             [self.chatMessageView.send setEnabled:NO];
