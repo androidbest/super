@@ -247,12 +247,6 @@
 //    NSString *groupid=[ToolUtils uuid];
     if(self.chatMessageView.arrPeoples.count>0){
         
-//        NSString *temp=@"";
-//        for(PeopelInfo *info in self.chatMessageView.arrPeoples){
-//         temp=[NSString stringWithFormat:@"%@,",[temp stringByAppendingString:info.Name]];
-//        }
-//        temp=[temp substringToIndex:temp.length-1];
-        
         if(!(grouid&&![grouid isEqualToString:@"null"]&&![grouid isEqualToString:@""])){
            grouid=[ToolUtils uuid];
         }
@@ -324,7 +318,7 @@
             obj.sendtimeNSdate=date;
             obj.senderavatar=user.headurl;
             obj.filepath=@"";
-            obj.status=@"0";
+            obj.status=@"1";
             
             self.chatMessageView.im_text.text=nil;
             [self.chatMessageView.send setEnabled:NO];
