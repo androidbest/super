@@ -41,6 +41,8 @@
     BOOL isSend;                 //发送状态
     UIActivityIndicatorView *activityIndicatorView;
     BOOL isPut;                  //入库状态
+    
+    UILabel *sendShowVoicetime;
 
 }
 
@@ -83,8 +85,12 @@
              [packageData imSend:self chat:obj];
         }
     }else{
-    
-    
+    [activityIndicatorView stopAnimating];
+    //上传失败
+        
+        
+        
+        
     }
 }
 
@@ -169,6 +175,7 @@
         chatObj.receivereccode=chat.chat_sessionObjct.session_receivereccode;
         chatObj.receivermsisdn=chat.chat_sessionObjct.session_receivermsisdn;
         chatObj.receiveravatar=chat.chat_sessionObjct.session_receiveravatar;
+        chatObj.voicetime=chatObj.voicetime;
         chatObj.receivername=chat.chat_sessionObjct.session_receivername;
         chatObj.content=chat.chat_content;
         chatObj.sendtime=[ToolUtils NSDateToNSString:chat.chat_times format:@"yy/MM/dd HH:mm"];
@@ -194,11 +201,11 @@
 //处理网络数据
 -(void)handleDataSelf:(NSNotification *)notification{
     NSDictionary *dic=[notification userInfo];
+    [activityIndicatorView stopAnimating];
     if(dic){
         RespInfo *info=[AnalysisData imSend:dic];
         if([info.respCode isEqualToString:@"0"]){
-            [activityIndicatorView stopAnimating];
-            
+            sendShowVoicetime.text=[NSString stringWithFormat:@"%@''",voicetime];
            //发送成功,入本地数据库
             if(chatMsgObjArr.count>0){
             if(!isPut){
@@ -317,12 +324,12 @@
             obj.sendtimeNSdate=date;
             obj.senderavatar=user.headurl;
             obj.filepath=@"";
-            obj.status=@"1";
+            obj.status=@"0";
             
             self.chatMessageView.im_text.text=nil;
             [self.chatMessageView.send setEnabled:NO];
             [self.chatMessageView.send setAlpha:0.4];
-//            [packageData imSend:self chat:obj];
+            [packageData imSend:self chat:obj];
         }else{
             obj=[ChatMsgObj new];
             obj.chattype=@"1";
@@ -392,11 +399,9 @@
      ChatMsgObj *msgObj=arrData[indexPath.row];
     UIView *v=[UIView new];
     if([msgObj.status isEqualToString:@"0"]){
-//    [ToolUtils bubbleView:msgObj.content from:YES view:v selfType:msgObj.chattype];
-    [ToolUtils bubbleView:msgObj.content from:YES withPosition:0 view:v selfType:msgObj.chattype];
+    [ToolUtils bubbleView:msgObj.content from:YES withPosition:0 view:v selfType:msgObj.chattype voicetime:(NSString *)voicetime];
     }else{
-//    [ToolUtils bubbleView:msgObj.content from:NO selfType:msgObj.chattype];
-    [ToolUtils bubbleView:msgObj.content from:NO withPosition:0 view:v selfType:msgObj.chattype];
+    [ToolUtils bubbleView:msgObj.content from:NO withPosition:0 view:v selfType:msgObj.chattype voicetime:(NSString *)voicetime];
     }
     if([self compareTime:indexPath]){
         leng=v.frame.size.height+30;
@@ -434,7 +439,7 @@
         [cell.rightHead addTarget:self action:@selector(rightPushDetail:) forControlEvents:UIControlEventTouchUpInside];
         
     [HTTPRequest imageWithURL:user.headurl imageView:cell.rightHead placeUIButtonImage:[UIImage imageNamed:@"default_avatar"]];
-    [ToolUtils bubbleView:msgObj.content from:YES withPosition:60 view:cell.rightMessage selfType:msgObj.chattype];
+    [ToolUtils bubbleView:msgObj.content from:YES withPosition:60 view:cell.rightMessage selfType:msgObj.chattype voicetime:msgObj.voicetime];
     if([strBool isEqualToString:@"1"]){
             cell.chatTime.hidden=YES;
             CGRect rectLeftHead=cell.rightHead.frame;
@@ -454,22 +459,21 @@
             [HTTPRequest voiceWithURL:msgObj.filepath];
             [cell.rightMessage addTarget:self action:@selector(UesrClicked:) forControlEvents:UIControlEventTouchUpInside];
             cell.rightMessage.voiceurl=msgObj.filepath;
-            cell.voiceTimes.text=msgObj.voicetime;
-            cell.voiceTimes.frame=CGRectMake(cell.rightMessage.frame.origin.x-20, cell.rightMessage.center.y-5,20,10);
+            cell.rightVoiceTimes.text=[NSString stringWithFormat:@"%@''",msgObj.voicetime];
+            cell.rightVoiceTimes.frame=CGRectMake(cell.rightMessage.frame.origin.x-20, cell.rightMessage.center.y-10,30,10);
         }else{
-            cell.voiceTimes.hidden=YES;
+            cell.rightVoiceTimes.hidden=YES;
         }
         
         //加指示灯
         if(isSend){
             if((arrData.count-1)==indexPath.row){
-                activityIndicatorView.center=CGPointMake(cell.rightMessage.frame.origin.x-20,cell.rightMessage.center.y-5);
-                NSLog(@"%f",cell.frame.size.height/2);
-                
+                activityIndicatorView.center=CGPointMake(cell.rightMessage.frame.origin.x-30,cell.rightMessage.center.y-5);
                 [cell addSubview:activityIndicatorView];
                 [activityIndicatorView startAnimating];
                 cell.rightMessage.voiceurl=wavSavePath;
-                cell.voiceTimes.text=voicetime;
+                cell.rightVoiceTimes.text=nil;
+                sendShowVoicetime=cell.rightVoiceTimes;
                 isSend=NO;
             }
         }
@@ -487,7 +491,7 @@
         }
         [HTTPRequest imageWithURL:url imageView:cell.leftHead placeUIButtonImage:[UIImage imageNamed:@"default_avatar"]];
         [cell.leftHead addTarget:self action:@selector(leftPushDetail:) forControlEvents:UIControlEventTouchUpInside];
-        [ToolUtils bubbleView:msgObj.content from:NO withPosition:60 view:cell.leftMessage selfType:msgObj.chattype];
+        [ToolUtils bubbleView:msgObj.content from:NO withPosition:60 view:cell.leftMessage selfType:msgObj.chattype voicetime:(NSString *)voicetime];
         if([strBool isEqualToString:@"1"]){
             cell.chatTime.hidden=YES;
             CGRect rectLeftHead=cell.leftHead.frame;
@@ -508,10 +512,10 @@
             [HTTPRequest voiceWithURL:msgObj.filepath];
             [cell.leftMessage addTarget:self action:@selector(UesrClicked:) forControlEvents:UIControlEventTouchUpInside];
             cell.leftMessage.voiceurl=msgObj.filepath;
-            cell.voiceTimes.text=msgObj.voicetime;
-            cell.voiceTimes.frame=CGRectMake(cell.rightMessage.frame.origin.x-20, cell.rightMessage.frame.origin.y,10,10);
+            cell.leftVoiceTimes.text=[NSString stringWithFormat:@"%@''",msgObj.voicetime];
+            cell.leftVoiceTimes.frame=CGRectMake(cell.leftMessage.frame.origin.x+30, cell.leftMessage.center.y-10,30,10);
         }else{
-            cell.voiceTimes.hidden=YES;
+            cell.leftVoiceTimes.hidden=YES;
         }
     }
         return cell;

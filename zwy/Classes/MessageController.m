@@ -95,7 +95,7 @@
     else sessionInfo=_arrSession[indexPath.row];
     
     cell.title.text=sessionInfo.session_receivername;
-    cell.content.text=sessionInfo.session_content;
+    cell.content.text=[NSString stringWithFormat:@"%@''",sessionInfo.session_voicetimes];
     cell.time.text=[dateFormatter stringFromDate:sessionInfo.session_times];
     if ([sessionInfo.session_unreadcount isEqualToString:@"0"]) {
         cell.labelCount.hidden=YES;

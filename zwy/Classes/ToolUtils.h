@@ -58,7 +58,7 @@
 //类型转换
 + (UIViewAnimationOptions)animationOptionsForCurve:(UIViewAnimationCurve)curve;
 //泡泡文本
-+ (UIView *)bubbleView:(NSString *)text from:(BOOL)fromSelf withPosition:(int)position view:(UIView *)returnView selfType:(NSString *)selfType;
++ (UIView *)bubbleView:(NSString *)text from:(BOOL)fromSelf withPosition:(int)position view:(UIView *)returnView selfType:(NSString *)selfType voicetime:(NSString *)voicetime;
 +(UIView *)bubbleView:(NSString *)text from:(BOOL)fromSelf selfType:(NSString *)selfType;
 
 #pragma mark - 汉字转换为拼音

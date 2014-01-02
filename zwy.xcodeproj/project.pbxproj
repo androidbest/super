@@ -27,8 +27,6 @@
 		5943985917F43569000B6E9C /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5943985817F43569000B6E9C /* LoginController.m */; };
 		5943985C17F446AE000B6E9C /* BaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5943985B17F446AE000B6E9C /* BaseController.m */; };
 		59491F29186B26E500FF9B3F /* voice_play.png in Resources */ = {isa = PBXBuildFile; fileRef = 59491F28186B26E500FF9B3F /* voice_play.png */; };
-		59491F2B186B26FE00FF9B3F /* rightvoice.png in Resources */ = {isa = PBXBuildFile; fileRef = 59491F2A186B26FE00FF9B3F /* rightvoice.png */; };
-		59491F2D186B270600FF9B3F /* leftvoice.png in Resources */ = {isa = PBXBuildFile; fileRef = 59491F2C186B270600FF9B3F /* leftvoice.png */; };
 		59491F2F186B323100FF9B3F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59491F2E186B323100FF9B3F /* AVFoundation.framework */; };
 		59491F31186B323B00FF9B3F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59491F30186B323B00FF9B3F /* AudioToolbox.framework */; };
 		59491F33186B324900FF9B3F /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 59491F32186B324900FF9B3F /* CoreAudio.framework */; };
@@ -65,6 +63,10 @@
 		5951FD7818079A5D0095F212 /* HomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5951FD7718079A5D0095F212 /* HomeController.m */; };
 		59550E7418126EDE00205544 /* GetEcCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 59550E7318126EDE00205544 /* GetEcCell.m */; };
 		5955934D18000CAB0047C328 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 5955934C18000CAB0047C328 /* MBProgressHUD.m */; };
+		595624EA187518F700F7187D /* chat_lefttext.png in Resources */ = {isa = PBXBuildFile; fileRef = 595624E8187518F700F7187D /* chat_lefttext.png */; };
+		595624EB187518F700F7187D /* chat_righttext.png in Resources */ = {isa = PBXBuildFile; fileRef = 595624E9187518F700F7187D /* chat_righttext.png */; };
+		595624ED1875349900F7187D /* rightvoice.png in Resources */ = {isa = PBXBuildFile; fileRef = 595624EC1875349900F7187D /* rightvoice.png */; };
+		595624EF1875450B00F7187D /* leftvoice.png in Resources */ = {isa = PBXBuildFile; fileRef = 595624EE1875450B00F7187D /* leftvoice.png */; };
 		59568289186444E500D122D8 /* ChatMsgObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 59568288186444E500D122D8 /* ChatMsgObj.m */; };
 		5956D8DE181548CE00DF3585 /* DaibanController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5956D8DD181548CE00DF3585 /* DaibanController.m */; };
 		5957CD981861FD1200BB0C5D /* voice_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 5957CD961861FD1200BB0C5D /* voice_pressed.png */; };
@@ -141,8 +143,8 @@
 		595CBA0517F1925700228A6E /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 595CBA0217F1925700228A6E /* Reachability.m */; };
 		595CBA0617F1925700228A6E /* ToolUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 595CBA0417F1925700228A6E /* ToolUtils.m */; };
 		595E74BA18629D9E003863D3 /* DAKeyboardControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 595E74B918629D9E003863D3 /* DAKeyboardControl.m */; };
-		595E74C11862DB22003863D3 /* chat_righttext.png in Resources */ = {isa = PBXBuildFile; fileRef = 595E74BF1862DB22003863D3 /* chat_righttext.png */; };
-		595E74C21862DB22003863D3 /* chat_lefttext.png in Resources */ = {isa = PBXBuildFile; fileRef = 595E74C01862DB22003863D3 /* chat_lefttext.png */; };
+		595E74C11862DB22003863D3 /* chat_righttext1111.png in Resources */ = {isa = PBXBuildFile; fileRef = 595E74BF1862DB22003863D3 /* chat_righttext1111.png */; };
+		595E74C21862DB22003863D3 /* chat_lefttext11111.png in Resources */ = {isa = PBXBuildFile; fileRef = 595E74C01862DB22003863D3 /* chat_lefttext11111.png */; };
 		5960DC7D17F9298A0024AD8B /* point_out.png in Resources */ = {isa = PBXBuildFile; fileRef = 5960DC7B17F9298A0024AD8B /* point_out.png */; };
 		5960DC7E17F9298A0024AD8B /* point_over.png in Resources */ = {isa = PBXBuildFile; fileRef = 5960DC7C17F9298A0024AD8B /* point_over.png */; };
 		5960DC8117F92A6C0024AD8B /* CustomPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 5960DC8017F92A6C0024AD8B /* CustomPageControl.m */; };
@@ -486,8 +488,6 @@
 		5943985A17F446AE000B6E9C /* BaseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseController.h; sourceTree = "<group>"; };
 		5943985B17F446AE000B6E9C /* BaseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseController.m; sourceTree = "<group>"; };
 		59491F28186B26E500FF9B3F /* voice_play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = voice_play.png; sourceTree = "<group>"; };
-		59491F2A186B26FE00FF9B3F /* rightvoice.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rightvoice.png; sourceTree = "<group>"; };
-		59491F2C186B270600FF9B3F /* leftvoice.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leftvoice.png; sourceTree = "<group>"; };
 		59491F2E186B323100FF9B3F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		59491F30186B323B00FF9B3F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		59491F32186B324900FF9B3F /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
@@ -551,6 +551,10 @@
 		59550E7318126EDE00205544 /* GetEcCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetEcCell.m; sourceTree = "<group>"; };
 		5955934B18000CAB0047C328 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		5955934C18000CAB0047C328 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		595624E8187518F700F7187D /* chat_lefttext.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chat_lefttext.png; path = ../common/chat_lefttext.png; sourceTree = "<group>"; };
+		595624E9187518F700F7187D /* chat_righttext.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chat_righttext.png; path = ../common/chat_righttext.png; sourceTree = "<group>"; };
+		595624EC1875349900F7187D /* rightvoice.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rightvoice.png; sourceTree = "<group>"; };
+		595624EE1875450B00F7187D /* leftvoice.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leftvoice.png; sourceTree = "<group>"; };
 		59568287186444E500D122D8 /* ChatMsgObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatMsgObj.h; sourceTree = "<group>"; };
 		59568288186444E500D122D8 /* ChatMsgObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatMsgObj.m; sourceTree = "<group>"; };
 		5956D8DC181548CE00DF3585 /* DaibanController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaibanController.h; sourceTree = "<group>"; };
@@ -657,8 +661,8 @@
 		595CBA0417F1925700228A6E /* ToolUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolUtils.m; sourceTree = "<group>"; };
 		595E74B818629D9E003863D3 /* DAKeyboardControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAKeyboardControl.h; sourceTree = "<group>"; };
 		595E74B918629D9E003863D3 /* DAKeyboardControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DAKeyboardControl.m; sourceTree = "<group>"; };
-		595E74BF1862DB22003863D3 /* chat_righttext.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat_righttext.png; sourceTree = "<group>"; };
-		595E74C01862DB22003863D3 /* chat_lefttext.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat_lefttext.png; sourceTree = "<group>"; };
+		595E74BF1862DB22003863D3 /* chat_righttext1111.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat_righttext1111.png; sourceTree = "<group>"; };
+		595E74C01862DB22003863D3 /* chat_lefttext11111.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chat_lefttext11111.png; sourceTree = "<group>"; };
 		5960DC7B17F9298A0024AD8B /* point_out.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = point_out.png; sourceTree = "<group>"; };
 		5960DC7C17F9298A0024AD8B /* point_over.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = point_over.png; sourceTree = "<group>"; };
 		5960DC7F17F92A6C0024AD8B /* CustomPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPageControl.h; sourceTree = "<group>"; };
@@ -1547,6 +1551,10 @@
 		595CB9B717F168BC00228A6E /* images */ = {
 			isa = PBXGroup;
 			children = (
+				595624EE1875450B00F7187D /* leftvoice.png */,
+				595624EC1875349900F7187D /* rightvoice.png */,
+				595624E8187518F700F7187D /* chat_lefttext.png */,
+				595624E9187518F700F7187D /* chat_righttext.png */,
 				65A827C31872A4D40086EBE3 /* chat_delete.png */,
 				65A827BF1872A43F0086EBE3 /* chat_jiahao.png */,
 				65A827C01872A43F0086EBE3 /* chat_jianhao.png */,
@@ -1555,8 +1563,6 @@
 				59491F36186B32B900FF9B3F /* speaker_1.png */,
 				59491F37186B32B900FF9B3F /* speaker_2.png */,
 				59491F38186B32B900FF9B3F /* speaker_3.png */,
-				59491F2C186B270600FF9B3F /* leftvoice.png */,
-				59491F2A186B26FE00FF9B3F /* rightvoice.png */,
 				59491F28186B26E500FF9B3F /* voice_play.png */,
 				595176B8186987AD007056D6 /* im_phone.png */,
 				595176B9186987AD007056D6 /* im_sms.png */,
@@ -1568,8 +1574,8 @@
 				65AE47911865A41F00EF9022 /* images_1_6_tel.png */,
 				65AE47921865A41F00EF9022 /* ios_1_6_sms.png */,
 				65AE47931865A41F00EF9022 /* ios_1_6_warning.png */,
-				595E74BF1862DB22003863D3 /* chat_righttext.png */,
-				595E74C01862DB22003863D3 /* chat_lefttext.png */,
+				595E74BF1862DB22003863D3 /* chat_righttext1111.png */,
+				595E74C01862DB22003863D3 /* chat_lefttext11111.png */,
 				65A0020F1862D525001A7AC1 /* tabbar_office_out_1_6.png */,
 				65A002101862D525001A7AC1 /* tabbar_office_over_1_6.png */,
 				65A0020B1862D4FF001A7AC1 /* tabbar_more_out_1_6.png */,
@@ -2483,6 +2489,7 @@
 				595B7A0218094B53006DD766 /* more_update_pwd_img@2x.png in Resources */,
 				595B7A0018094B53006DD766 /* more_about_img@2x.png in Resources */,
 				595B79FE18094B53006DD766 /* more_accounts_image@2x.png in Resources */,
+				595624ED1875349900F7187D /* rightvoice.png in Resources */,
 				595B79FA18094B53006DD766 /* more_help_img.png in Resources */,
 				659F148C185861DE006BFC4D /* tabbar_AddressBook_out@2x.png in Resources */,
 				5975C17618067AA300EF7285 /* more_over@2x.png in Resources */,
@@ -2528,6 +2535,7 @@
 				65B3AC701819274200F2EC04 /* tabItem_SMS_out.png in Resources */,
 				65B3AC6E1819274200F2EC04 /* tabItem_MyArBook_over.png in Resources */,
 				65AE47971865A41F00EF9022 /* images_1_6_mail.png in Resources */,
+				595624EB187518F700F7187D /* chat_righttext.png in Resources */,
 				65A573E4183AFD930072A519 /* year.plist in Resources */,
 				598ECDC7185B13660059BBC7 /* im_my@2x.png in Resources */,
 				5975C1871806981900EF7285 /* notice_icon.png in Resources */,
@@ -2569,13 +2577,13 @@
 				65A7EAFB18617BDE008002E5 /* news_tabbar_tack.png in Resources */,
 				5957CD981861FD1200BB0C5D /* voice_pressed.png in Resources */,
 				5975C1881806981900EF7285 /* sms_icon.png in Resources */,
-				59491F2B186B26FE00FF9B3F /* rightvoice.png in Resources */,
 				65A002051862D46A001A7AC1 /* tabbar_daiban_out_1_6.png in Resources */,
 				595B7A0518094B53006DD766 /* more_about_img.png in Resources */,
 				59585BC017F8300200F73D97 /* home_over.png in Resources */,
 				59491F3B186B32B900FF9B3F /* speaker_2.png in Resources */,
 				59491F3C186B32B900FF9B3F /* speaker_3.png in Resources */,
-				595E74C21862DB22003863D3 /* chat_lefttext.png in Resources */,
+				595624EA187518F700F7187D /* chat_lefttext.png in Resources */,
+				595E74C21862DB22003863D3 /* chat_lefttext11111.png in Resources */,
 				65A7EAF918617BDE008002E5 /* news_tabbar_next.png in Resources */,
 				65AE47981865A41F00EF9022 /* images_1_6_notification.png in Resources */,
 				5960DC8C17F95BE90024AD8B /* guide113603.png in Resources */,
@@ -2590,7 +2598,6 @@
 				5975C17718067AA300EF7285 /* accessory_out@2x.png in Resources */,
 				65A7EAEC18617B9E008002E5 /* tabbar_more_over_1_6@2x.png in Resources */,
 				59D78DE818598D0F0068D6D1 /* default_avatar.png in Resources */,
-				59491F2D186B270600FF9B3F /* leftvoice.png in Resources */,
 				5960DC8717F95BE30024AD8B /* guide96001.png in Resources */,
 				652484FD180C28DE00440958 /* navigation_Edit_over.png in Resources */,
 				65F9C6E3186293E4001B804A /* tengxunWeibo.png in Resources */,
@@ -2613,6 +2620,7 @@
 				5975C1861806981900EF7285 /* mail_icon.png in Resources */,
 				5975C1851806981900EF7285 /* meetting_icon.png in Resources */,
 				5975C1831806981900EF7285 /* adress_icon.png in Resources */,
+				595624EF1875450B00F7187D /* leftvoice.png in Resources */,
 				5975C1841806981900EF7285 /* office_icon.png in Resources */,
 				65A002121862D525001A7AC1 /* tabbar_office_over_1_6.png in Resources */,
 				595B79FD18094B53006DD766 /* more_accounts_image.png in Resources */,
@@ -2624,7 +2632,7 @@
 				65A35B731820EC81002C7489 /* share_weixin.png in Resources */,
 				65B3AC761819314900F2EC04 /* btn_Call.png in Resources */,
 				65B3AC651819274200F2EC04 /* tabItem_call_out@2x.png in Resources */,
-				595E74C11862DB22003863D3 /* chat_righttext.png in Resources */,
+				595E74C11862DB22003863D3 /* chat_righttext1111.png in Resources */,
 				65AE47991865A41F00EF9022 /* images_1_6_tel.png in Resources */,
 				65A7EAEA18617B9E008002E5 /* tabbar_home_over_1_6@2x.png in Resources */,
 				598ECDC5185B13660059BBC7 /* im_message@2x.png in Resources */,
