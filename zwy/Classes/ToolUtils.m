@@ -340,8 +340,15 @@
     UIImageView *bubbleImageView=nil;
     //背影图片
     if([selfType isEqualToString:@"0"]){
-    UIImage *bubble = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fromSelf?@"chat_lefttext":@"chat_righttext" ofType:@"png"]];
-    bubbleImageView = [[UIImageView alloc] initWithImage:[bubble stretchableImageWithLeftCapWidth:10 topCapHeight:70]];
+    if(fromSelf){
+        UIImage *bubble = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"chat_lefttext" ofType:@"png"]];
+        bubbleImageView = [[UIImageView alloc] initWithImage:[bubble stretchableImageWithLeftCapWidth:30 topCapHeight:70]];
+    }else{
+        UIImage *bubble = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"chat_righttext" ofType:@"png"]];
+        bubbleImageView = [[UIImageView alloc] initWithImage:[bubble stretchableImageWithLeftCapWidth:30 topCapHeight:70]];
+    }
+        
+    
     }else{
     UIImage *bubble = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:fromSelf?@"rightvoice":@"leftvoice" ofType:@"png"]];
     bubbleImageView = [[UIImageView alloc] initWithImage:[bubble stretchableImageWithLeftCapWidth:40 topCapHeight:70]];
@@ -352,7 +359,7 @@
 	
     
     //添加文本信息
-	UILabel *bubbleText = [[UILabel alloc] initWithFrame:CGRectMake(fromSelf?15.0f:22.0f, 6.0f, textRect.size.width+10, textRect.size.height+10)];
+	UILabel *bubbleText = [[UILabel alloc] initWithFrame:CGRectMake(fromSelf?10.0f:25.0f, 6.0f, textRect.size.width+10, textRect.size.height+10)];
 	bubbleText.backgroundColor = [UIColor clearColor];
 	bubbleText.font = font;
 	bubbleText.numberOfLines = 0;
@@ -364,17 +371,20 @@
     }
 	
 	
-	bubbleImageView.frame = CGRectMake(0.0f, 0.0f, bubbleText.frame.size.width+30.0f, bubbleText.frame.size.height+20.0f);
+	bubbleImageView.frame = CGRectMake(0.0f, 0.0f, bubbleText.frame.size.width+30.0f, bubbleText.frame.size.height+30.0f);
     
 	if(fromSelf)
-		returnView.frame = CGRectMake(320-position-(bubbleText.frame.size.width+30.0f), 30, bubbleText.frame.size.width+30.0f, bubbleText.frame.size.height+30.0f);
+		returnView.frame = CGRectMake(320-position-(bubbleText.frame.size.width+30.0f), 25, bubbleText.frame.size.width+30.0f, bubbleText.frame.size.height+30.0f);
 	else
-		returnView.frame = CGRectMake(position, 30, bubbleText.frame.size.width+30.0f, bubbleText.frame.size.height+30.0f);
+		returnView.frame = CGRectMake(position, 25, bubbleText.frame.size.width+30.0f, bubbleText.frame.size.height+30.0f);
 	
 
 //    returnView.layer.borderWidth = 1;
 	[returnView addSubview:bubbleImageView];
 	[returnView addSubview:bubbleText];
+    
+//    returnView.layer.borderColor=[[UIColor blackColor] CGColor];
+//    returnView.layer.borderWidth=1;
     
 //    CGRect rect=returnView.frame;
 //    rect.size.height=20;

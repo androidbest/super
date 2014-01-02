@@ -110,6 +110,7 @@ static CoreDataManageContext *coreData=nil;
     Sessions.session_receivername=messageObjct.sendname;
     Sessions.session_receivermsisdn=messageObjct.sendmsisdn;
     Sessions.session_content=messageObjct.content;
+    Sessions.session_pinyinName =[ToolUtils pinyinFromString:messageObjct.sendname];
     if (isChek) Sessions.session_unreadcount =@"0";
     else Sessions.session_unreadcount=[NSString stringWithFormat:@"%d",[Sessions.session_unreadcount intValue]+1];
     Sessions.session_times =[ToolUtils NSStringToNSDate:messageObjct.sendtime format:@"yy/MM/dd HH:mm"];
