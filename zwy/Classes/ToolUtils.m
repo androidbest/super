@@ -297,7 +297,7 @@
     NSString *strDay=[NSString stringWithFormat:@"%d",lunar.day];
     if (lunar.day<10) strDay =[@"0" stringByAppendingString:strDay];
     strDay=[Date_string setDayBaseSting:strDay];
-    NSString *strLunarTime=[NSString stringWithFormat:@"%@月%@日",strMonth,strDay];
+    NSString *strLunarTime=[NSString stringWithFormat:@"%@月%@",strMonth,strDay];
     return strLunarTime;
 }
 

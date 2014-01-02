@@ -134,7 +134,7 @@ NSString * stringTel =STRING_TEL(@"133");
     
 
     //广告
-    NSArray *arrImagePath =@[@"newsBanner2.jpg",@"newsBanner1.jpg",@"newsBanner2.jpg",@"newsBanner1.jpg"];
+    NSArray *arrImagePath =@[@"show_two.jpg",@"show_one.jpg",@"show_two.jpg",@"show_one.jpg"];
     NSMutableArray *arrItemp=[NSMutableArray new];
     for (int i = -1 ; i < 3; i++)
     {

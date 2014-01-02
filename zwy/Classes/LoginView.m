@@ -140,10 +140,13 @@ _verifyField.text=@"";
     _scrollView.contentSize=CGSizeMake(ScreenWidth*3, 0);
     [self.view addSubview:_scrollView];
     [self.view addSubview:_pageControl];
+    
+    NSArray *giudesPhone5=@[@"giude1_1.6_4",@"giude2_1.6_4",@"giude3_1.6_4"];
+    NSArray *giudesPhone4=@[@"giude1_1.6_4",@"giude2_1.6_4",@"giude3_1.6_4"];
     if(iPhone5){
         for (int i=0; i<3; i++) {
             UIImageView * leadView =[[UIImageView alloc] init];
-            NSString * strPath =[[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"guide11360%d",i+1] ofType:@"png"];
+            NSString * strPath =[[NSBundle mainBundle] pathForResource:giudesPhone5[i] ofType:@"jpg"];
             leadView.frame=CGRectMake(320*i, 0, ScreenWidth, ScreenHeight);
             leadView.image =[UIImage imageWithContentsOfFile:strPath];
             [self.scrollView addSubview:leadView];
@@ -151,7 +154,7 @@ _verifyField.text=@"";
     }else{
         for (int i=0; i<3; i++) {
             UIImageView * leadView =[[UIImageView alloc] init];
-            NSString * strPath =[[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"guide9600%d",i+1] ofType:@"png"];
+            NSString * strPath =[[NSBundle mainBundle] pathForResource:giudesPhone4[i] ofType:@"jpg"];
             leadView.frame=CGRectMake(320*i, 0, ScreenWidth, ScreenHeight);
             leadView.image =[UIImage imageWithContentsOfFile:strPath];
             [self.scrollView addSubview:leadView];
