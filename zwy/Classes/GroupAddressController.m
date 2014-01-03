@@ -89,16 +89,16 @@
     
     
     /*获取所有人员信息*/
-    EX_arrGroupAddressBooks = [ConfigFile setAllPeopleInfo:str];
+    _arrAllPeople = [ConfigFile setAllPeopleInfo:str];
      BOOL blHave=[[NSFileManager defaultManager] fileExistsAtPath:str];
-    if(EX_arrGroupAddressBooks.count==0&&!blHave){
+    if(_arrAllPeople.count==0&&!blHave){
         [ToolUtils alertInfo:@"请同步单位通讯录" delegate:self otherBtn:@"确认"];
     }
     
     NSString * strSearchbar;
     strSearchbar =[NSString stringWithFormat:@"SELF.superID == '%@'",@"0"];
     NSPredicate *predicateTemplate = [NSPredicate predicateWithFormat: strSearchbar];
-    self.arrFirstGroup=[EX_arrGroupAddressBooks filteredArrayUsingPredicate: predicateTemplate];
+    self.arrFirstGroup=[_arrAllPeople filteredArrayUsingPredicate: predicateTemplate];
     
 }
 
@@ -199,10 +199,9 @@
         isFirstPages=YES;
         [self.grougView.tableViewGroup reloadData];
         
-        /*更新完通讯录后开始接受消息*/
-        //开启扫描信息定时器
-        if (EX_timerUpdateMessage)[EX_timerUpdateMessage setFireDate:[NSDate distantPast]];
-        else   EX_timerUpdateMessage = [NSTimer scheduledTimerWithTimeInterval:3.0 target:[[UIApplication sharedApplication] delegate] selector:@selector(timerFired:) userInfo:nil repeats:YES];
+        //开启接受定时器,设置全局通讯录
+        [self StartChatMessageController];
+      
     
         //存储最后更新时间
 //        NSUserDefaults * userDefaults =[NSUserDefaults standardUserDefaults];
@@ -224,6 +223,36 @@
     self.HUD.mode = MBProgressHUDModeCustomView;
 	
     [self.HUD hide:YES afterDelay:1];
+}
+
+//开启接受定时器,设置全局通讯录(设置全局内容)
+- (void)StartChatMessageController{
+    if (!EX_arrGroupAddressBooks) {
+        EX_arrGroupAddressBooks=[ConfigFile setEcNumberInfo];
+        
+        EX_arrSection=[NSMutableArray arrayWithObjects:
+                       @"a",@"b",@"c",@"d",@"e",@"f",
+                       @"g",@"h",@"i",@"j",@"k",@"l",
+                       @"m",@"n",@"o",@"p",@"q",@"r",
+                       @"s",@"t",@"u",@"v",@"w",@"x",
+                       @"y",@"z",@"#",nil];
+        NSMutableArray * arrRemoveObject=[[NSMutableArray alloc] init];
+        for (int i = 0; i<EX_arrSection.count; i++) {
+            NSString * strPre=[NSString stringWithFormat:@"SELF.Firetletter == '%@'",EX_arrSection[i]];
+            NSPredicate * predicate;
+            predicate = [NSPredicate predicateWithFormat:strPre];
+            NSArray * results = [EX_arrGroupAddressBooks filteredArrayUsingPredicate: predicate];
+            if (results.count==0) {
+                [arrRemoveObject addObject:EX_arrSection[i]];
+            }
+        }
+        [EX_arrSection removeObjectsInArray:arrRemoveObject];
+    }
+     /*****************************/
+    /*更新完通讯录后开始接受消息*/
+    //开启扫描信息定时器
+    if (EX_timerUpdateMessage)[EX_timerUpdateMessage setFireDate:[NSDate distantPast]];
+    else   EX_timerUpdateMessage = [NSTimer scheduledTimerWithTimeInterval:3.0 target:[[UIApplication sharedApplication] delegate] selector:@selector(timerFired:) userInfo:nil repeats:YES];
 }
 
 #pragma mark - stroyboard传值
@@ -296,7 +325,7 @@
     NSMutableArray * arr;
       strSearchbar =[NSString stringWithFormat:@"SELF.superID == '%@'",Group.groupID];
         NSPredicate *predicateTemplate = [NSPredicate predicateWithFormat: strSearchbar];
-        arr=[NSMutableArray arrayWithArray:[EX_arrGroupAddressBooks filteredArrayUsingPredicate: predicateTemplate]];
+        arr=[NSMutableArray arrayWithArray:[_arrAllPeople filteredArrayUsingPredicate: predicateTemplate]];
         [arr removeObject:Group];
         self.arrSeaPeople=arr;
         isFirstPages=NO;
@@ -321,10 +350,10 @@
         NSString * strSearchbar;
         strSearchbar =[NSString stringWithFormat:@"SELF.superID == '%@'",groupA.superID];
         NSPredicate *predicateTemplate = [NSPredicate predicateWithFormat: strSearchbar];
-        self.arrSeaPeople=[EX_arrGroupAddressBooks filteredArrayUsingPredicate: predicateTemplate];
+        self.arrSeaPeople=[_arrAllPeople filteredArrayUsingPredicate: predicateTemplate];
         
 
-        for (GroupInfo * info in EX_arrGroupAddressBooks) {
+        for (GroupInfo * info in _arrAllPeople) {
             if ([info.groupID isEqualToString:groupA.superID])groupA=info;
         }
     }
@@ -370,14 +399,14 @@
             NSMutableArray *arr;
             strSearchbar =[NSString stringWithFormat:@"SELF.groupID CONTAINS '%@'",groupA.groupID];
             NSPredicate *predicate = [NSPredicate predicateWithFormat: strSearchbar];
-           arr=[NSMutableArray arrayWithArray:[EX_arrGroupAddressBooks filteredArrayUsingPredicate:predicate]];
+           arr=[NSMutableArray arrayWithArray:[_arrAllPeople filteredArrayUsingPredicate:predicate]];
             self.arrSeaPeople =[arr filteredArrayUsingPredicate: predicateTemplate];
             if (self.arrSeaPeople.count==0&&searchText.length==0){
                 [arr removeObject:groupA];
                 self.arrSeaPeople=arr;
             }
         }else{
-            self.arrSeaPeople=[EX_arrGroupAddressBooks filteredArrayUsingPredicate: predicateTemplate];
+            self.arrSeaPeople=[_arrAllPeople filteredArrayUsingPredicate: predicateTemplate];
         }
         
     }
