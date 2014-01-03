@@ -176,7 +176,7 @@
         chatObj.receivereccode=chat.chat_sessionObjct.session_receivereccode;
         chatObj.receivermsisdn=chat.chat_sessionObjct.session_receivermsisdn;
         chatObj.receiveravatar=chat.chat_sessionObjct.session_receiveravatar;
-        chatObj.voicetime=chatObj.voicetime;
+        chatObj.voicetime=chat.chat_voicetime;
         chatObj.receivername=chat.chat_sessionObjct.session_receivername;
         chatObj.content=chat.chat_content;
         chatObj.sendtime=[ToolUtils NSDateToNSString:chat.chat_times format:@"yy/MM/dd HH:mm"];
@@ -477,7 +477,7 @@
         cell.rightHead.hidden=YES;
         cell.leftHead.hidden=NO;
         NSString *url=@"";
-        if(msgObj.groupid&&![msgObj.groupid isEqualToString:@"null"]&&![msgObj.groupid isEqualToString:@""]){
+        if(msgObj.groupid&&![msgObj.groupid isEqualToString:@"null"]&&![msgObj.groupid isEqualToString:@""]&&![msgObj.groupid isEqualToString:@"(null)"]){
         cell.leftHead.tag=indexPath.row;
             url=msgObj.gsenderheadurl;
         }else{
@@ -571,20 +571,17 @@
 
 //点击右边头像
 -(void)rightPushDetail:(UIButton *)btn{
-    NSMutableArray  *arr = [ConfigFile setEcNumberInfo];
-    NSString *strSearchbar =[NSString stringWithFormat:@"SELF.tel CONTAINS '%@'",user.msisdn];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat: strSearchbar];
-    NSArray *arrRet =[arr filteredArrayUsingPredicate: predicate];
-    if(arrRet.count>0){
-        PeopelInfo *pe=arrRet[0];
+//    NSMutableArray  *arr = [ConfigFile setEcNumberInfo];
+//    NSString *strSearchbar =[NSString stringWithFormat:@"SELF.tel CONTAINS '%@'",user.msisdn];
+//    NSPredicate *predicate = [NSPredicate predicateWithFormat: strSearchbar];
+//    NSArray *arrRet =[arr filteredArrayUsingPredicate: predicate];
         self.chatMessageView.chatHead=[PeopelInfo new];
-        self.chatMessageView.chatHead.tel=pe.tel;
-        self.chatMessageView.chatHead.job=pe.job;
-        self.chatMessageView.chatHead.area=pe.area;
+        self.chatMessageView.chatHead.tel=user.msisdn;
+        self.chatMessageView.chatHead.job=user.job;
+        self.chatMessageView.chatHead.area=user.groupname;
         self.chatMessageView.chatHead.status=@"1";
-        self.chatMessageView.chatHead.Name=pe.Name;
-        self.chatMessageView.chatHead.headPath=pe.headPath;
-    }
+        self.chatMessageView.chatHead.Name=user.username;
+        self.chatMessageView.chatHead.headPath=user.headurl;
     [self initBackBarButtonItem:self.chatMessageView];
     [self.chatMessageView performSegueWithIdentifier:@"chattoDetailhead" sender:self.chatMessageView];
     
@@ -631,8 +628,24 @@
     NSLog(@"录音完成，文件路径:%@",_filePath);
     wavSavePath=_filePath;
     [self getVoicetime:_filePath fileName:_fileName convertTime:0 label:nil];
+    
+    if ([voicetime integerValue]<=0) {
+        [self showHUDText:@"录音至少2秒" showTime:1];
+        return;
+    }
+        
     [self wavToamr];
     [self sendMessage];
+}
+
+//录音提示
+- (void)showHUDText:(NSString *)text showTime:(NSTimeInterval)time{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.chatMessageView.view animated:YES];
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText =text;
+    hud.margin = 10.f;
+    hud.removeFromSuperViewOnHide = YES;
+    [hud hide:YES afterDelay:time];
 }
 
 //wav转amr
