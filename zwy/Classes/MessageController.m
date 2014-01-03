@@ -64,6 +64,7 @@
         }
     }
 }
+
 #pragma mark -OptionChatPeopleDelegate
 - (void)MessageViewToChatMessageView:(NSArray *)peoples{
  self.messageView.tabBarController.navigationItem.title=@"";
@@ -259,6 +260,50 @@ shouldReloadTableForSearchScope:(NSInteger)searchOption
     isSearching=NO;
     [_messageView.uitableview reloadData];
     [_messageView.searchBar resignFirstResponder];
+}
+
+- (void)showHUDText:(NSString *)text showTime:(NSTimeInterval)time{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.messageView.view animated:YES];
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText =text;
+    hud.margin = 10.f;
+    hud.removeFromSuperViewOnHide = YES;
+    [hud hide:YES afterDelay:time];
+}
+
+/*设置全局通讯录信息*/
+- (void)setAllGroupAddressBooksWithHUDText:(NSString *)text{
+    if (EX_arrGroupAddressBooks)return;
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.messageView.view animated:YES];
+    hud.labelText =text;
+    hud.margin = 10.f;
+    hud.removeFromSuperViewOnHide = YES;
+    [hud show:YES];
+    
+    //设置通讯录
+    /*****************************/
+    EX_arrGroupAddressBooks=[ConfigFile setEcNumberInfo];
+    
+    EX_arrSection=[NSMutableArray arrayWithObjects:
+                   @"a",@"b",@"c",@"d",@"e",@"f",
+                   @"g",@"h",@"i",@"j",@"k",@"l",
+                   @"m",@"n",@"o",@"p",@"q",@"r",
+                   @"s",@"t",@"u",@"v",@"w",@"x",
+                   @"y",@"z",@"#",nil];
+    NSMutableArray * arrRemoveObject=[[NSMutableArray alloc] init];
+    for (int i = 0; i<EX_arrSection.count; i++) {
+        NSString * strPre=[NSString stringWithFormat:@"SELF.Firetletter == '%@'",EX_arrSection[i]];
+        NSPredicate * predicate;
+        predicate = [NSPredicate predicateWithFormat:strPre];
+        NSArray * results = [EX_arrGroupAddressBooks filteredArrayUsingPredicate: predicate];
+        if (results.count==0) {
+            [arrRemoveObject addObject:EX_arrSection[i]];
+        }
+    }
+    [EX_arrSection removeObjectsInArray:arrRemoveObject];
+    /*****************************/
+    
+    [hud hide:YES afterDelay:1];
 }
 
 @end

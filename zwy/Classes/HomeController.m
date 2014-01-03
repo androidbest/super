@@ -42,10 +42,16 @@
                                                     name:NOTIFICATIONFIRSTNEWS
                                                   object:self];
         
-      
-        //开启扫描信息定时器
-        if (EX_timerUpdateMessage)[EX_timerUpdateMessage setFireDate:[NSDate distantPast]];
-         else   EX_timerUpdateMessage = [NSTimer scheduledTimerWithTimeInterval:3.0 target:[[UIApplication sharedApplication] delegate] selector:@selector(timerFired:) userInfo:nil repeats:YES];
+        
+        NSString * strSavePath =[NSString stringWithFormat:@"%@/%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode,@"member.txt"];
+        BOOL blHave=[[NSFileManager defaultManager] fileExistsAtPath:strSavePath];
+        //如果没有同步通讯录，不开启接受消息线程
+        if (blHave) {
+            //开启扫描信息定时器
+            if (EX_timerUpdateMessage)[EX_timerUpdateMessage setFireDate:[NSDate distantPast]];
+            else   EX_timerUpdateMessage = [NSTimer scheduledTimerWithTimeInterval:3.0 target:[[UIApplication sharedApplication] delegate] selector:@selector(timerFired:) userInfo:nil repeats:YES];
+        }
+        
     }
     return self;
 }
@@ -215,8 +221,8 @@
 
 - (void)foucusImageFrame:(SGFocusImageFrame *)imageFrame tapGesItem:(NSInteger)index{
     if (index==1)
-        [self btnWarning];
+       [self Btnchat];
     else if (index==2)
-        [self Btnchat];
+       [self btnWarning];
 }
 @end

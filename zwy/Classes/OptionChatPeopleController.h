@@ -11,7 +11,6 @@
 
 @interface OptionChatPeopleController : BaseController
 @property (strong ,nonatomic)OptionChatPeopleView *optionView;
-@property (strong ,nonatomic)NSMutableArray *arrSection;
 @property (strong ,nonatomic)NSMutableArray *arrAllLink;
 @property (strong ,nonatomic)NSArray *arrSeaPeople;
 @property (strong ,nonatomic)NSMutableArray *arrOption;

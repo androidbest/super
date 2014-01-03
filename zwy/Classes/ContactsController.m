@@ -19,13 +19,6 @@
 -(id)init{
     self=[super init];
     if(self){
-        self.arrSection =[NSMutableArray arrayWithObjects:
-                          @"a",@"b",@"c",@"d",@"e",@"f",
-                          @"g",@"h",@"i",@"j",@"k",@"l",
-                          @"m",@"n",@"o",@"p",@"q",@"r",
-                          @"s",@"t",@"u",@"v",@"w",@"x",
-                          @"y",@"z",@"#",nil];
-        
         arrNumber =@[@"0",@"1",@"2",@"3",@"4",
                      @"5",@"6",@"7",@"8",@"9"];
         isSearching=NO;
@@ -34,26 +27,13 @@
 }
 
 -(void)initECnumerData{
-    _arrAllLink = [ConfigFile setEcNumberInfo];
     BOOL blHave=[[NSFileManager defaultManager] fileExistsAtPath:[NSString stringWithFormat:@"%@/%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode,@"member.txt"]];
-    if(_arrAllLink.count==0&&!blHave){
+    if(EX_arrGroupAddressBooks.count==0&&!blHave){
         self.HUD.labelText = @"请同步单位通讯录";
         self.HUD.mode = MBProgressHUDModeCustomView;
         [self.HUD show:YES];
         [self.HUD  hide:YES afterDelay:2];
     }
-    
-    NSMutableArray * arrRemoveObject=[[NSMutableArray alloc] init];
-    for (int i = 0; i<_arrSection.count; i++) {
-        NSString * strPre=[NSString stringWithFormat:@"SELF.Firetletter == '%@'",_arrSection[i]];
-        NSPredicate * predicate;
-        predicate = [NSPredicate predicateWithFormat:strPre];
-        NSArray * results = [_arrAllLink filteredArrayUsingPredicate: predicate];
-        if (results.count==0) {
-            [arrRemoveObject addObject:_arrSection[i]];
-        }
-    }
-    [self.arrSection removeObjectsInArray:arrRemoveObject];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -64,22 +44,22 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     if (_contactsView.searchBar.text.length!=0&&isSearching) return 1;
     
-    [_contactsView.indexBar setIndexes:_arrSection];
-    return _arrSection.count;
+    [_contactsView.indexBar setIndexes:EX_arrSection];
+    return EX_arrSection.count;
 }
 
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     if (_contactsView.searchBar.text.length!=0&&isSearching) return nil;
-    return _arrSection[section];
+    return EX_arrSection[section];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (_contactsView.searchBar.text.length!=0&&isSearching)return _arrSeaPeople.count;
     
-    NSString * strPre=[NSString stringWithFormat:@"SELF.Firetletter IN '%@'",_arrSection[section]];
+    NSString * strPre=[NSString stringWithFormat:@"SELF.Firetletter IN '%@'",EX_arrSection[section]];
     NSPredicate * predicate;
     predicate = [NSPredicate predicateWithFormat:strPre];
-    NSArray * results = [_arrAllLink filteredArrayUsingPredicate: predicate];
+    NSArray * results = [EX_arrGroupAddressBooks filteredArrayUsingPredicate: predicate];
     return results.count;
 }
 
@@ -97,10 +77,10 @@
         info =_arrSeaPeople[indexPath.row];
     }
     else{
-        NSString * strPre=[NSString stringWithFormat:@"SELF.Firetletter IN '%@'",_arrSection[indexPath.section]];
+        NSString * strPre=[NSString stringWithFormat:@"SELF.Firetletter IN '%@'",EX_arrSection[indexPath.section]];
         NSPredicate * predicate;
         predicate = [NSPredicate predicateWithFormat:strPre];
-        info=[[_arrAllLink filteredArrayUsingPredicate: predicate] objectAtIndex:indexPath.row];
+        info=[[EX_arrGroupAddressBooks filteredArrayUsingPredicate: predicate] objectAtIndex:indexPath.row];
     }
     
     cell.username.text=info.Name;
@@ -110,10 +90,10 @@
 
 #pragma mark - UITableViewDelegate
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSString * strPre=[NSString stringWithFormat:@"SELF.Firetletter IN '%@'",_arrSection[indexPath.section]];
+    NSString * strPre=[NSString stringWithFormat:@"SELF.Firetletter IN '%@'",EX_arrSection[indexPath.section]];
     NSPredicate * predicate;
     predicate = [NSPredicate predicateWithFormat:strPre];
-    NSArray * results = [_arrAllLink filteredArrayUsingPredicate: predicate];
+    NSArray * results = [EX_arrGroupAddressBooks filteredArrayUsingPredicate: predicate];
     
     if (_contactsView.searchBar.text.length!=0&&isSearching)self.contactsView.info=_arrSeaPeople[indexPath.row];
     else  self.contactsView.info=[results objectAtIndex:indexPath.row];
@@ -141,7 +121,7 @@
         if (searchText.length!=0)strFirstLetter=[[searchText substringToIndex:1] lowercaseString];
         
         //设置搜索条件
-        if ([_arrSection containsObject: strFirstLetter])
+        if ([EX_arrSection containsObject: strFirstLetter])
         {
             searchText =[searchText lowercaseString];
             strSearchbar =[NSString stringWithFormat:@"SELF.letter CONTAINS '%@'",searchText];
@@ -153,7 +133,7 @@
         }
         
         NSPredicate *predicateTemplate = [NSPredicate predicateWithFormat: strSearchbar];
-        self.arrSeaPeople=[self.arrAllLink filteredArrayUsingPredicate: predicateTemplate];
+        self.arrSeaPeople=[EX_arrGroupAddressBooks filteredArrayUsingPredicate: predicateTemplate];
     }else {
         isSearching=NO;
     }

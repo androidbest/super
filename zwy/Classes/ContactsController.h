@@ -10,8 +10,6 @@
 #import "ContactsView.h"
 @interface ContactsController : BaseController
 @property (strong ,nonatomic)ContactsView * contactsView;
-@property (strong ,nonatomic)NSMutableArray *arrSection;
-@property (strong ,nonatomic)NSMutableArray *arrAllLink;
 @property (strong ,nonatomic)NSArray *arrSeaPeople;
 -(void)initECnumerData;
 @end

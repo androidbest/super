@@ -93,9 +93,20 @@
     EX_chatMessageID=@"";
 }
 
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+     [(MessageController *)self.controller setAllGroupAddressBooksWithHUDText:@"收取中..."];
+}
+
+
 - (void)viewWillDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
     //移除观察者
     [self removeMessageObserver];
+}
+
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
 }
 
 
