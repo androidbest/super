@@ -220,6 +220,7 @@
 //当点击搜索的时候,按钮改变为确定
 - (void)searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller {
     UISearchBar *searchBar = controller.searchBar;
+    [searchBar setShowsCancelButton:YES animated:YES];
     for(UIView *subView in searchBar.subviews){
         for(UIView *sub in subView.subviews){
             if([sub isKindOfClass:[NSClassFromString(@"UINavigationButton") class]]){

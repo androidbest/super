@@ -27,6 +27,6 @@
 
 - (void)pullScrollViewDidScroll:(UIScrollView *)scrollView;
 
-- (void)reloadData;
+- (void)reloadData:(BOOL)animation;
 
 @end
