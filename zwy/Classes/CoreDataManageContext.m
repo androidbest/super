@@ -285,8 +285,10 @@ static CoreDataManageContext *coreData=nil;
     [frq setPredicate:predicate];
     
     int count =[[self.managedObjectContext executeFetchRequest:frq error:nil] count];
-    if (count>limit&&count-offset-limit>0)offset=count-offset-limit;
-    NSLog(@"%d",offset);
+    if (count>limit&&count-offset-limit>0){ offset=count-offset-limit; }
+    else if(count-offset>0){
+        limit=count-offset;
+        offset=0;}
     
     //设置排序方式
     NSSortDescriptor * sort = [[NSSortDescriptor alloc] initWithKey:@"chat_times" ascending:YES];
