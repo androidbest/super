@@ -362,7 +362,7 @@
 //	
 //    
 //    //添加文本信息
-	UILabel *bubbleText = [[UILabel alloc] initWithFrame:CGRectMake(fromSelf?10.0f:22.0f, 8.0f, textRect.size.width+10, textRect.size.height+10)];
+	UILabel *bubbleText = [[UILabel alloc] initWithFrame:CGRectMake(fromSelf?10.0f:22.0f, 6.0f, textRect.size.width+10, textRect.size.height+10)];
 	bubbleText.backgroundColor = [UIColor clearColor];
 	bubbleText.font = font;
 	bubbleText.numberOfLines = 0;
@@ -377,7 +377,7 @@
     NSInteger times=[self stringToNum:voicetime];
     times=times*2;
     if([selfType isEqualToString:@"0"]){
-    bubbleImageView.frame = CGRectMake(0.0f, 5.0f, bubbleText.frame.size.width+30.0f, bubbleText.frame.size.height+10.0f);
+    bubbleImageView.frame = CGRectMake(0.0f, 0.0f, bubbleText.frame.size.width+30.0f, bubbleText.frame.size.height+15.0f);
     }else{
     bubbleImageView.frame = CGRectMake(0.0f, 0.0f, 65+times, 44);
     }
@@ -398,8 +398,8 @@
 	[returnView addSubview:bubbleImageView];
 	[returnView addSubview:bubbleText];
 //
-    returnView.layer.borderColor=[[UIColor blackColor] CGColor];
-    returnView.layer.borderWidth=1;
+//    returnView.layer.borderColor=[[UIColor blackColor] CGColor];
+//    returnView.layer.borderWidth=1;
 //
 ////    CGRect rect=returnView.frame;
 ////    rect.size.height=20;

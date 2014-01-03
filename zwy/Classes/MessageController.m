@@ -95,7 +95,7 @@
     else sessionInfo=_arrSession[indexPath.row];
     
     cell.title.text=sessionInfo.session_receivername;
-    if(sessionInfo.session_voicetimes&&![sessionInfo.session_voicetimes isEqualToString:@"(null)"]&&![sessionInfo.session_voicetimes isEqualToString:@"null"]&&![sessionInfo.session_voicetimes isEqualToString:@""]){
+    if(sessionInfo.session_voicetimes&&![sessionInfo.session_voicetimes isEqualToString:@"(null)"]&&![sessionInfo.session_voicetimes isEqualToString:@"null"]&&![sessionInfo.session_voicetimes isEqualToString:@""]&&![sessionInfo.session_voicetimes isEqualToString:@"0"]){
     cell.content.text=[NSString stringWithFormat:@"%@''",sessionInfo.session_voicetimes];
     }else{
     cell.content.text=sessionInfo.session_content;
@@ -109,7 +109,7 @@
     }
 //    cell.username.text=sessionInfo.session_receivername;
     NSString *url=@"";
-    if(sessionInfo.session_groupuuid&&![sessionInfo.session_groupuuid isEqualToString:@"null"]&&![sessionInfo.session_groupuuid isEqualToString:@""]){
+    if(sessionInfo.session_groupuuid&&![sessionInfo.session_groupuuid isEqualToString:@"null"]&&![sessionInfo.session_groupuuid isEqualToString:@""]&&![sessionInfo.session_groupuuid isEqualToString:@"(null)"]){
         url=[sessionInfo.session_receiveravatar componentsSeparatedByString:@","][0];
     }else{
         url=sessionInfo.session_receiveravatar;

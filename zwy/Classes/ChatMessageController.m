@@ -160,6 +160,7 @@
 - (void)getMessage:(NSNotification *)notification{
     [arrData removeAllObjects];
     [arrTime removeAllObjects];
+    [arrBool removeAllObjects];
     
     if(!chatMessageID||[chatMessageID isEqualToString:@""]){
       chatMessageID =[NSString stringWithFormat:@"%@%@%@%@",user.msisdn,user.eccode,grouid,user.eccode];
@@ -454,7 +455,7 @@
             [cell.rightMessage addTarget:self action:@selector(UesrClicked:) forControlEvents:UIControlEventTouchUpInside];
             cell.rightMessage.voiceurl=msgObj.filepath;
             cell.rightVoiceTimes.text=[NSString stringWithFormat:@"%@''",msgObj.voicetime];
-            cell.rightVoiceTimes.frame=CGRectMake(cell.rightMessage.frame.origin.x-20, cell.rightMessage.center.y-10,30,10);
+            cell.rightVoiceTimes.frame=CGRectMake(cell.rightMessage.frame.origin.x-30, cell.rightMessage.center.y-10,30,10);
         }else{
             cell.rightVoiceTimes.hidden=YES;
         }
@@ -462,7 +463,7 @@
         //加指示灯
         if(isSend){
             if((arrData.count-1)==indexPath.row){
-                activityIndicatorView.center=CGPointMake(cell.rightMessage.frame.origin.x-30,cell.rightMessage.center.y-5);
+                activityIndicatorView.center=CGPointMake(cell.rightMessage.frame.origin.x-25,cell.rightMessage.center.y-10);
                 [cell addSubview:activityIndicatorView];
                 [activityIndicatorView startAnimating];
                 cell.rightMessage.voiceurl=wavSavePath;
@@ -507,7 +508,7 @@
             [cell.leftMessage addTarget:self action:@selector(UesrClicked:) forControlEvents:UIControlEventTouchUpInside];
             cell.leftMessage.voiceurl=msgObj.filepath;
             cell.leftVoiceTimes.text=[NSString stringWithFormat:@"%@''",msgObj.voicetime];
-            cell.leftVoiceTimes.frame=CGRectMake(cell.leftMessage.frame.origin.x+30, cell.leftMessage.center.y-10,30,10);
+            cell.leftVoiceTimes.frame=CGRectMake(cell.leftMessage.frame.origin.x+cell.leftMessage.frame.size.width+10, cell.leftMessage.center.y-10,30,10);
         }else{
             cell.leftVoiceTimes.hidden=YES;
         }
@@ -546,7 +547,7 @@
     NSMutableArray  *arr = [ConfigFile setEcNumberInfo];
     ChatMsgObj *msgobj=arrData[btn.tag];
     NSString *msisdn=@"";
-    if(msgobj.groupid&&![msgobj.groupid isEqualToString:@"null"]&&![msgobj.groupid isEqualToString:@""]){
+    if(msgobj.groupid&&![msgobj.groupid isEqualToString:@"null"]&&![msgobj.groupid isEqualToString:@""]&&![msgobj.groupid isEqualToString:@"(null)"]){
         msisdn=msgobj.gsendermsisdn;
     }else{
         msisdn=msgobj.receivermsisdn;
@@ -562,7 +563,7 @@
         self.chatMessageView.chatHead.area=pe.area;
         self.chatMessageView.chatHead.status=@"1";
         self.chatMessageView.chatHead.Name=pe.Name;
-        self.chatMessageView.chatHead.headPath=user.headurl;
+        self.chatMessageView.chatHead.headPath=pe.headPath;
     }
     [self initBackBarButtonItem:self.chatMessageView];
    [self.chatMessageView performSegueWithIdentifier:@"chattoDetailhead" sender:self.chatMessageView];
