@@ -277,7 +277,7 @@ UIBackgroundTaskIdentifier backgroundTask;//写成成员
     for (int i=0; i<arrmessages.count; i++) {
         ChatMsgObj *obj =arrmessages[i];
         
-        NSString *chatMessageID =[NSString stringWithFormat:@"%@%@%@%@",user.msisdn,user.eccode,obj.receivermsisdn,obj.receivereccode];
+        NSString *chatMessageID =nil;
       
             if (!obj.groupid||[obj.groupid isEqualToString:@"(null)"]||[obj.groupid isEqualToString:@""]||[obj.groupid isEqualToString:@"null"]) {
                 chatMessageID =[NSString stringWithFormat:@"%@%@%@%@",user.msisdn,user.eccode,obj.receivermsisdn,obj.receivereccode];

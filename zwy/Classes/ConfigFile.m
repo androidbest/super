@@ -122,6 +122,13 @@ static ConfigFile *configFile;
 
 //获取所有成员
 + (NSMutableArray *)setEcNumberInfo{
+    
+   NSArray * allSection=@[@"a",@"b",@"c",@"d",@"e",@"f",
+                @"g",@"h",@"i",@"j",@"k",@"l",
+                @"m",@"n",@"o",@"p",@"q",@"r",
+                @"s",@"t",@"u",@"v",@"w",@"x",
+                @"y",@"z",@"#",];
+    
     NSString *str=[NSString stringWithFormat:@"%@/%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode,@"member.txt"];
     NSMutableArray* AllPeople =[[NSMutableArray alloc] init];
     NSString *strGroup =[NSString stringWithContentsOfFile:str encoding:NSUTF8StringEncoding error:NULL];
@@ -142,7 +149,11 @@ static ConfigFile *configFile;
             info.groupID =[arrData objectAtIndex:5];
             info.superID=[arrData objectAtIndex:5];
             info.letter =[arrData objectAtIndex:6];
-            info.Firetletter =[[arrData objectAtIndex:6] substringToIndex:1];
+            if ([allSection containsObject:[[arrData objectAtIndex:6] substringToIndex:1]]) {
+              info.Firetletter =[[arrData objectAtIndex:6] substringToIndex:1];
+            }else{
+            info.Firetletter =@"#";
+            }
             info.isecnumer=[arrData objectAtIndex:8];
             info.headPath=[arrData objectAtIndex:9];
             info.eccode=[arrData objectAtIndex:10];

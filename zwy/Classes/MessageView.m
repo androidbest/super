@@ -67,6 +67,8 @@
     
 //    UIBarButtonItem *rightButton  =[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self.controller action:@selector(btnAddPeople)];
 //    self.tabBarController.navigationItem.rightBarButtonItem=rightButton;
+    
+    [(MessageController *)self.controller showSetAllAllGroupAddressBooksHUDWithText:@"更新中..."];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -95,7 +97,6 @@
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-     [(MessageController *)self.controller setAllGroupAddressBooksWithHUDText:@"收取中..."];
 }
 
 

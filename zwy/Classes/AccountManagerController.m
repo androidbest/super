@@ -153,6 +153,11 @@
         /*回传服务器“已注销"*/
         [packageData iosLoginOut:self];
         
+        
+        /*清除全局通讯录人员组信息*/
+        EX_arrGroupAddressBooks=nil;
+        EX_arrSection=nil;
+        
         NSUserDefaults *appConfig=[NSUserDefaults standardUserDefaults];
         [appConfig setBool:NO forKey:@"isLogin"];
         [appConfig synchronize];
@@ -179,7 +184,7 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
      NSString * strIngPath =[NSString stringWithFormat:@"%@/%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode,@"IngDown.plist"];
     switch (alertViewType) {
-        case 0:
+        case 0://切换单位alert
             if(buttonIndex==1){
                 NSArray * IngDown =[NSArray arrayWithContentsOfFile:strIngPath];
                 if (IngDown.count>0) {
@@ -202,6 +207,11 @@
                     [cell.selectEc setBackgroundImage:[UIImage imageNamed:@"btn_check"] forState:UIControlStateNormal];
                     [self DownLoadAddress];
                     isZaiXian=NO;
+                    
+                    /*清除全局通讯录人员组信息*/
+                    EX_arrGroupAddressBooks=nil;
+                    EX_arrSection=nil;
+                    
                     /*清理所有下载线程*/
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"cancelAllThread"
                                                                         object:nil];
@@ -211,7 +221,7 @@
             break;
             
             
-        case 1:
+        case 1://是否真正确认退出或者切换单位alert
             if(buttonIndex==1){
                 for(int i=0;i<[self.account.accountList visibleCells].count;i++){
                     GetEcCell *cell = [[self.account.accountList visibleCells] objectAtIndex:i];
@@ -230,6 +240,10 @@
                 [self DownLoadAddress];
                 isZaiXian=NO;
                 
+                /*清除全局通讯录人员组信息*/
+                EX_arrGroupAddressBooks=nil;
+                EX_arrSection=nil;
+                
                 /*清理所有下载线程*/
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"cancelAllThread"
                                                                     object:nil];
@@ -239,7 +253,7 @@
             
             break;
             
-            case 2:
+            case 2://退出帐号alert
             if(buttonIndex==1){
                 /*清理所有下载线程*/
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"cancelAllThread"
@@ -264,6 +278,10 @@
                 
                 /*回传服务器“已注销"*/
                 [packageData iosLoginOut:self];
+                
+                /*清除全局通讯录人员组信息*/
+                EX_arrGroupAddressBooks=nil;
+                EX_arrSection=nil;
                 
                 CGRect rect=self.account.view.frame;
                 [UIView beginAnimations:nil context:UIGraphicsGetCurrentContext()];
@@ -297,11 +315,6 @@
     for(UILocalNotification*localNotification in allLocalNotification){
         [[UIApplication sharedApplication]cancelLocalNotification:localNotification];
     }
-/*
-    NSString * strECPath =[NSString stringWithFormat:@"%@/%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode,@"group.txt"];
-    NSString *strGroup =[NSString stringWithContentsOfFile:strECPath encoding:NSUTF8StringEncoding error:NULL];
-    if (strGroup){
- */
         UIImageView *imageView;
         UIImage *image ;
         image= [UIImage imageNamed:@"37x-Checkmark.png"];
@@ -312,19 +325,6 @@
         self.HUD.labelText =@"切换完成";
         [self.HUD hide:YES afterDelay:1];
         [self performSelector:@selector(selecter) withObject:nil afterDelay:1];
-/*
-        return;}
-
-    self.HUD.mode = MBProgressHUDModeDeterminateHorizontalBar;
-    self.HUD.labelText = @"同步中...";
-    NSString *strFileName =[NSString stringWithFormat:@"%@/%@.zip",user.msisdn,user.eccode];
-    NSString * filePath =[DocumentsDirectory stringByAppendingPathComponent:strFileName];
-    NSString *str=[self urlByConfigFile];
-    NSString * strUrl =[NSString stringWithFormat:@"%@tmp/%@.zip?eccode=%@",str,user.eccode,user.eccode];
-
-    
-    [HTTPRequest LoadDownFile:self URL:strUrl filePath:filePath HUD:self.HUD];
-  */
 }
 
 

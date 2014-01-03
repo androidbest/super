@@ -271,39 +271,56 @@ shouldReloadTableForSearchScope:(NSInteger)searchOption
     [hud hide:YES afterDelay:time];
 }
 
-/*设置全局通讯录信息*/
-- (void)setAllGroupAddressBooksWithHUDText:(NSString *)text{
-    if (EX_arrGroupAddressBooks)return;
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.messageView.view animated:YES];
-    hud.labelText =text;
-    hud.margin = 10.f;
-    hud.removeFromSuperViewOnHide = YES;
-    [hud show:YES];
+
+
+/*同步全局通讯录缓存指示灯*/
+- (void)showSetAllAllGroupAddressBooksHUDWithText:(NSString *)text{
+    if (EX_arrGroupAddressBooks&&EX_arrGroupAddressBooks.count!=0)return;
+    _HUD_Group = [MBProgressHUD showHUDAddedTo:self.messageView.view animated:YES];
+    _HUD_Group.labelText =text;
+    _HUD_Group.margin = 10.f;
+    _HUD_Group.removeFromSuperViewOnHide = YES;
+    [_HUD_Group show:YES];
     
-    //设置通讯录
-    /*****************************/
-    EX_arrGroupAddressBooks=[ConfigFile setEcNumberInfo];
     
-    EX_arrSection=[NSMutableArray arrayWithObjects:
-                   @"a",@"b",@"c",@"d",@"e",@"f",
-                   @"g",@"h",@"i",@"j",@"k",@"l",
-                   @"m",@"n",@"o",@"p",@"q",@"r",
-                   @"s",@"t",@"u",@"v",@"w",@"x",
-                   @"y",@"z",@"#",nil];
-    NSMutableArray * arrRemoveObject=[[NSMutableArray alloc] init];
-    for (int i = 0; i<EX_arrSection.count; i++) {
-        NSString * strPre=[NSString stringWithFormat:@"SELF.Firetletter == '%@'",EX_arrSection[i]];
-        NSPredicate * predicate;
-        predicate = [NSPredicate predicateWithFormat:strPre];
-        NSArray * results = [EX_arrGroupAddressBooks filteredArrayUsingPredicate: predicate];
-        if (results.count==0) {
-            [arrRemoveObject addObject:EX_arrSection[i]];
+    __block NSArray *allPeople=nil;
+    __block NSMutableArray *allSection=nil;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        //设置通讯录
+        /*****************************/
+        allPeople=[ConfigFile setEcNumberInfo];
+        EX_arrGroupAddressBooks=allPeople;
+        
+        allSection=[NSMutableArray arrayWithObjects:
+                       @"a",@"b",@"c",@"d",@"e",@"f",
+                       @"g",@"h",@"i",@"j",@"k",@"l",
+                       @"m",@"n",@"o",@"p",@"q",@"r",
+                       @"s",@"t",@"u",@"v",@"w",@"x",
+                       @"y",@"z",@"#",nil];
+        NSMutableArray * arrRemoveObject=[[NSMutableArray alloc] init];
+        for (int i = 0; i<allSection.count; i++) {
+            NSString * strPre=[NSString stringWithFormat:@"SELF.Firetletter == '%@'",allSection[i]];
+            NSPredicate * predicate;
+            predicate = [NSPredicate predicateWithFormat:strPre];
+            NSArray * results = [allPeople filteredArrayUsingPredicate: predicate];
+            if (results.count==0) {
+                [arrRemoveObject addObject:allSection[i]];
+            }
         }
-    }
-    [EX_arrSection removeObjectsInArray:arrRemoveObject];
-    /*****************************/
+        [allSection removeObjectsInArray:arrRemoveObject];
+        EX_arrSection=allSection;
+        /*****************************/
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+         [_HUD_Group hide:YES afterDelay:1];
+        });
+        
+    });
+
     
-    [hud hide:YES afterDelay:1];
+   
+    
+  
 }
 
 @end

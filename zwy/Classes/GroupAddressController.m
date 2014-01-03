@@ -227,7 +227,7 @@
 
 //开启接受定时器,设置全局通讯录(设置全局内容)
 - (void)StartChatMessageController{
-    if (!EX_arrGroupAddressBooks) {
+    if (!EX_arrGroupAddressBooks||EX_arrGroupAddressBooks.count==0) {
         EX_arrGroupAddressBooks=[ConfigFile setEcNumberInfo];
         
         EX_arrSection=[NSMutableArray arrayWithObjects:

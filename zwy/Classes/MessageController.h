@@ -12,6 +12,8 @@
 @property (strong ,nonatomic)MessageView * messageView;
 @property (strong ,nonatomic)NSMutableArray *arrSession;
 @property (strong ,nonatomic)NSArray *arrSeaPeople;
-/*设置全局通讯录信息*/
-- (void)setAllGroupAddressBooksWithHUDText:(NSString *)text;
+@property (strong ,nonatomic)MBProgressHUD *HUD_Group;
+
+/*同步全局通讯录缓存指示灯*/
+- (void)showSetAllAllGroupAddressBooksHUDWithText:(NSString *)text;
 @end
