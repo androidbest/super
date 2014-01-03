@@ -20,6 +20,7 @@
 #import "SessionEntity.h"
 #import "EditingChatPeoplesview.h"
 #import "VoiceGestureRecognizer.h"
+#import "Constants.h"
 
 @implementation ChatMessageController{
     NSMutableArray *arrData;//数据储存
@@ -422,6 +423,7 @@
 //                                    reuseIdentifier:strCell];
 //    }
     ChatMessageCell * cell = [[ChatMessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:strCell];
+    cell.sendFail.hidden=YES;
 //    cell.leftMessage.frame=CGRectMake(60, 10, 200, 50);
 //    UIImageView *view=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
 //    view.image=[UIImage imageNamed:@"chat_lefttext"];
@@ -544,7 +546,7 @@
 
 //点击左边头像
 -(void)leftPushDetail:(UIButton *)btn{
-    NSMutableArray  *arr = [ConfigFile setEcNumberInfo];
+    NSArray  *arr = EX_arrGroupAddressBooks;
     ChatMsgObj *msgobj=arrData[btn.tag];
     NSString *msisdn=@"";
     if(msgobj.groupid&&![msgobj.groupid isEqualToString:@"null"]&&![msgobj.groupid isEqualToString:@""]&&![msgobj.groupid isEqualToString:@"(null)"]){
@@ -571,17 +573,20 @@
 
 //点击右边头像
 -(void)rightPushDetail:(UIButton *)btn{
-//    NSMutableArray  *arr = [ConfigFile setEcNumberInfo];
-//    NSString *strSearchbar =[NSString stringWithFormat:@"SELF.tel CONTAINS '%@'",user.msisdn];
-//    NSPredicate *predicate = [NSPredicate predicateWithFormat: strSearchbar];
-//    NSArray *arrRet =[arr filteredArrayUsingPredicate: predicate];
+    NSArray  *arr = EX_arrGroupAddressBooks;
+    NSString *strSearchbar =[NSString stringWithFormat:@"SELF.tel CONTAINS '%@'",user.msisdn];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat: strSearchbar];
+    NSArray *arrRet =[arr filteredArrayUsingPredicate: predicate];
+    if(arrRet.count>0){
+        PeopelInfo *pe=arrRet[0];
         self.chatMessageView.chatHead=[PeopelInfo new];
         self.chatMessageView.chatHead.tel=user.msisdn;
-        self.chatMessageView.chatHead.job=user.job;
-        self.chatMessageView.chatHead.area=user.groupname;
+        self.chatMessageView.chatHead.job=pe.job;
+        self.chatMessageView.chatHead.area=pe.area;
         self.chatMessageView.chatHead.status=@"1";
         self.chatMessageView.chatHead.Name=user.username;
         self.chatMessageView.chatHead.headPath=user.headurl;
+    }
     [self initBackBarButtonItem:self.chatMessageView];
     [self.chatMessageView performSegueWithIdentifier:@"chattoDetailhead" sender:self.chatMessageView];
     

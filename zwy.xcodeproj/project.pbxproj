@@ -221,6 +221,7 @@
 		598ECDC7185B13660059BBC7 /* im_my@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 598ECDC1185B13660059BBC7 /* im_my@2x.png */; };
 		599D7D15181E2CDB0099BE01 /* Safari@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 599D7D14181E2CDB0099BE01 /* Safari@2x~iphone.png */; };
 		599D7D17181E2CE40099BE01 /* Safari-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 599D7D16181E2CE40099BE01 /* Safari-Small@2x.png */; };
+		599FA6E91876ADD000451577 /* send_fail.png in Resources */ = {isa = PBXBuildFile; fileRef = 599FA6E81876ADD000451577 /* send_fail.png */; };
 		59A8642C18256BFC00C752C8 /* SendMessageToWeiboViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59A8642918256BFC00C752C8 /* SendMessageToWeiboViewController.m */; };
 		59A8642D18256BFC00C752C8 /* ProvideMessageForWeiboViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59A8642B18256BFC00C752C8 /* ProvideMessageForWeiboViewController.m */; };
 		59D78DE6185989260068D6D1 /* MesaageIMCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 59D78DE5185989260068D6D1 /* MesaageIMCell.m */; };
@@ -781,6 +782,7 @@
 		598ECDC1185B13660059BBC7 /* im_my@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "im_my@2x.png"; sourceTree = "<group>"; };
 		599D7D14181E2CDB0099BE01 /* Safari@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Safari@2x~iphone.png"; sourceTree = "<group>"; };
 		599D7D16181E2CE40099BE01 /* Safari-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Safari-Small@2x.png"; sourceTree = "<group>"; };
+		599FA6E81876ADD000451577 /* send_fail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = send_fail.png; sourceTree = "<group>"; };
 		59A8642818256BFC00C752C8 /* SendMessageToWeiboViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendMessageToWeiboViewController.h; sourceTree = "<group>"; };
 		59A8642918256BFC00C752C8 /* SendMessageToWeiboViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendMessageToWeiboViewController.m; sourceTree = "<group>"; };
 		59A8642A18256BFC00C752C8 /* ProvideMessageForWeiboViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProvideMessageForWeiboViewController.h; sourceTree = "<group>"; };
@@ -1567,6 +1569,7 @@
 		595CB9B717F168BC00228A6E /* images */ = {
 			isa = PBXGroup;
 			children = (
+				599FA6E81876ADD000451577 /* send_fail.png */,
 				659BF20E18756560007B86DE /* giude1_1.6_4.jpg */,
 				659BF20F18756560007B86DE /* giude1_1.6_5.jpg */,
 				659BF21018756560007B86DE /* giude2_1.6_4.jpg */,
@@ -2530,6 +2533,7 @@
 				598ECDBB185B00A20059BBC7 /* im_head.png in Resources */,
 				598ECDC6185B13660059BBC7 /* im_my.png in Resources */,
 				59491F39186B32B900FF9B3F /* speaker_0.png in Resources */,
+				599FA6E91876ADD000451577 /* send_fail.png in Resources */,
 				65CD687618239DDF00644394 /* list_NoData.jpg in Resources */,
 				65AC660E180FCDBF00C0CA4F /* btn_uncheck.png in Resources */,
 				65A0020D1862D4FF001A7AC1 /* tabbar_more_out_1_6.png in Resources */,

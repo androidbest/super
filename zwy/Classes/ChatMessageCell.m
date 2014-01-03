@@ -15,6 +15,11 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         
+        //发送失败图标
+        _sendFail =[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 15, 20)];
+        _sendFail.image=[UIImage imageNamed:@"send_fail"];
+        [self addSubview:_sendFail];
+        
         //"时间"标签
         _chatTime =[[UILabel alloc] initWithFrame:CGRectMake(110,5,110,15)];
         _chatTime.font=[UIFont systemFontOfSize:13];

@@ -216,8 +216,18 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+
+//当点击搜索的时候,按钮改变为确定
 - (void)searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller {
-    
+    UISearchBar *searchBar = controller.searchBar;
+    for(UIView *subView in searchBar.subviews){
+        for(UIView *sub in subView.subviews){
+            if([sub isKindOfClass:[NSClassFromString(@"UINavigationButton") class]]){
+                UIButton *b=(UIButton *)sub;
+                [b setTitle:@"确定" forState:UIControlStateNormal];
+            }
+        }
+    }
 }
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller
@@ -280,6 +290,9 @@ shouldReloadTableForSearchScope:(NSInteger)searchOption
     hud.removeFromSuperViewOnHide = YES;
     [hud hide:YES afterDelay:time];
 }
+
+
+
 
 - (PeopelInfo *)getPeopleInfoFromUserInfo{
     PeopelInfo *Info =[PeopelInfo new];
