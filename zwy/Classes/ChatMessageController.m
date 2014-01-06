@@ -46,6 +46,10 @@
     UILabel *sendShowVoicetime;
     
     NSInteger tableViewcount;
+    
+    ChatMessageCell * gloabcell; //全局cell
+    
+    NSInteger ContentCount;
 
 }
 
@@ -87,8 +91,10 @@
              [packageData imSend:self chat:obj];
         }
     }else{
-        //上传失败
-        obj.sendfail=@"1";
+    //上传失败
+        
+    [self sendMsgFail:gloabcell sign:obj.chattype];
+    obj.sendfail=@"1";
     [activityIndicatorView stopAnimating];
         if(chatMsgObjArr.count>0){
             if(!isPut){
@@ -158,7 +164,7 @@
         [arrData addObject:chatObj];
         [arrTime addObject:chat.chat_times];
     }
-    tableViewcount=arrData.count;
+    ContentCount=arrData.count;
 }
 
 
@@ -218,6 +224,7 @@
             sendShowVoicetime.text=[NSString stringWithFormat:@"%@''",voicetime];
         }else{
             obj.sendfail=@"1";
+            [self sendMsgFail:gloabcell sign:obj.chattype];
         }
     
     //发送成功,入本地数据库
@@ -328,7 +335,7 @@
             obj.senderavatar=user.headurl;
             obj.filepath=@"";
             obj.status=@"0";
-            obj.sendfail=@"0";
+            obj.sendfail=@"1";
             self.chatMessageView.im_text.text=nil;
             [self.chatMessageView.send setEnabled:NO];
             [self.chatMessageView.send setAlpha:0.4];
@@ -384,8 +391,54 @@
 }
 
 - (void)PullHistroyDataWithTableView:(PullHistroyTableView *)tableView{
+    [self insertTableviewData];
+    
+    
+    
     
 }
+
+- (void)insertTableviewData{
+    NSArray *tempArr=[[CoreDataManageContext newInstance] getUserChatMessageWithChatMessageID:chatMessageID FetchOffset:ContentCount+1 FetchLimit:10];
+    ContentCount=ContentCount+tempArr.count;
+    if (tempArr.count<10) {
+        _chatMessageView.tableview.reachedTheEnd=YES;
+    }
+    
+    NSMutableArray *Datas =[NSMutableArray new];
+    NSMutableArray *times =[NSMutableArray new];
+    for(ChatEntity *chat in tempArr){
+        ChatMsgObj *chatObj=[ChatMsgObj new];
+        chatObj.chattype=chat.chat_msgtype;
+        chatObj.sendeccode=user.eccode;
+        chatObj.sendmsisdn=user.msisdn;
+        chatObj.receivereccode=chat.chat_sessionObjct.session_receivereccode;
+        chatObj.receivermsisdn=chat.chat_sessionObjct.session_receivermsisdn;
+        chatObj.receiveravatar=chat.chat_sessionObjct.session_receiveravatar;
+        chatObj.voicetime=chat.chat_voicetime;
+        chatObj.receivername=chat.chat_sessionObjct.session_receivername;
+        chatObj.content=chat.chat_content;
+        chatObj.sendtime=[ToolUtils NSDateToNSString:chat.chat_times format:@"yy/MM/dd HH:mm"];
+        chatObj.groupid=chat.chat_sessionObjct.session_groupuuid;
+        chatObj.senderavatar=user.headurl;
+        chatObj.filepath=chat.chat_voiceurl;
+        chatObj.status=chat.chat_status;
+        chatObj.gsendermsisdn=chat.chat_gsendermsisdn;
+        chatObj.gsenderheadurl=chat.chat_gsenderheadurl;
+        
+        [Datas addObject:chatObj];
+        [times addObject:chat.chat_times];
+    }
+    NSRange rangeData = NSMakeRange(0, [Datas count]);
+    NSIndexSet *indexSetData = [NSIndexSet indexSetWithIndexesInRange:rangeData];
+    [arrData insertObjects:Datas atIndexes:indexSetData];
+    
+    NSRange rangeTime = NSMakeRange(0, [times count]);
+    NSIndexSet *indexSetTime = [NSIndexSet indexSetWithIndexesInRange:rangeTime];
+    [arrTime insertObjects:times atIndexes:indexSetTime];
+    
+}
+
 
 //单击
 -(void)SingleTap:(UITapGestureRecognizer*)recognizer
@@ -483,8 +536,16 @@
                 cell.rightMessage.voiceurl=wavSavePath;
                 cell.rightVoiceTimes.text=nil;
                 sendShowVoicetime=cell.rightVoiceTimes;
+                gloabcell=cell;
                 isSend=NO;
             }
+        }
+        
+        //发送成功与失败标识
+        if([msgObj.sendfail isEqualToString:@"1"]){
+            [self sendMsgFail:cell sign:msgObj.chattype];
+        }else{
+            cell.sendFail.hidden=YES;
         }
         
     }else{
@@ -526,8 +587,33 @@
         }else{
             cell.leftVoiceTimes.hidden=YES;
         }
+        
+        //发送成功与失败标识
+        if([msgObj.sendfail isEqualToString:@"1"]){
+            [self sendMsgFail:cell sign:msgObj.chattype];
+        }else{
+            cell.sendFail.hidden=YES;
+        }
+        
+        
     }
         return cell;
+}
+
+//发送失败标识
+-(void)sendMsgFail:(ChatMessageCell *)cell sign:(NSString *)sign{
+    
+    if([sign isEqualToString:@"1"]){
+        CGRect rect=cell.sendFail.frame;
+        rect.origin.x=cell.rightVoiceTimes.frame.origin.x-10;
+        rect.origin.y=cell.rightVoiceTimes.frame.origin.y;
+        cell.sendFail.frame=rect;
+    }else{
+        CGRect rect=cell.sendFail.frame;
+        rect.origin.x=cell.rightMessage.frame.origin.x-10;
+        rect.origin.y=cell.rightMessage.frame.origin.y;
+        cell.sendFail.frame=rect;
+    }
 }
 
 //播放音频
