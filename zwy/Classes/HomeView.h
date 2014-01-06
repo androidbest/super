@@ -24,6 +24,7 @@
 @property (strong, nonatomic) IBOutlet UIScrollView *ScrollHome;
 @property (strong, nonatomic) IBOutlet UILabel *labelUsersAddress;
 @property (strong, nonatomic) IBOutlet UILabel *labelNewsTitle;
+@property (strong, nonatomic) IBOutlet UILabel *labelChatCount;
 
 @property (strong, nonatomic) IBOutlet UILabel *mailsum;
 

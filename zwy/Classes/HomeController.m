@@ -18,6 +18,7 @@
 #import "PhotoOptional.h"
 #import "EditingChatPeoplesview.h"
 #import "CoreDataManageContext.h"
+#import "AppDelegate.h"
 @implementation HomeController{
     NSString *sign;
 }
@@ -41,6 +42,17 @@
                                                 selector:@selector(notificationFirstNews:)
                                                     name:NOTIFICATIONFIRSTNEWS
                                                   object:self];
+        
+        
+        /* 设置即时消息条数接受监听
+         * (AppDelegate *) @"price" :观察对象
+         * self : 观察者
+         */
+        [(AppDelegate *)[[UIApplication sharedApplication] delegate]
+              addObserver:self
+               forKeyPath:@"ischeck"
+                  options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld
+                  context:NULL];
         
         
         NSString * strSavePath =[NSString stringWithFormat:@"%@/%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode,@"member.txt"];
@@ -142,6 +154,24 @@
 //        }
 //    }
 }
+
+/*
+ *实现KVO回调方法
+ */
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if([keyPath isEqualToString:@"ischeck"])
+    {
+        NSUserDefaults *userDeafults=[NSUserDefaults standardUserDefaults];
+        int count =[userDeafults integerForKey:CHATMESSAGECOUNT(user.msisdn,user.eccode)];
+        [userDeafults setFloat:count+1 forKey:CHATMESSAGECOUNT(user.msisdn,user.eccode)];
+        [userDeafults synchronize];
+        
+        _homeView.labelChatCount.hidden=NO;
+        _homeView.labelChatCount.text=[NSString stringWithFormat:@"%d",count+1];
+    }
+}
+
 //资讯
 -(void)information{
     [self initBackBarButtonItem:self.homeView];
@@ -208,6 +238,11 @@
 //获取总数
 -(void)getCount{
     [packageData getSum:self Type:@"getCount"];
+}
+
+//首页传值
+-(void)HomePrepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+
 }
 
 -(void)dealloc{

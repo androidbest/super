@@ -48,6 +48,7 @@ UIBackgroundTaskIdentifier backgroundTask;//写成成员
                                                 name:NOTIFICATIONMESSAGE
                                               object:self];
     
+
 //    if(application.enabledRemoteNotificationTypes){
 //        NSLog(@"aaadfdsafdsafdasf");
 //    }
@@ -269,6 +270,7 @@ UIBackgroundTaskIdentifier backgroundTask;//写成成员
 - (void)notificationImRevice:(NSNotification *)notification{
     NSDictionary *dic=[notification userInfo];
     NSMutableArray *arrmessages =[AnalysisData imRevice:dic];
+   
     if (!arrmessages||arrmessages.count==0)return;
     
     
@@ -278,17 +280,21 @@ UIBackgroundTaskIdentifier backgroundTask;//写成成员
         ChatMsgObj *obj =arrmessages[i];
         
         NSString *chatMessageID =nil;
-      
+        BOOL ischek;
+        
             if (!obj.groupid||[obj.groupid isEqualToString:@"(null)"]||[obj.groupid isEqualToString:@""]||[obj.groupid isEqualToString:@"null"]) {
                 chatMessageID =[NSString stringWithFormat:@"%@%@%@%@",user.msisdn,user.eccode,obj.receivermsisdn,obj.receivereccode];
-                BOOL ischek =[EX_chatMessageID  isEqualToString:chatMessageID];
+                 ischek =[EX_chatMessageID  isEqualToString:chatMessageID];
                  [coredataManage setChatInfo:obj status:@"1" isChek:ischek  gid:nil arr:nil];
+              
                 
             }else{
                  chatMessageID =[NSString stringWithFormat:@"%@%@%@%@",user.msisdn,user.eccode,obj.receivermsisdn,user.eccode];
-                BOOL ischek =[EX_chatMessageID  isEqualToString:chatMessageID];
+                 ischek =[EX_chatMessageID  isEqualToString:chatMessageID];
                 [coredataManage setChatInfo:obj status:@"1" isChek:ischek];
             }
+        
+        if (!ischek)[self setValue:@"1" forKey:@"ischeck"];
         
     }
     

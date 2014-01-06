@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 sxit. All rights reserved.
 //
 
-#define DOCUMENTS(userPath)  [NSString stringWithFormat:@"%@/%@",DocumentsDirectory,userPath];
+#define DOCUMENTS(userPath)  [NSString stringWithFormat:@"%@/%@",DocumentsDirectory,userPath]
 
 
 #define Save 1
@@ -48,10 +48,10 @@ NSString * stringTel =STRING_TEL(@"133");
                                                 selector:@selector(jumpScheduleView:)
                                                     name:@"homeToWarningView"
                                                   object:nil];
+        
     }
     return self;
 }
-
 
 - (void)viewDidLoad
 {
@@ -131,7 +131,8 @@ NSString * stringTel =STRING_TEL(@"133");
     
     _mailsum.layer.cornerRadius = 10;
     _officesum.layer.cornerRadius=10;
-    
+     _labelChatCount.layer.cornerRadius = 10.0;
+   
 
     //广告
     NSArray *arrImagePath =@[@"show_two.jpg",@"show_one.jpg",@"show_two.jpg",@"show_one.jpg"];
@@ -183,6 +184,16 @@ NSString * stringTel =STRING_TEL(@"133");
         user.ecSgin=nil;
     }
     
+    //未读即时消息刷新
+    NSUserDefaults *userDeafults=[NSUserDefaults standardUserDefaults];
+    int count =[userDeafults integerForKey:CHATMESSAGECOUNT(user.msisdn, user.eccode)];
+    if (count<=0) {
+        _labelChatCount.hidden=YES;
+    }else {
+        _labelChatCount.hidden=NO;
+        _labelChatCount.text=[NSString stringWithFormat:@"%d",count];
+    }
+    
     //本地通知处理方法
     if (isLocalNotification) [self performSelector:@selector(jumpScheduleView:) withObject:nil afterDelay:0.0f];
 }
@@ -197,12 +208,9 @@ NSString * stringTel =STRING_TEL(@"133");
 /*控制首页scrollView是否可以滑动*/
 - (void)viewDidAppear:(BOOL)animated{
      [self performSelector:@selector(setScrollViewContentSize) withObject:nil afterDelay:0.1f];
-  //   [(BaseTabbar *)self.tabBarController TabbarScrollEnabled:YES];
 }
 
 - (void)viewDidDisappear:(BOOL)animated{
-  //  [(BaseTabbar *)self.tabBarController TabbarScrollEnabled:NO];
-
 }
 
 - (void)setScrollViewContentSize{

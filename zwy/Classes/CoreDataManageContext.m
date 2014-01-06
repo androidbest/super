@@ -288,7 +288,8 @@ static CoreDataManageContext *coreData=nil;
     [frq setPredicate:predicate];
     
     int count =[[self.managedObjectContext executeFetchRequest:frq error:nil] count];
-    if (count>limit&&count-offset-limit>0){ offset=count-offset-limit; }
+    int getCount=count-offset-limit;
+    if (count>limit&&getCount>0){ offset=count-offset-limit; }
     else if(count-offset>0){
         limit=count-offset;
         offset=0;}

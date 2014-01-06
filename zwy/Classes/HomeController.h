@@ -12,4 +12,8 @@
 @property (strong ,nonatomic)HomeView * homeView;
 -(void)sendEc;
 -(void)getCount;
+
+//首页传值
+-(void)HomePrepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender;
+
 @end

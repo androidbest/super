@@ -48,6 +48,10 @@
 /*已赞新闻咨询保存plist文件*/
 #define PATH_COMMEND @"commends.plist"
 
+
+/**/
+#define CHATMESSAGECOUNT(misdin,eccode) [NSString stringWithFormat:@"%@%@chatMessageCount",misdin,eccode]
+
 /*聊天信息接受通告名*/
 #define NOTIFICATIONCHAT @"notificationChat"
 

@@ -120,6 +120,14 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    //更新首页即时聊天未读条数信息
+    MesaageIMCell *cell =(MesaageIMCell *)[tableView cellForRowAtIndexPath:indexPath];
+    int CellCount =[cell.labelCount.text integerValue];
+    NSUserDefaults *userDeafults=[NSUserDefaults standardUserDefaults];
+    int count =[userDeafults integerForKey:CHATMESSAGECOUNT(user.msisdn,user.eccode)];
+    [userDeafults setFloat:count-CellCount forKey:CHATMESSAGECOUNT(user.msisdn,user.eccode)];
+    [userDeafults synchronize];
+    
     SessionEntity * sessionInfo=nil;
     if (_messageView.searchBar.text.length!=0&&isSearching){
      sessionInfo=_arrSeaPeople[indexPath.row];
@@ -275,6 +283,9 @@ shouldReloadTableForSearchScope:(NSInteger)searchOption
 
 /*同步全局通讯录缓存指示灯*/
 - (void)showSetAllAllGroupAddressBooksHUDWithText:(NSString *)text{
+    NSString * str =[NSString stringWithFormat:@"%@/%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode,@"group.txt"];
+    BOOL blHave=[[NSFileManager defaultManager] fileExistsAtPath:str];
+    if (!blHave)return;
     if (EX_arrGroupAddressBooks&&EX_arrGroupAddressBooks.count!=0)return;
     _HUD_Group = [MBProgressHUD showHUDAddedTo:self.messageView.view animated:YES];
     _HUD_Group.labelText =text;
@@ -312,7 +323,7 @@ shouldReloadTableForSearchScope:(NSInteger)searchOption
         /*****************************/
         
         dispatch_async(dispatch_get_main_queue(), ^{
-         [_HUD_Group hide:YES afterDelay:1];
+         [_HUD_Group hide:YES afterDelay:0];
         });
         
     });

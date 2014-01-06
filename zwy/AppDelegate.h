@@ -10,12 +10,16 @@
 #import "WXApi.h"
 #import "WeiboSDK.h"
 #import "SendMessageToWeiboViewController.h"
+#import "HomeView.h"
 @interface AppDelegate : UIResponder <UIApplicationDelegate,WXApiDelegate,WeiboSDKDelegate>{
-   
+   float ischeck;
 }
 
 @property (strong, nonatomic) NSString *wbtoken;
 
 @property (strong, nonatomic) SendMessageToWeiboViewController *viewController;
+
+@property (strong, nonatomic)HomeView *homeView;
+
 @property (strong, nonatomic) UIWindow *window;
 @end
