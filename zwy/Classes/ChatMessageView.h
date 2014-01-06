@@ -10,8 +10,9 @@
 #import "PeopelInfo.h"
 #import "ChatVoiceRecorderVC.h"
 #import "SessionEntity.h"
+#import "PullHistroyTableView.h"
 @interface ChatMessageView : BaseView
-@property (strong, nonatomic) UITableView *tableview;
+@property (strong, nonatomic) PullHistroyTableView *tableview;
 @property (strong, nonatomic) UITextView *im_text;
 @property (strong, nonatomic) UIButton *voicepress;
 @property (strong, nonatomic) UIButton *send;

@@ -8,6 +8,7 @@
         <attribute name="chat_gsendermsisdn" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="chat_MessageID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="chat_msgtype" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="chat_sendfail" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="chat_status" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="chat_times" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="chat_voicetime" optional="YES" attributeType="String" syncable="YES"/>

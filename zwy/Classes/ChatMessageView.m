@@ -11,6 +11,7 @@
 #import "DAKeyboardControl.h"
 #import "ToolUtils.h"
 
+
 #define INPUT_HEIGHT 46.0f
 @interface ChatMessageView ()
 
@@ -102,7 +103,7 @@
     [_toolbar addSubview:_im_text];
     [_toolbar addSubview:_voicepress];
     [_toolbar addSubview:_voiceSend];
-    _tableview=[[UITableView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight-47)];
+    _tableview=[[PullHistroyTableView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight-47)];
     _tableview.separatorStyle=UITableViewCellSeparatorStyleNone;
     UIEdgeInsets insets=_tableview.contentInset;
     insets.top=64;

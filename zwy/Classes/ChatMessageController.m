@@ -44,6 +44,8 @@
     BOOL isPut;                  //入库状态
     
     UILabel *sendShowVoicetime;
+    
+    NSInteger tableViewcount;
 
 }
 
@@ -67,7 +69,6 @@
         player=[AVAudioPlayer new];
         activityIndicatorView=[[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(0, 0, 32.0f, 32.0f)];
         [activityIndicatorView setActivityIndicatorViewStyle: UIActivityIndicatorViewStyleGray];
-
     }
     return self;
 }
@@ -86,12 +87,17 @@
              [packageData imSend:self chat:obj];
         }
     }else{
+        //上传失败
+        obj.sendfail=@"1";
     [activityIndicatorView stopAnimating];
-    //上传失败
-        
-        
-        
-        
+        if(chatMsgObjArr.count>0){
+            if(!isPut){
+                [[CoreDataManageContext newInstance] setChatInfo:obj status:@"0" isChek:YES gid:grouid arr:chatMsgObjArr];
+                isPut=YES;
+            }
+        }else{
+            [[CoreDataManageContext newInstance] setChatInfo:obj status:@"0" isChek:YES gid:grouid arr:chatMsgObjArr];
+        }
     }
 }
 
@@ -148,9 +154,11 @@
         chatObj.voicetime=chat.chat_voicetime;
         chatObj.gsendermsisdn=chat.chat_gsendermsisdn;
         chatObj.gsenderheadurl=chat.chat_gsenderheadurl;
+        chatObj.sendfail=chat.chat_sendfail;
         [arrData addObject:chatObj];
         [arrTime addObject:chat.chat_times];
     }
+    tableViewcount=arrData.count;
 }
 
 
@@ -187,6 +195,7 @@
         chatObj.status=chat.chat_status;
         chatObj.gsendermsisdn=chat.chat_gsendermsisdn;
         chatObj.gsenderheadurl=chat.chat_gsenderheadurl;
+        chatObj.sendfail=chat.chat_sendfail;
         [arrData addObject:chatObj];
         [arrTime addObject:chat.chat_times];
     }
@@ -204,25 +213,21 @@
 -(void)handleDataSelf:(NSNotification *)notification{
     NSDictionary *dic=[notification userInfo];
     [activityIndicatorView stopAnimating];
-    if(dic){
         RespInfo *info=[AnalysisData imSend:dic];
         if([info.respCode isEqualToString:@"0"]){
             sendShowVoicetime.text=[NSString stringWithFormat:@"%@''",voicetime];
-           //发送成功,入本地数据库
-            if(chatMsgObjArr.count>0){
-            if(!isPut){
-            [[CoreDataManageContext newInstance] setChatInfo:obj status:@"0" isChek:YES gid:grouid arr:chatMsgObjArr];
-                isPut=YES;
-            }
-            }else{
-            [[CoreDataManageContext newInstance] setChatInfo:obj status:@"0" isChek:YES gid:grouid arr:chatMsgObjArr];
-            }
         }else{
-        //发送失败
-            
+            obj.sendfail=@"1";
+        }
+    
+    //发送成功,入本地数据库
+    if(chatMsgObjArr.count>0){
+        if(!isPut){
+            [[CoreDataManageContext newInstance] setChatInfo:obj status:@"0" isChek:YES gid:grouid arr:chatMsgObjArr];
+            isPut=YES;
         }
     }else{
-        //发送失败
+        [[CoreDataManageContext newInstance] setChatInfo:obj status:@"0" isChek:YES gid:grouid arr:chatMsgObjArr];
     }
 }
 
@@ -271,6 +276,7 @@
                 obj.senderavatar=user.headurl;
                 obj.filepath=@"";
                 obj.status=@"0";
+                obj.sendfail=@"0";
                 [packageData imSend:self chat:obj];
                 
             }else{
@@ -289,6 +295,7 @@
                 obj.senderavatar=user.headurl;
                 obj.filepath=@"";
                 obj.status=@"0";
+                obj.sendfail=@"0";
                 obj.voicetime=voicetime;
             }
             [chatMsgObjArr addObject:obj];
@@ -321,7 +328,7 @@
             obj.senderavatar=user.headurl;
             obj.filepath=@"";
             obj.status=@"0";
-            
+            obj.sendfail=@"0";
             self.chatMessageView.im_text.text=nil;
             [self.chatMessageView.send setEnabled:NO];
             [self.chatMessageView.send setAlpha:0.4];
@@ -341,6 +348,7 @@
             obj.senderavatar=user.headurl;
             obj.filepath=@"";
             obj.status=@"0";
+            obj.sendfail=@"0";
             obj.voicetime=voicetime;
             [packageData imUploadUrl:self type:@"1" data:voicedata selType:@"uploadVoice" uuid:@""];
         }
@@ -372,7 +380,11 @@
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-//    [self.chatMessageView.im_text resignFirstResponder];
+    [self.chatMessageView.tableview pullScrollViewDidScroll:scrollView];
+}
+
+- (void)PullHistroyDataWithTableView:(PullHistroyTableView *)tableView{
+    
 }
 
 //单击

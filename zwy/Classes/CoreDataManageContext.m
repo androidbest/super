@@ -130,6 +130,7 @@ static CoreDataManageContext *coreData=nil;
     chatInfo.chat_voicetime=messageObjct.voicetime;
     chatInfo.chat_gsendermsisdn=messageObjct.receivermsisdn;
     chatInfo.chat_gsenderheadurl=messageObjct.receiveravatar;
+    chatInfo.chat_sendfail=messageObjct.sendfail;
     [Sessions addSession_chatsObject:chatInfo];
     [self saveContext];//保存
 
@@ -215,6 +216,7 @@ static CoreDataManageContext *coreData=nil;
                 chatInfo.chat_MessageID=chatMessageID;
                 chatInfo.chat_status=chatType;
                 chatInfo.chat_voicetime=messageObjct.voicetime;
+                chatInfo.chat_sendfail=messageObjct.sendfail;
             chatInfo.chat_sessionObjct=Sessions;
             [Sessions addSession_chatsObject:chatInfo];
         [self saveContext];//保存
@@ -265,8 +267,9 @@ static CoreDataManageContext *coreData=nil;
         chatInfo.chat_voiceurl=messageObjct.filepath;
         chatInfo.chat_MessageID=chatMessageID;
         chatInfo.chat_status=chatType;
-        chatInfo.chat_sessionObjct=Sessions;
+        chatInfo.chat_sendfail=messageObjct.sendfail;
         chatInfo.chat_voicetime=messageObjct.voicetime;
+        chatInfo.chat_sessionObjct=Sessions;
         [Sessions addSession_chatsObject:chatInfo];
         [self saveContext];//保存
     }

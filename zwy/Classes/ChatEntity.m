@@ -23,4 +23,5 @@
 @dynamic chat_voicetime;
 @dynamic chat_gsendermsisdn;
 @dynamic chat_gsenderheadurl;
+@dynamic chat_sendfail;
 @end

@@ -671,6 +671,7 @@ RespInfo *info=[RespInfo new];
         obj.sendname=[[[arr objectAtIndex:i] objectForKey:@"receivername"] objectForKey:@"text"];
         obj.sendtime=[[[arr objectAtIndex:i] objectForKey:@"sendertime"] objectForKey:@"text"];
         obj.voicetime=[[[arr objectAtIndex:i] objectForKey:@"voicetime"] objectForKey:@"text"];
+        obj.sendfail=@"0";
         [arrInfos addObject:obj];
     }
     return arrInfos;

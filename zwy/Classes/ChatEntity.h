@@ -24,6 +24,7 @@
 @property (nonatomic, retain) NSString * chat_voicetime;           // 0.自己发 1.对方发
 @property (nonatomic, retain) NSString * chat_gsendermsisdn;     //组发送人电话
 @property (nonatomic, retain) NSString * chat_gsenderheadurl;    //组发送人头像地址
+@property (nonatomic, retain) NSString * chat_sendfail;          //发送失败状态 0.发送成功 1.发送失败
 @property (nonatomic, retain) SessionEntity *chat_sessionObjct; // 指向回话表
 
 @end
