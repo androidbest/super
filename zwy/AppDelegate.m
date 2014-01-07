@@ -289,7 +289,7 @@ UIBackgroundTaskIdentifier backgroundTask;//写成成员
               
                 
             }else{
-                 chatMessageID =[NSString stringWithFormat:@"%@%@%@%@",user.msisdn,user.eccode,obj.receivermsisdn,user.eccode];
+                 chatMessageID =[NSString stringWithFormat:@"%@%@%@%@",user.msisdn,user.eccode,obj.groupid,user.eccode];
                  ischek =[EX_chatMessageID  isEqualToString:chatMessageID];
                 [coredataManage setChatInfo:obj status:@"1" isChek:ischek];
             }

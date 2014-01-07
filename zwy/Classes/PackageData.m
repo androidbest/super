@@ -597,7 +597,6 @@ NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"U
 }
 //即时聊天发送信息
 + (void)imSend:(id)delegate chat:(ChatMsgObj *)obj{
-    if ([obj.receivermsisdn isEqualToString:user.msisdn]) return;
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><MSISDN>%@</MSISDN><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>addChatData</METHOD><CHATTYPE>%@</CHATTYPE><SENDERECCODE>%@</SENDERECCODE><SENDERMSISDN>%@</SENDERMSISDN><RECEIVERECCODE>%@</RECEIVERECCODE><RECEIVERMSISDN>%@</RECEIVERMSISDN><SENDERTIME>%@</SENDERTIME><CONTENT>%@</CONTENT><FILEPATH>%@</FILEPATH><GROUPID>%@</GROUPID><SENDERIMGPATH>%@</SENDERIMGPATH><RECEIVERIMGPATH>%@</RECEIVERIMGPATH><SENDERNAME>%@</SENDERNAME><RECEIVERNAME>%@</RECEIVERNAME><VOICETIME>%@</VOICETIME></BODY></MESSAGE>",user.msisdn,user.eccode,obj.chattype,obj.sendeccode,obj.sendmsisdn,obj.receivereccode,obj.receivermsisdn,obj.sendtime,obj.content,obj.filepath,obj.groupid,obj.senderavatar,obj.receiveravatar,user.username,obj.receivername,obj.voicetime];

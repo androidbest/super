@@ -80,14 +80,19 @@ static CoreDataManageContext *coreData=nil;
     [frq setPredicate:predicate];
     
     NSArray *objs =[self.managedObjectContext executeFetchRequest:frq error:nil];
+//    NSArray *temp=[messageObjct.receivermsisdn componentsSeparatedByString:@","];
     
-//    NSString *gsender=messageObjct.receivermsisdn;
-//    NSString *gsendheadurl=messageObjct.receiveravatar;
-//    NSString *gsendname=messageObjct.receivername;
+//    messageObjct.receivermsisdn=@"";
+//    for(NSString *str in temp){
+//        if([str isEqualToString:user.msisdn]){
+//            continue;
+//        }
+//        [messageObjct.receivermsisdn stringByAppendingString:[NSString stringWithFormat:@"%@,",str]];
+//    }
     
-    messageObjct.senderavatar=[messageObjct.senderavatar stringByAppendingString:messageObjct.receiveravatar];
-    messageObjct.sendmsisdn=[messageObjct.sendmsisdn stringByAppendingString:messageObjct.receivermsisdn];
-    messageObjct.sendname=[messageObjct.sendname stringByAppendingString:messageObjct.receivername];
+    messageObjct.senderavatar=[messageObjct.senderavatar substringToIndex:messageObjct.senderavatar.length-1];
+    messageObjct.sendmsisdn=[messageObjct.sendmsisdn substringToIndex:messageObjct.sendmsisdn.length-1];
+    messageObjct.sendname=[messageObjct.sendname substringToIndex:messageObjct.sendname.length-1];
     
     //获取对应的实体
     SessionEntity *Sessions=nil;
