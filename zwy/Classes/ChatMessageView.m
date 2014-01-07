@@ -103,14 +103,13 @@
     [_toolbar addSubview:_im_text];
     [_toolbar addSubview:_voicepress];
     [_toolbar addSubview:_voiceSend];
-    _tableview=[[PullHistroyTableView alloc]initWithFrame:CGRectMake(0, 64, ScreenWidth, ScreenHeight-47-64)];
+    _tableview=[[PullHistroyTableView alloc]initWithFrame:CGRectMake(0, 64, ScreenWidth, ScreenHeight-47-64) WithDelegate:self.controller];
     _tableview.separatorStyle=UITableViewCellSeparatorStyleNone;
 //    UIEdgeInsets insets=_tableview.contentInset;
 //    insets.top=64;
 //    _tableview.contentInset=insets;
     _tableview.delegate=self.controller;
     _tableview.dataSource=self.controller;
-    _tableview.PullDelegate=self.controller;
     
     
     

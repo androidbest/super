@@ -392,8 +392,14 @@
 
 - (void)PullHistroyDataWithTableView:(PullHistroyTableView *)tableView{
     [self insertTableviewData];
-    [arrBool removeAllObjects];
-    [self.chatMessageView.tableview reloadData:YES];
+    
+    [self performSelector:@selector(updateTableView) withObject:self afterDelay:1];
+    
+}
+
+- (void)updateTableView{
+  [arrBool removeAllObjects];
+  [self.chatMessageView.tableview reloadData:YES];
 }
 
 - (void)insertTableviewData{
@@ -430,6 +436,8 @@
     NSRange rangeData = NSMakeRange(0, [Datas count]);
     NSIndexSet *indexSetData = [NSIndexSet indexSetWithIndexesInRange:rangeData];
     [arrData insertObjects:Datas atIndexes:indexSetData];
+    
+    ContentCount+=Datas.count;
     
     NSRange rangeTime = NSMakeRange(0, [times count]);
     NSIndexSet *indexSetTime = [NSIndexSet indexSetWithIndexesInRange:rangeTime];
