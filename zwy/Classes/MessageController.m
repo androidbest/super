@@ -125,7 +125,7 @@
     int CellCount =[cell.labelCount.text integerValue];
     NSUserDefaults *userDeafults=[NSUserDefaults standardUserDefaults];
     int count =[userDeafults integerForKey:CHATMESSAGECOUNT(user.msisdn,user.eccode)];
-    [userDeafults setFloat:count-CellCount forKey:CHATMESSAGECOUNT(user.msisdn,user.eccode)];
+    [userDeafults setInteger:count-CellCount forKey:CHATMESSAGECOUNT(user.msisdn,user.eccode)];
     [userDeafults synchronize];
     
     SessionEntity * sessionInfo=nil;

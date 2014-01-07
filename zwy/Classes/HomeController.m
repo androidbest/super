@@ -164,7 +164,7 @@
     {
         NSUserDefaults *userDeafults=[NSUserDefaults standardUserDefaults];
         int count =[userDeafults integerForKey:CHATMESSAGECOUNT(user.msisdn,user.eccode)];
-        [userDeafults setFloat:count+1 forKey:CHATMESSAGECOUNT(user.msisdn,user.eccode)];
+        [userDeafults setInteger:count+1 forKey:CHATMESSAGECOUNT(user.msisdn,user.eccode)];
         [userDeafults synchronize];
         
         _homeView.labelChatCount.hidden=NO;

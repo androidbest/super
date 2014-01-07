@@ -46,17 +46,13 @@
                                                 selector:@selector(showKeyboard:)
                                                     name:@"showAddressCallKeyboard"
                                                   object:nil];
-        self.arrAllPeople =[[NSMutableArray alloc] init];
         self.arrSeaPeople =[[NSArray alloc] init];
     }
     return self;
 }
 
 - (void)initWithData{
-    if (_arrAllPeople.count==0) {
-        NSString * str =[NSString stringWithFormat:@"%@/%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode,@"member.txt"];
-        _arrAllPeople  =[CallTelController setAllPeopleInfo:str];
-    }
+ 
 }
 
 #pragma mark - 弹出拨号键盘
@@ -97,7 +93,7 @@
     NSString * strSearchbar;
     strSearchbar =[NSString stringWithFormat:@"SELF.tel CONTAINS '%@'",_strTel];
     NSPredicate *predicateTemplate = [NSPredicate predicateWithFormat: strSearchbar];
-    _arrSeaPeople=[self.arrAllPeople filteredArrayUsingPredicate: predicateTemplate];
+    _arrSeaPeople=[EX_arrGroupAddressBooks filteredArrayUsingPredicate: predicateTemplate];
      [_callView.tableViewPeople reloadData];
 }
 
@@ -119,7 +115,7 @@
     NSString * strSearchbar;
     strSearchbar =[NSString stringWithFormat:@"SELF.tel CONTAINS '%@'",_strTel];
     NSPredicate *predicateTemplate = [NSPredicate predicateWithFormat: strSearchbar];
-    _arrSeaPeople=[self.arrAllPeople filteredArrayUsingPredicate: predicateTemplate];
+    _arrSeaPeople=[EX_arrGroupAddressBooks filteredArrayUsingPredicate: predicateTemplate];
     [_callView.tableViewPeople reloadData];
     
 }
@@ -141,7 +137,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
     if (_arrSeaPeople.count==0&&![_callView.labelCall.text isEqualToString:@"点击拨打电话"]&&_callView.labelCall.text.length==0) {
-        return _arrAllPeople.count;
+        return EX_arrGroupAddressBooks.count;
     }else{
         return _arrSeaPeople.count;
     }
@@ -158,7 +154,7 @@
     }
     NSObject * obj;
     if (_arrSeaPeople.count==0&&![_callView.labelCall.text isEqualToString:@"点击拨打电话"]&& _callView.labelCall.text.length==0) {
-        obj =[_arrAllPeople objectAtIndex:indexPath.row];
+        obj =[EX_arrGroupAddressBooks objectAtIndex:indexPath.row];
     }else{
         obj =[_arrSeaPeople objectAtIndex:indexPath.row];
     }
@@ -171,7 +167,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSObject * obj;
     if (_arrSeaPeople.count==0&&![_callView.labelCall.text isEqualToString:@"点击拨打电话"]&& _callView.labelCall.text.length==0) {
-        obj =[_arrAllPeople objectAtIndex:indexPath.row];
+        obj =[EX_arrGroupAddressBooks objectAtIndex:indexPath.row];
     }else{
         obj =[_arrSeaPeople objectAtIndex:indexPath.row];
     }
