@@ -10,6 +10,7 @@
 @class PullHistroyTableView;
 @protocol PullHistroyTableViewDelegate <NSObject>
 
+@optional
 - (void)PullHistroyDataWithTableView:(PullHistroyTableView *)tableView;
 
 @end

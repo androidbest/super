@@ -392,10 +392,8 @@
 
 - (void)PullHistroyDataWithTableView:(PullHistroyTableView *)tableView{
     [self insertTableviewData];
-    
-    
-    
-    
+    [arrBool removeAllObjects];
+    [self.chatMessageView.tableview reloadData:YES];
 }
 
 - (void)insertTableviewData{
@@ -425,7 +423,7 @@
         chatObj.status=chat.chat_status;
         chatObj.gsendermsisdn=chat.chat_gsendermsisdn;
         chatObj.gsenderheadurl=chat.chat_gsenderheadurl;
-        
+        chatObj.sendfail=chat.chat_sendfail;
         [Datas addObject:chatObj];
         [times addObject:chat.chat_times];
     }
