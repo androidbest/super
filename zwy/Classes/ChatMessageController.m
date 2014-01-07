@@ -224,9 +224,9 @@
             sendShowVoicetime.text=[NSString stringWithFormat:@"%@''",voicetime];
         }else{
             obj.sendfail=@"1";
+            gloabcell.sendFail.hidden=NO;
             [self sendMsgFail:gloabcell sign:obj.chattype];
         }
-    
     //发送成功,入本地数据库
     if(chatMsgObjArr.count>0){
         if(!isPut){
@@ -335,7 +335,7 @@
             obj.senderavatar=user.headurl;
             obj.filepath=@"";
             obj.status=@"0";
-            obj.sendfail=@"1";
+            obj.sendfail=@"0";
             self.chatMessageView.im_text.text=nil;
             [self.chatMessageView.send setEnabled:NO];
             [self.chatMessageView.send setAlpha:0.4];
@@ -549,6 +549,7 @@
         
         //发送成功与失败标识
         if([msgObj.sendfail isEqualToString:@"1"]){
+            cell.sendFail.hidden=NO;
             [self sendMsgFail:cell sign:msgObj.chattype];
         }else{
             cell.sendFail.hidden=YES;
@@ -593,15 +594,6 @@
         }else{
             cell.leftVoiceTimes.hidden=YES;
         }
-        
-        //发送成功与失败标识
-        if([msgObj.sendfail isEqualToString:@"1"]){
-            [self sendMsgFail:cell sign:msgObj.chattype];
-        }else{
-            cell.sendFail.hidden=YES;
-        }
-        
-        
     }
         return cell;
 }
@@ -611,13 +603,13 @@
     
     if([sign isEqualToString:@"1"]){
         CGRect rect=cell.sendFail.frame;
-        rect.origin.x=cell.rightVoiceTimes.frame.origin.x-10;
-        rect.origin.y=cell.rightVoiceTimes.frame.origin.y;
+        rect.origin.x=cell.rightVoiceTimes.frame.origin.x-30;
+        rect.origin.y=cell.rightVoiceTimes.frame.origin.y-7;
         cell.sendFail.frame=rect;
     }else{
         CGRect rect=cell.sendFail.frame;
-        rect.origin.x=cell.rightMessage.frame.origin.x-10;
-        rect.origin.y=cell.rightMessage.frame.origin.y;
+        rect.origin.x=cell.rightMessage.frame.origin.x-30;
+        rect.origin.y=cell.rightMessage.frame.origin.y+8;
         cell.sendFail.frame=rect;
     }
 }
