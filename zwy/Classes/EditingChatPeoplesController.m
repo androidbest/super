@@ -57,9 +57,9 @@
     float imageHeadSize=55;
     float imageInterval=20;
     
-    Names=Nil;
-    HeadPaths=Nil;
-    msisdns=Nil;
+    Names=nil;
+    HeadPaths=nil;
+    msisdns=nil;
     
     
     for (int i=0; i<_editingView.chatView.arrPeoples.count/widthIndex; i++) {
@@ -167,7 +167,6 @@
 }
 
 #pragma mark - 按钮
-
 //添加
 - (void)btnAddpeople:(PhotoButton *)sender{
     [self.editingView performSegueWithIdentifier:@"EditingChatViewToOptionView" sender:nil];
@@ -184,7 +183,14 @@
 }
 
 #pragma mark -OptionChatPeopleDelegate
-- (void)MessageViewToChatMessageView:(NSArray *)peoples{
+- (void)MessageViewToChatMessageView:(NSMutableArray *)peoples{
+   
+    for ( PeopelInfo *info in peoples) {
+        if (info.tel==user.msisdn) {
+            [peoples removeObject:info];
+        }
+    }
+    
     NSIndexSet * indexSet=[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(_editingView.chatView.arrPeoples.count-2,peoples.count)];
     [_editingView.chatView.arrPeoples insertObjects:peoples atIndexes:indexSet];
     [self updatePeoples];
@@ -209,8 +215,13 @@
 //点击对应头像
 - (void)btnPeopleHead:(PhotoButton *)sender{
     if (isDelete) {
-        if (_editingView.chatView.arrPeoples.count<5) {
+        if (_editingView.chatView.arrPeoples.count<=5) {
             [self showHUDText:@"群聊人数必须大于3人" showTime:1];
+            return;
+        }
+        PeopelInfo *info =_editingView.chatView.arrPeoples[sender.tag];
+        if ([info.tel isEqualToString:user.msisdn]) {
+            [self showHUDText:@"不能删除自己" showTime:1];
             return;
         }
         

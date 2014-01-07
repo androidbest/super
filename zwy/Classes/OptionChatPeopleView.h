@@ -15,5 +15,5 @@
 @property (strong ,nonatomic)NSArray *arrReqeatePeoples;
 @property (assign ,nonatomic)BOOL ismodeAnimation;
 @property (assign ,nonatomic)id OptionChatPeopleDelegate;
-- (void)MessageViewToChatMessageView:(NSArray *)peoples;
+- (void)MessageViewToChatMessageView:(NSMutableArray *)peoples;
 @end

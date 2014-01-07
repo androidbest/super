@@ -66,7 +66,7 @@
 }
 
 #pragma mark -OptionChatPeopleDelegate
-- (void)MessageViewToChatMessageView:(NSArray *)peoples{
+- (void)MessageViewToChatMessageView:(NSMutableArray *)peoples{
  self.messageView.tabBarController.navigationItem.title=@"";
  [self.messageView performSegueWithIdentifier:@"msgtochat" sender:peoples];
 }
@@ -125,7 +125,9 @@
     int CellCount =[cell.labelCount.text integerValue];
     NSUserDefaults *userDeafults=[NSUserDefaults standardUserDefaults];
     int count =[userDeafults integerForKey:CHATMESSAGECOUNT(user.msisdn,user.eccode)];
-    [userDeafults setInteger:count-CellCount forKey:CHATMESSAGECOUNT(user.msisdn,user.eccode)];
+    int deafyltsIndex=count-CellCount;
+    if (deafyltsIndex<0)deafyltsIndex=0;
+    [userDeafults setInteger:deafyltsIndex forKey:CHATMESSAGECOUNT(user.msisdn,user.eccode)];
     [userDeafults synchronize];
     
     SessionEntity * sessionInfo=nil;
@@ -327,11 +329,6 @@ shouldReloadTableForSearchScope:(NSInteger)searchOption
         });
         
     });
-
-    
-   
-    
-  
 }
 
 @end

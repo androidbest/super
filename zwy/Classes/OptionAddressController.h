@@ -10,6 +10,7 @@
 #import "optionAddress.h"
 @interface OptionAddressController : BaseController
 
+@property (strong ,nonatomic)MBProgressHUD *HUD_Group;
 @property (strong ,nonatomic)optionAddress *OptionView;
 @property (strong ,nonatomic)NSMutableArray *arrOption;
 @property (strong ,nonatomic)NSMutableArray * arrAllPeople;

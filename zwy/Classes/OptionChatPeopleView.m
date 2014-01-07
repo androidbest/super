@@ -72,5 +72,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-- (void)MessageViewToChatMessageView:(NSArray *)peoples{}
+- (void)MessageViewToChatMessageView:(NSMutableArray *)peoples{}
 @end

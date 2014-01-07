@@ -18,7 +18,7 @@
         layer.bounds=CGRectMake(0, 0, 15, 15);
         layer.masksToBounds = YES;
         layer.cornerRadius = 6.0;
-        layer.contents=CFBridgingRelease([UIImage imageNamed:@"chat_delete"].CGImage);
+        layer.contents=(__bridge id)([UIImage imageNamed:@"chat_delete"].CGImage);
         _layerBubble=layer;
         [self.layer addSublayer:_layerBubble];
         

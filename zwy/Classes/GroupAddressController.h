@@ -11,6 +11,7 @@
 #import "GroupAddressView.h"
 
 @interface GroupAddressController : BaseController
+@property (strong ,nonatomic)MBProgressHUD *HUD_Group;
 @property (strong ,nonatomic)GroupAddressView *grougView;
 @property (strong ,nonatomic)NSMutableArray *arrAllPeople;
 @property (strong ,nonatomic)NSArray *arrSeaPeople;

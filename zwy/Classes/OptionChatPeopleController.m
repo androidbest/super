@@ -39,7 +39,7 @@
     }else if (_optionView.arrReqeatePeoples) {
         for (int i=0;i<_optionView.arrReqeatePeoples.count-2; i++) {
             PeopelInfo *info =_optionView.arrReqeatePeoples[i];
-            NSString * strPre=[NSString stringWithFormat:@"SELF.userID == '%@'",info.userID];
+            NSString * strPre=[NSString stringWithFormat:@"SELF.tel == '%@'",info.tel];
             NSPredicate * predicate;
             predicate = [NSPredicate predicateWithFormat:strPre];
             NSArray *arr=[self.arrAllLink filteredArrayUsingPredicate: predicate];

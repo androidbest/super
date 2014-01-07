@@ -11,32 +11,6 @@
 
 @implementation CallTelController
 
-//获取通讯录所有信息
-+ (NSMutableArray *)setAllPeopleInfo:(NSString *)str{
-    NSMutableArray* AllPeople =[[NSMutableArray alloc] init];
-    NSString *strGroup =[NSString stringWithContentsOfFile:str encoding:NSUTF8StringEncoding error:NULL];
-    NSArray *arrGroup=[strGroup componentsSeparatedByString:@"\n"];
-    if (arrGroup.count==0&&!arrGroup) return AllPeople;
-    NSString * strData =[NSString stringWithContentsOfFile:str encoding:NSUTF8StringEncoding error:NULL];
-    NSArray * arr = [strData componentsSeparatedByString:@"\n"];
-    if (arr.count==0&&!arr) return AllPeople;
-    for (int i =0; i<arr.count-1; i++) {
-        NSArray * arrData =[[arr objectAtIndex:i] componentsSeparatedByString:@","];
-        if (arrData.count>=7) {
-            PeopelInfo *info=[PeopelInfo new];
-            info.userID =[arrData objectAtIndex:0];
-            info.Name=[arrData objectAtIndex:1];
-            info.job=[arrData objectAtIndex:2];
-            info.area =[arrData objectAtIndex:3];
-            info.tel=[arrData objectAtIndex:4];
-            info.groupID =[arrData objectAtIndex:5];
-            info.letter =[arrData objectAtIndex:6];
-            [AllPeople addObject:info];
-        }
-    }
-    return AllPeople;
-}
-
 #pragma mark - 初始化
 - (id)init{
     self=[super init];

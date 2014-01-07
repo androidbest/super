@@ -87,19 +87,34 @@
         isReloadData=NO;
     }
     
-    
-    /*获取所有人员信息*/
-    _arrAllPeople = [ConfigFile setAllPeopleInfo:str];
-     BOOL blHave=[[NSFileManager defaultManager] fileExistsAtPath:str];
+ 
+    BOOL blHave=[[NSFileManager defaultManager] fileExistsAtPath:str];
     if(_arrAllPeople.count==0&&!blHave){
         [ToolUtils alertInfo:@"请同步单位通讯录" delegate:self otherBtn:@"确认"];
+        return;
     }
     
-    NSString * strSearchbar;
-    strSearchbar =[NSString stringWithFormat:@"SELF.superID == '%@'",@"0"];
-    NSPredicate *predicateTemplate = [NSPredicate predicateWithFormat: strSearchbar];
-    self.arrFirstGroup=[_arrAllPeople filteredArrayUsingPredicate: predicateTemplate];
-    
+    /*获取所有人员信息*/
+    _HUD_Group = [MBProgressHUD showHUDAddedTo:self.grougView.navigationController.view animated:YES];
+    _HUD_Group.labelText =@"加载中...";
+    _HUD_Group.margin = 10.f;
+    _HUD_Group.removeFromSuperViewOnHide = YES;
+    [_HUD_Group show:YES];
+    __block NSArray *blockArr;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+             blockArr= [ConfigFile setAllPeopleInfo:str];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            _arrAllPeople =[[NSMutableArray alloc] initWithArray:blockArr];
+            NSString * strSearchbar;
+            strSearchbar =[NSString stringWithFormat:@"SELF.superID == '%@'",@"0"];
+            NSPredicate *predicateTemplate = [NSPredicate predicateWithFormat: strSearchbar];
+            self.arrFirstGroup=[_arrAllPeople filteredArrayUsingPredicate: predicateTemplate];
+            [_grougView.tableViewGroup reloadData];
+            [_HUD_Group hide:YES];
+        });
+        
+    });
 }
 
 
@@ -202,16 +217,6 @@
         //开启接受定时器,设置全局通讯录
         [self StartChatMessageController];
       
-    
-        //存储最后更新时间
-//        NSUserDefaults * userDefaults =[NSUserDefaults standardUserDefaults];
-//        NSTimeInterval time_=[[NSDate date] timeIntervalSince1970];
-//        NSString *strTime =[NSString  stringWithFormat:@"%f",time_];
-//        strTime =[[strTime componentsSeparatedByString:@"."] firstObject];
-//        NSString * UserDate =[NSString stringWithFormat:@"%@%@date",user.msisdn,user.eccode];
-//        [userDefaults setObject:strTime forKey:UserDate];
-//        [userDefaults synchronize];
-        /********/
     }
     else {
         image= [UIImage imageNamed:@"37x-Checkmark.png"];

@@ -47,20 +47,28 @@ NSMutableArray * arrAllNumber;
     
     if (_massView.strFromGeetingName) {
             NSString * str =[NSString stringWithFormat:@"%@/%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode,@"group.txt"];
-        NSArray * arrAllPeople = [ConfigFile setAllPeopleInfo:str];
-        if (arrAllPeople) {
-           NSString * strSearchbar =[NSString stringWithFormat:@"SELF.Name CONTAINS '%@'",_massView.strFromGeetingName];
-            NSPredicate *predicate = [NSPredicate predicateWithFormat: strSearchbar];
-            NSArray * arr=[NSMutableArray arrayWithArray:[arrAllPeople filteredArrayUsingPredicate:predicate]];
-            if (arr.count>0) {
-                PeopelInfo *info =[arr firstObject];
-                [arrAllNumber addObject:[info tel]];
-                [_arrDidAllPeople addObject:info];
-                [self.massView.tableViewPeople reloadData];
-            }
+        
+        /*获取所有人员信息*/
+        __block NSArray *arrAllPeople;
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            arrAllPeople= [ConfigFile setAllPeopleInfo:str];
             
-        }
-       
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (arrAllPeople) {
+                    NSString * strSearchbar =[NSString stringWithFormat:@"SELF.Name CONTAINS '%@'",_massView.strFromGeetingName];
+                    NSPredicate *predicate = [NSPredicate predicateWithFormat: strSearchbar];
+                    NSArray * arr=[NSMutableArray arrayWithArray:[arrAllPeople filteredArrayUsingPredicate:predicate]];
+                    if (arr.count>0) {
+                        PeopelInfo *info =[arr firstObject];
+                        [arrAllNumber addObject:[info tel]];
+                        [_arrDidAllPeople addObject:info];
+                        [self.massView.tableViewPeople reloadData];
+                    }
+                }
+
+            });
+        });
+        
     }
 }
 

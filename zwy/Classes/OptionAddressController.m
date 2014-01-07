@@ -45,25 +45,35 @@
     _arrFirstGroup =[[NSArray alloc] init];
     self.arrOption=[[NSMutableArray alloc] init];
     
-    
+    /*通讯录所有信息*/
     NSString * strPath=[NSString stringWithFormat:@"%@/%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode,@"group.txt"];
-    _arrAllPeople =[ConfigFile setAllPeopleInfo:strPath];/*通讯录所有信息*/
     BOOL blHave=[[NSFileManager defaultManager] fileExistsAtPath:strPath];
     if ((_arrAllPeople.count==0||!_arrAllPeople)&&!blHave) {
-        self.HUD = [[MBProgressHUD alloc] initWithView:self.OptionView.navigationController.view];
-        [self.OptionView.navigationController.view addSubview:self.HUD];
-        self.HUD.labelText = @"请同步单位通讯录";
-        self.HUD.mode = MBProgressHUDModeCustomView;
-        // Set determinate bar mode
-        self.HUD.delegate = self;
-        [self.HUD show:YES];
-        [self.HUD  hide:YES afterDelay:2];
+        [self showHUDText:@"请同步通讯录" showTime:1.0];
+        return;
     }
     
-    NSString * strSearchbar;
-    strSearchbar =[NSString stringWithFormat:@"SELF.superID == '%@'",@"0"];
-    NSPredicate *predicateTemplate = [NSPredicate predicateWithFormat: strSearchbar];
-    self.arrFirstGroup=[self.arrAllPeople filteredArrayUsingPredicate: predicateTemplate];/*通讯录第一页信息*/
+    _HUD_Group = [MBProgressHUD showHUDAddedTo:self.OptionView.view animated:YES];
+    _HUD_Group.labelText =@"加载中...";
+    _HUD_Group.margin = 10.f;
+    _HUD_Group.removeFromSuperViewOnHide = YES;
+    [_HUD_Group show:YES];
+    /*获取所有人员信息*/
+    __block NSArray *blockArr;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        blockArr= [ConfigFile setAllPeopleInfo:strPath];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            _arrAllPeople =[[NSMutableArray alloc] initWithArray:blockArr];
+            NSString * strSearchbar;
+            strSearchbar =[NSString stringWithFormat:@"SELF.superID == '%@'",@"0"];
+            NSPredicate *predicateTemplate = [NSPredicate predicateWithFormat: strSearchbar];
+            self.arrFirstGroup=[_arrAllPeople filteredArrayUsingPredicate: predicateTemplate];
+            [_OptionView.tableViewAddress reloadData];
+            [_HUD_Group hide:YES];
+        });
+        
+    });
 }
 
 #pragma mark - 按钮实现方法
@@ -342,4 +352,12 @@
     [_OptionView.searchBar resignFirstResponder];
 }
 
+- (void)showHUDText:(NSString *)text showTime:(NSTimeInterval)time{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.OptionView.view animated:YES];
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText =text;
+    hud.margin = 10.f;
+    hud.removeFromSuperViewOnHide = YES;
+    [hud hide:YES afterDelay:time];
+}
 @end
