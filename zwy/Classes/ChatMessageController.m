@@ -466,9 +466,9 @@
      ChatMsgObj *msgObj=arrData[indexPath.row];
     UIView *v=[UIView new];
     if([msgObj.status isEqualToString:@"0"]){
-    [ToolUtils bubbleView:msgObj.content from:YES withPosition:0 view:v selfType:msgObj.chattype voicetime:(NSString *)voicetime];
+    [ToolUtils bubbleView:msgObj.content from:YES withPosition:0 view:v selfType:msgObj.chattype voicetime:msgObj.voicetime];
     }else{
-    [ToolUtils bubbleView:msgObj.content from:NO withPosition:0 view:v selfType:msgObj.chattype voicetime:(NSString *)voicetime];
+    [ToolUtils bubbleView:msgObj.content from:NO withPosition:0 view:v selfType:msgObj.chattype voicetime:msgObj.voicetime];
     }
     if([self compareTime:indexPath]){
         leng=v.frame.size.height+30;
@@ -568,7 +568,7 @@
         }
         [HTTPRequest imageWithURL:url imageView:cell.leftHead placeUIButtonImage:[UIImage imageNamed:@"default_avatar"]];
         [cell.leftHead addTarget:self action:@selector(leftPushDetail:) forControlEvents:UIControlEventTouchUpInside];
-        [ToolUtils bubbleView:msgObj.content from:NO withPosition:60 view:cell.leftMessage selfType:msgObj.chattype voicetime:(NSString *)voicetime];
+        [ToolUtils bubbleView:msgObj.content from:NO withPosition:60 view:cell.leftMessage selfType:msgObj.chattype voicetime:msgObj.voicetime];
         if([strBool isEqualToString:@"1"]){
             cell.chatTime.hidden=YES;
             CGRect rectLeftHead=cell.leftHead.frame;

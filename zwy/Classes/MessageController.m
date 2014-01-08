@@ -151,6 +151,7 @@
     info.headPath=sessionInfo.session_receiveravatar;
     info.imGroupid=sessionInfo.session_groupuuid;
     info.Name=sessionInfo.session_receivername;
+    
     self.messageView.info=info;
     self.messageView.tabBarController.navigationItem.title=@"";
     [self.messageView performSegueWithIdentifier:@"msgtochat" sender:sessionInfo];
