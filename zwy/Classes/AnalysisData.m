@@ -55,7 +55,8 @@ RespInfo *info=[RespInfo new];
     for (int i=0; i<arrEC.count; i++) {
         NSString* ecid  =[[[arrEC objectAtIndex:i] objectForKey:@"eccode"] objectForKey:@"text"];
         NSString * ecname=[[[arrEC objectAtIndex:i] objectForKey:@"ecname"] objectForKey:@"text"];
-        
+        NSString *ecSystem=[[[arrEC objectAtIndex:i] objectForKey:@"ecsystem"] objectForKey:@"text"];
+        NSString *ecProvince =[[[arrEC objectAtIndex:i] objectForKey:@"province"] objectForKey:@"text"];
         if(!ecid){
             continue;
         }
@@ -64,6 +65,8 @@ RespInfo *info=[RespInfo new];
         EcinfoDetas *detas=[EcinfoDetas new];
         detas.ECID=ecid;
         detas.ECName=ecname;
+        detas.ECSystem=ecSystem;
+        detas.ECProvince=ecProvince;
         detas.lastEcid=lastecid;
         [resplist.resplist addObject:detas];
     }

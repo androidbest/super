@@ -276,34 +276,32 @@ UIBackgroundTaskIdentifier backgroundTask;//写成成员
     
     /*插入数据*/
     CoreDataManageContext *coredataManage =[CoreDataManageContext newInstance];
+    BOOL ischek;
     for (int i=0; i<arrmessages.count; i++) {
         ChatMsgObj *obj =arrmessages[i];
         
         NSString *chatMessageID =nil;
-        BOOL ischek;
         
             if (!obj.groupid||[obj.groupid isEqualToString:@"(null)"]||[obj.groupid isEqualToString:@""]||[obj.groupid isEqualToString:@"null"]) {
                 chatMessageID =[NSString stringWithFormat:@"%@%@%@%@",user.msisdn,user.eccode,obj.receivermsisdn,user.eccode];
                  ischek =[EX_chatMessageID  isEqualToString:chatMessageID];
                  [coredataManage setChatInfo:obj status:@"1" isChek:ischek  gid:nil arr:nil];
-                  if (!ischek)[self setValue:@"1" forKey:@"ischeck"];
                 
             }else{
                  chatMessageID =[NSString stringWithFormat:@"%@%@%@%@",user.msisdn,user.eccode,obj.groupid,user.eccode];
                  ischek =[EX_chatMessageID  isEqualToString:chatMessageID];
                 [coredataManage setChatInfo:obj status:@"1" isChek:ischek];
-                 if (!ischek)[self setValue:@"1" forKey:@"ischeck"];
             }
-        
-       
-        
     }
-    
+
+    NSDictionary *dicNOtification;
+    if (!ischek) dicNOtification =@{@"0":@"isCheck",};
+    else dicNOtification =@{@"1":@"isCheck",};
     /*刷新数据
      *发送通告
-     *观察者为"MessageController"--"ChatMessageController"
+     *观察者为"MessageController"--"ChatMessageController"--"HomeController"
      */
-    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATIONCHAT object:arrmessages userInfo:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATIONCHAT object:arrmessages userInfo:dicNOtification];
     
 }
 

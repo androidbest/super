@@ -172,6 +172,8 @@
     }
     user.eccode=ec.ECID;
     user.ecname=ec.ECName;
+    user.ecsystem=ec.ECSystem;
+    user.province=ec.ECProvince;
     sgin=@"1";
     self.HUD.labelText = @"正在获取个人信息..";
     [self.HUD show:YES];

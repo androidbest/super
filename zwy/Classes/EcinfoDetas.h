@@ -12,4 +12,6 @@
 @property (strong ,nonatomic)NSString *ECID;
 @property (strong ,nonatomic)NSString *ECName;
 @property (strong ,nonatomic)NSString *lastEcid;
+@property (strong ,nonatomic)NSString *ECSystem;
+@property (strong ,nonatomic)NSString *ECProvince;
 @end

@@ -27,6 +27,7 @@
     self=[super init];
     if(self){
         EX_chatMessageID=@"";
+        
         [[NSNotificationCenter defaultCenter]addObserver:self
                                                 selector:@selector(handleData:)
                                                     name:xmlNotifInfo
@@ -42,17 +43,6 @@
                                                 selector:@selector(notificationFirstNews:)
                                                     name:NOTIFICATIONFIRSTNEWS
                                                   object:self];
-        
-        
-        /* 设置即时消息条数接受监听
-         * (AppDelegate *) @"price" :观察对象
-         * self : 观察者
-         */
-        [(AppDelegate *)[[UIApplication sharedApplication] delegate]
-              addObserver:self
-               forKeyPath:@"ischeck"
-                  options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld
-                  context:NULL];
         
         
         NSString * strSavePath =[NSString stringWithFormat:@"%@/%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode,@"member.txt"];
@@ -155,22 +145,6 @@
 //    }
 }
 
-/*
- *实现KVO回调方法
- */
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    if([keyPath isEqualToString:@"ischeck"])
-    {
-        NSUserDefaults *userDeafults=[NSUserDefaults standardUserDefaults];
-        int count =[userDeafults integerForKey:CHATMESSAGECOUNT(user.msisdn,user.eccode)];
-        [userDeafults setInteger:count+1 forKey:CHATMESSAGECOUNT(user.msisdn,user.eccode)];
-        [userDeafults synchronize];
-        
-        _homeView.labelChatCount.hidden=NO;
-        _homeView.labelChatCount.text=[NSString stringWithFormat:@"%d",count+1];
-    }
-}
 
 //资讯
 -(void)information{

@@ -49,6 +49,11 @@ NSString * stringTel =STRING_TEL(@"133");
                                                     name:@"homeToWarningView"
                                                   object:nil];
         
+        
+        [[NSNotificationCenter defaultCenter]addObserver:self
+                                                selector:@selector(getMessage:)
+                                                    name:NOTIFICATIONCHAT
+                                                  object:nil];
     }
     return self;
 }
@@ -122,7 +127,7 @@ NSString * stringTel =STRING_TEL(@"133");
     
     //单位名称
     _ecname =[[UILabel alloc] initWithFrame:CGRectMake(265,7,40,20)];
-    _ecname.text=@"重庆";
+    _ecname.text=user.province;
     _ecname.font=[UIFont systemFontOfSize:18];
     _ecname.textAlignment=NSTextAlignmentLeft;
     _ecname.textColor=[UIColor grayColor];
@@ -255,6 +260,26 @@ NSString * stringTel =STRING_TEL(@"133");
         detaView.hidesBottomBarWhenPushed=YES;
         [self.navigationController pushViewController:detaView animated:YES];
     }
+}
+
+/*
+ *实现回调方法
+ *刷新未读条数
+ */
+-(void)getMessage:(NSNotification *)notification
+{    
+    NSString *isCheck =[[notification userInfo] objectForKey:@"isCheck"];
+    if ([isCheck isEqualToString:@"1"])return;
+    
+    NSArray * arr=[notification object];
+    int index =arr.count;
+    NSUserDefaults *userDeafults=[NSUserDefaults standardUserDefaults];
+    int count =[userDeafults integerForKey:CHATMESSAGECOUNT(user.msisdn,user.eccode)];
+    [userDeafults setInteger:count+index forKey:CHATMESSAGECOUNT(user.msisdn,user.eccode)];
+    [userDeafults synchronize];
+    
+    self.labelChatCount.hidden=NO;
+    self.labelChatCount.text=[NSString stringWithFormat:@"%d",count+index];
 }
 
 - (void)address{}

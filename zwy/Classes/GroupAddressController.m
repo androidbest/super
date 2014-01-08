@@ -95,11 +95,16 @@
     }
     
     /*获取所有人员信息*/
-    _HUD_Group = [MBProgressHUD showHUDAddedTo:self.grougView.navigationController.view animated:YES];
-    _HUD_Group.labelText =@"加载中...";
-    _HUD_Group.margin = 10.f;
-    _HUD_Group.removeFromSuperViewOnHide = YES;
-    [_HUD_Group show:YES];
+    if (_HUD_Group) {
+        _HUD_Group.mode = MBProgressHUDModeIndeterminate;
+        _HUD_Group.labelText = @"Cleaning up";
+    }else{
+        _HUD_Group = [MBProgressHUD showHUDAddedTo:self.grougView.navigationController.view animated:YES];
+        _HUD_Group.labelText =@"加载中...";
+        _HUD_Group.margin = 10.f;
+        _HUD_Group.removeFromSuperViewOnHide = YES;
+        [_HUD_Group show:YES];
+    }
     __block NSArray *blockArr;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
              blockArr= [ConfigFile setAllPeopleInfo:str];
@@ -133,12 +138,13 @@
 
 - (void)reloadGroupAddress{
      [_grougView.searchBar resignFirstResponder];
-    self.HUD = [[MBProgressHUD alloc] initWithView:self.grougView.navigationController.view];
-	[self.grougView.navigationController.view addSubview:self.HUD];
-	self.HUD.labelText = @"检查更新";
+    _HUD_Group = [MBProgressHUD showHUDAddedTo:self.grougView.navigationController.view animated:YES];
+	[self.grougView.navigationController.view addSubview:_HUD_Group];
+    _HUD_Group.removeFromSuperViewOnHide = YES;
+	_HUD_Group.labelText = @"检查更新";
 	// Set determinate bar mode
-	self.HUD.delegate = self;
-    [self.HUD show:YES];
+	_HUD_Group.delegate = self;
+    [_HUD_Group show:YES];
     
     /*检查 是否有更新过*/
     NSUserDefaults * userDefaults =[NSUserDefaults standardUserDefaults];
@@ -159,8 +165,8 @@
     UIImage *image;
     image= [UIImage imageNamed:@"37x-Checkmark.png"];
     imageView = [[UIImageView alloc] initWithImage:image];
-    self.HUD.customView=imageView;
-    self.HUD.mode = MBProgressHUDModeCustomView;
+    _HUD_Group.customView=imageView;
+    _HUD_Group.mode = MBProgressHUDModeCustomView;
     /**/
     
     if ([info.respCode isEqualToString:@"1"]) {
@@ -172,11 +178,11 @@
         [userDefaults synchronize];
         
     }else if ([info.respCode isEqualToString:@"-1"]){
-        self.HUD.labelText = @"无需同步";
-        [self.HUD hide:YES afterDelay:1];
+        _HUD_Group.labelText = @"无需同步";
+        [_HUD_Group hide:YES afterDelay:1];
     }else{
-        self.HUD.labelText = @"网络错误";
-        [self.HUD hide:YES afterDelay:1];
+        _HUD_Group.labelText = @"网络错误";
+        [_HUD_Group hide:YES afterDelay:1];
     }
     
 }
@@ -184,13 +190,13 @@
 //开始下载
 - (void)DownLoadAddress:(NSString *)strPath{
     
-    self.HUD.mode = MBProgressHUDModeDeterminateHorizontalBar;
-    self.HUD.labelText = @"同步中...";
+    _HUD_Group.mode = MBProgressHUDModeDeterminateHorizontalBar;
+    _HUD_Group.labelText = @"同步中...";
     NSString *strFileName =[NSString stringWithFormat:@"%@/%@.zip",user.msisdn,user.eccode];
     NSString * filePath =[DocumentsDirectory stringByAppendingPathComponent:strFileName];
     NSString *str=[GroupAddressController urlByConfigFile];
     NSString * strUrl =[NSString stringWithFormat:@"%@tmp/%@.zip?eccode=%@",str,user.eccode,user.eccode];
-    [HTTPRequest LoadDownFile:self URL:strUrl filePath:filePath HUD:self.HUD];
+    [HTTPRequest LoadDownFile:self URL:strUrl filePath:filePath HUD:_HUD_Group];
 }
 
 
@@ -201,11 +207,11 @@
     UIImage *image ;
     if([dic[@"respCode"]  isEqualToString:@"0"]){
         image= [UIImage imageNamed:@"37x-Checkmark.png"];
-        self.HUD.labelText = @"更新完毕";
+        _HUD_Group.labelText = @"更新完毕";
         imageView = [[UIImageView alloc] initWithImage:image];
-        self.HUD.customView=imageView;
-        self.HUD.mode = MBProgressHUDModeCustomView;
-        [self.HUD hide:YES afterDelay:1];
+        _HUD_Group.customView=imageView;
+        _HUD_Group.mode = MBProgressHUDModeCustomView;
+        [_HUD_Group hide:YES afterDelay:1];
         
         /*刷新数据*/
         [self initWithData];
@@ -220,11 +226,11 @@
     }
     else {
         image= [UIImage imageNamed:@"37x-Checkmark.png"];
-         self.HUD.labelText = @"更新失败";
+         _HUD_Group.labelText = @"更新失败";
         imageView = [[UIImageView alloc] initWithImage:image];
-        self.HUD.customView=imageView;
-        self.HUD.mode = MBProgressHUDModeCustomView;
-        [self.HUD hide:YES afterDelay:1];
+        _HUD_Group.customView=imageView;
+        _HUD_Group.mode = MBProgressHUDModeCustomView;
+        [_HUD_Group hide:YES afterDelay:1];
     }
 
 }

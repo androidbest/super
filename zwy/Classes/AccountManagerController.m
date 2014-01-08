@@ -14,7 +14,8 @@
 #import "LoginView.h"
 #import "GroupAddressController.h"
 #import "ZipArchive.h"
-
+#import "HomeController.h"
+#import "HomeView.h"
 
 @implementation AccountManagerController{
    NSMutableArray *arr;
@@ -390,6 +391,15 @@
     for(UILocalNotification*localNotification in allLocalNotification){
         [[UIApplication sharedApplication]cancelLocalNotification:localNotification];
     }
+    
+    for (UIViewController *viewController in self.account.navigationController.tabBarController.viewControllers) {
+        UINavigationController *navigationController =(UINavigationController*)viewController;
+        if ([navigationController.topViewController isKindOfClass:[HomeView class]]) {
+        [[NSNotificationCenter defaultCenter] removeObserver:navigationController.topViewController];
+        }
+    }
+
+   
     
  [self.account dismissViewControllerAnimated:NO completion:nil];
 }

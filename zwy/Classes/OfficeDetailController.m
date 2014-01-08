@@ -193,6 +193,17 @@
 
 //下一步骤
 -(void)selectHandle{
+   
+    if ([user.ecsystem isEqualToString:@"countrywide"]) {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                      initWithTitle:nil
+                                      delegate:self
+                                      cancelButtonTitle:@"取消"
+                                      destructiveButtonTitle:nil
+                                      otherButtonTitles:@"办理结束", @"交办他人",@"上报领导",nil];
+        actionSheet.actionSheetStyle = UIBarStyleBlackTranslucent;
+        [actionSheet showInView:self.officedetailView.view];
+    }else{
         UIActionSheet *actionSheet = [[UIActionSheet alloc]
                                       initWithTitle:nil
                                       delegate:self
@@ -201,6 +212,9 @@
                                       otherButtonTitles:@"办理结束", @"下一步办理人",@"报领导审批",nil];
         actionSheet.actionSheetStyle = UIBarStyleBlackTranslucent;
         [actionSheet showInView:self.officedetailView.view];
+    }
+    
+
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
