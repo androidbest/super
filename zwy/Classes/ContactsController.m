@@ -69,6 +69,7 @@
     if (!cell) {
         cell = [[MesaageIMCell alloc] initWithStyle:UITableViewCellStyleDefault
                                     reuseIdentifier:contacts];
+        cell.bottomBorder.hidden=YES;
     }
     
 

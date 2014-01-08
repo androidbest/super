@@ -15,4 +15,5 @@
 @property (strong, nonatomic) UILabel *content;
 @property (strong ,nonatomic) UIImageView * imageMark;
 @property (strong, nonatomic) UILabel *labelCount;
+@property (strong ,nonatomic) CALayer *bottomBorder;
 @end

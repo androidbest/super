@@ -50,12 +50,11 @@
         _username.textColor=[UIColor blackColor];
         [self addSubview:_username];
         
-        CALayer *bottomBorder = [CALayer layer];
-//        float height=self.frame.size.height-1.0f;
+        _bottomBorder = [CALayer layer];
         float width=self.frame.size.width;
-        bottomBorder.frame = CGRectMake(0.0f, 63, width, 1.0f);
-        bottomBorder.backgroundColor = [UIColor colorWithWhite:0.7f alpha:0.5f].CGColor;
-        [self.layer addSublayer:bottomBorder];
+        _bottomBorder.frame = CGRectMake(0.0f, 63, width, 0.5f);
+        _bottomBorder.backgroundColor = [UIColor colorWithWhite:0.7f alpha:0.5f].CGColor;
+        [self.layer addSublayer:_bottomBorder];
         
         //未读条数
         _labelCount =[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 20, 15)];

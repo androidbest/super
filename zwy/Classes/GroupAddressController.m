@@ -89,7 +89,7 @@
     
  
     BOOL blHave=[[NSFileManager defaultManager] fileExistsAtPath:str];
-    if(_arrAllPeople.count==0&&!blHave){
+    if(_grougView.arrAllPeople.count==0&&!blHave){
         [ToolUtils alertInfo:@"请同步单位通讯录" delegate:self otherBtn:@"确认"];
         return;
     }
@@ -105,11 +105,11 @@
              blockArr= [ConfigFile setAllPeopleInfo:str];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            _arrAllPeople =[[NSMutableArray alloc] initWithArray:blockArr];
+            _grougView.arrAllPeople =[[NSMutableArray alloc] initWithArray:blockArr];
             NSString * strSearchbar;
             strSearchbar =[NSString stringWithFormat:@"SELF.superID == '%@'",@"0"];
             NSPredicate *predicateTemplate = [NSPredicate predicateWithFormat: strSearchbar];
-            self.arrFirstGroup=[_arrAllPeople filteredArrayUsingPredicate: predicateTemplate];
+            self.arrFirstGroup=[_grougView.arrAllPeople filteredArrayUsingPredicate: predicateTemplate];
             [_grougView.tableViewGroup reloadData];
             [_HUD_Group hide:YES];
         });
@@ -147,11 +147,6 @@
     if (!histroyDate) histroyDate=@"0";
     
     [packageData updateAddressBook:self updatetime:histroyDate];
-//    NSTimeInterval time_=[[NSDate date] timeIntervalSince1970];
-//    NSString *strTime =[NSString  stringWithFormat:@"%f",time_];
-//    strTime =[[strTime componentsSeparatedByString:@"."] firstObject];
-//    [userDefaults setObject:strTime forKey:UserDate];
-//    [userDefaults synchronize];
 }
 
 //检查回调
@@ -207,6 +202,11 @@
     if([dic[@"respCode"]  isEqualToString:@"0"]){
         image= [UIImage imageNamed:@"37x-Checkmark.png"];
         self.HUD.labelText = @"更新完毕";
+        imageView = [[UIImageView alloc] initWithImage:image];
+        self.HUD.customView=imageView;
+        self.HUD.mode = MBProgressHUDModeCustomView;
+        [self.HUD hide:YES afterDelay:1];
+        
         /*刷新数据*/
         [self initWithData];
         _grougView.searchBar.text=nil;
@@ -221,13 +221,12 @@
     else {
         image= [UIImage imageNamed:@"37x-Checkmark.png"];
          self.HUD.labelText = @"更新失败";
-    }
         imageView = [[UIImageView alloc] initWithImage:image];
-    
-    self.HUD.customView=imageView;
-    self.HUD.mode = MBProgressHUDModeCustomView;
-	
-    [self.HUD hide:YES afterDelay:1];
+        self.HUD.customView=imageView;
+        self.HUD.mode = MBProgressHUDModeCustomView;
+        [self.HUD hide:YES afterDelay:1];
+    }
+
 }
 
 //开启接受定时器,设置全局通讯录(设置全局内容)
@@ -330,7 +329,7 @@
     NSMutableArray * arr;
       strSearchbar =[NSString stringWithFormat:@"SELF.superID == '%@'",Group.groupID];
         NSPredicate *predicateTemplate = [NSPredicate predicateWithFormat: strSearchbar];
-        arr=[NSMutableArray arrayWithArray:[_arrAllPeople filteredArrayUsingPredicate: predicateTemplate]];
+        arr=[NSMutableArray arrayWithArray:[_grougView.arrAllPeople filteredArrayUsingPredicate: predicateTemplate]];
         [arr removeObject:Group];
         self.arrSeaPeople=arr;
         isFirstPages=NO;
@@ -355,10 +354,10 @@
         NSString * strSearchbar;
         strSearchbar =[NSString stringWithFormat:@"SELF.superID == '%@'",groupA.superID];
         NSPredicate *predicateTemplate = [NSPredicate predicateWithFormat: strSearchbar];
-        self.arrSeaPeople=[_arrAllPeople filteredArrayUsingPredicate: predicateTemplate];
+        self.arrSeaPeople=[_grougView.arrAllPeople filteredArrayUsingPredicate: predicateTemplate];
         
 
-        for (GroupInfo * info in _arrAllPeople) {
+        for (GroupInfo * info in _grougView.arrAllPeople) {
             if ([info.groupID isEqualToString:groupA.superID])groupA=info;
         }
     }
@@ -404,14 +403,14 @@
             NSMutableArray *arr;
             strSearchbar =[NSString stringWithFormat:@"SELF.groupID CONTAINS '%@'",groupA.groupID];
             NSPredicate *predicate = [NSPredicate predicateWithFormat: strSearchbar];
-           arr=[NSMutableArray arrayWithArray:[_arrAllPeople filteredArrayUsingPredicate:predicate]];
+           arr=[NSMutableArray arrayWithArray:[_grougView.arrAllPeople filteredArrayUsingPredicate:predicate]];
             self.arrSeaPeople =[arr filteredArrayUsingPredicate: predicateTemplate];
             if (self.arrSeaPeople.count==0&&searchText.length==0){
                 [arr removeObject:groupA];
                 self.arrSeaPeople=arr;
             }
         }else{
-            self.arrSeaPeople=[_arrAllPeople filteredArrayUsingPredicate: predicateTemplate];
+            self.arrSeaPeople=[_grougView.arrAllPeople filteredArrayUsingPredicate: predicateTemplate];
         }
         
     }

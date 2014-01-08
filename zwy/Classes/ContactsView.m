@@ -43,8 +43,6 @@
     _uitableview.dataSource = self.controller;
     _uitableview.delegate = self.controller;
     _uitableview.tableHeaderView = self.searchBar;
-//    _uitableview.contentOffset = CGPointMake(0, CGRectGetHeight(_searchBar.bounds));
-    _uitableview.separatorStyle=UITableViewCellSeparatorStyleNone;
     
     
     _displayController = [[UISearchDisplayController alloc] initWithSearchBar:_searchBar contentsController:self.tabBarController];

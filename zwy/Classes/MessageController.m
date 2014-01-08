@@ -122,13 +122,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     //更新首页即时聊天未读条数信息
     MesaageIMCell *cell =(MesaageIMCell *)[tableView cellForRowAtIndexPath:indexPath];
-    int CellCount =[cell.labelCount.text integerValue];
-    NSUserDefaults *userDeafults=[NSUserDefaults standardUserDefaults];
-    int count =[userDeafults integerForKey:CHATMESSAGECOUNT(user.msisdn,user.eccode)];
-    int deafyltsIndex=count-CellCount;
-    if (deafyltsIndex<0)deafyltsIndex=0;
-    [userDeafults setInteger:deafyltsIndex forKey:CHATMESSAGECOUNT(user.msisdn,user.eccode)];
-    [userDeafults synchronize];
+    [self cancelCheckTitle:cell];
     
     SessionEntity * sessionInfo=nil;
     if (_messageView.searchBar.text.length!=0&&isSearching){
@@ -170,6 +164,10 @@
 
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    //更新首页即时聊天未读条数信息
+    MesaageIMCell *cell =(MesaageIMCell *)[tableView cellForRowAtIndexPath:indexPath];
+    [self cancelCheckTitle:cell];
+    
     SessionEntity * sessionInfo=nil;
     if (_messageView.searchBar.text.length!=0&&isSearching){
         sessionInfo=_arrSeaPeople[indexPath.row];
@@ -190,6 +188,15 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
     return @"删除";
+}
+
+- (void)cancelCheckTitle:(MesaageIMCell *)cell{
+    int CellCount =[cell.labelCount.text integerValue];
+    NSUserDefaults *userDeafults=[NSUserDefaults standardUserDefaults];
+    int count =[userDeafults integerForKey:CHATMESSAGECOUNT(user.msisdn,user.eccode)];
+    int deafyltsIndex=count-CellCount;
+    if (deafyltsIndex<0)deafyltsIndex=0;
+    [userDeafults setInteger:deafyltsIndex forKey:CHATMESSAGECOUNT(user.msisdn,user.eccode)];
 }
 
 #pragma mark - UISearchDisplayDelegate

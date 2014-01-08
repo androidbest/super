@@ -436,9 +436,7 @@
     NSRange rangeData = NSMakeRange(0, [Datas count]);
     NSIndexSet *indexSetData = [NSIndexSet indexSetWithIndexesInRange:rangeData];
     [arrData insertObjects:Datas atIndexes:indexSetData];
-    
-    ContentCount+=Datas.count;
-    
+
     NSRange rangeTime = NSMakeRange(0, [times count]);
     NSIndexSet *indexSetTime = [NSIndexSet indexSetWithIndexesInRange:rangeTime];
     [arrTime insertObjects:times atIndexes:indexSetTime];

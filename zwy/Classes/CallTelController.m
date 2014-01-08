@@ -8,6 +8,8 @@
 
 #import "CallTelController.h"
 #import "PeopelInfo.h"
+#import "GroupAddressController.h"
+#import "GroupAddressView.h"
 
 @implementation CallTelController
 
@@ -26,7 +28,17 @@
 }
 
 - (void)initWithData{
- 
+    for (UIViewController *viewController in _callView.tabBarController.viewControllers) {
+        UINavigationController *navigationController =(UINavigationController*)viewController;
+        if ([navigationController.topViewController isKindOfClass:[GroupAddressView class]]) {
+            GroupAddressView *groupView =(GroupAddressView *)navigationController.topViewController;
+            self.arrAllPeople=[NSMutableArray arrayWithArray:groupView.arrAllPeople];
+            NSString * strSearchbar =[NSString stringWithFormat:@"SELF.tel == '%@'",@""];
+            NSPredicate *predicateTemplate = [NSPredicate predicateWithFormat: strSearchbar];
+            NSArray *arrRemove=[_arrAllPeople filteredArrayUsingPredicate: predicateTemplate];
+            [_arrAllPeople removeObjectsInArray:arrRemove];
+        }
+    }
 }
 
 #pragma mark - 弹出拨号键盘
@@ -67,7 +79,7 @@
     NSString * strSearchbar;
     strSearchbar =[NSString stringWithFormat:@"SELF.tel CONTAINS '%@'",_strTel];
     NSPredicate *predicateTemplate = [NSPredicate predicateWithFormat: strSearchbar];
-    _arrSeaPeople=[EX_arrGroupAddressBooks filteredArrayUsingPredicate: predicateTemplate];
+    _arrSeaPeople=[_arrAllPeople filteredArrayUsingPredicate: predicateTemplate];
      [_callView.tableViewPeople reloadData];
 }
 
@@ -89,7 +101,7 @@
     NSString * strSearchbar;
     strSearchbar =[NSString stringWithFormat:@"SELF.tel CONTAINS '%@'",_strTel];
     NSPredicate *predicateTemplate = [NSPredicate predicateWithFormat: strSearchbar];
-    _arrSeaPeople=[EX_arrGroupAddressBooks filteredArrayUsingPredicate: predicateTemplate];
+    _arrSeaPeople=[_arrAllPeople filteredArrayUsingPredicate: predicateTemplate];
     [_callView.tableViewPeople reloadData];
     
 }
@@ -111,7 +123,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
     if (_arrSeaPeople.count==0&&![_callView.labelCall.text isEqualToString:@"点击拨打电话"]&&_callView.labelCall.text.length==0) {
-        return EX_arrGroupAddressBooks.count;
+        return _arrAllPeople.count;
     }else{
         return _arrSeaPeople.count;
     }
@@ -128,7 +140,7 @@
     }
     NSObject * obj;
     if (_arrSeaPeople.count==0&&![_callView.labelCall.text isEqualToString:@"点击拨打电话"]&& _callView.labelCall.text.length==0) {
-        obj =[EX_arrGroupAddressBooks objectAtIndex:indexPath.row];
+        obj =[_arrAllPeople objectAtIndex:indexPath.row];
     }else{
         obj =[_arrSeaPeople objectAtIndex:indexPath.row];
     }
@@ -141,7 +153,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSObject * obj;
     if (_arrSeaPeople.count==0&&![_callView.labelCall.text isEqualToString:@"点击拨打电话"]&& _callView.labelCall.text.length==0) {
-        obj =[EX_arrGroupAddressBooks objectAtIndex:indexPath.row];
+        obj =[_arrAllPeople objectAtIndex:indexPath.row];
     }else{
         obj =[_arrSeaPeople objectAtIndex:indexPath.row];
     }
@@ -150,7 +162,7 @@
     NSURL *telURL =[NSURL URLWithString:strTel];// 貌似tel:// 或者 tel: 都行
     [callWebview loadRequest:[NSURLRequest requestWithURL:telURL]];
     [self.callView.view addSubview:callWebview];
-
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end

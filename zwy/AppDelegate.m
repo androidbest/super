@@ -283,18 +283,19 @@ UIBackgroundTaskIdentifier backgroundTask;//写成成员
         BOOL ischek;
         
             if (!obj.groupid||[obj.groupid isEqualToString:@"(null)"]||[obj.groupid isEqualToString:@""]||[obj.groupid isEqualToString:@"null"]) {
-                chatMessageID =[NSString stringWithFormat:@"%@%@%@%@",user.msisdn,user.eccode,obj.receivermsisdn,obj.receivereccode];
+                chatMessageID =[NSString stringWithFormat:@"%@%@%@%@",user.msisdn,user.eccode,obj.receivermsisdn,user.eccode];
                  ischek =[EX_chatMessageID  isEqualToString:chatMessageID];
                  [coredataManage setChatInfo:obj status:@"1" isChek:ischek  gid:nil arr:nil];
-              
+                  if (!ischek)[self setValue:@"1" forKey:@"ischeck"];
                 
             }else{
                  chatMessageID =[NSString stringWithFormat:@"%@%@%@%@",user.msisdn,user.eccode,obj.groupid,user.eccode];
                  ischek =[EX_chatMessageID  isEqualToString:chatMessageID];
                 [coredataManage setChatInfo:obj status:@"1" isChek:ischek];
+                 if (!ischek)[self setValue:@"1" forKey:@"ischeck"];
             }
         
-        if (!ischek)[self setValue:@"1" forKey:@"ischeck"];
+       
         
     }
     
