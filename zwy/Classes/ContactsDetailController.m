@@ -33,7 +33,7 @@
 }
 
 -(void)initDatatoData{
-    if((!self.contactsDetailView.data.headPath)||[self.contactsDetailView.data.headPath isEqualToString:@"null"]){
+    if((!self.contactsDetailView.data.headPath)||[self.contactsDetailView.data.headPath isEqualToString:@"null"]||[self.contactsDetailView.data.headPath isEqualToString:@"(null)"]){
         [packageData imHeadUrl:self msisdn:self.contactsDetailView.data.tel eccode:self.contactsDetailView.data.eccode];
     }else{
     [HTTPRequest imageWithURL:self.contactsDetailView.data.headPath imageView:self.contactsDetailView.imageView placeholderImage:[UIImage imageNamed:@"default_avatar"]];
