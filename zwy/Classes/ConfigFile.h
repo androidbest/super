@@ -54,6 +54,9 @@
 /*聊天信息接受通告名*/
 #define NOTIFICATIONCHAT @"notificationChat"
 
+/*聊天时间显示格式*/
+#define CHATDATETYPE @"MM/dd/yy HH:mm"
+
 #import <Foundation/Foundation.h>
 @interface ConfigFile : NSObject
 

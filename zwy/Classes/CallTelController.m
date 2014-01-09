@@ -29,6 +29,7 @@
 
 - (void)initWithData{
     for (UIViewController *viewController in _callView.tabBarController.viewControllers) {
+        if (![viewController isKindOfClass:[UINavigationController class]])return;
         UINavigationController *navigationController =(UINavigationController*)viewController;
         if ([navigationController.topViewController isKindOfClass:[GroupAddressView class]]) {
             GroupAddressView *groupView =(GroupAddressView *)navigationController.topViewController;

@@ -152,7 +152,7 @@
         chatObj.receiveravatar=chat.chat_sessionObjct.session_receiveravatar;
         chatObj.receivername=chat.chat_sessionObjct.session_receivername;
         chatObj.content=chat.chat_content;
-        chatObj.sendtime=[ToolUtils NSDateToNSString:chat.chat_times format:@"yy/MM/dd HH:mm"];
+        chatObj.sendtime=[ToolUtils NSDateToNSString:chat.chat_times format:CHATDATETYPE];
         chatObj.groupid=chat.chat_sessionObjct.session_groupuuid;
         chatObj.senderavatar=user.headurl;
         chatObj.filepath=chat.chat_voiceurl;
@@ -194,7 +194,7 @@
         chatObj.voicetime=chat.chat_voicetime;
         chatObj.receivername=chat.chat_sessionObjct.session_receivername;
         chatObj.content=chat.chat_content;
-        chatObj.sendtime=[ToolUtils NSDateToNSString:chat.chat_times format:@"yy/MM/dd HH:mm"];
+        chatObj.sendtime=[ToolUtils NSDateToNSString:chat.chat_times format:CHATDATETYPE];
         chatObj.groupid=chat.chat_sessionObjct.session_groupuuid;
         chatObj.senderavatar=user.headurl;
         chatObj.filepath=chat.chat_voiceurl;
@@ -277,7 +277,7 @@
                 obj.receiveravatar=info.headPath;
                 obj.receivername=info.Name;
                 obj.content=self.chatMessageView.im_text.text;
-                obj.sendtime=[ToolUtils NSDateToNSString:date format:@"yy/MM/dd HH:mm"];
+                obj.sendtime=[ToolUtils NSDateToNSString:date format:CHATDATETYPE];
                 obj.sendtimeNSdate=date;
                 obj.groupid=grouid;
                 obj.senderavatar=user.headurl;
@@ -296,7 +296,7 @@
                 obj.receiveravatar=info.headPath;
                 obj.receivername=info.Name;
                 obj.content=@"语音";
-                obj.sendtime=[ToolUtils NSDateToNSString:date format:@"yy/MM/dd HH:mm"];
+                obj.sendtime=[ToolUtils NSDateToNSString:date format:CHATDATETYPE];
                 obj.sendtimeNSdate=date;
                 obj.groupid=grouid;
                 obj.senderavatar=user.headurl;
@@ -330,7 +330,7 @@
             obj.receiveravatar=self.chatMessageView.chatData.headPath;
             obj.receivername=self.chatMessageView.chatData.Name;
             obj.content=self.chatMessageView.im_text.text;
-            obj.sendtime=[ToolUtils NSDateToNSString:date format:@"yy/MM/dd HH:mm"];
+            obj.sendtime=[ToolUtils NSDateToNSString:date format:CHATDATETYPE];
             obj.sendtimeNSdate=date;
             obj.senderavatar=user.headurl;
             obj.filepath=@"";
@@ -350,7 +350,7 @@
             obj.receiveravatar=self.chatMessageView.chatData.headPath;
             obj.receivername=self.chatMessageView.chatData.Name;
             obj.content=@"语音";
-            obj.sendtime=[ToolUtils NSDateToNSString:date format:@"yy/MM/dd HH:mm"];
+            obj.sendtime=[ToolUtils NSDateToNSString:date format:CHATDATETYPE];
             obj.sendtimeNSdate=date;
             obj.senderavatar=user.headurl;
             obj.filepath=@"";
@@ -422,7 +422,7 @@
         chatObj.voicetime=chat.chat_voicetime;
         chatObj.receivername=chat.chat_sessionObjct.session_receivername;
         chatObj.content=chat.chat_content;
-        chatObj.sendtime=[ToolUtils NSDateToNSString:chat.chat_times format:@"yy/MM/dd HH:mm"];
+        chatObj.sendtime=[ToolUtils NSDateToNSString:chat.chat_times format:CHATDATETYPE];
         chatObj.groupid=chat.chat_sessionObjct.session_groupuuid;
         chatObj.senderavatar=user.headurl;
         chatObj.filepath=chat.chat_voiceurl;
@@ -516,7 +516,7 @@
             cell.rightMessage.frame=rectLeftMessage;
 
         }else{
-            cell.chatTime.text=[ToolUtils NSDateToNSString:arrTime[indexPath.row] format:@"yy/MM/dd HH:mm"];
+            cell.chatTime.text=[ToolUtils NSDateToNSString:arrTime[indexPath.row] format:CHATDATETYPE];
             cell.chatTime.hidden=NO;
         }
         
@@ -578,7 +578,7 @@
             cell.leftMessage.frame=rectLeftMessage;
             
         }else{
-            cell.chatTime.text=[ToolUtils NSDateToNSString:arrTime[indexPath.row] format:@"yy/MM/dd HH:mm"];
+            cell.chatTime.text=[ToolUtils NSDateToNSString:arrTime[indexPath.row] format:CHATDATETYPE];
             cell.chatTime.hidden=NO;
         }
         

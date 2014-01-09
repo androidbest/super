@@ -12,6 +12,7 @@
 #import "ChatEntity.h"
 #import "Constants.h"
 #import "ToolUtils.h"
+#import "ConfigFile.h"
 static CoreDataManageContext *coreData=nil;
 
 @implementation CoreDataManageContext
@@ -119,13 +120,13 @@ static CoreDataManageContext *coreData=nil;
     Sessions.session_voicetimes=messageObjct.voicetime;
     if (isChek) Sessions.session_unreadcount =@"0";
     else Sessions.session_unreadcount=[NSString stringWithFormat:@"%d",[Sessions.session_unreadcount intValue]+1];
-    Sessions.session_times =[ToolUtils NSStringToNSDate:messageObjct.sendtime format:@"yy/MM/dd HH:mm"];
+    Sessions.session_times =[ToolUtils NSStringToNSDate:messageObjct.sendtime format:CHATDATETYPE];
     
     //插入聊天记录
     ChatEntity *chatInfo =[NSEntityDescription insertNewObjectForEntityForName:@"ChatEntity" inManagedObjectContext:self.managedObjectContext];
     chatInfo.chat_groupuuid=messageObjct.groupid;
     chatInfo.chat_groupname=messageObjct.receivername;
-    chatInfo.chat_times=[ToolUtils NSStringToNSDate:messageObjct.sendtime format:@"yy/MM/dd HH:mm"];
+    chatInfo.chat_times=[ToolUtils NSStringToNSDate:messageObjct.sendtime format:CHATDATETYPE];
     chatInfo.chat_msgtype=messageObjct.chattype;
     chatInfo.chat_content=messageObjct.content;
     chatInfo.chat_voiceurl=messageObjct.filepath;
@@ -208,13 +209,13 @@ static CoreDataManageContext *coreData=nil;
         Sessions.session_voicetimes=messageObjct.voicetime;
         if (isChek) Sessions.session_unreadcount =@"0";
         else Sessions.session_unreadcount=[NSString stringWithFormat:@"%d",[Sessions.session_unreadcount intValue]+1];
-        Sessions.session_times =[ToolUtils NSStringToNSDate:tims format:@"yy/MM/dd HH:mm"];
+        Sessions.session_times =[ToolUtils NSStringToNSDate:tims format:CHATDATETYPE];
         
                 //插入聊天记录
                 ChatEntity *chatInfo =[NSEntityDescription insertNewObjectForEntityForName:@"ChatEntity" inManagedObjectContext:self.managedObjectContext];
                 chatInfo.chat_groupuuid=messageObjct.groupid;
                 chatInfo.chat_groupname=messageObjct.receivername;
-                chatInfo.chat_times=[ToolUtils NSStringToNSDate:tims format:@"yy/MM/dd HH:mm"];
+                chatInfo.chat_times=[ToolUtils NSStringToNSDate:tims format:CHATDATETYPE];
                 chatInfo.chat_msgtype=messageObjct.chattype;
                 chatInfo.chat_content=messageObjct.content;
                 chatInfo.chat_voiceurl=messageObjct.filepath;
@@ -260,13 +261,13 @@ static CoreDataManageContext *coreData=nil;
         Sessions.session_voicetimes=messageObjct.voicetime;
         if (isChek) Sessions.session_unreadcount =@"0";
         else Sessions.session_unreadcount=[NSString stringWithFormat:@"%d",[Sessions.session_unreadcount intValue]+1];
-        Sessions.session_times =[ToolUtils NSStringToNSDate:messageObjct.sendtime format:@"yy/MM/dd HH:mm"];
+        Sessions.session_times =[ToolUtils NSStringToNSDate:messageObjct.sendtime format:CHATDATETYPE];
         
         //插入聊天记录
         ChatEntity *chatInfo =[NSEntityDescription insertNewObjectForEntityForName:@"ChatEntity" inManagedObjectContext:self.managedObjectContext];
         chatInfo.chat_groupuuid=messageObjct.groupid;
         chatInfo.chat_groupname=messageObjct.receivername;
-        chatInfo.chat_times=[ToolUtils NSStringToNSDate:messageObjct.sendtime format:@"yy/MM/dd HH:mm"];
+        chatInfo.chat_times=[ToolUtils NSStringToNSDate:messageObjct.sendtime format:CHATDATETYPE];
         chatInfo.chat_msgtype=messageObjct.chattype;
         chatInfo.chat_content=messageObjct.content;
         chatInfo.chat_voiceurl=messageObjct.filepath;

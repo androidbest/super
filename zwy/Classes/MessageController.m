@@ -89,7 +89,7 @@
    
     }
     NSDateFormatter * dateFormatter = [[NSDateFormatter alloc]init];
-    [dateFormatter setDateFormat:@"yy/MM/dd HH:mm"];
+    [dateFormatter setDateFormat:CHATDATETYPE];
     
     SessionEntity * sessionInfo=nil;
     if (_messageView.searchBar.text.length!=0&&isSearching)sessionInfo=_arrSeaPeople[indexPath.row];
