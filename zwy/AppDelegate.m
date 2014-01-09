@@ -295,8 +295,8 @@ UIBackgroundTaskIdentifier backgroundTask;//写成成员
     }
 
     NSDictionary *dicNOtification;
-    if (!ischek) dicNOtification =@{@"0":@"isCheck",};
-    else dicNOtification =@{@"1":@"isCheck",};
+    if (!ischek) dicNOtification =@{@"isCheck":@"0",};
+    else dicNOtification =@{@"isCheck":@"1",};
     /*刷新数据
      *发送通告
      *观察者为"MessageController"--"ChatMessageController"--"HomeController"

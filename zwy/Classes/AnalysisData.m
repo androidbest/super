@@ -66,7 +66,8 @@ RespInfo *info=[RespInfo new];
         detas.ECID=ecid;
         detas.ECName=ecname;
         detas.ECSystem=ecSystem;
-        detas.ECProvince=ecProvince;
+        if (ecProvince)  detas.ECProvince=ecProvince;
+        else detas.ECProvince=@"重庆";
         detas.lastEcid=lastecid;
         [resplist.resplist addObject:detas];
     }

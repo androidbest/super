@@ -53,28 +53,6 @@
     return self;
 }
 
-- (id)initWithURL:(NSString *)url reuseIdentifier:(NSString *)reuseIdentifier filePath:(NSString *)path{
-    self =[super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier];
-    if (self){
-        self.urlFile=[NSURL URLWithString:url];
-        self.filePath =path;
-        self.progressFileDown =[[UIProgressView alloc] init];
-        _progressFileDown.frame =CGRectMake(150, 10, 150, 5);
-        _progressFileDown.progress=0.0f;
-        [self addSubview:_progressFileDown];
-        
-        self.labelText=[[UILabel alloc] init];
-        _labelText.frame =CGRectMake(250, 15, 80, 20);
-        _labelText.font=[UIFont systemFontOfSize:10];
-        _labelText.textColor =[UIColor grayColor];
-        _labelText.text=@"0.00%";
-        [self addSubview:_labelText];
-        
-        [self downRequestOperation];
-    }
-    return self;
-}
-
 - (void)downRequestOperation{
     NSMutableURLRequest * request =[[NSMutableURLRequest alloc] initWithURL:_urlFile];
     AFURLConnectionOperation *operation =[[AFHTTPRequestOperation alloc] initWithRequest:request];
@@ -92,7 +70,6 @@
         float percentDone = totalBytesRead/(float)totalBytesExpectedToRead;
         _progressFileDown.progress =percentDone;
         self.labelText.text =[NSString stringWithFormat:@"%d%%",(int)(percentDone*100.0f)];
-
     }];
     
     [operation start];
@@ -100,7 +77,7 @@
 }
 
 - (void)stopOperation:(AFURLConnectionOperation *)operation{
-
+   
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

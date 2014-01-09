@@ -95,10 +95,7 @@
     }
     
     /*获取所有人员信息*/
-    if (_HUD_Group) {
-        _HUD_Group.mode = MBProgressHUDModeIndeterminate;
-        _HUD_Group.labelText = @"Cleaning up";
-    }else{
+    if (!_HUD_Group) {
         _HUD_Group = [MBProgressHUD showHUDAddedTo:self.grougView.navigationController.view animated:YES];
         _HUD_Group.labelText =@"加载中...";
         _HUD_Group.margin = 10.f;
@@ -122,6 +119,32 @@
     });
 }
 
+//更新下载包数据
+- (void)updateDownLoad{
+    NSString * str =[NSString stringWithFormat:@"%@/%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode,@"group.txt"];
+    NSString *strGroup =[NSString stringWithContentsOfFile:str encoding:NSUTF8StringEncoding error:NULL];
+    if (!strGroup||isReloadData) {
+        ZipArchive* zipFile = [[ZipArchive alloc] init];
+        NSString *strECpath =[NSString stringWithFormat:@"%@/%@.zip",user.msisdn,user.eccode];
+        NSString * strPath =[DocumentsDirectory stringByAppendingPathComponent:strECpath];
+        [zipFile UnzipOpenFile:strPath];
+        
+        //压缩包释放到的位置，需要一个完整路径
+        NSString * strSavePath =[NSString stringWithFormat:@"%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode];
+        BOOL blHave=[[NSFileManager defaultManager] fileExistsAtPath:strSavePath];
+        if (isReloadData&&blHave)[[NSFileManager defaultManager] removeItemAtPath:strSavePath error:nil];
+        [zipFile UnzipFileTo:strSavePath overWrite:YES];
+        [zipFile UnzipCloseFile];
+        isReloadData=NO;
+    }
+    
+    _grougView.arrAllPeople =[ConfigFile setAllPeopleInfo:str];
+    NSString * strSearchbar;
+    strSearchbar =[NSString stringWithFormat:@"SELF.superID == '%@'",@"0"];
+    NSPredicate *predicateTemplate = [NSPredicate predicateWithFormat: strSearchbar];
+    self.arrFirstGroup=[_grougView.arrAllPeople filteredArrayUsingPredicate: predicateTemplate];
+    [_grougView.tableViewGroup reloadData];
+}
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex==1){
@@ -204,35 +227,27 @@
 - (void)DownLoadAddressReturn:(NSNotification *)notification{
     NSDictionary*dic =[notification userInfo];
     UIImageView *imageView;
-    UIImage *image ;
     if([dic[@"respCode"]  isEqualToString:@"0"]){
-        image= [UIImage imageNamed:@"37x-Checkmark.png"];
         _HUD_Group.labelText = @"更新完毕";
-        imageView = [[UIImageView alloc] initWithImage:image];
-        _HUD_Group.customView=imageView;
-        _HUD_Group.mode = MBProgressHUDModeCustomView;
-        [_HUD_Group hide:YES afterDelay:1];
-        
+        imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
+ 
         /*刷新数据*/
-        [self initWithData];
+        [self updateDownLoad];
         _grougView.searchBar.text=nil;
         groupA=nil;
         isFirstPages=YES;
-        [self.grougView.tableViewGroup reloadData];
         
         //开启接受定时器,设置全局通讯录
         [self StartChatMessageController];
       
     }
     else {
-        image= [UIImage imageNamed:@"37x-Checkmark.png"];
-         _HUD_Group.labelText = @"更新失败";
-        imageView = [[UIImageView alloc] initWithImage:image];
-        _HUD_Group.customView=imageView;
-        _HUD_Group.mode = MBProgressHUDModeCustomView;
-        [_HUD_Group hide:YES afterDelay:1];
+        _HUD_Group.labelText = @"更新失败";
+        imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
     }
-
+    _HUD_Group.customView=imageView;
+    _HUD_Group.mode = MBProgressHUDModeCustomView;
+    [_HUD_Group hide:YES afterDelay:1];
 }
 
 //开启接受定时器,设置全局通讯录(设置全局内容)
@@ -258,7 +273,7 @@
         }
         [EX_arrSection removeObjectsInArray:arrRemoveObject];
     }
-     /*****************************/
+    /*****************************/
     /*更新完通讯录后开始接受消息*/
     //开启扫描信息定时器
     if (EX_timerUpdateMessage)[EX_timerUpdateMessage setFireDate:[NSDate distantPast]];

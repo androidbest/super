@@ -29,7 +29,4 @@
 @property (assign ,nonatomic)id<DownloadCellDelegate>delegate;
 - (id)initWithDelegate:(id)delegate URL:(NSString *)url reuseIdentifier:(NSString *)reuseIdentifier filePath:(NSString *)path;
 
-- (id)initWithURL:(NSString *)url reuseIdentifier:(NSString *)reuseIdentifier filePath:(NSString *)path;
-
-
 @end
