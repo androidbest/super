@@ -15,6 +15,7 @@
     UIButton *btnHead;
     BOOL isInitHead;
     NSString *uuid;
+    NSString *headurl;
 }
 
 -(id)init{
@@ -43,6 +44,8 @@
     if(dic){
 //        NSString * strPath =[[NSBundle mainBundle] pathForResource:@"common" ofType:@"plist"];
 //        NSDictionary * dic =[NSDictionary dictionaryWithContentsOfFile:strPath];
+        
+        headurl=dic[@"fileurl"];
         [packageData imUploadLink:self msisdn:user.msisdn eccode:user.eccode memberid:user.userid selType:@"reqUrl" url:dic[@"fileurl"]];
         self.HUD.labelText = @"上传成功";
     }else{
@@ -56,6 +59,10 @@
 -(void)reqUrl:(NSNotification *)notification{
      NSDictionary *dic=[notification userInfo];
     if(dic){
+        RespInfo *info=[AnalysisData ReTurnInfo:dic];
+        if([info.respCode isEqualToString:@"0"]){
+            user.headurl=headurl;
+        }
     }
 }
 
@@ -158,6 +165,9 @@
                 PhotoOptional *photoController=[PhotoOptional newInstance];
                 BOOL isStart=   [photoController startCameraController:self.myInfoView isAllowsEditing:YES photoImage:^(UIImage *image) {
                     [btnHead setBackgroundImage:image forState:UIControlStateNormal];
+                    
+                    self.HUD.labelText = @"正在上传..";
+                    [self.HUD show:YES];
                     [packageData imUploadUrl:self type:@"0" data:UIImageJPEGRepresentation(image,1.0) selType:xmlNotifInfo uuid:@""];
                 }];
                  if (!isStart) [ToolUtils alertInfo:@"设备摄像头错误!"];

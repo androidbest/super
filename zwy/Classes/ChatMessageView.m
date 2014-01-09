@@ -157,9 +157,6 @@
     //初始化录音vc
     _recorderVC = [[ChatVoiceRecorderVC alloc]init];
     _recorderVC.vrbDelegate = self.controller;
-    
-    //初始化播放器
-    _player = [[AVAudioPlayer alloc]init];
 }
 
 - (void)didReceiveMemoryWarning
@@ -219,6 +216,9 @@
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+    if(_player&&[_player isPlaying]){
+        [_player stop];
+    }
 }
 
 

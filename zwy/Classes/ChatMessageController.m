@@ -70,7 +70,6 @@
                                                 selector:@selector(uploadVoice:)
                                                     name:@"uploadVoice"
                                                   object:self];
-        player=[AVAudioPlayer new];
         activityIndicatorView=[[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(0, 0, 32.0f, 32.0f)];
         [activityIndicatorView setActivityIndicatorViewStyle: UIActivityIndicatorViewStyleGray];
     }
@@ -92,10 +91,11 @@
         }
     }else{
     //上传失败
-        
-    [self sendMsgFail:gloabcell sign:obj.chattype];
-    obj.sendfail=@"1";
     [activityIndicatorView stopAnimating];
+    obj.sendfail=@"1";
+    gloabcell.sendFail.hidden=NO;
+    sendShowVoicetime.text=[NSString stringWithFormat:@"%@''",voicetime];
+    [self sendMsgFail:gloabcell sign:obj.chattype];
         if(chatMsgObjArr.count>0){
             if(!isPut){
                 [[CoreDataManageContext newInstance] setChatInfo:obj status:@"0" isChek:YES gid:grouid arr:chatMsgObjArr];
@@ -779,8 +779,8 @@
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
     [audioSession setActive:YES error:nil];
     [audioSession setCategory:AVAudioSessionCategoryPlayback error:nil];
-    player = [player initWithContentsOfURL:[NSURL URLWithString:[VoiceRecorderBaseVC getPathByFileName:_fileName ofType:@"wav"]] error:nil];
-    
+    player = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL URLWithString:[VoiceRecorderBaseVC getPathByFileName:_fileName ofType:@"wav"]] error:nil];
+    self.chatMessageView.player=player;
     [player play];
 }
 
