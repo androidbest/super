@@ -46,14 +46,17 @@
     
     
     _workViews.labelDate.text=_workViews.info.warningDate;
-    _workViews.labelLastTime.text=_workViews.info.remainTime;
+    _workViews.labelLastTime.text=[_workViews.info.remainTime stringByReplacingOccurrencesOfString:@"-" withString:@""];
     [self setLabelLastTimeBackgroudViewFrame:_workViews.labelLastTime.text.length];
     
     NSString *strTitle;
     if ([_workViews.info.warningType isEqualToString:@"2"]) {
-        strTitle =[NSString stringWithFormat:@"距离%@生日还有",_workViews.info.content];
+        if (_workViews.info.remainTimeInt<0)
+
+        strTitle =[NSString stringWithFormat:@"距离%@生日%@",_workViews.info.content,_workViews.info.remainTimeInt<0? @"已过":@"还有"];
+    
     }else{
-        strTitle =[NSString stringWithFormat:@"距离%@还有",_workViews.info.content];
+        strTitle =[NSString stringWithFormat:@"距离%@%@",_workViews.info.content,_workViews.info.remainTimeInt<0? @"已过":@"还有"];
     }
     _workViews.labelTitle.text=strTitle;
 }
@@ -107,13 +110,14 @@
     
     _workViews.navigationItem.title=@"日程提醒";
     _workViews.labelDate.text=info.warningDate;
-    _workViews.labelLastTime.text=info.remainTime;
+    _workViews.labelLastTime.text=[info.remainTime stringByReplacingOccurrencesOfString:@"-" withString:@""];
+    [self setLabelLastTimeBackgroudViewFrame:_workViews.labelLastTime.text.length];
     
     NSString *strTitle;
     if ([_workViews.info.warningType isEqualToString:@"2"]) {
-        strTitle =[NSString stringWithFormat:@"距离%@生日还有",info.content];
+        strTitle =[NSString stringWithFormat:@"距离%@生日%@",info.content,info.remainTimeInt<0?@"已过":@"还有"];
     }else{
-        strTitle =[NSString stringWithFormat:@"距离%@还有",info.content];
+        strTitle =[NSString stringWithFormat:@"距离%@%@",info.content,info.remainTimeInt<0?@"已过":@"还有"];
     }
     _workViews.labelTitle.text=strTitle;
     

@@ -135,8 +135,9 @@
         int isStart =[ToolUtils bigOrsmallOneDay:startDate withAnotherDay:[NSDate date]];
         
         if (isStart<0&&([dic[@"reqeatType"] isEqualToString:@"0"]||!dic[@"reqeatType"])) {/*如果置顶日程过期删除*/
-            [[NSFileManager defaultManager] removeItemAtPath:strPath error:nil];
-            isFirst=NO;
+//            [[NSFileManager defaultManager] removeItemAtPath:strPath error:nil];
+//            isFirst=NO;
+            dicDcomentFirst=[NSDictionary dictionaryWithDictionary:dic];
         }else {
             dicDcomentFirst=[NSDictionary dictionaryWithDictionary:dic];
         }
@@ -309,6 +310,7 @@
     
     if (_arrAll.count!=0) {
         _schedView.tableViewAll.separatorStyle=YES;
+        _schedView.imageFirst.userInteractionEnabled=YES;
     }else{
         [ToolUtils alertInfo:@"暂无数据"];
     }
@@ -531,6 +533,12 @@
 //按时间重新排列数据 remainTime
 - (void)updateTableViewDateMinToMax:(NSMutableArray *)array tableViewType:(tableViewScheduleType)tableViewType{
     NSMutableArray *arrInfo =[NSMutableArray arrayWithArray:[self changeArray:array orderWithKey:@"remainTimeInt" ascending:YES]];
+    
+    /***************************/
+    for (warningDataInfo * info  in arrInfo) {
+        if ([dicDcomentFirst[@"ID"] isEqualToString:info.warningID])[self updateFirstSchedule:info];/*同步置顶信息*/
+    }
+   
     
     switch (tableViewType) {
         case tableView_ScheduleType_All:{
@@ -784,7 +792,7 @@
     switch (tableView.tag) {
         case 0:{
         warningDataInfo * info =_arrAll[indexPath.row];
-            if ([info.warningType isEqualToString:@"0"]||[info.warningType isEqualToString:@"1"]||([info.isUserHandAdd isEqualToString:@"0"]&&[info.warningType isEqualToString:@"4"])) {
+            if ([info.warningType isEqualToString:@"0"]||[info.warningType isEqualToString:@"1"]||([info.isUserHandAdd isEqualToString:@"0"]&&[info.warningType isEqualToString:@"3"])) {
                 UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
                 WorkView *detaView = [storyboard instantiateViewControllerWithIdentifier:@"WorkView"];
                 [self.schedView.navigationController pushViewController:detaView animated:YES];

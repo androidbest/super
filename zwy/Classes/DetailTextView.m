@@ -20,11 +20,27 @@
     return self;
 }
 + (NSMutableAttributedString  *)setDateAttributedString:(NSString *)Title{
-    NSString *strTitle =[NSString stringWithFormat:@"还有 %@ 天",Title];
+    int Day =[Title intValue];
+    NSString *strTitle;
+    UIColor *colorFirst;
+    if (Day<0) {
+        strTitle =[NSString stringWithFormat:@"已过 %@ 天",[Title stringByReplacingOccurrencesOfString:@"-" withString:@""]];
+        colorFirst=[UIColor whiteColor];
+    }else if(Day==0){
+        strTitle =[NSString stringWithFormat:@"今天"];
+        NSMutableAttributedString *attriString = [[NSMutableAttributedString alloc] initWithString:strTitle];
+        NSDictionary *refreshAttributesFirst = @{NSForegroundColorAttributeName:[UIColor brownColor],};
+        [attriString setAttributes:refreshAttributesFirst range:NSMakeRange(0, attriString.length)];
+        return attriString;
+    }else{
+        strTitle =[NSString stringWithFormat:@"还有 %@ 天",Title];
+        colorFirst=[UIColor whiteColor];
+    }
+    
     NSMutableAttributedString *attriString = [[NSMutableAttributedString alloc] initWithString:strTitle]
     ;
     //把"还有"的字体颜色变为白色色
-    NSDictionary *refreshAttributesFirst = @{NSForegroundColorAttributeName:[UIColor whiteColor],};
+    NSDictionary *refreshAttributesFirst = @{NSForegroundColorAttributeName:colorFirst,};
     [attriString setAttributes:refreshAttributesFirst range:NSMakeRange(0, 2)];
     
     //把"天"的字体颜色变为白色色
@@ -58,7 +74,7 @@
     NSString *strTitle;
     UIColor *colorFirst;
     if (Day<0) {
-       strTitle =[NSString stringWithFormat:@"已过 %@ 天",[time stringByReplacingOccurrencesOfString:@"\n" withString:@"*"]];
+       strTitle =[NSString stringWithFormat:@"已过 %@ 天",[time stringByReplacingOccurrencesOfString:@"-" withString:@""]];
         colorFirst=[UIColor redColor];
     }else if(Day==0){
        strTitle =[NSString stringWithFormat:@"今天"];
@@ -105,6 +121,7 @@
 
 /*设置列表Cell标题字体*/
 + (NSMutableAttributedString *)setCellTitleAttributedString:(NSString *)title{
+    
     NSMutableAttributedString *attriString = [[NSMutableAttributedString alloc] initWithString:title];
     
     //把"人明"的字体颜色变为白色色

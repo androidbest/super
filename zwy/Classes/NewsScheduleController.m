@@ -228,6 +228,7 @@
         NSString *TimeNow = [formatter stringFromDate:[NSDate date]];
          int remainDays = [ToolUtils compareOneDay:TimeNow withAnotherDay:timeSolar];
         dataInfo.remainTime =[NSString stringWithFormat:@"%d",remainDays];
+        dataInfo.remainTimeInt=[dataInfo.remainTime intValue];
         dataInfo.warningDate=timeSolar;
         dataInfo.content=_newsView.textTitle.text;
         dataInfo.RequestType=[NSString stringWithFormat:@"%d",reqeatType];
@@ -466,6 +467,7 @@ NSString *strTimeInterval=[NSString stringWithFormat:@"%f",[ToolUtils TimeStingW
     NSString *TimeNow = [formatter stringFromDate:[NSDate date]];
     int remainDays = [ToolUtils compareOneDay:TimeNow withAnotherDay:timeSolar];
     dataInfo.remainTime =[NSString stringWithFormat:@"%d",remainDays];
+    dataInfo.remainTimeInt=[dataInfo.remainTime intValue];
     dataInfo.warningDate=timeSolar;
     dataInfo.content=_newsView.textTitle.text;
     dataInfo.RequestType=[NSString stringWithFormat:@"%d",reqeatType];

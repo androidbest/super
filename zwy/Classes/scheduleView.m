@@ -79,7 +79,7 @@
     
     [self.controller initWithData];
     
-    _imageFirst.userInteractionEnabled=YES;
+    _imageFirst.userInteractionEnabled=NO;
     UITapGestureRecognizer *tapGesture=[[UITapGestureRecognizer alloc] initWithTarget:self.controller action:@selector(PushMassTextView)];
     [_imageFirst addGestureRecognizer:tapGesture];
 }
