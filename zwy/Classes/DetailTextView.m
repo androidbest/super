@@ -29,7 +29,7 @@
     }else if(Day==0){
         strTitle =[NSString stringWithFormat:@"今天"];
         NSMutableAttributedString *attriString = [[NSMutableAttributedString alloc] initWithString:strTitle];
-        NSDictionary *refreshAttributesFirst = @{NSForegroundColorAttributeName:[UIColor brownColor],};
+        NSDictionary *refreshAttributesFirst = @{NSForegroundColorAttributeName:[UIColor yellowColor],};
         [attriString setAttributes:refreshAttributesFirst range:NSMakeRange(0, attriString.length)];
         return attriString;
     }else{
@@ -79,7 +79,7 @@
     }else if(Day==0){
        strTitle =[NSString stringWithFormat:@"今天"];
         NSMutableAttributedString *attriString = [[NSMutableAttributedString alloc] initWithString:strTitle];
-        NSDictionary *refreshAttributesFirst = @{NSForegroundColorAttributeName:[UIColor brownColor],};
+        NSDictionary *refreshAttributesFirst = @{NSForegroundColorAttributeName:[UIColor redColor],};
         [attriString setAttributes:refreshAttributesFirst range:NSMakeRange(0, attriString.length)];
         return attriString;
     }else{
