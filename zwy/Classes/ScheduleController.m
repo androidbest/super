@@ -500,46 +500,37 @@
      if (self.HUD)[self.HUD hide:YES afterDelay:1];
 }
 
-//按时间重新排列数据
-- (void)updateTableViewDateMinToMax:(NSMutableArray *)array tableViewType:(tableViewScheduleType)tableViewType{
-    NSMutableArray *arrInfo =[NSMutableArray array];
-    int min ;
-    int all_Min[500];/*定义顺序存放数组*/
-    for (int i=0; i<500; i++) {
-        all_Min[i]=10000;
-    }
+- (NSArray *) changeArray:(NSMutableArray *)dicArray orderWithKey:(NSString *)key ascending:(BOOL)yesOrNo{
+    NSMutableArray *arrBefore;//未过期日程array
+    NSMutableArray *arrAfter;//已过期日程array
+    NSMutableArray *arrAll;//排序完成的日程array
     
+    //设置排序方式key
+    NSSortDescriptor *distanceDescriptor = [[NSSortDescriptor alloc] initWithKey:key ascending:yesOrNo];
+    NSArray *descriptors = [NSArray arrayWithObjects:distanceDescriptor,nil];
     
-    for (int i=0; i<array.count; i++) {
-        min=10000;
-        
-        for (int  j=0; j<array.count; j++) {
-            int max =[[array[j] remainTime] intValue];
-            if (i==0) {
-                if (max<min) {
-                    min=max;
-                }
-            }else {
-                if (max<min&&max>all_Min[i-1]) {
-                    min=max;
-                }
-            }
- 
-        }
-        
-        all_Min[i]=min;
-    }
+    //未过期日程排序
+    NSPredicate *thePredicate = [NSPredicate predicateWithFormat:@"SELF.remainTimeInt >= 0"];
+    arrBefore =[NSMutableArray arrayWithArray:[dicArray filteredArrayUsingPredicate:thePredicate]];
+    [arrBefore sortUsingDescriptors:descriptors];
+    
+    //已过期日程排序
+    arrAfter=dicArray;
+    [arrAfter removeObjectsInArray:arrBefore];
+    [arrAfter sortUsingDescriptors:descriptors];
+    
+    arrAll =[NSMutableArray new];
+    [arrAll addObjectsFromArray:arrBefore];
+    [arrAll addObjectsFromArray:arrAfter];
+    
 
-    /*将数据重新排列*/
-    for (int k=0; all_Min[k]!=10000;k++) {
-        for (int i=0; i<array.count; i++) {
-            int waringRemainTime =[[array[i] remainTime] intValue];
-            if (waringRemainTime == all_Min[k]) {
-                [arrInfo addObject:array[i]];
-            }
-        }
-        
-    }
+    return arrAll;
+    
+}
+
+//按时间重新排列数据 remainTime
+- (void)updateTableViewDateMinToMax:(NSMutableArray *)array tableViewType:(tableViewScheduleType)tableViewType{
+    NSMutableArray *arrInfo =[NSMutableArray arrayWithArray:[self changeArray:array orderWithKey:@"remainTimeInt" ascending:YES]];
     
     switch (tableViewType) {
         case tableView_ScheduleType_All:{
@@ -732,7 +723,6 @@
                 cell.labelTitle.text=Title;
                 cell.labelTime.text = info.warningDate;
             }
-           
             cell.labelDays.attributedText =[DetailTextView setCellTimeAttributedString:info.remainTime];
             /***************************/
         }

@@ -39,7 +39,7 @@
     }else if (_optionView.arrReqeatePeoples) {
         for (int i=0;i<_optionView.arrReqeatePeoples.count-2; i++) {
             PeopelInfo *info =_optionView.arrReqeatePeoples[i];
-            NSString * strPre=[NSString stringWithFormat:@"SELF.tel == '%@'",info.tel];
+            NSString * strPre=[NSString stringWithFormat:@"SELF.tel == '%@' AND SELF.Name =='%@'",info.tel,info.Name];
             NSPredicate * predicate;
             predicate = [NSPredicate predicateWithFormat:strPre];
             NSArray *arr=[self.arrAllLink filteredArrayUsingPredicate: predicate];
@@ -48,14 +48,13 @@
        
     }
     
-    NSString * strPre=[NSString stringWithFormat:@"SELF.tel == '%@'",user.msisdn];
+    NSString * strPre=[NSString stringWithFormat:@"SELF.tel == '%@' AND SELF.Name =='%@'",user.msisdn,user.username];
     NSPredicate * predicate;
     predicate = [NSPredicate predicateWithFormat:strPre];
     NSArray *arr=[self.arrAllLink filteredArrayUsingPredicate: predicate];
     [self.arrAllLink removeObjectsInArray:arr];
     
 }
-
 
 
 //返回按钮

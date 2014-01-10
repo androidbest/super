@@ -18,6 +18,7 @@
 @property (strong ,nonatomic)NSString *DateType;//数据类型
 @property (strong ,nonatomic)NSString *UserTel;//电话号码
 @property (strong ,nonatomic)NSString *remainTime;//剩余天数
+@property (assign ,nonatomic)int      remainTimeInt;//剩余天数
 @property (strong ,nonatomic)NSString *greetingType;//短信模版类型
 @property (strong ,nonatomic)NSString *brithdayDate;//生日时间
 @property (strong ,nonatomic)NSString *isUserHandAdd;//是否为手动添加

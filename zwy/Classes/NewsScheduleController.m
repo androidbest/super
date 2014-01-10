@@ -84,6 +84,16 @@
             isFirst=NO;
         }
         
+        /*如果为系统节日，设置不可编辑*/
+        if ([_newsView.info.isUserHandAdd isEqualToString:@"3"]&&[_newsView.info.warningType isEqualToString:@"3"]) {
+            [_newsView.btnSave setHidden:YES];
+            [_newsView.btnCancel setHidden:YES];
+            _newsView.switchReqeat.enabled=NO;
+            _newsView.textTitle.enabled=NO;
+            _newsView.btnClass.enabled=NO;
+            _newsView.btnOptionTime.enabled=NO;
+        }
+        
         /*重复类型*/
         if (![_newsView.info.RequestType isEqualToString:@""]) {
            int reqeat=[_newsView.info.RequestType intValue];
@@ -210,6 +220,7 @@
         self.HUD.customView=imageView;
         self.HUD.mode = MBProgressHUDModeCustomView;
         [self.HUD hide:YES afterDelay:1];
+        
         /*更新数据*/
         warningDataInfo *dataInfo=[warningDataInfo new];
         NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
@@ -298,7 +309,7 @@
         [_newsView.textTitle becomeFirstResponder];
         return;
     }
-    
+/*
      NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setFormatterBehavior:NSDateFormatterBehaviorDefault];
     [formatter setDateFormat:@"yyyy-MM-dd"];
@@ -313,7 +324,7 @@
         [ToolUtils alertInfo:@"无效的日程"];
         return;
     }
-    
+*/
     
     /*提交等待*/
     self.HUD =[[MBProgressHUD alloc] initWithView:self.newsView.view];
@@ -387,6 +398,13 @@ NSString *strTimeInterval=[NSString stringWithFormat:@"%f",[ToolUtils TimeStingW
 #pragma mark -UISwitch点击事件
 - (void)btnFirst:(UISwitch *)sender{
     isFirst=sender.on;
+    if (_newsView.btnSave.hidden) {
+        /*系统节日设置置顶后直接dismissViewMode*/
+        [self showHUDText:[NSString stringWithFormat:@"%@",sender.on? @"置顶成功":@"取消置顶成功"] showTime:1];
+        if ([self respondsToSelector:@selector(setFirstWaringData)]) {
+            [self performSelector:@selector(setFirstWaringData) withObject:self afterDelay:1.0];
+        }
+    }
 }
 
 - (void)switchReqeat:(UISwitch *)sender{
@@ -432,6 +450,28 @@ NSString *strTimeInterval=[NSString stringWithFormat:@"%f",[ToolUtils TimeStingW
         NSString *strLunarTime=[NSString stringWithFormat:@"%@年%@月%@日",strYear,strMonth,strDay];
         [_newsView.btnOptionTime setTitle:strLunarTime forState:UIControlStateNormal];
     }
+}
+
+/*系统节日设置置顶后直接dismissViewMode*/
+- (void)setFirstWaringData{
+    /*保持置顶数据*/
+    if (isFirst)[self saveFristWarningWithID:_newsView.info.warningID];
+    else [self deleteFirstWarningWithID:_newsView.info.warningID LocalNotificationWithDelete:NO];
+    /*********/
+    
+    /*更新数据*/
+    warningDataInfo *dataInfo=[warningDataInfo new];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *TimeNow = [formatter stringFromDate:[NSDate date]];
+    int remainDays = [ToolUtils compareOneDay:TimeNow withAnotherDay:timeSolar];
+    dataInfo.remainTime =[NSString stringWithFormat:@"%d",remainDays];
+    dataInfo.warningDate=timeSolar;
+    dataInfo.content=_newsView.textTitle.text;
+    dataInfo.RequestType=[NSString stringWithFormat:@"%d",reqeatType];
+    [_newsView.newsScheduleDelegate updataWarning:dataInfo];
+    [self showHUDText:@"置顶成功" showTime:1];
+    [self.newsView dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - ActionSheetViewDetaSource
@@ -519,5 +559,15 @@ NSString *strTimeInterval=[NSString stringWithFormat:@"%f",[ToolUtils TimeStingW
         ScheduleType=buttonIndex;
     }
 
+}
+
+- (void)showHUDText:(NSString *)text showTime:(NSTimeInterval)time{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.newsView.view animated:YES];
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText =text;
+    hud.margin = 10.f;
+    hud.yOffset = 150.f;
+    hud.removeFromSuperViewOnHide = YES;
+    [hud hide:YES afterDelay:time];
 }
 @end

@@ -54,11 +54,27 @@
 }
 
 + (NSMutableAttributedString *)setCellTimeAttributedString:(NSString *)time{
-    NSString *strTitle =[NSString stringWithFormat:@"还有 %@ 天",time];
-    NSMutableAttributedString *attriString = [[NSMutableAttributedString alloc] initWithString:strTitle]
-    ;
+    int Day =[time intValue];
+    NSString *strTitle;
+    UIColor *colorFirst;
+    if (Day<0) {
+       strTitle =[NSString stringWithFormat:@"已过 %@ 天",[time stringByReplacingOccurrencesOfString:@"\n" withString:@"*"]];
+        colorFirst=[UIColor redColor];
+    }else if(Day==0){
+       strTitle =[NSString stringWithFormat:@"今天"];
+        NSMutableAttributedString *attriString = [[NSMutableAttributedString alloc] initWithString:strTitle];
+        NSDictionary *refreshAttributesFirst = @{NSForegroundColorAttributeName:[UIColor brownColor],};
+        [attriString setAttributes:refreshAttributesFirst range:NSMakeRange(0, attriString.length)];
+        return attriString;
+    }else{
+       strTitle =[NSString stringWithFormat:@"还有 %@ 天",time];
+        colorFirst=[UIColor blackColor];
+    }
+    
+    
+    NSMutableAttributedString *attriString = [[NSMutableAttributedString alloc] initWithString:strTitle];
     //把"还有"的字体颜色变为白色色
-    NSDictionary *refreshAttributesFirst = @{NSForegroundColorAttributeName:[UIColor blackColor],};
+    NSDictionary *refreshAttributesFirst = @{NSForegroundColorAttributeName:colorFirst,};
     [attriString setAttributes:refreshAttributesFirst range:NSMakeRange(0, 2)];
     
     //把"天"的字体颜色变为白色色

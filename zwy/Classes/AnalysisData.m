@@ -578,6 +578,7 @@ RespInfo *info=[RespInfo new];
         }
         
         int remainDays = [ToolUtils compareOneDay:TimeNow withAnotherDay:data.warningDate];
+        data.remainTimeInt=remainDays;
         data.remainTime  =[NSString stringWithFormat:@"%d",remainDays];
         /****/
        [warning.warningList addObject:data];

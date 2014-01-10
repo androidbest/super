@@ -295,8 +295,9 @@ static CoreDataManageContext *coreData=nil;
     
     int count =[[self.managedObjectContext executeFetchRequest:frq error:nil] count];
     int getCount=count-offset-limit;
+    int limitCount=count-offset;
     if (count>limit&&getCount>0){ offset=count-offset-limit; }
-    else if(count-offset>0){
+    else if(limitCount>0){
         limit=count-offset;
         offset=0;}
     
