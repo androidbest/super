@@ -220,6 +220,8 @@
     NSDictionary *dic=[notification userInfo];
     [activityIndicatorView stopAnimating];
         RespInfo *info=[AnalysisData imSend:dic];
+       NSLog(@"%@",info.respCode);
+    
         if([info.respCode isEqualToString:@"0"]){
             sendShowVoicetime.text=[NSString stringWithFormat:@"%@''",voicetime];
         }else{
@@ -566,6 +568,11 @@
         }
         [HTTPRequest imageWithURL:url imageView:cell.leftHead placeUIButtonImage:[UIImage imageNamed:@"default_avatar"]];
         [cell.leftHead addTarget:self action:@selector(leftPushDetail:) forControlEvents:UIControlEventTouchUpInside];
+        //由于android与ios字段定义不一致所以增加此判断
+        if([msgObj.chattype isEqualToString:@"1"]){
+            //随便写的文字
+           msgObj.content=@"语音";
+        }
         [ToolUtils bubbleView:msgObj.content from:NO withPosition:60 view:cell.leftMessage selfType:msgObj.chattype voicetime:msgObj.voicetime];
         if([strBool isEqualToString:@"1"]){
             cell.chatTime.hidden=YES;
