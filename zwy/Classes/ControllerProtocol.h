@@ -15,7 +15,8 @@
 #import "VoiceConverter.h"
 #import "VoiceRecorderBaseVC.h"
 #import "PullHistroyTableView.h"
-@protocol ControllerProtocol <UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate,UITextViewDelegate,UISearchBarDelegate,MFMessageComposeViewControllerDelegate,AIMTableViewIndexBarDelegate,MBProgressHUDDelegate,UIWebViewDelegate,UIActionSheetDelegate,UIAlertViewDelegate,SGFocusImageFrameDelegate,UISearchDisplayDelegate,VoiceRecorderBaseVCDelegate,UIGestureRecognizerDelegate,PullHistroyTableViewDelegate>
+#import "RecordAudio.h"
+@protocol ControllerProtocol <UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate,UITextViewDelegate,UISearchBarDelegate,MFMessageComposeViewControllerDelegate,AIMTableViewIndexBarDelegate,MBProgressHUDDelegate,UIWebViewDelegate,UIActionSheetDelegate,UIAlertViewDelegate,SGFocusImageFrameDelegate,UISearchDisplayDelegate,VoiceRecorderBaseVCDelegate,UIGestureRecognizerDelegate,PullHistroyTableViewDelegate,RecordAudioDelegate>
 @optional
 - (void)initWithData;
 //初始化进度条
@@ -23,4 +24,8 @@
 -(void)updateAddressBook;
 
 - (void)BasePrepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender;
+
+- (void)dismissWithView;
+
+- (void)viewWillAppearBase;
 @end

@@ -240,6 +240,9 @@
 		65248506180C2CE700440958 /* navigation_updata_out.png in Resources */ = {isa = PBXBuildFile; fileRef = 65248504180C2CE700440958 /* navigation_updata_out.png */; };
 		65248507180C2CE700440958 /* navigation_updata_over.png in Resources */ = {isa = PBXBuildFile; fileRef = 65248505180C2CE700440958 /* navigation_updata_over.png */; };
 		6581E96F183C68E500A10D10 /* SevenSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 6581E96E183C68E500A10D10 /* SevenSwitch.m */; };
+		65838C761881685A009D03BA /* amrFileCodec.m in Sources */ = {isa = PBXBuildFile; fileRef = 65838C751881685A009D03BA /* amrFileCodec.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		65838C791881696C009D03BA /* RecordAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = 65838C781881696C009D03BA /* RecordAudio.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		65838C7B1881782C009D03BA /* 1389368277616.amr in Resources */ = {isa = PBXBuildFile; fileRef = 65838C7A1881782C009D03BA /* 1389368277616.amr */; };
 		659995D31828A0DF00694F57 /* AlterPassword.m in Sources */ = {isa = PBXBuildFile; fileRef = 659995D21828A0DF00694F57 /* AlterPassword.m */; };
 		659995D61828A10500694F57 /* AlterPasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 659995D51828A10500694F57 /* AlterPasswordController.m */; };
 		659995D91828E86100694F57 /* AddPeopleBookView.m in Sources */ = {isa = PBXBuildFile; fileRef = 659995D81828E86100694F57 /* AddPeopleBookView.m */; };
@@ -815,6 +818,10 @@
 		65248505180C2CE700440958 /* navigation_updata_over.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navigation_updata_over.png; sourceTree = "<group>"; };
 		6581E96D183C68E500A10D10 /* SevenSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SevenSwitch.h; sourceTree = "<group>"; };
 		6581E96E183C68E500A10D10 /* SevenSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SevenSwitch.m; sourceTree = "<group>"; };
+		65838C751881685A009D03BA /* amrFileCodec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = amrFileCodec.m; sourceTree = "<group>"; };
+		65838C771881696C009D03BA /* RecordAudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordAudio.h; sourceTree = "<group>"; };
+		65838C781881696C009D03BA /* RecordAudio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordAudio.m; sourceTree = "<group>"; };
+		65838C7A1881782C009D03BA /* 1389368277616.amr */ = {isa = PBXFileReference; lastKnownFileType = file; path = 1389368277616.amr; sourceTree = "<group>"; };
 		659995D11828A0DF00694F57 /* AlterPassword.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlterPassword.h; sourceTree = "<group>"; };
 		659995D21828A0DF00694F57 /* AlterPassword.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlterPassword.m; sourceTree = "<group>"; };
 		659995D41828A10500694F57 /* AlterPasswordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlterPasswordController.h; sourceTree = "<group>"; };
@@ -1212,8 +1219,11 @@
 		59491F34186B325E00FF9B3F /* voiceutils */ = {
 			isa = PBXGroup;
 			children = (
+				65838C771881696C009D03BA /* RecordAudio.h */,
+				65838C781881696C009D03BA /* RecordAudio.m */,
 				59491F50186B331700FF9B3F /* amrFileCodec.h */,
 				59491F51186B331700FF9B3F /* amrFileCodec.mm */,
+				65838C751881685A009D03BA /* amrFileCodec.m */,
 				59491F52186B331700FF9B3F /* wav.h */,
 				59491F53186B331700FF9B3F /* wav.mm */,
 				59491F56186B331700FF9B3F /* interf_dec.h */,
@@ -1424,6 +1434,7 @@
 		595CB98317F164AF00228A6E /* zwy */ = {
 			isa = PBXGroup;
 			children = (
+				65838C7A1881782C009D03BA /* 1389368277616.amr */,
 				595B669D186BC3E2007D6942 /* libopencore-amrnb.a */,
 				595B669E186BC3E2007D6942 /* libopencore-amrwb.a */,
 				65F9C6E9186296FE001B804A /* libTCWeiboSDK.a */,
@@ -2514,6 +2525,7 @@
 				65AE47941865A41F00EF9022 /* images_1_6_addressBook.png in Resources */,
 				65A5EA6118472BA9004C77E3 /* schedule_btn.png in Resources */,
 				659F148818585DD0006BFC4D /* newsBanner1.jpg in Resources */,
+				65838C7B1881782C009D03BA /* 1389368277616.amr in Resources */,
 				5977D18118225020003DD5A3 /* pic_sms@2x.png in Resources */,
 				65B3AC6F1819274200F2EC04 /* tabItem_MyArBook_over@2x.png in Resources */,
 				595B7A0218094B53006DD766 /* more_update_pwd_img@2x.png in Resources */,
@@ -2780,6 +2792,7 @@
 				65A35B6E1820E50F002C7489 /* ActionSheetWeibo.m in Sources */,
 				65B19E131868348100C61C16 /* NSString+PinYin4Cocoa.m in Sources */,
 				65A26CA61839C454006AF226 /* ScheduleController.m in Sources */,
+				65838C791881696C009D03BA /* RecordAudio.m in Sources */,
 				65E59A8E184435B4004444E5 /* UpdataDate.m in Sources */,
 				65B19E121868348100C61C16 /* HanyuPinyinOutputFormat.m in Sources */,
 				596D6EEB18085C39002CD0B3 /* InformationView.m in Sources */,
@@ -2826,6 +2839,7 @@
 				6581E96F183C68E500A10D10 /* SevenSwitch.m in Sources */,
 				594204501802E5AA00AA35C3 /* AFHTTPSessionManager.m in Sources */,
 				595CB98E17F164AF00228A6E /* AppDelegate.m in Sources */,
+				65838C761881685A009D03BA /* amrFileCodec.m in Sources */,
 				65A3C253185EA5890098C8F3 /* CommentListController.m in Sources */,
 				59491F3F186B32D200FF9B3F /* CustomWindow.m in Sources */,
 				595CBA0517F1925700228A6E /* Reachability.m in Sources */,

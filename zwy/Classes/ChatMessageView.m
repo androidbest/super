@@ -181,6 +181,8 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.controller viewWillAppearBase];
     if(_arrPeoples.count>0){
         NSString *temp=@"";
     for(PeopelInfo *info in _arrPeoples){
@@ -213,6 +215,8 @@
 
 //    //移除观察者
     [self removeMessageObserver];
+    
+    [self.controller dismissWithView];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];

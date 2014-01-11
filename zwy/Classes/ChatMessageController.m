@@ -50,6 +50,8 @@
     ChatMessageCell * gloabcell; //全局cell
     
     NSInteger ContentCount;
+    
+    RecordAudio *recordAudio;//Mar音频播放器
 
 }
 
@@ -61,6 +63,7 @@
         arrTime=[NSMutableArray new];
         arrBool=[NSMutableArray new];
         chatMsgObjArr=[NSMutableArray new];
+  
         [[NSNotificationCenter defaultCenter]addObserver:self
                                                 selector:@selector(handleDataSelf:)
                                                     name:xmlNotifInfo
@@ -621,27 +624,36 @@
 
 //播放音频
 -(void)UesrClicked:(UIButton*)btn{
-    
-    
-    
+    [recordAudio stopPlay];
     NSString *voiceurl=((VoiceBtn *)btn).voiceurl;
     if (!voiceurl)return;
     NSString * PicPath =[[voiceurl componentsSeparatedByString:@"/"] lastObject];
     NSString * strpaths =[NSString stringWithFormat:@"%@/%@/%@",DocumentsDirectory,MESSGEFILEPATH,PicPath];
     NSData * data = [NSData dataWithContentsOfFile:strpaths];
+    
     if (!data) return;
     PicPath=[PicPath stringByDeletingPathExtension];
-    strpaths =[NSString stringWithFormat:@"%@/%@/%@.wav",DocumentsDirectory,MESSGEFILEPATH,PicPath];
-    data = [NSData dataWithContentsOfFile:strpaths];
-    if(data){
+  NSString *strpathWAV =[NSString stringWithFormat:@"%@/%@/%@.wav",DocumentsDirectory,MESSGEFILEPATH,PicPath];
+  NSData  *WAVData = [NSData dataWithContentsOfFile:strpathWAV];
+    if(WAVData){
         [self audioPlay:PicPath];
     }else{
         [self amrTowav:PicPath];
-    data = [NSData dataWithContentsOfFile:strpaths];
-    if(data){
-    [self audioPlay:PicPath];
+        WAVData = [NSData dataWithContentsOfFile:strpathWAV];
+        if(WAVData)[self audioPlay:PicPath];
+        else[recordAudio play:data];
     }
-//      [[NSFileManager defaultManager] fileExistsAtPath:strSavePath];  
+}
+
+-(void)RecordStatus:(int)status {
+    if (status==0){
+        //播放中
+    } else if(status==1){
+        //完成
+        NSLog(@"播放完成");
+    }else if(status==2){
+        //出错
+        NSLog(@"播放出错");
     }
 }
 
@@ -827,6 +839,18 @@
     }else{
         [self.chatMessageView.send setEnabled:YES];
         [self.chatMessageView.send setAlpha:1.0];
+    }
+}
+
+- (void)dismissWithView{
+    [recordAudio stopPlay];
+    if (recordAudio)recordAudio=nil;
+}
+
+- (void)viewWillAppearBase{
+    if (!recordAudio) {
+        recordAudio = [[RecordAudio alloc]init];
+        recordAudio.delegate = self;
     }
 }
 @end

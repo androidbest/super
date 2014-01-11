@@ -50,4 +50,16 @@
 -(void)initBackBarButtonItem:(BaseView *)baseView{
      baseView.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:baseView action:nil];
 }
+
+- (void)dismissWithView{
+}
+
+- (void)viewWillAppearBase{
+
+}
+
+//0 播放 1 播放完成 2出错
+-(void)RecordStatus:(int)status{
+
+}
 @end
