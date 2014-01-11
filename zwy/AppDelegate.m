@@ -276,7 +276,7 @@ UIBackgroundTaskIdentifier backgroundTask;//写成成员
     
     /*插入数据*/
     CoreDataManageContext *coredataManage =[CoreDataManageContext newInstance];
-    BOOL ischek;
+    BOOL ischek=NO;
     for (int i=0; i<arrmessages.count; i++) {
         ChatMsgObj *obj =arrmessages[i];
         
@@ -295,8 +295,8 @@ UIBackgroundTaskIdentifier backgroundTask;//写成成员
     }
 
     NSDictionary *dicNOtification;
-    if (!ischek) dicNOtification =@{@"isCheck":@"0",};
-    else dicNOtification =@{@"isCheck":@"1",};
+    if (!ischek) dicNOtification =@{@"isCheck":@"0"};
+    else dicNOtification =@{@"isCheck":@"1"};
     /*刷新数据
      *发送通告
      *观察者为"MessageController"--"ChatMessageController"--"HomeController"
