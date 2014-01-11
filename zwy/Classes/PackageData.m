@@ -670,10 +670,10 @@ NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"U
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];
-    NSData *Servciedata =[NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
-    NSDictionary *dic =[ParseXML dictionaryForXMLData:Servciedata error:nil];
-    NSLog(@"%@",dic);
-   // [HTTPRequest JSONRequestOperation:delegate Request:request  SELType:@"servicelayer"];
+//    NSData *Servciedata =[NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+//    NSDictionary *dic =[ParseXML dictionaryForXMLData:Servciedata error:nil];
+//    NSLog(@"%@",dic);
+   [HTTPRequest JSONRequestOperation:delegate Request:request  SELType:@"servicelayer"];
 }
 
 //转入后台提示（回传服务器）

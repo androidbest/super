@@ -289,8 +289,8 @@
     int month =[[[strTime componentsSeparatedByString:@"-"] objectAtIndex:1] integerValue];
     int day =[[[strTime componentsSeparatedByString:@"-"] lastObject] integerValue];
     hjz lunar =solar_to_lunar(year, month, day);//将当前的公历时间转换为农历
-    NSString *strYear =[NSString stringWithFormat:@"%d",lunar.year];
-    strYear =[Date_string setYearBaseSting:strYear];
+//    NSString *strYear =[NSString stringWithFormat:@"%d",lunar.year];
+//    strYear =[Date_string setYearBaseSting:strYear];
     NSString *strMonth =[NSString stringWithFormat:@"%dx%d",lunar.month,lunar.reserved];
     if (lunar.month<10) strMonth =[@"0" stringByAppendingString:strMonth];
     strMonth =[Date_string setMonthBaseSting:strMonth];
