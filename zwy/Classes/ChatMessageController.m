@@ -643,6 +643,12 @@
         if(WAVData)[self audioPlay:PicPath];
         else[recordAudio play:data];
     }
+    
+    
+//    NSString * strpaths =[NSString stringWithFormat:@"%@/%@/%@.amr",DocumentsDirectory,MESSGEFILEPATH,@""];
+//    NSData * data = [NSData dataWithContentsOfFile:strpaths];
+//    [recordAudio play:data]
+    
 }
 
 -(void)RecordStatus:(int)status {
