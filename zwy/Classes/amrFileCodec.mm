@@ -332,8 +332,8 @@ int DecodeAMRFileToWAVEFile(const char* pchAMRFileName, const char* pchWAVEFilen
 		fclose(fpamr);
 		return 0;
 	}
-	
-	// 创建并初始化WAVE文件
+
+// 创建并初始化WAVE文件
 //	NSArray *paths               = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 //	NSString *documentPath       = [paths objectAtIndex:0];
 //	NSString *docFilePath        = [documentPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%s", pchWAVEFilename]];
