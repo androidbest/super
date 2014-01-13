@@ -39,7 +39,7 @@
                                    error:&error];
 //        AudioSessionSetProperty (kAudioSessionProperty_OverrideAudioRoute,
 //								 sizeof (audioRouteOverride),
-//								 &audioRouteOverride);
+//								 &audioRouteOverride); 
         
         //Activate the session
         [audioSession setActive:YES error: &error];
