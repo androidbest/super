@@ -625,6 +625,10 @@
 //播放音频
 -(void)UesrClicked:(UIButton*)btn{
     [recordAudio stopPlay];
+    if ([player isPlaying]) {
+        [player stop];
+        player=nil;
+    }
     NSString *voiceurl=((VoiceBtn *)btn).voiceurl;
     if (!voiceurl)return;
     NSString * PicPath =[[voiceurl componentsSeparatedByString:@"/"] lastObject];
