@@ -64,6 +64,7 @@
                 [appConfig setValue:user.username forKey:@"username"];
                 [appConfig setValue:user.eccode forKey:@"eccode"];
                 [appConfig setValue:user.headurl forKey:@"headurl"];
+                [appConfig setValue:user.province forKey:@"userprovince"];
                 [appConfig setValue:user.job forKey:@"job"];
                 [appConfig setValue:user.userid forKey:@"userid"];
                 [appConfig setBool:YES forKey:@"isLogin"];

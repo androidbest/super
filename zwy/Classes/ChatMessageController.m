@@ -625,6 +625,10 @@
 //播放音频
 -(void)UesrClicked:(UIButton*)btn{
     [recordAudio stopPlay];
+    if (player.playing){
+        [player stop];
+         player=NULL;
+    }
     NSString *voiceurl=((VoiceBtn *)btn).voiceurl;
     if (!voiceurl)return;
     NSString * PicPath =[[voiceurl componentsSeparatedByString:@"/"] lastObject];
@@ -643,7 +647,7 @@
         if(WAVData)[self audioPlay:PicPath];
         else[recordAudio play:data];
     }
-}
+}              
 
 -(void)RecordStatus:(int)status {
     if (status==0){

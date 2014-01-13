@@ -139,7 +139,7 @@ int caclAMRFrameSize(unsigned char frameHeader)
 
 // 读第一个帧 - (参考帧)
 // 返回值: 0-出错; 1-正确
-int ReadAMRFrameFirstData(char* fpamr,int pos,int maxLen, unsigned char frameBuffer[], int* stdFrameSize, unsigned char* stdFrameHeader)
+int ReadAMRFrameFirstData( char* fpamr,int pos,int maxLen, unsigned char frameBuffer[], int* stdFrameSize, unsigned char* stdFrameHeader)
 {
     int nPos = 0;
 	memset(frameBuffer, 0, sizeof(frameBuffer));
@@ -560,7 +560,7 @@ NSData* EncodeWAVEToAMR(NSData* data, int nChannels, int nBitsPerSample)
     NSLog(@"documentPath=%@", documentPath);
     
     if (data==nil){
-        //data = [NSData dataWithContentsOfFile:wavFile];
+        //data = [NSData dataWithContentsaOfFile:wavFile];
         return nil;
     }
     
