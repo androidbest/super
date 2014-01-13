@@ -34,13 +34,16 @@
         //since we are going to do both lets set it up once.
         [audioSession setCategory:AVAudioSessionCategoryPlayAndRecord error: &error];
         
-        UInt32 audioRouteOverride = kAudioSessionOverrideAudioRoute_Speaker;
-        AudioSessionSetProperty (kAudioSessionProperty_OverrideAudioRoute,
-								 sizeof (audioRouteOverride),
-								 &audioRouteOverride);
+//        UInt32 audioRouteOverride = kAudioSessionOverrideAudioRoute_Speaker;
+        [audioSession overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker
+                                   error:&error];
+//        AudioSessionSetProperty (kAudioSessionProperty_OverrideAudioRoute,
+//								 sizeof (audioRouteOverride),
+//								 &audioRouteOverride); 
         
         //Activate the session
         [audioSession setActive:YES error: &error];
+        
     }
     return self;
 }

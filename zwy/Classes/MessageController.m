@@ -111,7 +111,10 @@
 //    cell.username.text=sessionInfo.session_receivername;
     NSString *url=@"";
     if(sessionInfo.session_groupuuid&&![sessionInfo.session_groupuuid isEqualToString:@"null"]&&![sessionInfo.session_groupuuid isEqualToString:@""]&&![sessionInfo.session_groupuuid isEqualToString:@"(null)"]){
-        url=[sessionInfo.session_receiveravatar componentsSeparatedByString:@","][0];
+        NSArray *arr=[sessionInfo.session_receiveravatar componentsSeparatedByString:@","];
+        if(arr.count>0&&arr[0]&&![arr[0] isEqualToString:@""]&&![arr[0] isEqualToString:@"null"]&&![arr[0] isEqualToString:@"(null)"]){
+           url=[sessionInfo.session_receiveravatar componentsSeparatedByString:@","][0];
+        }
     }else{
         url=sessionInfo.session_receiveravatar;
     }

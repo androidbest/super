@@ -82,7 +82,6 @@ UIBackgroundTaskIdentifier backgroundTask;//写成成员
         user.headurl=[appConfig stringForKey:@"headurl"];
         user.job=[appConfig stringForKey:@"job"];
         user.userid=[appConfig stringForKey:@"userid"];
-        user.province=[appConfig stringForKey:@"userprovince"];
     }
     
     [WeiboSDK enableDebugMode:YES];
