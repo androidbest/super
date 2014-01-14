@@ -325,6 +325,7 @@ RespInfo *info=[RespInfo new];
         info.time =[[[arr objectAtIndex:i] objectForKey:@"time"] objectForKey:@"text"];
         info.title= [[[arr objectAtIndex:i] objectForKey:@"title"] objectForKey:@"text"];
         info.type =[[[arr objectAtIndex:i] objectForKey:@"type"] objectForKey:@"text"];
+        info.transactdocid=[[[arr objectAtIndex:i] objectForKey:@"transactdocid"] objectForKey:@"text"];
         [doc.resplist addObject:info];
     }
     return doc;
@@ -382,9 +383,8 @@ RespInfo *info=[RespInfo new];
         info.title= [[[arr objectAtIndex:i] objectForKey:@"title"] objectForKey:@"text"];
         info.type =[[[arr objectAtIndex:i] objectForKey:@"type"] objectForKey:@"text"];
         info.name =[[[arr objectAtIndex:i] objectForKey:@"name"] objectForKey:@"text"];
+        info.transactdocid=[[[arr objectAtIndex:i] objectForKey:@"transactdocid"] objectForKey:@"text"];
     }
-    
-    
     return info;
 }
 

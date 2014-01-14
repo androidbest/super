@@ -524,7 +524,7 @@ int SkipCaffHead(char* buf){
     u16 mFileFlags = readUInt16(buf);
     buf+=2;
     
-    
+
     printf("%u---%u",mFileVersion,mFileFlags);
     //desc free data
     u32 magics[3] = {0x64657363,0x66726565,0x64617461};

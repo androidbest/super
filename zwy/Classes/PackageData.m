@@ -279,10 +279,10 @@ NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"U
 }
 
 //获取公文信息
-+ (void)getDocInfo:(id)delegate ID:(NSString *)Id{
++ (void)getDocInfo:(id)delegate ID:(NSString *)Id transactdocid:(NSString *)transactdocid{
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>getDocInfo</METHOD><SESSIONID>2</SESSIONID><ID>%@</ID></BODY></MESSAGE>",user.msisdn,user.eccode,Id];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>getDocInfo</METHOD><SESSIONID>2</SESSIONID><ID>%@</ID><transactdocid>%@</transactdocid></BODY></MESSAGE>",user.msisdn,user.eccode,Id,transactdocid];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];
@@ -302,10 +302,10 @@ NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"U
 }
 
 //办理与审核公文 (type：1、办理 2、审核 OperType: 0、办理结束 1、下一步办理人 2、报领导审批 status：1、同意 2、不同意)
-+ (void)handleDoc:(id)delegate ID:(NSString *)Id Type:(NSString *)type OperType:(NSString *)operType tempTel:(NSString *)tel Status:(NSString *)status context:(NSString *)content groupid:(NSString *)groupid{
++ (void)handleDoc:(id)delegate ID:(NSString *)Id Type:(NSString *)type OperType:(NSString *)operType tempTel:(NSString *)tel Status:(NSString *)status context:(NSString *)content groupid:(NSString *)groupid transactdocid:(NSString *)transactdocid {
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>handleDoc</METHOD><SESSIONID>2</SESSIONID><ID>%@</ID><TYPE>%@</TYPE><OPERTYPE>%@</OPERTYPE><TEMP>%@</TEMP><STATUS>%@</STATUS><REPLYCONTENT>%@</REPLYCONTENT><GROUPID>%@</GROUPID></BODY></MESSAGE>",user.msisdn,user.eccode,Id,type,operType,tel,status,content,groupid];
+    NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>2</SECURITYKEY></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>handleDoc</METHOD><SESSIONID>2</SESSIONID><ID>%@</ID><TYPE>%@</TYPE><OPERTYPE>%@</OPERTYPE><TEMP>%@</TEMP><STATUS>%@</STATUS><REPLYCONTENT>%@</REPLYCONTENT><GROUPID>%@</GROUPID><transactdocid>%@</transactdocid></BODY></MESSAGE>",user.msisdn,user.eccode,Id,type,operType,tel,status,content,groupid,transactdocid];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];

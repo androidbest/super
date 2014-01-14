@@ -21,6 +21,7 @@
 @property (strong ,nonatomic)NSString *time;//时间
 @property (strong ,nonatomic)NSString *name;//发送者
 @property (assign ,nonatomic)NSInteger row;//选择行数
+@property (strong ,nonatomic)NSString *transactdocid;//全网处理ID
 @property (assign ,nonatomic)UITableView *listview;
 @property (assign ,nonatomic)NSMutableArray *arr;
 @end

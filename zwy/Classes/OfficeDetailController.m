@@ -462,9 +462,9 @@
     [self.HUD show:YES];
 //    self.HUD.dimBackground = YES;
     if([type isEqualToString:@"0"]){
-        [packageData handleDoc:self ID:docContentInfo.ID Type:@"1" OperType:status tempTel:strAllPeopleID Status:@"1" context:self.officedetailView.textContent.text groupid:strAllGroupID];
+        [packageData handleDoc:self ID:docContentInfo.ID Type:@"1" OperType:status tempTel:strAllPeopleID Status:@"1" context:self.officedetailView.textContent.text groupid:strAllGroupID transactdocid:docContentInfo.transactdocid];
     }else if([type isEqualToString:@"2"]){
-        [packageData handleDoc:self ID:docContentInfo.ID Type:@"2" OperType:status tempTel:strAllPeopleID Status:anditStatus context:self.officedetailView.textContent.text groupid:strAllGroupID];
+        [packageData handleDoc:self ID:docContentInfo.ID Type:@"2" OperType:status tempTel:strAllPeopleID Status:anditStatus context:self.officedetailView.textContent.text groupid:strAllGroupID transactdocid:docContentInfo.transactdocid];
     }
     
 }
@@ -511,7 +511,7 @@
 //请求数据
 -(void)reqData{
     sign=@"1";
-    [packageData getDocInfo:self ID:self.officedetailView.info.ID];
+    [packageData getDocInfo:self ID:self.officedetailView.info.ID transactdocid:self.officedetailView.info.transactdocid];
     self.HUD.labelText = @"正在获取公文信息..";
     [self.HUD show:YES];
 //    self.HUD.dimBackground = YES;

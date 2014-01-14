@@ -80,13 +80,13 @@
 +(void)docFlow:(id)delegate ID:(NSString *)ID;
 
 //获取公文信息
-+ (void)getDocInfo:(id)delegate ID:(NSString *)Id;
++ (void)getDocInfo:(id)delegate ID:(NSString *)Id transactdocid:(NSString *)transactdocid;
 
 //获取公文处理状态
 + (void)getDocInfoType:(id)delegate ID:(NSString *)Id Type:(NSString *)type;
 
 //办理与审核公文//(type:  1、办理 2、审核 OperType: 0、办理结束 1、下一步办理人 2、报领导审批 status：1、同意 2、不同意)
-+ (void)handleDoc:(id)delegate ID:(NSString *)Id Type:(NSString *)type OperType:(NSString *)operType tempTel:(NSString *)tel Status:(NSString *)status context:(NSString *)content groupid:(NSString *)groupid;
++ (void)handleDoc:(id)delegate ID:(NSString *)Id Type:(NSString *)type OperType:(NSString *)operType tempTel:(NSString *)tel Status:(NSString *)status context:(NSString *)content groupid:(NSString *)groupid transactdocid:(NSString *)transactdocid;
 
 //获取公文附件
 + (void)queryDocumentAttachment:(id)delegate ID:(NSString *)Id SELType:(NSString *)sel;

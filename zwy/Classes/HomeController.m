@@ -168,7 +168,7 @@
 -(void)address{
     [self initBackBarButtonItem:self.homeView];
     [self.homeView performSegueWithIdentifier:@"homeToAddress" sender:self.homeView];
-    
+    NSArray *arr =@[];
 }
 
 //政务办公
