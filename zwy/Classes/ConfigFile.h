@@ -58,6 +58,7 @@
 #define CHATDATETYPE @"MM/dd/yy HH:mm"
 
 #import <Foundation/Foundation.h>
+#import "MBProgressHUD.h"
 @interface ConfigFile : NSObject
 
 @property(nonatomic,strong) NSMutableDictionary *configData;
@@ -74,6 +75,9 @@
 //创建用户文件夹
 + (void)pathUsersInfo;
 #pragma mark - 获取通讯录所有信息
-+ (NSMutableArray *)setAllPeopleInfo:(NSString *)str;
++ (NSMutableArray *)setAllPeopleInfo:(NSString *)str isECMember:(BOOL)isECMember;
 + (NSMutableArray *)setEcNumberInfo;
+
+/*同步全局通讯录缓存指示灯*/
++ (void)showSetAllAllGroupAddressBooksHUDWithText:(NSString *)text withView:(UIViewController *)viewController;
 @end

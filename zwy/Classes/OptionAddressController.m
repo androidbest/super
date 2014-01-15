@@ -61,7 +61,7 @@
     /*获取所有人员信息*/
     __block NSArray *blockArr;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        blockArr= [ConfigFile setAllPeopleInfo:strPath];
+        blockArr= [ConfigFile setAllPeopleInfo:strPath isECMember:_OptionView.isECMember];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             _arrAllPeople =[[NSMutableArray alloc] initWithArray:blockArr];

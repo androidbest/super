@@ -7,8 +7,8 @@
 //
 
 #import "peopleDeleteController.h"
-#import "GroupDetaInfo.h"
-#import "PeopleDedaInfo.h"
+#import "PeopelInfo.h"
+#import "GroupInfo.h"
 
 @implementation peopleDeleteController
 - (id)init{
@@ -41,12 +41,12 @@
         cell =[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:strCell];
     }
     NSObject * obj =_arrAllInfo[indexPath.row];
-    if ([obj isKindOfClass:[GroupDetaInfo class]]) {
-        GroupDetaInfo *info =(GroupDetaInfo *)obj;
-        cell.textLabel.text =info.groupName;
-    }else if ([obj isKindOfClass:[PeopleDedaInfo class]]){
-        PeopleDedaInfo * info =(PeopleDedaInfo *)obj;
-        cell.textLabel.text =info.userName;
+    if ([obj isKindOfClass:[GroupInfo class]]) {
+        GroupInfo *info =(GroupInfo *)obj;
+        cell.textLabel.text =info.Name;
+    }else if ([obj isKindOfClass:[PeopelInfo class]]){
+        PeopelInfo * info =(PeopelInfo *)obj;
+        cell.textLabel.text =info.Name;
     }
     return cell;
 }

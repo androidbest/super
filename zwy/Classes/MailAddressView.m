@@ -29,19 +29,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.tableViewPeople=[[PullRefreshTableView alloc] initWithFrame:CGRectMake(0, 64+44, ScreenWidth, ScreenHeight-64-44-74) withDelegate:self.controller];
-    self.tableViewPeople.separatorStyle=NO;
+    self.tableViewPeople=[[UITableView alloc] initWithFrame:CGRectMake(0, 64+44, ScreenWidth, ScreenHeight-64-44-74) style:UITableViewStylePlain];
+    self.tableViewPeople.dataSource=self.controller;
+    self.tableViewPeople.delegate =self.controller;
     [self.view addSubview:_tableViewPeople];
-    [_tableViewPeople  LoadDataBegin];
     
     [_serchBar setDelegate:self.controller];
     [_btnAffirm addTarget:self.controller action:@selector(btnAffirm) forControlEvents:UIControlEventTouchUpInside];
     _btnAffirm.layer.masksToBounds = YES;
     _btnAffirm.layer.cornerRadius = 6.0;
+
 	// Do any additional setup after loading the view.
+    
 }
 
-- (void)returnDidAddress:(PeopleDedaInfo *)deta{}
+- (void)returnDidAddress:( PeopelInfo*)deta{}
 
 - (void)didReceiveMemoryWarning
 {

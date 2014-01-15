@@ -11,7 +11,6 @@
 #import "PeopelInfo.h"
 #import "GroupInfo.h"
 #import "Constants.h"
-
 static ConfigFile *configFile;
 @implementation ConfigFile
 
@@ -78,7 +77,7 @@ static ConfigFile *configFile;
 }
 
 #pragma mark - 获取通讯录所有信息
-+ (NSMutableArray *)setAllPeopleInfo:(NSString *)str{
++ (NSMutableArray *)setAllPeopleInfo:(NSString *)str isECMember:(BOOL)isECMember{
     NSMutableArray* AllPeople =[[NSMutableArray alloc] init];
     NSString *strGroup =[NSString stringWithContentsOfFile:str encoding:NSUTF8StringEncoding error:NULL];
     NSArray *arrGroup=[strGroup componentsSeparatedByString:@"\n"];
@@ -114,7 +113,12 @@ static ConfigFile *configFile;
             info.groupID =[arrData objectAtIndex:5];
             info.superID=[arrData objectAtIndex:5];
             info.letter =[arrData objectAtIndex:6];
-            [AllPeople addObject:info];
+            info.isecnumer=[arrData objectAtIndex:8];
+            if (isECMember) {
+                if([info.isecnumer isEqualToString:@"1"])
+                   [AllPeople addObject:info];
+            }else{ [AllPeople addObject:info]; }
+ 
         }
     }
     return AllPeople;
@@ -163,5 +167,53 @@ static ConfigFile *configFile;
         }
     }
     return AllPeople;
+}
+
+/*同步全局通讯录缓存指示灯*/
++ (void)showSetAllAllGroupAddressBooksHUDWithText:(NSString *)text  withView:(UIViewController *)viewController{
+    NSString * str =[NSString stringWithFormat:@"%@/%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode,@"group.txt"];
+    BOOL blHave=[[NSFileManager defaultManager] fileExistsAtPath:str];
+    if (!blHave)return;
+    if (EX_arrGroupAddressBooks&&EX_arrGroupAddressBooks.count!=0)return;
+    MBProgressHUD * _HUD_Group = [MBProgressHUD showHUDAddedTo:viewController.view animated:YES];
+    _HUD_Group.labelText =text;
+    _HUD_Group.margin = 10.f;
+    _HUD_Group.removeFromSuperViewOnHide = YES;
+    [_HUD_Group show:YES];
+    
+    
+    __block NSArray *allPeople=nil;
+    __block NSMutableArray *allSection=nil;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        //设置通讯录
+        /*****************************/
+        allPeople=[ConfigFile setEcNumberInfo];
+        EX_arrGroupAddressBooks=allPeople;
+        
+        allSection=[NSMutableArray arrayWithObjects:
+                    @"a",@"b",@"c",@"d",@"e",@"f",
+                    @"g",@"h",@"i",@"j",@"k",@"l",
+                    @"m",@"n",@"o",@"p",@"q",@"r",
+                    @"s",@"t",@"u",@"v",@"w",@"x",
+                    @"y",@"z",@"#",nil];
+        NSMutableArray * arrRemoveObject=[[NSMutableArray alloc] init];
+        for (int i = 0; i<allSection.count; i++) {
+            NSString * strPre=[NSString stringWithFormat:@"SELF.Firetletter == '%@'",allSection[i]];
+            NSPredicate * predicate;
+            predicate = [NSPredicate predicateWithFormat:strPre];
+            NSArray * results = [allPeople filteredArrayUsingPredicate: predicate];
+            if (results.count==0) {
+                [arrRemoveObject addObject:allSection[i]];
+            }
+        }
+        [allSection removeObjectsInArray:arrRemoveObject];
+        EX_arrSection=allSection;
+        /*****************************/
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [_HUD_Group hide:YES afterDelay:0];
+        });
+        
+    });
 }
 @end

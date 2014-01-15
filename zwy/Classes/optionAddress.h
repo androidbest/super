@@ -18,5 +18,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnConfirm;
 @property (weak, nonatomic) IBOutlet UIButton *btnAll;
 @property (assign ,nonatomic)id optionDelegate;
+@property (assign ,nonatomic)BOOL isECMember;
 - (void)returnDidAddress:(NSArray *)arr;
 @end

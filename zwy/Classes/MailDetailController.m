@@ -13,6 +13,7 @@
 #import "AnalysisData.h"
 #import "RespInfo.h"
 #import "MailAddressView.h"
+#import "PeopelInfo.h"
 
 @implementation MailDetailController{
     NSString *status;
@@ -50,6 +51,10 @@
     }else{
      status=@"6";
     }
+}
+
+- (void)initWithData{
+    [ConfigFile showSetAllAllGroupAddressBooksHUDWithText:@"加载中...." withView:_mailDetailView];
 }
 
 //处理网络数据
@@ -121,9 +126,9 @@
 }
 
 /*选择联系人回调*/
-- (void)returnDidAddress:(PeopleDedaInfo *)deta{
-    selectUser=deta.userTel;
-    [self.mailDetailView.brnOptionPeople setTitle:deta.userName forState:UIControlStateNormal];
+- (void)returnDidAddress:( PeopelInfo*)deta{
+    selectUser=deta.tel;
+    [self.mailDetailView.brnOptionPeople setTitle:deta.Name forState:UIControlStateNormal];
 }
 
 //确定

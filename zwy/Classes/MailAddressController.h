@@ -11,4 +11,5 @@
 @interface MailAddressController : BaseController
 @property(strong ,nonatomic)MailAddressView * mailView;
 @property (strong ,nonatomic)NSMutableArray * allPeople;
+@property (strong ,nonatomic)NSArray *arrSeaPeople;
 @end

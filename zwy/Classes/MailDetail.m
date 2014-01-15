@@ -101,6 +101,7 @@
     _okbtn.layer.borderColor = [[UIColor whiteColor] CGColor];
     
     [_brnOptionPeople addTarget:self.controller action:@selector(brnOptionPeople) forControlEvents:UIControlEventTouchUpInside];
+    [self.controller initWithData];
 }
 
 //点击背景取消键盘

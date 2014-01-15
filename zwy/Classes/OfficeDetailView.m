@@ -9,6 +9,7 @@
 #import "OfficeDetailView.h"
 #import "OfficeDetailController.h"
 #import "OfficeAddressView.h"
+#import "optionAddress.h"
 
 @interface OfficeDetailView ()
 
@@ -250,7 +251,11 @@
     }else if([segue.identifier isEqualToString:@"detailtodoccontent"]){
         UIViewController *send=segue.destinationViewController;
         [send setValue:self.detailInfo forKey:@"detailInfo"];
-}
+    }else if ([segue.identifier isEqualToString:@"OfficeDetaToOPtionView"]){
+        optionAddress *viewController =(optionAddress *)send;
+        viewController.optionDelegate=self.controller;
+        viewController.isECMember=YES;
+    }
 }
 
 //点击背景取消键盘

@@ -9,49 +9,34 @@
 #import "MailAddressController.h"
 #import "PeopleDedaInfo.h"
 #import "MailAddressCell.h"
+#import "PeopelInfo.h"
 @implementation MailAddressController{
     NSString *searchTextContext;
     NSString*peopleNotifinfo;
-    NSMutableArray *arrSuperPeople;
     int peoplePages;
     BOOL  isUpdata;
-    PeopleDedaInfo *peopleInfo;
+    BOOL  isSearching;
+    PeopelInfo *peopleInfo;
+    NSArray *arrNumber;
 }
 - (id)init{
     self=[super init];
     if (self) {
         peopleNotifinfo=@"peopleNotifinfo";
         isUpdata=NO;
+        isSearching=NO;
         peoplePages=1;
-        peopleInfo =[PeopleDedaInfo new];
+        peopleInfo =[PeopelInfo new];
         self.allPeople =[[NSMutableArray alloc] init];
-        [[NSNotificationCenter defaultCenter]addObserver:self
-                                                selector:@selector(handlePeopleData:)
-                                                    name:peopleNotifinfo
-                                                  object:self];
+        
+        arrNumber =@[@"0",@"1",@"2",@"3",@"4",
+                     @"5",@"6",@"7",@"8",@"9"];
     }
     return self;
 }
 
-/*人员*/
-- (void)handlePeopleData:(NSNotification *)notification{
-    if (isUpdata) {
-        [_allPeople removeAllObjects];
-        isUpdata=NO;
-    }
-    if (!_mailView.tableViewPeople.separatorStyle) _mailView.tableViewPeople.separatorStyle=YES;
-    NSDictionary*dic =[notification userInfo];
-    GroupsInfo *info =[AnalysisData getGroupmember:dic];
-    if (info.AllGroupmembers.count!=0&&_allPeople.count<info.rowCount) {
-        [_allPeople addObjectsFromArray:info.AllGroupmembers];
-    }
-    if (_allPeople.count>=info.rowCount) {
-        _mailView.tableViewPeople.reachedTheEnd=NO;
-    }else{
-    _mailView.tableViewPeople.reachedTheEnd=YES;
-    }
-    [_mailView.tableViewPeople reloadDataPull];
-}
+
+
 
 /*确认按钮*/
 - (void)btnAffirm{
@@ -61,7 +46,8 @@
 
 #pragma  mark - UITableViewDetaSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return _allPeople.count;
+    if (_mailView.serchBar.text.length!=0&&isSearching)return _arrSeaPeople.count;
+    return EX_arrGroupAddressBooks.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -70,24 +56,27 @@ static NSString *strCell =@"Cell";
     if (!cell) {
         cell =[[MailAddressCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:strCell];
     }
-    PeopleDedaInfo *info =_allPeople[indexPath.row];
-    if ([info.userTel isEqualToString:peopleInfo.userTel]) {
+    
+    BOOL isSearchBar=_mailView.serchBar.text.length!=0&&isSearching;
+    PeopelInfo *info=isSearchBar? _arrSeaPeople[indexPath.row]:EX_arrGroupAddressBooks[indexPath.row];
+    
+    if ([info.tel isEqualToString:peopleInfo.tel]) {
         cell.imageCheckView.image =[UIImage imageNamed:@"btn_check"];
     }else{
         cell.imageCheckView.image =[UIImage imageNamed:@"btn_uncheck"];
     }
-    cell.labelText.text=info.userName;
+    cell.labelText.text=info.Name;
     cell.tag=indexPath.row;
     return cell;
 }
 
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    PeopleDedaInfo *obj =_allPeople[indexPath.row];
+    PeopelInfo *obj =EX_arrGroupAddressBooks[indexPath.row];
     for (UIView * view in tableView.visibleCells) {
         MailAddressCell *cell=(MailAddressCell *)view;
         if (view.tag ==indexPath.row) {
-            peopleInfo =[PeopleDedaInfo new];
+            peopleInfo =[PeopelInfo new];
             peopleInfo=obj;
             cell.imageCheckView.image=[UIImage imageNamed:@"btn_check"];
         }else{
@@ -97,50 +86,46 @@ static NSString *strCell =@"Cell";
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-#pragma mark - PullRefreshDelegate
-/*下拉刷新*/
-- (void)upLoadDataWithTableView:(PullRefreshTableView *)tableView{
-    peoplePages=1;
-    isUpdata=YES;
-    [packageData getGroupmember:self groupID:@"0" pages:[NSString stringWithFormat:@"%d",peoplePages] Type:@"1" condition:@"" SELType:peopleNotifinfo];
-}
-
-/*上拉加载*/
-- (void)refreshDataWithTableView:(PullRefreshTableView *)tableView{
-    peoplePages++;
-    [packageData getGroupmember:self groupID:@"0" pages:[NSString stringWithFormat:@"%d",peoplePages] Type:@"1" condition:@"" SELType:peopleNotifinfo];
-}
-
--(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    [_mailView.tableViewPeople scrollViewDidPullScroll:scrollView];
-}
-
 #pragma mark - UISearchBarDelegate
 //输入搜索内容
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
     if (searchText) {
-        searchTextContext=searchText;
+        isSearching=YES;
+        if (_arrSeaPeople.count!=0||_arrSeaPeople) {
+            _arrSeaPeople=NULL;
+            _arrSeaPeople=[[NSArray alloc] init];
+        }else{
+            _arrSeaPeople=[[NSArray alloc] init];
+        }
+        
+        NSString * strSearchbar;
+        NSString* strFirstLetter=@"";
+        if (searchText.length!=0)strFirstLetter=[[searchText substringToIndex:1] lowercaseString];
+        
+        //设置搜索条件
+        if ([EX_arrSection containsObject: strFirstLetter])
+        {
+            searchText =[searchText lowercaseString];
+            strSearchbar =[NSString stringWithFormat:@"SELF.letter CONTAINS '%@'",searchText];
+        }else if([arrNumber containsObject:strFirstLetter]){
+            strSearchbar =[NSString stringWithFormat:@"SELF.tel CONTAINS '%@'",searchText];
+        }
+        else{
+            strSearchbar =[NSString stringWithFormat:@"SELF.Name CONTAINS '%@'",searchText];
+        }
+
+        
+        NSPredicate *predicateTemplate = [NSPredicate predicateWithFormat: strSearchbar];
+        self.arrSeaPeople=[EX_arrGroupAddressBooks filteredArrayUsingPredicate: predicateTemplate];
+    }else {
+        isSearching=NO;
     }
-    if (searchText.length==0&&arrSuperPeople) {
-        [_allPeople removeAllObjects];
-        _allPeople=NULL;
-        _allPeople =[[NSMutableArray alloc] initWithArray:arrSuperPeople];
-        arrSuperPeople=NULL;
-        _mailView.tableViewPeople.reachedTheEnd=YES;
-        [_mailView.tableViewPeople reloadDataPull];
-    }
+    [_mailView.tableViewPeople reloadData];
 }
 
 //点击搜索按钮
 -(void) searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    arrSuperPeople=[NSMutableArray arrayWithArray:_allPeople];
-    isUpdata=YES;
-    BOOL isInt=[self isPureInt:searchTextContext];
-    if (isInt) {
-    [packageData getGroupmember:self groupID:searchTextContext pages:@"1" Type:@"1" condition:@"" SELType:peopleNotifinfo];
-    }else{
-    [packageData getGroupmember:self groupID:@"0" pages:@"1" Type:@"1" condition:searchTextContext SELType:peopleNotifinfo];
-    }
+   [_mailView.serchBar resignFirstResponder];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *) searchBar

@@ -51,7 +51,7 @@ NSMutableArray * arrAllNumber;
         /*获取所有人员信息*/
         __block NSArray *arrAllPeople;
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            arrAllPeople= [ConfigFile setAllPeopleInfo:str];
+            arrAllPeople= [ConfigFile setAllPeopleInfo:str isECMember:NO];
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (arrAllPeople) {

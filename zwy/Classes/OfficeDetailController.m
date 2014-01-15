@@ -21,7 +21,8 @@
 #import "PackageData.h"
 #import "AnalysisData.h"
 #import "peopleDeleteView.h"
-
+#import "PeopelInfo.h"
+#import "GroupInfo.h"
 
 @implementation OfficeDetailController{
     NSString *officeID;
@@ -124,15 +125,15 @@
     NSObject * obj;
     for (int i=0; i<arr.count; i++) {
         obj=arr[i];
-        if ([obj isKindOfClass:[GroupDetaInfo class]]) {
+        if ([obj isKindOfClass:[GroupInfo class]]) {
             
             /******************/
-            if(![allDidPeopleID containsObject:[(GroupDetaInfo *)obj groupId]]){
-                [allDidPeopleID addObject:[(GroupDetaInfo *)obj groupId]];
+            if(![allDidPeopleID containsObject:[(GroupInfo *)obj groupID]]){
+                [allDidPeopleID addObject:[(GroupInfo *)obj groupID]];
                 [_arrDidAllPeople addObject:obj];
                 
-                if ([strAllInfo isEqualToString:@""]) strAllInfo=[(GroupDetaInfo *)obj groupName];
-                else strAllInfo=[NSString stringWithFormat:@"%@,%@",strAllInfo,[(GroupDetaInfo *)obj groupName]];
+                if ([strAllInfo isEqualToString:@""]) strAllInfo=[(GroupInfo *)obj Name];
+                else strAllInfo=[NSString stringWithFormat:@"%@,%@",strAllInfo,[(GroupInfo *)obj Name]];
                 
 //                if ([strAllGroupID isEqualToString:@""])strAllGroupID=[(GroupDetaInfo *)obj groupId];
 //                else strAllGroupID =[NSString stringWithFormat:@"%@,%@",strAllGroupID,[(GroupDetaInfo *)obj groupId]];
@@ -142,12 +143,12 @@
         }else{
             
             /******************/
-            if(![allDidPeopleID containsObject:[(PeopleDedaInfo *)obj userTel]]){
-                [allDidPeopleID addObject:[(PeopleDedaInfo *)obj userTel]];
+            if(![allDidPeopleID containsObject:[(PeopelInfo *)obj tel]]){
+                [allDidPeopleID addObject:[(PeopelInfo *)obj tel]];
                 [_arrDidAllPeople addObject:obj];
                 
-                if ([strAllInfo isEqualToString:@""])strAllInfo=[(PeopleDedaInfo *)obj userName];
-                else strAllInfo=[NSString stringWithFormat:@"%@,%@",strAllInfo,[(PeopleDedaInfo *)obj userName]];
+                if ([strAllInfo isEqualToString:@""])strAllInfo=[(PeopelInfo *)obj Name];
+                else strAllInfo=[NSString stringWithFormat:@"%@,%@",strAllInfo,[(PeopelInfo *)obj Name]];
                 
 //                if ([strAllPeopleID isEqualToString:@""])strAllPeopleID =[(PeopleDedaInfo *)obj userTel];
 //                else strAllPeopleID =[NSString stringWithFormat:@"%@,%@",strAllPeopleID,[(PeopleDedaInfo *)obj userTel]];
@@ -400,7 +401,7 @@
 
 //添加联系人或部门
 -(void)addPerson{
-[self.officedetailView performSegueWithIdentifier:@"officeDetaToaddress" sender:nil];
+[self.officedetailView performSegueWithIdentifier:@"OfficeDetaToOPtionView" sender:nil];
 }
 
 //组装

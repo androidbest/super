@@ -166,6 +166,7 @@
     [_officeView.tableViewPeople  reloadDataPull];
 }
 
+/*确认选择*/
 - (void)btnConfirmation{
     [self.officeView.navigationController popViewControllerAnimated:YES];
     [self.officeView.officeDelegate returnDidAddress:_arrOption];

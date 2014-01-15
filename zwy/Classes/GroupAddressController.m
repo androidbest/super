@@ -104,7 +104,7 @@
     }
     __block NSArray *blockArr;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-             blockArr= [ConfigFile setAllPeopleInfo:str];
+             blockArr= [ConfigFile setAllPeopleInfo:str isECMember:NO];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             _grougView.arrAllPeople =[[NSMutableArray alloc] initWithArray:blockArr];
@@ -138,7 +138,7 @@
         isReloadData=NO;
     }
     
-    _grougView.arrAllPeople =[ConfigFile setAllPeopleInfo:str];
+    _grougView.arrAllPeople =[ConfigFile setAllPeopleInfo:str isECMember:NO];
     NSString * strSearchbar;
     strSearchbar =[NSString stringWithFormat:@"SELF.superID == '%@'",@"0"];
     NSPredicate *predicateTemplate = [NSPredicate predicateWithFormat: strSearchbar];
