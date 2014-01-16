@@ -257,8 +257,8 @@
             [self  performSelector:@selector(BackView) withObject:self afterDelay:0.3f];
             return;
         }
-        [self.OptionView.navigationController popViewControllerAnimated:YES];
-        return;
+           [self  performSelector:@selector(BackView) withObject:self afterDelay:0.0f];
+           return;
     }
     if ([groupA.superID isEqualToString:@"0"]||isFirstPages) {
         isFirstPages=YES;
@@ -287,6 +287,10 @@
 }
 
 -(void)BackView{
+    _arrAllPeople=nil;
+    _arrSeaPeople=nil;
+    _arrFirstGroup=nil;
+    _arrOption=nil;
   [self.OptionView.navigationController popViewControllerAnimated:YES];
 }
 

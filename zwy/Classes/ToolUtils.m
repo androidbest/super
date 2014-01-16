@@ -490,4 +490,19 @@
     CFRelease(uuidString);
     return result;
 }
+
+/*
+ *判断是push还是pop方法
+ *YES为Push
+ */
++ (BOOL)pushOrPopView:(UIViewController *)viewController{
+    BOOL isPush=YES;
+    NSArray *viewControllers = viewController.navigationController.viewControllers;
+    if (viewControllers.count > 1 && [viewControllers objectAtIndex:viewControllers.count-2] == self) {
+        isPush=YES;
+    } else if ([viewControllers indexOfObject:self] == NSNotFound) {
+        isPush=NO;
+    }
+    return isPush;
+}
 @end

@@ -363,7 +363,11 @@
 //返回上一级
 - (void)LeftDown{
     if (!groupA) {
+        _grougView.arrAllPeople=nil;
+        _arrFirstGroup=nil;
+        _arrSeaPeople=nil;
         [self.grougView.tabBarController.navigationController popViewControllerAnimated:YES];
+        _grougView=nil;
         return;
     }
     if ([groupA.superID isEqualToString:@"0"]||isFirstPages) {
@@ -453,5 +457,4 @@
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
      [_grougView.searchBar resignFirstResponder];
 }
-
 @end

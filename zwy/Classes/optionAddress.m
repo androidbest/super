@@ -54,6 +54,18 @@
 	// Do any additional setup after loading the view.
 }
 
+
+
+- (void)viewDidDisappear:(BOOL)animated{
+     NSLog(@"%@",self.navigationController.topViewController);
+    //如果topView存在,则为Push
+    if (self.navigationController.topViewController) {
+        
+    }else{
+        
+    }
+}
+
 - (void)LeftDown{
 
 }
@@ -77,6 +89,8 @@
 - (void)returnDidAddress:(NSArray *)arr{
 
 }
+
+
 
 - (void)didReceiveMemoryWarning
 {

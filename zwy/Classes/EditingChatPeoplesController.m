@@ -18,6 +18,7 @@
     NSString *Names;
     NSString *HeadPaths;
     NSString *msisdns;
+    
 }
 - (id)init{
     self =[super init];
@@ -198,6 +199,7 @@
 
 //删除
 - (void)btnDeletePeople:(PhotoButton *)sender{
+    if (_editingView.chatView.arrPeoples.count<=4) return;
     if (isDelete) {
         isDelete=NO;
     }else{
@@ -215,10 +217,6 @@
 //点击对应头像
 - (void)btnPeopleHead:(PhotoButton *)sender{
     if (isDelete) {
-        if (_editingView.chatView.arrPeoples.count<=5) {
-            [self showHUDText:@"群聊人数必须大于3人" showTime:1];
-            return;
-        }
         PeopelInfo *info =_editingView.chatView.arrPeoples[sender.tag];
         if ([info.tel isEqualToString:user.msisdn]) {
             [self showHUDText:@"不能删除自己" showTime:1];
@@ -231,6 +229,8 @@
                 [view removeFromSuperview];
             }
         }
+        
+        if (_editingView.chatView.arrPeoples.count<=4) isDelete=NO;
         [self updatePeoples];
     }else{
         

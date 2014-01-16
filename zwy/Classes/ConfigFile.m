@@ -120,6 +120,7 @@ static ConfigFile *configFile;
             }else{ [AllPeople addObject:info]; }
  
         }
+        
     }
     return AllPeople;
 }
@@ -216,4 +217,5 @@ static ConfigFile *configFile;
         
     });
 }
+
 @end
