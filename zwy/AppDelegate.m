@@ -83,6 +83,7 @@ UIBackgroundTaskIdentifier backgroundTask;//写成成员
         user.job=[appConfig stringForKey:@"job"];
         user.userid=[appConfig stringForKey:@"userid"];
         user.province =[appConfig stringForKey:@"userprovince"];
+        user.ecsystem =[appConfig stringForKey:@"ecSystem"];
     }
     
     [WeiboSDK enableDebugMode:YES];

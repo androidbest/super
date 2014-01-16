@@ -204,11 +204,14 @@
                     user.eccode=ecinfo.ECID;
                     user.ecname=ecinfo.ECName;
                     user.ecsystem=ecinfo.ECSystem;
-                    user.ecsignname=ecinfo.ECProvince;
+                    user.province=ecinfo.ECProvince;
+
                     user.ecSgin=@"0";
                     NSUserDefaults *appConfig=[NSUserDefaults standardUserDefaults];
                     [appConfig setValue:user.eccode forKey:@"eccode"];
                     [appConfig setValue:user.ecname forKey:@"ecname"];
+                    [appConfig setValue:user.province forKey:@"userprovince"];
+                    [appConfig setValue:user.ecsystem forKey:@"ecSystem"];
                     [appConfig synchronize];
                     GetEcCell *cell = (GetEcCell *)[self.account.accountList cellForRowAtIndexPath:tempIndexPath];
                     [cell.selectEc setBackgroundImage:[UIImage imageNamed:@"btn_check"] forState:UIControlStateNormal];
@@ -238,11 +241,13 @@
                 user.eccode=ecinfo.ECID;
                 user.ecname=ecinfo.ECName;
                 user.ecsystem=ecinfo.ECSystem;
-                user.ecsignname=ecinfo.ECProvince;
+                user.province=ecinfo.ECProvince;
                 user.ecSgin=@"0";
                 NSUserDefaults *appConfig=[NSUserDefaults standardUserDefaults];
                 [appConfig setValue:user.eccode forKey:@"eccode"];
                 [appConfig setValue:user.ecname forKey:@"ecname"];
+                [appConfig setValue:user.province forKey:@"userprovince"];
+                [appConfig setValue:user.ecsystem forKey:@"ecSystem"];
                 [appConfig synchronize];
                 GetEcCell *cell = (GetEcCell *)[self.account.accountList cellForRowAtIndexPath:tempIndexPath];
                 [cell.selectEc setBackgroundImage:[UIImage imageNamed:@"btn_check"] forState:UIControlStateNormal];

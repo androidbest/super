@@ -18,6 +18,9 @@
 @implementation MailDetailController{
     NSString *status;
     NSString *selectUser;
+    
+    NSString *nextShenhe;
+    NSString *shenhe;
 }
 
 
@@ -25,6 +28,16 @@
     self=[super init];
     selectUser=[NSString new];
     if(self){
+        
+        if ([user.ecsystem isEqualToString:@"countrywide"]) {
+            nextShenhe=@"报领导";
+            shenhe=@"报审";
+        }else{
+            nextShenhe=@"报领导审批";
+            shenhe=@"报领导审批";
+        }
+        
+        
         [[NSNotificationCenter defaultCenter]addObserver:self
                                                 selector:@selector(handleData:)
                                                     name:xmlNotifInfo
@@ -101,7 +114,7 @@
                                       delegate:self
                                       cancelButtonTitle:@"取消"
                                       destructiveButtonTitle:nil
-                                      otherButtonTitles:@"自办", @"交办",@"报领导审批",nil];
+                                      otherButtonTitles:@"自办", @"交办",nextShenhe,nil];
         actionSheet.actionSheetStyle = UIBarStyleBlackTranslucent;
         [actionSheet showInView:self.mailDetailView.view];
     }else{
@@ -110,7 +123,7 @@
                                       delegate:self
                                       cancelButtonTitle:@"取消"
                                       destructiveButtonTitle:nil
-                                      otherButtonTitles:@"直接审批", @"报领导审批",nil];
+                                      otherButtonTitles:@"直接审批", shenhe,nil];
         actionSheet.actionSheetStyle = UIBarStyleBlackTranslucent;
         [actionSheet showInView:self.mailDetailView.view];
     
@@ -215,7 +228,7 @@
     if([info.type isEqualToString:@"0"]){
     
         if (buttonIndex==0) {
-            [self.mailDetailView.selecthandle setTitle:@"自办" forState:UIControlStateNormal];
+//            [self.mailDetailView.selecthandle setTitle:@"自办" forState:UIControlStateNormal];
             status=@"1";
             [self.mailDetailView.brnOptionPeople setEnabled:NO];
             [self.mailDetailView.selecthandle setTitle:@"自办" forState:UIControlStateNormal];
@@ -223,7 +236,7 @@
             selectUser=@"";
         }
         else if (buttonIndex==1) {
-            [self.mailDetailView.selecthandle setTitle:@"交办" forState:UIControlStateNormal];
+//            [self.mailDetailView.selecthandle setTitle:@"交办" forState:UIControlStateNormal];
             status=@"2";
             [self.mailDetailView.brnOptionPeople setEnabled:YES];
             [self.mailDetailView.selecthandle setTitle:@"交办" forState:UIControlStateNormal];
@@ -231,22 +244,22 @@
             selectUser=@"";
         }
         else if (buttonIndex==2) {
-            [self.mailDetailView.selecthandle setTitle:@"报领导审批" forState:UIControlStateNormal];
+//            [self.mailDetailView.selecthandle setTitle:@"报领导审批" forState:UIControlStateNormal];
             status=@"5";
             [self.mailDetailView.brnOptionPeople setEnabled:YES];
-            [self.mailDetailView.selecthandle setTitle:@"报领导审批" forState:UIControlStateNormal];
+            [self.mailDetailView.selecthandle setTitle:nextShenhe forState:UIControlStateNormal];
             [self.mailDetailView.brnOptionPeople setTitle:@"请选择联系人" forState:UIControlStateNormal];
             selectUser=@"";
         }
     }else{
         if (buttonIndex==0) {
-            [self.mailDetailView.selecthandle setTitle:@"直接审批" forState:UIControlStateNormal];
+//            [self.mailDetailView.selecthandle setTitle:@"直接审批" forState:UIControlStateNormal];
             status=@"6";
             [self.mailDetailView.selecthandle setTitle:@"直接审批" forState:UIControlStateNormal];
         }else if (buttonIndex==1) {
-            [self.mailDetailView.selecthandle setTitle:@"报领导审批" forState:UIControlStateNormal];
+//            [self.mailDetailView.selecthandle setTitle:@"报领导审批" forState:UIControlStateNormal];
             status=@"5";
-            [self.mailDetailView.selecthandle setTitle:@"报领导审批" forState:UIControlStateNormal];
+            [self.mailDetailView.selecthandle setTitle:shenhe forState:UIControlStateNormal];
         }
     }
 }

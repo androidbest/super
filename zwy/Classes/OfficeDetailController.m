@@ -44,10 +44,28 @@
     NSString *strAllInfo;
     
     NSString *sign;
+    
+    NSString *banliover;
+    NSString *nextShenhe;
+    NSString *nextBanli;
+    
+    
 }
 -(id)init{
     self=[super init];
     if(self){
+        
+        if ([user.ecsystem isEqualToString:@"countrywide"]) {
+           banliover=@"办理结束";
+           nextShenhe=@"上报领导";
+           nextBanli=@"交办他人";
+        }else{
+            banliover=@"办理结束";
+            nextShenhe=@"报领导审批";
+            nextBanli=@"下一步办理人";
+        }
+        
+        
         strAllInfo=@"";
         status=@"0";
         strAllGroupID=@"";
@@ -195,26 +213,33 @@
 //下一步骤
 -(void)selectHandle{
    
-    if ([user.ecsystem isEqualToString:@"countrywide"]) {
-        UIActionSheet *actionSheet = [[UIActionSheet alloc]
-                                      initWithTitle:nil
-                                      delegate:self
-                                      cancelButtonTitle:@"取消"
-                                      destructiveButtonTitle:nil
-                                      otherButtonTitles:@"办理结束", @"交办他人",@"上报领导",nil];
-        actionSheet.actionSheetStyle = UIBarStyleBlackTranslucent;
-        [actionSheet showInView:self.officedetailView.view];
-    }else{
-        UIActionSheet *actionSheet = [[UIActionSheet alloc]
-                                      initWithTitle:nil
-                                      delegate:self
-                                      cancelButtonTitle:@"取消"
-                                      destructiveButtonTitle:nil
-                                      otherButtonTitles:@"办理结束", @"下一步办理人",@"报领导审批",nil];
-        actionSheet.actionSheetStyle = UIBarStyleBlackTranslucent;
-        [actionSheet showInView:self.officedetailView.view];
-    }
-    
+//    if ([user.ecsystem isEqualToString:@"countrywide"]) {
+//        UIActionSheet *actionSheet = [[UIActionSheet alloc]
+//                                      initWithTitle:nil
+//                                      delegate:self
+//                                      cancelButtonTitle:@"取消"
+//                                      destructiveButtonTitle:nil
+//                                      otherButtonTitles:@"办理结束", @"交办他人",@"上报领导",nil];
+//        actionSheet.actionSheetStyle = UIBarStyleBlackTranslucent;
+//        [actionSheet showInView:self.officedetailView.view];
+//    }else{
+//        UIActionSheet *actionSheet = [[UIActionSheet alloc]
+//                                      initWithTitle:nil
+//                                      delegate:self
+//                                      cancelButtonTitle:@"取消"
+//                                      destructiveButtonTitle:nil
+//                                      otherButtonTitles:@"办理结束", @"下一步办理人",@"报领导审批",nil];
+//        actionSheet.actionSheetStyle = UIBarStyleBlackTranslucent;
+//        [actionSheet showInView:self.officedetailView.view];
+//    }
+            UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                          initWithTitle:nil
+                                          delegate:self
+                                          cancelButtonTitle:@"取消"
+                                          destructiveButtonTitle:nil
+                                          otherButtonTitles:banliover,nextBanli,nextShenhe,nil];
+            actionSheet.actionSheetStyle = UIBarStyleBlackTranslucent;
+            [actionSheet showInView:self.officedetailView.view];
 
 }
 
@@ -223,7 +248,7 @@
     NSString *type=self.officedetailView.info.type;
     if (buttonIndex==0) {
        status=@"0";
-        [self.officedetailView.selectHandle setTitle:@"办理结束" forState:UIControlStateNormal];
+        [self.officedetailView.selectHandle setTitle:banliover forState:UIControlStateNormal];
         [self.officedetailView.addPerson setEnabled:NO];
         [self.officedetailView.selecter setEnabled:NO];
         [self.officedetailView.selecter setTitle:@"" forState:UIControlStateNormal];
@@ -272,7 +297,7 @@
     }
     else if (buttonIndex==1) {
        status=@"1";
-        [self.officedetailView.selectHandle setTitle:@"下一步办理人" forState:UIControlStateNormal];
+        [self.officedetailView.selectHandle setTitle:nextBanli forState:UIControlStateNormal];
         [self.officedetailView.addPerson setEnabled:YES];
         [self.officedetailView.selecter setEnabled:YES];
         
@@ -319,7 +344,7 @@
     }
     else if (buttonIndex==2) {
        status=@"2";
-        [self.officedetailView.selectHandle setTitle:@"报领导审批" forState:UIControlStateNormal];
+        [self.officedetailView.selectHandle setTitle:nextShenhe forState:UIControlStateNormal];
         [self.officedetailView.addPerson setEnabled:YES];
         [self.officedetailView.selecter setEnabled:YES];
         self.officedetailView.addPerson.hidden=NO;

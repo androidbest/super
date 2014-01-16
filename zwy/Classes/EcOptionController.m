@@ -20,6 +20,8 @@
     NSString *sgin;
     EcinfoDetas *ec;
     int actionIndex;
+    NSString *ecSystem;
+    NSString *ecProvince;
 }
 -(id)init{
     self=[super init];
@@ -67,6 +69,7 @@
                 [appConfig setValue:user.job forKey:@"job"];
                 [appConfig setValue:user.province forKey:@"userprovince"];
                 [appConfig setValue:user.userid forKey:@"userid"];
+                [appConfig setValue:user.ecsystem forKey:@"ecSystem"];
                 [appConfig setBool:YES forKey:@"isLogin"];
                 [appConfig synchronize];
                 
