@@ -183,6 +183,8 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.controller viewWillAppearBase];
+    
+    //群组聊天
     if(_arrPeoples.count>2){
         NSString *temp=@"";
     for(PeopelInfo *info in _arrPeoples){
@@ -191,7 +193,12 @@
     temp=[temp substringToIndex:temp.length-1];
     self.navigationItem.title=temp;
     }else{
-    self.navigationItem.title=_chatData.Name;
+        //个人聊天
+    for(PeopelInfo *info in _arrPeoples){
+        if(![info.tel isEqualToString:user.msisdn]){
+            self.navigationItem.title=info.Name;
+        }
+    }
     }
     //键盘显示
     [[NSNotificationCenter defaultCenter] addObserver:self
