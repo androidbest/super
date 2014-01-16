@@ -254,7 +254,8 @@
     }else if ([segue.identifier isEqualToString:@"OfficeDetaToOPtionView"]){
         optionAddress *viewController =(optionAddress *)send;
         viewController.optionDelegate=self.controller;
-        viewController.isECMember=YES;
+        viewController.isECMember=[user.ecsystem isEqualToString:@"countrywide"];
+        
     }
 }
 

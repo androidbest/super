@@ -53,7 +53,7 @@
     if ((_arrAllPeople.count==0||!_arrAllPeople)&&!blHave) {
         [self showHUDText:@"请同步通讯录" showTime:1.0];
         return;
-    }
+    } 
     
     _HUD_Group = [MBProgressHUD showHUDAddedTo:self.OptionView.view animated:YES];
     _HUD_Group.labelText =@"加载中...";

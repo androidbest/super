@@ -21,12 +21,12 @@
 }
 
 /*同步全局通讯录缓存指示灯*/
-- (void)showSetAllAllGroupAddressBooksHUDWithText:(NSString *)text{
+- (BOOL)showSetAllAllGroupAddressBooksHUDWithText:(NSString *)text{
     __block NSArray *allPeople=nil;
     NSString * str =[NSString stringWithFormat:@"%@/%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode,@"ecgroup.txt"];
     BOOL blHave=[[NSFileManager defaultManager] fileExistsAtPath:str];
-    if (!blHave)return ;
-    if (_allPeople&&_allPeople.count!=0)return;
+    if (!blHave)return NO;
+    if (_allPeople&&_allPeople.count!=0)return NO;
     MBProgressHUD * _HUD_Group = [MBProgressHUD showHUDAddedTo:_mailView.view animated:YES];
     _HUD_Group.labelText =text;
     _HUD_Group.margin = 10.f;
@@ -53,6 +53,7 @@
         });
         
     });
+    return YES;
 }
 
 
@@ -71,7 +72,15 @@
 }
 
 - (void)initWithData{
- [self showSetAllAllGroupAddressBooksHUDWithText:@"加载中...."];
+    if([user.ecsystem isEqualToString:@"countrywide"]){
+
+        if (![self showSetAllAllGroupAddressBooksHUDWithText:@"加载中...."]) {
+            [self showHUDText:@"请先同步通讯录" showTime:1.0];
+        }
+    }
+    else{
+        _allPeople=[[NSMutableArray alloc] initWithArray:EX_arrGroupAddressBooks];
+    }
 }
 
 
@@ -181,4 +190,13 @@ static NSString *strCell =@"Cell";
     return[scan scanInt:&val] && [scan isAtEnd];
 }
 
+- (void)showHUDText:(NSString *)text showTime:(NSTimeInterval)time{
+    MBProgressHUD *hud =[MBProgressHUD showHUDAddedTo:self.mailView.view animated:YES];
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText =text;
+    //    hud.margin = 10.f;
+    //    hud.yOffset = 150.f;
+    hud.removeFromSuperViewOnHide = YES;
+    [hud hide:YES afterDelay:time];
+}
 @end
