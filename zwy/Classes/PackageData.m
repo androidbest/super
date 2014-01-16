@@ -158,7 +158,7 @@
 + (void)scheduleConf:(id)delegate receiverTel:(NSString*)receiverTel receiverName:(NSString *)receiverName groupID:(NSString *)groupID time:(NSString *)time{
     NSURL * url =[self urlByConfigFile];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-   NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>NOKEY</SECURITYKEY></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>scheduleConf</METHOD><SESSIONID>2</SESSIONID><STARTTIME>%@</STARTTIME><RECEIVERLIST>%@</RECEIVERLIST><RECEIVERNAME>%@</RECEIVERNAME><GROUPID>%@</GROUPID></BODY></MESSAGE>",user.msisdn,user.eccode,time,receiverTel,receiverName,groupID];
+   NSString * str = [NSString stringWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?><MESSAGE><HEAD><FROMCODE>ZWY-C</FROMCODE><TOCODE>ZWY-S</TOCODE><PHONE>%@</PHONE><ECCODE>%@</ECCODE><SECURITYKEY>NOKEY</SECURITYKEY></HEAD><BODY><PHONETYPE>1</PHONETYPE><REQSIGN>0</REQSIGN><METHOD>scheduleConf</METHOD><SESSIONID>2</SESSIONID><STARTTIME>%@</STARTTIME><RECEIVERLIST>%@</RECEIVERLIST><RECEIVERNAME>%@</RECEIVERNAME><GROUPID>%@</GROUPID><USERNAME>%@</USERNAME></BODY></MESSAGE>",user.msisdn,user.eccode,time,receiverTel,receiverName,groupID,user.username];
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:data];

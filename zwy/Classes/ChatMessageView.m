@@ -183,7 +183,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.controller viewWillAppearBase];
-    if(_arrPeoples.count>0){
+    if(_arrPeoples.count>2){
         NSString *temp=@"";
     for(PeopelInfo *info in _arrPeoples){
         temp=[NSString stringWithFormat:@"%@,",[temp stringByAppendingString:info.Name]];

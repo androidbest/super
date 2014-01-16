@@ -117,23 +117,49 @@
     NSString *temp=@"";
     
     //群组处理
-    if(info.imGroupid&&![info.imGroupid isEqualToString:@"null"]&&![info.imGroupid isEqualToString:@""]&&![info.imGroupid isEqualToString:@"(null)"]){
-        grouid=info.imGroupid;
-        NSArray * msisdn =[info.tel componentsSeparatedByString:@","];
-        NSArray * name =[info.Name componentsSeparatedByString:@","];
-        NSArray * headPath =[info.headPath componentsSeparatedByString:@","];
-        for(int i=0;i<msisdn.count;i++){
-            PeopelInfo *peopel=[PeopelInfo new];
-            peopel.Name=name[i];
-            peopel.tel=msisdn[i];
-            peopel.headPath=headPath[i];
-            peopel.eccode=user.eccode;
-            [self.chatMessageView.arrPeoples addObject:peopel];
-        }
-        temp=info.imGroupid;
-    }else{
-        temp=info.tel;
-    }
+//    if(info.imGroupid&&![info.imGroupid isEqualToString:@"null"]&&![info.imGroupid isEqualToString:@""]&&![info.imGroupid isEqualToString:@"(null)"]){
+//        grouid=info.imGroupid;
+//        NSArray * msisdn =[info.tel componentsSeparatedByString:@","];
+//        NSArray * name =[info.Name componentsSeparatedByString:@","];
+//        NSArray * headPath =[info.headPath componentsSeparatedByString:@","];
+//        for(int i=0;i<msisdn.count;i++){
+//            PeopelInfo *peopel=[PeopelInfo new];
+//            peopel.Name=name[i];
+//            peopel.tel=msisdn[i];
+//            peopel.headPath=headPath[i];
+//            peopel.eccode=user.eccode;
+//            [self.chatMessageView.arrPeoples addObject:peopel];
+//        }
+//        temp=info.imGroupid;
+//    }else{
+//        temp=info.tel;
+//    }
+    
+             //添加自己
+             PeopelInfo *peopel=[PeopelInfo new];
+             peopel.Name=user.username;
+             peopel.tel=user.msisdn;
+             peopel.headPath=user.headurl;
+             peopel.eccode=user.eccode;
+             [self.chatMessageView.arrPeoples addObject:peopel];
+    
+            NSArray * msisdn =[info.tel componentsSeparatedByString:@","];
+            NSArray * name =[info.Name componentsSeparatedByString:@","];
+            NSArray * headPath =[info.headPath componentsSeparatedByString:@","];
+            for(int i=0;i<msisdn.count;i++){
+                if([user.msisdn isEqualToString:msisdn[i]]){
+                    continue;
+                }
+                //添加别人
+                PeopelInfo *peopel=[PeopelInfo new];
+                peopel.Name=name[i];
+                peopel.tel=msisdn[i];
+                peopel.headPath=headPath[i];
+                peopel.eccode=user.eccode;
+                [self.chatMessageView.arrPeoples addObject:peopel];
+            }
+    temp=info.imGroupid;
+    
     //读取聊天记录
     chatMessageID =[NSString stringWithFormat:@"%@%@%@%@",user.msisdn,user.eccode,temp,info.eccode];
 
@@ -260,6 +286,7 @@
 /*************************************/
 
 
+//发送信息
 -(void)sendMessage{
     [chatMsgObjArr removeAllObjects];
     NSDate *date=[NSDate date];

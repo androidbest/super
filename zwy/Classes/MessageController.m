@@ -118,6 +118,7 @@
     }else{
         url=sessionInfo.session_receiveravatar;
     }
+    
     [HTTPRequest imageWithURL:url imageView:cell.imageMark placeholderImage:[UIImage  imageNamed:@"default_avatar"]];
     return cell;
 }
@@ -138,11 +139,6 @@
     [[CoreDataManageContext newInstance] updateWithSessionEntity:sessionInfo];
     
     PeopelInfo *info=[PeopelInfo new];
-//    if(sessionInfo.session_groupuuid&&![sessionInfo.session_groupuuid isEqualToString:@"null"]&&![sessionInfo.session_groupuuid isEqualToString:@""]){
-//        info.tel=sessionInfo.session_groupuuid;
-//    }else{
-//        info.tel=sessionInfo.session_receivermsisdn;
-//    }
     info.tel=sessionInfo.session_receivermsisdn;
     info.eccode=user.eccode;
     info.headPath=sessionInfo.session_receiveravatar;
