@@ -32,7 +32,7 @@
     
     if([_data isKindOfClass:[MailView class]]){
         _info=((MailView *)_data).info;
-    }else if([_data isKindOfClass:[MailView class]]){
+    }else if([_data isKindOfClass:[DaiBanView class]]){
         _info=((DaiBanView *)_data).pubilcMailDetaInfo;
     }
     
