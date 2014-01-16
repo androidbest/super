@@ -96,8 +96,9 @@ static ConfigFile *configFile;
         }
     }
     
+    if (isECMember)str=[NSString stringWithFormat:@"%@/%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode,@"ecuser.txt"];
+    else str=[NSString stringWithFormat:@"%@/%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode,@"member.txt"];
     
-    str=[NSString stringWithFormat:@"%@/%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode,@"member.txt"];
     NSString * strData =[NSString stringWithContentsOfFile:str encoding:NSUTF8StringEncoding error:NULL];
     NSArray * arr = [strData componentsSeparatedByString:@"\n"];
     if (arr.count==0&&!arr) return AllPeople;
@@ -114,11 +115,8 @@ static ConfigFile *configFile;
             info.superID=[arrData objectAtIndex:5];
             info.letter =[arrData objectAtIndex:6];
             info.isecnumer=[arrData objectAtIndex:8];
-            if (isECMember) {
-                if([info.isecnumer isEqualToString:@"1"])
-                   [AllPeople addObject:info];
-            }else{ [AllPeople addObject:info]; }
- 
+            [AllPeople addObject:info];
+          
         }
         
     }

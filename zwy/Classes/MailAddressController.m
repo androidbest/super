@@ -19,6 +19,43 @@
     PeopelInfo *peopleInfo;
     NSArray *arrNumber;
 }
+
+/*同步全局通讯录缓存指示灯*/
+- (void)showSetAllAllGroupAddressBooksHUDWithText:(NSString *)text{
+    __block NSArray *allPeople=nil;
+    NSString * str =[NSString stringWithFormat:@"%@/%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode,@"ecgroup.txt"];
+    BOOL blHave=[[NSFileManager defaultManager] fileExistsAtPath:str];
+    if (!blHave)return ;
+    if (_allPeople&&_allPeople.count!=0)return;
+    MBProgressHUD * _HUD_Group = [MBProgressHUD showHUDAddedTo:_mailView.view animated:YES];
+    _HUD_Group.labelText =text;
+    _HUD_Group.margin = 10.f;
+    _HUD_Group.removeFromSuperViewOnHide = YES;
+    [_HUD_Group show:YES];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        //设置通讯录
+        /*****************************/
+        allPeople=[ConfigFile setEcNumberInfo];
+        _allPeople=[[NSMutableArray alloc] initWithArray:allPeople];
+        /*****************************/
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            NSString * strPre=[NSString stringWithFormat:@"SELF.tel == '%@' AND SELF.Name =='%@'",user.msisdn,user.username];
+            NSPredicate * predicate;
+            predicate = [NSPredicate predicateWithFormat:strPre];
+            NSArray *arr=[_allPeople filteredArrayUsingPredicate: predicate];
+            [_allPeople removeObjectsInArray:arr];
+            
+            [_HUD_Group hide:YES afterDelay:0];
+            [_mailView.tableViewPeople reloadData];
+        });
+        
+    });
+}
+
+
 - (id)init{
     self=[super init];
     if (self) {
@@ -27,15 +64,15 @@
         isSearching=NO;
         peoplePages=1;
         peopleInfo =[PeopelInfo new];
-        self.allPeople =[[NSMutableArray alloc] init];
-        
         arrNumber =@[@"0",@"1",@"2",@"3",@"4",
                      @"5",@"6",@"7",@"8",@"9"];
     }
     return self;
 }
 
-
+- (void)initWithData{
+ [self showSetAllAllGroupAddressBooksHUDWithText:@"加载中...."];
+}
 
 
 /*确认按钮*/
@@ -47,7 +84,7 @@
 #pragma  mark - UITableViewDetaSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (_mailView.serchBar.text.length!=0&&isSearching)return _arrSeaPeople.count;
-    return EX_arrGroupAddressBooks.count;
+    return _allPeople.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -58,7 +95,7 @@ static NSString *strCell =@"Cell";
     }
     
     BOOL isSearchBar=_mailView.serchBar.text.length!=0&&isSearching;
-    PeopelInfo *info=isSearchBar? _arrSeaPeople[indexPath.row]:EX_arrGroupAddressBooks[indexPath.row];
+    PeopelInfo *info=isSearchBar? _arrSeaPeople[indexPath.row]:_allPeople[indexPath.row];
     
     if ([info.tel isEqualToString:peopleInfo.tel]) {
         cell.imageCheckView.image =[UIImage imageNamed:@"btn_check"];
@@ -72,7 +109,7 @@ static NSString *strCell =@"Cell";
 
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    PeopelInfo *obj =EX_arrGroupAddressBooks[indexPath.row];
+    PeopelInfo *obj =_allPeople[indexPath.row];
     for (UIView * view in tableView.visibleCells) {
         MailAddressCell *cell=(MailAddressCell *)view;
         if (view.tag ==indexPath.row) {
@@ -116,7 +153,7 @@ static NSString *strCell =@"Cell";
 
         
         NSPredicate *predicateTemplate = [NSPredicate predicateWithFormat: strSearchbar];
-        self.arrSeaPeople=[EX_arrGroupAddressBooks filteredArrayUsingPredicate: predicateTemplate];
+        self.arrSeaPeople=[_allPeople filteredArrayUsingPredicate: predicateTemplate];
     }else {
         isSearching=NO;
     }

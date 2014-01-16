@@ -46,7 +46,9 @@
     self.arrOption=[[NSMutableArray alloc] init];
     
     /*通讯录所有信息*/
-    NSString * strPath=[NSString stringWithFormat:@"%@/%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode,@"group.txt"];
+    NSString * strPath;
+    if (_OptionView.isECMember)strPath =[NSString stringWithFormat:@"%@/%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode,@"ecgroup.txt"];
+    else  strPath = [NSString stringWithFormat:@"%@/%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode,@"group.txt"];
     BOOL blHave=[[NSFileManager defaultManager] fileExistsAtPath:strPath];
     if ((_arrAllPeople.count==0||!_arrAllPeople)&&!blHave) {
         [self showHUDText:@"请同步通讯录" showTime:1.0];

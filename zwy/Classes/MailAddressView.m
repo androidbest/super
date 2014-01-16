@@ -38,7 +38,7 @@
     [_btnAffirm addTarget:self.controller action:@selector(btnAffirm) forControlEvents:UIControlEventTouchUpInside];
     _btnAffirm.layer.masksToBounds = YES;
     _btnAffirm.layer.cornerRadius = 6.0;
-
+    [self.controller initWithData];
 	// Do any additional setup after loading the view.
     
 }

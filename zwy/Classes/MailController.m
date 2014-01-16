@@ -257,7 +257,7 @@
         self.mailView.info=info;
         if (![arrOpinionManage containsObject:info.infoid]) {
             [arrOpinionManage addObject:info.infoid];
-            [arrOpinionManage writeToFile:[DocumentsDirectory stringByAppendingString:PATH_OPINIONMANAGE] atomically:NO];
+            [arrOpinionManage writeToFile:[DocumentsDirectory stringByAppendingPathComponent:PATH_OPINIONMANAGE] atomically:NO];
         }
         
         
