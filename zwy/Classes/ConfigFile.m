@@ -168,6 +168,52 @@ static ConfigFile *configFile;
     return AllPeople;
 }
 
+//获取所有EC成员
++ (NSMutableArray *)setEcMember{
+    
+    NSArray * allSection=@[@"a",@"b",@"c",@"d",@"e",@"f",
+                           @"g",@"h",@"i",@"j",@"k",@"l",
+                           @"m",@"n",@"o",@"p",@"q",@"r",
+                           @"s",@"t",@"u",@"v",@"w",@"x",
+                           @"y",@"z",@"#",];
+    
+    NSString *str=[NSString stringWithFormat:@"%@/%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode,@"ecuser.txt"];
+    NSMutableArray* AllPeople =[[NSMutableArray alloc] init];
+    NSString *strGroup =[NSString stringWithContentsOfFile:str encoding:NSUTF8StringEncoding error:NULL];
+    NSArray *arrGroup=[strGroup componentsSeparatedByString:@"\n"];
+    if (arrGroup.count==0&&!arrGroup) return AllPeople;
+    NSString * strData =[NSString stringWithContentsOfFile:str encoding:NSUTF8StringEncoding error:NULL];
+    NSArray * arr = [strData componentsSeparatedByString:@"\n"];
+    if (arr.count==0&&!arr) return AllPeople;
+    for (int i =0; i<arr.count-1; i++) {
+        NSArray * arrData =[[arr objectAtIndex:i] componentsSeparatedByString:@","];
+        if (arrData.count==11) {
+            PeopelInfo *info=[PeopelInfo new];
+            info.userID =[arrData objectAtIndex:0];
+            info.Name=[arrData objectAtIndex:1];
+            info.job=[arrData objectAtIndex:2];
+            info.area =[arrData objectAtIndex:3];
+            info.tel=[arrData objectAtIndex:4];
+            info.groupID =[arrData objectAtIndex:5];
+            info.superID=[arrData objectAtIndex:5];
+            info.letter =[arrData objectAtIndex:6];
+            if ([allSection containsObject:[[arrData objectAtIndex:6] substringToIndex:1]]) {
+                info.Firetletter =[[arrData objectAtIndex:6] substringToIndex:1];
+            }else{
+                info.Firetletter =@"#";
+            }
+            info.isecnumer=[arrData objectAtIndex:8];
+            info.headPath=[arrData objectAtIndex:9];
+            info.eccode=[arrData objectAtIndex:10];
+            if([info.isecnumer isEqualToString:@"1"]){
+                [AllPeople addObject:info];
+            }
+        }
+    }
+    return AllPeople;
+}
+
+
 /*同步全局通讯录缓存指示灯*/
 + (void)showSetAllAllGroupAddressBooksHUDWithText:(NSString *)text  withView:(UIViewController *)viewController{
     NSString * str =[NSString stringWithFormat:@"%@/%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode,@"group.txt"];
