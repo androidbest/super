@@ -14,4 +14,5 @@
 @property (strong ,nonatomic)NSString *lastEcid;
 @property (strong ,nonatomic)NSString *ECSystem;
 @property (strong ,nonatomic)NSString *ECProvince;
+@property (strong ,nonatomic)NSString *isLocked;
 @end

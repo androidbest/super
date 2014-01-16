@@ -105,6 +105,16 @@
     if (self.navigationController.navigationBarHidden) self.navigationController.navigationBarHidden=NO;
 }
 
+- (void)viewDidDisappear:(BOOL)animated{
+    NSLog(@"%@",self.navigationController.topViewController);
+    //如果topView存在,则为Push
+    if (self.navigationController.topViewController) {
+        
+    }else{
+    
+    }
+}
+
 
 - (void)segmentAction:(id)sender{
     
@@ -114,10 +124,6 @@
 
 }
 
-
-- (void)viewDidAppear:(BOOL)animated{
-
-}
 
 
 - (void)viewDidLayoutSubviews{

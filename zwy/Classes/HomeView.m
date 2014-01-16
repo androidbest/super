@@ -173,6 +173,7 @@ NSString * stringTel =STRING_TEL(@"133");
     self.tabBarController.tabBar.hidden=NO;
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [((HomeController *)self.controller) getCount];
+     _ecname.text=user.province;
     
 //显示时间
     NSDateFormatter * dateFormatter = [[NSDateFormatter alloc]init];
@@ -185,8 +186,7 @@ NSString * stringTel =STRING_TEL(@"133");
     
     if([user.ecSgin isEqualToString:@"0"]){
         [((HomeController *)self.controller) sendEc];
-//        [((HomeController *)self.controller) getCount];
-        user.ecSgin=nil;
+         user.ecSgin=nil;
     }
     
     //未读即时消息刷新
@@ -198,7 +198,6 @@ NSString * stringTel =STRING_TEL(@"133");
         _labelChatCount.hidden=NO;
         _labelChatCount.text=[NSString stringWithFormat:@"%d",count];
     }
-    
     //本地通知处理方法
     if (isLocalNotification) [self performSelector:@selector(jumpScheduleView:) withObject:nil afterDelay:0.0f];
 }

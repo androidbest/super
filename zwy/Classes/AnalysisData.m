@@ -57,6 +57,7 @@ RespInfo *info=[RespInfo new];
         NSString * ecname=[[[arrEC objectAtIndex:i] objectForKey:@"ecname"] objectForKey:@"text"];
         NSString *ecSystem=[[[arrEC objectAtIndex:i] objectForKey:@"ecsystem"] objectForKey:@"text"];
         NSString *ecProvince =[[[arrEC objectAtIndex:i] objectForKey:@"province"] objectForKey:@"text"];
+        NSString *islock  =[[[arrEC objectAtIndex:i] objectForKey:@"islocked"] objectForKey:@"text"];
         if(!ecid){
             continue;
         }
@@ -66,6 +67,7 @@ RespInfo *info=[RespInfo new];
         detas.ECID=ecid;
         detas.ECName=ecname;
         detas.ECSystem=ecSystem;
+        detas.isLocked=islock;
         if (ecProvince)  detas.ECProvince=ecProvince;
         else detas.ECProvince=@"重庆";
         detas.lastEcid=lastecid;

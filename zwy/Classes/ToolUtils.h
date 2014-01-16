@@ -66,4 +66,10 @@
 
 #pragma mark -UUID获取
 + (NSString*) uuid;
+
+/*
+ *判断是push还是pop方法
+ *YES为Push
+ */
++ (BOOL)pushOrPopView:(UIViewController *)viewController;
 @end

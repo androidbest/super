@@ -27,7 +27,6 @@
 -(void)startCell{
     self.HUD.labelText = @"正在获取单位信息..";
     [self.HUD show:YES];
-//    self.HUD.dimBackground = YES;
     [packageData getECinterface:self msisdn:user.msisdn];
 }
 
@@ -120,6 +119,11 @@
     if ([ecinfo.ECID isEqualToString:user.eccode])
         return;
     
+    if ([ecinfo.isLocked isEqualToString:@"1"]) {
+        [ToolUtils alertInfo:@"该单位已被锁定,请联系您的客户经理"];
+        return;
+    }
+    
     tempIndexPath=indexPath;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     alertViewType=0;
@@ -199,6 +203,8 @@
                     EcinfoDetas *ecinfo=arr[tempIndexPath.row];
                     user.eccode=ecinfo.ECID;
                     user.ecname=ecinfo.ECName;
+                    user.ecsystem=ecinfo.ECSystem;
+                    user.ecsignname=ecinfo.ECProvince;
                     user.ecSgin=@"0";
                     NSUserDefaults *appConfig=[NSUserDefaults standardUserDefaults];
                     [appConfig setValue:user.eccode forKey:@"eccode"];
@@ -231,6 +237,8 @@
                 EcinfoDetas *ecinfo=arr[tempIndexPath.row];
                 user.eccode=ecinfo.ECID;
                 user.ecname=ecinfo.ECName;
+                user.ecsystem=ecinfo.ECSystem;
+                user.ecsignname=ecinfo.ECProvince;
                 user.ecSgin=@"0";
                 NSUserDefaults *appConfig=[NSUserDefaults standardUserDefaults];
                 [appConfig setValue:user.eccode forKey:@"eccode"];
