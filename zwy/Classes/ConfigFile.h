@@ -78,6 +78,9 @@
 + (NSMutableArray *)setAllPeopleInfo:(NSString *)str isECMember:(BOOL)isECMember;
 + (NSMutableArray *)setEcNumberInfo;
 
+//获取所有EC成员
++ (NSMutableArray *)setEcMember;
+
 /*同步全局通讯录缓存指示灯*/
 + (void)showSetAllAllGroupAddressBooksHUDWithText:(NSString *)text withView:(UIViewController *)viewController;
 @end
