@@ -27,6 +27,7 @@
     info.respCode=[[[[[dic objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"RespInfo"] objectForKey:@"respCode"] objectForKey:@"text"];
     info.respMsg=[[[[[dic objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"RespInfo"] objectForKey:@"respMessage"] objectForKey:@"text"];
     info.ID=[[[[[dic objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"RespInfo"] objectForKey:@"id"] objectForKey:@"text"];
+    info.errorMsg=[[[[dic objectForKey:@"MESSAGE"] objectForKey:@"HEAD"] objectForKey:@"ERRORMSG"] objectForKey:@"text"];
     return info;
 }
 

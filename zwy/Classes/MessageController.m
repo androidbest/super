@@ -33,6 +33,15 @@
         arrNumber =@[@"0",@"1",@"2",@"3",@"4",
                      @"5",@"6",@"7",@"8",@"9"];
         isSearching=NO;
+        
+        
+            AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+            [audioSession isOtherAudioPlaying];
+            //默认情况下扬声器播放
+            [audioSession setActive:YES error:nil];
+            [audioSession setCategory:AVAudioSessionCategoryPlayback error:nil];
+
+        
     }
     return self;
 }
@@ -95,7 +104,7 @@
     if (_messageView.searchBar.text.length!=0&&isSearching)sessionInfo=_arrSeaPeople[indexPath.row];
     else sessionInfo=_arrSession[indexPath.row];
     
-    cell.title.text=sessionInfo.session_receivername;
+    
     if(sessionInfo.session_voicetimes&&![sessionInfo.session_voicetimes isEqualToString:@"(null)"]&&![sessionInfo.session_voicetimes isEqualToString:@"null"]&&![sessionInfo.session_voicetimes isEqualToString:@""]&&![sessionInfo.session_voicetimes isEqualToString:@"0"]){
     cell.content.text=[NSString stringWithFormat:@"%@''",sessionInfo.session_voicetimes];
     }else{
@@ -111,14 +120,24 @@
 //    cell.username.text=sessionInfo.session_receivername;
     NSString *url=@"";
     if(sessionInfo.session_groupuuid&&![sessionInfo.session_groupuuid isEqualToString:@"null"]&&![sessionInfo.session_groupuuid isEqualToString:@""]&&![sessionInfo.session_groupuuid isEqualToString:@"(null)"]){
-        NSArray *arr=[sessionInfo.session_receiveravatar componentsSeparatedByString:@","];
-        if(arr.count>0&&arr[0]&&![arr[0] isEqualToString:@""]&&![arr[0] isEqualToString:@"null"]&&![arr[0] isEqualToString:@"(null)"]){
-           url=[sessionInfo.session_receiveravatar componentsSeparatedByString:@","][0];
+        NSArray *urlarr=[sessionInfo.session_receiveravatar componentsSeparatedByString:@","];
+        NSArray *titarr=[sessionInfo.session_receivername componentsSeparatedByString:@","];
+        if(titarr.count==2){
+            for(int i=0;i<titarr.count;i++){
+                if([titarr[i] isEqualToString:user.username])continue;
+                
+                url=urlarr[i];
+                cell.title.text=titarr[i];
+            }
+        }else{
+            url=urlarr[0];
+            cell.title.text=sessionInfo.session_receivername;
         }
-    }else{
-        url=sessionInfo.session_receiveravatar;
     }
-    
+//    else{
+//        url=sessionInfo.session_receiveravatar;
+//        cell.title.text=sessionInfo.session_receivername;
+//    }
     [HTTPRequest imageWithURL:url imageView:cell.imageMark placeholderImage:[UIImage  imageNamed:@"default_avatar"]];
     return cell;
 }

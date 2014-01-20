@@ -118,7 +118,7 @@
     
     //群组处理
 //    if(info.imGroupid&&![info.imGroupid isEqualToString:@"null"]&&![info.imGroupid isEqualToString:@""]&&![info.imGroupid isEqualToString:@"(null)"]){
-//        grouid=info.imGroupid;
+        grouid=info.imGroupid;
 //        NSArray * msisdn =[info.tel componentsSeparatedByString:@","];
 //        NSArray * name =[info.Name componentsSeparatedByString:@","];
 //        NSArray * headPath =[info.headPath componentsSeparatedByString:@","];

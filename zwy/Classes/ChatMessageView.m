@@ -147,14 +147,14 @@
 //    UInt32 audioRouteOverride = kAudioSessionOverrideAudioRoute_Speaker;
 //    AudioSessionSetProperty (kAudioSessionProperty_OverrideCategoryDefaultToSpeaker,sizeof (audioRouteOverride),&audioRouteOverride);
     
-    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
-    [audioSession isOtherAudioPlaying];
-    //默认情况下扬声器播放
-    [audioSession setActive:YES error:nil];
-    [audioSession setCategory:AVAudioSessionCategoryPlayback error:nil];
-    
-    
-    //初始化录音vc
+//    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+//    [audioSession isOtherAudioPlaying];
+//    //默认情况下扬声器播放
+//    [audioSession setActive:YES error:nil];
+//    [audioSession setCategory:AVAudioSessionCategoryPlayback error:nil];
+//
+//    
+//    //初始化录音vc
     _recorderVC = [[ChatVoiceRecorderVC alloc]init];
     _recorderVC.vrbDelegate = self.controller;
 }

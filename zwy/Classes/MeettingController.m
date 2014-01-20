@@ -67,7 +67,11 @@
     UIImageView *imageView;
 //    UIImage *image=nil;
     RespInfo * info =[AnalysisData ReTurnInfo:dic];
-    if ([info.respCode isEqualToString:@"0"]) {
+    if([info.resultcode isEqualToString:@"1"]){
+       self.HUD.labelText = info.errorMsg;
+    }else if(![info.respCode isEqualToString:@"0"]){
+       self.HUD.labelText = info.respMsg;
+    }else{
         self.HUD.labelText = @"发送成功";
         if([_MeetType isEqualToString:@"0"]){
             [self.arrDidAllPeople removeAllObjects];
@@ -78,10 +82,23 @@
             [voiceAllNumber removeAllObjects];
             [self.meettingView.tableViewPeople reloadData];
         }
-    }else{
-//        image= [UIImage imageNamed:@"37x-Checkmark.png"];
-        self.HUD.labelText = @"发送失败";
+
     }
+//    if ([info.respCode isEqualToString:@"0"]) {
+//        self.HUD.labelText = @"发送成功";
+//        if([_MeetType isEqualToString:@"0"]){
+//            [self.arrDidAllPeople removeAllObjects];
+//            [arrAllNumber removeAllObjects];
+//            [self.meettingView.tableViewPeople reloadData];
+//        }else{
+//            [voiceDidAllPeople removeAllObjects];
+//            [voiceAllNumber removeAllObjects];
+//            [self.meettingView.tableViewPeople reloadData];
+//        }
+//    }else{
+////        image= [UIImage imageNamed:@"37x-Checkmark.png"];
+//        self.HUD.labelText = @"发送失败";
+//    } 
     self.HUD.customView=imageView;
     self.HUD.mode = MBProgressHUDModeCustomView;
     [self.HUD hide:YES afterDelay:1];

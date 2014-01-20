@@ -78,6 +78,7 @@
                 [btn setBackgroundImage:[UIImage imageNamed:@"chat_jiahao"] forState:UIControlStateNormal];
                 [btn addTarget:self action:@selector(btnAddpeople:) forControlEvents:UIControlEventTouchUpInside];
             }else if([obj isEqual:@"10001"]){
+                btn.hidden=(_editingView.chatView.arrPeoples.count<=4);
                 btn.layerBubble.hidden=YES;
                 btn.tag=10001;
                 [btn setBackgroundImage:[UIImage imageNamed:@"chat_jianhao"] forState:UIControlStateNormal];
@@ -121,6 +122,7 @@
              [btn setBackgroundImage:[UIImage imageNamed:@"chat_jiahao"] forState:UIControlStateNormal];
             [btn addTarget:self action:@selector(btnAddpeople:) forControlEvents:UIControlEventTouchUpInside];
         }else if([obj isEqual:@"10001"]){
+            btn.hidden=(_editingView.chatView.arrPeoples.count<=4);
             btn.layerBubble.hidden=YES;
             btn.tag=10001;
             [btn setBackgroundImage:[UIImage imageNamed:@"chat_jianhao"] forState:UIControlStateNormal];

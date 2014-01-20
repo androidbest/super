@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface RespInfo : NSObject
+@property (strong ,nonatomic)NSString * errorMsg;//返回错误信息
 @property (strong ,nonatomic)NSString * respCode;//返回数据id
 @property (strong ,nonatomic)NSString * respMsg;//返回信息
 @property (strong ,nonatomic)NSString * updatetime;//最后更新时间
