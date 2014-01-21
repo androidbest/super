@@ -67,6 +67,9 @@
 #pragma mark -UUID获取
 + (NSString*) uuid;
 
+#pragma mark 即时聊天输入法
++ (NSString*) inputMethod:(NSString *)text;
+
 /*
  *判断是push还是pop方法
  *YES为Push

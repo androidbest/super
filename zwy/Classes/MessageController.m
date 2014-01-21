@@ -118,7 +118,7 @@
         cell.labelCount.text=sessionInfo.session_unreadcount;
     }
 //    cell.username.text=sessionInfo.session_receivername;
-    NSString *url=@"";
+    NSString *url=nil;
     if(sessionInfo.session_groupuuid&&![sessionInfo.session_groupuuid isEqualToString:@"null"]&&![sessionInfo.session_groupuuid isEqualToString:@""]&&![sessionInfo.session_groupuuid isEqualToString:@"(null)"]){
         NSArray *urlarr=[sessionInfo.session_receiveravatar componentsSeparatedByString:@","];
         NSArray *titarr=[sessionInfo.session_receivername componentsSeparatedByString:@","];

@@ -299,6 +299,7 @@
     [chatMsgObjArr removeAllObjects];
     NSDate *date=[NSDate date];
 //    NSString *groupid=[ToolUtils uuid];
+    NSString *text=[ToolUtils inputMethod:self.chatMessageView.im_text.text];
     if(self.chatMessageView.arrPeoples.count>0){
         
         if(!(grouid&&![grouid isEqualToString:@"null"]&&![grouid isEqualToString:@""])){
@@ -316,7 +317,7 @@
                 obj.receivermsisdn=info.tel;
                 obj.receiveravatar=info.headPath;
                 obj.receivername=info.Name;
-                obj.content=self.chatMessageView.im_text.text;
+                obj.content=text;
                 obj.sendtime=[ToolUtils NSDateToNSString:date format:CHATDATETYPE];
                 obj.sendtimeNSdate=date;
                 obj.groupid=grouid;
@@ -369,7 +370,7 @@
             obj.receivermsisdn=self.chatMessageView.chatData.tel;
             obj.receiveravatar=self.chatMessageView.chatData.headPath;
             obj.receivername=self.chatMessageView.chatData.Name;
-            obj.content=self.chatMessageView.im_text.text;
+            obj.content=text;
             obj.sendtime=[ToolUtils NSDateToNSString:date format:CHATDATETYPE];
             obj.sendtimeNSdate=date;
             obj.senderavatar=user.headurl;

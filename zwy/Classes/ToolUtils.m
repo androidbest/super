@@ -491,6 +491,15 @@
     return result;
 }
 
++ (NSString*) inputMethod:(NSString *)text{
+    char* utf8Replace = "\xe2\x80\x86\0";
+    NSData* data = [NSData dataWithBytes:utf8Replace length:strlen(utf8Replace)];
+    NSString* utf8_str_format = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSMutableString* mutableAblumName = [NSMutableString stringWithString:text];
+    NSString* strAblum =  [mutableAblumName stringByReplacingOccurrencesOfString:utf8_str_format withString:@""];
+    return strAblum;
+}
+
 /*
  *判断是push还是pop方法
  *YES为Push

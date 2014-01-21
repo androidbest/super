@@ -146,7 +146,7 @@
     [posterOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"Response: %@", responseObject);
         //压缩图片
-        //        [CompressImage setCellContentImage:imageView Image:[UIImage imageNamed:@"default_avatar"] filePath:PicPath isDrawRect:drawRect_no];
+        // [CompressImage setCellContentImage:imageView Image:[UIImage imageNamed:@"default_avatar"] filePath:PicPath isDrawRect:drawRect_no];
         [CompressImage  writeFile:responseObject Type:PicPath];
         imageView.image =(UIImage *)responseObject;
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -229,7 +229,6 @@
         ImageBolck(responseObject);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [CompressImage  writeFile:image Type:PicPath];
         NSLog(@"Image request failed with error: %@", error);
     }];
     [[NSOperationQueue new] addOperation:posterOperation];
