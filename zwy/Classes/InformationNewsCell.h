@@ -32,5 +32,12 @@
 @property (strong ,nonatomic)UILabel *labelContent5;
 @property (strong ,nonatomic)UILabel *labelContent6;
 
+@property (strong ,nonatomic)UILabel *labelTime1;
+@property (strong ,nonatomic)UILabel *labelTime2;
+@property (strong ,nonatomic)UILabel *labelTime3;
+@property (strong ,nonatomic)UILabel *labelTime4;
+@property (strong ,nonatomic)UILabel *labelTime5;
+@property (strong ,nonatomic)UILabel *labelTime6;
+
 @property (strong ,nonatomic)UIImageView *imageFirstNews;
 @end

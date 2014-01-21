@@ -17,6 +17,7 @@
 @property (strong ,nonatomic) UIImageView *imageContentView;
 @property (strong ,nonatomic) UILabel *labelContent;
 @property (strong ,nonatomic) UILabel *labelSource;
+@property (strong ,nonatomic) UILabel *labelTime;
 @property (strong, nonatomic) IBOutlet UIButton *btnBack;
 @property (strong, nonatomic) IBOutlet UIButton *btnCommend;
 @property (strong, nonatomic) IBOutlet UIButton *btnShare;
