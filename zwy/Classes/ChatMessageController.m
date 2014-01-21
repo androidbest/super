@@ -287,6 +287,7 @@
     if([segue.identifier isEqualToString:@"ChatMessageToEditingPeoplesView"]){
         EditingChatPeoplesview *editingView =segue.destinationViewController;
         editingView.chatView=_chatMessageView;
+        if (!chatMessageID)chatMessageID =[NSString stringWithFormat:@"%@%@%@%@",user.msisdn,user.eccode,grouid,user.eccode];
         editingView.chatMessageID=chatMessageID;
     }
 }

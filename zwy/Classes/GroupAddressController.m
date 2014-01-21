@@ -367,7 +367,6 @@
         _arrFirstGroup=nil;
         _arrSeaPeople=nil;
         [self.grougView.tabBarController.navigationController popViewControllerAnimated:YES];
-        _grougView=nil;
         return;
     }
     if ([groupA.superID isEqualToString:@"0"]||isFirstPages) {
