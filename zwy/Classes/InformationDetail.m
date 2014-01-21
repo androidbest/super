@@ -84,10 +84,18 @@
     
     /*来源*/
     _labelSource =[[UILabel alloc] init];
-    _labelSource.frame=CGRectMake(10, layerHeight-20, ScreenWidth-20, 12);
+    _labelSource.frame=CGRectMake(10, layerHeight-20, ScreenWidth/2-20, 12);
     _labelSource.textColor=[UIColor whiteColor];
     _labelSource.font =[UIFont systemFontOfSize:12];
     [self.view addSubview:_labelSource];
+    
+    /*时间*/
+    _labelTime =[[UILabel alloc] init];
+    _labelTime.frame =CGRectMake(_labelSource.frame.size.width+10, layerHeight-20, ScreenWidth/2, 12);
+    _labelTime.textColor=[UIColor whiteColor];
+    _labelTime.textAlignment=NSTextAlignmentRight;
+    _labelTime.font =[UIFont systemFontOfSize:12];
+    [self.view addSubview:_labelTime];
     
     /*新闻图片*/
     _imageContentView=[[UIImageView alloc] init];

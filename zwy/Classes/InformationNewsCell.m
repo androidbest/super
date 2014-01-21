@@ -34,8 +34,8 @@
         
         //头新闻label
         _labelTitle1 =[[UILabel alloc] init];
-        viewFrame.origin.y=viewFrame.size.height-20;
-        viewFrame.size.height=20;
+        viewFrame.origin.y=viewFrame.size.height-20.0f;
+        viewFrame.size.height=20.0f;
         _labelTitle1.frame=viewFrame;
         _labelTitle1.backgroundColor=[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.3];
         _labelTitle1.font =[UIFont systemFontOfSize:14];
@@ -45,8 +45,8 @@
         
         //新闻label
         _labelTitle2 =[[UILabel alloc] init];
-        float labelLeftX=10;
-        float labelContentWidth=145;
+        float labelLeftX=10.0f;
+        float labelContentWidth=145.0f/2.0f;
         float labelContentY=informationView.ContextHeight*0.2;
         float labelContentHeight =informationView.ContextHeight*0.12;
         viewFrame=CGRectMake(labelLeftX, informationView.SegmentationTopY-labelContentY, labelContentWidth, labelContentHeight);
@@ -134,12 +134,54 @@
         _labelAddress5.textColor=[UIColor grayColor];
         [informationView addSubview:_labelAddress5];
         
-        viewFrame=CGRectMake(labelLeftX, informationView.frame.size.height-25, ScreenWidth-20, 15);
+        viewFrame=CGRectMake(labelLeftX, informationView.frame.size.height-25, ScreenWidth/2-20, 15);
         _labelAddress6=[[UILabel alloc] init];
         _labelAddress6.frame=viewFrame;
         _labelAddress6.font=[UIFont systemFontOfSize:13];
         _labelAddress6.textColor=[UIColor grayColor];
         [informationView addSubview:_labelAddress6];
+        
+        //新闻时间
+        viewFrame=CGRectMake(labelLeftX+labelContentWidth, informationView.SegmentationTopY-25, labelContentWidth, 15);
+        _labelTime2=[[UILabel alloc] init];
+        _labelTime2.frame=viewFrame;
+        _labelTime2.font=[UIFont systemFontOfSize:13];
+        _labelTime2.textAlignment=NSTextAlignmentRight;
+        _labelTime2.textColor=[UIColor grayColor];
+        [informationView addSubview:_labelTime2];
+        
+        viewFrame.origin.x+=ScreenWidth/2;
+        _labelTime3=[[UILabel alloc] init];
+        _labelTime3.frame=viewFrame;
+        _labelTime3.font=[UIFont systemFontOfSize:13];
+        _labelTime3.textAlignment=NSTextAlignmentRight;
+        _labelTime3.textColor=[UIColor grayColor];
+        [informationView addSubview:_labelTime3];
+        
+        viewFrame.origin.x=labelLeftX+labelContentWidth;
+        viewFrame.origin.y=informationView.SegmentationButtonY-25;
+        _labelTime4=[[UILabel alloc] init];
+        _labelTime4.frame=viewFrame;
+        _labelTime4.font=[UIFont systemFontOfSize:13];
+        _labelTime4.textAlignment=NSTextAlignmentRight;
+        _labelTime4.textColor=[UIColor grayColor];
+        [informationView addSubview:_labelTime4];
+
+        viewFrame.origin.x+=ScreenWidth/2;
+        _labelTime5=[[UILabel alloc] init];
+        _labelTime5.frame=viewFrame;
+        _labelTime5.font=[UIFont systemFontOfSize:13];
+        _labelTime5.textAlignment=NSTextAlignmentRight;
+        _labelTime5.textColor=[UIColor grayColor];
+        [informationView addSubview:_labelTime5];
+        
+        viewFrame=CGRectMake(labelLeftX+ScreenWidth/2-20, informationView.frame.size.height-25, ScreenWidth/2, 15);
+        _labelTime6=[[UILabel alloc] init];
+        _labelTime6.frame=viewFrame;
+        _labelTime6.font=[UIFont systemFontOfSize:13];
+        _labelTime6.textAlignment=NSTextAlignmentRight;
+        _labelTime6.textColor=[UIColor grayColor];
+        [informationView addSubview:_labelTime6];
         
         //添加点击手势
         UITapGestureRecognizer *tapToInformationView=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(PushToNewsDetaView:)];

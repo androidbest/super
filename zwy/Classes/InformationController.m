@@ -202,6 +202,7 @@
                 {
                    cellNews.labelTitle2.text=info.title;
                    cellNews.labelTitle2.tag=indexRow;
+                   cellNews.labelTime2.text=info.releaseTime;
                    cellNews.labelAddress2.text=info.sourceName;
                 }
                     break;
@@ -209,6 +210,7 @@
                 {
                     cellNews.labelTitle3.text=info.title;
                     cellNews.labelTitle3.tag=indexRow;
+                    cellNews.labelTime3.text=info.releaseTime;
                     cellNews.labelAddress3.text=info.sourceName;
                 }
                     break;
@@ -216,20 +218,23 @@
                 {
                     cellNews.labelTitle4.text=info.title;
                     cellNews.labelTitle4.tag=indexRow;
+                    cellNews.labelTime4.text=info.releaseTime;
                     cellNews.labelAddress4.text=info.sourceName;
                 }
                     break;
                 case 4:
                 {
-                     cellNews.labelTitle5.text=info.title;
+                    cellNews.labelTitle5.text=info.title;
                     cellNews.labelTitle5.tag=indexRow;
+                    cellNews.labelTime5.text=info.releaseTime;
                     cellNews.labelAddress5.text=info.sourceName;
                 }
                     break;
                 case 5:
                 {
-                     cellNews.labelTitle6.text=info.title;
+                    cellNews.labelTitle6.text=info.title;
                     cellNews.labelTitle6.tag=indexRow;
+                    cellNews.labelTime6.text=info.releaseTime;
                     cellNews.labelAddress6.text=info.sourceName;
                 }
                     break;

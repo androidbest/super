@@ -98,6 +98,7 @@
    _informaView.labelTitle.text=info.title;
    _informaView.labelSource.text=info.sourceName;
    _informaView.labelContent.text=info.content;
+   _informaView.labelTime.text=info.releaseTime;
     if (info.imagePath) {
          _informaView.imageContentView.hidden=NO;
         [HTTPRequest imageWithURL:info.imagePath
