@@ -24,6 +24,7 @@
 @property (nonatomic, retain) NSString * session_content;         //内容
 @property (nonatomic, retain) NSString * session_voicetimes;         //语音秒数
 @property (nonatomic, retain) NSString * session_unreadcount;     //未读总条数
+@property (nonatomic, retain) NSString * session_phonesearch;     //未读总条数
 @property (nonatomic, retain) NSDate * session_times;             //时间session_voicetimes
 @property (nonatomic, retain) NSSet *session_chats;               //指向"消息表"
 @end

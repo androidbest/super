@@ -64,6 +64,24 @@ static CoreDataManageContext *coreData=nil;
 }
 
 /*
+ *获取会话表单
+ *返回object为“SessionEntity”
+ */
+- (NSArray *)getSessionID:(NSString *)phone_ec{
+    NSEntityDescription * emEty = [NSEntityDescription entityForName:@"SessionEntity" inManagedObjectContext:self.managedObjectContext];
+    NSFetchRequest *frq = [[NSFetchRequest alloc]init];
+    [frq setEntity:emEty];
+    
+    //设置搜索条件
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"session_phonesearch == %@", phone_ec];
+    [frq setPredicate:predicate];
+    
+    NSArray *objs =[self.managedObjectContext executeFetchRequest:frq error:nil];
+    return objs;
+}
+
+
+/*
  *接受组id
  *chatType: 0.自己发 1.对方发
  *isChek: 如果已点击查看为 YES ,否则 NO
@@ -118,6 +136,15 @@ static CoreDataManageContext *coreData=nil;
     Sessions.session_content=messageObjct.content;
     Sessions.session_pinyinName =[ToolUtils pinyinFromString:messageObjct.sendname];
     Sessions.session_voicetimes=messageObjct.voicetime;
+    
+    NSArray *arr=[messageObjct.sendmsisdn componentsSeparatedByString:@","];
+    if(arr.count==2){
+        for(NSString *str in arr){
+            if([str isEqualToString:@""])continue;
+            Sessions.session_phonesearch=[NSString stringWithFormat:@"%@_%@",str,user.eccode];
+        }
+    }
+    
     if (isChek) Sessions.session_unreadcount =@"0";
     else Sessions.session_unreadcount=[NSString stringWithFormat:@"%d",[Sessions.session_unreadcount intValue]+1];
     Sessions.session_times =[ToolUtils NSStringToNSDate:messageObjct.sendtime format:CHATDATETYPE];
@@ -207,6 +234,14 @@ static CoreDataManageContext *coreData=nil;
         Sessions.session_receivername=name;
         Sessions.session_content=content;
         Sessions.session_voicetimes=messageObjct.voicetime;
+        
+        if(arr.count==2){
+            for(ChatMsgObj *msgobj in arr){
+                if([msgobj.receivermsisdn isEqualToString:user.msisdn])continue;
+                Sessions.session_phonesearch=[NSString stringWithFormat:@"%@_%@",msgobj.receivermsisdn,user.eccode];
+            }
+        }
+        
         if (isChek) Sessions.session_unreadcount =@"0";
         else Sessions.session_unreadcount=[NSString stringWithFormat:@"%d",[Sessions.session_unreadcount intValue]+1];
         Sessions.session_times =[ToolUtils NSStringToNSDate:tims format:CHATDATETYPE];

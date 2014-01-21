@@ -114,11 +114,19 @@
 //初始化数据
 -(void)initDatatoData{
     PeopelInfo *info=self.chatMessageView.chatData;
-    NSString *temp=@"";
     
     //群组处理
 //    if(info.imGroupid&&![info.imGroupid isEqualToString:@"null"]&&![info.imGroupid isEqualToString:@""]&&![info.imGroupid isEqualToString:@"(null)"]){
+    
+        if(info.imGroupid)
         grouid=info.imGroupid;
+        else{
+        NSArray *gidarr=[[CoreDataManageContext newInstance] getSessionID:[NSString stringWithFormat:@"%@_%@",info.tel,user.eccode]];
+            if(gidarr.count>0){
+                SessionEntity *session=gidarr[0];
+        grouid=session.session_groupuuid;
+            }
+        }
 //        NSArray * msisdn =[info.tel componentsSeparatedByString:@","];
 //        NSArray * name =[info.Name componentsSeparatedByString:@","];
 //        NSArray * headPath =[info.headPath componentsSeparatedByString:@","];
@@ -158,10 +166,9 @@
                 peopel.eccode=user.eccode;
                 [self.chatMessageView.arrPeoples addObject:peopel];
             }
-    temp=info.imGroupid;
     
     //读取聊天记录
-    chatMessageID =[NSString stringWithFormat:@"%@%@%@%@",user.msisdn,user.eccode,temp,info.eccode];
+    chatMessageID =[NSString stringWithFormat:@"%@%@%@%@",user.msisdn,user.eccode,grouid,info.eccode];
 
     NSCharacterSet *set = [NSCharacterSet characterSetWithCharactersInString:@"\r\n"];
     chatMessageID = [chatMessageID stringByTrimmingCharactersInSet:set];

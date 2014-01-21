@@ -19,6 +19,7 @@
         <attribute name="session_chatMessageID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="session_content" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="session_groupuuid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="session_phonesearch" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="session_pinyinName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="session_receiveravatar" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="session_receivereccode" optional="YES" attributeType="String" syncable="YES"/>

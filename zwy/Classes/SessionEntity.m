@@ -25,4 +25,5 @@
 @dynamic session_times;
 @dynamic session_chats;
 @dynamic session_voicetimes;
+@dynamic session_phonesearch;
 @end
