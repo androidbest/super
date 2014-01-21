@@ -140,7 +140,7 @@ static CoreDataManageContext *coreData=nil;
     NSArray *arr=[messageObjct.sendmsisdn componentsSeparatedByString:@","];
     if(arr.count==2){
         for(NSString *str in arr){
-            if([str isEqualToString:@""])continue;
+            if([str isEqualToString:user.msisdn])continue;
             Sessions.session_phonesearch=[NSString stringWithFormat:@"%@_%@",str,user.eccode];
         }
     }
