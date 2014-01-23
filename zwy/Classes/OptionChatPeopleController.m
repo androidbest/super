@@ -39,7 +39,7 @@
     }else if (_optionView.arrReqeatePeoples) {
         for (int i=0;i<_optionView.arrReqeatePeoples.count-2; i++) {
             PeopelInfo *info =_optionView.arrReqeatePeoples[i];
-            NSString * strPre=[NSString stringWithFormat:@"SELF.tel == '%@' AND SELF.Name =='%@'",info.tel,info.Name];
+            NSString * strPre=[NSString stringWithFormat:@"SELF.tel == '%@' AND SELF.Name == '%@'",info.tel,info.Name];
             NSPredicate * predicate;
             predicate = [NSPredicate predicateWithFormat:strPre];
             NSArray *arr=[self.arrAllLink filteredArrayUsingPredicate: predicate];
@@ -48,12 +48,17 @@
        
     }
     
-    NSString * strPre=[NSString stringWithFormat:@"SELF.tel == '%@' AND SELF.Name =='%@'",user.msisdn,user.username];
+    //去除自己
+    NSString * strPre=[NSString stringWithFormat:@"SELF.Name CONTAINS '%@'",user.username];
     NSPredicate * predicate;
     predicate = [NSPredicate predicateWithFormat:strPre];
     NSArray *arr=[self.arrAllLink filteredArrayUsingPredicate: predicate];
     [self.arrAllLink removeObjectsInArray:arr];
     
+    strPre =[NSString stringWithFormat:@"SELF.tel CONTAINS '%@'",user.msisdn];
+    predicate = [NSPredicate predicateWithFormat:strPre];
+    NSArray *arr1=[self.arrAllLink filteredArrayUsingPredicate: predicate];
+    [self.arrAllLink removeObjectsInArray:arr1];
 }
 
 
