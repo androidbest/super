@@ -16,8 +16,6 @@
 #import "OfficeInfo.h"
 #import "OfficeAddressView.h"
 #import "optionInfo.h"
-#import "GroupDetaInfo.h"
-#import "PeopleDedaInfo.h"
 #import "PackageData.h"
 #import "AnalysisData.h"
 #import "peopleDeleteView.h"
@@ -152,9 +150,6 @@
                 
                 if ([strAllInfo isEqualToString:@""]) strAllInfo=[(GroupInfo *)obj Name];
                 else strAllInfo=[NSString stringWithFormat:@"%@,%@",strAllInfo,[(GroupInfo *)obj Name]];
-                
-//                if ([strAllGroupID isEqualToString:@""])strAllGroupID=[(GroupDetaInfo *)obj groupId];
-//                else strAllGroupID =[NSString stringWithFormat:@"%@,%@",strAllGroupID,[(GroupDetaInfo *)obj groupId]];
             }
             /******************/
             
@@ -167,13 +162,6 @@
                 
                 if ([strAllInfo isEqualToString:@""])strAllInfo=[(PeopelInfo *)obj Name];
                 else strAllInfo=[NSString stringWithFormat:@"%@,%@",strAllInfo,[(PeopelInfo *)obj Name]];
-                
-//                if ([strAllPeopleID isEqualToString:@""])strAllPeopleID =[(PeopleDedaInfo *)obj userTel];
-//                else strAllPeopleID =[NSString stringWithFormat:@"%@,%@",strAllPeopleID,[(PeopleDedaInfo *)obj userTel]];
-//                
-//                if ([strAllpeopleName isEqualToString:@""])strAllpeopleName =[(PeopleDedaInfo *)obj userName];
-//                else strAllpeopleName =[NSString stringWithFormat:@"%@,%@",strAllpeopleName,[(PeopleDedaInfo *)obj userName]];
-                
             }
             /******************/
             
@@ -436,17 +424,17 @@
     strAllGroupID=@"";
     for (int i=0; i<_arrDidAllPeople.count; i++) {
         NSObject * obj=_arrDidAllPeople[i];
-        if ([obj isKindOfClass:[GroupDetaInfo class]]) {
-            if ([strAllGroupID isEqualToString:@""])strAllGroupID=[NSString stringWithFormat:@"%@,",[(GroupDetaInfo *)obj groupId]];
-            else strAllGroupID =[NSString stringWithFormat:@"%@%@,",strAllGroupID,[(GroupDetaInfo *)obj groupId]];
+        if ([obj isKindOfClass:[GroupInfo class]]) {
+            if ([strAllGroupID isEqualToString:@""])strAllGroupID=[NSString stringWithFormat:@"%@,",[(GroupInfo *)obj groupID]];
+            else strAllGroupID =[NSString stringWithFormat:@"%@%@,",strAllGroupID,[(GroupInfo *)obj groupID]];
             
-        }else if([obj isKindOfClass:[PeopleDedaInfo class]]){
+        }else if([obj isKindOfClass:[PeopelInfo class]]){
             
-            if ([strAllPeopleID isEqualToString:@""])strAllPeopleID =[NSString stringWithFormat:@"%@,",[(PeopleDedaInfo *)obj userTel]];
-            else strAllPeopleID =[NSString stringWithFormat:@"%@%@,",strAllPeopleID,[(PeopleDedaInfo *)obj userTel]];
+            if ([strAllPeopleID isEqualToString:@""])strAllPeopleID =[NSString stringWithFormat:@"%@,",[(PeopelInfo *)obj tel]];
+            else strAllPeopleID =[NSString stringWithFormat:@"%@%@,",strAllPeopleID,[(PeopelInfo *)obj tel]];
             
-            if ([strAllpeopleName isEqualToString:@""])strAllpeopleName =[NSString stringWithFormat:@"%@,",[(PeopleDedaInfo *)obj userName]];
-            else strAllpeopleName =[NSString stringWithFormat:@"%@%@,",strAllpeopleName,[(PeopleDedaInfo *)obj userName]];
+            if ([strAllpeopleName isEqualToString:@""])strAllpeopleName =[NSString stringWithFormat:@"%@,",[(PeopelInfo *)obj Name]];
+            else strAllpeopleName =[NSString stringWithFormat:@"%@%@,",strAllpeopleName,[(PeopelInfo *)obj Name]];
             
         }
         
@@ -475,18 +463,9 @@
         }
     }
     
-//    if(![strAllPeopleID isEqualToString:@""]){
-//        strAllPeopleID=[NSString stringWithFormat:@"%@,",strAllPeopleID];
-//    }
-//    
-//    if(![strAllGroupID isEqualToString:@""]){
-//        strAllGroupID=[NSString stringWithFormat:@"%@,",strAllGroupID];
-//    }
-    
     NSString *type=self.officedetailView.info.type;
     self.HUD.labelText = @"正在处理中..";
     [self.HUD show:YES];
-//    self.HUD.dimBackground = YES;
     if([type isEqualToString:@"0"]){
         [packageData handleDoc:self ID:docContentInfo.ID Type:@"1" OperType:status tempTel:strAllPeopleID Status:@"1" context:self.officedetailView.textContent.text groupid:strAllGroupID transactdocid:docContentInfo.transactdocid];
     }else if([type isEqualToString:@"2"]){
@@ -545,8 +524,6 @@
 
 //公文流程
 -(void)jumpDocFlow{
-//    [packageData docFlow:self ID:self.officedetailView.info.ID];
-//    self.officedetailView.tabBarController.tabBar.hidden=YES;
     [self.officedetailView performSegueWithIdentifier:@"docdetailtodocflow" sender:self.officedetailView];
     [self initBackBarButtonItem:self.officedetailView];
 }
