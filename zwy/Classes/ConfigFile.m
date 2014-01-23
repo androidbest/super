@@ -165,6 +165,19 @@ static ConfigFile *configFile;
             }
         }
     }
+    
+    //去除自己
+    NSString * strPre=[NSString stringWithFormat:@"SELF.Name CONTAINS '%@'",user.username];
+    NSPredicate * predicate;
+    predicate = [NSPredicate predicateWithFormat:strPre];
+    NSArray *arr1=[AllPeople filteredArrayUsingPredicate: predicate];
+    [AllPeople removeObjectsInArray:arr1];
+    
+    strPre =[NSString stringWithFormat:@"SELF.tel CONTAINS '%@'",user.msisdn];
+    predicate = [NSPredicate predicateWithFormat:strPre];
+    NSArray *arr2=[AllPeople filteredArrayUsingPredicate: predicate];
+    [AllPeople removeObjectsInArray:arr2];
+    
     return AllPeople;
 }
 
