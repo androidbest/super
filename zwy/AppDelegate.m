@@ -210,8 +210,8 @@ UIBackgroundTaskIdentifier backgroundTask;//写成成员
     //发送后台通知（激活APNS）
     [packageData iosProcessKill:self];
     //关闭网络指示灯
-    if ([UIApplication sharedApplication ].networkActivityIndicatorVisible)
-        [UIApplication sharedApplication ].networkActivityIndicatorVisible=NO;
+    //if ([UIApplication sharedApplication ].networkActivityIndicatorVisible)
+    //    [UIApplication sharedApplication ].networkActivityIndicatorVisible=NO;
 /*
      int i = kSysMaxTimePerBgTask;
     while (i > 0)

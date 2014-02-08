@@ -260,6 +260,7 @@
     
         if([info.respCode isEqualToString:@"0"]){
             sendShowVoicetime.text=[NSString stringWithFormat:@"%@''",voicetime];
+            chatMessageID =[NSString stringWithFormat:@"%@%@%@%@",user.msisdn,user.eccode,grouid,user.eccode];
         }else{
             obj.sendfail=@"1";
             gloabcell.sendFail.hidden=NO;
@@ -732,20 +733,20 @@
 
 //点击右边头像
 -(void)rightPushDetail:(UIButton *)btn{
-    NSArray  *arr = EX_arrGroupAddressBooks;
-    NSString *strSearchbar =[NSString stringWithFormat:@"SELF.tel CONTAINS '%@'",user.msisdn];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat: strSearchbar];
-    NSArray *arrRet =[arr filteredArrayUsingPredicate: predicate];
-    if(arrRet.count>0){
-        PeopelInfo *pe=arrRet[0];
+//    NSArray  *arr = EX_arrGroupAddressBooks;
+//    NSString *strSearchbar =[NSString stringWithFormat:@"SELF.tel CONTAINS '%@'",user.msisdn];
+//    NSPredicate *predicate = [NSPredicate predicateWithFormat: strSearchbar];
+//    NSArray *arrRet =[arr filteredArrayUsingPredicate: predicate];
+    
+//        PeopelInfo *pe=[PeopelInfo new];
         self.chatMessageView.chatHead=[PeopelInfo new];
         self.chatMessageView.chatHead.tel=user.msisdn;
-        self.chatMessageView.chatHead.job=pe.job;
-        self.chatMessageView.chatHead.area=pe.area;
+        self.chatMessageView.chatHead.job=user.job;
+        self.chatMessageView.chatHead.area=user.ecname;
         self.chatMessageView.chatHead.status=@"1";
         self.chatMessageView.chatHead.Name=user.username;
         self.chatMessageView.chatHead.headPath=user.headurl;
-    }
+    
     [self initBackBarButtonItem:self.chatMessageView];
     [self.chatMessageView performSegueWithIdentifier:@"chattoDetailhead" sender:self.chatMessageView];
     

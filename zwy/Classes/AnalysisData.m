@@ -164,7 +164,7 @@ RespInfo *info=[RespInfo new];
 
 //新闻
 + (RespList *)newsInfo:(NSDictionary *)dic{
-   RespList * resplist=[RespList new];
+    RespList * resplist=[RespList new];
     resplist.resplist=[NSMutableArray new];
     NSObject * obj =[[[[dic objectForKey:@"MESSAGE"] objectForKey:@"BODY"] objectForKey:@"NewsList"] objectForKey:@"NewsInfo"];
     NSArray *arr;
@@ -173,6 +173,10 @@ RespInfo *info=[RespInfo new];
     }else{
         arr=[NSArray arrayWithObjects:(NSDictionary *)obj, nil];
     }
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setFormatterBehavior:NSDateFormatterBehaviorDefault];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
     for (int i=0; i<arr.count; i++){
         NSString *StrContent =[[[arr objectAtIndex:i] objectForKey:@"content"] objectForKey:@"text"];
         NSString * title=[[[arr objectAtIndex:i] objectForKey:@"title"] objectForKey:@"text"];
@@ -181,7 +185,8 @@ RespInfo *info=[RespInfo new];
         detail.agreecount =[[[arr objectAtIndex:i] objectForKey:@"agreecount"] objectForKey:@"text"];
         detail.imagePath=[[[arr objectAtIndex:i] objectForKey:@"imgpath"] objectForKey:@"text"];
         detail.insertTime=[[[arr objectAtIndex:i] objectForKey:@"insertTime"] objectForKey:@"text"];
-        detail.releaseTime=[[[[[arr objectAtIndex:i] objectForKey:@"releaseTime"] objectForKey:@"text"] componentsSeparatedByString:@" "] firstObject];
+        NSDate *date =[NSDate dateWithTimeIntervalSince1970:[detail.insertTime intValue]];
+        detail.releaseTime=[formatter stringFromDate:date];
         detail.sourceName=[[[arr objectAtIndex:i] objectForKey:@"sourcename"] objectForKey:@"text"];
         detail.sourcepath=[[[arr objectAtIndex:i] objectForKey:@"sourcepath"] objectForKey:@"text"];
         detail.content=StrContent;
@@ -191,6 +196,7 @@ RespInfo *info=[RespInfo new];
     }
     return resplist;
 }
+
 
 //笑话
 + (RespList *)JokeInfo:(NSDictionary *)dic{

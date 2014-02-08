@@ -23,7 +23,7 @@
 
 -(id)initWithCoder:(NSCoder *)aDecoder{
     self=[super initWithCoder:aDecoder];
-    if(self){
+    if(self){  
         
         if (!_arrPeoples) _arrPeoples=[[NSMutableArray alloc] init];
         
@@ -194,11 +194,15 @@
     self.navigationItem.title=temp;
     }else{
         //个人聊天
-    for(PeopelInfo *info in _arrPeoples){
-        if(![info.tel isEqualToString:user.msisdn]){
-            self.navigationItem.title=info.Name;
-        }
-    }
+        
+        if(_arrPeoples.count==2){
+            for(PeopelInfo *info in _arrPeoples){
+                if(![info.tel isEqualToString:user.msisdn]){
+                    self.navigationItem.title=info.Name;
+                }
+            }        }
+        
+   
     }
     //键盘显示
     [[NSNotificationCenter defaultCenter] addObserver:self
