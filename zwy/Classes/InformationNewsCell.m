@@ -46,7 +46,7 @@
         //新闻label
         _labelTitle2 =[[UILabel alloc] init];
         float labelLeftX=10.0f;
-        float labelContentWidth=145.0f/2.0f;
+        float labelContentWidth=145.0f;
         float labelContentY=informationView.ContextHeight*0.2;
         float labelContentHeight =informationView.ContextHeight*0.12;
         viewFrame=CGRectMake(labelLeftX, informationView.SegmentationTopY-labelContentY, labelContentWidth, labelContentHeight);

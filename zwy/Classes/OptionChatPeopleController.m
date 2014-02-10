@@ -47,18 +47,6 @@
         }
        
     }
-    
-    //去除自己
-    NSString * strPre=[NSString stringWithFormat:@"SELF.Name CONTAINS '%@'",user.username];
-    NSPredicate * predicate;
-    predicate = [NSPredicate predicateWithFormat:strPre];
-    NSArray *arr=[self.arrAllLink filteredArrayUsingPredicate: predicate];
-    [self.arrAllLink removeObjectsInArray:arr];
-    
-    strPre =[NSString stringWithFormat:@"SELF.tel CONTAINS '%@'",user.msisdn];
-    predicate = [NSPredicate predicateWithFormat:strPre];
-    NSArray *arr1=[self.arrAllLink filteredArrayUsingPredicate: predicate];
-    [self.arrAllLink removeObjectsInArray:arr1];
 }
 
 

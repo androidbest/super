@@ -51,7 +51,7 @@
         [self addSubview:_greetingCount];
         
         //"内容图片"
-        _imageContent =[[UIImageView alloc] initWithFrame:CGRectMake(25, 20, 280, 100)];
+        _imageContent =[[UIImageView alloc] initWithFrame:CGRectMake(25, 20, 160, 100)];
         _imageContent.hidden=YES;
         [self addSubview:_imageContent];
     }

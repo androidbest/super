@@ -173,10 +173,15 @@ static ConfigFile *configFile;
     NSArray *arr1=[AllPeople filteredArrayUsingPredicate: predicate];
     [AllPeople removeObjectsInArray:arr1];
     
+    if (arr1.count>0)user.groupname=[[arr1 lastObject] area];
+    else user.groupname=user.ecname;
+    
     strPre =[NSString stringWithFormat:@"SELF.tel CONTAINS '%@'",user.msisdn];
     predicate = [NSPredicate predicateWithFormat:strPre];
     NSArray *arr2=[AllPeople filteredArrayUsingPredicate: predicate];
     [AllPeople removeObjectsInArray:arr2];
+    if (arr2.count>0)user.groupname=[[arr2 lastObject] area];
+
     
     return AllPeople;
 }

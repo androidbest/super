@@ -742,7 +742,7 @@
         self.chatMessageView.chatHead=[PeopelInfo new];
         self.chatMessageView.chatHead.tel=user.msisdn;
         self.chatMessageView.chatHead.job=user.job;
-        self.chatMessageView.chatHead.area=user.ecname;
+        self.chatMessageView.chatHead.area=user.groupname;
         self.chatMessageView.chatHead.status=@"1";
         self.chatMessageView.chatHead.Name=user.username;
         self.chatMessageView.chatHead.headPath=user.headurl;
