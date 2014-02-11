@@ -180,18 +180,15 @@
     [page2 setValue:_chatHead forKey:@"data"];
 }
 
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    [self.controller viewWillAppearBase];
-    
+-(void)setTitleItem{
     //群组聊天
     if(_arrPeoples.count>2){
         NSString *temp=@"";
-    for(PeopelInfo *info in _arrPeoples){
-        temp=[NSString stringWithFormat:@"%@,",[temp stringByAppendingString:info.Name]];
-    }
-    temp=[temp substringToIndex:temp.length-1];
-    self.navigationItem.title=temp;
+        for(PeopelInfo *info in _arrPeoples){
+            temp=[NSString stringWithFormat:@"%@,",[temp stringByAppendingString:info.Name]];
+        }
+        temp=[temp substringToIndex:temp.length-1];
+        self.navigationItem.title=temp;
     }else{
         //个人聊天
         
@@ -202,8 +199,14 @@
                 }
             }        }
         
-   
     }
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.controller viewWillAppearBase];
+    [self setTitleItem];
+
     //键盘显示
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(handleWillShowKeyboard:)

@@ -158,7 +158,6 @@
                 if([user.msisdn isEqualToString:msisdn[i]]){
                     continue;
                 }
-                //添加别人
                 PeopelInfo *peopel=[PeopelInfo new];
                 peopel.Name=name[i];
                 peopel.tel=msisdn[i];
@@ -219,6 +218,24 @@
     
     NSArray *tempArr=[[CoreDataManageContext newInstance] getUserChatMessageWithChatMessageID:chatMessageID FetchOffset:num FetchLimit:10];
     
+    if(tempArr.count>0){
+        NSArray * msisdn =[((ChatEntity *)tempArr[0]).chat_sessionObjct.session_receivermsisdn componentsSeparatedByString:@","];
+        NSArray * name =[((ChatEntity *)tempArr[0]).chat_sessionObjct.session_receivername componentsSeparatedByString:@","];
+        NSArray * headPath =[((ChatEntity *)tempArr[0]).chat_sessionObjct.session_receiveravatar componentsSeparatedByString:@","];
+        if(msisdn.count!=self.chatMessageView.arrPeoples.count){
+            [self.chatMessageView.arrPeoples removeAllObjects];
+            for(int i=0;i<msisdn.count;i++){
+                PeopelInfo *peopel=[PeopelInfo new];
+                peopel.Name=name[i];
+                peopel.tel=msisdn[i];
+                peopel.headPath=headPath[i];
+                peopel.eccode=user.eccode;
+                [self.chatMessageView.arrPeoples addObject:peopel];
+            }
+            [self.chatMessageView setTitleItem];
+        }
+    }
+    
     for(ChatEntity *chat in tempArr){
         ChatMsgObj *chatObj=[ChatMsgObj new];
         chatObj.chattype=chat.chat_msgtype;
@@ -227,8 +244,8 @@
         chatObj.receivereccode=chat.chat_sessionObjct.session_receivereccode;
         chatObj.receivermsisdn=chat.chat_sessionObjct.session_receivermsisdn;
         chatObj.receiveravatar=chat.chat_sessionObjct.session_receiveravatar;
-        chatObj.voicetime=chat.chat_voicetime;
         chatObj.receivername=chat.chat_sessionObjct.session_receivername;
+        chatObj.voicetime=chat.chat_voicetime;
         chatObj.content=chat.chat_content;
         chatObj.sendtime=[ToolUtils NSDateToNSString:chat.chat_times format:CHATDATETYPE];
         chatObj.groupid=chat.chat_sessionObjct.session_groupuuid;

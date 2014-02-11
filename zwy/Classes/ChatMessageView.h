@@ -24,4 +24,6 @@
 @property (strong, nonatomic)ChatVoiceRecorderVC *recorderVC;
 @property (retain, nonatomic)AVAudioPlayer *player;
 @property (strong, nonatomic) SessionEntity *sessionInfo;
+
+-(void)setTitleItem;
 @end
