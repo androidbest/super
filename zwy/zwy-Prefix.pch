@@ -21,8 +21,15 @@
 #define NSLog(...) {}
 #endif
 
+
+#if iPhone5
+#define IMAGE_CALENDAR @"image_calendar_5_"
+#else
+#define IMAGE_CALENDAR @"image_calendar_4_"
+#endif
+
 //新浪微博
-#define kRedirectURI    @"http://www.sina.com"
+#define kRedirectURI   @"http://www.sina.com"
 
 //获取设备物理高度
 #define ScreenHeight [UIScreen mainScreen].bounds.size.height
@@ -47,3 +54,4 @@
 
 //沙盒document目录
 #define DocumentsDirectory [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES) lastObject]
+
