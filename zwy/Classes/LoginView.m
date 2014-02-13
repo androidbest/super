@@ -12,6 +12,7 @@
 #import "HomeScrollView.h"
 #import "BaseTabbar.h"
 #import "ToolUtils.h"
+#import "Reachability.h"
 @interface LoginView ()
 
 @end
@@ -117,13 +118,13 @@ _verifyField.text=@"";
 
 -(void)viewDidAppear:(BOOL)animated{
 
+    
+    //判断是否是3G
     NSUserDefaults *appConfig=[NSUserDefaults standardUserDefaults];
-    if([ToolUtils IsEnable3G]&&![appConfig boolForKey:@"alertnetwork"]){
-       
-//        ((LoginController *)self.controller) 
-       
+    if([ToolUtils is3G]&&![appConfig boolForKey:@"alertnetwork"]){
+        [((LoginController *)self.controller) alertnetwork];
     }
-
+    
 }
 
 //引导页

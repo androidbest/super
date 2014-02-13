@@ -8,6 +8,7 @@
 
 #import "DocContentView.h"
 #import "ToolUtils.h"
+#import "Constants.h"
 @interface DocContentView ()
 
 @end
@@ -47,7 +48,7 @@
         NSString * pathStr = [[pathArr objectAtIndex:0] stringByAppendingPathComponent:name];
         NSFileManager *fileManager = [NSFileManager defaultManager];
         if (![fileManager fileExistsAtPath:pathStr]) {
-            NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"http://192.168.0.200:7778/phoneservice/IosDocAttachmentServlet?id=%@&isAttachment=0",_detailInfo.ID]];
+            NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"http://218.206.4.38:8081/phoneservice/IosDocAttachmentServlet?id=%@&isAttachment=0&msisdn=%@&eccode=%@",_detailInfo.ID,user.msisdn,user.eccode]];
             NSURLRequest  *theRequest = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
             NSData * getData = [NSURLConnection sendSynchronousRequest:theRequest returningResponse:nil error:nil];
             [getData writeToFile:pathStr atomically:NO];

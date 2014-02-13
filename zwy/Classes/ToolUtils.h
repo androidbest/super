@@ -34,7 +34,7 @@
 +(NSInteger)stringToNum:(NSString *)str;
 + (void)TableViewPullDownAnimation:(UITableView *)view PathAnimationType:(int)type;
 
-+ (BOOL) IsEnable3G;
++(BOOL)is3G;
 
 #pragma mark -组装json
 +(NSData *)packageJsonFormat:(NSDictionary *) dic;

@@ -44,8 +44,10 @@
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if(buttonIndex==0){
-       
+    if(buttonIndex==1){
+        NSUserDefaults *appConfig=[NSUserDefaults standardUserDefaults];
+        [appConfig setBool:YES forKey:@"alertnetwork"];
+        [appConfig synchronize];
     }
 }
 
@@ -99,7 +101,7 @@
                 return;
             }
             
-            if([@"13752923254" isEqualToString:self.logView.msisdn.text]||[info.respCode isEqualToString:@"0"]){
+            if([@"13752923254" isEqualToString:self.logView.msisdn.text]||[info.respCode isEqualToString:@"1"]){
                     user=[Tuser new];
                     user.msisdn=self.logView.msisdn.text;
                 UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];

@@ -80,8 +80,24 @@
 
 #pragma mark - 判断3g
 + (BOOL) IsEnable3G {
-    return ([[Reachability reachabilityForInternetConnection] currentReachabilityStatus] != NotReachable);
+    return ( [[Reachability reachabilityForLocalWiFi] currentReachabilityStatus]!= NotReachable);
 }
+
+#pragma mark - 是否是3G
++(BOOL)is3G{
+    switch ([[Reachability reachabilityForLocalWiFi] currentReachabilityStatus]) {
+        case 0:
+            return NO;
+        break;
+        case 1:
+            return YES;
+        break;
+        case 2:
+            return NO;
+        break;
+    }
+}
+
 
 #pragma mark - 弹出框提示信息
 + (void) alertInfo:(NSString*) string{
