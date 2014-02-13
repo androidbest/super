@@ -33,7 +33,20 @@
                                                     name:xmlNotifInfo
                                                   object:self];
     }
+    
+    
     return self;
+}
+
+
+-(void)alertnetwork{
+    [ToolUtils alertInfo:@"欢迎使用政务易,使用过程中将产生流量" delegate:self otherBtn:@"不再提醒"];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if(buttonIndex==0){
+       
+    }
 }
 
 -(void)stopTimer{

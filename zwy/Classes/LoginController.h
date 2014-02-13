@@ -17,4 +17,5 @@
 - (void)dismissLeadView:(id)sender;
 - (void)login;
 -(void)stopTimer;
+-(void)alertnetwork;
 @end

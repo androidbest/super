@@ -11,6 +11,7 @@
 #import "HomeView.h"
 #import "HomeScrollView.h"
 #import "BaseTabbar.h"
+#import "ToolUtils.h"
 @interface LoginView ()
 
 @end
@@ -50,6 +51,8 @@
 //        [[self view] addGestureRecognizer:oneFingerOneTaps];
     
 
+    
+    
     //状态栏颜色
     [_statusbar setBackgroundColor:[UIColor colorWithRed:0.97 green:0.97 blue:0.97 alpha:1.0]];
     //登录
@@ -109,6 +112,18 @@ _verifyField.text=@"";
 [_verifyBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
 [((LoginController *)self.controller) stopTimer];
     [_verifyBtn setEnabled:YES];
+    
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+
+    NSUserDefaults *appConfig=[NSUserDefaults standardUserDefaults];
+    if([ToolUtils IsEnable3G]&&![appConfig boolForKey:@"alertnetwork"]){
+       
+//        ((LoginController *)self.controller) 
+       
+    }
+
 }
 
 //引导页
