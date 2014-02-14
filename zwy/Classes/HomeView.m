@@ -44,6 +44,8 @@ NSString * stringTel =STRING_TEL(@"133");
         home.HomeView=self;
         self.controller=home;
         
+        
+        //点击通知栏的日程提醒跳转
        [[NSNotificationCenter defaultCenter] addObserver:self
                                                 selector:@selector(jumpScheduleView:)
                                                     name:@"homeToWarningView"
@@ -199,7 +201,7 @@ NSString * stringTel =STRING_TEL(@"133");
         _labelChatCount.text=[NSString stringWithFormat:@"%d",count];
     }
     //本地通知处理方法
-    if (isLocalNotification) [self performSelector:@selector(jumpScheduleView:) withObject:nil afterDelay:0.0f];
+    if (dicLocalNotificationInfo) [self performSelector:@selector(jumpScheduleView:) withObject:nil afterDelay:0.0f];
 }
 
 //首页传值

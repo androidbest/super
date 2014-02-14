@@ -40,7 +40,7 @@
 }
 
 - (void)initWithData{
-    if (dicLocalNotificationInfo&&isLocalNotification) {
+    if (dicLocalNotificationInfo) {
         _holiView.info=[warningDataInfo new];
         _holiView.info.content=dicLocalNotificationInfo[@"content"];
         _holiView.info.warningID=dicLocalNotificationInfo[@"ID"];
@@ -50,7 +50,6 @@
         _holiView.info.UserTel=dicLocalNotificationInfo[@"UserTel"];
         _holiView.info.remainTime=dicLocalNotificationInfo[@"remainTime"];
         dicLocalNotificationInfo=nil;
-        isLocalNotification=NO;
     }
     
     

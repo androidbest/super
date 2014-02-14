@@ -84,7 +84,7 @@
         
         tableView_Type =tableView_ScheduleType_All;
         _isInit=NULL;
-        InitDaysTime=@" 09:00";
+        InitDaysTime=@" 15:23";
         
         _arrAll =[[NSMutableArray alloc] init];
         _arrWork=[[NSMutableArray alloc] init];

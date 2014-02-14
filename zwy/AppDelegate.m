@@ -8,20 +8,20 @@
 
 #define NOTIFICATIONMESSAGE @"notificationMessage"
 
-#define DoorsBgTaskBegin() { \
-UIApplication *app = [UIApplication sharedApplication]; \
-UIBackgroundTaskIdentifier task = [app beginBackgroundTaskWithExpirationHandler:^{ \
-[app endBackgroundTask:task]; \
-/* task = UIBackgroundTaskInvalid; */ \
-}]; \
-dispatch_block_t block = ^{ \
-
-#define DoorsBgTaskEnd() \
-[app endBackgroundTask:task]; \
-/* task = UIBackgroundTaskInvalid; */ \
-}; \
-dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), block); \
-}
+//#define DoorsBgTaskBegin() { \
+//UIApplication *app = [UIApplication sharedApplication]; \
+//UIBackgroundTaskIdentifier task = [app beginBackgroundTaskWithExpirationHandler:^{ \
+//[app endBackgroundTask:task]; \
+///* task = UIBackgroundTaskInvalid; */ \
+//}]; \
+//dispatch_block_t block = ^{ \
+//
+//#define DoorsBgTaskEnd() \
+//[app endBackgroundTask:task]; \
+///* task = UIBackgroundTaskInvalid; */ \
+//}; \
+//dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), block); \
+//}
 const int kTimerInterval = 1 * 3;              // 3秒，定时器时间间隔
 const int kSysMaxTimePerBgTask = 10 * 600;      // 10分钟，系统为每个后台任务分配的最大时间
 
@@ -41,14 +41,11 @@ UIBackgroundTaskIdentifier backgroundTask;//写成成员
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-//      sqlHelper=[SqlLiteHelper new];
-//      [sqlHelper createDB];
+    //注册接收即时聊天的通知
     [[NSNotificationCenter defaultCenter]addObserver:self
                                             selector:@selector(notificationImRevice:)
                                                 name:NOTIFICATIONMESSAGE
                                               object:self];
-    
-
 //    if(application.enabledRemoteNotificationTypes){
 //        NSLog(@"aaadfdsafdsafdasf");
 //    }
@@ -159,7 +156,7 @@ UIBackgroundTaskIdentifier backgroundTask;//写成成员
     }
 }
 
-//微博返回
+//新浪微博返回
 - (void)didReceiveWeiboResponse:(WBBaseResponse *)response
 {
     if ([response isKindOfClass:WBSendMessageToWeiboResponse.class])
@@ -226,13 +223,13 @@ UIBackgroundTaskIdentifier backgroundTask;//写成成员
 }
 
 
+//日程提醒本地通知
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification/*本地通知响应方法*/
 {
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
     
     NSString * strTitle =[notification.userInfo objectForKey:@"content"];
     dicLocalNotificationInfo=notification.userInfo;
-    isLocalNotification=YES;
     if (application.applicationState == UIApplicationStateActive) {
         // 如不加上面的判断，点击通知启动应用后会重复提示
         // 这里暂时用简单的提示框代替。
@@ -245,12 +242,14 @@ UIBackgroundTaskIdentifier backgroundTask;//写成成员
        
         [alert show];
     }else{
+        
+        
         [[NSNotificationCenter defaultCenter] postNotificationName:@"homeToWarningView"
                                                             object:notification.userInfo
                                                           userInfo:nil];
     }
     
-    /*如果通知过期就删除掉*/
+    /*如果通知过期就删除掉,删除通知栏的记录*/
     if ([notification.userInfo[@"RequestType"] isEqualToString:@"0"]) {
         [application cancelLocalNotification:notification];
     }
@@ -263,10 +262,10 @@ UIBackgroundTaskIdentifier backgroundTask;//写成成员
                                                           userInfo:nil];
     }else{
         dicLocalNotificationInfo=nil;
-        isLocalNotification=NO;
     }
 }
 
+//执行取时聊天定时器
 - (void)timerFired:(id)sender{
     [packageData imRevice:self SELType:NOTIFICATIONMESSAGE];
 }
@@ -299,6 +298,8 @@ UIBackgroundTaskIdentifier backgroundTask;//写成成员
             }
     }
 
+    
+    //ischek 0,增加未读提示 1.不加
     NSDictionary *dicNOtification;
     if (!ischek) dicNOtification =@{@"isCheck":@"0"};
     else dicNOtification =@{@"isCheck":@"1"};

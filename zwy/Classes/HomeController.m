@@ -39,12 +39,15 @@
                                                     name:@"getCount"
                                                   object:self];
         
+        //获取新闻的通知
         [[NSNotificationCenter defaultCenter]addObserver:self
                                                 selector:@selector(notificationFirstNews:)
                                                     name:NOTIFICATIONFIRSTNEWS
                                                   object:self];
         
         
+        
+        //首页判断通讯录是否同步，开启定时器
         NSString * strSavePath =[NSString stringWithFormat:@"%@/%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode,@"member.txt"];
         BOOL blHave=[[NSFileManager defaultManager] fileExistsAtPath:strSavePath];
         //如果没有同步通讯录，不开启接受消息线程
@@ -62,6 +65,7 @@
 }
 
 - (void)initWithData{
+    //获取新闻数据通知
     [packageData reqHotNewsInfoXml:self start:@"1" end:@"2" SELType:NOTIFICATIONFIRSTNEWS];
 }
 

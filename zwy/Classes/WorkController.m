@@ -23,7 +23,7 @@
 
 - (void)initWithData{
     
-    if (dicLocalNotificationInfo&&isLocalNotification) {
+    if (dicLocalNotificationInfo) {
         _workViews.info=[warningDataInfo new];
         _workViews.info.content=dicLocalNotificationInfo[@"content"];
         _workViews.info.warningID=dicLocalNotificationInfo[@"ID"];
@@ -33,7 +33,6 @@
         _workViews.info.UserTel=dicLocalNotificationInfo[@"UserTel"];
         _workViews.info.remainTime=dicLocalNotificationInfo[@"remainTime"];
         dicLocalNotificationInfo=nil;
-        isLocalNotification=NO;
     }
     
     

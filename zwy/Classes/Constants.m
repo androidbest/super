@@ -16,7 +16,6 @@ NSString * const xmlNotifInfo3=@"xmldatahandle3";
 NSString * const requestError=@"网络超时";
 NSString * const wnLoadAddress=@"DownLoadAddressList";
 BOOL isZaiXian =YES;
-BOOL isLocalNotification=NO;
 
 //全局变量
 NSMutableArray *EX_arrSection;
