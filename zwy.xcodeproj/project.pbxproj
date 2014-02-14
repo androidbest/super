@@ -392,6 +392,8 @@
 		65AFEEE918AC78F1002BD86D /* image_calendar_5_11.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 65AFEEE318AC78F1002BD86D /* image_calendar_5_11.jpg */; };
 		65AFEEEA18AC78F1002BD86D /* image_calendar_5_12.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 65AFEEE418AC78F1002BD86D /* image_calendar_5_12.jpg */; };
 		65AFEEED18AC7940002BD86D /* CalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65AFEEEC18AC7940002BD86D /* CalendarView.m */; };
+		65AFEEF118ACA29E002BD86D /* LineLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 65AFEEF018ACA29E002BD86D /* LineLayout.m */; };
+		65AFEEF418ACA2E4002BD86D /* CalendarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 65AFEEF318ACA2E4002BD86D /* CalendarCell.m */; };
 		65B177AA186A821D009A18CC /* OptionChatPeopleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B177A9186A821D009A18CC /* OptionChatPeopleView.m */; };
 		65B177AD186A8372009A18CC /* EditingChatPeoplesview.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B177AC186A8372009A18CC /* EditingChatPeoplesview.m */; };
 		65B177B0186A8397009A18CC /* OptionChatPeopleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B177AF186A8397009A18CC /* OptionChatPeopleController.m */; };
@@ -1057,6 +1059,10 @@
 		65AFEEE418AC78F1002BD86D /* image_calendar_5_12.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image_calendar_5_12.jpg; sourceTree = "<group>"; };
 		65AFEEEB18AC7940002BD86D /* CalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarView.h; sourceTree = "<group>"; };
 		65AFEEEC18AC7940002BD86D /* CalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarView.m; sourceTree = "<group>"; };
+		65AFEEEF18ACA29E002BD86D /* LineLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineLayout.h; sourceTree = "<group>"; };
+		65AFEEF018ACA29E002BD86D /* LineLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineLayout.m; sourceTree = "<group>"; };
+		65AFEEF218ACA2E4002BD86D /* CalendarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarCell.h; sourceTree = "<group>"; };
+		65AFEEF318ACA2E4002BD86D /* CalendarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarCell.m; sourceTree = "<group>"; };
 		65B177A8186A821D009A18CC /* OptionChatPeopleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionChatPeopleView.h; sourceTree = "<group>"; };
 		65B177A9186A821D009A18CC /* OptionChatPeopleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionChatPeopleView.m; sourceTree = "<group>"; };
 		65B177AB186A8372009A18CC /* EditingChatPeoplesview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditingChatPeoplesview.h; sourceTree = "<group>"; };
@@ -2396,8 +2402,12 @@
 		65AFEEEE18AC79F0002BD86D /* CalendarView */ = {
 			isa = PBXGroup;
 			children = (
+				65AFEEEF18ACA29E002BD86D /* LineLayout.h */,
+				65AFEEF018ACA29E002BD86D /* LineLayout.m */,
 				65AFEEEB18AC7940002BD86D /* CalendarView.h */,
 				65AFEEEC18AC7940002BD86D /* CalendarView.m */,
+				65AFEEF218ACA2E4002BD86D /* CalendarCell.h */,
+				65AFEEF318ACA2E4002BD86D /* CalendarCell.m */,
 			);
 			name = CalendarView;
 			sourceTree = "<group>";
@@ -2830,6 +2840,7 @@
 				65AB26571856F7A100F5EAF6 /* SGFocusImageFrame.m in Sources */,
 				659AB381180978E5000FCEC5 /* AddressTabbar.m in Sources */,
 				659F65271813C9FF00306C14 /* OfficeAddressView.m in Sources */,
+				65AFEEF118ACA29E002BD86D /* LineLayout.m in Sources */,
 				594B80FE18037BC500310CB1 /* AllSumInfo.m in Sources */,
 				595CB9F617F1803600228A6E /* ConfigFile.m in Sources */,
 				65A3C256185EA5A50098C8F3 /* CommentDetaController.m in Sources */,
@@ -2862,6 +2873,7 @@
 				59584B3518199A5200B65162 /* OfficeDetailController.m in Sources */,
 				65AB26481856BD7C00F5EAF6 /* HomeScrollerController.m in Sources */,
 				59878CBB1856E2AE00454D0E /* MyInfoView.m in Sources */,
+				65AFEEF418ACA2E4002BD86D /* CalendarCell.m in Sources */,
 				5960DC8117F92A6C0024AD8B /* CustomPageControl.m in Sources */,
 				596D6F1218085DB1002CD0B3 /* MeettingController.m in Sources */,
 				5970E1B5185EF04800C7719E /* SqlLiteHelper.m in Sources */,

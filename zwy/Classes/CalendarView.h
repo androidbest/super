@@ -7,7 +7,11 @@
 //
 
 #import "BaseView.h"
-
-@interface CalendarView : BaseView
+#import "KxMenu.h"
+@interface CalendarView : BaseView<UICollectionViewDelegate,UICollectionViewDataSource,KxMenuViewdelegate>
+@property (strong ,nonatomic) UICollectionView *collView;
+@property (strong, nonatomic) IBOutlet UIButton *btnLeft;
+@property (strong, nonatomic) IBOutlet UIButton *btnCalendar;
+@property (strong, nonatomic) IBOutlet UIButton *btnRight;
 
 @end

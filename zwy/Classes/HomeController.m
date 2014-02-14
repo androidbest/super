@@ -203,8 +203,13 @@
 //日程提醒
 - (void)btnWarning{
     [self initBackBarButtonItem:self.homeView];
-    self.homeView.tabBarController.tabBar.hidden=YES;
     [self.homeView performSegueWithIdentifier:@"HomeToScheduleView" sender:self.homeView];
+}
+
+//2014日历表
+- (void)userInfo{
+    [self initBackBarButtonItem:self.homeView];
+    [self.homeView performSegueWithIdentifier:@"HomeToCalendar" sender:self.homeView];
 }
 
 //传输最后选择单位

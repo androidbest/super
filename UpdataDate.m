@@ -113,6 +113,7 @@ static BOOL booleanIsGregorianLeapYear(int year) {
     }
     
     /*如果换算过来的时间已经过了再往后推1年(闰年推4年)*/
+    time_now-=60*60*24;/*减去当天的24小时*/
     if (time_warning<time_now){
         if (month==2&&days==29) year+=4;
         else year+=1;

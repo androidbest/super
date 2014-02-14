@@ -104,6 +104,10 @@ NSString * stringTel =STRING_TEL(@"133");
      [_btnWarning setExclusiveTouch:YES];
     
     [_btnAddressBook addTarget:self.controller action:@selector(address) forControlEvents:UIControlEventTouchUpInside];
+    [_btnAddressBook setExclusiveTouch:YES];
+    
+    [_userInfo addTarget:self.controller action:@selector(userInfo) forControlEvents:UIControlEventTouchUpInside];
+    [_userInfo setExclusiveTouch:YES];
     
     UIView * view =[[UIView alloc] init];
     view.frame =CGRectMake(0, 0, ScreenWidth, 40);

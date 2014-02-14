@@ -761,7 +761,7 @@ static UIFont *gTitleFont;
 {
     if (_menuView) {
         
-        [_menuView dismissMenu:NO];
+        [_menuView dismissMenu:YES];
         _menuView = nil;
     }
     
