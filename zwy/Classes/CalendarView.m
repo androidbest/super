@@ -166,8 +166,7 @@
     timeInteval -=60*60*24*Today;
     
     //计算出当前日期与第一个日期之间所差天数，得出最终坐标
-    NSTimeInterval timeIntevalNow =[ToolUtils TimeStingWithInterVal:@"2014-08-23"];
-    //[MainViewController intervalFromDate:[NSDate date]];
+    NSTimeInterval timeIntevalNow =[ToolUtils intervalFromDate:[NSDate date]];
     int count =(timeIntevalNow-timeInteval)/(60*60*24);
     
     if (count>42||count<0) {//如果超出每页所能展示的最大天数则返回“-1”。以此判断为不显示
