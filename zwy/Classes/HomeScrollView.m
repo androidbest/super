@@ -9,7 +9,6 @@
 #import "HomeScrollView.h"
 #import "HomeScrollerController.h"
 #import "HomeInformationView.h"
-#import "BaseTabbar.h"
 @interface HomeScrollView ()
 
 @property(strong ,nonatomic)UIScrollView *scrollView;

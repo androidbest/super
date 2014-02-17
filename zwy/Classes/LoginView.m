@@ -10,7 +10,6 @@
 #import "LoginController.h"
 #import "HomeView.h"
 #import "HomeScrollView.h"
-#import "BaseTabbar.h"
 #import "ToolUtils.h"
 #import "Reachability.h"
 @interface LoginView ()
@@ -87,7 +86,7 @@
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
    /* HomeScrollView *homeView = [storyboard instantiateViewControllerWithIdentifier:@"HomeScrollView"];*/
-    BaseTabbar *homeView =[storyboard instantiateViewControllerWithIdentifier:@"zwyhome"];
+    UITabBarController *homeView =[storyboard instantiateViewControllerWithIdentifier:@"zwyhome"];
     [self presentViewController:homeView animated:NO completion:nil];
 }
 

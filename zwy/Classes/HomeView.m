@@ -25,7 +25,6 @@ NSString * stringTel =STRING_TEL(@"133");
 #import "Constants.h"
 #import "WorkView.h"
 #import "HolidayView.h"
-#import "BaseTabbar.h"
 #import "SGFocusImageItem.h"
 #import "SGFocusImageFrame.h"
 
