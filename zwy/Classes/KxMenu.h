@@ -81,5 +81,7 @@
 @property (readwrite,nonatomic,strong) UITableView * _tableView;
 @property (assign,nonatomic) id<KxMenuViewdelegate>delegate;
 
++(void)setContentViewWidth:(float)width withChangeablyHeight:(BOOL)Changeably;
+
 @end
 

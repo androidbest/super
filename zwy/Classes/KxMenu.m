@@ -168,8 +168,13 @@ typedef enum {
     KxMenuViewArrowDirection    _arrowDirection;
     CGFloat                     _arrowPosition;
     UIView                     *_contentView;
-    NSArray                     *_menuItems;
+    NSArray                    *_menuItems;
 }
+extern  float _contentViewHeight;
+float _contentViewHeight=0;
+
+extern bool  _changeably;
+bool _changeably=false;
 
 - (id)init
 {
@@ -186,6 +191,12 @@ typedef enum {
     }
     
     return self;
+}
+
+//设定弹出视图的宽度
++(void)setContentViewWidth:(float)width withChangeablyHeight:(BOOL)Changeably{
+    _contentViewHeight=width;
+    _changeably=Changeably;
 }
 
 // - (void) dealloc { NSLog(@"dealloc %@", self); }
@@ -403,11 +414,10 @@ typedef enum {
     contentView.backgroundColor = [UIColor clearColor];
     contentView.opaque = NO;
     NSInteger Height =[_menuItems count];
-    if (Height>5)
-    {
-        Height=5;
-    }
-     CGRect rect =CGRectMake(2, 5, 266, Height*30);
+    if (Height>5&&!_changeably)Height=5;
+    CGRect rect ;
+    if (_contentViewHeight==0.0f||!_contentViewHeight) rect =CGRectMake(2.0f, 5.0f, 266.0f, Height*30.0f);
+    else rect =CGRectMake(2.0f, 5.0f, _contentViewHeight, Height*30.0f);
     UITableView * tableView_ =[[UITableView alloc] initWithFrame:rect style:UITableViewStylePlain];
     tableView_.backgroundColor=[UIColor clearColor];
     tableView_.dataSource=self;

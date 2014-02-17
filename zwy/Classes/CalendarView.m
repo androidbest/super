@@ -56,21 +56,28 @@
     rect.origin.y=ScreenHeight-ITEM_SIZE_HEIGHT-40;
     rect.size.height=ITEM_SIZE_HEIGHT;
     _collView =[[UICollectionView alloc] initWithFrame:rect collectionViewLayout:layout];
-    _collView.backgroundColor=[UIColor redColor];
+    _collView.backgroundColor=[UIColor whiteColor];
     _collView.delegate=self;
     _collView.dataSource=self;
     _collView.pagingEnabled=YES;
+    _collView.showsHorizontalScrollIndicator=NO;
     [self.view addSubview:_collView];
     [_collView registerClass:[CalendarCell class] forCellWithReuseIdentifier:@"Cell"];
     
     [_btnCalendar addTarget:self action:@selector(btnCalendar:) forControlEvents:UIControlEventTouchUpInside];
     [_btnLeft addTarget:self action:@selector(btnLeft:) forControlEvents:UIControlEventTouchUpInside];
     [_btnRight addTarget:self action:@selector(btnRight:) forControlEvents:UIControlEventTouchUpInside];
+    [_btnShowDown addTarget:self action:@selector(btnCalendar:) forControlEvents:UIControlEventTouchUpInside];
 	
     //初始化展示当前时间的月数信息
-    NSUInteger month =[self getCalendarMonth:[NSDate date]];
-    [_collView selectItemAtIndexPath:[NSIndexPath indexPathForRow:month-1 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionLeft];
-    [_btnCalendar setTitle:[NSString stringWithFormat:@"2014年%d月",month] forState:UIControlStateNormal];
+    NSInteger month =[self getCalendarMonth:[NSDate date]];
+    [_btnCalendar setTitle:[NSString stringWithFormat:@"2014年%02d月",month] forState:UIControlStateNormal];
+    _collView.contentOffset=CGPointMake((month-1)*ITEM_SIZE_WIDTH, _collView.contentOffset.y);
+    rows=month-1;
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+   
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -97,7 +104,7 @@
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
      rows =scrollView.contentOffset.x/ITEM_SIZE_WIDTH;
-     [_btnCalendar setTitle:[NSString stringWithFormat:@"2014年%d月",rows+1] forState:UIControlStateNormal];
+     [_btnCalendar setTitle:[NSString stringWithFormat:@"2014年%02d月",rows+1] forState:UIControlStateNormal];
 }
 
 #pragma mark - 按钮触发的方法
@@ -105,13 +112,13 @@
 - (void)btnCalendar:(id)sender{
     NSMutableArray * arr=[[NSMutableArray alloc] init];
     for (int i=1;i<13;i++) {
-        NSString * str =[NSString stringWithFormat:@"%d月",i];
+        NSString * str =[NSString stringWithFormat:@"    %02d月",i];
         [arr addObject:[KxMenuItem menuItem:str
                                       image:nil
                                      target:nil
                                      action:NULL]];
     }
-    
+    [KxMenuView setContentViewWidth:100 withChangeablyHeight:true];
     [KxMenu showMenuInView:self.view
                   fromRect:self.btnCalendar.frame
                  menuItems:arr
@@ -124,7 +131,7 @@
     if (rows<=0)return;
     rows--;
     [_collView selectItemAtIndexPath:[NSIndexPath indexPathForRow:rows inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionRight];
-    [_btnCalendar setTitle:[NSString stringWithFormat:@"2014年%d月",rows+1] forState:UIControlStateNormal];
+    [_btnCalendar setTitle:[NSString stringWithFormat:@"2014年%02d月",rows+1] forState:UIControlStateNormal];
 }
 
 //查看下一个月的日历
@@ -132,17 +139,17 @@
     if (rows>=11)return;
     rows++;
     [_collView selectItemAtIndexPath:[NSIndexPath indexPathForRow:rows inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionLeft];
-    [_btnCalendar setTitle:[NSString stringWithFormat:@"2014年%d月",rows+1] forState:UIControlStateNormal];
+    [_btnCalendar setTitle:[NSString stringWithFormat:@"2014年%02d月",rows+1] forState:UIControlStateNormal];
 }
 
 
 #pragma mark - KxMenuViewdelegate
-//KxMenuView的回调函数/下载附件回调/
+//KxMenuView的回调函数
 -(void)pathIndexpath:(NSInteger)index{
     rows=index;
     [KxMenu dismissMenu];
     self.collView.contentOffset=CGPointMake(ITEM_SIZE_WIDTH*index, self.collView.contentOffset.y);
-    [_btnCalendar setTitle:[NSString stringWithFormat:@"2014年%d月",index+1] forState:UIControlStateNormal];
+    [_btnCalendar setTitle:[NSString stringWithFormat:@"2014年%02d月",index+1] forState:UIControlStateNormal];
 }
 
 
@@ -156,7 +163,7 @@
     NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
     
     //计算出当月排在第一个格子的时间是哪一天（毫秒数）
-    NSString * FristTime =[NSString stringWithFormat:@"2014-0%d-01",index.row+1];
+    NSString * FristTime =[NSString stringWithFormat:@"2014-%02d-01",index.row+1];
     NSTimeInterval timeInteval =[ToolUtils TimeStingWithInterVal:FristTime];
     NSDate *date =[NSDate dateWithTimeIntervalSince1970:timeInteval];
     comps = [calendar components:unitFlags fromDate:date];

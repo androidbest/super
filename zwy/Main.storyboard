@@ -243,7 +243,7 @@
             </objects>
             <point key="canvasLocation" x="-651" y="3228"/>
         </scene>
-        <!--Calendar View-->
+        <!--Calendar View - 日历-->
         <scene sceneID="svb-7e-FCZ">
             <objects>
                 <viewController hidesBottomBarWhenPushed="YES" id="Fcj-Ui-96j" customClass="CalendarView" sceneMemberID="viewController">
@@ -256,7 +256,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Gq-S9-ZDY">
-                                <rect key="frame" x="12" y="75" width="50" height="30"/>
+                                <rect key="frame" x="9" y="80" width="40" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="20" maxY="0.0"/>
                                 <state key="normal" image="images_Dir_left.png">
@@ -264,24 +264,24 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PCS-3m-cmu">
-                                <rect key="frame" x="256" y="75" width="53" height="30"/>
+                                <rect key="frame" x="267" y="80" width="40" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" title="Button" image="images_Dir_Reight.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="168-5U-Azu">
-                                <rect key="frame" x="75" y="75" width="121" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="168-5U-Azu">
+                                <rect key="frame" x="86" y="75" width="113" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
                                 <state key="normal" title="2014年06月">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cbG-Ia-YVx">
-                                <rect key="frame" x="204" y="85" width="20" height="10"/>
+                                <rect key="frame" x="203" y="85" width="20" height="10"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="images_Dir_Down.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -295,13 +295,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.39699058450000002" green="0.87297462209999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" id="PDA-lg-gKF"/>
+                    <navigationItem key="navigationItem" title="日历" id="PDA-lg-gKF"/>
                     <connections>
-                        <outlet property="btnCalendar" destination="168-5U-Azu" id="CF7-wX-MIt"/>
+                        <outlet property="btnCalendar" destination="168-5U-Azu" id="fLO-Nh-EuR"/>
                         <outlet property="btnLeft" destination="1Gq-S9-ZDY" id="AWH-CI-hft"/>
                         <outlet property="btnRight" destination="PCS-3m-cmu" id="mhw-1K-Roj"/>
+                        <outlet property="btnShowDown" destination="cbG-Ia-YVx" id="uFe-JE-8WI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hR1-aJ-I5x" userLabel="First Responder" sceneMemberID="firstResponder"/>

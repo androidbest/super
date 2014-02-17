@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DAContextMenuCell.h"
+
 @class PullRefreshTableView;
 @protocol PullRefreshDelegate <NSObject>
 
@@ -14,10 +16,14 @@
 - (void)refreshDataWithTableView:(PullRefreshTableView *)tableView;
 
 @end
-@interface PullRefreshTableView : UITableView
+@interface PullRefreshTableView : UITableView<DAContextMenuCellDelegate>
 
 - (id)initWithFrame:(CGRect)frame withDelegate:(id)delegate;
 
+
+/**************DAContextMenuCell***********************/
+@property (assign, nonatomic) BOOL shouldDisableUserInteractionWhileEditing;
+/**************DAContextMenuCell***********************/
 
 @property (nonatomic ,assign) BOOL reachedTheEnd;//是否上拉加载更多
 @property (nonatomic ,assign) BOOL isUpdData;//是否需要点击重新加载

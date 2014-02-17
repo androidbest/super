@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "DetailTextView.h"
+
 @interface ScheduleCell : UITableViewCell
 @property (strong ,nonatomic)UILabel *labelTitle;
 @property (strong ,nonatomic)UILabel *labelTime;
 @property (strong ,nonatomic)UILabel *labelDays;
+@property (strong ,nonatomic)UIView *contentViews;
 @end

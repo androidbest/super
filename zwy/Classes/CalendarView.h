@@ -13,5 +13,6 @@
 @property (strong, nonatomic) IBOutlet UIButton *btnLeft;
 @property (strong, nonatomic) IBOutlet UIButton *btnCalendar;
 @property (strong, nonatomic) IBOutlet UIButton *btnRight;
+@property (strong, nonatomic) IBOutlet UIButton *btnShowDown;
 
 @end

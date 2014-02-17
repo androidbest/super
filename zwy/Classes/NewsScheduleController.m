@@ -437,16 +437,14 @@ NSString *strTimeInterval=[NSString stringWithFormat:@"%f",[ToolUtils TimeStingW
         int year =[arr[0] intValue];
         int month =[arr[1] intValue];
         int day =[arr[2] intValue];
-        timeSolar =[NSString stringWithFormat:@"%d-%d-%d",year,month,day];
+        timeSolar =[NSString stringWithFormat:@"%02d-%02d-%02d",year,month,day];
         
         hjz lunar =solar_to_lunar(year, month, day);//将当前的公历时间转换为农历
         NSString *strYear =[NSString stringWithFormat:@"%d",lunar.year];
         strYear =[Date_string setYearBaseSting:strYear];
-        NSString *strMonth =[NSString stringWithFormat:@"%dx%d",lunar.month,lunar.reserved];
-        if (lunar.month<10) strMonth =[@"0" stringByAppendingString:strMonth];
+        NSString *strMonth =[NSString stringWithFormat:@"%02dx%d",lunar.month,lunar.reserved];
         strMonth =[Date_string setMonthBaseSting:strMonth];
-        NSString *strDay=[NSString stringWithFormat:@"%d",lunar.day];
-        if (lunar.day<10) strDay =[@"0" stringByAppendingString:strDay];
+        NSString *strDay=[NSString stringWithFormat:@"%02d",lunar.day];
         strDay=[Date_string setDayBaseSting:strDay];
         NSString *strLunarTime=[NSString stringWithFormat:@"%@年%@月%@日",strYear,strMonth,strDay];
         [_newsView.btnOptionTime setTitle:strLunarTime forState:UIControlStateNormal];
@@ -487,7 +485,7 @@ NSString *strTimeInterval=[NSString stringWithFormat:@"%f",[ToolUtils TimeStingW
     int day_ =[day intValue];
     int reserved_ =[reserved intValue];
     hjz solar =lunar_to_solar(year_, month_, day_, reserved_);
-    timeSolar =[NSString stringWithFormat:@"%d-%d-%d",solar.year,solar.month,solar.day];
+    timeSolar =[NSString stringWithFormat:@"%02d-%02d-%02d",solar.year,solar.month,solar.day];
 }
 
 - (void)actionSheetTitleDateText:(NSString *)year Month:(NSString *)month day:(NSString *)day{

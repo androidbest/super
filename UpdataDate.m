@@ -108,7 +108,7 @@ static BOOL booleanIsGregorianLeapYear(int year) {
                 isLeapMonth =booleanIsGregorianLeapYear(year);
             }
         }
-        strDate =[NSString stringWithFormat:@"%d-%d-%d",year,month,days];
+        strDate =[NSString stringWithFormat:@"%02d-%02d-%02d",year,month,days];
         time_warning=[self TimeStingWithInterVal:strDate];
     }
     
@@ -118,7 +118,7 @@ static BOOL booleanIsGregorianLeapYear(int year) {
         if (month==2&&days==29) year+=4;
         else year+=1;
     }
-     strDate =[NSString stringWithFormat:@"%d-%d-%d",year,month,days];
+     strDate =[NSString stringWithFormat:@"%02d-%02d-%02d",year,month,days];
     
     return strDate;
 }

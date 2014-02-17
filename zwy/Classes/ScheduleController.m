@@ -709,14 +709,15 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString * strCell =@"cell";
-    ScheduleCell * cell =[tableView dequeueReusableCellWithIdentifier:strCell];
+    DAContextMenuCell * cell =[tableView dequeueReusableCellWithIdentifier:strCell];
     if (!cell) {
-        cell = [[ScheduleCell alloc] initWithStyle:UITableViewCellStyleSubtitle
+        cell = [[DAContextMenuCell alloc] initWithStyle:UITableViewCellStyleSubtitle
                                    reuseIdentifier:strCell];
     }
     switch (tableView.tag) {
         case 0:{
             /***************************/
+            cell.delegate=self.schedView.tableViewAll;
             warningDataInfo * info =_arrAll[indexPath.row];
             if ([dicDcomentFirst[@"ID"] isEqualToString:info.warningID])[self updateFirstSchedule:info];/*同步置顶信息*/
             NSString *Title;
@@ -736,7 +737,8 @@
         }
             break;
             
-        case 1:{
+        case 1:
+        {   cell.delegate=self.schedView.tableViewWork;
             warningDataInfo *info =_arrWork[indexPath.row];
             if ([dicDcomentFirst[@"ID"] isEqualToString:info.warningID])[self updateFirstSchedule:info];/*同步置顶信息*/
             cell.labelTitle.text=info.content;
@@ -746,6 +748,7 @@
             break;
             
         case 2:{
+            cell.delegate=self.schedView.tableViewLife;
             warningDataInfo *info =_arrLife[indexPath.row];
             if ([dicDcomentFirst[@"ID"] isEqualToString:info.warningID])[self updateFirstSchedule:info];/*同步置顶信息*/
             cell.labelTitle.text=info.content;
@@ -755,6 +758,7 @@
             break;
             
         case 3:{
+            cell.delegate=self.schedView.tableViewBirthday;
             warningDataInfo *info =_arrBirthday[indexPath.row];
             if ([dicDcomentFirst[@"ID"] isEqualToString:info.warningID])[self updateFirstSchedule:info];/*同步置顶信息*/
             
@@ -773,6 +777,7 @@
             break;
             
         case 4:{
+            cell.delegate=self.schedView.tableViewHoliday;
             warningDataInfo *info =_arrholiday[indexPath.row];
             if ([dicDcomentFirst[@"ID"] isEqualToString:info.warningID])[self updateFirstSchedule:info];/*同步置顶信息*/
             cell.labelTitle.text=info.content;
