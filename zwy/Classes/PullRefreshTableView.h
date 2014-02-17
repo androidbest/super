@@ -15,6 +15,11 @@
 - (void)upLoadDataWithTableView:(PullRefreshTableView *)tableView;
 - (void)refreshDataWithTableView:(PullRefreshTableView *)tableView;
 
+/**************DAContextMenuCell***********************/
+- (void)contextMenuCellDidSelectMoreOption:(PullRefreshTableView *)tableView  withCell:(DAContextMenuCell *)cell;
+- (void)contextMenuCellDidSelectDeleteOption:(PullRefreshTableView *)tableView withCell:(DAContextMenuCell *)cell;
+/**************DAContextMenuCell***********************/
+
 @end
 @interface PullRefreshTableView : UITableView<DAContextMenuCellDelegate>
 

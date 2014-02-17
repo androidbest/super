@@ -279,15 +279,18 @@
 
 #pragma mark * DAContextMenuCell delegate
 
+/*点击更多按钮*/
 - (void)contextMenuCellDidSelectMoreOption:(DAContextMenuCell *)cell
 {
-    NSAssert(NO, @"Should be implemented in subclasses");
+   [self.PDelegate contextMenuCellDidSelectMoreOption:self withCell:cell];
 }
 
+/*点击删除按钮*/
 - (void)contextMenuCellDidSelectDeleteOption:(DAContextMenuCell *)cell
 {
     [cell.superview sendSubviewToBack:cell];
     self.customEditing = NO;
+    [self.PDelegate contextMenuCellDidSelectDeleteOption:self withCell:cell];
 }
 
 - (void)contextMenuDidHideInCell:(DAContextMenuCell *)cell
@@ -342,6 +345,8 @@
     }
     return YES;
 }
+
+
 
 /***************DAContextMenuCell**********************/
 

@@ -50,7 +50,7 @@
     self.shouldDisplayContextMenuView = NO;
     self.editable = YES;
     self.moreOptionsButtonTitle = @"More";
-    self.deleteButtonTitle = @"Delete";
+    self.deleteButtonTitle = @" 删 除 ";
     self.menuOptionButtonTitlePadding = 25.;
     self.menuOptionsAnimationDuration = 0.3;
     self.bounceValue = 30.;
@@ -84,7 +84,8 @@
 - (CGFloat)menuOptionButtonWidth
 {
     NSString *string = ([self.deleteButtonTitle length] > [self.moreOptionsButtonTitle length]) ? self.deleteButtonTitle : self.moreOptionsButtonTitle;
-    CGFloat width = roundf([string sizeWithFont:self.moreOptionsButton.titleLabel.font].width + 2. * self.menuOptionButtonTitlePadding);
+
+    CGFloat width = roundf([string sizeWithAttributes:@{NSFontAttributeName:self.moreOptionsButton.titleLabel.font}].width + 2. * self.menuOptionButtonTitlePadding);
     width = MIN(width, CGRectGetWidth(self.bounds) / 2. - 10.);
     if ((NSInteger)width % 2) {
         width += 1.;

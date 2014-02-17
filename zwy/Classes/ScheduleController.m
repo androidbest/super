@@ -714,6 +714,7 @@
         cell = [[DAContextMenuCell alloc] initWithStyle:UITableViewCellStyleSubtitle
                                    reuseIdentifier:strCell];
     }
+    cell.moreOptionsButtonTitle=@"更多";
     switch (tableView.tag) {
         case 0:{
             /***************************/
@@ -948,6 +949,76 @@
 
 }
 
+#pragma mark - PullRefreshDelegate delegate
+/*置顶日程操作*/
+- (void)contextMenuCellDidSelectMoreOption:(PullRefreshTableView *)tableView  withCell:(DAContextMenuCell *)cell{
+    switch (tableView.tag) {
+        case 0:{
+
+        }
+            break;
+            
+        case 1:{
+
+        }
+            break;
+            
+        case 2:{
+
+        }
+            break;
+            
+        case 3:{
+ 
+        }
+            break;
+            
+        case 4:{
+
+        }
+            break;
+        default:
+            
+            break;
+    }
+}
+
+/*删除日程操作*/
+- (void)contextMenuCellDidSelectDeleteOption:(PullRefreshTableView *)tableView withCell:(DAContextMenuCell *)cell{
+    switch (tableView.tag) {
+        case 0:{
+ 
+        }
+            break;
+            
+        case 1:{
+
+        }
+            break;
+            
+        case 2:{
+
+        }
+            break;
+            
+        case 3:{
+
+        }
+            break;
+            
+        case 4:{
+
+        }
+            break;
+        default:
+            
+            break;
+    }
+    [_arrAll removeObjectAtIndex:[tableView indexPathForCell:cell].row];
+    [tableView beginUpdates];
+    [tableView deleteRowsAtIndexPaths:@[[tableView indexPathForCell:cell]] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [tableView endUpdates];
+}
 
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
