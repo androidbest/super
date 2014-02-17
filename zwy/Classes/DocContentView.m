@@ -48,7 +48,11 @@
         NSString * pathStr = [[pathArr objectAtIndex:0] stringByAppendingPathComponent:name];
         NSFileManager *fileManager = [NSFileManager defaultManager];
         if (![fileManager fileExistsAtPath:pathStr]) {
-            NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"http://218.206.4.38:8081/phoneservice/IosDocAttachmentServlet?id=%@&isAttachment=0&msisdn=%@&eccode=%@",_detailInfo.ID,user.msisdn,user.eccode]];
+            
+            NSString * strPath =[[NSBundle mainBundle] pathForResource:@"common" ofType:@"plist"];
+            NSDictionary * dic =[NSDictionary dictionaryWithContentsOfFile:strPath];
+            
+            NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"%@IosDocAttachmentServlet?id=%@&isAttachment=0&msisdn=%@&eccode=%@",dic[@"httpurl"],_detailInfo.ID,user.msisdn,user.eccode]];
             NSURLRequest  *theRequest = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
             NSData * getData = [NSURLConnection sendSynchronousRequest:theRequest returningResponse:nil error:nil];
             [getData writeToFile:pathStr atomically:NO];
