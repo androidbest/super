@@ -51,7 +51,7 @@ NSString * stringTel =STRING_TEL(@"133");
                                                     name:@"homeToWarningView"
                                                   object:nil];
         
-        
+        //接收即时聊天，更新未读消息状态
         [[NSNotificationCenter defaultCenter]addObserver:self
                                                 selector:@selector(getMessage:)
                                                     name:NOTIFICATIONCHAT

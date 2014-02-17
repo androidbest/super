@@ -243,7 +243,7 @@ UIBackgroundTaskIdentifier backgroundTask;//写成成员
         [alert show];
     }else{
         
-        
+        //触发日程提醒接收本地通知页面跳转
         [[NSNotificationCenter defaultCenter] postNotificationName:@"homeToWarningView"
                                                             object:notification.userInfo
                                                           userInfo:nil];
@@ -257,6 +257,7 @@ UIBackgroundTaskIdentifier backgroundTask;//写成成员
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex==1) {
+        //触发日程提醒接收本地通知页面跳转
         [[NSNotificationCenter defaultCenter] postNotificationName:@"homeToWarningView"
                                                             object:nil
                                                           userInfo:nil];
@@ -293,6 +294,7 @@ UIBackgroundTaskIdentifier backgroundTask;//写成成员
                 
             }else{
                  chatMessageID =[NSString stringWithFormat:@"%@%@%@%@",user.msisdn,user.eccode,obj.groupid,user.eccode];
+                 //是否在聊天界面，返回yes＝是 返回no=否
                  ischek =[EX_chatMessageID  isEqualToString:chatMessageID];
                 [coredataManage setChatInfo:obj status:@"1" isChek:ischek];
             }
@@ -307,6 +309,7 @@ UIBackgroundTaskIdentifier backgroundTask;//写成成员
      *发送通告
      *观察者为"MessageController"--"ChatMessageController"--"HomeController"
      */
+    //接收消息刷新数据，触发以上三个界面
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATIONCHAT object:arrmessages userInfo:dicNOtification];
     
 }
