@@ -28,6 +28,7 @@
 
 /**************DAContextMenuCell***********************/
 @property (assign, nonatomic) BOOL shouldDisableUserInteractionWhileEditing;
+@property (assign, nonatomic) BOOL customEditing;
 /**************DAContextMenuCell***********************/
 
 @property (nonatomic ,assign) BOOL reachedTheEnd;//是否上拉加载更多

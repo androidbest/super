@@ -175,8 +175,8 @@
     [dicFirst writeToFile:strPath atomically:NO];//写入沙盒
 }
 
-/*修改置顶信息*/
-- (void)deleteFirstWarningWithID:(NSString *)ID LocalNotificationWithDelete:(BOOL)isDeleteLocalNotification{
+/*删除置顶信息*/
++ (void)deleteFirstWarningWithID:(NSString *)ID LocalNotificationWithDelete:(BOOL)isDeleteLocalNotification{
     NSString *strPath =[NSString stringWithFormat:@"%@/%@/%@/%@.plist",DocumentsDirectory,user.msisdn,user.eccode,Warning_Frist];//设置地址
     BOOL isFirsts=[[NSFileManager defaultManager] fileExistsAtPath:strPath];
     if (isFirsts) {
@@ -211,7 +211,7 @@
     if ([info.respCode isEqualToString:@"0"]) {
         /*保持置顶数据*/
         if (isFirst)[self saveFristWarningWithID:_newsView.info.warningID];
-        else [self deleteFirstWarningWithID:_newsView.info.warningID LocalNotificationWithDelete:NO];
+        else [NewsScheduleController deleteFirstWarningWithID:_newsView.info.warningID LocalNotificationWithDelete:NO];
         /*********/
 
         image= [UIImage imageNamed:@"37x-Checkmark.png"];
@@ -250,7 +250,7 @@
     UIImage *image ;
     if ([info.respCode isEqualToString:@"0"]) {
         /*删除置顶数据*/
-        if (isFirst)[self deleteFirstWarningWithID:_newsView.info.warningID LocalNotificationWithDelete:YES];
+        if (isFirst)[NewsScheduleController deleteFirstWarningWithID:_newsView.info.warningID LocalNotificationWithDelete:YES];
         /*********/
         
         image= [UIImage imageNamed:@"37x-Checkmark.png"];
@@ -455,7 +455,7 @@ NSString *strTimeInterval=[NSString stringWithFormat:@"%f",[ToolUtils TimeStingW
 - (void)setFirstWaringData{
     /*保持置顶数据*/
     if (isFirst)[self saveFristWarningWithID:_newsView.info.warningID];
-    else [self deleteFirstWarningWithID:_newsView.info.warningID LocalNotificationWithDelete:NO];
+    else [NewsScheduleController deleteFirstWarningWithID:_newsView.info.warningID LocalNotificationWithDelete:NO];
     /*********/
     
     /*更新数据*/

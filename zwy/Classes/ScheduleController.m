@@ -13,6 +13,7 @@
 #import "HolidayView.h"
 #import "NewsScheduleView.h"
 #import "UpdataDate.h"
+#import "NewsScheduleController.h"
 
 @implementation ScheduleController{
 
@@ -58,6 +59,7 @@
     
     NSDictionary *dicDcomentFirst;
     NSString *InitDaysTime;
+    NSString *removeWarning;/*删除日程通告名*/
     warningDataInfo *warningDataFirstInfo;
 }
 
@@ -97,6 +99,7 @@
         notificationNameLife=@"notificationNameLife";
         notificationNameBirthday=@"notificationNameBirthday";
         notificationNameHoliday=@"notificationNameHoliday";
+        removeWarning=@"removeWarning";
         
         [[NSNotificationCenter defaultCenter]addObserver:self
                                                 selector:@selector(notificationNameAllData:)
@@ -118,6 +121,10 @@
                                                 selector:@selector(notificationNameHolidayData:)
                                                     name:notificationNameHoliday
                                                   object:self];
+        [[NSNotificationCenter defaultCenter]addObserver:self
+                                                selector:@selector(removeWarningData:)
+                                                    name:removeWarning
+                                                  object:self];
     }
     return self;
 }
@@ -127,31 +134,18 @@
     isFirst=[[NSFileManager defaultManager] fileExistsAtPath:strPath];
     if (isFirst) {
         NSDictionary *dic =[[NSDictionary alloc] initWithContentsOfFile:strPath];
-        NSString *strDate=dic[@"date"];
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        [formatter setFormatterBehavior:NSDateFormatterBehaviorDefault];
-        [formatter setDateFormat:@"yyyy-MM-dd"];
-        NSDate *startDate = [formatter dateFromString:strDate];
-        int isStart =[ToolUtils bigOrsmallOneDay:startDate withAnotherDay:[NSDate date]];
-        
-        if (isStart<0&&([dic[@"reqeatType"] isEqualToString:@"0"]||!dic[@"reqeatType"])) {/*如果置顶日程过期删除*/
-//            [[NSFileManager defaultManager] removeItemAtPath:strPath error:nil];
-//            isFirst=NO;
-            dicDcomentFirst=[NSDictionary dictionaryWithDictionary:dic];
-        }else {
-            dicDcomentFirst=[NSDictionary dictionaryWithDictionary:dic];
-        }
-        
-    }
-    if (_arrAll.count>0&&!isFirst) {
-        [self getFirstSchedule];
+        dicDcomentFirst=[NSDictionary dictionaryWithDictionary:dic];
+    }else{
+        dicDcomentFirst=nil;
+        dicDcomentFirst =[NSDictionary dictionary];
+     [self getFirstSchedule];
     }
 }
 
 /*设置置顶提醒*/
 - (void)getFirstSchedule{
     if (_arrAll.count==0) {
-        _schedView.labelName.text=@"暂无数据";
+        _schedView.labelName.text=@"数据加载";
         return;
     }
     warningDataInfo * info =_arrAll[0];
@@ -196,6 +190,7 @@
     warningDataFirstInfo=info;
 }
 
+#pragma mark - 按钮
 /*添加日程提醒*/
 - (void)btnAddSchedule{
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
@@ -314,12 +309,8 @@
     }else{
         [ToolUtils alertInfo:@"暂无数据"];
     }
-    
-//    if (_arrAll.count>=info.AllCount) {
-        _schedView.tableViewAll.reachedTheEnd=NO;
-//    }else {
-//    _schedView.tableViewAll.reachedTheEnd=YES;
-//    }
+
+    _schedView.tableViewAll.reachedTheEnd=NO;
     [_schedView.tableViewAll reloadDataPull];
     
     if (!isFirst) {/*设置置顶内容*/
@@ -502,33 +493,17 @@
      if (self.HUD)[self.HUD hide:YES afterDelay:1];
 }
 
-- (NSArray *) changeArray:(NSMutableArray *)dicArray orderWithKey:(NSString *)key ascending:(BOOL)yesOrNo{
-    NSMutableArray *arrBefore;//未过期日程array
-    NSMutableArray *arrAfter;//已过期日程array
-    NSMutableArray *arrAll;//排序完成的日程array
-    
-    //设置排序方式key
-    NSSortDescriptor *distanceDescriptor = [[NSSortDescriptor alloc] initWithKey:key ascending:yesOrNo];
-    NSArray *descriptors = [NSArray arrayWithObjects:distanceDescriptor,nil];
-    
-    //未过期日程排序
-    NSPredicate *thePredicate = [NSPredicate predicateWithFormat:@"SELF.remainTimeInt >= 0"];
-    arrBefore =[NSMutableArray arrayWithArray:[dicArray filteredArrayUsingPredicate:thePredicate]];
-    [arrBefore sortUsingDescriptors:descriptors];
-    
-    //已过期日程排序
-    arrAfter=dicArray;
-    [arrAfter removeObjectsInArray:arrBefore];
-    [arrAfter sortUsingDescriptors:descriptors];
-    
-    arrAll =[NSMutableArray new];
-    [arrAll addObjectsFromArray:arrBefore];
-    [arrAll addObjectsFromArray:arrAfter];
-    
 
-    return arrAll;
-    
+/*删除回调*/
+- (void)removeWarningData:(NSNotification *)notification{
+    NSDictionary *dic =[notification userInfo];
+    RespInfo *info =[AnalysisData ReTurnInfo:dic];
+
+    if ([info.respCode isEqualToString:@"1"]) {
+        [self showHUDText:@"网络错误,删除失败" showTime:1];
+    }
 }
+
 
 //按时间重新排列数据 remainTime
 - (void)updateTableViewDateMinToMax:(NSMutableArray *)array tableViewType:(tableViewScheduleType)tableViewType{
@@ -564,6 +539,35 @@
         default:
             break;
     }
+}
+
+/*日程排序*/
+- (NSArray *) changeArray:(NSMutableArray *)dicArray orderWithKey:(NSString *)key ascending:(BOOL)yesOrNo{
+    NSMutableArray *arrBefore;//未过期日程array
+    NSMutableArray *arrAfter;//已过期日程array
+    NSMutableArray *arrAll;//排序完成的日程array
+    
+    //设置排序方式key
+    NSSortDescriptor *distanceDescriptor = [[NSSortDescriptor alloc] initWithKey:key ascending:yesOrNo];
+    NSArray *descriptors = [NSArray arrayWithObjects:distanceDescriptor,nil];
+    
+    //未过期日程排序
+    NSPredicate *thePredicate = [NSPredicate predicateWithFormat:@"SELF.remainTimeInt >= 0"];
+    arrBefore =[NSMutableArray arrayWithArray:[dicArray filteredArrayUsingPredicate:thePredicate]];
+    [arrBefore sortUsingDescriptors:descriptors];
+    
+    //已过期日程排序
+    arrAfter=dicArray;
+    [arrAfter removeObjectsInArray:arrBefore];
+    [arrAfter sortUsingDescriptors:descriptors];
+    
+    arrAll =[NSMutableArray new];
+    [arrAll addObjectsFromArray:arrBefore];
+    [arrAll addObjectsFromArray:arrAfter];
+    
+    
+    return arrAll;
+    
 }
 
 #pragma mark - 选择卡按钮
@@ -714,13 +718,13 @@
         cell = [[DAContextMenuCell alloc] initWithStyle:UITableViewCellStyleSubtitle
                                    reuseIdentifier:strCell];
     }
-    cell.moreOptionsButtonTitle=@"更多";
+    warningDataInfo *info;
+    
     switch (tableView.tag) {
         case 0:{
             /***************************/
             cell.delegate=self.schedView.tableViewAll;
-            warningDataInfo * info =_arrAll[indexPath.row];
-            if ([dicDcomentFirst[@"ID"] isEqualToString:info.warningID])[self updateFirstSchedule:info];/*同步置顶信息*/
+            info =_arrAll[indexPath.row];
             NSString *Title;
             if ([info.warningType isEqualToString:@"2"]&&![info.isUserHandAdd isEqualToString:@"0"]){
                 Title =[info.content stringByAppendingString:@" 的生日"];
@@ -740,8 +744,7 @@
             
         case 1:
         {   cell.delegate=self.schedView.tableViewWork;
-            warningDataInfo *info =_arrWork[indexPath.row];
-            if ([dicDcomentFirst[@"ID"] isEqualToString:info.warningID])[self updateFirstSchedule:info];/*同步置顶信息*/
+            info =_arrWork[indexPath.row];
             cell.labelTitle.text=info.content;
             cell.labelTime.text=info.warningDate;
             cell.labelDays.attributedText=[DetailTextView setCellTimeAttributedString:info.remainTime];
@@ -750,8 +753,7 @@
             
         case 2:{
             cell.delegate=self.schedView.tableViewLife;
-            warningDataInfo *info =_arrLife[indexPath.row];
-            if ([dicDcomentFirst[@"ID"] isEqualToString:info.warningID])[self updateFirstSchedule:info];/*同步置顶信息*/
+            info =_arrLife[indexPath.row];
             cell.labelTitle.text=info.content;
             cell.labelTime.text=info.warningDate;
             cell.labelDays.attributedText=[DetailTextView setCellTimeAttributedString:info.remainTime];
@@ -760,9 +762,7 @@
             
         case 3:{
             cell.delegate=self.schedView.tableViewBirthday;
-            warningDataInfo *info =_arrBirthday[indexPath.row];
-            if ([dicDcomentFirst[@"ID"] isEqualToString:info.warningID])[self updateFirstSchedule:info];/*同步置顶信息*/
-            
+            info =_arrBirthday[indexPath.row];
             /*如果为手动添加标题后面不自动添加“的生日“字段*/
             if ([info.isUserHandAdd isEqualToString:@"0"]) {
                 cell.labelTitle.text=info.content;
@@ -779,8 +779,7 @@
             
         case 4:{
             cell.delegate=self.schedView.tableViewHoliday;
-            warningDataInfo *info =_arrholiday[indexPath.row];
-            if ([dicDcomentFirst[@"ID"] isEqualToString:info.warningID])[self updateFirstSchedule:info];/*同步置顶信息*/
+            info =_arrholiday[indexPath.row];
             cell.labelTitle.text=info.content;
             cell.labelTime.text=info.warningDate;
             cell.labelDays.attributedText=[DetailTextView setCellTimeAttributedString:info.remainTime];
@@ -789,6 +788,12 @@
         default:
             
             break;
+    }
+    /*同步置顶信息*/
+    if ([dicDcomentFirst[@"ID"] isEqualToString:info.warningID]){
+        cell.moreOptionsButtonTitle=@"取消置顶";
+    }else {
+         cell.moreOptionsButtonTitle=@"置顶";
     }
     return cell;
 }
@@ -946,81 +951,220 @@
             
             break;
     }
-
 }
 
-#pragma mark - PullRefreshDelegate delegate
+#pragma mark - PullRefreshDelegate delegate  点击置顶按钮时调用
 /*置顶日程操作*/
 - (void)contextMenuCellDidSelectMoreOption:(PullRefreshTableView *)tableView  withCell:(DAContextMenuCell *)cell{
+    NSIndexPath *indexPath=[tableView indexPathForCell:cell];
+    warningDataInfo *info;
     switch (tableView.tag) {
         case 0:{
-
+            info =_arrAll[indexPath.row];
         }
             break;
             
         case 1:{
-
+            info =_arrWork[indexPath.row];
         }
             break;
             
         case 2:{
-
+            info =_arrLife[indexPath.row];
         }
             break;
             
         case 3:{
- 
+            info =_arrBirthday[indexPath.row];
         }
             break;
             
         case 4:{
-
+            info =_arrholiday[indexPath.row];
         }
             break;
         default:
-            
+    
             break;
+    }
+   
+    if ([dicDcomentFirst[@"ID"] isEqualToString:info.warningID]){/*取消置顶*/
+      [self showHUDText:@"取消成功" showTime:1.0];
+      [NewsScheduleController deleteFirstWarningWithID:info.warningID LocalNotificationWithDelete:NO];/*删除置顶*/
+      cell.moreOptionsButtonTitle=@"置顶";
+        
+    }else {/*同步置顶*/
+        
+      [self updateFirstSchedule:info];
+       [self showHUDText:@"置顶成功" showTime:1.0];
+        for (DAContextMenuCell *cell1 in tableView.visibleCells) {
+            if ([tableView indexPathForCell:cell1].row ==[tableView indexPathForCell:cell].row)
+                cell1.moreOptionsButtonTitle=@"取消置顶";
+            else
+                cell1.moreOptionsButtonTitle=@"置顶";
+        }
+        
+    }
+    
+    [self initWithData];
+    [self updateOtherTableView:info];
+}
+
+/*对应更新其它tableView的信息*/
+- (void)updateOtherTableView:(warningDataInfo *)info{
+    if ([info.warningType isEqualToString:@"0"]&&_schedView.tableViewWork.hidden) {
+ 
+        [self.schedView.tableViewWork reloadData];
+        
+    }else if ([info.warningType isEqualToString:@"1"]&&_schedView.tableViewLife.hidden){
+
+        [self.schedView.tableViewLife reloadData];
+        
+    }else if ([info.warningType isEqualToString:@"2"]&&_schedView.tableViewBirthday.hidden){
+ 
+        [self.schedView.tableViewBirthday reloadData];
+        
+    }else if ([info.warningType isEqualToString:@"3"]&&_schedView.tableViewHoliday.hidden){
+
+        [self.schedView.tableViewHoliday reloadData];
+    }
+    
+    /**/
+    if (_schedView.tableViewAll.hidden) {
+        [_schedView.tableViewAll  reloadData];
     }
 }
 
+#pragma mark - PullRefreshDelegate delegate  点击删除按钮时调用
 /*删除日程操作*/
 - (void)contextMenuCellDidSelectDeleteOption:(PullRefreshTableView *)tableView withCell:(DAContextMenuCell *)cell{
+    NSIndexPath *indexPath=[tableView indexPathForCell:cell];
+    warningDataInfo *info;
     switch (tableView.tag) {
         case 0:{
- 
+            info =_arrAll[indexPath.row];
+            /*系统节日不能删除*/
+            if ([info.isUserHandAdd isEqualToString:@"3"]&&[info.warningType isEqualToString:@"3"]){
+                [ToolUtils alertInfo:@"系统日程,不能删除"];
+                return;
+            }
+            [_arrAll removeObject:info];
         }
             break;
             
         case 1:{
-
+            info =_arrWork[indexPath.row];
+            [_arrWork removeObject:info];
         }
             break;
             
         case 2:{
-
+            info =_arrLife[indexPath.row];
+            [_arrLife removeObject:info];
         }
             break;
             
         case 3:{
-
+            info =_arrBirthday[indexPath.row];
+            [_arrBirthday removeObject:info];
         }
             break;
             
         case 4:{
-
+            info =_arrholiday[indexPath.row];
+            if ([info.isUserHandAdd isEqualToString:@"3"]&&[info.warningType isEqualToString:@"3"]){
+                [ToolUtils alertInfo:@"系统日程,不能删除"];
+                return;
+            }
+              [_arrholiday removeObject:info];
         }
             break;
         default:
             
             break;
     }
-    [_arrAll removeObjectAtIndex:[tableView indexPathForCell:cell].row];
-    [tableView beginUpdates];
-    [tableView deleteRowsAtIndexPaths:@[[tableView indexPathForCell:cell]] withRowAnimation:UITableViewRowAnimationAutomatic];
-    [tableView endUpdates];
+    
+    /*删除对应的cell*/
+    [cell.superview sendSubviewToBack:cell];
+    tableView.customEditing = NO;
+    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    
+    /*更新对应数据*/
+    [self updateGrouping:info];
 }
 
 
+/*删除全部日程分组里面的某个日程时，同步分组日程信息*/
+- (void)updateGrouping:(warningDataInfo *)info{
+    if ([info.warningType isEqualToString:@"0"]&&_schedView.tableViewWork.hidden) {
+        for (warningDataInfo * info1 in _arrWork) {
+            if ([info1.warningID isEqualToString:info.warningID]) {
+                 [_arrWork removeObject:info1];
+                 break;
+            }
+        }
+        [self.schedView.tableViewWork reloadData];
+        
+    }else if ([info.warningType isEqualToString:@"1"]&&_schedView.tableViewLife.hidden){
+        for (warningDataInfo * info1 in _arrLife) {
+            if ([info1.warningID isEqualToString:info.warningID]) {
+                [_arrLife removeObject:info1];
+                 break;
+            }
+        }
+        [self.schedView.tableViewLife reloadData];
+        
+    }else if ([info.warningType isEqualToString:@"2"]&&_schedView.tableViewBirthday.hidden){
+        for (warningDataInfo * info1 in _arrBirthday) {
+            if ([info1.warningID isEqualToString:info.warningID]) {
+                [_arrBirthday removeObject:info1];
+                 break;
+            }
+        }
+        [self.schedView.tableViewBirthday reloadData];
+        
+    }else if ([info.warningType isEqualToString:@"3"]&&_schedView.tableViewHoliday.hidden){
+        for (warningDataInfo * info1 in _arrholiday) {
+            if ([info1.warningID isEqualToString:info.warningID]) {
+                [_arrholiday removeObject:info1];
+                 break;
+            }
+        }
+       [self.schedView.tableViewHoliday reloadData];
+    }
+    
+    /**/
+    if (_schedView.tableViewAll.hidden) {
+        for (warningDataInfo * info1 in _arrAll) {
+            if ([info1.warningID isEqualToString:info.warningID]) {
+                [_arrAll removeObject:info1];
+                break;
+            }
+        }
+        [_schedView.tableViewAll  reloadData];
+    }
+
+    /*发送删除请求*/
+    [self deleteWarning:info.warningID];
+}
+
+
+/*发送删除请求*/
+- (void)deleteWarning:(NSString *)ID{
+    /*发送请求*/
+    [packageData deleteWarningData:self
+                         warningID:ID
+                           SELType:removeWarning];
+    
+    /*更新置顶信息*/
+    if ([dicDcomentFirst[@"ID"] isEqualToString:ID]){
+        [NewsScheduleController deleteFirstWarningWithID:ID
+                             LocalNotificationWithDelete:YES];
+    }
+    [self initWithData];
+}
+
+#pragma mark -pullTableView
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     if(scrollView.tag==0){
         [self.schedView.tableViewAll scrollViewDidPullScroll:scrollView];
@@ -1101,7 +1245,7 @@
 
 
 
-/*添加本地通知*/
+/*设置本地通知信息*/
 - (void)addLocalNotification:(warningDataInfo *)info{
     NSDateFormatter * dateFormatter = [[NSDateFormatter alloc]init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
@@ -1148,4 +1292,15 @@
     }
 
 }
+
+- (void)showHUDText:(NSString *)text showTime:(NSTimeInterval)time{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.schedView.view animated:YES];
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText =text;
+    hud.margin = 10.f;
+    hud.yOffset = 150.f;
+    hud.removeFromSuperViewOnHide = YES;
+    [hud hide:YES afterDelay:time];
+}
+
 @end

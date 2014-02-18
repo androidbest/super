@@ -14,7 +14,9 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.contentViews=[[UIView alloc] initWithFrame:self.frame];
+        CGRect rect =self.frame;
+        rect.size.height=65;
+        self.contentViews=[[UIView alloc] initWithFrame:rect];
         self.contentViews.backgroundColor=[UIColor whiteColor];
         [self addSubview:self.contentViews];
         

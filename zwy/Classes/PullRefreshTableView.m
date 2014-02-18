@@ -25,7 +25,6 @@
 /******************DAContextMenuCell*******************/
 @property (strong, nonatomic) DAContextMenuCell *cellDisplayingMenuOptions;
 @property (strong, nonatomic) DAOverlayView *overlayView;
-@property (assign, nonatomic) BOOL customEditing;
 @property (assign, nonatomic) BOOL customEditingAnimationInProgress;
 @property (strong, nonatomic) UIBarButtonItem *editBarButtonItem;
 @property (strong, nonatomic) UIBarButtonItem *doneBarButtonItem;
@@ -282,14 +281,13 @@
 /*点击更多按钮*/
 - (void)contextMenuCellDidSelectMoreOption:(DAContextMenuCell *)cell
 {
+   [self hideMenuOptionsAnimated:YES];
    [self.PDelegate contextMenuCellDidSelectMoreOption:self withCell:cell];
 }
 
 /*点击删除按钮*/
 - (void)contextMenuCellDidSelectDeleteOption:(DAContextMenuCell *)cell
 {
-    [cell.superview sendSubviewToBack:cell];
-    self.customEditing = NO;
     [self.PDelegate contextMenuCellDidSelectDeleteOption:self withCell:cell];
 }
 
@@ -345,8 +343,6 @@
     }
     return YES;
 }
-
-
 
 /***************DAContextMenuCell**********************/
 
