@@ -96,6 +96,7 @@ static ConfigFile *configFile;
         }
     }
     
+    //1.ecuser.txt全网通讯录 2.member.txt本地通讯录
     if (isECMember)str=[NSString stringWithFormat:@"%@/%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode,@"ecuser.txt"];
     else str=[NSString stringWithFormat:@"%@/%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode,@"member.txt"];
     
@@ -123,7 +124,7 @@ static ConfigFile *configFile;
     return AllPeople;
 }
 
-//获取所有成员
+//获取所有成员 本地EC成员
 + (NSMutableArray *)setEcNumberInfo{
     
    NSArray * allSection=@[@"a",@"b",@"c",@"d",@"e",@"f",
@@ -186,7 +187,7 @@ static ConfigFile *configFile;
     return AllPeople;
 }
 
-//获取所有EC成员
+//获取所有EC成员 全网的EC成员
 + (NSMutableArray *)setEcMember{
     
     NSArray * allSection=@[@"a",@"b",@"c",@"d",@"e",@"f",

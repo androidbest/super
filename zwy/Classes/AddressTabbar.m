@@ -13,25 +13,12 @@
 
 @end
 
+
+//通讯录tabbar
 @implementation AddressTabbar
 
-//- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-//{
-//    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-//    if (self) {
-//        // Custom initialization
-//    }
-//    return self;
-//}
-//
-//- (id)initWithCoder:(NSCoder *)aDecode{
-//    self =[super initWithCoder:aDecode];
-//    if (self) {
-//
-//    }
-//    return self;
-//}
 
+//点击短信群发滑动效果
 + (CAAnimation *)animationTransitionFade{
     CATransition *transition = [CATransition animation];
     transition.duration = 0.30f;         /* 间隔时间*/

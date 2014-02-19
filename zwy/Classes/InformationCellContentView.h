@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+//热点新闻的cell的布局view
+
 @interface InformationCellContentView : UIView
 
 @property (assign)float ContextHeight;

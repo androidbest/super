@@ -206,7 +206,7 @@ static NSString * identifierCell=@"Cell";
 }
 
 #pragma mark - AIMTableViewIndexBarDelegate
-
+//本地通讯录字母排序代理方法
 - (void)tableViewIndexBar:(AIMTableViewIndexBar *)indexBar didSelectSectionAtIndex:(NSInteger)index{
     if ([self.addressView.tableViewAddress numberOfSections] > index && index > -1){   // for safety, should always be YES
         [self.addressView.tableViewAddress scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:index]

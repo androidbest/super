@@ -12,6 +12,7 @@
 
 @end
 
+//本地通讯录新增
 @implementation AddPeopleBookView
 
 - (id)initWithCoder:(NSCoder *)aDecoder{

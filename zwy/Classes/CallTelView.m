@@ -13,6 +13,8 @@
 
 @end
 
+
+//拔号
 @implementation CallTelView
 
 - (id)initWithCoder:(NSCoder *)aDecoder{
@@ -31,7 +33,7 @@
 {
     [super viewDidLoad];
    
-   // self.tabBarItem=[self.tabBarItem initWithTitle:@"首页" image:[UIImage imageNamed:@"home_out"] selectedImage:[UIImage imageNamed:@"home_over"]];
+    //画拔号键盘
     [_btNumber0 addTarget:self.controller action:@selector(inputNumber:) forControlEvents:UIControlEventTouchUpInside];
     [_btNumber1 addTarget:self.controller action:@selector(inputNumber:) forControlEvents:UIControlEventTouchUpInside];
     [_btNumber2 addTarget:self.controller action:@selector(inputNumber:) forControlEvents:UIControlEventTouchUpInside];
@@ -66,6 +68,7 @@
 }
 
 - (void)GroupAddressView{
+    //跳到第三个item
     self.tabBarController.selectedIndex=2;
 }
 

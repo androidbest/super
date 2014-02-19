@@ -248,7 +248,10 @@
 //        if ([arrYetNews containsObject:info.newsID]) cell.title.textColor=[UIColor grayColor];
 //        else cell.title.textColor =[UIColor blackColor];
         
-    }else{//新闻资讯(笑话)
+    }else{
+        
+        
+        //新闻资讯(笑话)
          TemplateCell * cell=[tableView dequeueReusableCellWithIdentifier:strCell2];
         if (!cell) {
             cell = [[TemplateCell alloc] initWithStyle:UITableViewCellStyleSubtitle

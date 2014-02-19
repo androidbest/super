@@ -19,6 +19,7 @@
     NSArray * arrNumber;
     GroupInfo *groupA;
     BOOL isFirstPages;
+    //已经更新的
     BOOL isReloadData;
 }
 
@@ -72,6 +73,8 @@
     
     NSString * str =[NSString stringWithFormat:@"%@/%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode,@"group.txt"];
     NSString *strGroup =[NSString stringWithContentsOfFile:str encoding:NSUTF8StringEncoding error:NULL];
+    
+    //1.为空 或者 2.不为空已经更新 有新的包更新，删除旧包
     if (!strGroup||isReloadData) {
         ZipArchive* zipFile = [[ZipArchive alloc] init];
         NSString *strECpath =[NSString stringWithFormat:@"%@/%@.zip",user.msisdn,user.eccode];
@@ -102,6 +105,8 @@
         _HUD_Group.removeFromSuperViewOnHide = YES;
         [_HUD_Group show:YES];
     }
+    
+    //扫描文件，通讯录信息放入数组
     __block NSArray *blockArr;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
              blockArr= [ConfigFile setAllPeopleInfo:str isECMember:NO];

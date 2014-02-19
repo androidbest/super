@@ -13,6 +13,7 @@
 
 @end
 
+//单位通讯录
 @implementation GroupAddressView
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

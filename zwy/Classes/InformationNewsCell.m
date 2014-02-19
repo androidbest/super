@@ -6,6 +6,9 @@
 //  Copyright (c) 2013年 sxit. All rights reserved.
 //
 
+/*热点新闻的Cell*/
+
+
 #import "InformationNewsCell.h"
 #import "InformationCellContentView.h"
 @implementation InformationNewsCell
@@ -183,9 +186,6 @@
         _labelTime6.textColor=[UIColor grayColor];
         [informationView addSubview:_labelTime6];
         
-        //添加点击手势
-        UITapGestureRecognizer *tapToInformationView=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(PushToNewsDetaView:)];
-        [informationView addGestureRecognizer:tapToInformationView];
         [self.contentView addSubview:informationView];
     }
     return self;

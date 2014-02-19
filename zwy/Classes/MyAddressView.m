@@ -13,6 +13,7 @@
 
 @end
 
+//本地通讯录
 @implementation MyAddressView
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

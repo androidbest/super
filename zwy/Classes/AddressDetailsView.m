@@ -12,6 +12,7 @@
 
 @end
 
+//本地通讯录详情
 @implementation AddressDetailsView
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

@@ -12,6 +12,8 @@
 
 @end
 
+
+//所有选择单位通讯录
 @implementation optionAddress
 
 -  (id)initWithCoder:(NSCoder *)aDecoder{

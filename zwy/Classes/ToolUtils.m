@@ -11,6 +11,7 @@
 #import "solarOrLunar.h"
 #import "Date+string.h"
 #import "PinYin4Objc.h"
+#import "Constants.h"
 @implementation ToolUtils
 
 
@@ -530,4 +531,79 @@
     }
     return isPush;
 }
+
+////开始下载
+//- (void)DownLoadAddress:(NSString *)strPath view:(UIView *)view{
+//    MBProgressHUD *HUD_Group = [MBProgressHUD showHUDAddedTo:view animated:YES];
+//	[view addSubview:HUD_Group];
+//    HUD_Group.mode = MBProgressHUDModeDeterminateHorizontalBar;
+//    HUD_Group.labelText = @"同步中...";
+//    NSString *strFileName =[NSString stringWithFormat:@"%@/%@.zip",user.msisdn,user.eccode];
+//    NSString * filePath =[DocumentsDirectory stringByAppendingPathComponent:strFileName];
+//    NSString *str=[GroupAddressController urlByConfigFile];
+//    NSString * strUrl =[NSString stringWithFormat:@"%@tmp/%@.zip?eccode=%@",str,user.eccode,user.eccode];
+//    [HTTPRequest LoadDownFile:self URL:strUrl filePath:filePath HUD:_HUD_Group];
+//}
+//
+//
+////更新完毕回调
+//- (void)DownLoadAddressReturn:(NSNotification *)notification{
+//    NSDictionary*dic =[notification userInfo];
+//    UIImageView *imageView;
+//    if([dic[@"respCode"]  isEqualToString:@"0"]){
+//        _HUD_Group.labelText = @"更新完毕";
+//        imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
+//        
+//        /*刷新数据*/
+//        [self updateDownLoad];
+//        _grougView.searchBar.text=nil;
+//        groupA=nil;
+//        isFirstPages=YES;
+//        
+//        //开启接受定时器,设置全局通讯录
+//        [self StartChatMessageController];
+//        
+//    }
+//    else {
+//        _HUD_Group.labelText = @"更新失败";
+//        imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
+//    }
+//    _HUD_Group.customView=imageView;
+//    _HUD_Group.mode = MBProgressHUDModeCustomView;
+//    [_HUD_Group hide:YES afterDelay:1];
+//}
+//
+////开启接受定时器,设置全局通讯录(设置全局内容)
+//- (void)StartChatMessageController{
+//    if (!EX_arrGroupAddressBooks||EX_arrGroupAddressBooks.count==0) {
+//        EX_arrGroupAddressBooks=[ConfigFile setEcNumberInfo];
+//        
+//        EX_arrSection=[NSMutableArray arrayWithObjects:
+//                       @"a",@"b",@"c",@"d",@"e",@"f",
+//                       @"g",@"h",@"i",@"j",@"k",@"l",
+//                       @"m",@"n",@"o",@"p",@"q",@"r",
+//                       @"s",@"t",@"u",@"v",@"w",@"x",
+//                       @"y",@"z",@"#",nil];
+//        NSMutableArray * arrRemoveObject=[[NSMutableArray alloc] init];
+//        for (int i = 0; i<EX_arrSection.count; i++) {
+//            NSString * strPre=[NSString stringWithFormat:@"SELF.Firetletter == '%@'",EX_arrSection[i]];
+//            NSPredicate * predicate;
+//            predicate = [NSPredicate predicateWithFormat:strPre];
+//            NSArray * results = [EX_arrGroupAddressBooks filteredArrayUsingPredicate: predicate];
+//            if (results.count==0) {
+//                [arrRemoveObject addObject:EX_arrSection[i]];
+//            }
+//        }
+//        [EX_arrSection removeObjectsInArray:arrRemoveObject];
+//    }
+//    /*****************************/
+//    /*更新完通讯录后开始接受消息*/
+//    //开启扫描信息定时器
+//    if (EX_timerUpdateMessage)[EX_timerUpdateMessage setFireDate:[NSDate distantPast]];
+//    else   EX_timerUpdateMessage = [NSTimer scheduledTimerWithTimeInterval:3.0 target:[[UIApplication sharedApplication] delegate] selector:@selector(timerFired:) userInfo:nil repeats:YES];
+//}
+
+
+
+
 @end

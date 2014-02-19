@@ -12,6 +12,8 @@
 
 @end
 
+
+//短信群发选择通讯录联第人
 @implementation MassMyAddressView
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

@@ -13,6 +13,8 @@
 
 @end
 
+
+//短信群发新增联系人
 @implementation MassAddPeopleView
 
 - (id)initWithCoder:(NSCoder *)aDecoder{

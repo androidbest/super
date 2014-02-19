@@ -12,6 +12,7 @@
 
 @end
 
+//单位通讯录详情
 @implementation InfoDetailsView
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

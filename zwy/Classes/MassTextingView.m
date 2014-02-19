@@ -16,6 +16,7 @@
 
 @end
 
+//短信群发
 @implementation MassTextingView
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
