@@ -92,7 +92,7 @@
     if ((NSInteger)width % 2) {
         width += 1.;
     }
-    return width-30;
+    return width-25.;
 }
 
 - (void)setDeleteButtonTitle:(NSString *)deleteButtonTitle

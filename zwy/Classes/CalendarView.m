@@ -34,8 +34,12 @@
 - (id)initWithCoder:(NSCoder *)aDecoder{
     self =[super initWithCoder:aDecoder];
     if (self) {
-        if (iPhone5) strImagePath=@"image_calendar_5_";
-        else strImagePath =@"image_calendar_4_";
+      //  if (iPhone5)
+            strImagePath=@"image_calendar_5_";
+     //   else
+       //     strImagePath =@"image_calendar_4_";
+        
+
     }
     return self;
 }
@@ -46,14 +50,14 @@
     [super viewDidLoad];
     
     UILabel *labelBack =[[UILabel alloc] init];
-    labelBack.frame=CGRectMake(0, 64, ScreenWidth, ScreenHeight-ITEM_SIZE_HEIGHT-40-64);
+    labelBack.frame=CGRectMake(0, 64, ScreenWidth, 74);
     labelBack.backgroundColor=[UIColor colorWithRed:0.0f/255.0f green:122.0f/255.0f blue:255.0f/255.0f alpha:1.0];
     labelBack.layer.zPosition=-1;
     [self.view addSubview:labelBack];
     
     LineLayout *layout =[[LineLayout alloc] init];
     CGRect rect =self.view.frame;
-    rect.origin.y=ScreenHeight-ITEM_SIZE_HEIGHT-40;
+    rect.origin.y=64+labelBack.frame.size.height;
     rect.size.height=ITEM_SIZE_HEIGHT;
     _collView =[[UICollectionView alloc] initWithFrame:rect collectionViewLayout:layout];
     _collView.backgroundColor=[UIColor whiteColor];

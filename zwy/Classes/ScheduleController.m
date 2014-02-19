@@ -897,14 +897,14 @@
             
         case 3:{
              pageBirthday=1;
-            isPullDownBirthday=YES;
+             isPullDownBirthday=YES;
              [packageData getWarningDatas:self pages:pageBirthday Type:2 SELType:notificationNameBirthday];
         }
             break;
             
         case 4:{
            pageHoliday=1;
-            isPullDownHoliday=YES;
+           isPullDownHoliday=YES;
            [packageData getWarningDatas:self pages:pageHoliday Type:3 SELType:notificationNameHoliday];
         }
             break;

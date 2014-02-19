@@ -477,8 +477,7 @@ static CoreDataManageContext *coreData=nil;
 // Returns the URL to the application's Documents directory.
 - (NSURL *)applicationDocumentsDirectory
 {
-//    return [NSURL URLWithString:@"file:///Users/cqsxit/Desktop/push_dev"];
-    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    return [[[NSFileManager defaultManager] URLsForDirectory:NSCachesDirectory inDomains:NSUserDomainMask] lastObject];
 //    return [NSURL URLWithString:@"file:///Users/sxit/Desktop/test"];
 }
 

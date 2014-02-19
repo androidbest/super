@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <scenes>
         <!--Login View-->
@@ -255,47 +255,79 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Gq-S9-ZDY">
-                                <rect key="frame" x="9" y="80" width="40" height="20"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Gq-S9-ZDY">
+                                <rect key="frame" x="9" y="80" width="56" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="20" maxY="0.0"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="56" id="bSt-k5-fe9"/>
+                                    <constraint firstAttribute="height" constant="25" id="ycn-se-gkN"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="3" maxX="35" maxY="3"/>
                                 <state key="normal" image="images_Dir_left.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PCS-3m-cmu">
-                                <rect key="frame" x="267" y="80" width="40" height="20"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PCS-3m-cmu">
+                                <rect key="frame" x="249" y="80" width="58" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="58" id="a8e-bx-idu"/>
+                                    <constraint firstAttribute="height" constant="25" id="cnH-LG-YPn"/>
+                                </constraints>
+                                <inset key="contentEdgeInsets" minX="35" minY="3" maxX="0.0" maxY="3"/>
                                 <state key="normal" title="Button" image="images_Dir_Reight.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="168-5U-Azu">
-                                <rect key="frame" x="86" y="75" width="113" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="168-5U-Azu">
+                                <rect key="frame" x="91" y="78" width="112" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="0rk-G5-O5c"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
                                 <state key="normal" title="2014年06月">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cbG-Ia-YVx">
-                                <rect key="frame" x="203" y="85" width="20" height="10"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cbG-Ia-YVx">
+                                <rect key="frame" x="212" y="85" width="20" height="10"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="10" id="edi-nM-0sM"/>
+                                    <constraint firstAttribute="width" constant="20" id="leN-Hk-vAL"/>
+                                </constraints>
                                 <state key="normal" image="images_Dir_Down.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="  星期一   星期二   星期三   星期四   星期五   星期六   星期日" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1hq-6U-KrN">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  星期一   星期二   星期三   星期四   星期五   星期六   星期日" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1hq-6U-KrN">
                                 <rect key="frame" x="9" y="113" width="310" height="15"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="15" id="bfr-9K-2s1"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="168-5U-Azu" firstAttribute="leading" secondItem="1Gq-S9-ZDY" secondAttribute="trailing" constant="26" id="0Z7-pk-j31"/>
+                            <constraint firstItem="1Gq-S9-ZDY" firstAttribute="centerY" secondItem="PCS-3m-cmu" secondAttribute="centerY" id="2kP-y2-J6w"/>
+                            <constraint firstAttribute="trailing" secondItem="1hq-6U-KrN" secondAttribute="trailing" constant="1" id="6qI-bz-L6d"/>
+                            <constraint firstItem="1hq-6U-KrN" firstAttribute="leading" secondItem="Gap-9O-Mht" secondAttribute="leading" constant="9" id="8m8-GF-qIT"/>
+                            <constraint firstItem="1Gq-S9-ZDY" firstAttribute="top" secondItem="Gap-9O-Mht" secondAttribute="top" constant="80" id="ICs-A0-wKK"/>
+                            <constraint firstItem="1Gq-S9-ZDY" firstAttribute="leading" secondItem="Gap-9O-Mht" secondAttribute="leading" constant="9" id="IUw-CO-9Dc"/>
+                            <constraint firstItem="cbG-Ia-YVx" firstAttribute="leading" secondItem="168-5U-Azu" secondAttribute="trailing" constant="9" id="Xej-v4-AF3"/>
+                            <constraint firstItem="PCS-3m-cmu" firstAttribute="leading" secondItem="cbG-Ia-YVx" secondAttribute="trailing" constant="17" id="b31-1r-sOt"/>
+                            <constraint firstAttribute="trailing" secondItem="PCS-3m-cmu" secondAttribute="trailing" constant="13" id="lVH-up-m9N"/>
+                            <constraint firstItem="1hq-6U-KrN" firstAttribute="top" secondItem="168-5U-Azu" secondAttribute="bottom" constant="5" id="uQe-9T-DHR"/>
+                            <constraint firstItem="1Gq-S9-ZDY" firstAttribute="centerY" secondItem="168-5U-Azu" secondAttribute="centerY" id="yfW-vN-pLF"/>
+                            <constraint firstItem="cbG-Ia-YVx" firstAttribute="top" secondItem="Gap-9O-Mht" secondAttribute="top" constant="85" id="zhy-0Z-8wC"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="日历" id="PDA-lg-gKF"/>
                     <connections>
