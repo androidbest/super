@@ -1298,7 +1298,7 @@
     hud.mode = MBProgressHUDModeText;
     hud.labelText =text;
     hud.margin = 10.f;
-    hud.yOffset = 150.f;
+    hud.yOffset = 170.f;
     hud.removeFromSuperViewOnHide = YES;
     [hud hide:YES afterDelay:time];
 }

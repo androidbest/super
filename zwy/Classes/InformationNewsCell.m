@@ -145,7 +145,7 @@
         [informationView addSubview:_labelAddress6];
         
         //新闻时间
-        viewFrame=CGRectMake(labelLeftX+labelContentWidth, informationView.SegmentationTopY-25, labelContentWidth, 15);
+        viewFrame=CGRectMake(labelLeftX, informationView.SegmentationTopY-25, labelContentWidth, 15);
         _labelTime2=[[UILabel alloc] init];
         _labelTime2.frame=viewFrame;
         _labelTime2.font=[UIFont systemFontOfSize:13];
@@ -161,7 +161,7 @@
         _labelTime3.textColor=[UIColor grayColor];
         [informationView addSubview:_labelTime3];
         
-        viewFrame.origin.x=labelLeftX+labelContentWidth;
+        viewFrame.origin.x=labelLeftX;
         viewFrame.origin.y=informationView.SegmentationButtonY-25;
         _labelTime4=[[UILabel alloc] init];
         _labelTime4.frame=viewFrame;

@@ -10,7 +10,9 @@
 #import "HolidayController.h"
 #import "DetailTextView.h"
 @interface HolidayView ()
-
+{
+    NSArray *arrHolidayName;
+}
 @end
 
 @implementation HolidayView
@@ -21,6 +23,8 @@
         HolidayController *contro =[HolidayController new];
         self.controller =contro;
         contro.holiView=self;
+        
+        arrHolidayName =@[@"春节",@"端午节",@"中秋节",@"国庆节",@"劳动节",@"清明节"];
     }
     return self;
 }
@@ -43,6 +47,9 @@
     _imageFirst.userInteractionEnabled=YES;
     UITapGestureRecognizer *tapGesture=[[UITapGestureRecognizer alloc] initWithTarget:self.controller action:@selector(PushMassTextView)];
     [_imageFirst addGestureRecognizer:tapGesture];
+    
+    [_btnCalendar addTarget:self.controller action:@selector(btnCalendar) forControlEvents:UIControlEventTouchUpInside];
+     _btnCalendar.hidden=![arrHolidayName containsObject:_info.content];
 }
 
 - (void)btnEditing{

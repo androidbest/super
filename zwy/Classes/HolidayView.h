@@ -14,6 +14,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *labelName;
 @property (strong, nonatomic) IBOutlet UILabel *lableDate;
 @property (strong, nonatomic) IBOutlet UILabel *LableDays;
+@property (strong, nonatomic) IBOutlet UIButton *btnCalendar;
 @property (strong, nonatomic) PullRefreshTableView *tableViewSMSMode;
 @property (strong, nonatomic) warningDataInfo *info;
 @property (assign)id HolidayViewDelegate;

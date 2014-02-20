@@ -94,8 +94,8 @@
 
 #import <UIKit/UIKit.h>
 
-#define ITEM_SIZE_WIDTH 320.0
-#define ITEM_SIZE_HEIGHT  390.0
+#define ITEM_SIZE_WIDTH 320.0 //item的宽度
+extern float ITEM_SIZE_HEIGHT; //item的高度
 
 @interface LineLayout : UICollectionViewFlowLayout
 

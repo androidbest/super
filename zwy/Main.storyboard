@@ -1912,70 +1912,53 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vet-nz-aES">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vet-nz-aES">
                                 <rect key="frame" x="0.0" y="65" width="320" height="65"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="65" id="Fo5-fA-CSC"/>
-                                </constraints>
                             </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="加载中" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mvZ-mM-vet">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="加载中" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mvZ-mM-vet">
                                 <rect key="frame" x="10" y="78" width="139" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="139" id="Naq-3f-bIS"/>
-                                    <constraint firstAttribute="height" constant="21" id="kO6-l5-uPj"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wSq-Oe-FPy">
-                                <rect key="frame" x="10" y="100" width="148" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wSq-Oe-FPy">
+                                <rect key="frame" x="10" y="100" width="139" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="148" id="50p-Z9-dR3"/>
-                                    <constraint firstAttribute="height" constant="21" id="k10-fm-T8e"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G2T-uM-YCN">
-                                <rect key="frame" x="181" y="79" width="126" height="37"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G2T-uM-YCN">
+                                <rect key="frame" x="183" y="79" width="124" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="37" id="PMg-oV-5sb"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IiV-Ha-srl">
+                                <rect key="frame" x="152" y="78" width="27" height="43"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <inset key="contentEdgeInsets" minX="4" minY="7" maxX="0.0" maxY="10"/>
+                                <state key="normal" image="schedule_calendar_festivel_icon.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="mvZ-mM-vet" firstAttribute="top" secondItem="wYT-9z-aKE" secondAttribute="bottom" constant="14" id="0zr-qe-tVv"/>
-                            <constraint firstItem="mvZ-mM-vet" firstAttribute="leading" secondItem="IPN-st-dXM" secondAttribute="leading" constant="10" id="8hb-Gm-e2c"/>
-                            <constraint firstAttribute="trailing" secondItem="vet-nz-aES" secondAttribute="trailing" id="IC2-7K-gFE"/>
-                            <constraint firstItem="vet-nz-aES" firstAttribute="leading" secondItem="IPN-st-dXM" secondAttribute="leading" id="LhD-jP-Vly"/>
-                            <constraint firstItem="G2T-uM-YCN" firstAttribute="leading" secondItem="wSq-Oe-FPy" secondAttribute="trailing" constant="23" id="Yq9-L6-X4I"/>
-                            <constraint firstItem="G2T-uM-YCN" firstAttribute="leading" secondItem="mvZ-mM-vet" secondAttribute="trailing" constant="32" id="axG-8F-Jve"/>
-                            <constraint firstItem="wSq-Oe-FPy" firstAttribute="leading" secondItem="IPN-st-dXM" secondAttribute="leading" constant="10" id="g9F-QR-D9k"/>
-                            <constraint firstItem="G2T-uM-YCN" firstAttribute="top" secondItem="wYT-9z-aKE" secondAttribute="bottom" constant="15" id="nSm-44-JT0"/>
-                            <constraint firstItem="wSq-Oe-FPy" firstAttribute="top" secondItem="mvZ-mM-vet" secondAttribute="bottom" constant="1" id="onT-yj-l03"/>
-                            <constraint firstItem="vet-nz-aES" firstAttribute="top" secondItem="wYT-9z-aKE" secondAttribute="bottom" constant="1" id="qny-Ms-ENT"/>
-                            <constraint firstAttribute="trailing" secondItem="G2T-uM-YCN" secondAttribute="trailing" constant="13" id="tFF-kM-mxj"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="日程提醒" id="Mb7-VS-HRc"/>
                     <connections>
                         <outlet property="LableDays" destination="G2T-uM-YCN" id="HDy-WZ-qZI"/>
+                        <outlet property="btnCalendar" destination="IiV-Ha-srl" id="pij-6B-Eof"/>
                         <outlet property="imageFirst" destination="vet-nz-aES" id="vXl-1V-q2r"/>
                         <outlet property="labelName" destination="mvZ-mM-vet" id="PvY-F3-ccV"/>
                         <outlet property="lableDate" destination="wSq-Oe-FPy" id="p8D-VE-8jM"/>
                         <segue destination="buR-7q-rgQ" kind="push" identifier="HolidayToNewsView" id="jTP-XW-pa2"/>
                         <segue destination="spN-6j-7ax" kind="push" id="5B2-S3-8Nb"/>
+                        <segue destination="24e-mt-3jG" kind="push" identifier="CalendarToHoliday" id="DNC-zc-tv3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pbO-ib-mAN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2876,6 +2859,65 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wac-Wm-HYs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2753" y="2048"/>
+        </scene>
+        <!--Holiday Calendar View - 2014放假安排-->
+        <scene sceneID="Kd4-NK-BaA">
+            <objects>
+                <viewController storyboardIdentifier="HolidayCalendarView" id="24e-mt-3jG" customClass="HolidayCalendarView" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="QNg-Wd-Wh8"/>
+                        <viewControllerLayoutGuide type="bottom" id="WKU-eF-Okn"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jMk-AO-yPy">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aMR-uP-2kC">
+                                <rect key="frame" x="120" y="78" width="77" height="27"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
+                                <state key="normal" title="清明节">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hrM-wI-2Qc">
+                                <rect key="frame" x="205" y="87" width="20" height="10"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="images_Dir_Down.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="  星期一   星期二   星期三   星期四   星期五   星期六   星期日" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BJt-Ey-DS6">
+                                <rect key="frame" x="9" y="113" width="310" height="15"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GeK-ke-xAz">
+                                <rect key="frame" x="0.0" y="136" width="320" height="432"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="GeK-ke-xAz" firstAttribute="top" secondItem="jMk-AO-yPy" secondAttribute="top" constant="136" id="GwU-7K-icD"/>
+                            <constraint firstAttribute="trailing" secondItem="GeK-ke-xAz" secondAttribute="trailing" id="Odx-8t-dHb"/>
+                            <constraint firstItem="GeK-ke-xAz" firstAttribute="leading" secondItem="jMk-AO-yPy" secondAttribute="leading" id="Qzy-b3-b5J"/>
+                            <constraint firstAttribute="bottom" secondItem="GeK-ke-xAz" secondAttribute="bottom" id="kTw-F8-SOb"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="2014放假安排" id="YEv-WP-ZDm"/>
+                    <connections>
+                        <outlet property="btnCalendar" destination="aMR-uP-2kC" id="8jj-Jn-Kf5"/>
+                        <outlet property="btnDown" destination="hrM-wI-2Qc" id="2NJ-Ly-4Qh"/>
+                        <outlet property="scroll" destination="GeK-ke-xAz" id="AlL-Nq-R6P"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="u46-KM-1oh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2819" y="1278"/>
         </scene>
         <!--Comment Deta View-->
         <scene sceneID="juw-LH-ipl">
@@ -5640,6 +5682,7 @@
         <image name="news_tabbar_share.png" width="64" height="50"/>
         <image name="news_tabbar_tack.png" width="64" height="50"/>
         <image name="news_tabbar_update.png" width="59" height="50"/>
+        <image name="schedule_calendar_festivel_icon.png" width="48" height="53"/>
         <image name="sms_template.png" width="43" height="42"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -5648,14 +5691,14 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="5B2-S3-8Nb"/>
         <segue reference="EdD-tC-bMF"/>
-        <segue reference="XY3-9B-d3j"/>
         <segue reference="WvN-Sg-Bn3"/>
         <segue reference="rV3-ah-ZrU"/>
         <segue reference="W0s-tw-rhR"/>
+        <segue reference="jTP-XW-pa2"/>
+        <segue reference="5B2-S3-8Nb"/>
         <segue reference="sAR-cD-OcR"/>
         <segue reference="7Gb-7s-q9t"/>
-        <segue reference="dzP-Uh-6LZ"/>
+        <segue reference="XY3-9B-d3j"/>
     </inferredMetricsTieBreakers>
 </document>

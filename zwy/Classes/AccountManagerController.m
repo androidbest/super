@@ -148,12 +148,8 @@
             [[UIApplication sharedApplication]cancelLocalNotification:localNotification];
         }
         
-        /*
-         *关闭扫描聊天消息定时器
-         */
-        [EX_timerUpdateMessage setFireDate:[NSDate distantFuture]];
-        [EX_timerUpdateMessage invalidate];
-         EX_timerUpdateMessage=nil;
+        /*关闭定时器,bool为NO表示退出否则为切换单位*/
+        [self invalidateOfTime:YES];
         
         /*回传服务器“已注销"*/
         [packageData iosLoginOut:self];
@@ -222,6 +218,9 @@
                     EX_arrGroupAddressBooks=nil;
                     EX_arrSection=nil;
                     
+                    /*关闭定时器,bool为NO表示退出否则为切换单位*/
+                    [self invalidateOfTime:NO];
+                    
                     /*清理所有下载线程*/
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"cancelAllThread"
                                                                         object:nil];
@@ -258,6 +257,9 @@
                 EX_arrGroupAddressBooks=nil;
                 EX_arrSection=nil;
                 
+                /*关闭定时器,bool为NO表示退出否则为切换单位*/
+                [self invalidateOfTime:NO];
+                
                 /*清理所有下载线程*/
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"cancelAllThread"
                                                                     object:nil];
@@ -283,12 +285,8 @@
                     coverView.hidden=YES;
                 }
                 
-                /*
-                 *关闭扫描聊天消息定时器
-                 */
-                [EX_timerUpdateMessage setFireDate:[NSDate distantFuture]];
-                [EX_timerUpdateMessage invalidate];
-                EX_timerUpdateMessage=nil;
+                /*关闭定时器,bool为NO表示退出否则为切换单位*/
+                [self invalidateOfTime:YES];
                 
                 /*回传服务器“已注销"*/
                 [packageData iosLoginOut:self];
@@ -315,6 +313,44 @@
             break;
     }
    }
+
+
+//关闭定时器
+- (void)invalidateOfTime:(BOOL)isOut{
+    if (isOut) {
+        /*
+         *关闭扫描聊天消息定时器
+         */
+        if (EX_timerUpdateMessage) {
+            [EX_timerUpdateMessage setFireDate:[NSDate distantFuture]];
+            [EX_timerUpdateMessage invalidate];
+            EX_timerUpdateMessage=nil;
+        }
+        return;
+    }
+    
+   // 判断通讯录是否存在
+    NSString * strSavePath =[NSString stringWithFormat:@"%@/%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode,@"member.txt"];
+    BOOL blHave=[[NSFileManager defaultManager] fileExistsAtPath:strSavePath];
+    if (blHave){
+        //开启扫描信息定时器
+        if (EX_timerUpdateMessage)[EX_timerUpdateMessage setFireDate:[NSDate distantPast]];
+        else   EX_timerUpdateMessage = [NSTimer scheduledTimerWithTimeInterval:3.0 target:[[UIApplication sharedApplication] delegate] selector:@selector(timerFired:) userInfo:nil repeats:YES];
+        
+    }else{
+        /*
+         *关闭扫描聊天消息定时器
+         */
+        if (EX_timerUpdateMessage) {
+            [EX_timerUpdateMessage setFireDate:[NSDate distantFuture]];
+            [EX_timerUpdateMessage invalidate];
+            EX_timerUpdateMessage=nil;
+        }
+       
+    }
+}
+
+-(void)timerFired:(id)s{}
 
 //开始下载
 - (void)DownLoadAddress{

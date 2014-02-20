@@ -34,12 +34,11 @@
 - (id)initWithCoder:(NSCoder *)aDecoder{
     self =[super initWithCoder:aDecoder];
     if (self) {
-      //  if (iPhone5)
+        if (iPhone5)
             strImagePath=@"image_calendar_5_";
-     //   else
-       //     strImagePath =@"image_calendar_4_";
+        else
+            strImagePath =@"image_calendar_4_";
         
-
     }
     return self;
 }
@@ -161,6 +160,9 @@
 - (CGRect)arrFormCellIndex:(NSIndexPath *)index{
     float SizeHeigit =ITEM_SIZE_HEIGHT/6;//定义每一格的高度
     float SizeWidth  =310/7;//定义每一个的宽度
+    float offSetSize;//坐标偏差值
+    if (iPhone5)offSetSize=13;
+    else offSetSize=8;
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     NSDateComponents *comps = [[NSDateComponents alloc] init];
     NSInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekdayCalendarUnit |
@@ -183,7 +185,7 @@
     if (count>42||count<0) {//如果超出每页所能展示的最大天数则返回“-1”。以此判断为不显示
         return CGRectMake(-1, -1, 0, 0);
     }
-    float Y=((count-1)/7)*SizeHeigit+13;
+    float Y=((count-1)/7)*SizeHeigit+offSetSize;
     float X=((count-1)%7)*SizeWidth+5;
     return CGRectMake(X, Y, SizeWidth, SizeWidth);
 }

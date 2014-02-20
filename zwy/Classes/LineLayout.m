@@ -95,7 +95,7 @@
 #import "LineLayout.h"
 
 
-
+float ITEM_SIZE_HEIGHT=390;
 
 @implementation LineLayout
 
@@ -106,6 +106,9 @@
 {
     self = [super init];
     if (self) {
+        if (iPhone5) ITEM_SIZE_HEIGHT=390;
+        else ITEM_SIZE_HEIGHT=340;
+        
         self.itemSize = CGSizeMake(ITEM_SIZE_WIDTH, ITEM_SIZE_HEIGHT);
         self.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         self.sectionInset =UIEdgeInsetsZero; //UIEdgeInsetsMake(200, 0.0, 200, 0.0);

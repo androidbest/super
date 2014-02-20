@@ -11,6 +11,7 @@
 #import "MassTextingView.h"
 #import "DetailTextView.h"
 #import "TemplateCell.h"
+#import "HolidayCalendarView.h"
 @implementation HolidayController{
     int pages;
     NSString * strGreetingType;
@@ -148,6 +149,7 @@
 
 #pragma mark - 按钮实现方法
 - (void)btnEditing{
+
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
     NewsScheduleView *detaView = [storyboard instantiateViewControllerWithIdentifier:@"NewsScheduleView"];
     detaView.strTitle=@"生日祝福";
@@ -155,6 +157,14 @@
     [self.holiView presentViewController:detaView animated:YES completion:nil];
     detaView.newsScheduleDelegate=self;
 }
+
+- (void)btnCalendar{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+    HolidayCalendarView *hoView=[storyboard instantiateViewControllerWithIdentifier:@"HolidayCalendarView"];
+    hoView.holidayName=_holiView.info.content;
+    [self.holiView.navigationController pushViewController:hoView animated:YES];
+}
+
 
 #pragma mark - UITableViewDataSoures
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
