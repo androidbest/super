@@ -15,4 +15,6 @@
 @property (strong ,nonatomic)GroupAddressView *grougView;
 @property (strong ,nonatomic)NSArray *arrSeaPeople;
 @property (strong ,nonatomic)NSArray *arrFirstGroup;
+
++ (NSString *)urlByConfigFile;
 @end

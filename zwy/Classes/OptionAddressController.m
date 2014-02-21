@@ -11,6 +11,7 @@
 #import "PeopelInfo.h"
 #import "optionCell.h"
 #import "MassTextingController.h"
+#import "ToolUtils.h"
 
 @implementation OptionAddressController
 {
@@ -18,6 +19,7 @@
     NSArray * arrNumber;
     GroupInfo *groupA;
     BOOL isFirstPages;
+    NSString * strPath;
 }
 
 - (id)init{
@@ -32,6 +34,19 @@
         arrNumber = @[@"0",@"1",@"2",@"3",@"4",
                       @"5",@"6",@"7",@"8",@"9"];
         
+        
+        //更新通讯录列表
+        [[NSNotificationCenter defaultCenter]addObserver:self
+                                                selector:@selector(DownLoadAddressReturn:)
+                                                    name:wnLoadAddress
+                                                  object:self];
+        
+        //注册通知
+        [[NSNotificationCenter defaultCenter]addObserver:self
+                                                selector:@selector(handleData:)
+                                                    name:xmlNotifInfo
+                                                  object:self];
+        
       
     }
     return self;
@@ -44,27 +59,49 @@
     _arrSeaPeople =[[NSArray alloc] init];
     _arrFirstGroup =[[NSArray alloc] init];
     self.arrOption=[[NSMutableArray alloc] init];
+    _HUD_Group = [MBProgressHUD showHUDAddedTo:self.OptionView.view animated:YES];
+    
     
     /*通讯录所有信息*/
-    NSString * strPath;
     if (_OptionView.isECMember)strPath =[NSString stringWithFormat:@"%@/%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode,@"ecgroup.txt"];
     else  strPath = [NSString stringWithFormat:@"%@/%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode,@"group.txt"];
     BOOL blHave=[[NSFileManager defaultManager] fileExistsAtPath:strPath];
     if ((_arrAllPeople.count==0||!_arrAllPeople)&&!blHave) {
-        [self showHUDText:@"请同步通讯录" showTime:1.0];
+        [ToolUtils alertInfo:@"请同步单位通讯录" delegate:self otherBtn:@"确认"];
         return;
     } 
     
-    _HUD_Group = [MBProgressHUD showHUDAddedTo:self.OptionView.view animated:YES];
+    
     _HUD_Group.labelText =@"加载中...";
     _HUD_Group.margin = 10.f;
     _HUD_Group.removeFromSuperViewOnHide = YES;
     [_HUD_Group show:YES];
     /*获取所有人员信息*/
+    [self getAddressBookData];
+//    __block NSArray *blockArr;
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//        blockArr= [ConfigFile setAllPeopleInfo:strPath isECMember:_OptionView.isECMember];
+//        
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            _arrAllPeople =[[NSMutableArray alloc] initWithArray:blockArr];
+//            NSString * strSearchbar;
+//            strSearchbar =[NSString stringWithFormat:@"SELF.superID == '%@'",@"0"];
+//            NSPredicate *predicateTemplate = [NSPredicate predicateWithFormat: strSearchbar];
+//            self.arrFirstGroup=[_arrAllPeople filteredArrayUsingPredicate: predicateTemplate];
+//            [_OptionView.tableViewAddress reloadData];
+//            [_HUD_Group hide:YES];
+//        });
+//        
+//    });
+}
+
+/*获取所有人员信息*/
+-(void)getAddressBookData{
+
+    /*获取所有人员信息*/
     __block NSArray *blockArr;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         blockArr= [ConfigFile setAllPeopleInfo:strPath isECMember:_OptionView.isECMember];
-        
         dispatch_async(dispatch_get_main_queue(), ^{
             _arrAllPeople =[[NSMutableArray alloc] initWithArray:blockArr];
             NSString * strSearchbar;
@@ -76,6 +113,84 @@
         });
         
     });
+}
+
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex==1){
+        [self reloadGroupAddress];
+    }else{
+        [_HUD_Group hide:YES];
+    }
+}
+
+- (void)reloadGroupAddress{
+    _HUD_Group.removeFromSuperViewOnHide = YES;
+	_HUD_Group.labelText = @"检查更新";
+	// Set determinate bar mode
+	_HUD_Group.delegate = self;
+    [_HUD_Group show:YES];
+    
+    /*检查 是否有更新过*/
+    NSUserDefaults * userDefaults =[NSUserDefaults standardUserDefaults];
+    NSString * UserDate =[NSString stringWithFormat:@"%@%@date",user.msisdn,user.eccode];
+    NSString *histroyDate=(NSString *)[userDefaults objectForKey:UserDate];
+    if (!histroyDate) histroyDate=@"0";
+    
+    [packageData updateAddressBook:self updatetime:@"0"];
+}
+
+//检查回调
+- (void)handleData:(NSNotification *)notification{
+    NSDictionary * dic=[notification userInfo];
+    RespInfo *info =[AnalysisData addressUpdataInfo:dic];
+    
+//    /**/
+//    UIImageView *imageView;
+//    UIImage *image;
+//    image= [UIImage imageNamed:@"37x-Checkmark.png"];
+//    imageView = [[UIImageView alloc] initWithImage:image];
+//    _HUD_Group.customView=imageView;
+//    _HUD_Group.mode = MBProgressHUDModeCustomView;
+//    /**/
+    
+    if ([info.respCode isEqualToString:@"1"]) {
+        //下载zip包
+        [ToolUtils downFileZip:_HUD_Group delegate:self];
+        /*保存最后更新时间*/
+        NSUserDefaults * userDefaults =[NSUserDefaults standardUserDefaults];
+        NSString * UserDate =[NSString stringWithFormat:@"%@%@date",user.msisdn,user.eccode];
+        [userDefaults setObject:info.updatetime forKey:UserDate];
+        [userDefaults synchronize];
+        
+    }else if ([info.respCode isEqualToString:@"-1"]){
+        _HUD_Group.labelText = @"无需同步";
+        [_HUD_Group hide:YES afterDelay:1];
+    }else{
+        _HUD_Group.labelText = @"网络错误";
+        [_HUD_Group hide:YES afterDelay:1];
+    }
+    
+}
+
+
+//更新完毕回调
+- (void)DownLoadAddressReturn:(NSNotification *)notification{
+    NSDictionary*dic =[notification userInfo];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
+    if([dic[@"respCode"]  isEqualToString:@"0"]){
+        _HUD_Group.labelText = @"更新完毕";
+        //解压压缩包
+        [ToolUtils unZipPackage];
+        [self getAddressBookData];
+        [ToolUtils startChatTimer];
+    }
+    else {
+        _HUD_Group.labelText = @"更新失败";
+    }
+    _HUD_Group.customView=imageView;
+    _HUD_Group.mode = MBProgressHUDModeCustomView;
+    [_HUD_Group hide:YES afterDelay:1];
 }
 
 #pragma mark - 按钮实现方法

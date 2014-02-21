@@ -8,6 +8,7 @@
 #define kDEFAULT_DATE_TIME_FORMAT (@"yyyy-MM-dd HH:mm")
 #import <Foundation/Foundation.h>
 #import "Reachability.h"
+#import "MBProgressHUD.h"
 
 
 @interface ToolUtils : NSObject
@@ -72,6 +73,9 @@
 #pragma mark 即时聊天输入法
 + (NSString*) inputMethod:(NSString *)text;
 
++(void)downFileZip:(MBProgressHUD*)hud delegate:(id)delegate;
++(void)unZipPackage;
++(void)startChatTimer;
 /*
  *判断是push还是pop方法
  *YES为Push

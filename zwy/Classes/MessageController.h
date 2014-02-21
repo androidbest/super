@@ -16,4 +16,5 @@
 
 /*同步全局通讯录缓存指示灯*/
 - (void)showSetAllAllGroupAddressBooksHUDWithText:(NSString *)text;
+- (void)initWithData;
 @end
