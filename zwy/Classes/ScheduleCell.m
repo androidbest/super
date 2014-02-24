@@ -20,7 +20,7 @@
         self.contentViews.backgroundColor=[UIColor whiteColor];
         [self addSubview:self.contentViews];
         
-        _labelTitle =[[UILabel alloc] initWithFrame:CGRectMake(10, 10, 200, 15)];
+        _labelTitle =[[UILabel alloc] initWithFrame:CGRectMake(10, 10, 200, 16)];
         _labelTitle.backgroundColor=[UIColor whiteColor];
         _labelTitle.textColor=[UIColor blackColor];
         _labelTitle.textAlignment=NSTextAlignmentLeft;

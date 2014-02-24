@@ -25,10 +25,7 @@
 /*同步全局通讯录缓存指示灯*/
 - (BOOL)showSetAllAllGroupAddressBooksHUDWithText:(NSString *)text{
     __block NSArray *allPeople=nil;
-    NSString * str;
-    if ([user.ecsystem isEqualToString:@"countrywide"])str =[NSString stringWithFormat:@"%@/%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode,@"ecgroup.txt"];
-    else  str = [NSString stringWithFormat:@"%@/%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode,@"group.txt"];
-    
+    NSString * str =[NSString stringWithFormat:@"%@/%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode,@"ecgroup.txt"];
     BOOL blHave=[[NSFileManager defaultManager] fileExistsAtPath:str];
     if (!blHave)return NO;
     if (_allPeople&&_allPeople.count!=0)return NO;
@@ -41,9 +38,7 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         //设置通讯录
         /*****************************/
-        if ([user.ecsystem isEqualToString:@"countrywide"]) allPeople=[ConfigFile setEcMember];
-        else  allPeople =[ConfigFile setEcNumberInfo];
-        
+        allPeople=[ConfigFile setEcMember];
         _allPeople=[[NSMutableArray alloc] initWithArray:allPeople];
         /*****************************/
         

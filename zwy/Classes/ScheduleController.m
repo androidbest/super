@@ -85,8 +85,8 @@
         isHolidayFirstLoad=YES;
         
         tableView_Type =tableView_ScheduleType_All;
-        _isInit=NULL;
-        InitDaysTime=@" 15:23";
+        
+        InitDaysTime=@" 15:45";
         
         _arrAll =[[NSMutableArray alloc] init];
         _arrWork=[[NSMutableArray alloc] init];
@@ -359,7 +359,6 @@
     [_schedView.tableViewWork reloadDataPull];
     
     if (isWorkInit){/*创建通告*/
-        _isInit=&isWorkInit;
         [self addWarningLocalNotification:_arrWork initWithOrBool:&isWorkInit];
     }
     
@@ -401,7 +400,6 @@
     [_schedView.tableViewLife reloadDataPull];
     
     if (isLifeInit) {/*创建通告*/
-        _isInit=&isLifeInit;
         [self addWarningLocalNotification:_arrLife initWithOrBool:&isLifeInit];
     }
     
@@ -426,13 +424,14 @@
         [_arrBirthday removeAllObjects];
     }
     
+    //按时间重新排列数据 remainTime
     if (info.warningList&&info.warningList.count>0)
          [self updateTableViewDateMinToMax:info.warningList tableViewType:tableView_ScheduleType_Birthday];
         
     if (_arrBirthday.count!=0) {
         _schedView.tableViewBirthday.separatorStyle=YES;
     }else{
-//        [ToolUtils alertInfo:@"暂无数据"];
+    // [ToolUtils alertInfo:@"暂无数据"];
     }
     
 //    if (_arrBirthday.count>=info.AllCount) {
@@ -443,8 +442,7 @@
     [_schedView.tableViewBirthday reloadDataPull];
     
     if (isBirthdayInit) {/*创建通告*/
-        _isInit=&isBirthdayInit;
-        [self addWarningLocalNotification:_arrBirthday initWithOrBool:&isBirthdayInit];
+        [self mergerWarningTypeToBirthday:_arrBirthday isInit:&isBirthdayInit];
     }
     
      if (self.HUD)[self.HUD hide:YES afterDelay:1];
@@ -486,7 +484,6 @@
     [_schedView.tableViewHoliday reloadDataPull];
     
     if (isHolidayInit){/*创建通告*/
-        _isInit=&isHolidayInit;
         [self addWarningLocalNotification:_arrholiday initWithOrBool:&isHolidayInit];
     }
     
@@ -1200,7 +1197,7 @@
         NSTimeInterval time_warning =[dateWarning timeIntervalSince1970];
         NSTimeInterval time_now=[[NSDate date] timeIntervalSince1970];
         /*添加本地通知*/
-        if (time_warning>=time_now)[self addLocalNotification:info];
+        if (time_warning>=time_now)[self addLocalNotification:info isMerger:NO];
         
     }
     isAllInit=NO;
@@ -1208,50 +1205,122 @@
 
 //创建本地通告（分类）
 - (void)addWarningLocalNotification:(NSMutableArray *)array initWithOrBool:(BOOL *)Bool{
-    *_isInit=NO;
-    *Bool=NO;
+    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+    *Bool=NO;/*将初始化日程提醒的标识设NO，避免下拉刷新时重复初始化本地通知*/
     int count;
     if (array.count>5) count=5;
     else count=array.count;
     
-    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc]init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
     
-     NSArray*allLocalNotification=[[UIApplication sharedApplication]scheduledLocalNotifications];
+  NSArray*allLocalNotification=[[UIApplication sharedApplication]scheduledLocalNotifications];
+    if (array.count>0) {
+        /*删除重复的本地通知*/
+        for(UILocalNotification*localNotification in allLocalNotification){
+            NSString *alarmValue =[localNotification.userInfo objectForKey:@"warningType"];
+            if ([alarmValue isEqualToString:[array[0] warningType]]) {
+                [[UIApplication sharedApplication]cancelLocalNotification:localNotification];
+            }
+        }
+        /****************/
+    }
+    
     for (int i=0; i<count; i++) {
         warningDataInfo *info =array[i];
+    
         NSString *strDate =[info.warningDate stringByAppendingString:InitDaysTime];
         NSDate *dateWarning =[dateFormatter dateFromString:strDate];
         
         NSTimeInterval time_warning =[dateWarning timeIntervalSince1970];
         NSTimeInterval time_now=[[NSDate date] timeIntervalSince1970];
-        
-        /*删除重复的本地通知*/
-        for(UILocalNotification*localNotification in allLocalNotification){
-            NSString *alarmValue =[localNotification.userInfo objectForKey:@"ID"];
-            if ([alarmValue isEqualToString:info.warningID]) {
-              [[UIApplication sharedApplication]cancelLocalNotification:localNotification];
-            }
-        }
-        /****************/
-        
         /****************/
         /*添加本地通知*/
-        if (time_warning>=time_now) [self addLocalNotification:info];
+        if (time_warning>=time_now) [self addLocalNotification:info isMerger:NO];
        /****************/
     }
     
 }
 
+//合并生日日程提醒
+- (void)mergerWarningTypeToBirthday:(NSArray *)array isInit:(BOOL *)Bool{
+    /*删除重复的本地通知*/
+    NSArray*allLocalNotification=[[UIApplication sharedApplication]scheduledLocalNotifications];
+    if (array.count>0) {
+        for(UILocalNotification*localNotification in allLocalNotification){
+            NSString *alarmValue =[localNotification.userInfo objectForKey:@"warningType"];
+            if ([alarmValue isEqualToString:[array[0] warningType]]||!alarmValue) {
+                [[UIApplication sharedApplication]cancelLocalNotification:localNotification];
+            }
+        }
+        /****************/
+    }
+    
+    *Bool=NO;/*将初始化日程提醒的标识设NO，避免下拉刷新时重复初始化本地通知*/
+    int count;
+    if (array.count>10) count=10;
+    else count=array.count;
+    NSString *TitleContents;
+    BOOL isMerger=NO;
+    
+    if (count<=1)[self addLocalNotification:array[0] isMerger:YES];
+    
+    for (int i=1; i<count; i++) {
+        warningDataInfo *info1 =array[i];
+        warningDataInfo *info2 =array[i-1];
+        if ([info1.remainTime isEqualToString:info2.remainTime]) {/*如果前后2个日程时间相同,则合并(只合并提示的人员名)*/
+            if (!TitleContents)TitleContents =[NSString stringWithFormat:@"%@,%@",info1.content ,info2.content];
+            else TitleContents  =[NSString stringWithFormat:@"%@,%@",TitleContents,info1.content];
+            isMerger=YES;
+        }else {/*否则结束合并,并创建合并后的本地通知*/
+            if (isMerger)/*如果有合并的信息则按合并的创建本地通知,并同时需要创建当前循环“i”对应的本地通知*/
+                          {[self setMergerWarningLocal:info2.warningDate content:TitleContents];
+                           [self addLocalNotification:info1 isMerger:YES];}
+            
+            else if(i==1)/*如果前面没有合并的信息,表示只需添加单个信息的本地通知,这里需创建2个(下标 i 是从 1 还是计数的)*/
+                          {[self addLocalNotification:info1 isMerger:YES];
+                           [self addLocalNotification:info2 isMerger:YES];}
+            
+            else/*否则创建单个人的本地通知*/
+                          {[self addLocalNotification:info1 isMerger:YES];}
+            
+            TitleContents=nil;
+            isMerger=NO;
+        }
+        
+    }
 
+}
+
+
+/*设置合并日程提醒本地通知*/
+- (void)setMergerWarningLocal:(NSString *)stringDate content:(NSString *)contents{
+    stringDate = [stringDate stringByReplacingOccurrencesOfString:@"//" withString:@" "];
+    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+    NSString *strDate =[stringDate stringByAppendingString:InitDaysTime];
+    NSDate * date =[dateFormatter dateFromString:strDate];
+    UILocalNotification*notification=[[UILocalNotification alloc]init];
+    notification.fireDate=date;//开始时间
+    notification.timeZone=[NSTimeZone defaultTimeZone];// 设置时区
+    notification.soundName=UILocalNotificationDefaultSoundName;//播放音乐类型
+    notification.alertBody=[contents stringByAppendingString:@"  等人的生日"];//提示的消息
+    notification.soundName=@"ping.caf";
+    notification.alertAction = @"打开"; //提示框按钮
+    notification.hasAction=NO;//是否显示额外的按钮
+    [[UIApplication sharedApplication]scheduleLocalNotification:notification];
+}
 
 /*设置本地通知信息*/
-- (void)addLocalNotification:(warningDataInfo *)info{
+- (void)addLocalNotification:(warningDataInfo *)info isMerger:(BOOL)isMerger{
+    /*如果为生日祝福,会在后面合并里面做处理,避免重复创建*/
+    if (!isMerger &&[info.warningType isEqualToString:@"2"])return;
+    
     NSDateFormatter * dateFormatter = [[NSDateFormatter alloc]init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
     NSString *strDate =[info.warningDate stringByAppendingString:InitDaysTime];
     NSDate * date =[dateFormatter dateFromString:strDate];
     UILocalNotification*notification=[[UILocalNotification alloc]init];
+
     if(notification!=nil){
         notification.fireDate=date;//开始时间
         notification.timeZone=[NSTimeZone defaultTimeZone];// 设置时区

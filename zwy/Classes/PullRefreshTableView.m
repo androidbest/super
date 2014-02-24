@@ -63,11 +63,7 @@
 - (void)initUI{
     UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
     refresh.tintColor = KTintColor;
-    NSString *s = UPDATATITLT;
-    NSMutableAttributedString *attriString = [[NSMutableAttributedString alloc] initWithString:s];
-    NSDictionary *refreshAttributes = @{NSForegroundColorAttributeName:KAttributedColor,};
-    [attriString setAttributes:refreshAttributes range:NSMakeRange(0, attriString.length)];
-    refresh.attributedTitle = attriString;
+    refresh.attributedTitle = [self setAttriString:UPDATATITLT];
     [refresh addTarget:self action:@selector(refreshView:) forControlEvents:UIControlEventValueChanged];
     self.refresh=refresh;
     [self addSubview:_refresh];
@@ -75,6 +71,7 @@
     _isUpdData=NO;
     scrolling=YES;
     self.reachedTheEnd=NO;
+    
     //下拉背景视图
     self.UpView =[[UIView alloc] init];
     if (self.contentSize.height<self.frame.size.height) {
@@ -93,6 +90,7 @@
     _activity.color=[UIColor blackColor];
     _activity.center =CGPointMake(40, kPROffsetY);
     [_UpView addSubview:_activity];
+    
     //中心指示灯
     self.centerActivity =[[UIActivityIndicatorView alloc]
                           initWithFrame : CGRectMake(ScreenWidth/2-60, ScreenHeight/2-100, 32.0f, 32.0f)];
@@ -131,11 +129,7 @@
     if (refresh.refreshing) {
         scrolling=NO;
         _labelText.text=UPDATATITLT;
-        NSString *s = UPDATATITLT;
-        NSMutableAttributedString *attriString = [[NSMutableAttributedString alloc] initWithString:s];
-        NSDictionary *refreshAttributes = @{NSForegroundColorAttributeName:KAttributedColor,};
-        [attriString setAttributes:refreshAttributes range:NSMakeRange(0, attriString.length)];
-        refresh.attributedTitle = attriString;
+        refresh.attributedTitle = [self  setAttriString:UPDATATITLT];
         [self performSelector:@selector(handleData) withObject:nil afterDelay:AFTERDELAY];
     }
 }
@@ -180,10 +174,7 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSString *s = [NSString stringWithFormat:@"最后更新时间: %@", [formatter stringFromDate:[NSDate date]]];
-    NSMutableAttributedString *attriString = [[NSMutableAttributedString alloc] initWithString:s];
-    NSDictionary *refreshAttributes = @{NSForegroundColorAttributeName:KAttributedColor,};
-    [attriString setAttributes:refreshAttributes range:NSMakeRange(0, attriString.length)];
-    self.refresh.attributedTitle = attriString;
+    self.refresh.attributedTitle = [self setAttriString:s];
     
     scrolling=YES;
     
@@ -231,6 +222,15 @@
         [self performSelector:@selector(handlemoreData) withObject:nil afterDelay:AFTERDELAY];
         scrolling=NO;
     }
+}
+
+
+#pragma mark - Mode
+- (NSMutableAttributedString *)setAttriString:(NSString *)s{
+    NSMutableAttributedString *attriString = [[NSMutableAttributedString alloc] initWithString:s];
+    NSDictionary *refreshAttributes = @{NSForegroundColorAttributeName:KAttributedColor,};
+    [attriString setAttributes:refreshAttributes range:NSMakeRange(0, attriString.length)];
+    return attriString;
 }
 
 /***************DAContextMenuCell**********************/

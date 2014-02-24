@@ -38,6 +38,10 @@
 
 @property (assign ,nonatomic)id<PullRefreshDelegate>PDelegate;
 -(void)scrollViewDidPullScroll:(UIScrollView *)scrollView;
+
+/*刷新数据*/
 - (void)reloadDataPull;
+
+/*第一次加载数据*/
 -(void)LoadDataBegin;
 @end

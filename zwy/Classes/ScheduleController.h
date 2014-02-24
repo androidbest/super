@@ -24,5 +24,4 @@ typedef enum
 @property (strong ,nonatomic)NSMutableArray *arrLife;
 @property (strong ,nonatomic)NSMutableArray *arrBirthday;
 @property (strong ,nonatomic)NSMutableArray *arrholiday;
-@property (assign) BOOL *isInit;
 @end

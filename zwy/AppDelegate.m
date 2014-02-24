@@ -234,13 +234,16 @@ UIBackgroundTaskIdentifier backgroundTask;//写成成员
         // 如不加上面的判断，点击通知启动应用后会重复提示
         // 这里暂时用简单的提示框代替。
         // 也可以做复杂一些，播放想要的铃声。
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"日程提醒"
-                                                         message:strTitle
-                                                        delegate:self
-                                               cancelButtonTitle:@"关闭"
-                                               otherButtonTitles:@"前往", nil];
-       
-        [alert show];
+        if (strTitle) {
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"日程提醒"
+                                                            message:strTitle
+                                                           delegate:self
+                                                  cancelButtonTitle:@"关闭"
+                                                  otherButtonTitles:@"前往", nil];
+            
+            [alert show];
+        }
+
     }else{
         
         //触发日程提醒接收本地通知页面跳转

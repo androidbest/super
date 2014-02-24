@@ -244,7 +244,12 @@ NSString * stringTel =STRING_TEL(@"133");
     [self performSelector:@selector(homeToWarningDataView) withObject:nil afterDelay:0.3f];
 }
 
+/*
+ *push到本地通知对应页面（日程提醒）
+ */
 -  (void)homeToWarningDataView{
+    if (!dicLocalNotificationInfo)return;
+    
     self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
     NSString *Type= dicLocalNotificationInfo[@"warningType"];
     NSString *isUserHandAdd= dicLocalNotificationInfo[@"dataType"];
