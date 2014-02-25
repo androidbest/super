@@ -95,7 +95,7 @@
     NSString *histroyDate=(NSString *)[userDefaults objectForKey:UserDate];
     if (!histroyDate) histroyDate=@"0";
     
-    [packageData updateAddressBook:self updatetime:@"0"];
+    [packageData updateAddressBook:self updatetime:histroyDate];
 }
 
 //检查回调
@@ -228,9 +228,10 @@
     if(sessionInfo.session_groupuuid&&![sessionInfo.session_groupuuid isEqualToString:@"null"]&&![sessionInfo.session_groupuuid isEqualToString:@""]&&![sessionInfo.session_groupuuid isEqualToString:@"(null)"]){
         NSArray *urlarr=[sessionInfo.session_receiveravatar componentsSeparatedByString:@","];
         NSArray *titarr=[sessionInfo.session_receivername componentsSeparatedByString:@","];
+        NSArray *msisdnarr=[sessionInfo.session_receivermsisdn componentsSeparatedByString:@","];
         if(titarr.count==2){
             for(int i=0;i<titarr.count;i++){
-                if([titarr[i] isEqualToString:user.username])continue;
+                if([msisdnarr[i] isEqualToString:user.msisdn])continue;
                 
                 url=urlarr[i];
                 cell.title.text=titarr[i];

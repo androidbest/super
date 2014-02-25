@@ -143,7 +143,7 @@ static ConfigFile *configFile;
     if (arr.count==0&&!arr) return AllPeople;
     for (int i =0; i<arr.count-1; i++) {
         NSArray * arrData =[[arr objectAtIndex:i] componentsSeparatedByString:@","];
-        if (arrData.count==11) {
+        if (arrData.count>=11) {
             PeopelInfo *info=[PeopelInfo new];
             info.userID =[arrData objectAtIndex:0];
             info.Name=[arrData objectAtIndex:1];

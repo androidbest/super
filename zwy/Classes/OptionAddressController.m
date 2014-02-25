@@ -137,7 +137,7 @@
     NSString *histroyDate=(NSString *)[userDefaults objectForKey:UserDate];
     if (!histroyDate) histroyDate=@"0";
     
-    [packageData updateAddressBook:self updatetime:@"0"];
+    [packageData updateAddressBook:self updatetime:histroyDate];
 }
 
 //检查回调

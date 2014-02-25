@@ -86,7 +86,7 @@
         
         tableView_Type =tableView_ScheduleType_All;
         
-        InitDaysTime=@" 15:45";
+        InitDaysTime=@" 09:00";
         
         _arrAll =[[NSMutableArray alloc] init];
         _arrWork=[[NSMutableArray alloc] init];
@@ -1243,6 +1243,7 @@
 
 //合并生日日程提醒
 - (void)mergerWarningTypeToBirthday:(NSArray *)array isInit:(BOOL *)Bool{
+    if(!array||array.count==0)return;
     /*删除重复的本地通知*/
     NSArray*allLocalNotification=[[UIApplication sharedApplication]scheduledLocalNotifications];
     if (array.count>0) {
@@ -1262,7 +1263,7 @@
     NSString *TitleContents;
     BOOL isMerger=NO;
     
-    if (count<=1)[self addLocalNotification:array[0] isMerger:YES];
+    if (count<=1)[self addLocalNotification:[array firstObject] isMerger:YES];
     
     for (int i=1; i<count; i++) {
         warningDataInfo *info1 =array[i];
