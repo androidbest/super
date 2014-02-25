@@ -176,6 +176,15 @@ float _contentViewHeight=0;
 extern bool  _changeably;
 bool _changeably=false;
 
+extern UIColor *topBackGroudColor;
+UIColor *topBackGroudColor=nil;
+
+extern UIColor *btnBackGroudColor;
+UIColor *btnBackGroudColor=nil;
+
+extern UIColor *menuTitleColour;
+UIColor *menuTitleColour=nil;
+
 - (id)init
 {
     self = [super initWithFrame:CGRectZero];    
@@ -197,6 +206,28 @@ bool _changeably=false;
 +(void)setContentViewWidth:(float)width withChangeablyHeight:(BOOL)Changeably{
     _contentViewHeight=width;
     _changeably=Changeably;
+}
+
++ (void)setbackGroupTopColour:(UIColor *)topColour withBackGroupBtnColour:(UIColor *)btnColour{
+    topBackGroudColor=topColour;
+    btnBackGroudColor=btnColour;
+}
+
++ (void)setTitleColour:(UIColor *)colour{
+    menuTitleColour =colour;
+}
+
+
+- (UIColor *)titleColour{
+    
+    if (_titleColour)return _titleColour;
+    
+    if (menuTitleColour) {
+        _titleColour=menuTitleColour;
+    }else {
+        _titleColour=[UIColor blackColor];
+    }
+    return _titleColour;
 }
 
 // - (void) dealloc { NSLog(@"dealloc %@", self); }
@@ -447,10 +478,9 @@ bool _changeably=false;
     {
         cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:strcell];
     }
-  //  cell.imageView.image=[UIImage imageNamed:@"action_icon.png"];
     cell.textLabel.font=[UIFont systemFontOfSize:13];
     cell.textLabel.text=[[_menuItems objectAtIndex:indexPath.row] title];
-    cell.textLabel.textColor=[UIColor blackColor];
+    cell.textLabel.textColor=self.titleColour;
     cell.backgroundColor=[UIColor clearColor];
     return cell;
 }
@@ -551,6 +581,25 @@ bool _changeably=false;
     return image;
 }
 
+- (UIColor *)viewBackGroudTopColour{
+    if (topBackGroudColor) {
+        _viewBackGroudTopColour=topBackGroudColor;
+    }else {
+        _viewBackGroudTopColour=[UIColor colorWithRed:0.94 green:0.94 blue:0.94 alpha:1.00];
+    }
+    return _viewBackGroudTopColour;
+}
+
+- (UIColor *)viewBackGroudBtnColour{
+    if (btnBackGroudColor) {
+        _viewBackGroudBtnColour=btnBackGroudColor;
+    }else {
+        _viewBackGroudBtnColour=[UIColor colorWithRed:0.82 green:0.82 blue:0.82 alpha:1.00];
+    }
+    return _viewBackGroudBtnColour;
+}
+
+
 - (void) drawRect:(CGRect)rect
 {
     [self drawBackground:self.bounds
@@ -560,9 +609,11 @@ bool _changeably=false;
 - (void)drawBackground:(CGRect)frame
              inContext:(CGContextRef) context
 {
-    CGFloat R0 = 0.94, G0 = .94, B0 = .94;
-    CGFloat R1 = .82, G1 = .82, B1 = .82;
+    const CGFloat *CGTop=CGColorGetComponents(self.viewBackGroudTopColour.CGColor);
+    const CGFloat *CGBtn=CGColorGetComponents(self.viewBackGroudBtnColour.CGColor);
     
+    CGFloat R0 = CGTop[0], G0 = CGTop[1], B0 = CGTop[2];
+    CGFloat R1 = CGBtn[0], G1 = CGBtn[1], B1 = CGBtn[2];
     UIColor *tintColor = [KxMenu tintColor];
     if (tintColor) {
         
@@ -745,6 +796,7 @@ static UIFont *gTitleFont;
 {
     NSParameterAssert(view);
     NSParameterAssert(menuItems.count);
+    
     
     if (_menuView) {
         

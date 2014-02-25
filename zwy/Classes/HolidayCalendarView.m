@@ -90,6 +90,12 @@
                                      action:NULL]];
     }
     [KxMenuView setContentViewWidth:100 withChangeablyHeight:true];
+    
+    [KxMenuView setbackGroupTopColour:[UIColor colorWithRed:0.0f/255.0f green:122.0f/255.0f blue:255.0f/255.0f alpha:1.0]
+               withBackGroupBtnColour:[UIColor colorWithRed:0.0f/255.0f green:122.0f/255.0f blue:255.0f/255.0f alpha:1.0]];
+    
+    [KxMenuView setTitleColour:[UIColor whiteColor]];
+    
     [KxMenu showMenuInView:self.view
                   fromRect:self.btnCalendar.frame
                  menuItems:arr

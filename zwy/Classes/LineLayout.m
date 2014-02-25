@@ -95,26 +95,33 @@
 #import "LineLayout.h"
 
 
-float ITEM_SIZE_HEIGHT=390;
-
-@implementation LineLayout
 
 #define ACTIVE_DISTANCE 200
 #define ZOOM_FACTOR 0.3
+
+
+@implementation LineLayout
+
+@synthesize ITEM_SIZE_HEIGHT =_ITEM_SIZE_HEIGHT;
 
 -(id)init
 {
     self = [super init];
     if (self) {
-        if (iPhone5) ITEM_SIZE_HEIGHT=390;
-        else ITEM_SIZE_HEIGHT=340;
-        
-        self.itemSize = CGSizeMake(ITEM_SIZE_WIDTH, ITEM_SIZE_HEIGHT);
+
+        self.itemSize = CGSizeMake(ITEM_SIZE_WIDTH, self.ITEM_SIZE_HEIGHT);
         self.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         self.sectionInset =UIEdgeInsetsZero; //UIEdgeInsetsMake(200, 0.0, 200, 0.0);
         self.minimumLineSpacing = 0.0;
     }
     return self;
+}
+
+
+- (float)ITEM_SIZE_HEIGHT{
+    if (iPhone5) _ITEM_SIZE_HEIGHT=390;
+    else _ITEM_SIZE_HEIGHT=340;
+    return _ITEM_SIZE_HEIGHT;
 }
 
 - (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)oldBounds

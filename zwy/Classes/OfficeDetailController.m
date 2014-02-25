@@ -557,6 +557,13 @@
                                          action:NULL]];
         }
         
+        [KxMenuView setContentViewWidth:0 withChangeablyHeight:false];
+        
+        [KxMenuView setbackGroupTopColour:nil
+                   withBackGroupBtnColour:nil];
+        
+        [KxMenuView setTitleColour:[UIColor blackColor]];
+        
         [KxMenu showMenuInView:self.officedetailView.scrollerContent
                       fromRect:_officedetailView.accessory.frame
                      menuItems:arr

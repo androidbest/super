@@ -83,5 +83,12 @@
 
 +(void)setContentViewWidth:(float)width withChangeablyHeight:(BOOL)Changeably;
 
++ (void)setbackGroupTopColour:(UIColor *)topColour withBackGroupBtnColour:(UIColor *)btnColour;
+
+@property (strong,nonatomic) UIColor *viewBackGroudTopColour;
+@property (strong,nonatomic) UIColor *viewBackGroudBtnColour;
+@property (strong,nonatomic) UIColor *titleColour;
+
++ (void)setTitleColour:(UIColor *)colour;
 @end
 

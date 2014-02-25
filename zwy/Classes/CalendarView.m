@@ -15,6 +15,7 @@
 @interface CalendarView (){
     NSString *strImagePath;
     int rows;
+    float ITEM_SIZE_HEIGHT;
 }
 
 @end
@@ -44,6 +45,9 @@
 }
 
 
+
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -57,6 +61,7 @@
     LineLayout *layout =[[LineLayout alloc] init];
     CGRect rect =self.view.frame;
     rect.origin.y=64+labelBack.frame.size.height;
+    ITEM_SIZE_HEIGHT=layout.ITEM_SIZE_HEIGHT;
     rect.size.height=ITEM_SIZE_HEIGHT;
     _collView =[[UICollectionView alloc] initWithFrame:rect collectionViewLayout:layout];
     _collView.backgroundColor=[UIColor whiteColor];
@@ -107,7 +112,17 @@
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
      rows =scrollView.contentOffset.x/ITEM_SIZE_WIDTH;
+     [self performSelector:@selector(HiddenBtn)];
      [_btnCalendar setTitle:[NSString stringWithFormat:@"2014年%02d月",rows+1] forState:UIControlStateNormal];
+}
+
+
+- (void)HiddenBtn{
+    if (rows<=0)[_btnLeft setHidden:YES];
+    else [_btnLeft setHidden:NO];
+    if (rows>=11) [_btnRight setHidden:YES];
+    else [_btnRight setHidden:NO];
+   
 }
 
 #pragma mark - 按钮触发的方法
@@ -122,17 +137,26 @@
                                      action:NULL]];
     }
     [KxMenuView setContentViewWidth:100 withChangeablyHeight:true];
+    
+    [KxMenuView setbackGroupTopColour:[UIColor colorWithRed:0.0f/255.0f green:122.0f/255.0f blue:255.0f/255.0f alpha:1.0]
+               withBackGroupBtnColour:[UIColor colorWithRed:0.0f/255.0f green:122.0f/255.0f blue:255.0f/255.0f alpha:1.0]];
+    
+    [KxMenuView setTitleColour:[UIColor whiteColor]];
+    
     [KxMenu showMenuInView:self.view
                   fromRect:self.btnCalendar.frame
                  menuItems:arr
           initWithdelegate:self
      ];
+    
 }
 
 //查看上一个月的日历
 - (void)btnLeft:(id)sender{
     if (rows<=0)return;
+    if (_btnRight.hidden) [_btnRight setHidden:NO];
     rows--;
+    if (rows<=0)[_btnLeft setHidden:YES];
     [_collView selectItemAtIndexPath:[NSIndexPath indexPathForRow:rows inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionRight];
     [_btnCalendar setTitle:[NSString stringWithFormat:@"2014年%02d月",rows+1] forState:UIControlStateNormal];
 }
@@ -140,9 +164,12 @@
 //查看下一个月的日历
 - (void)btnRight:(id)sender{
     if (rows>=11)return;
+    if (_btnLeft.hidden) [_btnLeft setHidden:NO];
     rows++;
+    if (rows>=11) [_btnRight setHidden:YES];
     [_collView selectItemAtIndexPath:[NSIndexPath indexPathForRow:rows inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionLeft];
     [_btnCalendar setTitle:[NSString stringWithFormat:@"2014年%02d月",rows+1] forState:UIControlStateNormal];
+    
 }
 
 
@@ -153,6 +180,7 @@
     [KxMenu dismissMenu];
     self.collView.contentOffset=CGPointMake(ITEM_SIZE_WIDTH*index, self.collView.contentOffset.y);
     [_btnCalendar setTitle:[NSString stringWithFormat:@"2014年%02d月",index+1] forState:UIControlStateNormal];
+    [self performSelector:@selector(HiddenBtn)];
 }
 
 
