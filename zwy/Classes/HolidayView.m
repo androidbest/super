@@ -48,8 +48,13 @@
     UITapGestureRecognizer *tapGesture=[[UITapGestureRecognizer alloc] initWithTarget:self.controller action:@selector(PushMassTextView)];
     [_imageFirst addGestureRecognizer:tapGesture];
     
+    /*隐藏节假日详情按钮*/
     [_btnCalendar addTarget:self.controller action:@selector(btnCalendar) forControlEvents:UIControlEventTouchUpInside];
      _btnCalendar.hidden=![arrHolidayName containsObject:_info.content];
+    
+    NSTimeInterval HolidayDate =[ToolUtils TimeStingWithInterVal:_info.warningDate];
+    NSTimeInterval NowDate =[ToolUtils TimeStingWithInterVal:@"2014-12-31"];
+    _btnCalendar.hidden =HolidayDate>NowDate ? YES :NO;
 }
 
 - (void)btnEditing{
