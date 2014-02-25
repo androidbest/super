@@ -54,7 +54,7 @@
     
     NSTimeInterval HolidayDate =[ToolUtils TimeStingWithInterVal:_info.warningDate];
     NSTimeInterval NowDate =[ToolUtils TimeStingWithInterVal:@"2014-12-31"];
-    _btnCalendar.hidden =HolidayDate>NowDate ? YES :NO;
+     if(!_btnCalendar.hidden) _btnCalendar.hidden =HolidayDate>NowDate ? YES :NO;
 }
 
 - (void)btnEditing{
