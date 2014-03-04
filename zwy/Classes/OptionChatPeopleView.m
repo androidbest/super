@@ -28,17 +28,14 @@
 {
     [super viewDidLoad];
     self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:nil];
-    _searchBar = [[UISearchBar alloc] initWithFrame:CGRectZero];
-    _searchBar.placeholder = @"搜索";
-    _searchBar.delegate = self.controller;
-    [_searchBar sizeToFit];
+    
     
     _tableViewPeople.dataSource = self.controller;
     _tableViewPeople.delegate = self.controller;
     _tableViewPeople.tableHeaderView = self.searchBar;
     
     
-    _displayController = [[UISearchDisplayController alloc] initWithSearchBar:_searchBar contentsController:self];
+    _displayController = [[UISearchDisplayController alloc] initWithSearchBar:self.searchBar contentsController:self];
     [_displayController setDelegate:self.controller];
     [_displayController setSearchResultsDataSource:self.controller];
     [_displayController setSearchResultsDelegate:self.controller];
@@ -57,6 +54,17 @@
     self.navigationItem.rightBarButtonItem=rightButton;
     
     [self.controller initWithData];
+}
+
+
+- (UISearchBar *)searchBar{
+    if (!_searchBar) {
+        _searchBar = [[UISearchBar alloc] initWithFrame:CGRectZero];
+        _searchBar.placeholder = @"搜索";
+        _searchBar.delegate = self.controller;
+        [_searchBar sizeToFit];
+    }
+    return _searchBar;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{

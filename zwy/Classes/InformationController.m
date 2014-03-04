@@ -117,7 +117,7 @@
             self.informationView.listview.separatorStyle = YES;
         }else{
             if(arr0.count==0)
-            [ToolUtils alertInfo:@"暂无数据"];
+//            [ToolUtils alertInfo:@"暂无数据"];
             self.informationView.listview.reachedTheEnd=NO;
         }
     }else{
@@ -143,7 +143,7 @@
             self.informationView.listview1.separatorStyle = YES;
         }else{
             if(arr1.count==0)
-            [ToolUtils alertInfo:@"暂无数据"];
+//            [ToolUtils alertInfo:@"暂无数据"];
             self.informationView.listview1.reachedTheEnd=NO;
         }
     }else{

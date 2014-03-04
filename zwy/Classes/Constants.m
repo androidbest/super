@@ -21,7 +21,6 @@ BOOL isZaiXian =YES;
 NSMutableArray *EX_arrSection;
 NSArray *EX_arrGroupAddressBooks=nil;
 NSString *EX_newToken=nil;
-NSTimer *EX_timerUpdateMessage=nil;
 NSString *EX_chatMessageID=nil;
 Tuser *user=nil;
 NSMutableArray *arrEc=nil;

@@ -281,8 +281,7 @@
     /*****************************/
     /*更新完通讯录后开始接受消息*/
     //开启扫描信息定时器
-    if (EX_timerUpdateMessage)[EX_timerUpdateMessage setFireDate:[NSDate distantPast]];
-    else   EX_timerUpdateMessage = [NSTimer scheduledTimerWithTimeInterval:3.0 target:[[UIApplication sharedApplication] delegate] selector:@selector(timerFired:) userInfo:nil repeats:YES];
+    [[TimerGetMessages sharedInstance] onTimer];
 }
 
 #pragma mark - stroyboard传值

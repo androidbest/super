@@ -10,6 +10,9 @@
 #import "ControllerProtocol.h"
 #import "PullRefreshTableView.h"
 #import "UpdataDate.h"
+
+
+
 @interface BaseView : UIViewController
 @property(strong,nonatomic)id<ControllerProtocol> controller;
 @property (strong, nonatomic) PullRefreshTableView *listview;

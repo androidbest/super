@@ -12,11 +12,13 @@
 @synthesize title = _title;
 @synthesize image = _image;
 @synthesize tag = _tag;
+@synthesize imageUrl =_imageUrl;
 
 - (void)dealloc
 {
     self.title = nil;
     self.image = nil;
+    self.imageUrl =nil;
 }
 
 - (id)initWithTitle:(NSString *)title image:(NSString *)image tag:(NSInteger)tag
@@ -25,6 +27,19 @@
     if (self) {
         self.title = title;
         self.image = image;
+        self.tag = tag;
+    }
+    
+    return self;
+}
+
+
+- (id)initWithTitle:(NSString *)title imageUrl:(NSString *)imageUrl tag:(NSInteger)tag
+{
+    self = [super init];
+    if (self) {
+        self.title = title;
+        self.imageUrl = imageUrl;
         self.tag = tag;
     }
     

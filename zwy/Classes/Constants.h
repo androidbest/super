@@ -28,7 +28,6 @@ extern NSArray *EX_arrGroupAddressBooks;
 extern NSMutableArray *EX_arrSection;
 extern NSString *EX_newToken;
 extern NSString *EX_chatMessageID;
-extern NSTimer *EX_timerUpdateMessage;
 extern Tuser *user;
 extern NSMutableArray *arrEc;
 extern UIView *coverView;

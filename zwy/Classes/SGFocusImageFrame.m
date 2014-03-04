@@ -8,6 +8,7 @@
 
 #import "SGFocusImageFrame.h"
 #import "SGFocusImageItem.h"
+#import "HTTPRequest.h"
 #import <objc/runtime.h>
 #define ITEM_WIDTH 310.0
 
@@ -94,7 +95,7 @@ static NSString *SG_FOCUS_ITEM_ASS_KEY = @"loopScrollview";
     float space = 0;
     CGSize size = CGSizeMake(320, 0);
     //    _pageControl = [[GPSimplePageView alloc] initWithFrame:CGRectMake(self.bounds.size.width *.5 - size.width *.5, self.bounds.size.height - size.height, size.width, size.height)];
-    _pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, self.frame.size.height -16-10, 320, 10)];
+    _pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, self.frame.size.height -12, 320, 10)];
     _pageControl.userInteractionEnabled = NO;
     [self addSubview:_scrollView];
     [self addSubview:_pageControl];
@@ -126,7 +127,13 @@ static NSString *SG_FOCUS_ITEM_ASS_KEY = @"loopScrollview";
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(i * _scrollView.frame.size.width+space, space, _scrollView.frame.size.width-space*2, _scrollView.frame.size.height-2*space-size.height)];
         //加载图片
 //        imageView.backgroundColor = i%2?[UIColor redColor]:[UIColor blueColor];
-        imageView.image=[UIImage imageNamed:item.image];
+        if (item.image) imageView.image=[UIImage imageNamed:item.image];
+        else if (item.imageUrl) [HTTPRequest setImageWithURL:item.imageUrl
+                                         placeholderImage:[UIImage imageNamed:@"error_image.jpg"]
+                                               ImageBolck:^(UIImage *image) {
+                                   imageView.image=image;
+            
+        }];
         [_scrollView addSubview:imageView];
         [imageView release];
     }

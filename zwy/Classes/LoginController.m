@@ -38,7 +38,6 @@
     return self;
 }
 
-
 -(void)alertnetwork{
     [ToolUtils alertInfo:@"欢迎使用政务易,使用过程中将产生流量" delegate:self otherBtn:@"不再提醒"];
 }
@@ -54,6 +53,8 @@
 -(void)stopTimer{
     [_nsTime setFireDate:[NSDate distantFuture]];
 }
+
+
 
 //定时器
 -(void)scrollTimer
@@ -101,7 +102,7 @@
                 return;
             }
             
-            if([@"13752923254" isEqualToString:self.logView.msisdn.text]||[info.respCode isEqualToString:@"0"]){
+            if([@"13752923254" isEqualToString:self.logView.msisdn.text]||[info.respCode isEqualToString:@"1"]){
                     user=[Tuser new];
                     user.msisdn=self.logView.msisdn.text;
                 UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];

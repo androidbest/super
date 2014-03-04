@@ -6,8 +6,6 @@
 //  Copyright (c) 2013 sxit. All rights reserved.
 //
 
-#define NOTIFICATIONMESSAGE @"notificationMessage"
-
 //#define DoorsBgTaskBegin() { \
 //UIApplication *app = [UIApplication sharedApplication]; \
 //UIBackgroundTaskIdentifier task = [app beginBackgroundTaskWithExpirationHandler:^{ \
@@ -41,11 +39,6 @@ UIBackgroundTaskIdentifier backgroundTask;//写成成员
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    //注册接收即时聊天的通知
-    [[NSNotificationCenter defaultCenter]addObserver:self
-                                            selector:@selector(notificationImRevice:)
-                                                name:NOTIFICATIONMESSAGE
-                                              object:self];
 //    if(application.enabledRemoteNotificationTypes){
 //        NSLog(@"aaadfdsafdsafdasf");
 //    }
@@ -209,17 +202,6 @@ UIBackgroundTaskIdentifier backgroundTask;//写成成员
     //关闭网络指示灯
     //if ([UIApplication sharedApplication ].networkActivityIndicatorVisible)
     //    [UIApplication sharedApplication ].networkActivityIndicatorVisible=NO;
-/*
-     int i = kSysMaxTimePerBgTask;
-    while (i > 0)
-    {
-        DoorsBgTaskBegin();
-        [NSThread sleepForTimeInterval:kTimerInterval];
-        if ([EX_timerUpdateMessage isValid])[self timerFired:nil];
-        DoorsBgTaskEnd();
-        i--;
-    }
-*/
 }
 
 
@@ -268,57 +250,6 @@ UIBackgroundTaskIdentifier backgroundTask;//写成成员
         dicLocalNotificationInfo=nil;
     }
 }
-
-//执行取时聊天定时器
-- (void)timerFired:(id)sender{
-    [packageData imRevice:self SELType:NOTIFICATIONMESSAGE];
-}
-
-/*接受消息*/
-- (void)notificationImRevice:(NSNotification *)notification{
-    NSDictionary *dic=[notification userInfo];
-    NSMutableArray *arrmessages =[AnalysisData imRevice:dic];
-   
-    if (!arrmessages||arrmessages.count==0)return;
-    
-    
-    /*插入数据*/
-    CoreDataManageContext *coredataManage =[CoreDataManageContext newInstance];
-    BOOL ischek=NO;
-    for (int i=0; i<arrmessages.count; i++) {
-        ChatMsgObj *obj =arrmessages[i];
-        
-        NSString *chatMessageID =nil;
-        
-            if (!obj.groupid||[obj.groupid isEqualToString:@"(null)"]||[obj.groupid isEqualToString:@""]||[obj.groupid isEqualToString:@"null"]) {
-                chatMessageID =[NSString stringWithFormat:@"%@%@%@%@",user.msisdn,user.eccode,obj.receivermsisdn,user.eccode];
-                 ischek =[EX_chatMessageID  isEqualToString:chatMessageID];
-                 [coredataManage setChatInfo:obj status:@"1" isChek:ischek  gid:nil arr:nil];
-                
-            }else{
-                 chatMessageID =[NSString stringWithFormat:@"%@%@%@%@",user.msisdn,user.eccode,obj.groupid,user.eccode];
-                 //是否在聊天界面，返回yes＝是 返回no=否
-                 ischek =[EX_chatMessageID  isEqualToString:chatMessageID];
-                [coredataManage setChatInfo:obj status:@"1" isChek:ischek];
-            }
-    }
-
-    
-    //ischek 0,增加未读提示 1.不加
-    NSDictionary *dicNOtification;
-    if (!ischek) dicNOtification =@{@"isCheck":@"0"};
-    else dicNOtification =@{@"isCheck":@"1"};
-    /*刷新数据
-     *发送通告
-     *观察者为"MessageController"--"ChatMessageController"--"HomeController"
-     */
-    //接收消息刷新数据，触发以上三个界面
-    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATIONCHAT object:arrmessages userInfo:dicNOtification];
-    
-}
-
-
-
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {

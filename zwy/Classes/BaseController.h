@@ -18,6 +18,7 @@
 #import "Constants.h"
 #import "ConfigFile.h"
 #import "UpdataDate.h"
+#import "TimerGetMessages.h"
 @interface BaseController : NSObject <ControllerProtocol>
 @property(strong,nonatomic)MBProgressHUD * HUD;
 

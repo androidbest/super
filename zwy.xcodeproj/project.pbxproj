@@ -482,6 +482,7 @@
 		65E59A8E184435B4004444E5 /* UpdataDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E59A8D184435B4004444E5 /* UpdataDate.m */; };
 		65E59A9218449EE3004444E5 /* GreetingInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E59A9118449EE3004444E5 /* GreetingInfo.m */; };
 		65E59A9518449EF6004444E5 /* GreetDetaInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E59A9418449EF6004444E5 /* GreetDetaInfo.m */; };
+		65F71C6318C036D600F927CC /* TimerGetMessages.m in Sources */ = {isa = PBXBuildFile; fileRef = 65F71C6218C036D600F927CC /* TimerGetMessages.m */; };
 		65F9C6E3186293E4001B804A /* tengxunWeibo.png in Resources */ = {isa = PBXBuildFile; fileRef = 65F9C6E2186293E4001B804A /* tengxunWeibo.png */; };
 		65F9C6EB186296FE001B804A /* libTCWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65F9C6E9186296FE001B804A /* libTCWeiboSDK.a */; };
 /* End PBXBuildFile section */
@@ -1215,6 +1216,8 @@
 		65E59A9118449EE3004444E5 /* GreetingInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GreetingInfo.m; sourceTree = "<group>"; };
 		65E59A9318449EF6004444E5 /* GreetDetaInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GreetDetaInfo.h; sourceTree = "<group>"; };
 		65E59A9418449EF6004444E5 /* GreetDetaInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GreetDetaInfo.m; sourceTree = "<group>"; };
+		65F71C6118C036D600F927CC /* TimerGetMessages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerGetMessages.h; sourceTree = "<group>"; };
+		65F71C6218C036D600F927CC /* TimerGetMessages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerGetMessages.m; sourceTree = "<group>"; };
 		65F9C6E2186293E4001B804A /* tengxunWeibo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tengxunWeibo.png; path = ../../Classes/tengxunWeibo.png; sourceTree = "<group>"; };
 		65F9C6E9186296FE001B804A /* libTCWeiboSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTCWeiboSDK.a; sourceTree = "<group>"; };
 		65F9C6EA186296FE001B804A /* WeiboApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboApi.h; sourceTree = "<group>"; };
@@ -1604,6 +1607,8 @@
 				594204571802EE9B00AA35C3 /* HTTPRequest.h */,
 				594204581802EE9B00AA35C3 /* HTTPRequest.m */,
 				5943984017F3D92B000B6E9C /* obj */,
+				65F71C6118C036D600F927CC /* TimerGetMessages.h */,
+				65F71C6218C036D600F927CC /* TimerGetMessages.m */,
 			);
 			name = modellayer;
 			sourceTree = "<group>";
@@ -2929,6 +2934,7 @@
 				59584B291819999A00B65162 /* OfficeDetailView.m in Sources */,
 				5989A11C17F583AE00789DC6 /* HomeView.m in Sources */,
 				5957EFA61817B9CF00C565E1 /* DocContentView.m in Sources */,
+				65F71C6318C036D600F927CC /* TimerGetMessages.m in Sources */,
 				65AB264B1856C27D00F5EAF6 /* HomeInformationView.m in Sources */,
 				595B7A0B1809591A006DD766 /* PullRefreshTableView.m in Sources */,
 				595B509B180D0F8D003EC2AF /* HelpView.m in Sources */,
