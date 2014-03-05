@@ -65,14 +65,14 @@
     [_send setEnabled:NO];
     [_send setAlpha:0.4];
     
-    _voiceSend=[[UIButton alloc] initWithFrame:CGRectMake(59, 7, 250, 30)];
+    _voiceSend=[[UIButton alloc] initWithFrame:CGRectMake(59, 4, 250, 38)];
     [_voiceSend setBackgroundColor:[UIColor colorWithRed:0.26 green:0.47 blue:0.98 alpha:1.0]];
     _voiceSend.layer.masksToBounds = YES;
     _voiceSend.layer.cornerRadius = 6.0;
 //    [_voiceSend addTarget:self.controller action:NSSelectorFromString(@"sendMessage") forControlEvents:UIControlEventTouchUpInside];
     [_voiceSend setTitle:@"按住 说话" forState:UIControlStateNormal];
     [_voiceSend setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    _voiceSend.titleLabel.font=[UIFont systemFontOfSize:13];
+    _voiceSend.titleLabel.font=[UIFont systemFontOfSize:16];
     _voiceSend.hidden=YES;
     UILongPressGestureRecognizer *longPrees = [[UILongPressGestureRecognizer alloc]initWithTarget:self.controller action:NSSelectorFromString(@"recordBtnLongPressed:")];
     longPrees.delegate = self.controller;
