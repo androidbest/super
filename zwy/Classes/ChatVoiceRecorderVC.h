@@ -9,7 +9,7 @@
 #import "VoiceRecorderBaseVC.h"
 
 
-#define kRecorderViewRect       CGRectMake(80, 120, 160, 160)
+#define kRecorderViewRect       CGRectMake(80, 180, 160, 160)
 //#define kCancelOriginY          (kRecorderViewRect.origin.y + kRecorderViewRect.size.height + 180)
 #define kCancelOriginY          ([[UIScreen mainScreen]bounds].size.height-70)
 

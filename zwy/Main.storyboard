@@ -5693,14 +5693,14 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="EdD-tC-bMF"/>
         <segue reference="WvN-Sg-Bn3"/>
-        <segue reference="rV3-ah-ZrU"/>
-        <segue reference="W0s-tw-rhR"/>
-        <segue reference="jTP-XW-pa2"/>
-        <segue reference="5B2-S3-8Nb"/>
+        <segue reference="XY3-9B-d3j"/>
         <segue reference="sAR-cD-OcR"/>
         <segue reference="7Gb-7s-q9t"/>
-        <segue reference="XY3-9B-d3j"/>
+        <segue reference="EdD-tC-bMF"/>
+        <segue reference="jTP-XW-pa2"/>
+        <segue reference="5B2-S3-8Nb"/>
+        <segue reference="W0s-tw-rhR"/>
+        <segue reference="09P-Hu-JWI"/>
     </inferredMetricsTieBreakers>
 </document>

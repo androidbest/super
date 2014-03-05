@@ -346,7 +346,7 @@
 +(UIView *)bubbleView:(NSString *)text from:(BOOL)fromSelf withPosition:(int)position view:(UIView *)returnView selfType:(NSString *)selfType voicetime:(NSString *)voicetime{
     
     //计算大小
-    UIFont *font = [UIFont systemFontOfSize:13];
+    UIFont *font = [UIFont systemFontOfSize:15];
     CGRect textRect = [text boundingRectWithSize:CGSizeMake(180.0f, 2000.0f)
                                                       options:NSStringDrawingUsesLineFragmentOrigin
 //                       | NSStringDrawingUsesFontLeading

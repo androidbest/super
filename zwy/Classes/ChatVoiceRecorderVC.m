@@ -95,8 +95,11 @@
 }
 #pragma mark - 初始化录音界面
 - (void)initRecordView{
-    if (recorderView == nil)
+    if (recorderView == nil){
         recorderView = (ChatRecorderView*)[[[NSBundle mainBundle]loadNibNamed:@"ChatRecorderView" owner:self options:nil]lastObject];
+        recorderView.imageBackgroud.layer.masksToBounds=YES;
+        recorderView.imageBackgroud.layer.cornerRadius=10.0;
+    }
     //还原界面显示
     [recorderView restoreDisplay];
 }

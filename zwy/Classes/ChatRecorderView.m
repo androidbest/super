@@ -50,6 +50,7 @@
     trashImageAry = [[NSArray alloc]initWithObjects:kTrashImage1,kTrashImage2,kTrashImage3,kTrashImage2, nil];
 }
 
+
 - (void)dealloc {
 
 }

@@ -45,14 +45,6 @@
     [self.controller initData:self];
     _msisdn.delegate=self.controller;
     
-//        UITapGestureRecognizer *oneFingerOneTaps =
-//        [[UITapGestureRecognizer alloc] initWithTarget:self.controller action:@selector(oneFingerOneTaps)];
-//        [oneFingerOneTaps setNumberOfTouchesRequired:1];
-//        [[self view] addGestureRecognizer:oneFingerOneTaps];
-    
-
-    
-    
     //状态栏颜色
     [_statusbar setBackgroundColor:[UIColor colorWithRed:0.97 green:0.97 blue:0.97 alpha:1.0]];
     //登录
@@ -82,10 +74,7 @@
 }
 
 -(void)jumpHome{
-//  [self performSegueWithIdentifier:@"logintogethome" sender:self];
-    
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
-   /* HomeScrollView *homeView = [storyboard instantiateViewControllerWithIdentifier:@"HomeScrollView"];*/
     UITabBarController *homeView =[storyboard instantiateViewControllerWithIdentifier:@"zwyhome"];
     [self presentViewController:homeView animated:NO completion:nil];
 }

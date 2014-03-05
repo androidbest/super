@@ -64,6 +64,7 @@
     labelBack.frame=CGRectMake(0, 64, ScreenWidth, 72);
     labelBack.backgroundColor=[UIColor colorWithRed:0.0f/255.0f green:122.0f/255.0f blue:255.0f/255.0f alpha:1.0];
     labelBack.layer.zPosition=-1;
+    
     [self.view addSubview:labelBack];
     float rectGetHeight ;
     if (iPhone5) rectGetHeight=390;

@@ -18,6 +18,8 @@
 
 @property (retain, nonatomic) IBOutlet UILabel *countDownLabel;
 
+@property (strong, nonatomic) IBOutlet UIImageView *imageBackgroud;
+
 //还原界面
 - (void)restoreDisplay;
 
