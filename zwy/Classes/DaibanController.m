@@ -210,7 +210,7 @@
             self.daibanView.listview.separatorStyle = YES;
             _daibanView.listview.backgroundColor =[UIColor whiteColor];
         }else{
-//            [ToolUtils alertInfo:@"暂无数据"];
+            _daibanView.listview.separatorStyle = NO;
             _daibanView.listview.backgroundColor =[UIColor clearColor];
         }
     }else{
@@ -236,7 +236,7 @@
             self.daibanView.listview1.separatorStyle = YES;
             _daibanView.listview1.backgroundColor =[UIColor whiteColor];
         }else{
-//            [ToolUtils alertInfo:@"暂无数据"];
+_daibanView.listview1.separatorStyle = NO;
             _daibanView.listview1.backgroundColor =[UIColor clearColor];
         }
     }else{

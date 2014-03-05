@@ -171,8 +171,9 @@ BOOL isUpdata3;
             self.officeView.listview.separatorStyle = YES;
             _officeView.listview.backgroundColor =[UIColor whiteColor];
         }else{
-//            [ToolUtils alertInfo:@"暂无数据"];
-            _officeView.listview.backgroundColor =[UIColor clearColor];
+
+        self.officeView.listview.separatorStyle = NO;
+        _officeView.listview.backgroundColor =[UIColor clearColor];
         }
     }else{
         [ToolUtils alertInfo:requestError];
@@ -197,7 +198,7 @@ BOOL isUpdata3;
           self.officeView.listview1.separatorStyle = YES;
         _officeView.listview1.backgroundColor =[UIColor whiteColor];
         }else{
-//            [ToolUtils alertInfo:@"暂无数据"];
+self.officeView.listview1.separatorStyle = NO;
         _officeView.listview1.backgroundColor =[UIColor clearColor];
         }
     }else{
@@ -223,7 +224,7 @@ BOOL isUpdata3;
             self.officeView.listview2.separatorStyle = YES;
              _officeView.listview2.backgroundColor =[UIColor whiteColor];
         }else{
-//            [ToolUtils alertInfo:@"暂无数据"];
+self.officeView.listview2.separatorStyle = NO;
             _officeView.listview2.backgroundColor =[UIColor clearColor];
         }
     }else{
@@ -250,7 +251,7 @@ BOOL isUpdata3;
             self.officeView.listview3.separatorStyle = YES;
              _officeView.listview3.backgroundColor =[UIColor whiteColor];
         }else{
-//            [ToolUtils alertInfo:@"暂无数据"];
+self.officeView.listview3.separatorStyle = NO;
             _officeView.listview3.backgroundColor =[UIColor clearColor];
         }
     }else{
@@ -408,6 +409,7 @@ BOOL isUpdata3;
         info.row=indexPath.row;
         info.arr=arr0;
         self.officeView.docContentInfo=info;
+        //点点点点
         if (![arrOverManage containsObject:info.ID]) {
             [arrOverManage addObject:info.ID];
             [arrOverManage writeToFile:[DocumentsDirectory stringByAppendingPathComponent:PATH_OVERMANAGE] atomically:NO];
