@@ -47,6 +47,8 @@
     NSString *nextShenhe;
     NSString *nextBanli;
     
+    NSString *transactdocid;
+    
     
 }
 -(id)init{
@@ -114,18 +116,14 @@
             if([info.type isEqualToString:@"0"]){
                 RespInfo *info=[AnalysisData ReTurnInfo:dic];
                 if([info.respCode isEqualToString:@"0"]){
-                    [self.officedetailView.info.arr removeObjectAtIndex:self.officedetailView.info.row];
-                    [self.officedetailView.info.listview reloadData];
-                    [self.officedetailView.navigationController popViewControllerAnimated:YES];
+                    [self refreshData];
                 }else{
                     [ToolUtils alertInfo:@"办理失败"];
                 }
             }else if([info.type isEqualToString:@"2"]){
                 RespInfo *info=[AnalysisData ReTurnInfo:dic];
                 if([info.respCode isEqualToString:@"0"]){
-                    [self.officedetailView.info.arr removeObjectAtIndex:self.officedetailView.info.row];
-                    [self.officedetailView.info.listview reloadData];
-                    [self.officedetailView.navigationController popViewControllerAnimated:YES];
+                   [self refreshData];
                 }else{
                     [ToolUtils alertInfo:@"审核失败"];
                 }
@@ -135,6 +133,18 @@
         [ToolUtils alertInfo:requestError];
     }
 }
+
+//刷新数据
+-(void)refreshData{
+    [self.officedetailView.info.arr removeObjectAtIndex:self.officedetailView.info.row];
+    if(self.officedetailView.info.arr.count==0){
+        self.officedetailView.info.listview.separatorStyle=NO;
+        self.officedetailView.info.listview.backgroundColor =[UIColor clearColor];
+    }
+    [self.officedetailView.info.listview reloadData];
+    [self.officedetailView.navigationController popViewControllerAnimated:YES];
+}
+
 
 //选择通讯录回调
 - (void)returnDidAddress:(NSArray *)arr{
@@ -467,9 +477,9 @@
     self.HUD.labelText = @"正在处理中..";
     [self.HUD show:YES];
     if([type isEqualToString:@"0"]){
-        [packageData handleDoc:self ID:docContentInfo.ID Type:@"1" OperType:status tempTel:strAllPeopleID Status:@"1" context:self.officedetailView.textContent.text groupid:strAllGroupID transactdocid:docContentInfo.transactdocid];
+        [packageData handleDoc:self ID:docContentInfo.ID Type:@"1" OperType:status tempTel:strAllPeopleID Status:@"1" context:self.officedetailView.textContent.text groupid:strAllGroupID transactdocid:transactdocid];
     }else if([type isEqualToString:@"2"]){
-        [packageData handleDoc:self ID:docContentInfo.ID Type:@"2" OperType:status tempTel:strAllPeopleID Status:anditStatus context:self.officedetailView.textContent.text groupid:strAllGroupID transactdocid:docContentInfo.transactdocid];
+        [packageData handleDoc:self ID:docContentInfo.ID Type:@"2" OperType:status tempTel:strAllPeopleID Status:anditStatus context:self.officedetailView.textContent.text groupid:strAllGroupID transactdocid:transactdocid];
     }
     
 }
@@ -515,6 +525,7 @@
 
 //请求数据
 -(void)reqData{
+    transactdocid=self.officedetailView.info.transactdocid;
     sign=@"1";
     [packageData getDocInfo:self ID:self.officedetailView.info.ID transactdocid:self.officedetailView.info.transactdocid];
     self.HUD.labelText = @"正在获取公文信息..";
