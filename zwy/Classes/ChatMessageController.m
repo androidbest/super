@@ -121,7 +121,7 @@
         if(info.imGroupid)
         grouid=info.imGroupid;
         else{
-        NSArray *gidarr=[[CoreDataManageContext newInstance] getSessionID:[NSString stringWithFormat:@"%@_%@",info.tel,user.eccode]];
+        NSArray *gidarr=[[CoreDataManageContext newInstance] getSessionID:[NSString stringWithFormat:@"%@_%@",info.tel,user.eccode] selfid:[NSString stringWithFormat:@"%@%@",user.msisdn,user.eccode]];
             if(gidarr.count>0){
                 SessionEntity *session=gidarr[0];
         grouid=session.session_groupuuid;

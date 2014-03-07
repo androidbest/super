@@ -37,7 +37,7 @@
 #pragma mark - 更新数据
 - (void)updateWithSessionEntity:(SessionEntity *)sessionInfo;
 //依据电话与eccode查找会话ID
-- (NSArray *)getSessionID:(NSString *)phone_ec;
+- (NSArray *)getSessionID:(NSString *)phone_ec selfid:(NSString*)selfid;
 
 - (void)saveContext;
 @end

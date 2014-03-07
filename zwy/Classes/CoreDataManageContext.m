@@ -67,13 +67,13 @@ static CoreDataManageContext *coreData=nil;
  *获取会话表单
  *返回object为“SessionEntity”
  */
-- (NSArray *)getSessionID:(NSString *)phone_ec{
+- (NSArray *)getSessionID:(NSString *)phone_ec selfid:(NSString*)selfid{
     NSEntityDescription * emEty = [NSEntityDescription entityForName:@"SessionEntity" inManagedObjectContext:self.managedObjectContext];
     NSFetchRequest *frq = [[NSFetchRequest alloc]init];
     [frq setEntity:emEty];
     
     //设置搜索条件
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"session_phonesearch == %@", phone_ec];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"session_phonesearch == %@ AND session_selfid == %@", phone_ec,selfid];
     [frq setPredicate:predicate];
     
     NSArray *objs =[self.managedObjectContext executeFetchRequest:frq error:nil];
@@ -233,6 +233,7 @@ static CoreDataManageContext *coreData=nil;
         Sessions.session_receiveravatar=avatar;
         Sessions.session_receivername=name;
         Sessions.session_content=content;
+        Sessions.session_receivermsisdn=msisdn;
         Sessions.session_voicetimes=messageObjct.voicetime;
         
         if(arr.count==2){

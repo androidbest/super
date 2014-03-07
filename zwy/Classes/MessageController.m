@@ -322,6 +322,7 @@
     int deafyltsIndex=count-CellCount;
     if (deafyltsIndex<0)deafyltsIndex=0;
     [userDeafults setInteger:deafyltsIndex forKey:CHATMESSAGECOUNT(user.msisdn,user.eccode)];
+    [userDeafults synchronize];
 }
 
 #pragma mark - UISearchDisplayDelegate
