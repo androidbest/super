@@ -92,6 +92,9 @@ UIBackgroundTaskIdentifier backgroundTask;//写成成员
     newToken = [newToken stringByReplacingOccurrencesOfString:@">" withString:@""];
     EX_newToken=newToken;
     
+    //发送前台通知（冻结APNS)
+    [packageData iosProcessRestart:self];
+    
 //    NSString *token = [NSString stringWithFormat:@"%@", deviceToken];
     NSLog(@"%@", newToken); 
 }

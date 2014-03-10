@@ -216,6 +216,7 @@
     }else{
     cell.content.text=sessionInfo.session_content;
     }
+    
     cell.time.text=[dateFormatter stringFromDate:sessionInfo.session_times];
     if ([sessionInfo.session_unreadcount isEqualToString:@"0"]) {
         cell.labelCount.hidden=YES;
@@ -223,7 +224,7 @@
         cell.labelCount.hidden=NO;
         cell.labelCount.text=sessionInfo.session_unreadcount;
     }
-//    cell.username.text=sessionInfo.session_receivername;
+
     NSString *url=nil;
     if(sessionInfo.session_groupuuid&&![sessionInfo.session_groupuuid isEqualToString:@"null"]&&![sessionInfo.session_groupuuid isEqualToString:@""]&&![sessionInfo.session_groupuuid isEqualToString:@"(null)"]){
         NSArray *urlarr=[sessionInfo.session_receiveravatar componentsSeparatedByString:@","];
@@ -241,19 +242,12 @@
             cell.title.text=sessionInfo.session_receivername;
         }
     }
-//    else{
-//        url=sessionInfo.session_receiveravatar;
-//        cell.title.text=sessionInfo.session_receivername;
-//    }
+
     [HTTPRequest imageWithURL:url imageView:cell.imageMark placeholderImage:[UIImage  imageNamed:@"default_avatar"]];
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    //更新首页即时聊天未读条数信息
-    MesaageIMCell *cell =(MesaageIMCell *)[tableView cellForRowAtIndexPath:indexPath];
-    [self cancelCheckTitle:cell];
-    
     SessionEntity * sessionInfo=nil;
     if (_messageView.searchBar.text.length!=0&&isSearching){
      sessionInfo=_arrSeaPeople[indexPath.row];
@@ -289,10 +283,6 @@
 
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    //更新首页即时聊天未读条数信息
-    MesaageIMCell *cell =(MesaageIMCell *)[tableView cellForRowAtIndexPath:indexPath];
-    [self cancelCheckTitle:cell];
-    
     SessionEntity * sessionInfo=nil;
     if (_messageView.searchBar.text.length!=0&&isSearching){
         sessionInfo=_arrSeaPeople[indexPath.row];
@@ -315,15 +305,6 @@
     return @"删除";
 }
 
-- (void)cancelCheckTitle:(MesaageIMCell *)cell{
-    int CellCount =[cell.labelCount.text integerValue];
-    NSUserDefaults *userDeafults=[NSUserDefaults standardUserDefaults];
-    int count =[userDeafults integerForKey:CHATMESSAGECOUNT(user.msisdn,user.eccode)];
-    int deafyltsIndex=count-CellCount;
-    if (deafyltsIndex<0)deafyltsIndex=0;
-    [userDeafults setInteger:deafyltsIndex forKey:CHATMESSAGECOUNT(user.msisdn,user.eccode)];
-    [userDeafults synchronize];
-}
 
 #pragma mark - UISearchDisplayDelegate
 - (void)filteredListContentForSearchText:(NSString*)searchText scope:(NSString*)scope

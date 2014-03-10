@@ -27,6 +27,7 @@ NSString * stringTel =STRING_TEL(@"133");
 #import "HolidayView.h"
 #import "SGFocusImageItem.h"
 #import "SGFocusImageFrame.h"
+#import "CoreDataManageContext.h"
 
 @interface HomeView ()
 
@@ -195,14 +196,8 @@ NSString * stringTel =STRING_TEL(@"133");
     }
     
     //未读即时消息刷新
-    NSUserDefaults *userDeafults=[NSUserDefaults standardUserDefaults];
-    int count =[userDeafults integerForKey:CHATMESSAGECOUNT(user.msisdn, user.eccode)];
-    if (count<=0) {
-        _labelChatCount.hidden=YES;
-    }else {
-        _labelChatCount.hidden=NO;
-        _labelChatCount.text=[NSString stringWithFormat:@"%d",count];
-    }
+     [self updataMessage:_labelChatCount];
+    
     //本地通知处理方法
     if (dicLocalNotificationInfo) [self performSelector:@selector(jumpScheduleView:) withObject:nil afterDelay:0.0f];
 }
@@ -277,19 +272,37 @@ NSString * stringTel =STRING_TEL(@"133");
  */
 -(void)getMessage:(NSNotification *)notification
 {    
-    NSString *isCheck =[[notification userInfo] objectForKey:@"isCheck"];
-    if ([isCheck isEqualToString:@"1"])return;
-    
-    NSArray * arr=[notification object];
-    int index =arr.count;
-    NSUserDefaults *userDeafults=[NSUserDefaults standardUserDefaults];
-    int count =[userDeafults integerForKey:CHATMESSAGECOUNT(user.msisdn,user.eccode)];
-    [userDeafults setInteger:count+index forKey:CHATMESSAGECOUNT(user.msisdn,user.eccode)];
-    [userDeafults synchronize];
-    
-    self.labelChatCount.hidden=NO;
-    self.labelChatCount.text=[NSString stringWithFormat:@"%d",count+index];
+    //未读即时消息刷新
+    [self updataMessage:_labelChatCount];
 }
+
+/*获取未读消息条数*/
+- (void)updataMessage:(UILabel *)label{
+    
+    __block NSInteger count =0;
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        NSString *strSelfID =[NSString stringWithFormat:@"%@%@",user.msisdn,user.eccode];
+        NSArray *arr = [[NSMutableArray alloc]initWithArray:[[CoreDataManageContext newInstance] getSessionListWithSelfID:strSelfID]];
+        for (SessionEntity * sessionInfo in arr) {
+            count+=[sessionInfo.session_unreadcount integerValue];
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            if (count<=0) {
+                label.hidden=YES;
+            }else {
+                label.hidden=NO;
+                label.text=[NSString stringWithFormat:@"%d",count];
+            }
+            
+        });
+    });
+    
+}
+
 
 - (void)address{}
 @end

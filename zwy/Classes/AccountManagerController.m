@@ -20,7 +20,7 @@
 @implementation AccountManagerController{
    NSMutableArray *arr;
    NSIndexPath *tempIndexPath;
-    int alertViewType;/*0、切换帐号 1、取消下载进程*/
+   // int alertViewType;/*0、切换帐号 1、取消下载进程*/
 }
 
 
@@ -33,18 +33,11 @@
 -(id)init{
     self=[super init];
     if(self){
-        alertViewType=0;
         arr=[NSMutableArray new];
         //注册通知
         [[NSNotificationCenter defaultCenter]addObserver:self
                                                 selector:@selector(handleData:)
                                                     name:xmlNotifInfo
-                                                  object:self];
-        
-        //更新通讯录列表
-        [[NSNotificationCenter defaultCenter]addObserver:self
-                                                selector:@selector(DownLoadAddressReturn:)
-                                                    name:wnLoadAddress
                                                   object:self];
     }
     return self;
@@ -78,8 +71,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString * strCell =@"accountCell";
-    //    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
-    //    TemplateCell *cell = [storyboard instantiateViewControllerWithIdentifier:@"templateCell"];
     GetEcCell * cell =[tableView dequeueReusableCellWithIdentifier:strCell];
     if (!cell) {
         cell = [[GetEcCell alloc] initWithStyle:UITableViewCellStyleSubtitle
@@ -99,22 +90,7 @@
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-//    for(int i=0;i<[tableView visibleCells].count;i++){
-//        GetEcCell *cell = [[tableView visibleCells] objectAtIndex:i];
-//        [cell.selectEc setBackgroundImage:[UIImage imageNamed:@"btn_uncheck"] forState:UIControlStateNormal];
-//    }
-//    user.eccode=ecinfo.ECID;
-//    user.ecname=ecinfo.ECName;
-//    user.ecSgin=@"0";
-//    NSUserDefaults *appConfig=[NSUserDefaults standardUserDefaults];
-//    [appConfig setValue:user.eccode forKey:@"eccode"];
-//    [appConfig setValue:user.ecname forKey:@"ecname"];
-//    [appConfig synchronize];
-//    GetEcCell *cell = (GetEcCell *)[tableView cellForRowAtIndexPath:indexPath];
-//    [cell.selectEc setBackgroundImage:[UIImage imageNamed:@"btn_check"] forState:UIControlStateNormal];
-//    [self.account.navigationController popViewControllerAnimated:YES];
-    
+
     EcinfoDetas *ecinfo=arr[indexPath.row];
     if ([ecinfo.ECID isEqualToString:user.eccode])
         return;
@@ -126,18 +102,11 @@
     
     tempIndexPath=indexPath;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    alertViewType=0;
     [ToolUtils alertInfo:@"确定需要切换单位" delegate:self otherBtn:@"确认"];
     
 }
+
 -(void)loginout{
-    
-    NSString * strIngPath =[NSString stringWithFormat:@"%@/%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode,@"IngDown.plist"];
-    NSArray * IngDown =[NSArray arrayWithContentsOfFile:strIngPath];
-    if (IngDown.count>0) {
-        [ToolUtils alertInfo:@"您有未下载完的任务，退出后将取消下载任务" delegate:self otherBtn:@"确认"];
-        alertViewType =2;
-    }else{
         /*清理所有下载线程*/
         [[NSNotificationCenter defaultCenter] postNotificationName:@"cancelAllThread"
                                                             object:nil];
@@ -161,6 +130,10 @@
         
         NSUserDefaults *appConfig=[NSUserDefaults standardUserDefaults];
         [appConfig setBool:NO forKey:@"isLogin"];
+        user.msisdn=nil;
+        user.eccode=nil;
+        
+        
         [appConfig synchronize];
         if(coverView){
             coverView.hidden=YES;
@@ -177,143 +150,50 @@
         [UIView commitAnimations];
         [self performSelector:@selector(dissView) withObject:nil afterDelay:0.3];
 
-    }
-    
-   
 }
 
+
+
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-     NSString * strIngPath =[NSString stringWithFormat:@"%@/%@/%@/%@",DocumentsDirectory,user.msisdn,user.eccode,@"IngDown.plist"];
-    switch (alertViewType) {
-        case 0://切换单位alert
-            if(buttonIndex==1){
-                NSArray * IngDown =[NSArray arrayWithContentsOfFile:strIngPath];
-                if (IngDown.count>0) {
-                    [ToolUtils alertInfo:@"您有未下载完的任务，退出后将取消下载任务" delegate:self otherBtn:@"确认"];
-                    alertViewType =1;
-                }else{
-                    for(int i=0;i<[self.account.accountList visibleCells].count;i++){
-                        GetEcCell *cell = [[self.account.accountList visibleCells] objectAtIndex:i];
-                        [cell.selectEc setBackgroundImage:[UIImage imageNamed:@"btn_uncheck"] forState:UIControlStateNormal];
-                    }
-                    EcinfoDetas *ecinfo=arr[tempIndexPath.row];
-                    user.eccode=ecinfo.ECID;
-                    user.ecname=ecinfo.ECName;
-                    user.ecsystem=ecinfo.ECSystem;
-                    user.province=ecinfo.ECProvince;
-
-                    user.ecSgin=@"0";
-                    NSUserDefaults *appConfig=[NSUserDefaults standardUserDefaults];
-                    [appConfig setValue:user.eccode forKey:@"eccode"];
-                    [appConfig setValue:user.ecname forKey:@"ecname"];
-                    [appConfig setValue:user.province forKey:@"userprovince"];
-                    [appConfig setValue:user.ecsystem forKey:@"ecSystem"];
-                    [appConfig synchronize];
-                    GetEcCell *cell = (GetEcCell *)[self.account.accountList cellForRowAtIndexPath:tempIndexPath];
-                    [cell.selectEc setBackgroundImage:[UIImage imageNamed:@"btn_check"] forState:UIControlStateNormal];
-                    [self DownLoadAddress];
-                    isZaiXian=NO;
-                    
-                    /*清除全局通讯录人员组信息*/
-                    EX_arrGroupAddressBooks=nil;
-                    EX_arrSection=nil;
-                    
-                    /*关闭定时器,bool为NO表示退出否则为切换单位*/
-                    [self invalidateOfTime:NO];
-                    
-                    /*清理所有下载线程*/
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"cancelAllThread"
-                                                                        object:nil];
-
-                }
-            }
-            break;
-            
-            
-        case 1://是否真正确认退出或者切换单位alert
-            if(buttonIndex==1){
-                for(int i=0;i<[self.account.accountList visibleCells].count;i++){
-                    GetEcCell *cell = [[self.account.accountList visibleCells] objectAtIndex:i];
-                    [cell.selectEc setBackgroundImage:[UIImage imageNamed:@"btn_uncheck"] forState:UIControlStateNormal];
-                }
-                EcinfoDetas *ecinfo=arr[tempIndexPath.row];
-                user.eccode=ecinfo.ECID;
-                user.ecname=ecinfo.ECName;
-                user.ecsystem=ecinfo.ECSystem;
-                user.province=ecinfo.ECProvince;
-                user.ecSgin=@"0";
-                NSUserDefaults *appConfig=[NSUserDefaults standardUserDefaults];
-                [appConfig setValue:user.eccode forKey:@"eccode"];
-                [appConfig setValue:user.ecname forKey:@"ecname"];
-                [appConfig setValue:user.province forKey:@"userprovince"];
-                [appConfig setValue:user.ecsystem forKey:@"ecSystem"];
-                [appConfig synchronize];
-                GetEcCell *cell = (GetEcCell *)[self.account.accountList cellForRowAtIndexPath:tempIndexPath];
-                [cell.selectEc setBackgroundImage:[UIImage imageNamed:@"btn_check"] forState:UIControlStateNormal];
-                [self DownLoadAddress];
-                isZaiXian=NO;
-                
-                /*清除全局通讯录人员组信息*/
-                EX_arrGroupAddressBooks=nil;
-                EX_arrSection=nil;
-                
-                /*关闭定时器,bool为NO表示退出否则为切换单位*/
-                [self invalidateOfTime:NO];
-                
-                /*清理所有下载线程*/
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"cancelAllThread"
-                                                                    object:nil];
-                BOOL blHave=[[NSFileManager defaultManager] fileExistsAtPath:strIngPath];
-                if (blHave) [[NSFileManager defaultManager] removeItemAtPath:strIngPath error:nil];
-            }
-            
-            break;
-            
-            case 2://退出帐号alert
-            if(buttonIndex==1){
-                /*清理所有下载线程*/
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"cancelAllThread"
-                                                                    object:nil];
-                
-                BOOL blHave=[[NSFileManager defaultManager] fileExistsAtPath:strIngPath];
-                if (blHave) [[NSFileManager defaultManager] removeItemAtPath:strIngPath error:nil];
-                
-                NSUserDefaults *appConfig=[NSUserDefaults standardUserDefaults];
-                [appConfig setBool:NO forKey:@"isLogin"];
-                [appConfig synchronize];
-                if(coverView){
-                    coverView.hidden=YES;
-                }
-                
-                /*关闭定时器,bool为NO表示退出否则为切换单位*/
-                [self invalidateOfTime:YES];
-                
-                /*回传服务器“已注销"*/
-                [packageData iosLoginOut:self];
-                
-                /*清除全局通讯录人员组信息*/
-                EX_arrGroupAddressBooks=nil;
-                EX_arrSection=nil;
-                
-                CGRect rect=self.account.view.frame;
-                [UIView beginAnimations:nil context:UIGraphicsGetCurrentContext()];
-                [UIView setAnimationDuration:0.6f];//动画时间
-                [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];//开始与结束快慢
-                
-                rect.origin.x=ScreenWidth+ScreenWidth/2;
-                self.account.view.frame=rect;
-                
-                [UIView commitAnimations];
-                [self performSelector:@selector(dissView) withObject:nil afterDelay:0.3];
+    if(buttonIndex==1){
         
+            for(int i=0;i<[self.account.accountList visibleCells].count;i++){
+                GetEcCell *cell = [[self.account.accountList visibleCells] objectAtIndex:i];
+                [cell.selectEc setBackgroundImage:[UIImage imageNamed:@"btn_uncheck"] forState:UIControlStateNormal];
             }
+        
+            EcinfoDetas *ecinfo=arr[tempIndexPath.row];
+            user.eccode=ecinfo.ECID;
+            user.ecname=ecinfo.ECName;
+            user.ecsystem=ecinfo.ECSystem;
+            user.province=ecinfo.ECProvince;
             
-            break;
-        default:
-            break;
-    }
-   }
+            user.ecSgin=@"0";
+            NSUserDefaults *appConfig=[NSUserDefaults standardUserDefaults];
+            [appConfig setValue:user.eccode forKey:@"eccode"];
+            [appConfig setValue:user.ecname forKey:@"ecname"];
+            [appConfig setValue:user.province forKey:@"userprovince"];
+            [appConfig setValue:user.ecsystem forKey:@"ecSystem"];
+            [appConfig synchronize];
+            GetEcCell *cell = (GetEcCell *)[self.account.accountList cellForRowAtIndexPath:tempIndexPath];
+            [cell.selectEc setBackgroundImage:[UIImage imageNamed:@"btn_check"] forState:UIControlStateNormal];
+            [self DownLoadAddress];
+            isZaiXian=NO;
+            
+            /*清除全局通讯录人员组信息*/
+            EX_arrGroupAddressBooks=nil;
+            EX_arrSection=nil;
+            
+            /*关闭定时器,bool为YES表示退出否则为切换单位*/
+            [self invalidateOfTime:NO];
+            
+            /*清理所有下载线程*/
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"cancelAllThread"
+                                                                object:nil];
+            
+        }
 
+}
 
 //关闭定时器
 - (void)invalidateOfTime:(BOOL)isOut{
@@ -342,7 +222,7 @@
 
 -(void)timerFired:(id)s{}
 
-//开始下载
+//切换单位
 - (void)DownLoadAddress{
     
     self.HUD = [[MBProgressHUD alloc] initWithView:self.account.view];
