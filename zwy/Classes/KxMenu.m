@@ -170,8 +170,8 @@ typedef enum {
     UIView                     *_contentView;
     NSArray                    *_menuItems;
 }
-extern  float _contentViewHeight;
-float _contentViewHeight=0;
+extern  float _contentViewWidth;
+float _contentViewWidth=0;
 
 extern bool  _changeably;
 bool _changeably=false;
@@ -204,7 +204,7 @@ UIColor *menuTitleColour=nil;
 
 //设定弹出视图的宽度
 +(void)setContentViewWidth:(float)width withChangeablyHeight:(BOOL)Changeably{
-    _contentViewHeight=width;
+    _contentViewWidth=width;
     _changeably=Changeably;
 }
 
@@ -446,9 +446,10 @@ UIColor *menuTitleColour=nil;
     contentView.opaque = NO;
     NSInteger Height =[_menuItems count];
     if (Height>5&&!_changeably)Height=5;
+    if (Height>11&&!iPhone5) Height=11;
     CGRect rect ;
-    if (_contentViewHeight==0.0f||!_contentViewHeight) rect =CGRectMake(2.0f, 5.0f, 266.0f, Height*30.0f);
-    else rect =CGRectMake(2.0f, 5.0f, _contentViewHeight, Height*30.0f);
+    if (_contentViewWidth==0.0f||!_contentViewWidth) rect =CGRectMake(2.0f, 5.0f, 266.0f, Height*30.0f);
+    else rect =CGRectMake(2.0f, 5.0f, _contentViewWidth, Height*30.0f);
     UITableView * tableView_ =[[UITableView alloc] initWithFrame:rect style:UITableViewStylePlain];
     tableView_.backgroundColor=[UIColor clearColor];
     tableView_.dataSource=self;
@@ -462,6 +463,7 @@ UIColor *menuTitleColour=nil;
     [contentView addSubview:self._tableView];
     return contentView;
 }
+
 //******//********//******//********//******//********//******//********//
 //******//********//******//********//******//********//******//********//
 //******//********//******//********//******//********//******//********//

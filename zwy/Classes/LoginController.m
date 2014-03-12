@@ -102,7 +102,7 @@
                 return;
             }
             
-            if([@"13752923254" isEqualToString:self.logView.msisdn.text]||[info.respCode isEqualToString:@"0"]){
+            if([@"13752923254" isEqualToString:self.logView.msisdn.text]||[info.respCode isEqualToString:@"1"]){
                     user=[Tuser new];
                     user.msisdn=self.logView.msisdn.text;
                 UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
@@ -185,7 +185,7 @@
     }
     
     sgin=@"0";
-    self.HUD.labelText = @"正在获取验证码..";
+    self.HUD.labelText = @"正在获取验证码...";
     [self.HUD show:YES];
    // self.HUD.dimBackground = YES;
     [packageData getSecurityCode:self msisdn:self.logView.msisdn.text];
@@ -212,7 +212,7 @@
     }
     sgin=@"1";
    [packageData checkCode:self Code:self.logView.verifyField.text msisdn:self.logView.msisdn.text];
-    self.HUD.labelText = @"正在验证..";
+    self.HUD.labelText = @"正在验证...";
     [self.HUD show:YES];
 //    self.HUD.dimBackground = YES;
     [_logView.msisdn resignFirstResponder];
